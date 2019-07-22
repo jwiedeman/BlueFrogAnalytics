@@ -1,0 +1,41 @@
+.timer {
+  font-family:helvetica;
+ display:block;
+  text-align: center;
+  margin: 10% 0% 0% 0%;
+  background: #2b2b2b;
+  
+}
+.timer .day, .timer .hour, .timer .min, .timer .sec {
+  font-size: 20px;
+  padding: 3%;
+   
+display:inline-block;
+  text-align: center;
+  width:auto;
+}
+
+.timer .status-tag {
+  font-size: 15px;
+  font-weight: 900;
+
+
+}
+
+
+
+.timer .status-tag.upcoming {
+  background-color: gold;
+   color:black;
+    font-weight:bold;
+}
+.timer .status-tag.running {
+  background-color: #2ecc71;
+  color:black;
+    font-weight:bold;
+}
+.timer .status-tag.expired {
+  background-color: silver;
+   color:black;
+    font-weight:bold;
+}
