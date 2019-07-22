@@ -132,7 +132,7 @@ new Vue({
           rokot:'./assets/rokot.jpg',
           deltaiv:'./assets/deltaiv.jpg',
           pegasusxl:'./assets/pegasusxl.jpg',
-          HIIB:'./assets/H-IIB.jpg',
+          HIIB:'./assets/HIIB.jpg',
         }
       },
       info: null
