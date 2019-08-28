@@ -12,7 +12,7 @@
   color: #fff; }
 
 ::selection {
-  background-color: #46dbf9;
+  background-color: #ff3c3c;
   color: #fff; }
 
 ::-webkit-input-placeholder {
@@ -101,11 +101,11 @@ a, a:focus, a:hover {
 h1, h2, h3,
 h4, h5, h6 {
   font-family: "Poppins", sans-serif;
-  color: #222222;
+  
   line-height: 1.2em !important;
   margin-bottom: 0;
   margin-top: 0;
-  font-weight: 600; }
+  font-weight: 900; }
 
 .h1, .h2, .h3,
 .h4, .h5, .h6 {
@@ -806,7 +806,7 @@ td, th {
   font-size: 24px; }
 
 b, sup, sub, u, del {
-  color: #46dbf9; }
+  color: #ffffff; }
 
 h1 {
   font-size: 36px; }
@@ -1634,9 +1634,13 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 997; }
 
 .header-scrolled {
-  background: rgba(70, 219, 249, 0.9);
+  background: black;
+  color:white;
   transition: all 0.5s; }
-
+  a.header-scrolled {
+    background: black;
+    color:white;
+    transition: all 0.5s; }
 @media (max-width: 673px) {
   #logo {
     margin-left: 20px; } }
@@ -1726,7 +1730,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 -2px;
   text-decoration: none;
   display: inline-block;
-  color: black;
+  color: white;
   font-weight: 500;
   font-size: 15px;
   font-family: "Poppins", sans-serif;
