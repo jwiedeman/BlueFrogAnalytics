@@ -3308,3 +3308,18 @@ iframe {
   display:block;
   width:100%;
 }
+
+
+@media only screen and (max-width: 800px) {
+  .spacer {
+   padding-top:30%;
+   color:black;
+    
+  }
+  #header {
+    
+    background: black;
+    color:white;
+    transition: all 0.5s;
+  }
+}
