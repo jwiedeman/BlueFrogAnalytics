@@ -3310,16 +3310,37 @@ iframe {
 }
 
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1090px) {
   .spacer {
-   padding-top:30%;
-   color:black;
-    
+   padding-top:10%;
   }
   #header {
-    
     background: black;
     color:white;
-    transition: all 0.5s;
+    transition: all 1s;
   }
+
+
+}
+
+@media only screen and (max-width: 600px) {
+  .spacer {
+   padding-top:20%;
+  }
+  #header {
+    background: black;
+    color:white;
+    transition: all 1s;
+  }
+
+
+}
+
+
+
+* {
+  margin-block-end: 0;
+  margin-block-start: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
 }
