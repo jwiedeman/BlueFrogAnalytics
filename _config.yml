@@ -5,7 +5,7 @@
 # 'bundle exec jekyll serve'. If you change this file, please restart the server process.
 
 # Site title and description
-title:              SOUTIEN
+title:              Search Engine Tracking Integrations
 description:        Customer Support Helpdesk Jekyll theme
 lang:               en
 
@@ -63,7 +63,7 @@ share:
 
 # Default footer image settings
 footer:
-    copyright:      Made by <a href="https://unbound.studio/">Unbound Studio</a> in Bratislava, Slovakia.
+    copyright:      Made by Joshua Wiedeman in Portland, Oregon.
 
 # Disqus comments shortname, requires Disqus account https://disqus.com/
 disqus:
