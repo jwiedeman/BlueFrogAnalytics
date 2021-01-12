@@ -1,11 +1,11 @@
-- title: Getting Started
+- title: Tracking Code Diagnosis
   icon: cog
   articles:
   - installation
   - setup
   - footer
 
-- title: Create Content
+- title: Wordpress
   icon: file-edit
   articles:
   - posts
@@ -14,7 +14,7 @@
   - media
   - alerts
 
-- title: Theme Features
+- title: Shopify
   icon: settings
   articles:
   - home
@@ -24,29 +24,47 @@
   - changelog
   - contact
 
-- title: Navigation Bar
+- title: Bigcommerce
   icon: menu
   articles:
   - navigation
 
-- title: Google Analytics
+- title: Squarespace
   icon: history
   articles:
   - analytics
 
-- title: Newsletter Sign Up
+- title: Wix
   icon: mail
   articles:
   - mailchimp
 
-- title: Customization
+- title: Joomla
   icon: code
   articles:
   - translation
   - customize
   - development
 
-- title: Help & Sources
+- title: 3dCart
+  icon: question
+  articles:
+  - support
+  - sources
+
+  - title: Duda
+  icon: question
+  articles:
+  - support
+  - sources
+
+  - title: Magento
+  icon: question
+  articles:
+  - support
+  - sources
+
+  - title: Weebly
   icon: question
   articles:
   - support
@@ -58,7 +76,7 @@
 
 
 
-  
+
 - title: Getting Started
   icon: cog
   articles:
