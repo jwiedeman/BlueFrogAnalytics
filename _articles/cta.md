@@ -21,7 +21,7 @@ Add the following setting in `_config.yml`:
 ```yaml
 article:
   cta:
-    text: "Didn't find an answer to your question, we are here to help"
+    text: "Didn't find an answer to your question? we are here to help."
     button_text: "Contact Us"
     button_url: /contact/
 
