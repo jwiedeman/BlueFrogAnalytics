@@ -70,7 +70,7 @@ disqus:
     shortname:      # 1234
 
 # Google analytics code, get your code here https://www.google.com/analytics/
-google_analytics:
+google_analytics: UA-166606465-2
 
 # Number of posts displayed on blog page
 paginate:           6
