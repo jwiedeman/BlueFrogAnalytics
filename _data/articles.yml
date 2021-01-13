@@ -6,7 +6,7 @@
   - footer
 
 - title: Wordpress
-  icon: file-edit
+  icon: settings
   articles:
   - posts
   - articles
@@ -25,53 +25,53 @@
   - contact
 
 - title: Bigcommerce
-  icon: menu
+  icon: settings
   articles:
   - navigation
 
 - title: Squarespace
-  icon: history
+  icon: settings
   articles:
   - analytics
 
 - title: Wix
-  icon: mail
+  icon: settings
   articles:
   - mailchimp
 
 - title: Joomla
-  icon: code
+  icon: settings
   articles:
   - translation
   - customize
   - development
 
 - title: 3dCart
-  icon: question
+  icon: settings
   articles:
   - support
   - sources
 
 - title: Duda
-  icon: question
+  icon: settings
   articles:
   - support
   - sources
 
 - title: Magento
-  icon: question
+  icon: settings
   articles:
   - support
   - sources
 
 - title: Weebly
-  icon: question
+  icon: settings
   articles:
   - support
   - sources
 
 - title: Call tracking
-  icon: question
+  icon: settings
   articles:
   - support
   - sources
@@ -79,14 +79,14 @@
 
 
 - title: Getting Started
-  icon: cog
+  icon: settings
   articles:
   - installation
   - setup
   - footer
 
 - title: Create Content
-  icon: file-edit
+  icon: settings
   articles:
   - posts
   - articles
@@ -104,30 +104,30 @@
   - changelog
   - contact
 
-- title: Navigation Bar
-  icon: menu
+- title: Base codes
+  icon: code
   articles:
   - navigation
 
-- title: Google Analytics
-  icon: history
+- title: Remarketing 
+  icon: code
   articles:
   - analytics
 
-- title: Newsletter Sign Up
-  icon: mail
+- title: Conversion tracking
+  icon: code
   articles:
   - mailchimp
 
-- title: Customization
+- title: Event Tracking
   icon: code
   articles:
   - translation
   - customize
   - development
 
-- title: Help & Sources
-  icon: question
+- title: Call Tracking
+  icon: code
   articles:
   - support
   - sources
