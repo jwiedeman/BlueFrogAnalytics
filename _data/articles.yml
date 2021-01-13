@@ -53,28 +53,28 @@
   - sources
 
 - title: Duda
-icon: question
-articles:
-- support
-- sources
+  icon: question
+  articles:
+  - support
+  - sources
 
 - title: Magento
-icon: question
-articles:
-- support
-- sources
+  icon: question
+  articles:
+  - support
+  - sources
 
 - title: Weebly
-icon: question
-articles:
-- support
-- sources
+  icon: question
+  articles:
+  - support
+  - sources
 
 - title: Call tracking
-icon: question
-articles:
-- support
-- sources
+  icon: question
+  articles:
+  - support
+  - sources
 
 
 
