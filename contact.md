@@ -6,6 +6,4 @@ subtitle: Were here to help, send us a message and we'll get back to you asap.
 permalink: /contact/
 ---
 
-Example contact us form using [Formspree](https://formspree.io/).
-
 {% include formspree.html redirect="/thanks/" name="true" subject="true" %}
