@@ -8,6 +8,7 @@
 - title: Wordpress
   icon: settings
   articles:
+  - wp_ga_basecode
 
 
 - title: Shopify
@@ -45,10 +46,14 @@
   articles:
   
 
-- title: Magento
+- title: Magento 1
   icon: settings
   articles:
-  
+
+- title: Magento 2
+  icon: settings
+  articles:
+    
 
 - title: Weebly
   icon: settings
