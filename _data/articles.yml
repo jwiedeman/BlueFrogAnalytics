@@ -8,8 +8,9 @@
 - title: Wordpress
   icon: settings
   articles:
-  - wp_ga_basecode
-  - wp_ga_ecom
+  - wordpress_googleanalytics_basecode
+  - wordpress_googleanalytics_ecom
+  - wordpress_googleanalytics_enhancedecom
 
 
 - title: Shopify
