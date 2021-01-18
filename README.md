@@ -1,5 +1,3 @@
-# Soutien is a premium documentation Jekyll theme
+# Silence is golden
+Contact joshua.f.wiedeman@gmail.com if you have any questions. 
 
-## Documentation
-
-Documentation can be found here: [https://docs.unbound.studio/soutien-jekyll-helpdesk-theme/](https://docs.unbound.studio/soutien-jekyll-helpdesk-theme/).
