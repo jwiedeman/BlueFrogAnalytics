@@ -7,5 +7,5 @@ search: true
 
 {% include cta.html 
     icon="mail" title="Need more help?" text="Get in touch with us, support is provided daily" link_text="contact us" link_url="/contact/" 
-    icon2="receiver" title2="Interested in our products?" text2="Our sales representatives can help you chose" link_text2="call us" link_url2="/contact/" 
+    icon2="receiver" title2="Interested in our services?" text2="Our code representatives can help " link_text2="contact us" link_url2="/contact/" 
 %}
