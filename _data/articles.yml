@@ -8,127 +8,94 @@
 - title: Wordpress
   icon: settings
   articles:
-  - Google analytics
-  - posts
-  - articles
-  - comments
-  - media
-  - alerts
+
 
 - title: Shopify
   icon: settings
   articles:
-  - home
-  - categories
-  - faq
-  - cta
-  - changelog
-  - contact
+ 
 
 - title: Bigcommerce
   icon: settings
   articles:
-  - navigation
+  
 
 - title: Squarespace
   icon: settings
   articles:
-  - analytics
+  
 
 - title: Wix
   icon: settings
   articles:
-  - mailchimp
+  
 
 - title: Joomla
   icon: settings
   articles:
-  - translation
-  - customize
-  - development
+ 
 
 - title: 3dCart
   icon: settings
   articles:
-  - support
-  - sources
+  
 
 - title: Duda
   icon: settings
   articles:
-  - support
-  - sources
+  
 
 - title: Magento
   icon: settings
   articles:
-  - support
-  - sources
+  
 
 - title: Weebly
   icon: settings
   articles:
-  - support
-  - sources
+  
 
 - title: Call tracking
   icon: settings
   articles:
-  - support
-  - sources
-
 
 
 - title: Getting Started
   icon: settings
   articles:
-  - installation
-  - setup
-  - footer
+  
 
 - title: Create Content
   icon: settings
   articles:
-  - posts
-  - articles
-  - comments
-  - media
-  - alerts
+  
 
 - title: Theme Features
   icon: settings
   articles:
-  - home
-  - categories
-  - faq
-  - cta
-  - changelog
-  - contact
+
 
 - title: Base codes
   icon: code
   articles:
-  - navigation
+ 
 
 - title: Remarketing 
   icon: code
   articles:
-  - analytics
+ 
 
 - title: Conversion tracking
   icon: code
   articles:
-  - mailchimp
+ 
 
 - title: Event Tracking
   icon: code
   articles:
-  - translation
-  - customize
-  - development
+  
 
 - title: Call Tracking
   icon: code
   articles:
-  - support
-  - sources
+  
