@@ -9,6 +9,7 @@
   icon: settings
   articles:
   - wp_ga_basecode
+  - wp_ga_ecom
 
 
 - title: Shopify
