@@ -15,8 +15,11 @@ baseurl:            ""
 # Permalink URLs structure, for permalink style options see: https://jekyllrb.com/docs/permalinks/
 permalink:          /:title/
 
+plugins:
+  - jekyll-sitemap
+
 # Site base hostname & protocol, e.g. http://example.com
-url:                "https://jekyll-theme-soutien.netlify.com"
+url:                "https://whostracking.me"
 
 # Site logo # e.g. logo.png, upload logo image file to /uploads/ folder
 logo:               
@@ -104,6 +107,8 @@ gems:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-gist
+  - jekyll-sitemap
+
 exclude:
   - Gemfile
   - Gemfile.lock
