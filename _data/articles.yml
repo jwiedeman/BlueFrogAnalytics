@@ -11,7 +11,19 @@
   - wordpress_googleanalytics_basecode
   - wordpress_googleanalytics_ecom
   - wordpress_googleanalytics_enhancedecom
-
+  - wordpress_googleanalytics_eventtracking
+  - wordpress_googleads_basecode
+  - wordpress_googleads_conversiontracking
+  - wordpress_googleads_remarketing
+  - wordpress_googleads_dynamicremarketing
+  - wordpress_googleads_calltracking
+  - wordpress_microsoftads_basecode
+  - wordpress_microsoftads_ecom
+  - wordpress_microsoftads_eventtracking
+  - wordpress_microsoftads_dynamicremarketing
+  - wordpress_facebookpixel_basecode
+  - wordpress_facebookpixel_ecom
+  - wordpress_facebookpixel_eventtracking
 
 - title: Shopify
   icon: settings
