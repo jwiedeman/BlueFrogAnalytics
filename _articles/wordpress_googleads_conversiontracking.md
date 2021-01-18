@@ -1,5 +1,5 @@
 ---
-title: Wordpress Google Analytics base code installation
+title: Google Ads conversion tracking
 subtitle: This document covers the setup and options of theme feature described in the article title
 author: Joshua Wiedeman
 tags: [setup]
