@@ -90,26 +90,6 @@
   articles:
   
 
-- title: Call tracking
-  icon: settings
-  articles:
-
-
-- title: Getting Started
-  icon: settings
-  articles:
-  
-
-- title: Create Content
-  icon: settings
-  articles:
-  
-
-- title: Theme Features
-  icon: settings
-  articles:
-
-
 - title: Base codes
   icon: code
   articles:
@@ -119,6 +99,9 @@
   icon: code
   articles:
  
+- title: Dynamic Remarketing 
+  icon: code
+  articles:
 
 - title: Conversion tracking
   icon: code
