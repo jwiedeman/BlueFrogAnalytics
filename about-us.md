@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Thanks
-permalink: /thanks/
+permalink: /about-us/
 width: small
 ---
 
