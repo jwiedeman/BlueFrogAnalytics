@@ -28,6 +28,22 @@
 - title: Shopify
   icon: settings
   articles:
+  - shopify_googleanalytics_basecode
+  - shopify_googleanalytics_ecom
+  - shopify_googleanalytics_enhancedecom
+  - shopify_googleanalytics_eventtracking
+  - shopify_googleads_basecode
+  - shopify_googleads_conversiontracking
+  - shopify_googleads_remarketing
+  - shopify_googleads_dynamicremarketing
+  - shopify_googleads_calltracking
+  - shopify_microsoftads_basecode
+  - shopify_microsoftads_ecom
+  - shopify_microsoftads_eventtracking
+  - shopify_microsoftads_dynamicremarketing
+  - shopify_facebookpixel_basecode
+  - shopify_facebookpixel_ecom
+  - shopify_facebookpixel_eventtracking
  
 
 - title: Bigcommerce

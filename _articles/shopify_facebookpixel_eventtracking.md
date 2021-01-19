@@ -1,5 +1,5 @@
 ---
-title: Microsoft Ads dynamic remarketing
+title: Facebook Pixel event tracking
 subtitle: This document covers the setup and options of theme feature described in the article title
 author: Joshua Wiedeman
 tags: [setup]
