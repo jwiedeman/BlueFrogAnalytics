@@ -8,42 +8,44 @@
 - title: Wordpress
   icon: settings
   articles:
-  - wordpress_googleanalytics_basecode
-  - wordpress_googleanalytics_ecom
-  - wordpress_googleanalytics_enhancedecom
-  - wordpress_googleanalytics_eventtracking
-  - wordpress_googleads_basecode
-  - wordpress_googleads_conversiontracking
-  - wordpress_googleads_remarketing
-  - wordpress_googleads_dynamicremarketing
-  - wordpress_googleads_calltracking
-  - wordpress_microsoftads_basecode
-  - wordpress_microsoftads_ecom
-  - wordpress_microsoftads_eventtracking
-  - wordpress_microsoftads_dynamicremarketing
-  - wordpress_facebookpixel_basecode
-  - wordpress_facebookpixel_ecom
-  - wordpress_facebookpixel_eventtracking
+  - wordpress-index
+  - wordpress-googleanalytics-basecode
+  - wordpress-googleanalytics-ecom
+  - wordpress-googleanalytics-enhancedecom
+  - wordpress-googleanalytics-eventtracking
+  - wordpress-googleads-basecode
+  - wordpress-googleads-conversiontracking
+  - wordpress-googleads-remarketing
+  - wordpress-googleads-dynamicremarketing
+  - wordpress-googleads-calltracking
+  - wordpress-microsoftads-basecode
+  - wordpress-microsoftads-ecom
+  - wordpress-microsoftads-eventtracking
+  - wordpress-microsoftads-dynamicremarketing
+  - wordpress-facebookpixel-basecode
+  - wordpress-facebookpixel-ecom
+  - wordpress-facebookpixel-eventtracking
 
 - title: Shopify
   icon: settings
   articles:
-  - shopify_googleanalytics_basecode
-  - shopify_googleanalytics_ecom
-  - shopify_googleanalytics_enhancedecom
-  - shopify_googleanalytics_eventtracking
-  - shopify_googleads_basecode
-  - shopify_googleads_conversiontracking
-  - shopify_googleads_remarketing
-  - shopify_googleads_dynamicremarketing
-  - shopify_googleads_calltracking
-  - shopify_microsoftads_basecode
-  - shopify_microsoftads_ecom
-  - shopify_microsoftads_eventtracking
-  - shopify_microsoftads_dynamicremarketing
-  - shopify_facebookpixel_basecode
-  - shopify_facebookpixel_ecom
-  - shopify_facebookpixel_eventtracking
+  - shopify-index
+  - shopify-googleanalytics-basecode
+  - shopify-googleanalytics-ecom
+  - shopify-googleanalytics-enhancedecom
+  - shopify-googleanalytics-eventtracking
+  - shopify-googleads-basecode
+  - shopify-googleads-conversiontracking
+  - shopify-googleads-remarketing
+  - shopify-googleads-dynamicremarketing
+  - shopify-googleads-calltracking
+  - shopify-microsoftads-basecode
+  - shopify-microsoftads-ecom
+  - shopify-microsoftads-eventtracking
+  - shopify-microsoftads-dynamicremarketing
+  - shopify-facebookpixel-basecode
+  - shopify-facebookpixel-ecom
+  - shopify-facebookpixel-eventtracking
  
 
 - title: Bigcommerce
