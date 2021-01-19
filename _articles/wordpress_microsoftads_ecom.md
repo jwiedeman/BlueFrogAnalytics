@@ -1,5 +1,5 @@
 ---
-title: Microsoft Ads Ecom 
+title: Wordpress Microsoft Ads Ecom 
 subtitle: This document covers the setup and options of theme feature described in the article title
 author: Joshua Wiedeman
 tags: [setup]

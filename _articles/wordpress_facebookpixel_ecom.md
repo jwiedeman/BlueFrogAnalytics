@@ -1,5 +1,5 @@
 ---
-title: Facebook Pixel ecommerce tracking
+title: Wordpress Facebook Pixel ecommerce tracking
 subtitle: This document covers the setup and options of theme feature described in the article title
 author: Joshua Wiedeman
 tags: [setup]

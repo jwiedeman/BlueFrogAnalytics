@@ -1,5 +1,5 @@
 ---
-title:  Facebook Pixel base code
+title:  Wordpress Facebook Pixel base code
 subtitle: This document covers the setup and options of theme feature described in the article title
 author: Joshua Wiedeman
 tags: [setup]

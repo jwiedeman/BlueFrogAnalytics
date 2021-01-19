@@ -1,5 +1,5 @@
 ---
-title: Microsoft Ads dynamic remarketing
+title: Shopify Microsoft Ads dynamic remarketing
 subtitle: This document covers the setup and options of theme feature described in the article title
 author: Joshua Wiedeman
 tags: [setup]
