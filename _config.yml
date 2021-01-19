@@ -5,8 +5,8 @@
 # 'bundle exec jekyll serve'. If you change this file, please restart the server process.
 
 # Site title and description
-title:              Search Engine Tracking Integrations
-description:        Customer Support Helpdesk Jekyll theme
+title:              Search Engine Marketing Integrations
+description:        SEM Support 
 lang:               en
 
 # Site subpath, e.g. /blog
@@ -26,8 +26,8 @@ logo:
   
 # Default author settings
 author:
-    name:           Pete Seth
-    title:          Lead Developer  
+    name:           Joshua Wiedeman
+    title:          Developer  
     avatar:         https://via.placeholder.com/80x80
 
 # Author settings, displayed on post pages if front matter references author name e.g. author: peter
