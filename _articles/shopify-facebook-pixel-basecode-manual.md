@@ -46,7 +46,32 @@ You will need:
     ```
 
 
+2. Add the snippet to the main theme.liquid file by adding "includes" in the appropriate spots:
+
+    ```javascript
+        {% include 'facebook-pixel' %}
+    ```
+
+    Add just before the html `</head>` tag. 
+
+    ```html
+        <head>
+            {% include 'facebook-pixel' %}
+        </head>
+    ```
+
+
+
+## Verification
+
  
   
+
+
+
+## Summary
+
+Congratulations! 
+
 
 
