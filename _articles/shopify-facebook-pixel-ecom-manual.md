@@ -40,7 +40,7 @@ tags: [setup]
     {% endif %}
     ```
 
-    {% include 'lp-facebook-ecomm' %}
+    ```{% include 'lp-facebook-ecomm' %}```
     Add just before ```</body>```
 
 
