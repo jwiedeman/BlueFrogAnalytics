@@ -48,7 +48,7 @@ Replace ADD_YOUR_FACEBOOK_PIXEL_ID_HERE with your Facebook Pixel ID in the follo
 Add just before the html `</head>` tag. 
 
 ~~~
-       `` {% include 'facebook-pixel' %} ``
+       
 ~~~
 {: .language-javascript}
 
