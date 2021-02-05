@@ -45,19 +45,17 @@ Replace ADD_YOUR_FACEBOOK_PIXEL_ID_HERE with your Facebook Pixel ID in the follo
 ```
 #### 2. Add the snippet to the main theme.liquid file by adding "includes" in the appropriate spots:
 
-```
-{% comment %}
+~~~
     {% include 'facebook-pixel' %}
-{% endcomment %}
-```
+~~~
 
 Add just before the html `</head>` tag. 
 
-```html
+~~~html
     <head>
         {% include 'facebook-pixel' %}
     </head>
-```
+~~~
 
 ## Verification
 
