@@ -23,26 +23,26 @@ You will need:
     Replace ADD_YOUR_FACEBOOK_PIXEL_ID_HERE with your Facebook Pixel ID in the following code, and add to the new facebook-pixel snippet:
 
     ``
-    <!-- LP: Facebook Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    
-    fbq('init', 'ADD_YOUR_FACEBOOK_PIXEL_ID_HERE');
-    fbq('track', 'PageView');
-    </script>
+        <!-- LP: Facebook Pixel Code -->
+        <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        
+        fbq('init', 'ADD_YOUR_FACEBOOK_PIXEL_ID_HERE');
+        fbq('track', 'PageView');
+        </script>
 
-    <noscript>
-    <img height="1" width="1" style="display:none" 
-        src="https://www.facebook.com/tr?id=ADD_YOUR_FACEBOOK_PIXEL_ID_HERE&ev=PageView&noscript=1"/>
-    </noscript>
-    <!-- End Facebook Pixel Code -->
+        <noscript>
+        <img height="1" width="1" style="display:none" 
+            src="https://www.facebook.com/tr?id=ADD_YOUR_FACEBOOK_PIXEL_ID_HERE&ev=PageView&noscript=1"/>
+        </noscript>
+        <!-- End Facebook Pixel Code -->
     ``
 
 
@@ -53,9 +53,9 @@ You will need:
     Add just before the html `</head>` tag. 
 
     ``
-    <head>
-        {% include 'facebook-pixel' %}
-    </head>
+        <head>
+            {% include 'facebook-pixel' %}
+        </head>
     ``
 
 
