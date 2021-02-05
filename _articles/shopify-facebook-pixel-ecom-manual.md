@@ -15,7 +15,7 @@ tags: [setup]
 
     NOTE: Be sure to replace *ADD_TO_CART_ELEMENT_ID* in the below template with the id for the addto cart button on the site. This id changes based on the theme being used.
 
-    ```
+    ``
     {% if template contains 'product' %}
     <!-- LP: Facebook Dynamic Remarketing for products -->
     <script>
@@ -38,9 +38,9 @@ tags: [setup]
     </script>
     <!-- END LP: Facebook Dynamic Remarketing for products -->
     {% endif %}
-    ```
+    ``
 
-    ```{% include 'lp-facebook-ecomm' %}```
+    ``{% include 'lp-facebook-ecomm' %}``
     Add just before ```</body>```
 
 
@@ -51,7 +51,7 @@ tags: [setup]
 
     Note: Be sure to replace FB_PIXEL_ID:
    
-   ```
+   ``
     <!-- LP: Facebook Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
@@ -85,21 +85,5 @@ tags: [setup]
     </script>
     {% endif %}
     <!-- END LP: Facebook Pixel Code -->
-    ```
-
-
----------------------------------------------------
-
-## Verification
-
-- 
-  
-
----------------------------------------------------
-
-## Summary
-
-Congratulations! 
-
-
+    ``
 
