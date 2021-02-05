@@ -57,19 +57,3 @@ You will need:
         {% include 'facebook-pixel' %}
     </head>
     ``
-
----------------------------------------------------
-
-## Verification
-
-- 
-  
-
----------------------------------------------------
-
-## Summary
-
-Congratulations! 
-
-
-
