@@ -22,7 +22,7 @@ facebook-pixel
 Replace ADD_YOUR_FACEBOOK_PIXEL_ID_HERE with your Facebook Pixel ID in the following code, and add to the new facebook-pixel snippet:
 
 ~~~html
-    <!-- LP: Facebook Pixel Code -->
+    <!--  Facebook Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
