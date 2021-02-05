@@ -15,7 +15,7 @@ You will need:
 
 
 
-1. Create the main FB Pixel snippet in the current Shopify theme files: (Shopify Dashboard > Online store > Edit code > Snippets -> Add a new snippet).
+#### 1. Create the main FB Pixel snippet in the current Shopify theme files: (Shopify Dashboard > Online store > Edit code > Snippets -> Add a new snippet).
     
 *Snippet Name:*
 facebook-pixel
@@ -46,7 +46,7 @@ Replace ADD_YOUR_FACEBOOK_PIXEL_ID_HERE with your Facebook Pixel ID in the follo
 ```
 
 
-2. Add the snippet to the main theme.liquid file by adding "includes" in the appropriate spots:
+#### 2. Add the snippet to the main theme.liquid file by adding "includes" in the appropriate spots:
 
 ```javascript
     {% include 'facebook-pixel' %}
