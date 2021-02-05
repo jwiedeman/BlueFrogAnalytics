@@ -21,7 +21,7 @@ facebook-pixel
 
 Replace ADD_YOUR_FACEBOOK_PIXEL_ID_HERE with your Facebook Pixel ID in the following code, and add to the new facebook-pixel snippet:
 
-~~~html
+```html
     <!--  Facebook Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
@@ -42,17 +42,16 @@ Replace ADD_YOUR_FACEBOOK_PIXEL_ID_HERE with your Facebook Pixel ID in the follo
         src="https://www.facebook.com/tr?id=ADD_YOUR_FACEBOOK_PIXEL_ID_HERE&ev=PageView&noscript=1"/>
     </noscript>
     <!-- End Facebook Pixel Code -->
-~~~
+```
 
 2. Add the snippet to the main theme.liquid file by adding "includes" in the appropriate spots:
 Add just before the html `</head>` tag. 
 
-~~~
+```html
 {% raw %}
         {% include 'facebook-pixel' %} 
 {% endraw %}
-~~~
-{: .language-javascript}
+```
 
 ## Verification
 
