@@ -48,13 +48,13 @@ You will need:
 
 3. Add the snippet to the main theme.liquid file by adding "includes" in the appropriate spots:
 
-    {% include 'facebook-pixel' %}
+    `{% include 'facebook-pixel' %}`
 
     Add just before the html ```</head>``` tag. 
 
     ```
     <head>
-        {% include 'facebook-pixel' %}
+        `{% include 'facebook-pixel' %}`
     </head>
     ```
 
