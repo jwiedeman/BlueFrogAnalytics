@@ -22,7 +22,7 @@ You will need:
 
     Replace ADD_YOUR_FACEBOOK_PIXEL_ID_HERE with your Facebook Pixel ID in the following code, and add to the new facebook-pixel snippet:
 
-    ```
+    `
     <!-- LP: Facebook Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
@@ -43,6 +43,6 @@ You will need:
         src="https://www.facebook.com/tr?id=ADD_YOUR_FACEBOOK_PIXEL_ID_HERE&ev=PageView&noscript=1"/>
     </noscript>
     <!-- End Facebook Pixel Code -->
-    ```
+    `
 
 
