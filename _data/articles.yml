@@ -41,9 +41,12 @@
   - shopify-microsoft-ads-ecom
   - shopify-microsoft-ads-eventtracking
   - shopify-microsoft-ads-dynamicremarketing
-  - shopify-facebook-pixel-basecode
-  - shopify-facebook-pixel-ecom
-  - shopify-facebook-pixel-eventtracking
+  - shopify-facebook-pixel-basecode-default
+  - shopify-facebook-pixel-ecom-default
+  - shopify-facebook-pixel-eventtracking-default
+  - shopify-facebook-pixel-basecode-manual
+  - shopify-facebook-pixel-ecom-manual
+  - shopify-facebook-pixel-eventtracking-manual
 #  
 # 
 # - title: Bigcommerce
