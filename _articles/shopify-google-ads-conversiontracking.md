@@ -1,5 +1,5 @@
 ---
-title: Shopify Google Ads conversion tracking
+title: Google Ads conversion tracking
 subtitle: This document covers the setup and options of theme feature described in the article title
 author: Joshua Wiedeman
 tags: [setup]
