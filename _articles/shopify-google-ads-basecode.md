@@ -17,7 +17,9 @@ You will need:
 
 1. Make sure the file you are on is "theme.liquid" 
 2. Paste your Google Ads Base Code to the site header, all you need to do is find this HTML Element
+
 `</head>` the "closing" head tag. The google ads base code : 
+
 ```html
 <!-- Global site tag (gtag.js) - Google Ads: 694458146 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-694458146"></script>
