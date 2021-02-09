@@ -16,8 +16,8 @@ You will need:
 
 
 1. If you have not already, add the facebook pixel base code - manual integration before completing this. 
+[Root File]({{site.baseurl}}article/shopify-facebook-pixel-basecode-manual.md))
 
-{{ site.baseurl }}{% link article/shopify-facebook-pixel-basecode-manual.md %}
 
 2. Create the ecomm tracking snippet in the current Shopify theme files: (Snippets -> Add a new snippet)
  
@@ -26,7 +26,7 @@ You will need:
 
     NOTE: Be sure to replace *ADD_TO_CART_ELEMENT_ID* in the below template with the id for the addto cart button on the site. This id changes based on the theme being used.
 
-    ```
+    ```html
     {% raw %}
     {% if template contains 'product' %}
     <!-- : Facebook Dynamic Remarketing for products -->
@@ -67,7 +67,7 @@ Add just before ```</body>```
 
     Note: Be sure to replace ADD_YOUR_FACEBOOK_PIXEL_ID_HERE:
    
-   ```
+   ```html
     <!-- : Facebook Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
