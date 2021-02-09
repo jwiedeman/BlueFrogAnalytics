@@ -32,14 +32,6 @@ author:
 
 # Author settings, displayed on post pages if front matter references author name e.g. author: peter
 authors:
-    evan:
-      name:         Evan Wells
-      title:        Support    
-      avatar:       https://via.placeholder.com/80x80
-    alex:
-      name:         Alex Koch
-      title:        Design Engineer     
-      avatar:       https://via.placeholder.com/80x80
 
 # Social icons displayed in footer
 social:
@@ -50,11 +42,11 @@ social:
     dribbble:
     github:
     googleplus:
-    instagram:      https://www.instagram.com/
+    instagram:      
     linkedin:
     pinterest:
     twitter:        https://twitter.com/
-    vimeo:          https://vimeo.com/
+    vimeo:          
     youtube:
 
 # Share button
@@ -95,7 +87,7 @@ post:
 article:
   search:             true
   cta:
-    text:           "Didn't find an answer to your question, we are here to help"
+    text:           "Didn't find an answer to your question? We are here to help"
     button_text:    "Contact Us"
     button_url:     /contact/
 
