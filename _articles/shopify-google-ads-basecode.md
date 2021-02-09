@@ -19,16 +19,17 @@ You will need:
 2. Paste your Google Ads Base Code to the site header, all you need to do is find this HTML Element
 
 `</head>` the "closing" head tag. The google ads base code : 
+Replace the "ADD_YOUR_GOOGLE_ADS_ID_HERE" with your "AW-000" Google ads ID
 
 ```html
 <!-- Global site tag (gtag.js) - Google Ads: 694458146 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-694458146"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=ADD_YOUR_GOOGLE_ADS_ID_HERE"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'AW-694458146');
+  gtag('config', 'ADD_YOUR_GOOGLE_ADS_ID_HERE');
 </script>
 
 ```
