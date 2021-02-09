@@ -1,5 +1,5 @@
 ---
-title: Index
+title: Shopify Index
 subtitle: This document covers the tracking integrations for shopify.
 author: Joshua Wiedeman
 tags: [setup]

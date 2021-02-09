@@ -1,5 +1,5 @@
 ---
-title: Facebook Pixel Base Code - Manual Integration
+title: Shopify Facebook Pixel Base Code - Manual Integration
 subtitle: This document covers the setup of the Facebook Pixel Base Code - Manual integration for shopify. This integration is a backup to the Shopify default integration if that cannot be setup. 
 author: Joshua Wiedeman
 tags: [setup]
