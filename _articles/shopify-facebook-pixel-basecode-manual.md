@@ -53,6 +53,9 @@ Add just before the html `</head>` tag.
 {% endraw %}
 ```
 
+3. To install the Shopify Facebook Pixel Manual Ecom integration, proceed to this article, 
+[Facebook Pixel Ecom - Manual]({{site.baseurl}}article/shopify-facebook-pixel-ecom-manual.md))
+
 ## Verification
 
 

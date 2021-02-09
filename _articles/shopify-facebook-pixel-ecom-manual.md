@@ -8,15 +8,15 @@ tags: [setup]
 
 ## Overview
 
-Setting up __ Tracking. 
+Setting up the Facebook Pixel Manual integration for shopify. 
 You will need:
 
-- Facebook Pixel Base Code - Manual, needs to be installed first. 
+- Facebook Pixel Base Code - Manual, needs to be installed first. [Facebook Pixel Base Code - Manual]({{site.baseurl}}article/shopify-facebook-pixel-basecode-manual.md))
 - Facebook Pixel ID
 
 
 1. If you have not already, add the facebook pixel base code - manual integration before completing this. 
-[Root File]({{site.baseurl}}article/shopify-facebook-pixel-basecode-manual.md))
+[Facebook Pixel Base Code - Manual]({{site.baseurl}}article/shopify-facebook-pixel-basecode-manual.md))
 
 
 2. Create the ecomm tracking snippet in the current Shopify theme files: (Snippets -> Add a new snippet)
