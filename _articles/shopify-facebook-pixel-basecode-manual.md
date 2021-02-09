@@ -7,7 +7,7 @@ tags: [setup]
 
 ## Overview
 
-Setting up __ Tracking. 
+Setting up Shopify Facebook Pixel Base Code - Manual Tracking. 
 You will need:
 
 - Admin access to the shopify store
