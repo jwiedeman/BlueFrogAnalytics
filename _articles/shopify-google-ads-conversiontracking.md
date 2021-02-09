@@ -16,6 +16,7 @@ You will need:
 
 1 Add to Settings > Checkout > Additional Scripts:
 
+```html
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-ADD_YOUR_GOOGLE_ADS_ID_HERE"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -23,6 +24,7 @@ You will need:
   gtag('js', new Date());
   gtag('config', 'AW-ADD_YOUR_GOOGLE_ADS_ID_HERE');
 </script>
+ {% raw %}
 {% if first_time_accessed %}
 <script>
   gtag('event', 'conversion', {
@@ -33,7 +35,8 @@ You will need:
   });
 </script>
 {% endif %}
-
+{% endraw %}
+```
 
 
 ---------------------------------------------------
