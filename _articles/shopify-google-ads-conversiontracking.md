@@ -16,6 +16,8 @@ You will need:
 
 1 Add to Settings > Checkout > Additional Scripts:
 
+Copy your ID's and replace the "replace_me" text in the code, be sure to save once complete. 
+
 ```html
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-ADD_YOUR_GOOGLE_ADS_ID_HERE"></script>
 <script>

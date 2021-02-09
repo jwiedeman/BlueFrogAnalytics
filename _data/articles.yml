@@ -28,19 +28,19 @@
   icon: settings
   articles:
   - shopify-index
- # - shopify-google-analytics-basecode
- # - shopify-google-analytics-ecom
- # - shopify-google-analytics-enhancedecom
- # - shopify-google-analytics-eventtracking
+  - shopify-google-analytics-basecode
+  - shopify-google-analytics-ecom
+  - shopify-google-analytics-enhancedecom
+  - shopify-google-analytics-eventtracking
   - shopify-google-ads-basecode
   - shopify-google-ads-conversiontracking
- # - shopify-google-ads-remarketing
+  - shopify-google-ads-remarketing
   - shopify-google-ads-dynamicremarketing
- # - shopify-google-ads-calltracking
- # - shopify-microsoft-ads-basecode
- # - shopify-microsoft-ads-ecom
- # - shopify-microsoft-ads-eventtracking
- # - shopify-microsoft-ads-dynamicremarketing
+  - shopify-google-ads-calltracking
+  - shopify-microsoft-ads-basecode
+  - shopify-microsoft-ads-ecom
+  - shopify-microsoft-ads-eventtracking
+  - shopify-microsoft-ads-dynamicremarketing
   - shopify-facebook-pixel-basecode-default
   - shopify-facebook-pixel-ecom-default
   - shopify-facebook-pixel-basecode-manual
