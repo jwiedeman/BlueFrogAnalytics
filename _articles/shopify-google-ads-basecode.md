@@ -16,20 +16,18 @@ You will need:
 ### Step 1 - Go to the shopify dashboard > online store > actions > edit code
 
 1. Make sure the file you are on is "theme.liquid" 
-2. Paste your Google Ads Base Code to the site header, all you need to do is find this HTML Element
-
-`</head>` the "closing" head tag. The google ads base code : 
+2. Paste your Google Ads Base Code to the site header, all you need to do is find this HTML Element `</head>` the "closing" head tag, and place the Google ads code, a line above it. The google ads base code : 
 Replace the "ADD_YOUR_GOOGLE_ADS_ID_HERE" with your "AW-000" Google ads ID
 
 ```html
 <!-- Global site tag (gtag.js) - Google Ads: 694458146 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=ADD_YOUR_GOOGLE_ADS_ID_HERE"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-ADD_YOUR_GOOGLE_ADS_ID_HERE"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'ADD_YOUR_GOOGLE_ADS_ID_HERE');
+  gtag('config', 'AW-ADD_YOUR_GOOGLE_ADS_ID_HERE');
 </script>
 
 ```
@@ -40,15 +38,15 @@ The base code alone adds basic remarketing, dynamic remarketing requires additio
 
 
 More tracking 
-[Google Ads Conversion Tracking]({{site.url}}/articles/shopify-google-ads-conversiontracking))
-[Google Ads Dynamic Remarketing]({{site.url}}/articles/shopify-google-ads-dynamicremarketing))
+[Google Ads Conversion Tracking]({{site.url}}/articles/shopify-google-ads-conversiontracking)
+[Google Ads Dynamic Remarketing]({{site.url}}/articles/shopify-google-ads-dynamicremarketing)
 
 
 ---------------------------------------------------
 
 ## Verification
 
-- 
+
   
 
 ---------------------------------------------------
