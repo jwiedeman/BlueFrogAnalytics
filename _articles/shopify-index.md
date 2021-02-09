@@ -10,9 +10,9 @@ Shopify has many great tracking options and is one of the best choices for a tra
 
 # Google Analytics
 
-[Shopify Google Analytics Base Code]({{site.url}}/articles/shopify-google-ads-basecode)
+[Shopify Google Analytics Base Code]({{site.url}}/articles/shopify-google-analytics-basecode)
 
-[Shopify Google Analytics Enhanced Ecommerce (Revenue Tracking)]({{site.url}}/articles/shopify-google-ads-basecode)
+[Shopify Google Analytics Enhanced Ecommerce (Revenue Tracking)]({{site.url}}/articles/shopify-google-analytics-basecode)
 
 # Google Ads
 
