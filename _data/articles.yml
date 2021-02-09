@@ -32,10 +32,10 @@
  # - shopify-google-analytics-ecom
  # - shopify-google-analytics-enhancedecom
  # - shopify-google-analytics-eventtracking
- # - shopify-google-ads-basecode
- # - shopify-google-ads-conversiontracking
+  - shopify-google-ads-basecode
+  - shopify-google-ads-conversiontracking
  # - shopify-google-ads-remarketing
- # - shopify-google-ads-dynamicremarketing
+  - shopify-google-ads-dynamicremarketing
  # - shopify-google-ads-calltracking
  # - shopify-microsoft-ads-basecode
  # - shopify-microsoft-ads-ecom
