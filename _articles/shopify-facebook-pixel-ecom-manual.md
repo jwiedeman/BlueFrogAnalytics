@@ -27,6 +27,7 @@ You will need:
     NOTE: Be sure to replace *ADD_TO_CART_ELEMENT_ID* in the below template with the id for the addto cart button on the site. This id changes based on the theme being used.
 
     ```
+    {% raw %}
     {% if template contains 'product' %}
     <!-- : Facebook Dynamic Remarketing for products -->
     <script>
@@ -49,6 +50,7 @@ You will need:
     </script>
     <!-- END : Facebook Dynamic Remarketing for products -->
     {% endif %}
+    {% endraw %}
     ```
 
 3. Add the snippets to the main theme.liquid file by adding "includes" in the appropriate spots:
@@ -85,6 +87,7 @@ Add just before ```</body>```
         src="https://www.facebook.com/tr?id=ADD_YOUR_FACEBOOK_PIXEL_ID_HERE&ev=PageView&noscript=1"/>
     </noscript>
 
+    {% raw %}
     {% if first_time_accessed %}
     <script>
     fbq('track', 'Purchase', {
@@ -98,6 +101,7 @@ Add just before ```</body>```
         });
     </script>
     {% endif %}
+    {% endraw %}
     <!-- END : Facebook Pixel Code -->
     ```
 
