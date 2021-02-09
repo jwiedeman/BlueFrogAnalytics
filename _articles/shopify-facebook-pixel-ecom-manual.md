@@ -33,18 +33,18 @@ You will need:
     <script>
     
         fbq('track', 'ViewContent', {
-        content_ids: ['{{ product.id }}'],
-        content_type: 'product_group',
-        value: {{ product.selected_or_first_available_variant.price | money_without_currency | remove: "," }},
-        currency: 'USD'
+            content_ids: ['{{ product.id }}'],
+            content_type: 'product_group',
+            value: {{ product.selected_or_first_available_variant.price | money_without_currency | remove: "," }},
+            currency: 'USD'
         });
 
-    document.querySelector('button[class*=add-to-cart]')addEventListener('click', function () {
-        fbq('track', 'AddToCart', {
-        content_ids: ['{{product.id}}'],
-        content_type: 'product_group',
-        value: {{ product.selected_or_first_available_variant.price | money_without_currency | remove: "," }},
-        currency: 'USD'
+        document.querySelector('button[class*=add-to-cart]').addEventListener('click', function () {
+            fbq('track', 'AddToCart', {
+            content_ids: ['{{product.id}}'],
+            content_type: 'product_group',
+            value: {{ product.selected_or_first_available_variant.price | money_without_currency | remove: "," }},
+            currency: 'USD'
         })});
     
     </script>
