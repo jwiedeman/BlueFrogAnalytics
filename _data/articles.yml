@@ -3,7 +3,7 @@
   articles:
   - tracking-index
   - google-tag-assistant
-  - ga-debugger
+  - google-analytics-debugger
   - facebook-pixel-helper
   - microsoft-ads-uet-tag-helper
   - wappalyzer
