@@ -56,9 +56,11 @@
 #   articles:
 #   
 # 
-# - title: Squarespace
-#   icon: settings
-#   articles:
+ - title: Squarespace
+   icon: settings
+   articles:
+   - squarespace-index
+   - squarespace-event-tracking
 #   
 # 
 # - title: Wix
