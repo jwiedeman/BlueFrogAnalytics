@@ -6,11 +6,7 @@ col1:
   - title: About Us
     url: /about-us/
 
-  - title: Our Mission
-    url: /contact/
-
-  - title: Contact Sales
-    url: /contact/
+ 
 
 col2:
   - title: Services
@@ -21,7 +17,7 @@ col2:
   - title: Customer Stories
     url: /contact/
 
-  - title: Download Apps
+  - title: Contact Integrations Support
     url: /contact/
 
 col3:
@@ -33,5 +29,8 @@ col3:
   - title: Terms & Conditions
     url: /contact/
 
-  - title: Join Us
+  - title: Feedback
+    url: /contact/
+
+  - title: Contribute
     url: /contact/
