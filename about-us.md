@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Thanks
+title: About Us
 permalink: /about-us/
 width: small
 ---
