@@ -25,7 +25,7 @@ Yield: 6 Servings
 9. garlic salt to taste
  
 
- ## Directions
+## Directions
 
 1.  Cut a thick slice from the top of the loaf for a lid; use your fingers to pull the bread center out of the crust, leaving a thick shell. (Save the removed bread for another use.)
 2. Heat 1 tablespoon of vegetable oil in a large, heavy skillet over high heat until the oil is slightly smoking; lay the beef round steak into the hot skillet, and cook until the outside of the meat is browned and crusty and the inside is your desired degree of doneness, 5 to 8 minutes per side for medium-rare. Remove the steak, and set aside.
