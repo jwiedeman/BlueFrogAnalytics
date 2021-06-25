@@ -5,11 +5,10 @@ author: Joshua Wiedeman
 tags: [setup,mushroom,pink oyster]
 ---
 
-Prep:
-Cook:
-Additional:
-Total:
-Servings:
+Prep: 25 mins
+Cook: 20 mins
+Additional: 6 hrs
+Total: 6 hrs 45 mins
 Yield: 6 Servings
 
 
@@ -24,11 +23,13 @@ Yield: 6 Servings
 7. salt to taste
 8. ground black pepper to taste
 9. garlic salt to taste
-10.
-11.
-12.
-13.
-14.
-15.
+ 
 
+ ## Directions
+
+1.  Cut a thick slice from the top of the loaf for a lid; use your fingers to pull the bread center out of the crust, leaving a thick shell. (Save the removed bread for another use.)
+2. Heat 1 tablespoon of vegetable oil in a large, heavy skillet over high heat until the oil is slightly smoking; lay the beef round steak into the hot skillet, and cook until the outside of the meat is browned and crusty and the inside is your desired degree of doneness, 5 to 8 minutes per side for medium-rare. Remove the steak, and set aside.
+3. Heat the remaining 2 tablespoons of vegetable oil in the skillet, and cook and stir the onion, mushrooms, and garlic until the onions are translucent and the mushrooms have given up their juice, 5 to 8 minutes. Remove from heat, and set aside.
+4. Lay the cooked steak into the hollowed-out bread loaf, and pile the onions, mushrooms, and garlic over the steak. Replace the bread "lid," and wrap the whole loaf in aluminum foil. Place the loaf onto a baking sheet; place a heavy flat weight on top of the loaf, such as a board or a heavy skillet, and weight the top with several bricks or jars of water.
+5. Place the loaf with its weights into the refrigerator, and chill and press the sandwich for at least 6 hours. To serve, bring to room temperature, and cut off slices of the loaf.
 
