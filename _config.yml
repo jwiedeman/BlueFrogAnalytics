@@ -5,8 +5,8 @@
 # 'bundle exec jekyll serve'. If you change this file, please restart the server process.
 
 # Site title and description
-title:              Search Engine Marketing Integrations
-description:        SEM Integrations 
+title:              Recipe DB
+description:        Mushroom focused recipes
 lang:               en
 
 # Site subpath, e.g. /blog
@@ -19,7 +19,7 @@ plugins:
   - jekyll-sitemap
 
 # Site base hostname & protocol, e.g. http://example.com
-url:                "https://whostracking.me"
+url:                "https://jwiedeman.github.io/"
 
 # Site logo # e.g. logo.png, upload logo image file to /uploads/ folder
 logo:               
