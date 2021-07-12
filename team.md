@@ -5,4 +5,4 @@ subtitle: M'envies viuríem relació amb país la barcelona. Han sóc ple déus,
 width: small
 ---
 asd
-{% include changelog.html %}
+{% include team.html %}
