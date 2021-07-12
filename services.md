@@ -5,7 +5,7 @@ permalink: /services/
 width: small
 ---
 
-### Integrations Services
+### Web Services
 
 
 

@@ -5,8 +5,8 @@
 # 'bundle exec jekyll serve'. If you change this file, please restart the server process.
 
 # Site title and description
-title:              Recipes
-description:        Mushroom focused recipes
+title:              PacificWebServices
+description:        SMB Web Services
 lang:               en
 
 # Site subpath, e.g. /blog
