@@ -4,20 +4,24 @@ col1:
   - title: Company
 
   - title: About Us
-    url: /about-us/
+    url: /contact/
 
- 
+  - title: Our Mission
+    url: /contact/
+
+  - title: Contact Sales
+    url: /contact/
 
 col2:
   - title: Services
 
   - title: Products & Services
-    url: /services/
+    url: /contact/
 
   - title: Customer Stories
     url: /contact/
 
-  - title: Contact Integrations Support
+  - title: Download Apps
     url: /contact/
 
 col3:
@@ -29,8 +33,5 @@ col3:
   - title: Terms & Conditions
     url: /contact/
 
-  - title: Feedback
-    url: /contact/
-
-  - title: Contribute
+  - title: Join Us
     url: /contact/

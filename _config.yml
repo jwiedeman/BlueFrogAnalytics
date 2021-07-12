@@ -5,8 +5,8 @@
 # 'bundle exec jekyll serve'. If you change this file, please restart the server process.
 
 # Site title and description
-title:              PacificWebServices
-description:        SMB Web Services
+title:              SOUTIEN
+description:        Customer Support Helpdesk Jekyll theme
 lang:               en
 
 # Site subpath, e.g. /blog
@@ -15,23 +15,28 @@ baseurl:            ""
 # Permalink URLs structure, for permalink style options see: https://jekyllrb.com/docs/permalinks/
 permalink:          /:title/
 
-plugins:
-  - jekyll-sitemap
-
 # Site base hostname & protocol, e.g. http://example.com
-url:                "https://jwiedeman.github.io/"
+url:                "https://jekyll-theme-soutien.netlify.com"
 
 # Site logo # e.g. logo.png, upload logo image file to /uploads/ folder
 logo:               
   
 # Default author settings
 author:
-    name:           Joshua Wiedeman
-    title:          Developer  
+    name:           Pete Seth
+    title:          Lead Developer  
     avatar:         https://via.placeholder.com/80x80
 
 # Author settings, displayed on post pages if front matter references author name e.g. author: peter
 authors:
+    evan:
+      name:         Evan Wells
+      title:        Support    
+      avatar:       https://via.placeholder.com/80x80
+    alex:
+      name:         Alex Koch
+      title:        Design Engineer     
+      avatar:       https://via.placeholder.com/80x80
 
 # Social icons displayed in footer
 social:
@@ -42,11 +47,11 @@ social:
     dribbble:
     github:
     googleplus:
-    instagram:      
+    instagram:      https://www.instagram.com/
     linkedin:
     pinterest:
     twitter:        https://twitter.com/
-    vimeo:          
+    vimeo:          https://vimeo.com/
     youtube:
 
 # Share button
@@ -58,14 +63,14 @@ share:
 
 # Default footer image settings
 footer:
-    copyright:      
+    copyright:      Made by <a href="https://unbound.studio/">Unbound Studio</a> in Bratislava, Slovakia.
 
 # Disqus comments shortname, requires Disqus account https://disqus.com/
 disqus:
     shortname:      # 1234
 
 # Google analytics code, get your code here https://www.google.com/analytics/
-google_analytics: UA-166606465-2
+google_analytics:
 
 # Number of posts displayed on blog page
 paginate:           6
@@ -87,7 +92,7 @@ post:
 article:
   search:             true
   cta:
-    text:           "Didn't find an answer to your question? We are here to help"
+    text:           "Didn't find an answer to your question, we are here to help"
     button_text:    "Contact Us"
     button_url:     /contact/
 
@@ -99,8 +104,6 @@ gems:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-gist
-  - jekyll-sitemap
-
 exclude:
   - Gemfile
   - Gemfile.lock
