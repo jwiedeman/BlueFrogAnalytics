@@ -63,7 +63,7 @@ share:
 
 # Default footer image settings
 footer:
-    copyright:      Made by <b href="https://jwiedeman.github.io/">The Team</b> in Portland, Oregon.
+    copyright:      Made by <b><a href="https://jwiedeman.github.io/">The Team</a></b> in Portland, Oregon.
 
 # Disqus comments shortname, requires Disqus account https://disqus.com/
 disqus:
