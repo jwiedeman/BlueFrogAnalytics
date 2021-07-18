@@ -5,8 +5,8 @@
 # 'bundle exec jekyll serve'. If you change this file, please restart the server process.
 
 # Site title and description
-title:              PacificWebServices
-description:        SMB Web Services
+title:              SOUTI
+description:        Customer Support Helpdesk Jekyll theme
 lang:               en
 
 # Site subpath, e.g. /blog
@@ -16,14 +16,14 @@ baseurl:            ""
 permalink:          /:title/
 
 # Site base hostname & protocol, e.g. http://example.com
-url:                "https://jwiedeman.github.io/"
+url:                "https://jekyll-theme-soutien.netlify.com"
 
 # Site logo # e.g. logo.png, upload logo image file to /uploads/ folder
 logo:               
   
 # Default author settings
 author:
-    name:           Joshua Wiedeman
+    name:           Pete Seth
     title:          Lead Developer  
     avatar:         https://via.placeholder.com/80x80
 
@@ -63,7 +63,7 @@ share:
 
 # Default footer image settings
 footer:
-    copyright:      Made by <b><a href="https://jwiedeman.github.io/team/">The Team</a></b> in Portland, Oregon.
+    copyright:      Made by <a href="https://unbound.studio/">Unbound Studio</a> in Bratislava, Slovakia.
 
 # Disqus comments shortname, requires Disqus account https://disqus.com/
 disqus:
@@ -108,6 +108,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules
+  - vendor
 
 sass:
   style:            compressed
@@ -132,3 +133,4 @@ defaults:
       type:         articles
     values:
       layout:       article
+

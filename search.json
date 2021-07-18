@@ -10,14 +10,5 @@ layout: null
       "url"      : "{{ site.baseurl }}{{ article.url }}",
       "date"     : "{{ article.date }}"
     } {% unless forloop.last %},{% endunless %}
-  {% endfor %},
-  {% for article in site.posts %}
-    {
-      "title"    : "{{ article.title | escape }}",
-      "category" : "{{ article.category }}",
-      "tags"     : "{{ article.tags | join: ', ' }}",
-      "url"      : "{{ site.baseurl }}{{ article.url }}",
-      "date"     : "{{ article.date }}"
-    } {% unless forloop.last %},{% endunless %}
   {% endfor %}
 ]

@@ -1,0 +1,34 @@
+current directory: /usr/local/bundle/gems/eventmachine-1.2.7/ext/fastfilereader
+/usr/local/bin/ruby -r ./siteconf20210718-29-132wcac.rb extconf.rb
+creating Makefile
+
+current directory: /usr/local/bundle/gems/eventmachine-1.2.7/ext/fastfilereader
+make "DESTDIR=" clean
+make: Warning: File 'Makefile' has modification time 1.8 s in the future
+make: warning:  Clock skew detected.  Your build may be incomplete.
+
+current directory: /usr/local/bundle/gems/eventmachine-1.2.7/ext/fastfilereader
+make "DESTDIR="
+make: Warning: File 'Makefile' has modification time 1.8 s in the future
+compiling mapper.cpp
+cc1plus: warning: command line option '-Wimplicit-int' is valid for C/ObjC but not for C++
+cc1plus: warning: command line option '-Wdeclaration-after-statement' is valid for C/ObjC but not for C++
+cc1plus: warning: command line option '-Wimplicit-function-declaration' is valid for C/ObjC but not for C++
+cc1plus: warning: unrecognized command line option '-Wno-self-assign'
+cc1plus: warning: unrecognized command line option '-Wno-constant-logical-operand'
+cc1plus: warning: unrecognized command line option '-Wno-parentheses-equality'
+compiling rubymain.cpp
+cc1plus: warning: command line option '-Wimplicit-int' is valid for C/ObjC but not for C++
+cc1plus: warning: command line option '-Wdeclaration-after-statement' is valid for C/ObjC but not for C++
+cc1plus: warning: command line option '-Wimplicit-function-declaration' is valid for C/ObjC but not for C++
+cc1plus: warning: unrecognized command line option '-Wno-self-assign'
+cc1plus: warning: unrecognized command line option '-Wno-constant-logical-operand'
+cc1plus: warning: unrecognized command line option '-Wno-parentheses-equality'
+linking shared-object fastfilereaderext.so
+make: warning:  Clock skew detected.  Your build may be incomplete.
+
+current directory: /usr/local/bundle/gems/eventmachine-1.2.7/ext/fastfilereader
+make "DESTDIR=" install
+make: Warning: File 'Makefile' has modification time 1 s in the future
+/usr/bin/install -c -m 0755 fastfilereaderext.so ./.gem.20210718-29-1aabvb1
+make: warning:  Clock skew detected.  Your build may be incomplete.
