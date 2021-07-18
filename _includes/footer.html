@@ -83,4 +83,10 @@
   
         </div>
     </div>
+    <script>
+jQuery(".task-list-item").on('click',function(el){
+jQuery(this).find("input[type='checkbox']").prop('checked',!jQuery(this).find("input[type='checkbox']").prop('checked'))
+})
+
+    </script>
 </footer>

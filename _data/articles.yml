@@ -1,10 +1,21 @@
-- title: Getting Started
-  icon: cog
+# ICONS https://getuikit.com/docs/icon
+
+- title: All Recipes
+  icon: grid
   articles:
   - installation
-  - setup
-  - footer
-
+  - recipetemplate
+ 
+- title: Soup
+  icon: album
+  articles:
+  - installation
+ 
+- title: Baking
+  icon: album
+  articles:
+  - germanspringerle
+ 
 
 - title: Terminology & Index
   icon: question
