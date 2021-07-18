@@ -2,7 +2,7 @@
 layout: null
 ---
 [
-  {% for recipe in site.articles %}
+  {% for article in site.articles %}
     {
       "title"    : "{{ article.title | escape }}",
       "category" : "{{ article.category }}",
