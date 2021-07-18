@@ -1,9 +1,9 @@
 # Footer navigation links
 
 col1:
-  - title: Company
+  - title:
 
-  - title: About
+  - title:
     url: /contact/
 
 
