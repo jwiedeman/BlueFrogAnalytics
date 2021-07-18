@@ -5,48 +5,8 @@
   - setup
   - footer
 
-- title: Create Content
-  icon: file-edit
-  articles:
-  - posts
-  - articles
-  - comments
-  - media
-  - alerts
 
-- title: Theme Features
-  icon: settings
-  articles:
-  - home
-  - categories
-  - faq
-  - cta
-  - changelog
-  - contact
-
-- title: Navigation Bar
-  icon: menu
-  articles:
-  - navigation
-
-- title: Google Analytics
-  icon: history
-  articles:
-  - analytics
-
-- title: Newsletter Sign Up
-  icon: mail
-  articles:
-  - mailchimp
-
-- title: Customization
-  icon: code
-  articles:
-  - translation
-  - customize
-  - development
-
-- title: Help & Sources
+- title: Terminology & Index
   icon: question
   articles:
   - support

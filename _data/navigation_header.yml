@@ -6,14 +6,14 @@ right:
   - title: Home
     url: /
 
-  - title: Articles
+  - title: Recipes
     url: /articles/installation/
 
-  - title: Faq
-    url: /faq/
+#  - title: Faq
+#    url: /faq/
 
-  - title: Blog
-    url: /blog/
+#  - title: Blog
+#    url: /blog/
 
   - title: Changelog
     url: /changelog/

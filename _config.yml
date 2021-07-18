@@ -5,8 +5,8 @@
 # 'bundle exec jekyll serve'. If you change this file, please restart the server process.
 
 # Site title and description
-title:              SOUTI
-description:        Customer Support Helpdesk Jekyll theme
+title:              SECRETCOOKBOOK
+description:        Customer 
 lang:               en
 
 # Site subpath, e.g. /blog
@@ -42,16 +42,16 @@ authors:
 social:
     email:
     website:
-    facebook:       https://www.facebook.com/
+    facebook:       
     flickr:
     dribbble:
-    github:
+    github: https://github.com/jwiedeman
     googleplus:
-    instagram:      https://www.instagram.com/
+    instagram:      
     linkedin:
     pinterest:
-    twitter:        https://twitter.com/
-    vimeo:          https://vimeo.com/
+    twitter:        
+    vimeo:          
     youtube:
 
 # Share button
@@ -63,7 +63,7 @@ share:
 
 # Default footer image settings
 footer:
-    copyright:      Made by <a href="https://unbound.studio/">Unbound Studio</a> in Bratislava, Slovakia.
+    copyright:      Made by <a href="https://github.com/jwiedeman/">Joshua Wiedeman</a> in Portland, Oregon.
 
 # Disqus comments shortname, requires Disqus account https://disqus.com/
 disqus:
@@ -100,15 +100,21 @@ article:
 markdown:           kramdown
 highlighter:        rouge
 
-gems:
+plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-gist
 exclude:
-  - Gemfile
-  - Gemfile.lock
-  - node_modules
-  - vendor
+- .sass-cache/
+- .jekyll-cache/
+- gemfiles/
+- Gemfile
+- Gemfile.lock
+- node_modules/
+- vendor/bundle/
+- vendor/cache/
+- vendor/gems/
+- vendor/ruby/
 
 sass:
   style:            compressed
@@ -127,7 +133,7 @@ defaults:
       type:         posts
     values:
       layout:       post
-  # _articles
+  # _recipes
   - scope:
       path:         ""
       type:         articles
