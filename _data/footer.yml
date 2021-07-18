@@ -3,35 +3,12 @@
 col1:
   - title: Company
 
-  - title: About Us
+  - title: About
     url: /contact/
 
-  - title: Our Mission
-    url: /contact/
-
-  - title: Contact Sales
-    url: /contact/
 
 col2:
-  - title: Services
 
-  - title: Products & Services
-    url: /contact/
-
-  - title: Customer Stories
-    url: /contact/
-
-  - title: Download Apps
-    url: /contact/
 
 col3:
-  - title: 
 
-  - title: Privacy Policy
-    url: /contact/
-
-  - title: Terms & Conditions
-    url: /contact/
-
-  - title: Join Us
-    url: /contact/
