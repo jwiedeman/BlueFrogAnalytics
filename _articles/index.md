@@ -1,7 +1,13 @@
 ---
 title: Recipe Index
-subtitle: This document covers the setup and options of theme feature described in the article title
+subtitle: This covers the list of all recipes on the site. 
 author: sara
 tags: []
 ---
 
+
+{% for article in site.articles %}
+{% if article.title != "Recipe Index" %}
+  <a href="{{ site.url }}{{ article.url }}">{{ article.title }}</a>
+{% endif %}
+{% endfor %}

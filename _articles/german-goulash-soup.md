@@ -43,5 +43,5 @@ tags: [ soup]
 - [ ] Add sea salt and pepper to taste.
 
 
-Notes
+Notes <br>
 Try a red wine from grapes such as the Dornfelder or Schwarzriesling.

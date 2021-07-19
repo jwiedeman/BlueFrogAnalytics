@@ -1,6 +1,6 @@
 ---
-title: Recipe Template
-subtitle: recipesubtitle
+title: Cucumber Soup with Potatoes
+subtitle: Gurkencremesuppe mit Kartoffeln
 author: Joshua Wiedeman
 tags: [ ]
 ---

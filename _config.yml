@@ -92,8 +92,8 @@ post:
 article:
   search:             true
   cta:
-    text:           "Didn't find an answer to your question, we are here to help"
-    button_text:    "Contact Us"
+    text:           "Sign up to be notified of new recipes"
+    button_text:    "Recipe Newsletter"
     button_url:     /contact/
 
 # Build settings
