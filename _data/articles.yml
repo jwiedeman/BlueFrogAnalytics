@@ -6,7 +6,48 @@
   - index
   - _recipetemplate
  
-- title: Soup
+ 
+- title: Baking
+  icon: album
+  articles:
+  - german-springerle
+
+- title: Boiling
+  icon: album
+  articles:
+  - 
+
+- title: Braising
+  icon: album
+  articles:
+  - 
+
+- title: Broiling
+  icon: album
+  articles:
+  - 
+
+- title: Grilling
+  icon: album
+  articles:
+  - 
+
+- title: Poaching
+  icon: album
+  articles:
+  - 
+
+- title: Roasting
+  icon: album
+  articles:
+  - 
+
+- title: Sauteing
+  icon: album
+  articles:
+  - 
+ 
+- title: Simmering
   icon: album
   articles:
   - ahrensburg-cabbage-soup
@@ -31,12 +72,25 @@
   - pumpkin-ginger-soup-with-black-forest-ham
   - bavarian-liver-dumpling-soup
   - german-onion-soup
- 
-- title: Baking
+  - westphalian-wedding-soup
+  - fasting-soup
+  - badische-zwiebelsuppe-onion-soup
+  - split-pea-and-sausage-soup
+  - german-bread-soup
+  - berlin-potato-soup
+
+
+
+- title: Steaming
   icon: album
   articles:
-  - german-springerle
- 
+  - 
+
+
+- title: Stewing
+  icon: album
+  articles:
+  - 
 
 - title: Terminology
   icon: question
