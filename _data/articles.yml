@@ -3,8 +3,8 @@
 - title: All Recipes
   icon: grid
   articles:
-  - installation
-  - recipetemplate
+  - index
+  - _recipetemplate
  
 - title: Soup
   icon: album
@@ -12,6 +12,7 @@
   - ahrensburg-cabbage-soup
   - wild-garlic-soup
   - apple-cider-soup-with-cheese
+  - german-goulash-soup
  
 - title: Baking
   icon: album
@@ -19,8 +20,7 @@
   - german-springerle
  
 
-- title: Terminology & Index
+- title: Terminology
   icon: question
   articles:
-  - support
-  - sources
+  - terminology

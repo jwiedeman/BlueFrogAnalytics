@@ -3,7 +3,7 @@ title: German Springerle
 subtitle: Springerle (SPRING-uhr-lee)<br />
  These have been and still are traditional Christmas cookies in Bavaria and Austria for centuries. Springerle are white, anise-flavored cookies, made from a simple egg-flour-sugar dough. Usually rectangular or circular in shape, they have a picture or design stamped on the top. The images are imprinted with specially carved rolling pins or flat molds (Springerle presses, or boards). After the cookies are baked, the designs are sometimes enhanced with edible food colors--or with tempera or acrylic paints, if the cookies are to be used as decorations. Hartshorn is the traditional leavening (it is an ammonia compound). The name Springerle comes from an old German dialect and means "little knight" or "jumping horse." Historians trace these cookies back to the Julfest, a midwinter celebration of pagan Germanic tribes. Julfest ceremonies included the sacrificing of animals to the gods, in hope that such offerings would bring a mild winter and an early spring. Poor people who could not afford to kill any of their animals gave token sacrifices in the form of animal-shaped breads and cookies. Vestiges of these pagan practices survive in the baking of shaped-and-stamped German Christmas cookies such as Lebkuchen, Spekulatius, Frankfurter Brenten, and Springerle.
 author: Joshua Wiedeman
-tags: [ ]
+tags: [cookie, baking , german ]
 ---
 
 - Prep Time: 10 mins

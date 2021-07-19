@@ -1,5 +1,5 @@
 ---
-title: recipetemplate
+title: Recipe Template
 subtitle: recipesubtitle
 author: Joshua Wiedeman
 tags: [ ]
@@ -15,7 +15,7 @@ tags: [ ]
 
 ### Ingredients
 
-
+-
 
 
 
