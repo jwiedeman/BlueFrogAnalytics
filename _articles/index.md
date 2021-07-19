@@ -7,7 +7,7 @@ tags: []
 
 
 {% for article in site.articles %}
-{% if article.title == "Recipe Index" %}
+{% if article.title != "Recipe Index" %}
   <a href="{{ site.url }}{{ article.url }}">{{ article.title }}</a>
 {% endif %}
 {% endfor %}
