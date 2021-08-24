@@ -5,8 +5,6 @@ author: Joshua Wiedeman
 tags: [ alcohol , cocktail , vodka , schnapps ]
 ---
 
-A riff on Espresso Martini
-
 ### Ingredients
 
 - 2 ounces vodka
