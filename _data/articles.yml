@@ -32,6 +32,7 @@
   icon: album
   articles:
   - grilling
+  - chicken-shawarma-middle-eastern
 
 - title: Poaching
   icon: album
@@ -94,7 +95,17 @@
   articles:
   - stewing
 
+- title: Cocktails
+  icon: album
+  articles:
+  - cocktails
+  - chi-chi-cocktail
+  - death-in-the-afternoon-cocktail
+
+
 - title: Terminology
   icon: question
   articles:
   - terminology
+
+
