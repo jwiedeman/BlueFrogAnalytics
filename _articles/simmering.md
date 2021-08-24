@@ -5,8 +5,8 @@ author: Joshua Wiedeman
 tags: [ ]
 ---
 
-2. Moist Heat Cooking
-A scoop of penne pasta being drained over a boiling pot
+Moist Heat Cooking
+
 As the name indicates, moist heat cooking relies on the presence of liquid or steam to cook foods. This method can be used to make healthy dishes without any added fat or oil. It's also a great way to tenderize the tough fibers in certain cuts of meat, like beef chuck or brisket. When cooking fibrous vegetables and legumes, moist heat cooking softens the food until it reaches the perfect tenderness. Unlike dry heat cooking methods, moist heat cooking will not produce a browned crust.
 
 Simmering

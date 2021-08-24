@@ -5,8 +5,8 @@ author: Joshua Wiedeman
 tags: [ ]
 ---
 
-3. Combination Cooking
-A thick stew of carrots and beef in a hot cast iron pot
+Combination Cooking
+
 Combination cooking utilizes both dry and moist cooking methods. Foods are cooked in liquids at low heat for an extended period of time, resulting in a fork tender product. This technique works with the toughest cuts of meat, gradually breaking down fibers until they melt into the liquid.
 
 Stewing

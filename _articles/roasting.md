@@ -5,8 +5,8 @@ author: Joshua Wiedeman
 tags: [ ]
 ---
 
-1. Dry Heat Cooking
-Kabobs of beef, onion, and peppers on an open flame grill
+Dry Heat Cooking
+
 Dry heat cooking works without the presence of any moisture, broth, or water. Instead, it relies on the circulation of hot air or contact with fat to transfer heat to foods. Temperatures of 300 degrees or hotter are used to create browning, a reaction where the amino acids and sugars in food turn brown and create a distinct aroma and flavor. The unique scents of toasted bread or seared meat are both examples of dry heat cooking at work.
 
 Roasting

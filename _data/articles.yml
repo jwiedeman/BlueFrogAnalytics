@@ -10,46 +10,48 @@
 - title: Baking
   icon: album
   articles:
+  - baking
   - german-springerle
 
 - title: Boiling
   icon: album
   articles:
-  - 
+  - boiling
 
 - title: Braising
   icon: album
   articles:
-  - 
+  - braising
 
 - title: Broiling
   icon: album
   articles:
-  - 
+  - broiling
 
 - title: Grilling
   icon: album
   articles:
-  - 
+  - grilling
 
 - title: Poaching
   icon: album
   articles:
-  - 
+  - poaching
 
 - title: Roasting
   icon: album
   articles:
-  - 
+  - roasting
 
 - title: Sauteing
   icon: album
   articles:
-  - 
+  - sauteing
  
 - title: Simmering
   icon: album
   articles:
+  - simmering
   - ahrensburg-cabbage-soup
   - wild-garlic-soup
   - apple-cider-soup-with-cheese
@@ -84,13 +86,13 @@
 - title: Steaming
   icon: album
   articles:
-  - 
+  - steaming
 
 
 - title: Stewing
   icon: album
   articles:
-  - 
+  - stewing
 
 - title: Terminology
   icon: question
