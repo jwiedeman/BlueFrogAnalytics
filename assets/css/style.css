@@ -20,7 +20,9 @@
 13. Contact
 14. Blog
 15. Pagination
+16. tech highlighting
 */
+
 
 
 
@@ -1078,7 +1080,8 @@ background-color: white;
 	cursor: pointer;
 }
 .portfolio-menu > button:hover, .portfolio-menu > button.active{
-	color: #1482ff;
+	color: #ffffff;
+	padding:4px;
 }
 .project-details-title h3 {
 	font-weight: 700;
@@ -1902,4 +1905,120 @@ blockquote {
 }
 .features-icon img {
 	max-width: 60px;
+}
+
+
+/* 15. tech highlighting */
+
+.call{
+	background-color:grey!important;
+	margin-right:3px;
+	padding:4px;
+	
+}
+.chtml{
+	background-color:orange!important;
+	margin-right:3px;
+	padding:4px;
+	
+}
+.ccss{
+	background-color:rgb(73, 158, 255)!important;
+	margin-right:3px;
+	padding:4px;
+	
+}
+.cscss{
+	background-color:rgb(111, 178, 255)!important;
+	margin-right:3px;
+	padding:4px;
+	
+}
+.cjavascript{
+	background-color:yellow!important;
+	margin-right:3px;
+	padding:4px;
+	
+}
+.cvue{
+	background-color:rgb(34, 255, 45)!important;
+	margin-right:3px;
+	padding:4px;
+	
+}
+.cjekyll{
+	background-color:rgb(255, 67, 54)!important;
+	margin-right:3px;
+	padding:4px;
+	
+}
+.cnode{
+	background-color:rgb(135, 255, 110)!important;
+	margin-right:3px;
+	padding:4px;
+	
+}
+.cnginx{
+	background-color:rgb(0, 155, 0)!important;
+	margin-right:3px;
+	padding:4px;
+	
+}
+.cjquery{
+	background-color:rgb(71, 142, 189)!important;
+	margin-right:3px;
+	padding:4px;
+	
+}
+.cbootstrap{
+	background-color:rgb(161, 95, 161)!important;
+	margin-right:3px;
+	padding:4px;
+	
+}
+.ccoreui{
+	background-color:rgb(106, 238, 255)!important;
+	margin-right:3px;
+	padding:4px;
+	
+}
+.cmongodb{
+	background-color:rgb(116, 204, 121)!important;
+	margin-right:3px;
+	padding:4px;
+	
+}
+.ccybersecurity{
+	background-color:rgb(255, 83, 83)!important;
+	margin-right:3px;
+	padding:4px;
+	
+}
+
+.cchromeextension{
+	background-color:rgb(175, 175, 175)!important;
+	margin-right:3px;
+	padding:4px;
+	
+}
+
+.cgoogleanalytics{
+	background-color:rgb(255, 186, 83)!important;
+	margin-right:3px;
+	padding:4px;
+	
+}
+
+.cfrontend{
+	background-color:rgb(85, 207, 197)!important;
+	margin-right:3px;
+	padding:4px;
+	
+}
+
+.cbackend{
+	background-color:rgb(128, 128, 128)!important;
+	margin-right:3px;
+	padding:4px;
+	
 }

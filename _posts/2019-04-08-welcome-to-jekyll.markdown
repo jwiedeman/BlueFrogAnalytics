@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Welcome to Jekyll! Go ahead and edit"
-date: 2019-04-08 15:12:09 +0600
+title: "Welcome to my portfolio"
+date: 2021-11-08 15:12:09 +0600
 tags: jekyll
 categories: [jekyll update]
-author: monica_powell
+author: joshua_wiedeman
 post_image: "https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
 ---
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
