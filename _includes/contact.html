@@ -1,0 +1,38 @@
+
+<!-- contact-form -->
+<section class="contact-form pb-100 pt-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="contact-form-title">
+                    <h2>Reach out</h2>
+                    <p>You've made it this far. Lets create some solutions. </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <form id="contact-form" action="mail.php" class="contact-form" method="POST">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 mb-20">
+                            <input name="name" type="text" placeholder="Name">
+                        </div>
+                        <div class="col-xl-6 col-lg-6 mb-20">
+                            <input name="email" type="email" placeholder="Email">
+                        </div>
+                        <div class="col-xl-12 mb-20">
+                            <input name="subject" type="text" placeholder="Subject">
+                        </div>
+                        <div class="col-xl-12 mb-20">
+                            <textarea name="message" id="text-message" cols="30" rows="10" placeholder="Message*"></textarea>
+                        </div>
+                        <div class="col-xl-12 text-center">
+                            <button class="btn" type="submit">Send Mail</button>
+                        </div>
+                    </div>
+                </form>
+                <p class="ajax-response"></p>
+            </div>
+        </div>
+    </div>
+</section>
