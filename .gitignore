@@ -1,11 +1,15 @@
-# OS or Editor folders
+*.gem
+.git
+.bundle
 .DS_Store
-node_modules
-
-# Jekyll
+_asset_bundler_cache
 _site
-.sass-cache
+_drafts
 .jekyll-metadata
-vendor
-
-
+.jekyll-cache
+codekit-config.json
+config.codekit3
+Gemfile.lock
+node_modules
+npm-debug.log*
+.nova

@@ -1,71 +1,48 @@
-<footer class="footer-section">
-    <div class="container">
+<footer>
+			<div class="container center bg-near-white pv4 ph3 ph5-m ph6-l mid-gray avenir">
+				<ul class="footer-columns list pl0 cf ph0-ns">
+          <li class="about list pl0 fl w-100 w-40-l pa2">
+        <h4>Supply</h4>
+        <ul class="list pl0 lh-copy measure-narrow">Supply is a simple e-commerce theme for Jekyll with Gumroad integration</ul>
+      </li>
 
-        <div class="footer-content pt-50 pb-30">
-            <div class="footer-pattern">
-                <img src="{{site.baseurl}}/assets/img/footer/footer_map.png" alt="">
-            </div>
-            <div class="row">
-                <div class="col-xl-4 col-lg-4 mb-50">
-                    <div class="footer-widget">
-                        <div class="footer-logo">
-                            <a href="{{site.url}}"><h4 class='text-uppercase font-weight-bold text-nowrap text-white'>Joshua Wiedeman</h4></a>
-                        </div>
-                        <div class="footer-text">
-                            <p></p>
-                        </div>
-                        
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
-                    <div class="footer-widget">
-                        <div class="footer-widget-heading">
-                            <h3>Useful Links</h3>
-                        </div>
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">Projects</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Blog</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
-                    <div class="footer-widget">
-                        <div class="footer-widget-heading">
-                            <h3>Subscribe</h3>
-                        </div>
-                        <div class="footer-text mb-25">
-                            <p>Notifications only for blog articles and project updates.</p>
-                        </div>
-                        {% include subscribe.html %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="copyright-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-6 col-lg-6 text-center text-lg-left">
-                    <div class="copyright-text">
-                        <p>Copyright &copy; 2021, <a href="#">JOSHUA F. WIEDEMAN</a></p>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
-                    <div class="footer-menu">
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Terms</a></li>
-                            <li><a href="#">Privacy</a></li>
-                            <li><a href="#">Policy</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+					<li class="footer-nav fl w-100 w-20-l pa2">
+						<h4>General</h4>
+						<ul class="list pl0 lh-copy">
+							<li><a href="/">Products</a></li>
+							<li><a href="/about/">About</a></li>
+							<li><a href="/blog/">Blog</a></li>
+						</ul>
+					</li>
+
+					<li class="footer-nav fl w-100 w-20-l pa2">
+						<h4>Help</h4>
+						<ul class="list pl0 lh-copy">
+							<li><a href="/support/">Support</a></li>
+							<li><a href="/privacy/">Privacy</a></li>
+							<li><a href="/tutorial/">Tutorials</a></li>
+						</ul>
+					</li>
+
+					<li class="footer-nav fl w-100 w-20-l pa2">
+  <h4>Contact</h4>
+  <ul class="list pl0 lh-copy">
+  <li>Need help with something?</li>
+  <li><a href="/contact/">Get in touch</a>.</li>
+  <br>
+  <div class="social-icons">
+    <a class="GitHub dim" href="https://github.com/yjpl/supply">{% include social-icon.html icon="GitHub" %}</a>
+    <a class="facebook dim" href="https://www.facebook.com/TemplatesSupply/">{% include social-icon.html icon="Facebook" %}</a>
+    <a class="twitter dim" href="https://twitter.com/TemplatesSupply/">{% include social-icon.html icon="Twitter" %}</a>
+    <a class="pinterest dim" href="https://www.pinterest.com/TemplatesSupply/">{% include social-icon.html icon="Pinterest" %}</a>
+    <a class="Instagram dim" href="https://www.instagram.com/templatessupply/">{% include social-icon.html icon="Instagram" %}</a>
+    <a class="linkedin dim" href="https://www.linkedin.com/company/templates-supply/">{% include social-icon.html icon="LinkedIn" %}</a>
+    <a class="RSS dim" href="/products.xml">{% include social-icon.html icon="RSS" %}</a>
+  </div>
+  </ul>
+</li>
+</ul>
+<p class="copyright black-40 f7 f6 tc-l">All Rights Reserved &copy; {{ site.time | date: '%Y' }} {{ site.title }}, Inc. Theme design by <a href="https://alternatyves.com">alternatyves</a></p>
+</div>
 </footer>
