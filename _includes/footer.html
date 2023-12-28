@@ -1,48 +1,86 @@
-<footer>
-			<div class="container center bg-near-white pv4 ph3 ph5-m ph6-l mid-gray avenir">
-				<ul class="footer-columns list pl0 cf ph0-ns">
-          <li class="about list pl0 fl w-100 w-40-l pa2">
-        <h4>Supply</h4>
-        <ul class="list pl0 lh-copy measure-narrow">Supply is a simple e-commerce theme for Jekyll with Gumroad integration</ul>
-      </li>
+<footer class="uk-section uk-section-muted">
+    <div class="uk-container">
+        <div class="uk-grid-large uk-child-width-expand@m" data-uk-grid>
 
+            <div>
+                <div class="uk-margin">
+                    <a class="uk-logo" href="{{ "/" | relative_url }}">{% if site.logo %}<img src="{{ site.uploads | absolute_url }}{{ site.logo }}" alt="{{ site.title | escape }}">{% else %}{{ site.title | escape }}{% endif %}</a>
+                </div>
+            </div>
 
-					<li class="footer-nav fl w-100 w-20-l pa2">
-						<h4>General</h4>
-						<ul class="list pl0 lh-copy">
-							<li><a href="/">Products</a></li>
-							<li><a href="/about/">About</a></li>
-							<li><a href="/blog/">Blog</a></li>
-						</ul>
-					</li>
+            {% if site.data.footer.col1 %}
+            <div>
+                <ul class="uk-list uk-list-large">
+                {% for link in site.data.footer.col1 %}
+                    {% if link.url contains 'http' %}
+                        {% assign domain = '' %}
+                    {% else %}
+                        {% assign domain = '' | relative_url %}
+                    {% endif %}
+                    {% if link.url %}
+                        <li><a href="{{ domain }}{{ link.url }}" {% if link.url contains 'http' %}target="_blank" {% endif %}>{{ link.title }}</a></li>
+                    {% else %}
+                        <li><h5>{{ link.title }}</h5></li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
 
-					<li class="footer-nav fl w-100 w-20-l pa2">
-						<h4>Help</h4>
-						<ul class="list pl0 lh-copy">
-							<li><a href="/support/">Support</a></li>
-							<li><a href="/privacy/">Privacy</a></li>
-							<li><a href="/tutorial/">Tutorials</a></li>
-						</ul>
-					</li>
+            {% if site.data.footer.col2 %}
+            <div>
+                <ul class="uk-list uk-list-large">
+                {% for link in site.data.footer.col2 %}
+                    {% if link.url contains 'http' %}
+                        {% assign domain = '' %}
+                    {% else %}
+                        {% assign domain = '' | relative_url %}
+                    {% endif %}
+                    {% if link.url %}
+                        <li><a href="{{ domain }}{{ link.url }}" {% if link.url contains 'http' %}target="_blank" {% endif %}>{{ link.title }}</a></li>
+                    {% else %}
+                        <li><h5>{{ link.title }}</h5></li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
 
-					<li class="footer-nav fl w-100 w-20-l pa2">
-  <h4>Contact</h4>
-  <ul class="list pl0 lh-copy">
-  <li>Need help with something?</li>
-  <li><a href="/contact/">Get in touch</a>.</li>
-  <br>
-  <div class="social-icons">
-    <a class="GitHub dim" href="https://github.com/yjpl/supply">{% include social-icon.html icon="GitHub" %}</a>
-    <a class="facebook dim" href="https://www.facebook.com/TemplatesSupply/">{% include social-icon.html icon="Facebook" %}</a>
-    <a class="twitter dim" href="https://twitter.com/TemplatesSupply/">{% include social-icon.html icon="Twitter" %}</a>
-    <a class="pinterest dim" href="https://www.pinterest.com/TemplatesSupply/">{% include social-icon.html icon="Pinterest" %}</a>
-    <a class="Instagram dim" href="https://www.instagram.com/templatessupply/">{% include social-icon.html icon="Instagram" %}</a>
-    <a class="linkedin dim" href="https://www.linkedin.com/company/templates-supply/">{% include social-icon.html icon="LinkedIn" %}</a>
-    <a class="RSS dim" href="/products.xml">{% include social-icon.html icon="RSS" %}</a>
-  </div>
-  </ul>
-</li>
-</ul>
-<p class="copyright black-40 f7 f6 tc-l">All Rights Reserved &copy; {{ site.time | date: '%Y' }} {{ site.title }}, Inc. Theme design by <a href="https://alternatyves.com">alternatyves</a></p>
-</div>
+            {% if site.data.footer.col3 %}
+            <div>
+                <ul class="uk-list uk-list-large">
+                {% for link in site.data.footer.col3 %}
+                    {% if link.url contains 'http' %}
+                        {% assign domain = '' %}
+                    {% else %}
+                        {% assign domain = '' | relative_url %}
+                    {% endif %}
+                    {% if link.url %}
+                        <li><a href="{{ domain }}{{ link.url }}" {% if link.url contains 'http' %}target="_blank" {% endif %}>{{ link.title }}</a></li>
+                    {% else %}
+                        <li><h5>{{ link.title }}</h5></li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+        </div>
+  
+        <div class="uk-grid-large uk-margin-large-top uk-flex uk-flex-middle" data-uk-grid>
+  
+            <div class="uk-width-1-4@m"></div>
+            <div class="uk-width-expand@m">
+                <div class="uk-width-auto@m uk-margin-medium uk-text-small">
+                    <p class="uk-display-inline-block uk-margin-medium-right uk-margin-remove-bottom">{{ site.footer.copyright }}</p>
+                </div>
+            </div>
+            <div class="uk-width-auto@m">
+                <div class="uk-width-auto@m uk-margin-medium uk-text-small">
+                    {% include social-networks.html %}
+                </div>
+            </div>
+  
+        </div>
+    </div>
 </footer>
