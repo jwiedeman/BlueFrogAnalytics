@@ -5,7 +5,7 @@
 # 'bundle exec jekyll serve'. If you change this file, please restart the server process.
 
 # Site title and description
-title:              JFW Analytics Solutions
+title:              JW Analytics
 description:        Analytics Consulting, Validation & Support Services
 lang:               en
 
@@ -25,18 +25,15 @@ logo:
 author:
     name:           Joshua Wiedeman
     title:          Analytics Manager  
-    avatar:         https://via.placeholder.com/80x80
+    avatar:         josh.jpg
 
 # Author settings, displayed on post pages if front matter references author name e.g. author: peter
 authors:
-    evan:
-      name:         Evan Wells
-      title:        Support    
-      avatar:       https://via.placeholder.com/80x80
-    alex:
-      name:         Alex Koch
-      title:        Design Engineer     
-      avatar:       https://via.placeholder.com/80x80
+    josh:
+      name:         Joshua Wiedeman
+      title:        Analytics Manager    
+      avatar:       josh.jpg
+
 
 # Social icons displayed in footer
 social:

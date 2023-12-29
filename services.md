@@ -2,8 +2,10 @@
 layout: page
 width: small
 title: Services
-subtitle: M'envies viuríem relació amb país la barcelona. Han sóc ple déus, crucigrama, si un espai del són catalans que l'eternitat.
+subtitle: As a dedicated analytics expert, my focus is on your success, and my approach is rooted in humility and expertise. Let's embark on a data-driven journey together. Contact me today to get started.
 ---
+
+{% include services.html title="What we can enable for you" category="enable" %}
 
 {% include services.html title="Support Questions" category="presale" %}
 
