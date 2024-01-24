@@ -40,6 +40,9 @@ console.log(state)
     },
     onupdate: () => {
       updateBodyClass(state.common.loaded);
+      if (Array.isArray(state.common.cells) && state.common.cells.length === 0) {
+        actions.draw();
+      }
     }
   }, [
     hyperapp.h("section", {
