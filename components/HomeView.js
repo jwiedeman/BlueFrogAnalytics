@@ -30,7 +30,7 @@ const HomeView = (state, actions) => {
   // Ensure that the cellElements are defined within the scope of the HomeView function
   const cellElements = Array.isArray(state.common.cells) ? state.common.cells.map(style => Cell({ style })) : [];
  // Immediately invoke the updateBodyClass function with the current state
- updateBodyClass(state.loaded);
+ updateBodyClass(state.common.loaded);
 console.log(state)
   return hyperapp.h("div", {
     class: "container home-view",
@@ -43,43 +43,56 @@ console.log(state)
     }
   }, [
     hyperapp.h("section", {
-      class: "row hero py-5",
-      style: { position: "relative", height: "30vh", overflow: "hidden" }
-    }, [
-      heroAnimatedBackground,
-      // Define the wrap container with proper sizing and positioning
-      hyperapp.h("div", {
-        id: "wrap",
-        style: {
-          position: "absolute",
-          top: "0",
-          left: "0",
-          width: "100%",
-          height: "100%",
-          display: "grid",
-          gridTemplateColumns: "repeat(8, 1fr)",
-          gridTemplateRows: "repeat(8, 1fr)",
-          gridColumnGap: "0px",
-          gridRowGap: "0px",
-          transformStyle: "preserve-3d",
-          backfaceVisibility: "hidden"
-        }
-      }, cellElements), // Render static cells
-      // Content overlay with higher z-index to ensure it's above the cells
-      hyperapp.h("div", {
-        class: "col-md-12 hero-text-container text-center",
-        style: { position: "absolute", zIndex: "2", width: "100%", top: "50%", transform: "translateY(-50%)" }
-      }, [
-        hyperapp.h("h1", { class: "hero-title" }, "Discover the Natural World with ShroomDex"),
-        hyperapp.h("p", { class: "hero-description" }, "Explore a vast database of fungi species, contribute to citizen science, and climb the ranks on our Leaderboard."),
-        hyperapp.h("div", { class: "hero-buttons mt-4" }, [
-          state.auth.authed
-            ? hyperapp.h("button", { class: "btn btn-primary", onclick: () => actions.navigate("leaderboard") }, "Leaderboard")
-            : hyperapp.h("button", { class: "btn btn-primary", onclick: () => actions.navigate("login") }, "Sign Up Now"),
-          hyperapp.h("button", { class: "btn btn-secondary ms-2", onclick: () => actions.navigate("detect") }, "Start Detecting")
-        ])
-      ])
+  class: "row hero py-5",
+  style: { position: "relative", height: "30vh", overflow: "hidden" }
+}, [
+  heroAnimatedBackground,
+  // Define the wrap container with proper sizing and positioning
+  hyperapp.h("div", {
+    id: "wrap",
+    style: {
+      position: "absolute",
+      top: "0",
+      left: "0",
+      width: "100%",
+      height: "100%",
+      display: "grid",
+      gridTemplateColumns: "repeat(8, 1fr)",
+      gridTemplateRows: "repeat(8, 1fr)",
+      gridColumnGap: "0px",
+      gridRowGap: "0px",
+      transformStyle: "preserve-3d",
+      backfaceVisibility: "hidden"
+    }
+  }, cellElements), // Render static cells
+  // Content overlay with higher z-index to ensure it's above the cells
+  hyperapp.h("div", {
+    class: "col-md-12 hero-text-container text-center",
+    style: { position: "absolute", zIndex: "2", width: "100%", top: "50%", transform: "translateY(-50%)" }
+  }, [
+    hyperapp.h("h1", { class: "hero-title mb-4", style: { position: "relative" } }, [
+      hyperapp.h("span", { style: { backgroundColor: "rgba(0,0,0,0.7)", color: "white", padding: "0.5rem" } }, "Hello there, I'm Joshua Wiedeman")
     ]),
+    hyperapp.h("div", { style: { padding: "0.5rem" } }, [ // Wrap subtext in a div without background
+      hyperapp.h("p", { class: "hero-description", style: { backgroundColor: "rgba(0,0,0,0.7)", color: "white", padding: "0.5rem", display: "inline" } }, "I design, develop and deliver solutions")
+    ]),
+    hyperapp.h("div", { class: "hero-buttons mt-4 text-center" }, [
+      state.auth.authed
+        ? hyperapp.h("button", { class: "btn btn-primary", onclick: () => actions.navigate("leaderboard"), style: { backgroundColor: "rgba(0,0,0,0.7)" } }, "Leaderboard")
+        : hyperapp.h("button", { class: "btn btn-primary", onclick: () => actions.navigate("login"), style: { backgroundColor: "rgba(0,0,0,0.7)" } }, "Sign Up Now"),
+      hyperapp.h("button", { class: "btn btn-secondary ms-2", onclick: () => actions.navigate("projects"), style: { backgroundColor: "rgba(0,0,0,0.7)" } }, "Projects")
+    ])
+  ])
+  
+  
+  
+  
+  
+  
+]),
+    
+    
+    
     // Additional content sections below the hero section
     hyperapp.h("section", { class: "features py-5" }, [
       hyperapp.h("h2", {}, "Be a Part of Our Growing Community"),
