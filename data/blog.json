@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "title": "The Fascinating World of Fungi",
+    "date": "2024-02-15",
+    "image": "https://via.placeholder.com/300x200",
+    "content": "Discover the diverse and complex ecosystems created by fungi...",
+    "link": "#"
+  },
+  {
+    "id": 2,
+    "title": "Mycology and Its Importance",
+    "date": "2024-02-20",
+    "image": "https://via.placeholder.com/300x200",
+    "content": "Mycology, the study of fungi, is a branch of biology concerned with...",
+    "link": "#"
+  },
+  {
+    "id": 3,
+    "title": "Introduction to Analytics",
+    "date": "2024-02-25",
+    "image": "https://via.placeholder.com/300x200",
+    "content": "Explore the fundamentals of analytics and its applications in various industries...",
+    "link": "#"
+  },
+  {
+    "id": 4,
+    "title": "Python Mock Testing",
+    "date": "2024-02-28",
+    "image": "https://via.placeholder.com/300x200",
+    "content": "Learn how to effectively use Python's mock library for testing and mocking...",
+    "link": "#"
+  },
+  {
+    "id": 8,
+    "title": "Advanced Analytics Techniques",
+    "date": "2024-03-05",
+    "image": "https://via.placeholder.com/300x200",
+    "content": "Dive deeper into advanced analytics methods and algorithms for data analysis...",
+    "link": "#"
+  },
+  {
+    "id": 9,
+    "title": "Python Mock Best Practices",
+    "date": "2024-03-10",
+    "image": "https://via.placeholder.com/300x200",
+    "content": "Discover the best practices for using Python's mock library to improve your testing...",
+    "link": "#"
+  },
+  {
+    "id": 10,
+    "title": "Analytics in Action",
+    "date": "2024-03-15",
+    "image": "https://via.placeholder.com/300x200",
+    "content": "Explore real-world examples of analytics applications and their impact on businesses...",
+    "link": "#"
+  }
+]

@@ -1,0 +1,16 @@
+/your-app
+|-- /components
+|   |-- Navbar.js
+|   |-- LoginForm.js
+|   |-- ProfileView.js
+|-- /utils
+|   |-- Utils.js
+|-- /actions
+|   |-- AuthActions.js
+|-- /state
+|   |-- AuthState.js
+|-- index.html
+|-- script.js
+|-- styles.css
+
+
