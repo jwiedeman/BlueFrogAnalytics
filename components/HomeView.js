@@ -74,16 +74,16 @@ console.log(state)
     style: { position: "absolute", zIndex: "2", width: "100%", top: "50%", transform: "translateY(-50%)" }
   }, [
     hyperapp.h("h1", { class: "hero-title mb-4", style: { position: "relative" } }, [
-      hyperapp.h("span", { style: { backgroundColor: "rgba(0,0,0,0.7)", color: "white", padding: "0.5rem" } }, "Hello there, I'm Joshua Wiedeman")
+      hyperapp.h("span", { style: { backgroundColor: "rgba(0,0,0,0.95)", color: "white", padding: "0.5rem" } }, "Hello there, I'm Joshua Wiedeman")
     ]),
     hyperapp.h("div", { style: { padding: "0.5rem" } }, [ // Wrap subtext in a div without background
-      hyperapp.h("p", { class: "hero-description", style: { backgroundColor: "rgba(0,0,0,0.7)", color: "white", padding: "0.5rem", display: "inline" } }, "I design, develop and deliver solutions")
+      hyperapp.h("p", { class: "hero-description", style: { backgroundColor: "rgba(0,0,0,0.95)", color: "white", padding: "0.5rem", display: "inline" } }, "I design, develop and deliver solutions")
     ]),
     hyperapp.h("div", { class: "hero-buttons mt-4 text-center" }, [
       state.auth.authed
-        ? hyperapp.h("button", { class: "btn btn-primary", onclick: () => actions.navigate("leaderboard"), style: { backgroundColor: "rgba(0,0,0,0.7)" } }, "Leaderboard")
-        : hyperapp.h("button", { class: "btn btn-primary", onclick: () => actions.navigate("login"), style: { backgroundColor: "rgba(0,0,0,0.7)" } }, "Sign Up Now"),
-      hyperapp.h("button", { class: "btn btn-secondary ms-2", onclick: () => actions.navigate("projects"), style: { backgroundColor: "rgba(0,0,0,0.7)" } }, "Projects")
+        ? hyperapp.h("button", { class: "btn btn-primary", onclick: () => actions.navigate("leaderboard"), style: { backgroundColor: "rgba(0,0,0,0.95)" } }, "Leaderboard")
+        : hyperapp.h("button", { class: "btn btn-primary", onclick: () => actions.navigate("login"), style: { backgroundColor: "rgba(0,0,0,0.95)" } }, "Sign Up Now"),
+      hyperapp.h("button", { class: "btn btn-secondary ms-2", onclick: () => actions.navigate("projects"), style: { backgroundColor: "rgba(0,0,0,0.95)" } }, "Projects")
     ])
   ])
   
