@@ -9,6 +9,7 @@ import State from "./state/State.js";
 import HomeView from "./components/HomeView.js";
 import ChangelogView from "./components/ChangelogView.js";
 import ProjectsView from "./components/ProjectsView.js";
+import ExperienceView from "./components/ExperienceView.js";
 import BlogView from "./components/BlogView.js";
 import Navbar from "./components/NavBar.js";
 import LoginForm from "./components/LoginForm.js";
@@ -40,6 +41,8 @@ const view = (state, actions) =>
           ? ChangelogView(state, actions)
           : state.currentPage === "projects"
           ? ProjectsView(state, actions)
+          : state.currentPage === "experience" // Add this condition for ExperienceView
+          ? ExperienceView(state, actions)
           : state.currentPage === "blog"
           ? BlogView(state, actions)
           : HomeView(state, actions),

@@ -2,8 +2,7 @@ const Navbar = (state, actions) =>
   hyperapp.h(
     "nav",
     {
-      class: "navbar navbar-expand-lg navbar-light"
-    
+      class: "navbar navbar-expand-lg navbar-light",
     },
     [
       hyperapp.h("div", { class: "container" }, [
@@ -12,10 +11,10 @@ const Navbar = (state, actions) =>
           {
             class: "navbar-brand fw-bold",
             href: "#",
-            style: { 
+            style: {
               color: 'black', // Logo color
-              padding: '10px' // Padding around the logo
-            }
+              padding: '10px', // Padding around the logo
+            },
           },
           "Joshua Wiedeman"
         ),
@@ -57,6 +56,18 @@ const Navbar = (state, actions) =>
                     onclick: () => actions.navigate("projects"),
                   },
                   "Projects"
+                ),
+              ]),
+              // Add the "Experience" navigation link before "Blog"
+              hyperapp.h("li", { class: "nav-item" }, [
+                hyperapp.h(
+                  "a",
+                  {
+                    class: "nav-link",
+                    href: "#",
+                    onclick: () => actions.navigate("experience"),
+                  },
+                  "Experience"
                 ),
               ]),
               hyperapp.h("li", { class: "nav-item" }, [

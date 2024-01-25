@@ -10,6 +10,37 @@ const Actions = {
       },
     };
   },
+  setExperienceData: (data) => (state) => {
+    console.debug("Setting experience data:", data);
+    return {
+      ...state,
+      common: {
+        ...state.common,
+        experienceData: data,
+      },
+    };
+  },
+  setBrandsData: (data) => (state) => {
+    console.debug("Setting brand data:", data);
+    return {
+      ...state,
+      common: {
+        ...state.common,
+        brandsData: data,
+      },
+    };
+  },
+  setSkillsData: (data) => (state) => {
+    console.debug("Setting skills data:", data);
+    return {
+      ...state,
+      common: {
+        ...state.common,
+        skillsData: data,
+      },
+    };
+  },
+  
   setCellStyles: (newCellStyles) => (state) => {
     console.log(state);
     return {

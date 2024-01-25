@@ -1,0 +1,88 @@
+[
+    {
+      "companyLogo": "fox_corporation_logo.png",
+      "title": "Analytics Manager",
+      "company": "Fox Corporation",
+      "contractType": "Contract",
+      "period": "Jan 2022 - Present",
+      "duration": "2 yrs 1 mo",
+      "location": "LinkedIn helped me get this job",
+      "responsibilities": [
+        "Meeting with internal stakeholders to understand business objectives and define data-driven measurement goals",
+        "Designing and documenting solutions to track objectives",
+        "Coordinating the technical implementation of analytics tags & SDKs with internal and external development teams",
+        "Automating the implementation of data analytics tags via a tag manager",
+        "Debugging, configuring reports and dashboards",
+        "Testing and troubleshooting the implementation",
+        "Providing guidance and best practices to various stakeholders to achieve business objectives"
+      ],
+      "skills": [
+        "Data Analysis",
+        "Business Intelligence (BI)",
+        "Git",
+        "Full stack Web Development",
+        "Javascript analytics tool & integration development"
+      ]
+    },
+    {
+      "companyLogo": "logical_position_logo.png",
+      "title": "Web Analytics Implementation Engineer",
+      "company": "Logical Position",
+      "contractType": "Full-time",
+      "period": "Feb 2018 - Jan 2022",
+      "duration": "4 yrs",
+      "location": "Portland, Oregon Area",
+      "responsibilities": [
+ 
+      ],
+      "skills": [
+
+      ]
+    },
+    {
+      "companyLogo": "mmc_logo.png",
+      "title": "Technical Support",
+      "company": "MMC",
+      "contractType": "Contract",
+      "period": "Jul 2016 - Feb 2018",
+      "duration": "1 yr 8 mos",
+      "location": "Portland, Oregon Area",
+      "responsibilities": [
+ 
+      ],
+      "skills": [
+   
+      ]
+    },
+    {
+      "companyLogo": "maletis_beverage_logo.png",
+      "title": "Support Specialist",
+      "company": "Maletis Beverage",
+      "contractType": "N/A",
+      "period": "Apr 2014 - Jul 2016",
+      "duration": "2 yrs 4 mos",
+      "location": "7000 n cutter circle",
+      "responsibilities": [
+
+      ],
+      "skills": [
+   
+      ]
+    },
+    {
+      "companyLogo": "us_air_force_logo.png",
+      "title": "Cyber System Operations",
+      "company": "United States Air Force",
+      "contractType": "N/A",
+      "period": "2013 - 2014",
+      "duration": "1 yr",
+      "location": "",
+      "responsibilities": [
+        "Providing core services by designing, configuring, installing, and managing data services at the operating system and server application level."
+      ],
+      "skills": [
+        "Secret Clearance"
+      ]
+    }
+  ]
+  

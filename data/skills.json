@@ -1,0 +1,42 @@
+[
+    {
+      "name": "Programming Languages",
+      "skills": [
+        {
+          "name": "JavaScript",
+          "level": "Expert"
+        },
+        {
+          "name": "Python",
+          "level": "Intermediate"
+        }
+      ]
+    },
+    {
+      "name": "Frameworks & Libraries",
+      "skills": [
+        {
+          "name": "React",
+          "level": "Expert"
+        },
+        {
+          "name": "Vue.js",
+          "level": "Intermediate"
+        }
+      ]
+    },
+    {
+      "name": "Tools & Platforms",
+      "skills": [
+        {
+          "name": "Git",
+          "level": "Expert"
+        },
+        {
+          "name": "Docker",
+          "level": "Intermediate"
+        }
+      ]
+    }
+  ]
+  

@@ -2,6 +2,9 @@
 * {
   font-family: 'Helvetica', sans-serif;
 }
+body {
+  overflow-x: hidden;
+}
 
 /* Sticky navigation bar */
 .sticky-nav {
@@ -110,4 +113,76 @@ body.loaded #wrap .cell .inner {
   transition: opacity 0.3s ease-in-out, background-image 0s; /* Specify the property to transition */
   transition-delay: var(--delay); /* Use a variable for transition delay */
   opacity: 1;
+}
+
+
+/* Custom styles for cards to match NASA-style design */
+
+/* Custom styles for cards to match NASA-style design */
+
+.experience-view .card {
+  border: 2px solid #333 !important; /* Charcoal black border for the entire card */
+  background-color: transparent !important; /* Transparent background for the card */
+}
+
+.experience-view .card-header {
+  background-color: transparent !important; /* Transparent background for the card header */
+  border-bottom: none !important; /* Remove the bottom border of the header to avoid double borders */
+  color: black !important;
+}
+
+.experience-view .card-body {
+  background-color: white !important; /* Set a background color for the card body if needed */
+}
+
+
+
+/* Honors & Awards */
+.award-card {
+  width: 300px; /* Adjust width as needed */
+  /* Other styles for award cards */
+}
+
+
+
+
+/* Add styles for slow scrolling */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); } /* Adjust this value based on the total width of your brand cards */
+}
+
+.brand-scroll {
+  animation: scroll 40s linear infinite;
+  animation-delay: -10s; /* Negative delay to start the animation 20 seconds ahead */
+}
+
+/* Ensure the brand cards are contained within a card-like box */
+.brand-card-container {
+  border: 2px solid #333; /* Charcoal black border */
+  background-color: transparent;
+  padding: 15px;
+  margin-bottom: 20px;
+  overflow-x: hidden; /* Hide horizontal scrolling */
+  white-space: nowrap; /* Prevent wrapping of inline elements */
+}
+
+/* Custom styles for brand cards */
+.brand-card {
+  display: inline-block; /* Inline block for horizontal layout */
+  margin-right: 10px; /* 10px gap between each brand card */
+  vertical-align: top; /* Align tops of inline-block elements */
+}
+
+/* Grayscale effect on brand logos */
+.brand-logo {
+  filter: grayscale(100%);
+  transition: filter 0.3s ease-in-out;
+  display: block; /* Block display to fill width of .brand-card */
+  height: auto; /* Maintain aspect ratio */
+  margin: 0 auto; /* Center the image within the .brand-card */
+}
+
+.brand-logo:hover {
+  filter: none; /* Remove grayscale on hover */
 }

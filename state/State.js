@@ -2,8 +2,10 @@ const State = {
   changelogData: [],
   cells: [],
   blogData: [],
-  speciesData: [],
+  experienceData: [],
   loaded: false,
   searchQuery: "",
+  skillsData:[],
+  brandsData:[],
 };
 export default State;
