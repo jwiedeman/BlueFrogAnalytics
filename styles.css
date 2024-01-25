@@ -151,10 +151,8 @@ body.loaded #wrap .cell .inner {
   0% { transform: translateX(0); }
   100% { transform: translateX(-100%); } /* Adjust this value based on the total width of your brand cards */
 }
-
 .brand-scroll {
-  animation: scroll 40s linear infinite;
-  animation-delay: -10s; /* Negative delay to start the animation 20 seconds ahead */
+  animation: scroll linear infinite;
 }
 
 /* Ensure the brand cards are contained within a card-like box */
@@ -163,14 +161,13 @@ body.loaded #wrap .cell .inner {
   background-color: transparent;
   padding: 15px;
   margin-bottom: 20px;
-  overflow-x: hidden; /* Hide horizontal scrolling */
-  white-space: nowrap; /* Prevent wrapping of inline elements */
+
 }
 
 /* Custom styles for brand cards */
 .brand-card {
   display: inline-block; /* Inline block for horizontal layout */
-  margin-right: 10px; /* 10px gap between each brand card */
+  margin-right: 10px; /* Gap between each brand card */
   vertical-align: top; /* Align tops of inline-block elements */
 }
 
@@ -185,4 +182,8 @@ body.loaded #wrap .cell .inner {
 
 .brand-logo:hover {
   filter: none; /* Remove grayscale on hover */
+}
+.brand-scroll-container {
+ 
+
 }

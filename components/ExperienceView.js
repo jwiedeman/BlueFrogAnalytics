@@ -1,5 +1,33 @@
 
 const ExperienceView = (state, actions) => {
+  function adjustBrandScrollAnimation(brandScroll) {
+    console.log('adjustBrandScrollAnimation');
+    let totalWidth = 0;
+
+    // Use the provided element to find its children .brand-card elements
+    const brandCards = brandScroll.querySelectorAll('.brand-card');
+    brandCards.forEach(function(card) {
+        totalWidth += card.offsetWidth + parseInt(window.getComputedStyle(card).marginRight, 10); // Use base 10 for parsing
+    });
+
+    // Calculate an appropriate animation duration based on the total width and desired speed
+    const animationDuration = totalWidth / 300; // Adjust the divisor to control speed
+
+    // Set the animation duration and iteration count on the provided element
+    brandScroll.style.animation = `scroll ${animationDuration}s linear infinite`;
+
+    // Add an event listener for the animationiteration event
+    brandScroll.addEventListener('animationiteration', () => {
+        // Reset the animation back to the beginning when it completes
+        brandScroll.style.animation = 'none';
+        setTimeout(() => {
+            brandScroll.style.animation = `scroll ${animationDuration}s linear infinite`;
+        }, 0);
+    });
+}
+
+
+
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -99,8 +127,11 @@ const ExperienceView = (state, actions) => {
 hyperapp.h("div", { class: "row mb-4 mt-5" }, [
   hyperapp.h("div", { class: "col-12" }, [
     hyperapp.h("h2", { class: "pb-5" }, "Brands I've Worked With"),
-    hyperapp.h("div", { class: "brand-scroll-container " }, [
-      hyperapp.h("div", { class: "d-flex flex-nowrap brand-scroll " }, [
+    hyperapp.h("div", { class: "brand-scroll-container ", oncreate: element => {
+      console.log("oncreate triggered");
+      setTimeout(() => adjustBrandScrollAnimation(element), 500);
+    }  }, [
+      hyperapp.h("div", { class: "d-flex flex-nowrap brand-scroll "}, [
         ...shuffleArray(state.common.brandsData).map((brand, index) =>
           hyperapp.h("div", { class: "brand-card" }, [
             hyperapp.h("img", { src: brand.logo, alt: brand.name, class: "brand-logo" }),
@@ -110,6 +141,7 @@ hyperapp.h("div", { class: "row mb-4 mt-5" }, [
     ]),
   ]),
 ]),
+
     // Skills section
     
     hyperapp.h("div", { class: "row d-flex" },
