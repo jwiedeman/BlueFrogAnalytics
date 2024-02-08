@@ -124,6 +124,7 @@ const Navbar = (state, actions) =>
                   },
                   "Login"
                 ),
+                
           ]
         ),
       ]),
