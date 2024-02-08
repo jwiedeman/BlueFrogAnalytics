@@ -20,8 +20,22 @@ body {
   z-index: 100;
 }
 
+.custom-carousel-width {
+  width: 75%;
+  margin: auto; /* Center the carousel */
+}
 
+/* Set the carousel's height */
+#carouselExampleCaptions {
+  height: 500px; /* Adjust the height as needed */
+}
 
+/* Ensure images cover the space without losing their aspect ratios */
+#carouselExampleCaptions .carousel-item img {
+  height: 100%;
+  object-fit: cover; /* This makes the image cover the space without distorting */
+  width: 100%;
+}
 
 
 .animate {
@@ -186,4 +200,34 @@ body.loaded #wrap .cell .inner {
 .brand-scroll-container {
  
 
+}
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* Global CSS rule for buttons */
+button {
+  background-color: #ffffff !important; /* White background */
+  border: 1px solid #ff0000 !important; /* Red border */
+  color: #ff0000 !important; /* Bright red text */
+  padding: 0.5rem 1rem !important; /* Adjust padding as needed */
+  font-size: 1rem !important; /* Adjust font size as needed */
+  cursor: pointer !important; /* Change cursor to pointer on hover */
+  transition: background-color 0.3s, color 0.3s !important; /* Smooth transition effect */
+}
+
+/* Hover effect */
+button:hover {
+  background-color: #ff0000 !important; /* Bright red background on hover */
+  color: #ffffff !important; /* White text on hover */
+}
+
+.project-img {
+  height: 400px; /* Adjust the height as needed */
+  object-fit: cover;
 }

@@ -101,16 +101,18 @@ const ExperienceView = (state, actions) => {
      // Honors & Awards section
      hyperapp.h("div", { class: "row mb-4 mt-5" }, [
       hyperapp.h("div", { class: "col-12" }, [
-        hyperapp.h("h2", { class: "pb-5" }, "Honors & Awards"),
-        hyperapp.h("div", { class: "d-flex flex-row justify-content-around" }, [
-          hyperapp.h("div", { class: "card award-card mx-2" }, [
+        hyperapp.h("h2", { class: "pb-2" }, "Honors & Awards"), // Reduced padding for the title
+        hyperapp.h("div", { class: "d-flex flex-column flex-lg-row justify-content-around" }, [
+          // Using flex-column for smaller screens and flex-row for larger (lg) screens
+          hyperapp.h("div", { class: "card award-card m-2 flex-fill" }, [
+            // Added flex-fill to make cards expand to fill the available space
             hyperapp.h("div", { class: "card-body" }, [
               hyperapp.h("h3", null, "CPE Q3 MVP"),
               hyperapp.h("p", null, "Issued by CPE (Consumer Products & Engineering) · Sep 2023"),
               hyperapp.h("p", null, "Associated with Fox Corporation"),
             ]),
           ]),
-          hyperapp.h("div", { class: "card award-card mx-2" }, [
+          hyperapp.h("div", { class: "card award-card m-2 flex-fill" }, [
             hyperapp.h("div", { class: "card-body" }, [
               hyperapp.h("h3", null, "2021 Github Arctic Code Vault Contributor"),
               hyperapp.h("p", null, " (3x entries)"),
@@ -122,6 +124,7 @@ const ExperienceView = (state, actions) => {
         ]),
       ]),
     ]),
+    
 
 // Brands I've Worked With section
 hyperapp.h("div", { class: "row mb-4 mt-5" }, [

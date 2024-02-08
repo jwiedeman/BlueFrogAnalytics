@@ -97,14 +97,28 @@ console.log(state)
     
     
     // Additional content sections below the hero section
-    hyperapp.h("section", { class: "features py-5" }, [
-      hyperapp.h("h2", {}, "Be a Part of Our Growing Community"),
-      hyperapp.h("p", {}, "Join enthusiasts and experts alike in documenting and identifying species. Every discovery enriches our collective understanding and helps you rise through the ranks.")
-    ]),
-    hyperapp.h("section", { class: "updates py-5" }, [
-      hyperapp.h("h2", {}, "Stay Informed with Our Latest Updates"),
-      hyperapp.h("p", {}, "Check out our Changelog for the latest features and enhancements. Our Blog is also a great resource for news, tutorials, and insights from the world of mycology.")
-    ])
+    // Additional content sections below the hero section
+// Additional content sections below the hero section
+// Additional content sections below the hero section
+hyperapp.h("section", { class: "features py-5" }, [
+  hyperapp.h("h2", {}, "Explore My Projects"),
+  hyperapp.h("p", {}, "Discover the projects I've worked on and the solutions I've crafted. Each project tells a unique story of challenges faced and problems solved."),
+  hyperapp.h("button", { class: "btn btn-outline-danger btn-lg", onclick: () => actions.navigate("projects") }, "View Projects"),
+]),
+hyperapp.h("section", { class: "updates py-5" }, [
+  hyperapp.h("h2", {}, "Stay Updated with My Blog"),
+  hyperapp.h("p", {}, "Visit my Blog to stay updated on the latest trends, insights, and tips in the field. From tutorials to industry news, my Blog is a valuable resource for enthusiasts and professionals alike."),
+  hyperapp.h("button", { class: "btn btn-outline-danger btn-lg", onclick: () => actions.navigate("blog") }, "Read Blog"),
+]),
+hyperapp.h("section", { class: "experience py-5" }, [
+  hyperapp.h("h2", {}, "Ready to Work Together?"),
+  hyperapp.h("p", {}, "Explore my professional experience and skills. From web development to project management, I bring expertise and dedication to every project. Let's collaborate and bring your ideas to life!"),
+  hyperapp.h("p", {}, "Check out my Experience section to learn more about my background and accomplishments."),
+  hyperapp.h("button", { class: "btn btn-outline-danger btn-lg", onclick: () => actions.navigate("experience") }, "View Experience"),
+]),
+
+
+
     // ... any other sections you want to include on the home page ...
   ]);
 };

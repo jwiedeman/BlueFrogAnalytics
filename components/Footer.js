@@ -1,5 +1,7 @@
 const Footer = (state, actions) => {
   // Function to load a random mushroom blurb, joke, or fact
+
+
   const loadRandomMushroomInfo = () => {
   const peaceAndZenQuotes = [
   "Peace comes from within. Do not seek it without. – Buddha",

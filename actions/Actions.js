@@ -10,6 +10,30 @@ const Actions = {
       },
     };
   },
+  goBack: (data) => (state) => {
+    window.history.back();
+  },
+  selectPost: (postId) => (state) => {
+    console.debug("Selecting post with ID:", postId);
+    return {
+      ...state,
+      common: {
+        ...state.common,
+        currentPostId: postId,
+      },
+    };
+  },
+  selectProject: (projectId) => (state) => {
+    console.debug("Selecting project with ID:", projectId);
+    return {
+      ...state,
+      common: {
+        ...state.common,
+        currentProjectId: projectId,
+      },
+    };
+  },
+
   setExperienceData: (data) => (state) => {
     console.debug("Setting experience data:", data);
     return {
@@ -30,6 +54,15 @@ const Actions = {
       },
     };
   },
+  setProjectsData: (data) => (state) => ({
+    ...state,
+    common: {
+      ...state.common,
+      projectData: data,
+    },
+  }),
+
+
   setSkillsData: (data) => (state) => {
     console.debug("Setting skills data:", data);
     return {
