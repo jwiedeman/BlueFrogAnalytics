@@ -1,0 +1,49 @@
+{{ define "main" }}
+  <!-- Full-width header image with constrained height using Tailwind CSS -->
+  {{ $headerImage := .Params.headerImage }}
+  {{ if $headerImage }}
+  <div class="w-full overflow-hidden" style="height: 35vh;">
+    <img src="{{ $headerImage }}" alt="Header Image" class="w-full h-full object-cover">
+  </div>
+  {{ end }}
+
+  <section class="section-sm pb-0">
+    <div class="container mx-auto">
+      <div class="row flex justify-center border-b border-gray-200 dark:border-gray-700 pb-14">
+        <div class="lg:w-1/3 text-center">
+          {{ $image := .Params.image }}
+          {{ if $image }}
+            <!-- Image partial integration might need adjustment if using Tailwind for image styling -->
+            {{ partial "image" (dict "Src" $image "Alt" .Title "Class" "mx-auto" "Size" "200x200") }}
+          {{ else if .Params.Email }}
+            <img class="mx-auto rounded-full" alt="{{ .Title }}" height="200" width="200" src="https://www.gravatar.com/avatar/{{ md5 .Params.email }}?s=128&d=identicon" />
+          {{ end }}
+          <h1 class="mt-10 text-3xl font-semibold">{{ .Title }}</h1>
+          <div class="mt-6">
+            {{ .Content }}
+          </div>
+          <ul class="social-icons flex justify-center mt-10">
+            {{ range .Params.social }}
+              <li>
+                <a href="{{ .link | safeURL }}" target="_blank" rel="noopener noreferrer nofollow" class="inline-block mx-2">
+                  <!-- Adjust icon classes as necessary -->
+                  <span class="sr-only">{{ .title }}</span>
+                  <i class="{{ .icon }} text-xl"></i>
+                </a>
+              </li>
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+
+      <div class="row mt-16">
+        {{ $filterByAuthor := where site.RegularPages "Params.author" "==" .Title }}
+        {{ range $filterByAuthor }}
+          <div class="md:w-1/2 lg:w-1/3 mb-12 px-4">
+            {{ partial "components/blog-card" . }}
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+{{ end }}
