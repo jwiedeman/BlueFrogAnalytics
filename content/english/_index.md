@@ -1,13 +1,13 @@
 ---
 # Banner
 banner:
-  title: "Welcome"
-  content: "Explore my work and interests through my portfolio website."
+  title: "Hi, I'm Joshua"
+  content: "I help business plan and implement solutions."
   image: "/images/banner.png"
   button:
     enable: true
-    label: "Explore My Work"
-    link: "https://yourportfolio.com"
+    label: "Lets Talk"
+    link: "/contact"
 
 
 # Features
@@ -27,7 +27,7 @@ features:
       label: "Check out the Blog"
       link: "/blog"
 
-  - title: "Discover More Projects"
+  - title: "My Projects"
     image: "/images/service-2.png"
     content: "Explore a variety of projects spanning analytics, mycology, automation, scraping, and more. From data-driven insights to creative endeavors, there's a diverse range of projects waiting to be discovered. Some of the key areas include:"
     bulletpoints:
@@ -43,7 +43,7 @@ features:
 
   - title: "Explore My Experience"
     image: "/images/service-3.png"
-    content: "Discover my journey, accomplishments, and expertise accumulated throughout my career. "
+    content: "Check out my journey, accomplishments, and expertise accumulated throughout my career so far. "
     bulletpoints: []
     button:
       enable: true
