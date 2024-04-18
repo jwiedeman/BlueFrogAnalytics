@@ -25,7 +25,7 @@ features:
     button:
       enable: true
       label: "Check out the Blog"
-      link: "#"
+      link: "/blog"
 
   - title: "Discover More Projects"
     image: "/images/service-2.png"
