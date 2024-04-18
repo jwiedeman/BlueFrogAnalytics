@@ -1,6 +1,5 @@
 ---
 title: ShroomDex
-image: "/images/image-placeholder.png"
 headerImage: "/images/us3.jpg"
 description: this is meta description
 social:
