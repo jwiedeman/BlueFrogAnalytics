@@ -1,6 +1,6 @@
 ---
 title: Analytics Doctor
-
+headerImage: "/images/us2.jpg"
 image: "/images/image-placeholder.png"
 description: this is meta description
 social:
