@@ -2,30 +2,30 @@
   "colors": {
     "default": {
       "theme_color": {
-        "primary": "#FF3C3C",
-        "body": "#fff",
-        "border": "#eaeaea",
-        "theme_light": "#f6f6f6",
-        "theme_dark": ""
+        "primary": "#0077B6",    // Navy Blue: Used as the primary theme color for a confident, professional look.
+        "body": "#FFFFFF",      // White: Background color for content areas to maintain crispness and clarity.
+        "border": "#E0E0E0",    // Cool Gray: Borders and lines to subtly define spaces without stark contrasts.
+        "theme_light": "#F0F0F0",// Light Gray: Used for hovered states or secondary backgrounds, maintains cleanliness.
+        "theme_dark": "#00B4D8"  // Teal: Used for hover effects or focus elements to add vibrancy.
       },
       "text_color": {
-        "default": "#444444",
-        "dark": "#040404",
-        "light": "#717171"
+        "default": "#333333",   // Dark Gray: Main text color for excellent readability.
+        "dark": "#000000",      // Black: Used for headings or important data points to draw attention.
+        "light": "#555555"      // Medium Gray: Secondary text, such as captions or less critical data, for hierarchy.
       }
     },
     "darkmode": {
       "theme_color": {
-        "primary": "#6B6B6B",
-        "body": "#1c1c1c",
-        "border": "#FF0000",
-        "theme_light": "#222222",
-        "theme_dark": ""
+        "primary": "#0077B6",    // Navy Blue: Primary theme color even in dark mode for consistency.
+        "body": "#1c1c1c",       // Very dark gray (almost black): Background for dark mode to reduce glare.
+        "border": "#FF6F61",     // Coral: Borders in dark mode to add warmth and focus.
+        "theme_light": "#333333",// Dark Gray: Background for cards or secondary elements in dark mode.
+        "theme_dark": "#00B4D8"  // Teal: Accents and interactive elements in dark mode to keep the theme vibrant.
       },
       "text_color": {
-        "default": "#B4AFB6",
-        "dark": "#D3D3D3",
-        "light": "#B4AFB6"
+        "default": "#D3D3D3",   // Light Gray: Ensures good readability against dark backgrounds.
+        "dark": "#FFFFFF",      // White: Used for the most critical text to stand out.
+        "light": "#B4AFB6"      // Lighter Gray: Less crucial text, providing a softer contrast.
       }
     }
   },
