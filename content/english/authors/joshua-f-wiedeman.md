@@ -1,7 +1,7 @@
 ---
 title: Joshua Wiedeman
 email: joshua.f.wiedeman@email.com
-image: "/images/avatar.png"
+image: "/images/avatar.jpg"
 description: this is meta description
 social:
   - name: github

@@ -59,7 +59,7 @@ show_categories = true
 keywords = ["Boilerplate", "Hugo"]
 description = "Hugo & Tailwindcss Starter"
 author = "Joshua Wiedeman"
-image = "images/og-image.png"
+image = "images/avatar.jpg"
 
 
 # site verifications

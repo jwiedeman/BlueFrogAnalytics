@@ -64,6 +64,9 @@ target = 'css'
 [[build.cachebusters]]
 source = 'assets/.*\.(.*)$'
 target = '$1'
+[[build.cachebusters]]
+source = 'assets/.*\.(png|jpg|jpeg|gif|svg)'
+target = 'images'
 
 
 ############################# Outputs ############################
@@ -77,15 +80,7 @@ home = ["HTML", "RSS", "WebAppManifest", "SearchIndex"]
 quality = 80
 resampleFilter = "Lanczos"
 
-############################ Caches ##############################
-[caches]
-[caches.images]
-dir = ":resourceDir/_gen"
-maxAge = "720h"
 
-[caches.assets]
-dir = ":resourceDir/_gen"
-maxAge = "720h"
 
 
 ############################ Markup ##############################

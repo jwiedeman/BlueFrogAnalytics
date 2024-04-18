@@ -1,6 +1,6 @@
 ---
 title: Analytics Academy
-headerImage: "/images/us4.jpg"
+headerImage: "/images/us4.png"
 description: this is meta description
 social:
   - name: github
