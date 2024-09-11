@@ -1,15 +1,49 @@
 <meta charset="utf-8" />
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MQRCDGPX');</script>
+<!-- Google Tag Manager (Replicated Version) -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Initialize GTM after a 2500ms delay (can be adjusted as needed)
+  setTimeout(initGTM, 2500);
+});
+
+document.addEventListener('scroll', initGTMOnEvent);
+document.addEventListener('mousemove', initGTMOnEvent);
+document.addEventListener('touchstart', initGTMOnEvent);
+
+function initGTMOnEvent(event) {
+  initGTM();
+  event.currentTarget.removeEventListener(event.type, initGTMOnEvent); // remove the event listener
+}
+
+function initGTM() {
+  if (window.gtmDidInit) return; // Avoid loading GTM more than once
+  window.gtmDidInit = true; // Set flag to ensure single load
+
+  const script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.async = true;
+  script.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-MQRCDGPX';
+  
+  // Push PageView on load
+  script.onload = function() {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'gtm.js',
+      'gtm.start': new Date().getTime(),
+      'gtm.uniqueEventId': 0
+    });
+  };
+  
+  document.head.appendChild(script);
+}
+</script>
 <!-- End Google Tag Manager -->
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MQRCDGPX"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MQRCDGPX" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
 <!-- End Google Tag Manager (noscript) -->
+
 <!-- responsive meta -->
 <meta
   name="viewport"
