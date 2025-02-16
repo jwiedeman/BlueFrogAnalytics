@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 env:
-  HUGO_VERSION: "0.121.2"  # Specify a stable Hugo version
+  HUGO_VERSION: "0.143.1"  # Latest Hugo version
   GO_VERSION: "1.21.5"
 
 jobs:
@@ -27,7 +27,7 @@ jobs:
         with:
           go-version: ${{ env.GO_VERSION }}
 
-      - name: ⚙️ Install Hugo
+      - name: ⚙️ Install Hugo (Fixed)
         uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: ${{ env.HUGO_VERSION }}
@@ -36,8 +36,8 @@ jobs:
       - name: 📥 Fetch Hugo Theme
         run: git clone --depth 1 https://github.com/colinwilson/lotusdocs themes/lotusdocs
 
-      - name: 🏗️ Install Hugo Modules
-        run: hugo mod tidy
+      - name: 🏗️ Install Hugo Modules & SCSS Dependencies
+        run: hugo mod get -u
 
       - name: 🚀 Build Hugo site
         run: hugo --minify
