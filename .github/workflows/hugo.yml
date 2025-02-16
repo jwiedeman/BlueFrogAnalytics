@@ -14,7 +14,7 @@ permissions:
 # Deployment environment
 env:
   HUGO_VERSION: "latest"
-  GO_VERSION: "latest"
+  GO_VERSION: "1.21.5"
 
 jobs:
   build:
