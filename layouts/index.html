@@ -40,3 +40,37 @@
     {{ end }}
 
 {{ end }}
+{{ define "test" }}
+
+    <!-- Identify the correct data source -->
+    {{ $pageID := "test" }}
+
+    <!-- Load YAML Data -->
+    {{ $dataFile := index .Site.Data $pageID | default .Site.Data.landing }} 
+
+    {{ $map := newScratch }}
+
+    <!-- Loop through YAML Sections and Extract Template Information -->
+    {{ range $key, $value := $dataFile }}
+        {{ $sectionTitle := (index $key) }}
+        {{ $weight := string ($value.weight) }}
+        {{ $template := string (replaceRE `( |-{1,})` "_" $value.template) }}
+
+        {{ with and $template $weight }}
+            {{ $map.SetInMap "wgtTpl" $sectionTitle (dict
+                "weight" $weight
+                "template" $template
+                "sectionTitle" $sectionTitle
+            )}}
+        {{ end }}
+    {{ end }}
+
+    <!-- Sort Sections by Weight and Render Corresponding Templates -->
+    {{ range sort ($map.Get "wgtTpl") ".weight" }}
+        {{ $.Scratch.Set "sectionTitle" .sectionTitle }}
+        {{ $path := printf "%s/%s.html" $pageID .template }} <!-- Dynamically choose partial path -->
+        {{ partial $path $.Page }}
+    {{ end }}
+
+{{ end }}
+
