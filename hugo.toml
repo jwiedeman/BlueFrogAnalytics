@@ -7,7 +7,7 @@ enableGitInfo = true # N.B. .GitInfo does not currently function with git submod
 defaultContentLanguage = 'en'
 [languages]
   [languages.en]
-    title = "Lotus Docs Example Site"
+    title = "ViperScan"
     languageName = "English"
     weight = 10
   [languages.fr]
@@ -59,17 +59,17 @@ defaultContentLanguage = 'en'
   mono_font       = "Fira Code" # Default is System font
 
     [params.footer]
-        copyright = "© :YEAR: Lotus Labs. Built with [**Lotus Docs**](https://github.com/colinwilson/lotusdocs)"
+        copyright = "© :YEAR: ViperScan. Built by [**Joshua Wiedeman**](https://github.com/jwiedeman)"
         # version = true # includes git commit info
 
     [params.social]
-        github = ""        # YOUR_GITHUB_ID or YOUR_GITHUB_URL
-        twitter = ""       # YOUR_TWITTER_ID
+        github = "jwiedeman"        # YOUR_GITHUB_ID or YOUR_GITHUB_URL
+        # twitter = ""       # YOUR_TWITTER_ID
         # instagram = "colinwilson"     # YOUR_INSTAGRAM_ID
         # rss = true                    # show rss icon with link
 
     [params.docs] # Parameters for the /docs 'template'
-        title           = "Lotus Docs Example Site"           # default html title for documentation pages/sections
+        title           = "Analytics & Insight"           # default html title for documentation pages/sections
 
         # pathName        = "docs"                            # path name for documentation site | default "docs"
 
@@ -163,14 +163,14 @@ defaultContentLanguage = 'en'
     identifier = "docs"
     weight = 10
 
-# [[menu.primary]]
-#     name  = "Showcase"
-#     url = "/showcase"
-#     identifier = "showcase"
-#     weight = 20
+ [[menu.primary]]
+     name  = "Showcase"
+     url = "/showcase"
+     identifier = "showcase"
+     weight = 20
 
-# [[menu.primary]]
-#     name  = "Community"
-#     url = "https://github.com/colinwilson/lotusdocs/discussions"
-#     identifier = "community"
-#     weight = 30
+ [[menu.primary]]
+     name  = "Community"
+     url = "https://github.com/colinwilson/lotusdocs/discussions"
+     identifier = "community"
+     weight = 30
