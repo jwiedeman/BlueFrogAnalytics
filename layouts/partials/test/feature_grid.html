@@ -1,5 +1,5 @@
 {{ $sectionTitle := .Scratch.Get "sectionTitle" }}
-{{ with (index .Site.Data.landing $sectionTitle) }}
+{{ with (index .Site.Data.test $sectionTitle) }}
 {{ if eq .enable true }}
 <!-- Features Start -->
 <section id="{{ $sectionTitle }}">
@@ -24,7 +24,9 @@
                         <div class="col-md-4 col-12">
                             <div class="d-flex features feature-primary p-3">
                                 <div class="{{ if .icon }}icon{{ else }}no-icon{{ end }} text-center rounded-3 text-primary me-3">
-                                    <i class="material-icons align-middle h4 mb-0">{{ .icon }}</i>
+                                    {{ with .icon }}
+                                        <i class="material-icons align-middle h4 mb-0">{{ . }}</i>
+                                    {{ end }}
                                 </div>
                                 <div class="flex-1">
                                     <h4 class="title">{{ .title }}</h4>
@@ -48,6 +50,6 @@
     </div>
     <!--end container-->
 </section>
-<!-- features End -->
+<!-- Features End -->
 {{ end }}
 {{ end }}

@@ -1,24 +1,42 @@
 {{ define "main" }}
-    {{ $landingData := .Site.Data.landing }}
+
+    <!-- Identify the correct data source -->
+    {{ $pageID := "" }}
+
+    <!-- Fix: Ensure $pageID is never nil -->
+    {{ if .Page.File }}
+        {{ $pageID = .Page.File.BaseFileName }}
+    {{ else if .Section }}
+        {{ $pageID = .Section }}
+    {{ else }}
+        {{ $pageID = "landing" }}  <!-- Default for homepage -->
+    {{ end }}
+
+    <!-- Load YAML Data -->
+    {{ $dataFile := index .Site.Data $pageID | default .Site.Data.landing }} 
+
     {{ $map := newScratch }}
 
-    {{ range $key, $value := $landingData }}
+    <!-- Loop through YAML Sections and Extract Template Information -->
+    {{ range $key, $value := $dataFile }}
         {{ $sectionTitle := (index $key) }}
         {{ $weight := string ($value.weight) }}
         {{ $template := string (replaceRE `( |-{1,})` "_" $value.template) }}
+
         {{ with and $template $weight }}
             {{ $map.SetInMap "wgtTpl" $sectionTitle (dict
-            "weight" $weight
-            "template" $template
-            "sectionTitle" $sectionTitle
+                "weight" $weight
+                "template" $template
+                "sectionTitle" $sectionTitle
             )}}
         {{ end }}
     {{ end }}
 
+    <!-- Sort Sections by Weight and Render Corresponding Templates -->
     {{ range sort ($map.Get "wgtTpl") ".weight" }}
         {{ $.Scratch.Set "sectionTitle" .sectionTitle }}
-        {{ $path := printf "landing/%s.html" .template }}
+        {{ $path := printf "%s/%s.html" $pageID .template }} <!-- Dynamically choose partial path -->
         {{ partial $path $.Page }}
     {{ end }}
-    {{/* printf "%s" (sort ($map.Get "wgtTpl") ".weight" ) */}}
+
 {{ end }}

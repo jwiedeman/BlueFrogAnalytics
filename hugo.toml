@@ -164,9 +164,9 @@ defaultContentLanguage = 'en'
     weight = 10
 
  [[menu.primary]]
-     name  = "Showcase"
-     url = "/showcase"
-     identifier = "showcase"
+     name  = "Test"
+     url = "/test/"
+     identifier = "test"
      weight = 20
 
  [[menu.primary]]
