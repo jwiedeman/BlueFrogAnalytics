@@ -1,6 +1,0 @@
-sections:
-  hello_world:
-    title: "Hello World"
-    description: "This is a test page."
-    weight: 1
-    template: "test_template"

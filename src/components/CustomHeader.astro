@@ -1,0 +1,133 @@
+---
+import config from 'virtual:starlight/user-config';
+
+import LanguageSelect from 'virtual:starlight/components/LanguageSelect';
+import Search from 'virtual:starlight/components/Search';
+import SiteTitle from 'virtual:starlight/components/SiteTitle';
+import SocialIcons from 'virtual:starlight/components/SocialIcons';
+import ThemeSelect from 'virtual:starlight/components/ThemeSelect';
+
+// Define main navigation links
+const mainNav = [
+  { label: 'Home', link: '/' },
+  { label: 'My Custom Page', link: '/test/' },
+  { label: 'Guides', link: '/guides/' },
+  { label: 'Reference', link: '/reference/' },
+];
+
+// Check if search should be displayed
+const shouldRenderSearch =
+  config.pagefind || config.components.Search !== '@astrojs/starlight/components/Search.astro';
+---
+
+<header class="header">
+  <div class="header-content">
+    <!-- Left: Logo -->
+    <div class="title-wrapper">
+      <SiteTitle />
+    </div>
+
+    <!-- Center: Main Navigation -->
+    <nav class="main-nav">
+      <ul>
+        {mainNav.map((item) => (
+          <li><a href={item.link}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Right: Search & Icons -->
+    <div class="right-group">
+      {shouldRenderSearch && <Search />}
+      <SocialIcons />
+      <ThemeSelect />
+      <LanguageSelect />
+    </div>
+  </div>
+</header>
+
+<style>
+  /* Ensure Header is Properly Aligned in Starlight Layout */
+  .header {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+
+  }
+
+  .header-content {
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* Logo | Nav (flexible) | Right icons */
+    align-items: center;
+    max-width: var(--sl-content-width);
+    margin: 0 auto;
+    height: var(--sl-header-height);
+    
+  }
+
+  /* Logo Position */
+  .title-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Fix Nav Misalignment */
+  .main-nav {
+    display: flex;
+    justify-content: center;
+  }
+
+  .main-nav ul {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .main-nav a {
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--sl-color-text);
+    transition: color 0.2s ease-in-out;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+  }
+
+  .main-nav a:hover {
+    background: var(--sl-color-gray-3);
+    color: var(--sl-color-primary);
+  }
+
+  /* Keep right-side controls aligned */
+  .right-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  /* Keep Header Within the Starlight Grid */
+  @media (min-width: 50rem) {
+    :global(:root[data-has-sidebar]) .header {
+      position: relative;
+    }
+  }
+
+  /* Ensure It Doesn't Expand on Doc Pages */
+  :global(:root[data-has-sidebar]) .header-content {
+    max-width: calc(100% - var(--sl-sidebar-width));
+  }
+
+  /* Prevent Jumping by Enforcing Consistent Sizing */
+  .header-content > * {
+    min-width: 150px; /* Ensures each section retains space */
+  }
+
+  /* Mobile Adjustments */
+  @media (max-width: 768px) {
+    .main-nav {
+      display: none;
+    }
+  }
+</style>
