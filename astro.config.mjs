@@ -48,6 +48,7 @@ const sidebar = [
   { label: 'Getting Started', items: scanDocsFolder(path.join(DOCS_DIR, 'Getting-Started')), collapsed: false },
   { label: 'Website Platforms', items: scanDocsFolder(path.join(DOCS_DIR, 'Website-Platforms')), collapsed: true },
   { label: 'Analytics Platforms', items: scanDocsFolder(path.join(DOCS_DIR, 'Analytics-Platforms')), collapsed: true },
+  { label: 'Ad Platforms', items: scanDocsFolder(path.join(DOCS_DIR, 'Ad-Platforms')), collapsed: true },
   { label: 'Implementation Guides', items: scanDocsFolder(path.join(DOCS_DIR, 'Implementation-Guides')), collapsed: true },
   { label: 'Web Tracking Fundamentals', items: scanDocsFolder(path.join(DOCS_DIR, 'Web-Tracking-Fundamentals')), collapsed: true },
   { label: 'Compliance & Privacy', items: scanDocsFolder(path.join(DOCS_DIR, 'Compliance&Privacy')), collapsed: true },
