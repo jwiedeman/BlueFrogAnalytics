@@ -6,8 +6,8 @@ import starlight from '@astrojs/starlight';
 const repoName = 'jwiedeman.github.io'; // <-- Replace with your actual repo name
 
 export default defineConfig({
-  site: `https://jwiedeman.github.io/${repoName}/`, // Set site URL
-  base: `/${repoName}/`, // Important for GitHub Pages routing
+  site: `https://jwiedeman.github.io/`, // Set site URL
+  base: `/`, // Important for GitHub Pages routing
   output: 'static', // Ensure Astro outputs static files
   integrations: [
     starlight({
