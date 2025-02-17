@@ -29,7 +29,7 @@ const scanDocsFolder = (dir, basePath = '') => {
           collapsed: true, // Default collapsed state
         });
       }
-    } else if (file.endsWith('.md')) {
+    } else if (file.endsWith('.md')) { 
       const cleanPath = relativePath.replace(/\.md$/, '').toLowerCase(); // Lowercase URL path
 
       items.push({
