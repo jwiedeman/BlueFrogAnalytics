@@ -63,6 +63,8 @@ const sidebar = [
   { label: 'Roadmap', items: scanDocsFolder(path.join(DOCS_DIR, 'Roadmap')), collapsed: true },
 ];
 
+
+const googleAnalyticsId = 'G-4N0P7Z1VJ8'
 export default defineConfig({
   site: `https://jwiedeman.github.io/`,
   base: `/`,
@@ -94,6 +96,25 @@ export default defineConfig({
       components: {
         Header: './src/components/CustomHeader.astro',
       },
+	  head: [
+        // Adding google analytics
+        {
+          tag: 'script',
+          attrs: {
+            src: `https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`,
+          },
+        },
+        {
+          tag: 'script',
+          content: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', '${googleAnalyticsId}');
+          `,
+        },
+      ],
     }),
   ],
 });
