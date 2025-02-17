@@ -1,4 +1,5 @@
 baseURL = "/"
+theme = "lotusdocs"
 languageCode = "en-GB"
 contentDir = "content"
 enableEmoji = true
