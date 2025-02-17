@@ -29,7 +29,7 @@ jobs:
       - name: Build Astro Site
         run: npm run build
         env:
-          ASTRO_BASE: "/your-repo-name/"  # Ensure Astro knows it's in a subdirectory
+          ASTRO_BASE: "/jwiedeman.github.io/"  # Ensure Astro knows it's in a subdirectory
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
