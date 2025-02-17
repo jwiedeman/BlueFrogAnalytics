@@ -32,6 +32,9 @@ export default defineConfig({
           autogenerate: { directory: 'reference' },
         },
       ],
+	  components: {
+        Header: './src/components/CustomHeader.astro'
+      },
     }),
   ],
 });
