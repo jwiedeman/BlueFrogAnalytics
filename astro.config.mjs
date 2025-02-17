@@ -3,8 +3,9 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import fs from 'fs';
 import path from 'path';
-
+import sitemap from '@astrojs/sitemap';
 const DOCS_DIR = 'src/content/docs';
+const isDev = process.env.NODE_ENV === 'development';
 
 /**
  * Recursively scans the docs folder and generates a sidebar with lowercase URLs.
@@ -66,7 +67,7 @@ const sidebar = [
 
 const googleAnalyticsId = 'G-4N0P7Z1VJ8'
 export default defineConfig({
-  site: `https://jwiedeman.github.io/`,
+  site: isDev ? 'http://localhost:3000' : 'https://jwiedeman.github.io',
   base: `/`,
   output: 'static',
   buildOptions: {
@@ -87,6 +88,7 @@ export default defineConfig({
     ],
   },
   integrations: [
+	sitemap(),
     starlight({
       title: 'ViperScan',
       social: {
