@@ -3,10 +3,10 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
 // Set your repository name (GitHub Pages serves from `/your-repo/` subpath)
-const repoName = 'your-repo-name'; // <-- Replace with your actual repo name
+const repoName = 'jwiedeman.github.io'; // <-- Replace with your actual repo name
 
 export default defineConfig({
-  site: `https://your-github-username.github.io/${repoName}/`, // Set site URL
+  site: `https://jwiedeman.github.io/${repoName}/`, // Set site URL
   base: `/${repoName}/`, // Important for GitHub Pages routing
   output: 'static', // Ensure Astro outputs static files
   integrations: [
