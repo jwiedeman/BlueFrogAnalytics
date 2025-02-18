@@ -60,8 +60,8 @@ const sidebar = [
   { label: 'Integrations', items: scanDocsFolder(path.join(DOCS_DIR, 'Integrations')), collapsed: true },
   { label: 'API Reference', items: scanDocsFolder(path.join(DOCS_DIR, 'API-Reference')), collapsed: true },
   { label: 'Case Studies & Use Cases', items: scanDocsFolder(path.join(DOCS_DIR, 'CaseStudies')), collapsed: true },
-  { label: 'Community & Support', items: scanDocsFolder(path.join(DOCS_DIR, 'Community')), collapsed: true },
-  { label: 'Roadmap', items: scanDocsFolder(path.join(DOCS_DIR, 'Roadmap')), collapsed: true },
+  { label: 'Community & Support', items: scanDocsFolder(path.join(DOCS_DIR, 'Community')), collapsed: true }
+
 ];
 
 
