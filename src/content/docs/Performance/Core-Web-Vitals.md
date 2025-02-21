@@ -353,12 +353,6 @@ By using this **in-depth understanding of CWV scoring**, you can proactively opt
 
 
 
-Sources
-
-
-https://developer.chrome.com/docs/lighthouse/performance/performance-scoring
-https://googlechrome.github.io/lighthouse/scorecalc/#FCP=1000&SI=1000&FMP=4000&TTI=7300&FCI=6500&LCP=1000&TBT=0&CLS=0&device=mobile&version=10
-
 
 ## **Works Cited**
 
