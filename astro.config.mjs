@@ -4,6 +4,12 @@ import starlight from '@astrojs/starlight';
 import fs from 'fs';
 import path from 'path';
 import sitemap from '@astrojs/sitemap';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import remarkMermaid from 'remark-mermaidjs'
+import mdx from '@astrojs/mdx';
+import astroExpressiveCode from 'astro-expressive-code';
+
 const DOCS_DIR = 'src/content/docs';
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -87,36 +93,37 @@ export default defineConfig({
       },
     ],
   },
-  integrations: [
-	sitemap(),
-    starlight({
-      title: 'ViperScan',
-      social: {
-        github: 'https://github.com/jwiedeman',
-      },
-      sidebar,
-      components: {
-        Header: './src/components/CustomHeader.astro',
-      },
+  integrations: [astroExpressiveCode(), mdx(), sitemap(), starlight({
+    title: 'ViperScan',
+    social: {
+      github: 'https://github.com/jwiedeman',
+    },
+    sidebar,
+    components: {
+      Header: './src/components/CustomHeader.astro',
+    },
 	  head: [
-        // Adding google analytics
-        {
-          tag: 'script',
-          attrs: {
-            src: `https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`,
-          },
+      // Adding google analytics
+      {
+        tag: 'script',
+        attrs: {
+          src: `https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`,
         },
-        {
-          tag: 'script',
-          content: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
+      },
+      {
+        tag: 'script',
+        content: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-          gtag('config', '${googleAnalyticsId}');
-          `,
-        },
-      ],
-    }),
-  ],
+        gtag('config', '${googleAnalyticsId}');
+        `,
+      },
+    ],
+  })],
+  markdown: {
+        remarkPlugins: [remarkMath,remarkMermaid],
+        rehypePlugins: [rehypeKatex]
+    }
 });
