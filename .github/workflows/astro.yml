@@ -3,7 +3,7 @@ name: Deploy Starlight to GitHub Pages
 on:
   push:
     branches:
-      - main  # Change this if your main branch is named something else
+      - main
 
 permissions:
   contents: read
@@ -27,14 +27,14 @@ jobs:
         run: npm install
 
       - name: Build Astro Site
-        run: npm run build
-        env:
-          ASTRO_BASE: "/jwiedeman.github.io/"  # Ensure Astro knows it's in a subdirectory
+        run: |
+          npm run build
+          touch dist/.nojekyll  # ✅ Prevent GitHub from stripping assets
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist  # Starlight builds to `dist` by default
+          path: dist
 
   deploy:
     runs-on: ubuntu-latest
