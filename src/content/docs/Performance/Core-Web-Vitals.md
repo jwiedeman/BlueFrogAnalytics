@@ -84,6 +84,7 @@ Lighthouse runs **inside Chrome DevTools**, where it **competes for CPU/RAM prio
 ✅ **Use the CLI instead of DevTools**:
 
 
+
 ```sh
 `lighthouse https://example.com --preset=desktop --throttling-method=simulate`
 ```
