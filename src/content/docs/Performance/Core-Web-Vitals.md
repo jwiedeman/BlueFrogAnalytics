@@ -350,3 +350,29 @@ Improving **Core Web Vitals** can lead to:
 -   **Higher conversions** (faster experiences improve engagement).
 
 By using this **in-depth understanding of CWV scoring**, you can proactively optimize your website and stay ahead of performance issues.
+
+
+
+Sources
+
+
+https://developer.chrome.com/docs/lighthouse/performance/performance-scoring
+https://googlechrome.github.io/lighthouse/scorecalc/#FCP=1000&SI=1000&FMP=4000&TTI=7300&FCI=6500&LCP=1000&TBT=0&CLS=0&device=mobile&version=10
+
+
+## **Works Cited**
+
+- Google Chrome Developers. **"Performance Scoring in Lighthouse."**  
+  [https://developer.chrome.com/docs/lighthouse/performance/performance-scoring](https://developer.chrome.com/docs/lighthouse/performance/performance-scoring)  
+
+- Google Chrome Lighthouse Team. **"Lighthouse Scoring Calculator."**  
+  [https://googlechrome.github.io/lighthouse/scorecalc/#FCP=1000&SI=1000&FMP=4000&TTI=7300&FCI=6500&LCP=1000&TBT=0&CLS=0&device=mobile&version=10](https://googlechrome.github.io/lighthouse/scorecalc/#FCP=1000&SI=1000&FMP=4000&TTI=7300&FCI=6500&LCP=1000&TBT=0&CLS=0&device=mobile&version=10)  
+
+- Google Chrome Developers. **"Variability in Performance Scores."**  
+  [https://developer.chrome.com/docs/lighthouse/performance/variability/](https://developer.chrome.com/docs/lighthouse/performance/variability/)  
+
+- HTTP Archive. **"Core Web Vitals Distribution Data."**  
+  [https://httparchive.org/reports/web-vitals](https://httparchive.org/reports/web-vitals)  
+
+- GitHub - Lighthouse Team. **"Lighthouse Scoring Curves & Metrics."**  
+  [https://github.com/GoogleChrome/lighthouse/blob/main/docs/scoring.md](https://github.com/GoogleChrome/lighthouse/blob/main/docs/scoring.md)  
