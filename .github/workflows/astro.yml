@@ -1,3 +1,15 @@
+name: Deploy Starlight to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,19 +26,14 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps  # ✅ Fixes missing Chromium issue
-
-
       - name: Build Astro Site
-        run: npm run build
-        env:
-          ASTRO_BASE: "/jwiedeman.github.io/"  # Ensure Astro knows it's in a subdirectory
-
+        run: |
+          npm run build
+          touch dist/.nojekyll  # ✅ Prevent GitHub from stripping assets
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist  # Starlight builds to `dist` by default
+          path: dist
 
   deploy:
     runs-on: ubuntu-latest
