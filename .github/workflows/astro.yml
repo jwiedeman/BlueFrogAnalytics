@@ -26,6 +26,9 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Install Playwright Browsers
+        run: npx playwright install  # ✅ Fixes missing Chromium issue
+
       - name: Build Astro Site
         run: |
           npm run build
