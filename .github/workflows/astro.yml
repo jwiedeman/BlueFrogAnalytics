@@ -17,15 +17,16 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps  # ✅ Fixes missing Chromium issue
 
+
       - name: Build Astro Site
-        run: |
-          npm run build
-          touch dist/.nojekyll  # ✅ Prevent GitHub Pages from stripping files
+        run: npm run build
+        env:
+          ASTRO_BASE: "/jwiedeman.github.io/"  # Ensure Astro knows it's in a subdirectory
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: dist  # Starlight builds to `dist` by default
 
   deploy:
     runs-on: ubuntu-latest
