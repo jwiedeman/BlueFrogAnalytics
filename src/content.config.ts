@@ -3,10 +3,9 @@ import { docsLoader } from '@astrojs/starlight/loaders';
 import { docsSchema } from '@astrojs/starlight/schema';
 
 const extendedDocsSchema = docsSchema({
-  extend: (schema) =>
-    schema.extend({
-      template: z.enum(['doc', 'splash', 'page']).default('doc'),
-    }),
+  extend: z.object({
+    template: z.enum(['doc', 'splash', 'page']).default('doc'),
+  }),
 });
 
 export const collections = {
