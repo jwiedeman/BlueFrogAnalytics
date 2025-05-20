@@ -109,7 +109,19 @@ document.addEventListener('DOMContentLoaded', () => {
       for (const [url, analytics] of Object.entries(data.page_results)) {
         const tr = document.createElement('tr');
         const urlCell = document.createElement('td');
-        urlCell.textContent = url;
+        const link = document.createElement('a');
+        let path;
+        try {
+          const parsed = new URL(url);
+          path = parsed.pathname + parsed.search + parsed.hash;
+        } catch (e) {
+          path = url;
+        }
+        link.textContent = path || '/';
+        link.href = url;
+        link.target = '_blank';
+        link.rel = 'noopener';
+        urlCell.appendChild(link);
         tr.appendChild(urlCell);
         selectedColumns.forEach(key => {
           const td = document.createElement('td');
