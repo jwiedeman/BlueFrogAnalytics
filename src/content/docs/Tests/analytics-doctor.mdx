@@ -75,10 +75,20 @@ hero:
   margin-right: 0.25rem;
   border-radius: 0.5rem;
   background: var(--sl-color-gray-3);
-  color: var(--sl-color-primary);
+  color: black;
   font-size: 0.75rem;
   text-decoration: none;
 }
+
+.analytics-pill.google-analytics { background: #fde2c6; }
+.analytics-pill.google-tag-manager { background: #e0ecfa; }
+.analytics-pill.segment { background: #e1faf3; }
+.analytics-pill.meta-pixel { background: #e7f0fd; }
+.analytics-pill.bing { background: #e3f1fd; }
+.analytics-pill.adobe-analytics { background: #efe6fb; }
+.analytics-pill.mixpanel { background: #f3e6ff; }
+.analytics-pill.hotjar { background: #ffe8e8; }
+.analytics-pill.amplitude { background: #e8ecff; }
 
 /* Table styling */
 #table-wrapper {
@@ -123,12 +133,12 @@ hero:
 
 <h2 id="analytics-reference">Analytics Tag Reference</h2>
 
-<details id="google_analytics-note">
+<details id="google-analytics-note">
 <summary>Google Analytics 4</summary>
 GA4 tags send data to your Google Analytics property. The ID shown is your measurement ID.
 </details>
 
-<details id="google_tag_manager-note">
+<details id="google-tag-manager-note">
 <summary>Google Tag Manager</summary>
 This represents the GTM container embedded on the page. The ID is your container ID.
 </details>
