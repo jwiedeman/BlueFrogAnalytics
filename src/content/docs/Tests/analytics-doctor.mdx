@@ -73,14 +73,14 @@ hero:
 #table-wrapper {
   width: 100%;
   max-height: 70vh;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #pages-table {
   border-collapse: collapse;
-  width: max-content;
-  min-width: 100%;
-  table-layout: fixed;
+  width: 100%;
+  table-layout: auto;
 }
 
 #pages-table th,
@@ -95,8 +95,12 @@ hero:
   text-align: left;
 }
 
+#pages-table tr:nth-child(odd) {
+  background: white;
+}
+
 #pages-table tr:nth-child(even) {
-  background: var(--sl-color-gray-1);
+  background: whitesmoke;
 }
 
 
