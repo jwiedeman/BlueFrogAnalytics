@@ -71,10 +71,13 @@ hero:
 
 /* Table styling */
 #table-wrapper {
-  width: 100%;
+  width: 90vw;
   max-height: 70vh;
   overflow-y: auto;
   overflow-x: hidden;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 #pages-table {
@@ -91,7 +94,7 @@ hero:
 }
 
 #pages-table th {
-  background: var(--sl-color-gray-2);
+  background: white;
   text-align: left;
 }
 
