@@ -12,6 +12,22 @@ document.addEventListener('DOMContentLoaded', () => {
     'amplitude'
   ];
 
+  // Map common variations to canonical keys to ensure links always resolve
+  const KEY_VARIATIONS = {
+    ga4: 'google_analytics',
+    googleanalytics: 'google_analytics',
+    'google_analytics_4': 'google_analytics',
+    gtm: 'google_tag_manager',
+    'google_tag': 'google_tag_manager',
+    facebook_pixel: 'meta_pixel',
+    fb_pixel: 'meta_pixel'
+  };
+
+  function canonicalize(key) {
+    const cleaned = key.toLowerCase().replace(/[^a-z0-9_]+/g, '_');
+    return KEY_VARIATIONS[cleaned] || cleaned;
+  }
+
   const STORAGE_KEY = 'analyticsColumns';
   let selectedColumns = [...ANALYTICS_KEYS];
   let lastResult = null;
@@ -136,11 +152,13 @@ document.addEventListener('DOMContentLoaded', () => {
           if (entry) {
             const ids = (entry.ids || []).join(', ') || 'unknown id';
             const method = entry.method || 'native';
-            const idSlug = slugify(key + '-note');
+            const canonical = canonicalize(key);
+            const idSlug = slugify(canonical + '-note');
             const methodSlug = slugify('method-' + method);
+            const pillClass = 'analytics-pill ' + slugify(canonical);
             td.className = 'analytics-cell';
             td.innerHTML =
-              `<a href="#${idSlug}" class="analytics-pill">${ids}</a>` +
+              `<a href="#${idSlug}" class="${pillClass}">${ids}</a>` +
               ` <a href="#${methodSlug}" class="analytics-pill">via ${method}</a>`;
           } else {
             td.textContent = '';
@@ -186,11 +204,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const li = document.createElement('li');
         const ids = (info.ids || []).join(', ') || 'unknown id';
         const method = info.method || 'native';
-        const idSlug = slugify(name + '-note');
+        const canonical = canonicalize(name);
+        const idSlug = slugify(canonical + '-note');
         const methodSlug = slugify('method-' + method);
+        const pillClass = 'analytics-pill ' + slugify(canonical);
         li.innerHTML =
           `${formatName(name)} ` +
-          `<a href="#${idSlug}" class="analytics-pill">${ids}</a>` +
+          `<a href="#${idSlug}" class="${pillClass}">${ids}</a>` +
           ` <a href="#${methodSlug}" class="analytics-pill">via ${method}</a>`;
         ul.appendChild(li);
       }
@@ -255,4 +275,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   loadSelected();
   renderFilter();
+
+  function openDetailsFromHash(hash) {
+    if (!hash) return;
+    const id = hash.replace(/^#/, '');
+    let el = document.getElementById(id) ||
+      document.getElementById(id.replace(/-/g, '_')) ||
+      document.getElementById(id.replace(/_/g, '-'));
+    if (el && el.tagName.toLowerCase() === 'details') {
+      el.open = true;
+    }
+  }
+
+  document.querySelectorAll('a.analytics-pill').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const hash = a.getAttribute('href');
+      openDetailsFromHash(hash);
+    });
+  });
+
+  openDetailsFromHash(location.hash);
 });
