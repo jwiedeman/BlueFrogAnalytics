@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
             td.className = 'analytics-cell';
             td.innerHTML =
               `<a href="#${idSlug}" class="${pillClass}">${ids}</a>` +
-              ` <a href="#${methodSlug}" class="analytics-pill">via ${method}</a>`;
+              ` <a href="#${methodSlug}" class="analytics-pill method-${slugify(method)}">via ${method}</a>`;
           } else {
             td.textContent = '';
           }
@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
         li.innerHTML =
           `${formatName(name)} ` +
           `<a href="#${idSlug}" class="${pillClass}">${ids}</a>` +
-          ` <a href="#${methodSlug}" class="analytics-pill">via ${method}</a>`;
+          ` <a href="#${methodSlug}" class="analytics-pill method-${slugify(method)}">via ${method}</a>`;
         ul.appendChild(li);
       }
     }

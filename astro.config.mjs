@@ -129,6 +129,25 @@ export default defineConfig({
           }
         `,
       },
+      {
+        tag: 'script',
+        content: `
+          document.addEventListener('DOMContentLoaded', () => {
+            function openHashDetails() {
+              const id = location.hash.slice(1);
+              if (!id) return;
+              const el = document.getElementById(id) ||
+                          document.getElementById(id.replace(/-/g, '_')) ||
+                          document.getElementById(id.replace(/_/g, '-'));
+              if (el && el.tagName.toLowerCase() === 'details') {
+                el.open = true;
+              }
+            }
+            openHashDetails();
+            window.addEventListener('hashchange', openHashDetails);
+          });
+        `,
+      },
     ],
   })],
   markdown: {
