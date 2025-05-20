@@ -22,12 +22,14 @@ hero:
   <div id="eta"></div>
   <div id="filter-panel" class="filter-panel"></div>
   <div id="summary" class="summary-panel"></div>
-  <table id="pages-table">
-    <thead>
-      <tr id="pages-header"></tr>
-    </thead>
-    <tbody id="pages-body"></tbody>
-  </table>
+  <div id="table-wrapper">
+    <table id="pages-table">
+      <thead>
+        <tr id="pages-header"></tr>
+      </thead>
+      <tbody id="pages-body"></tbody>
+    </table>
+  </div>
 </div>
 
 <script type="module" src="/js/analytics-doctor.js"></script>
@@ -64,6 +66,31 @@ hero:
 }
 .analytics-cell {
   white-space: nowrap;
+}
+
+/* Table styling */
+#table-wrapper {
+  overflow-x: auto;
+}
+
+#pages-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#pages-table th,
+#pages-table td {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--sl-color-gray-4);
+}
+
+#pages-table th {
+  background: var(--sl-color-gray-2);
+  text-align: left;
+}
+
+#pages-table tr:nth-child(even) {
+  background: var(--sl-color-gray-1);
 }
 
 
