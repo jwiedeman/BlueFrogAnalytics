@@ -57,6 +57,19 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(selectedColumns));
   }
 
+  function adjustTableWidth() {
+    const wrapper = document.getElementById('table-wrapper');
+    if (!wrapper) return;
+    const cols = selectedColumns.length;
+    if (cols <= 2) {
+      wrapper.style.width = 'fit-content';
+    } else if (cols >= 6) {
+      wrapper.style.width = '100%';
+    } else {
+      wrapper.style.width = '90vw';
+    }
+  }
+
   function formatName(key) {
     return key
       .replace(/_/g, ' ')
@@ -76,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
       saveSelected();
       renderFilter();
       if (lastResult) renderResults(lastResult);
+      adjustTableWidth();
     });
     panel.appendChild(allBtn);
 
@@ -87,6 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
       saveSelected();
       renderFilter();
       if (lastResult) renderResults(lastResult);
+      adjustTableWidth();
     });
     panel.appendChild(clearBtn);
 
@@ -100,11 +115,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (checkbox.checked) {
           if (!selectedColumns.includes(key)) selectedColumns.push(key);
         } else {
-          selectedColumns = selectedColumns.filter(k => k !== key);
-        }
-        saveSelected();
-        if (lastResult) renderResults(lastResult);
-      });
+      selectedColumns = selectedColumns.filter(k => k !== key);
+      }
+      saveSelected();
+      if (lastResult) renderResults(lastResult);
+      adjustTableWidth();
+    });
       label.appendChild(checkbox);
       label.appendChild(document.createTextNode(' ' + formatName(key)));
       panel.appendChild(label);
@@ -113,6 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function renderResults(data) {
     lastResult = data;
+    adjustTableWidth();
     const headerRow = document.getElementById('pages-header');
     const bodyEl = document.getElementById('pages-body');
     const summaryEl = document.getElementById('summary');
@@ -275,6 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   loadSelected();
   renderFilter();
+  adjustTableWidth();
 
   function openDetailsFromHash(hash) {
     if (!hash) return;

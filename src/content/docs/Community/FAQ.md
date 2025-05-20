@@ -1,8 +1,41 @@
 ---
-title: FAQ
-description: Learn about FAQ.
+title: Analytics FAQ
+description: Common questions about implementing analytics across platforms.
 ---
 
-# FAQ
+# Analytics Implementation FAQ
 
-Hello, world!
+### **What are the main ways to add analytics to my site?**
+Most analytics tools support three primary methods:
+1. **Native implementation** – embed the JavaScript snippet directly on each
+   page.
+2. **Tag manager** – load the analytics tag through Google Tag Manager,
+   Tealium, or a similar system.
+3. **Customer data platform (CDP)** – send data via Segment or another CDP
+   that forwards events to analytics providers.
+
+### **Which method is best for single‑page applications?**
+Tag managers and CDPs work well because they can fire events without
+refreshing the page. Native scripts also work, but you must manually trigger
+page view events on route changes.
+
+### **Can I install analytics in a mobile app?**
+Yes. Most vendors offer SDKs for **iOS** and **Android**. You can integrate
+these natively or through cross‑platform frameworks like React Native.
+
+### **How do I track server‑side events?**
+Use the provider's REST API or server‑side SDK. This is helpful for
+ecommerce conversions or any event that happens outside the browser.
+
+### **Is it possible to combine multiple methods?**
+Absolutely. You might load Google Analytics via Tag Manager while sending
+custom events from your backend API.
+
+### **What if my platform doesn't support JavaScript?**
+Most analytics providers offer pixel tracking or HTTP endpoints so you can
+send data from static sites, emails, or other environments where JavaScript
+is limited.
+
+### **Are there privacy concerns with these methods?**
+Yes. Always ensure your implementation complies with regulations like GDPR
+or CCPA and provide users with clear opt‑out options.
