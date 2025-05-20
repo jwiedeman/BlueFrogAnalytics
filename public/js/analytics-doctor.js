@@ -16,6 +16,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let selectedColumns = [...ANALYTICS_KEYS];
   let lastResult = null;
 
+  function slugify(str) {
+    return String(str)
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  }
+
   function loadSelected() {
     try {
       const stored = JSON.parse(localStorage.getItem(STORAGE_KEY));
@@ -128,10 +135,13 @@ document.addEventListener('DOMContentLoaded', () => {
           const entry = analytics[key];
           if (entry) {
             const ids = (entry.ids || []).join(', ') || 'unknown id';
+            const method = entry.method || 'native';
+            const idSlug = slugify(key + '-note');
+            const methodSlug = slugify('method-' + method);
             td.className = 'analytics-cell';
             td.innerHTML =
-              `<div class="method">${entry.method || 'native'}</div>` +
-              `<div class="ids">${ids}</div>`;
+              `<a href="#${idSlug}" class="analytics-pill">${ids}</a>` +
+              ` <a href="#${methodSlug}" class="analytics-pill">via ${method}</a>`;
           } else {
             td.textContent = '';
           }
@@ -175,8 +185,13 @@ document.addEventListener('DOMContentLoaded', () => {
       for (const [name, info] of Object.entries(data.found_analytics)) {
         const li = document.createElement('li');
         const ids = (info.ids || []).join(', ') || 'unknown id';
-        const method = info.method ? ` via ${info.method}` : '';
-        li.textContent = `${formatName(name)} detected${method} (${ids})`;
+        const method = info.method || 'native';
+        const idSlug = slugify(name + '-note');
+        const methodSlug = slugify('method-' + method);
+        li.innerHTML =
+          `${formatName(name)} ` +
+          `<a href="#${idSlug}" class="analytics-pill">${ids}</a>` +
+          ` <a href="#${methodSlug}" class="analytics-pill">via ${method}</a>`;
         ul.appendChild(li);
       }
     }

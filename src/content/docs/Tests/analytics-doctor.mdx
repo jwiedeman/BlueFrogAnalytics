@@ -69,6 +69,17 @@ hero:
   word-break: break-word;
 }
 
+.analytics-pill {
+  display: inline-block;
+  padding: 0.1rem 0.4rem;
+  margin-right: 0.25rem;
+  border-radius: 0.5rem;
+  background: var(--sl-color-gray-3);
+  color: var(--sl-color-primary);
+  font-size: 0.75rem;
+  text-decoration: none;
+}
+
 /* Table styling */
 #table-wrapper {
   width: 90vw;
@@ -109,3 +120,35 @@ hero:
 
 
 `}</style>
+
+## Analytics Tag Reference {#analytics-reference}
+
+<details id="google_analytics-note">
+<summary>Google Analytics 4</summary>
+GA4 tags send data to your Google Analytics property. The ID shown is your measurement ID.
+</details>
+
+<details id="google_tag_manager-note">
+<summary>Google Tag Manager</summary>
+This represents the GTM container embedded on the page. The ID is your container ID.
+</details>
+
+<details id="segment-note">
+<summary>Segment</summary>
+Analytics that are loaded through Segment. The ID refers to your Segment write key.
+</details>
+
+<details id="method-native">
+<summary>Native Implementation</summary>
+The tag is loaded directly on the page without a tag manager.
+</details>
+
+<details id="method-gtm">
+<summary>via GTM</summary>
+Tags fired through Google Tag Manager.
+</details>
+
+<details id="method-segment">
+<summary>via Segment</summary>
+Tags fired through Segment or similar customer data platforms.
+</details>
