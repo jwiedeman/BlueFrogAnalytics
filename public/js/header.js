@@ -1,10 +1,16 @@
 function initHeaderMenu() {
   const menuButton = document.querySelector('.bx--header__menu-trigger');
-  const nav = document.querySelector('.bx--header__nav');
-  if (menuButton && nav) {
+  const sideNav = document.getElementById('side-nav');
+  if (menuButton && sideNav) {
     menuButton.addEventListener('click', () => {
-      nav.classList.toggle('nav-open');
-      menuButton.setAttribute('aria-expanded', nav.classList.contains('nav-open'));
+      const expanded = sideNav.classList.toggle('bx--side-nav--expanded');
+      menuButton.setAttribute('aria-expanded', expanded);
+    });
+    sideNav.querySelectorAll('.bx--side-nav__link').forEach((link) => {
+      link.addEventListener('click', () => {
+        sideNav.classList.remove('bx--side-nav--expanded');
+        menuButton.setAttribute('aria-expanded', 'false');
+      });
     });
   }
 }
