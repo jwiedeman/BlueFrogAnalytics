@@ -7,18 +7,7 @@
   --cds-background: #f4f4f4;
 }
 
-/* Ensure header and footer adhere to Carbon spacing */
-.bx--header {
-  position: sticky;
-  top: 0;
-  z-index: 1100;
-}
 
-/* Remove default margin/padding from the outer header wrapper */
-header {
-  margin: 0;
-  padding: 0;
-}
 
 .bx--footer {
   padding: 2rem 1rem;
