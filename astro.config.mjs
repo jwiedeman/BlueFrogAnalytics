@@ -49,7 +49,7 @@ const scanDocsFolder = (dir, basePath = '') => {
   return items;
 };
 
-// 🔹 Manually Define First-Level Sections (but auto-scan subfolders)
+// Manually Define First-Level Sections (but auto-scan subfolders)
 const sidebar = [
   { label: 'Introduction', items: scanDocsFolder(path.join(DOCS_DIR, 'Introduction')), collapsed: false },
   { label: 'Getting Started', items: scanDocsFolder(path.join(DOCS_DIR, 'Getting-Started')), collapsed: false },
