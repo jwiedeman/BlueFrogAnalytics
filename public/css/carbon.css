@@ -90,6 +90,22 @@ main {
   color: #f5f5f5;
 }
 
+/* Provide spacing and width for the search bar */
+.bx--header__search {
+  margin: 0 0.5rem;
+}
+
+.bx--header__search input {
+  width: 200px;
+}
+
+/* Center the hamburger icon */
+.bx--header__menu-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media (max-width: 800px) {
   .bx--header__nav {
     display: none;
