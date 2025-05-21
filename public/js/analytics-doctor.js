@@ -60,13 +60,11 @@ document.addEventListener('DOMContentLoaded', () => {
   function adjustTableWidth() {
     const wrapper = document.getElementById('table-wrapper');
     if (!wrapper) return;
-    const cols = selectedColumns.length;
-    if (cols <= 2) {
-      wrapper.style.width = 'fit-content';
-    } else if (cols >= 6) {
-      wrapper.style.width = '100%';
+    const cols = selectedColumns.length + 1; // include URL column
+    if (cols <= 3) {
+      wrapper.classList.add('boxed');
     } else {
-      wrapper.style.width = '90vw';
+      wrapper.classList.remove('boxed');
     }
   }
 
@@ -77,60 +75,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function renderFilter() {
-    const panel = document.getElementById('filter-panel');
-    if (!panel) return;
-    panel.innerHTML = '';
-
-    const allBtn = document.createElement('button');
-    allBtn.type = 'button';
-    allBtn.className = 'bx--btn bx--btn--secondary';
-    allBtn.textContent = 'Select All';
-    allBtn.addEventListener('click', () => {
-      selectedColumns = [...ANALYTICS_KEYS];
-      saveSelected();
-      renderFilter();
-      if (lastResult) renderResults(lastResult);
-      adjustTableWidth();
-    });
-    panel.appendChild(allBtn);
-
-    const clearBtn = document.createElement('button');
-    clearBtn.type = 'button';
-    clearBtn.className = 'bx--btn bx--btn--tertiary';
-    clearBtn.textContent = 'Clear';
-    clearBtn.addEventListener('click', () => {
-      selectedColumns = [];
-      saveSelected();
-      renderFilter();
-      if (lastResult) renderResults(lastResult);
-      adjustTableWidth();
-    });
-    panel.appendChild(clearBtn);
-
+    const select = document.getElementById('column-select');
+    if (!select) return;
+    select.innerHTML = '';
     ANALYTICS_KEYS.forEach(key => {
-      const label = document.createElement('label');
-      label.className = 'bx--checkbox-wrapper';
-      const checkbox = document.createElement('input');
-      checkbox.type = 'checkbox';
-      checkbox.className = 'bx--checkbox';
-      checkbox.value = key;
-      checkbox.checked = selectedColumns.includes(key);
-      checkbox.addEventListener('change', () => {
-        if (checkbox.checked) {
-          if (!selectedColumns.includes(key)) selectedColumns.push(key);
-        } else {
-      selectedColumns = selectedColumns.filter(k => k !== key);
-      }
-      saveSelected();
-      if (lastResult) renderResults(lastResult);
-      adjustTableWidth();
-    });
-      label.appendChild(checkbox);
-      const span = document.createElement('span');
-      span.className = 'bx--checkbox-label';
-      span.textContent = ' ' + formatName(key);
-      label.appendChild(span);
-      panel.appendChild(label);
+      const opt = document.createElement('option');
+      opt.value = key;
+      opt.textContent = formatName(key);
+      opt.selected = selectedColumns.includes(key);
+      select.appendChild(opt);
     });
   }
 
@@ -300,6 +253,32 @@ document.addEventListener('DOMContentLoaded', () => {
   loadSelected();
   renderFilter();
   adjustTableWidth();
+
+  const selectEl = document.getElementById('column-select');
+  selectEl?.addEventListener('change', () => {
+    selectedColumns = Array.from(selectEl.selectedOptions).map(o => o.value);
+    saveSelected();
+    if (lastResult) renderResults(lastResult);
+    adjustTableWidth();
+  });
+
+  document.getElementById('select-all')?.addEventListener('click', () => {
+    selectedColumns = [...ANALYTICS_KEYS];
+    saveSelected();
+    renderFilter();
+    Array.from(selectEl.options).forEach(o => (o.selected = true));
+    if (lastResult) renderResults(lastResult);
+    adjustTableWidth();
+  });
+
+  document.getElementById('clear-all')?.addEventListener('click', () => {
+    selectedColumns = [];
+    saveSelected();
+    renderFilter();
+    Array.from(selectEl.options).forEach(o => (o.selected = false));
+    if (lastResult) renderResults(lastResult);
+    adjustTableWidth();
+  });
 
   function openDetailsFromHash(hash) {
     if (!hash) return;
