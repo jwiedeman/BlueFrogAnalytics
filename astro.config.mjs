@@ -107,7 +107,12 @@ export default defineConfig({
     },
           head: [
       { tag: 'link', attrs: { rel: 'stylesheet', href: 'https://unpkg.com/carbon-components/css/carbon-components.min.css' } },
+      { tag: 'link', attrs: { rel: 'preconnect', href: 'https://fonts.googleapis.com' } },
+      { tag: 'link', attrs: { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' } },
+      { tag: 'link', attrs: { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&display=swap' } },
       { tag: 'link', attrs: { rel: 'stylesheet', href: '/css/carbon.css' } },
+      { tag: 'script', attrs: { src: 'https://unpkg.com/carbon-components/scripts/carbon-components.min.js', defer: true } },
+      { tag: 'script', content: 'window.addEventListener("DOMContentLoaded",()=>{if(window.CarbonComponents){window.CarbonComponents.watch();}});' },
       // Adding google analytics
       {
         tag: 'script',

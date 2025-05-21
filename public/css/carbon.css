@@ -3,6 +3,8 @@
   --sl-color-primary: #0f62fe; /* Carbon blue */
   --sl-color-accent: #ff832b; /* Carbon orange */
   --sl-border-radius: 0;
+  --cds-text: #161616;
+  --cds-background: #f4f4f4;
 }
 
 /* Ensure header and footer adhere to Carbon spacing */
@@ -24,5 +26,11 @@
   max-width: 80rem;
   margin: 0 auto;
   padding: 0 1rem;
+}
+
+body {
+  font-family: var(--sl-font-sans);
+  background: var(--cds-background);
+  color: var(--cds-text);
 }
 
