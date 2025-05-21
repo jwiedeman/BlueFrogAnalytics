@@ -6,35 +6,18 @@ template: doc
 
 # ROAS & Reality Check Calculator
 
-Return on Ad Spend (ROAS) measures how much revenue you earn for every dollar of advertising. The formula is
 
+ROAS (Return on Ad Spend) measures how much revenue is earned for every dollar spent. The formula is $\text{ROAS}=\frac{\text{Revenue}}{\text{Ad\,Spend}}$.
 
-$$ROAS = \frac{\text{Revenue from Ads}}{\text{Ad Spend}}$$
-
-Use this tool to estimate profitability across different conversion rate scenarios over a six‑month period.
+Use this tool to estimate profitability across different conversion rate scenarios.
 
 <div id="roas-root">
   <form id="roas-form">
-    <label>AOV
-      <small>The average value of an order</small>
-      <input type="number" id="aov" value="100" step="0.01" />
-    </label>
-    <label>COGS
-      <small>Cost of goods sold per order</small>
-      <input type="number" id="cogs" value="40" step="0.01" />
-    </label>
-    <label>Ad Spend
-      <small>Daily advertising budget</small>
-      <input type="number" id="spend" value="1000" step="0.01" />
-    </label>
-    <label>CPC
-      <small>Average cost per click</small>
-      <input type="number" id="cpc" value="1" step="0.01" />
-    </label>
-    <label>CVR (%)
-      <small>Conversion rate of ad clicks</small>
-      <input type="number" id="cvr" value="2" step="0.01" />
-    </label>
+    <label>AOV<br /><small>Average order value</small><input type="number" id="aov" value="100" step="0.01" /></label>
+    <label>COGS<br /><small>Cost of goods sold per order</small><input type="number" id="cogs" value="40" step="0.01" /></label>
+    <label>Ad Spend<br /><small>Total budget for 6 months</small><input type="number" id="spend" value="1000" step="0.01" /></label>
+    <label>CPC<br /><small>Cost per click</small><input type="number" id="cpc" value="1" step="0.01" /></label>
+    <label>CVR (%)<br /><small>Conversion rate</small><input type="number" id="cvr" value="2" step="0.01" /></label>
 
     <button type="submit">Calculate</button>
   </form>
@@ -43,7 +26,7 @@ Use this tool to estimate profitability across different conversion rate scenari
 </div>
 
 
-<style>
+<style>{`
 
   #roas-form {
     display: flex;
@@ -59,7 +42,6 @@ Use this tool to estimate profitability across different conversion rate scenari
 
   #roas-form small {
     font-weight: normal;
-    font-size: 0.8rem;
   }
 
   #roas-results table {
@@ -81,7 +63,7 @@ Use this tool to estimate profitability across different conversion rate scenari
     margin-top: 1rem;
   }
 
-</style>
+`}</style>
 
 
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>

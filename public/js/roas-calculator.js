@@ -20,37 +20,47 @@ document.addEventListener('DOMContentLoaded', () => {
       { name: 'Best', rate: cvr * 1.2 }
     ];
 
+    const days = 180;
+    const dailySpend = spend / days;
+
     scenarios.forEach(s => {
-      const clicks = spend / cpc;
-      const conversions = clicks * s.rate;
-      const revenue = conversions * aov;
-      const grossProfit = revenue - conversions * cogs;
-      const dailyProfit = grossProfit - spend;
-      s.roas = spend ? revenue / spend : 0;
-      s.dailyProfit = dailyProfit;
-      s.totalProfit = dailyProfit * DAYS;
-      s.values = [];
-      for (let day = 1; day <= DAYS; day++) {
-        s.values.push({ day, profit: dailyProfit * day });
+
+      let cumulativeProfit = 0;
+      let totalRevenue = 0;
+      const values = [];
+      for (let d = 1; d <= days; d++) {
+        const clicks = dailySpend / cpc;
+        const conversions = clicks * s.rate;
+        const revenue = conversions * aov;
+        const grossProfit = revenue - conversions * cogs;
+        const netProfit = grossProfit - dailySpend;
+        cumulativeProfit += netProfit;
+        totalRevenue += revenue;
+        values.push({ day: d, profit: cumulativeProfit });
       }
+      s.values = values;
+      s.netProfit = cumulativeProfit;
+      s.roas = spend ? totalRevenue / spend : 0;
     });
 
-
-    resultsEl.innerHTML = `<table><tr><th>Scenario</th><th>ROAS</th><th>Daily Profit</th><th>6-Mo Profit</th></tr>${scenarios
-      .map(s => `<tr><td>${s.name}</td><td>${s.roas.toFixed(2)}</td><td>${s.dailyProfit.toFixed(2)}</td><td>${s.totalProfit.toFixed(2)}</td></tr>`)
+    resultsEl.innerHTML = `<table><tr><th>Scenario</th><th>ROAS</th><th>Profit</th></tr>${scenarios
+      .map(s => `<tr><td>${s.name}</td><td>${s.roas.toFixed(2)}</td><td>${s.netProfit.toFixed(2)}</td></tr>`)
       .join('')}</table>`;
 
-    // generate data series for cumulative profit
     const series = scenarios.map(s => ({ name: s.name, values: s.values }));
 
     // draw chart
     chartEl.selectAll('*').remove();
-    const margin = { top: 20, right: 20, bottom: 30, left: 60 };
+
+    const margin = { top: 20, right: 20, bottom: 30, left: 50 };
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
-    const x = d3.scaleLinear().domain([1, DAYS]).range([0, innerWidth]);
+    const x = d3.scaleLinear().domain([1, days]).range([0, innerWidth]);
     const y = d3.scaleLinear()
-      .domain([0, d3.max(series, s => d3.max(s.values, v => v.profit))])
+      .domain([
+        d3.min(series, s => d3.min(s.values, v => v.profit)),
+        d3.max(series, s => d3.max(s.values, v => v.profit))
+      ])
 
       .nice()
       .range([innerHeight, 0]);
