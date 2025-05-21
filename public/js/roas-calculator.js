@@ -31,8 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
       s.roas = spend ? revenue / spend : 0;
     });
 
-    resultsEl.innerHTML = `<table><tr><th>Scenario</th><th>ROAS</th><th>Profit</th></tr>${scenarios
-      .map(s => `<tr><td>${s.name}</td><td>${s.roas.toFixed(2)}</td><td>${s.netProfit.toFixed(2)}</td></tr>`) 
+    resultsEl.innerHTML = `<table class="bx--data-table bx--data-table--compact"><tr><th>Scenario</th><th>ROAS</th><th>Profit</th></tr>${scenarios
+      .map(s => `<tr><td>${s.name}</td><td>${s.roas.toFixed(2)}</td><td>${s.netProfit.toFixed(2)}</td></tr>`)
       .join('')}</table>`;
 
     // draw chart

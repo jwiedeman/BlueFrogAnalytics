@@ -8,16 +8,31 @@ template: doc
 
 Use this tool to estimate profitability across different conversion rate scenarios.
 
-<div id="roas-root">
-  <form id="roas-form">
+<div id="roas-root" class="carbon-container">
+  <form id="roas-form" class="bx--form">
 
-    <label>AOV: <input type="number" id="aov" value="100" step="0.01" /></label>
-    <label>COGS: <input type="number" id="cogs" value="40" step="0.01" /></label>
-    <label>Ad Spend: <input type="number" id="spend" value="1000" step="0.01" /></label>
-    <label>CPC: <input type="number" id="cpc" value="1" step="0.01" /></label>
-    <label>CVR (%): <input type="number" id="cvr" value="2" step="0.01" /></label>
+    <div class="bx--form-item">
+      <label for="aov" class="bx--label">AOV:</label>
+      <input class="bx--text-input" type="number" id="aov" value="100" step="0.01" />
+    </div>
+    <div class="bx--form-item">
+      <label for="cogs" class="bx--label">COGS:</label>
+      <input class="bx--text-input" type="number" id="cogs" value="40" step="0.01" />
+    </div>
+    <div class="bx--form-item">
+      <label for="spend" class="bx--label">Ad Spend:</label>
+      <input class="bx--text-input" type="number" id="spend" value="1000" step="0.01" />
+    </div>
+    <div class="bx--form-item">
+      <label for="cpc" class="bx--label">CPC:</label>
+      <input class="bx--text-input" type="number" id="cpc" value="1" step="0.01" />
+    </div>
+    <div class="bx--form-item">
+      <label for="cvr" class="bx--label">CVR (%):</label>
+      <input class="bx--text-input" type="number" id="cvr" value="2" step="0.01" />
+    </div>
 
-    <button type="submit">Calculate</button>
+    <button class="bx--btn bx--btn--primary" type="submit">Calculate</button>
   </form>
   <div id="roas-results"></div>
   <svg id="roas-chart" width="600" height="300"></svg>
@@ -25,4 +40,16 @@ Use this tool to estimate profitability across different conversion rate scenari
 
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 <script type="module" src="/js/roas-calculator.js"></script>
+
+<style>{`
+#roas-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+#roas-form .bx--form-item {
+  margin-right: 1rem;
+}
+`}</style>
 

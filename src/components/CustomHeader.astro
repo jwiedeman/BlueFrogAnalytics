@@ -21,26 +21,26 @@ const shouldRenderSearch =
   config.pagefind || config.components.Search !== '@astrojs/starlight/components/Search.astro';
 ---
 
-<header class="header">
+<header class="bx--header header">
   <link rel="sitemap" href="/sitemap-index.xml" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.css" integrity="sha384-WsHMgfkABRyG494OmuiNmkAOk8nhO1qE+Y6wns6v+EoNoTNxrWxYpl5ZYWFOLPCM" crossorigin="anonymous">
-  <div class="header-content">
+  <div class="bx--header__container header-content">
     <!-- Left: Logo -->
     <div class="title-wrapper">
       <SiteTitle />
     </div>
 
     <!-- Center: Main Navigation -->
-    <nav class="main-nav">
-      <ul>
+    <nav class="bx--header__nav main-nav">
+      <ul class="bx--header__menu-bar">
         {mainNav.map((item) => (
-          <li><a href={item.link}>{item.label}</a></li>
+          <li><a class="bx--header__menu-item" href={item.link}>{item.label}</a></li>
         ))}
       </ul>
     </nav>
 
     <!-- Right: Search & Icons -->
-    <div class="right-group">
+    <div class="bx--header__global right-group">
       {shouldRenderSearch && <Search />}
       <SocialIcons />
       <ThemeSelect />
@@ -51,7 +51,7 @@ const shouldRenderSearch =
 
 <style>
   /* Ensure Header is Properly Aligned in Starlight Layout */
-  .header {
+  .bx--header.header {
     width: 100%;
     position: sticky;
     top: 0;
@@ -59,7 +59,7 @@ const shouldRenderSearch =
 
   }
 
-  .header-content {
+  .bx--header__container.header-content {
     display: grid;
     grid-template-columns: auto 1fr auto; /* Logo | Nav (flexible) | Right icons */
     align-items: center;
@@ -76,12 +76,12 @@ const shouldRenderSearch =
   }
 
   /* Fix Nav Misalignment */
-  .main-nav {
+  .bx--header__nav.main-nav {
     display: flex;
     justify-content: center;
   }
 
-  .main-nav ul {
+  .bx--header__menu-bar {
     display: flex;
     gap: 1.5rem;
     list-style: none;
@@ -89,7 +89,7 @@ const shouldRenderSearch =
     margin: 0;
   }
 
-  .main-nav a {
+  .bx--header__menu-item {
     text-decoration: none;
     font-weight: bold;
     color: var(--sl-color-text);
@@ -98,13 +98,13 @@ const shouldRenderSearch =
     border-radius: 5px;
   }
 
-  .main-nav a:hover {
+  .bx--header__menu-item:hover {
     background: var(--sl-color-gray-3);
     color: var(--sl-color-primary);
   }
 
   /* Keep right-side controls aligned */
-  .right-group {
+  .bx--header__global.right-group {
     display: flex;
     align-items: center;
     gap: 1rem;

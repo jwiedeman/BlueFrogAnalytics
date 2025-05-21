@@ -106,7 +106,10 @@ export default defineConfig({
       Footer: './src/components/CustomFooter.astro',
     },
           head: [
-      { tag: 'link', attrs: { rel: 'stylesheet', href: '/css/nasa.css' } },
+      { tag: 'link', attrs: { rel: 'stylesheet', href: 'https://unpkg.com/carbon-components/css/carbon-components.min.css' } },
+      { tag: 'link', attrs: { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600&display=swap' } },
+      { tag: 'link', attrs: { rel: 'stylesheet', href: '/css/carbon.css' } },
+      { tag: 'script', attrs: { src: 'https://unpkg.com/carbon-components/scripts/carbon-components.min.js', defer: true } },
       // Adding google analytics
       {
         tag: 'script',

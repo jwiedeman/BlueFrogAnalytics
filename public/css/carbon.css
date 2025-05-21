@@ -1,0 +1,27 @@
+:root {
+  --sl-font-sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --sl-color-primary: #0f62fe; /* Carbon blue */
+  --sl-color-accent: #ff832b; /* Carbon orange */
+  --sl-border-radius: 0;
+}
+
+/* Ensure header and footer adhere to Carbon spacing */
+.bx--header {
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+}
+
+.bx--footer {
+  padding: 2rem 1rem;
+  border-top: 1px solid #e0e0e0;
+  margin-top: 4rem;
+}
+
+/* Utility wrappers for Carbon grid on custom pages */
+.carbon-container {
+  max-width: var(--sl-content-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1rem;
+}
