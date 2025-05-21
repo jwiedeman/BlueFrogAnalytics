@@ -183,10 +183,12 @@ main {
 
 .bx--header__nav {
   display: none;
-  position: absolute;
-  top: var(--cds--ui-shell--header-height);
-  left: 0;
-  right: 0;
+  /*
+   Allow the navigation container to grow with its contents rather than
+   overlaying the page. Positioning it statically ensures the element's
+   height expands based on the menu items inside.
+  */
+  position: static;
   width: 100%;
   background: #161616;
   flex-direction: column;
