@@ -13,3 +13,4 @@ export const GET: APIRoute = ({ site }) => {
 };
 
 export const prerender = true;
+
