@@ -106,7 +106,8 @@ export default defineConfig({
       Footer: './src/components/CustomFooter.astro',
     },
           head: [
-      { tag: 'link', attrs: { rel: 'stylesheet', href: '/css/nasa.css' } },
+      { tag: 'link', attrs: { rel: 'stylesheet', href: 'https://unpkg.com/carbon-components/css/carbon-components.min.css' } },
+      { tag: 'link', attrs: { rel: 'stylesheet', href: '/css/carbon.css' } },
       // Adding google analytics
       {
         tag: 'script',
