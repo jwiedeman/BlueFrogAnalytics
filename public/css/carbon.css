@@ -34,3 +34,19 @@ body {
   color: var(--cds-text);
 }
 
+
+/* Hero section styling */
+.carbon-hero {
+  background: var(--cds-background);
+  padding: 4rem 1rem;
+  text-align: center;
+}
+.carbon-hero h1 {
+  margin: 0 0 1rem;
+}
+.hero-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
