@@ -1,5 +1,5 @@
 ---
-// Simplified Carbon header without any Starlight dependencies
+// Carbon global header with responsive side navigation
 const mainNav = [
   { label: 'Home', link: '/' },
   { label: 'About', link: '/about/' },
@@ -13,9 +13,8 @@ const mainNav = [
 <!-- Carbon header -->
 <header class="bx--header bx--theme--dark" role="banner" aria-label="Blue Frog Analytics">
   <!-- Hamburger menu trigger -->
-  <button class="bx--header__menu-trigger bx--header__action" aria-label="Open menu">
-    <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"
-      class="bx--header__menu-trigger__icon" width="20" height="20" viewBox="0 0 32 32">
+  <button class="bx--header__action bx--header__menu-trigger" aria-label="Open menu" data-target="#side-nav">
+    <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" class="bx--header__menu-trigger__icon" width="20" height="20" viewBox="0 0 32 32">
       <path d="M4 23h24v2H4zm0-8h24v2H4zm0-8h24v2H4z" />
     </svg>
   </button>
@@ -36,6 +35,16 @@ const mainNav = [
 
   <!-- 6. Global utilities (search, theme, language) removed -->
 </header>
+<!-- Side navigation for mobile -->
+<nav id="side-nav" class="bx--side-nav" aria-label="Side navigation">
+  <ul class="bx--side-nav__items">
+    {mainNav.map(item => (
+      <li class="bx--side-nav__item" key={item.link}>
+        <a class="bx--side-nav__link" href={item.link}>{item.label}</a>
+      </li>
+    ))}
+  </ul>
+</nav>
 <script src="/js/header.js" defer></script>
 <style>
   .site-logo-prefix {

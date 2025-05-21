@@ -247,3 +247,36 @@ main {
   color: #f5f5f5;
 }
 
+/* Side navigation styles */
+#side-nav {
+  display: none;
+  position: fixed;
+  top: var(--cds--ui-shell--header-height);
+  bottom: 0;
+  left: 0;
+  width: 16rem;
+  background: #161616;
+  padding: 1rem;
+  z-index: 1100;
+}
+#side-nav.bx--side-nav--expanded {
+  display: block;
+}
+#side-nav .bx--side-nav__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#side-nav .bx--side-nav__item {
+  margin: 0.5rem 0;
+}
+#side-nav .bx--side-nav__link {
+  color: #f5f5f5;
+  text-decoration: none;
+}
+@media (min-width: 768px) {
+  #side-nav {
+    display: none !important;
+  }
+}
+
