@@ -1,5 +1,9 @@
 import type { APIRoute } from 'astro';
 
+
+export const prerender = true;
+
+
 const getRobotsTxt = (sitemapURL: URL) => `
 User-agent: *
 Allow: /
@@ -11,6 +15,4 @@ export const GET: APIRoute = ({ site }) => {
   const sitemapURL = new URL('sitemap-index.xml', site);
   return new Response(getRobotsTxt(sitemapURL));
 };
-
-export const prerender = true;
 

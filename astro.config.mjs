@@ -73,11 +73,11 @@ const sidebar = [
 
 const googleAnalyticsId = 'G-4N0P7Z1VJ8'
 export default defineConfig({
-  site: isDev ? 'http://localhost:3000' : 'https://jwiedeman.github.io',
+  site: isDev ? 'http://localhost:3000' : 'https://bluefroganalytics.com',
   base: `/`,
   output: 'static',
   buildOptions: {
-    site: `https://jwiedeman.github.io/`,
+    site: `https://bluefroganalytics.com/`,
     trailingSlash: false,
   },
   vite: {
@@ -93,10 +93,9 @@ export default defineConfig({
       },
     ],
   },
-  integrations: [
-    astroExpressiveCode(),
-    mdx(),
-    starlight({
+
+  integrations: [astroExpressiveCode(), mdx(), starlight({
+
     title: 'Blue Frog Analytics',
     social: {
       github: 'https://github.com/jwiedeman',
@@ -152,10 +151,10 @@ export default defineConfig({
           });
         `,
       },
-      ],
-    }),
-    sitemap(),
-  ],
+
+    ],
+  }), sitemap()],
+
   markdown: {
         remarkPlugins: [remarkMath,remarkMermaid],
         rehypePlugins: [rehypeKatex]
