@@ -3,8 +3,6 @@ import config from 'virtual:starlight/user-config';
 
 import LanguageSelect from 'virtual:starlight/components/LanguageSelect';
 import Search from 'virtual:starlight/components/Search';
-import SiteTitle from 'virtual:starlight/components/SiteTitle';
-import SocialIcons from 'virtual:starlight/components/SocialIcons';
 import ThemeSelect from 'virtual:starlight/components/ThemeSelect';
 
 const mainNav = [
@@ -21,9 +19,8 @@ const shouldRenderSearch =
 <!-- 1. Skip link for accessibility -->
 <a href="#main-content" class="bx--skip-to-content">Skip to main content</a>
 
-<!-- 2. Wrap in bx--content for Carbon’s gutters and theme class for dark -->
-<div class="bx--content bx--theme--dark">
-  <header class="bx--header" role="banner" aria-label="Blue Frog Analytics">
+<!-- 2. Carbon header -->
+<header class="bx--header bx--theme--dark" role="banner" aria-label="Blue Frog Analytics">
     <!-- 3. (Optional) hamburger menu trigger if you have a side-nav -->
     <button class="bx--header__menu-trigger bx--header__action" aria-label="Open menu">
       <!-- You can use your own SVG or Carbon’s menu icon -->
@@ -52,18 +49,11 @@ const shouldRenderSearch =
     <!-- 6. Global utilities, in Carbon’s prescribed order -->
     <div class="bx--header__global">
       {shouldRenderSearch && (
-        <button class="bx--header__action bx--header__search" aria-label="Search">
-          <Search size="md" />
-        </button>
+        <Search class="bx--header__action bx--header__search" size="md" />
       )}
-    
-      <button class="bx--header__action bx--btn bx--btn--ghost" aria-label="Toggle theme">
-        <ThemeSelect />
-      </button>
-      <button class="bx--header__action bx--header__app-switcher" aria-label="Language selector">
-        <LanguageSelect />
-      </button>
+
+      <ThemeSelect class="bx--header__action bx--btn bx--btn--ghost" />
+      <LanguageSelect class="bx--header__action bx--header__app-switcher" />
     </div>
-  </header>
-</div>
+</header>
 <script type="module" src="/js/header.js"></script>
