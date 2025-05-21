@@ -21,7 +21,7 @@ const shouldRenderSearch =
   config.pagefind || config.components.Search !== '@astrojs/starlight/components/Search.astro';
 ---
 
-<header class="bx--header header">
+<div class="bx--header header">
   <link rel="sitemap" href="/sitemap-index.xml" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.css" integrity="sha384-WsHMgfkABRyG494OmuiNmkAOk8nhO1qE+Y6wns6v+EoNoTNxrWxYpl5ZYWFOLPCM" crossorigin="anonymous">
   <div class="bx--header__container header-content">
@@ -47,7 +47,7 @@ const shouldRenderSearch =
       <LanguageSelect />
     </div>
   </div>
-</header>
+</div>
 
 <style>
   /* Ensure Header is Properly Aligned in Starlight Layout */
