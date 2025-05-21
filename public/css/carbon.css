@@ -33,7 +33,8 @@ body {
 
 /* Remove gap between header and main content */
 header {
-  margin-bottom: 0;
+  margin: 0;
+  padding: 30px;
 }
 main {
   margin-top: 0;

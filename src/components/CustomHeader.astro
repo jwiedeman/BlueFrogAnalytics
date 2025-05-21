@@ -47,12 +47,12 @@ const shouldRenderSearch =
     </nav>
 
     <!-- 6. Global utilities, in Carbon’s prescribed order -->
-    <div class="bx--header__global">
+    <div class="bx--header__global ">
       {shouldRenderSearch && (
         <Search class="bx--header__action bx--header__search" size="md" />
       )}
 
-      <ThemeSelect class="bx--header__action bx--btn bx--btn--ghost" />
+      <ThemeSelect class="bx--header__action cyan-50 " />
       <LanguageSelect class="bx--header__action bx--header__app-switcher" />
     </div>
 </header>
