@@ -104,6 +104,7 @@ export default defineConfig({
     components: {
       Header: './src/components/CustomHeader.astro',
       Footer: './src/components/CustomFooter.astro',
+      ContentPanel: './src/components/EmptyContentPanel.astro',
     },
           head: [
       { tag: 'link', attrs: { rel: 'stylesheet', href: 'https://unpkg.com/carbon-components/css/carbon-components.min.css' } },
