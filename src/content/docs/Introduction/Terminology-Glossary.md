@@ -1,10 +1,10 @@
 ---
 title: Terminology Glossary
-description: Learn about key terms related to ViperScan, website audits, SEO, security, analytics, compliance, and performance monitoring.
+description: Learn about key terms related to Blue Frog Analytics, website audits, SEO, security, analytics, compliance, and performance monitoring.
 ---
 
 
-This glossary provides definitions for important terms related to **ViperScan**, **website audits**, **SEO**, **security**, **compliance**, and **technical site health**.
+This glossary provides definitions for important terms related to **Blue Frog Analytics**, **website audits**, **SEO**, **security**, **compliance**, and **technical site health**.
 
 ---
 
@@ -1742,7 +1742,7 @@ A protocol for sending emails from a **mail server**.
 
 ### **Spider (Crawling Bot)**
 An **automated program that scans the web** for indexing purposes.  
-🔹 Examples: **Googlebot, Bingbot, ViperScan's audit crawler**.  
+🔹 Examples: **Googlebot, Bingbot, Blue Frog Analytics's audit crawler**.  
 
 ### **SSL (Secure Sockets Layer)**
 A security protocol for encrypting **data transmission between a website and users**.  
@@ -1763,7 +1763,7 @@ A separate section of a website under the main domain.
 
 ### **Subscription Model**
 A business model where users **pay recurring fees for continued access** to a product or service.  
-🔹 Example: **ViperScan’s $100/month ongoing website monitoring.**  
+🔹 Example: **Blue Frog Analytics’s $100/month ongoing website monitoring.**  
 
 ### **SVG (Scalable Vector Graphics)**
 A **vector-based image format** that maintains **high resolution at any size**.  
@@ -1791,7 +1791,7 @@ A **security protocol** that encrypts data transmitted over the internet, replac
 
 ### **Title Tag**
 An HTML tag (`<title>`) that defines a webpage’s **title in search results and browser tabs**.  
-🔹 Example: `<title>Best SEO Practices - ViperScan</title>`  
+🔹 Example: `<title>Best SEO Practices - Blue Frog Analytics</title>`  
 🔹 **Critical for SEO rankings and click-through rates (CTR).**
 
 ### **Tokenization**
@@ -1977,7 +1977,7 @@ A type of **scalable image format** that maintains quality at any size.
 The **visible area of a webpage** within a browser window.  
 🔹 Mobile-friendly websites use the `<meta name="viewport">` tag to **adjust layouts dynamically**.
 
-### **ViperScan**
+### **Blue Frog Analytics**
 An **automated website audit tool** that **analyzes SEO, security, compliance, and performance issues**.  
 🔹 Provides **detailed reports** with **fix recommendations** and **monitoring options**.
 
@@ -2051,7 +2051,7 @@ A technique that stores **website content temporarily** to reduce server load an
 
 ### **Web Crawler (Spider, Bot)**
 A program that **automatically browses websites** to index pages for search engines.  
-🔹 Examples: **Googlebot, Bingbot, and ViperScan’s audit crawler.**
+🔹 Examples: **Googlebot, Bingbot, and Blue Frog Analytics’s audit crawler.**
 
 ### **WebFont**
 A font that is **hosted online and loaded dynamically** by a website.  
@@ -2075,7 +2075,7 @@ A communication protocol that allows **real-time, two-way interaction between th
 
 ### **Website Audit**
 A **detailed analysis of a website’s performance, SEO, security, and compliance**.  
-🔹 Tools like **ViperScan** automate this process to detect issues and provide fixes.
+🔹 Tools like **Blue Frog Analytics** automate this process to detect issues and provide fixes.
 
 ### **Web Vitals**
 Google’s **performance metrics for user experience**, including **Largest Contentful Paint (LCP), First Input Delay (FID), and Cumulative Layout Shift (CLS)**.

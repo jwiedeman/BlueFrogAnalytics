@@ -94,7 +94,7 @@ export default defineConfig({
     ],
   },
   integrations: [astroExpressiveCode(), mdx(), sitemap(), starlight({
-    title: 'ViperScan',
+    title: 'Blue Frog Analytics',
     social: {
       github: 'https://github.com/jwiedeman',
     },
