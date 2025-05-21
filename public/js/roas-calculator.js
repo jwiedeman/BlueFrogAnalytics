@@ -9,17 +9,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const subFields = document.querySelector('.sub-fields');
   const svcFields = document.querySelector('.svc-fields');
   const toggleFields = () => {
-    subFields.style.display = document.getElementById('subscription').checked ? 'flex' : 'none';
-    svcFields.style.display = document.getElementById('service').checked ? 'flex' : 'none';
+    const subOn = document.getElementById('subscription').checked;
+    const svcOn = document.getElementById('service').checked;
+    subFields.style.display = subOn ? 'flex' : 'none';
+    svcFields.style.display = svcOn ? 'flex' : 'none';
+    subFields.querySelectorAll('input').forEach(i => (i.disabled = !subOn));
+    svcFields.querySelectorAll('input').forEach(i => (i.disabled = !svcOn));
   };
-  document.getElementById('subscription').addEventListener('change', toggleFields);
-  document.getElementById('service').addEventListener('change', toggleFields);
+  document.getElementById('subscription').addEventListener('change', () => {
+    toggleFields();
+    calculate();
+  });
+  document.getElementById('service').addEventListener('change', () => {
+    toggleFields();
+    calculate();
+  });
   toggleFields();
 
   let lastScenarios = [];
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
+  const calculate = () => {
     const aov = parseFloat(document.getElementById('aov').value) || 0;
     const subOn = document.getElementById('subscription').checked;
     const subPrice = parseFloat(document.getElementById('sub-price').value) || 0;
@@ -84,7 +93,18 @@ document.addEventListener('DOMContentLoaded', () => {
     resultsEl.innerHTML = `<table class="bx--data-table bx--data-table--compact"><thead><tr><th>Scenario</th><th>ROAS</th><th>CAC</th><th>Breakeven ROAS</th><th>Profit</th><th>LTV/CAC</th></tr></thead><tbody>${rows}</tbody></table>`;
 
     drawChart(scenarios);
+  };
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    calculate();
   });
+
+  form.querySelectorAll("input").forEach(i => {
+    i.addEventListener("input", calculate);
+  });
+
+  calculate();
+
 
   function drawChart(scenarios) {
     chartEl.selectAll('*').remove();
