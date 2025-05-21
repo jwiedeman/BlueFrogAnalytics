@@ -7,44 +7,62 @@ import SiteTitle from 'virtual:starlight/components/SiteTitle';
 import SocialIcons from 'virtual:starlight/components/SocialIcons';
 import ThemeSelect from 'virtual:starlight/components/ThemeSelect';
 
-// Define main navigation links
 const mainNav = [
   { label: 'Home', link: '/' },
   { label: 'About', link: '/about/' },
   { label: 'Services', link: '/services/' },
   { label: 'Tests', link: '/testing/' },
-  { label: 'Documentation', link: '/introduction/how-blue-frog-analytics-works' },
+  { label: 'Docs', link: '/introduction/how-blue-frog-analytics-works' },
 ];
 
-// Check if search should be displayed
 const shouldRenderSearch =
   config.pagefind || config.components.Search !== '@astrojs/starlight/components/Search.astro';
 ---
+<!-- 1. Skip link for accessibility -->
+<a href="#main-content" class="bx--skip-to-content">Skip to main content</a>
 
-<div class="bx--header" aria-label="Blue Frog Analytics">
-  <link rel="sitemap" href="/sitemap-index.xml" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.css" integrity="sha384-WsHMgfkABRyG494OmuiNmkAOk8nhO1qE+Y6wns6v+EoNoTNxrWxYpl5ZYWFOLPCM" crossorigin="anonymous">
+<!-- 2. Wrap in bx--content for Carbon’s gutters and theme class for dark -->
+<div class="bx--content bx--theme--dark">
+  <header class="bx--header" role="banner" aria-label="Blue Frog Analytics">
+    <!-- 3. (Optional) hamburger menu trigger if you have a side-nav -->
+    <button class="bx--header__menu-trigger bx--header__action" aria-label="Open menu">
+      <!-- You can use your own SVG or Carbon’s menu icon -->
+      <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" class="bx--header__menu-trigger__icon" width="20" height="20" viewBox="0 0 32 32"><path d="M4 23h24v2H4zm0-8h24v2H4zm0-8h24v2H4z"/></svg>
+    </button>
 
-  <!-- Left: Logo -->
-  <div class="bx--header__name">
-    <SiteTitle />
-  </div>
+    <!-- 4. Header name -->
+    <a href="/" class="bx--header__name" aria-label="Blue Frog Analytics home">
+      <span class="bx--header__name--prefix">Blue Frog</span>
+      <span class="bx--header__name--text">Analytics</span>
+    </a>
 
-  <!-- Center: Main Navigation -->
-  <nav class="bx--header__nav">
-    <ul class="bx--header__menu-bar">
-      {mainNav.map((item) => (
-        <li><a class="bx--header__menu-item" href={item.link}>{item.label}</a></li>
-      ))}
-    </ul>
-  </nav>
+    <!-- 5. Centered nav -->
+    <nav class="bx--header__nav" aria-label="Product Navigation">
+      <ul class="bx--header__menu-bar">
+        {mainNav.map((item) => (
+          <li key={item.link}>
+            <a class="bx--header__menu-item" href={item.link}>
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
 
-  <!-- Right: Search & Icons -->
-  <div class="bx--header__global">
-    {shouldRenderSearch && <Search />}
-    <SocialIcons />
-    <ThemeSelect />
-    <LanguageSelect />
-
-  </div>
+    <!-- 6. Global utilities, in Carbon’s prescribed order -->
+    <div class="bx--header__global">
+      {shouldRenderSearch && (
+        <button class="bx--header__action bx--header__search" aria-label="Search">
+          <Search size="md" />
+        </button>
+      )}
+    
+      <button class="bx--header__action bx--btn bx--btn--ghost" aria-label="Toggle theme">
+        <ThemeSelect />
+      </button>
+      <button class="bx--header__action bx--header__app-switcher" aria-label="Language selector">
+        <LanguageSelect />
+      </button>
+    </div>
+  </header>
 </div>
