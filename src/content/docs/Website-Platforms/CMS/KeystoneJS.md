@@ -5,7 +5,7 @@ description: Learn about KeystoneJS, its history, features, and how it compares 
 
 # **KeystoneJS: Overview, History, Pros & Cons**
 
-## **📌 Overview**  
+## ** Overview**  
 KeystoneJS is an **open-source content management system (CMS) and web application platform** built on **Node.js**. It is designed for developers who require a flexible and customizable solution to build modern websites and applications. KeystoneJS combines an intuitive admin UI with a powerful, code-first approach, making it ideal for creating headless CMS solutions as well as traditional web applications.
 
  **Best For:** **Developers and agencies** looking to build customized, scalable web applications and headless CMS solutions using JavaScript and Node.js.  
@@ -14,7 +14,7 @@ KeystoneJS is an **open-source content management system (CMS) and web applicati
 
 ---
 
-## **📜 History & Evolution**  
+## ** History & Evolution**  
 KeystoneJS was initially released to provide a developer-friendly CMS built on Node.js. Over time, it has evolved to support modern web development practices and has become a popular choice for building both headless and traditional CMS-driven websites.
 
 - **Early 2010s:** KeystoneJS was introduced as a lightweight CMS framework for Node.js, focusing on simplicity and flexibility.
@@ -23,56 +23,56 @@ KeystoneJS was initially released to provide a developer-friendly CMS built on N
 
 ---
 
-## **⚙️ Key Features & Capabilities**
+## ** Key Features & Capabilities**
 
-### **1️⃣ Flexible Content Modeling**  
-✔ **Schema-driven approach:** Define custom content types using JavaScript, giving full control over your data structure.  
-✔ **Extensible:** Easily add fields and relationships tailored to your application's needs.
+### **1⃣ Flexible Content Modeling**  
+ **Schema-driven approach:** Define custom content types using JavaScript, giving full control over your data structure.  
+ **Extensible:** Easily add fields and relationships tailored to your application's needs.
 
-### **2️⃣ Headless & API-First**  
-✔ **GraphQL and REST APIs:** Deliver content seamlessly to various front-end applications and devices.  
-✔ **Decoupled architecture:** Use KeystoneJS as a headless CMS for modern web and mobile applications.
+### **2⃣ Headless & API-First**  
+ **GraphQL and REST APIs:** Deliver content seamlessly to various front-end applications and devices.  
+ **Decoupled architecture:** Use KeystoneJS as a headless CMS for modern web and mobile applications.
 
-### **3️⃣ Developer-Friendly Environment**  
-✔ **Full-stack JavaScript:** Built on Node.js, allowing developers to use JavaScript across the stack.  
-✔ **Customizable Admin UI:** Easily tailor the admin interface to match your project requirements.  
-✔ **Integration with Modern Frameworks:** Works well with React, Vue, and other front-end libraries.
+### **3⃣ Developer-Friendly Environment**  
+ **Full-stack JavaScript:** Built on Node.js, allowing developers to use JavaScript across the stack.  
+ **Customizable Admin UI:** Easily tailor the admin interface to match your project requirements.  
+ **Integration with Modern Frameworks:** Works well with React, Vue, and other front-end libraries.
 
-### **4️⃣ Performance & Scalability**  
-✔ **Optimized for speed:** Leverages Node.js for high-performance and scalable applications.  
-✔ **Modular and lightweight:** Designed to be extendable without unnecessary bloat.
+### **4⃣ Performance & Scalability**  
+ **Optimized for speed:** Leverages Node.js for high-performance and scalable applications.  
+ **Modular and lightweight:** Designed to be extendable without unnecessary bloat.
 
-### **5️⃣ Community & Open-Source**  
-✔ **Active community:** Ongoing contributions and support from the open-source community.  
-✔ **Regular updates:** Continuous improvements and feature enhancements driven by community feedback.
+### **5⃣ Community & Open-Source**  
+ **Active community:** Ongoing contributions and support from the open-source community.  
+ **Regular updates:** Continuous improvements and feature enhancements driven by community feedback.
 
 ---
 
-## **🔄 KeystoneJS vs Competitors**
+## ** KeystoneJS vs Competitors**
 
 | Feature                   | KeystoneJS          | Strapi             | Ghost             | Directus         |
 |---------------------------|---------------------|--------------------|-------------------|------------------|
-| **Ease of Use**           |  Moderate         |  Easy            |  Very Easy      | ⚠ Moderate      |
-| **Flexibility & Customization** |  High      |  High            | ⚠ Focused on Blogging |  High      |
+| **Ease of Use**           |  Moderate         |  Easy            |  Very Easy      |  Moderate      |
+| **Flexibility & Customization** |  High      |  High            |  Focused on Blogging |  High      |
 | **API Support**           |  GraphQL & REST   |  GraphQL & REST  |  REST           |  REST & GraphQL|
 | **Technology Stack**      |  Full JavaScript  |  Full JavaScript |  Node.js        |  Node.js       |
-| **Community & Ecosystem** |  Active           |  Active          |  Growing        | ⚠ Smaller       |
+| **Community & Ecosystem** |  Active           |  Active          |  Growing        |  Smaller       |
 
 ---
 
 ## ** Pros of KeystoneJS**  
-✔ **Highly flexible and customizable:** Ideal for bespoke applications with custom content needs.  
-✔ **API-first architecture:** Offers both GraphQL and REST APIs for versatile content delivery.  
-✔ **Full-stack JavaScript:** Simplifies development by using a single language across client and server.  
-✔ **Robust admin interface:** Provides a customizable UI for content management.  
-✔ **Active open-source community:** Benefit from ongoing support and regular updates.
+ **Highly flexible and customizable:** Ideal for bespoke applications with custom content needs.  
+ **API-first architecture:** Offers both GraphQL and REST APIs for versatile content delivery.  
+ **Full-stack JavaScript:** Simplifies development by using a single language across client and server.  
+ **Robust admin interface:** Provides a customizable UI for content management.  
+ **Active open-source community:** Benefit from ongoing support and regular updates.
 
 ---
 
-## **❌ Cons of KeystoneJS**  
-⚠ **Learning curve for beginners:** Requires familiarity with JavaScript and Node.js for full utilization.  
-⚠ **Documentation variability:** While improving, some users may find the documentation less comprehensive compared to more established CMSs.  
-⚠ **Less plug-and-play:** May require more custom development for certain features compared to more opinionated platforms.
+## ** Cons of KeystoneJS**  
+ **Learning curve for beginners:** Requires familiarity with JavaScript and Node.js for full utilization.  
+ **Documentation variability:** While improving, some users may find the documentation less comprehensive compared to more established CMSs.  
+ **Less plug-and-play:** May require more custom development for certain features compared to more opinionated platforms.
 
 ---
 
@@ -85,7 +85,7 @@ KeystoneJS is **ideal for:**
 
 ---
 
-## **💡 Conclusion**  
+## ** Conclusion**  
 KeystoneJS offers a **powerful and flexible CMS solution** for developers looking to build custom, scalable web applications using Node.js. Its API-first approach, full-stack JavaScript environment, and robust customization capabilities make it a compelling choice for modern digital projects. While it may require more technical expertise than some plug-and-play platforms, its flexibility and active community support deliver a highly adaptable solution for dynamic content management.
 
 ---

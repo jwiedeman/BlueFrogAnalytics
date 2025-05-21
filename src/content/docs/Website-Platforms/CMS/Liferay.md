@@ -5,7 +5,7 @@ description: Learn about Liferay, its history, features, and how it compares to 
 
 # **Liferay: Overview, History, Pros & Cons**
 
-## **📌 Overview**  
+## ** Overview**  
 Liferay is an **enterprise-grade digital experience platform (DXP)** known for its powerful **portal and collaboration capabilities**. Designed for large organizations, Liferay enables businesses to build, manage, and deliver personalized digital experiences across web, mobile, and enterprise intranets. With its extensive suite of integrated tools for content management, collaboration, and workflow automation, Liferay serves as a comprehensive solution for digital transformation.
 
  **Best For:** **Large enterprises and government organizations** seeking a robust, scalable platform for web portals, intranets, and customer engagement.  
@@ -14,7 +14,7 @@ Liferay is an **enterprise-grade digital experience platform (DXP)** known for i
 
 ---
 
-## **📜 History & Evolution**  
+## ** History & Evolution**  
 Liferay was initially developed as a portal solution and has evolved into a comprehensive digital experience platform that supports a wide range of enterprise use cases.
 
 - **2000:** Liferay was founded with the goal of providing an open-source portal solution for enterprise collaboration.
@@ -24,56 +24,56 @@ Liferay was initially developed as a portal solution and has evolved into a comp
 
 ---
 
-## **⚙️ Key Features & Capabilities**
+## ** Key Features & Capabilities**
 
-### **1️⃣ Enterprise Portal & Content Management**  
-✔ **Robust portal framework:** Centralized access to applications, content, and collaboration tools.  
-✔ **Flexible content management:** Create, manage, and publish digital content across multiple channels.
+### **1⃣ Enterprise Portal & Content Management**  
+ **Robust portal framework:** Centralized access to applications, content, and collaboration tools.  
+ **Flexible content management:** Create, manage, and publish digital content across multiple channels.
 
-### **2️⃣ Collaboration & Social Networking**  
-✔ **Built-in collaboration tools:** Forums, document sharing, and social networking features for enhanced internal communication.  
-✔ **Personalized user experiences:** Tailor content and tools based on user roles and preferences.
+### **2⃣ Collaboration & Social Networking**  
+ **Built-in collaboration tools:** Forums, document sharing, and social networking features for enhanced internal communication.  
+ **Personalized user experiences:** Tailor content and tools based on user roles and preferences.
 
-### **3️⃣ Workflow & Integration**  
-✔ **Workflow automation:** Streamline business processes with customizable workflows and approval processes.  
-✔ **Extensive integrations:** Connect with enterprise systems (CRM, ERP, HRMS) and third-party applications via APIs and connectors.
+### **3⃣ Workflow & Integration**  
+ **Workflow automation:** Streamline business processes with customizable workflows and approval processes.  
+ **Extensive integrations:** Connect with enterprise systems (CRM, ERP, HRMS) and third-party applications via APIs and connectors.
 
-### **4️⃣ Scalability & Security**  
-✔ **Enterprise-grade scalability:** Designed to support high traffic and large user bases in complex IT environments.  
-✔ **Robust security measures:** Includes role-based access control, authentication, and compliance with industry standards.
+### **4⃣ Scalability & Security**  
+ **Enterprise-grade scalability:** Designed to support high traffic and large user bases in complex IT environments.  
+ **Robust security measures:** Includes role-based access control, authentication, and compliance with industry standards.
 
-### **5️⃣ Customization & Extensibility**  
-✔ **Highly customizable:** Tailor the platform with extensive APIs, plugins, and customizable themes to fit unique business needs.  
-✔ **Open-source core:** Benefit from community contributions along with commercial support for mission-critical deployments.
+### **5⃣ Customization & Extensibility**  
+ **Highly customizable:** Tailor the platform with extensive APIs, plugins, and customizable themes to fit unique business needs.  
+ **Open-source core:** Benefit from community contributions along with commercial support for mission-critical deployments.
 
 ---
 
-## **🔄 Liferay vs Competitors**
+## ** Liferay vs Competitors**
 
 | Feature                   | Liferay             | Adobe Experience Manager | IBM WCM               | Sitecore               |
 |---------------------------|---------------------|--------------------------|-----------------------|------------------------|
-| **Ease of Use**           | ⚠ Moderate         | ⚠ Complex               | ⚠ Moderate           | ⚠ Complex             |
+| **Ease of Use**           |  Moderate         |  Complex               |  Moderate           |  Complex             |
 | **Customization**         |  High            |  High                  |  High               |  High                |
-| **Collaboration Tools**   |  Strong          | ⚠ Limited               |  Strong              | ⚠ Moderate            |
+| **Collaboration Tools**   |  Strong          |  Limited               |  Strong              |  Moderate            |
 | **Integration Capabilities** |  Extensive    |  Extensive             |  Extensive          |  Extensive           |
 | **Scalability & Security** |  Enterprise-Grade |  Enterprise-Grade     |  Enterprise-Grade   |  Enterprise-Grade    |
 
 ---
 
 ## ** Pros of Liferay**  
-✔ **Comprehensive enterprise portal:** Combines content management, collaboration, and integration in one platform.  
-✔ **Highly customizable and extensible:** Adaptable to diverse business requirements and workflows.  
-✔ **Strong integration capabilities:** Seamlessly connects with other enterprise systems.  
-✔ **Robust security and scalability:** Ideal for large organizations with complex digital needs.  
-✔ **Open-source core with commercial support:** Balances flexibility with enterprise-level reliability.
+ **Comprehensive enterprise portal:** Combines content management, collaboration, and integration in one platform.  
+ **Highly customizable and extensible:** Adaptable to diverse business requirements and workflows.  
+ **Strong integration capabilities:** Seamlessly connects with other enterprise systems.  
+ **Robust security and scalability:** Ideal for large organizations with complex digital needs.  
+ **Open-source core with commercial support:** Balances flexibility with enterprise-level reliability.
 
 ---
 
-## **❌ Cons of Liferay**  
-⚠ **Steep learning curve:** Requires significant technical expertise for effective deployment and customization.  
-⚠ **Complex administration:** The extensive feature set can be overwhelming for new users.  
-⚠ **Resource-intensive:** May require substantial infrastructure and dedicated IT support for large-scale implementations.  
-⚠ **Customization time:** Tailoring the platform to specific business needs can be time-consuming.
+## ** Cons of Liferay**  
+ **Steep learning curve:** Requires significant technical expertise for effective deployment and customization.  
+ **Complex administration:** The extensive feature set can be overwhelming for new users.  
+ **Resource-intensive:** May require substantial infrastructure and dedicated IT support for large-scale implementations.  
+ **Customization time:** Tailoring the platform to specific business needs can be time-consuming.
 
 ---
 
@@ -86,7 +86,7 @@ Liferay is **ideal for:**
 
 ---
 
-## **💡 Conclusion**  
+## ** Conclusion**  
 Liferay stands out as a **powerful, enterprise-grade DXP** that delivers robust content management, collaboration, and integration capabilities. While it may require a steep learning curve and significant resources, its flexibility, scalability, and extensive feature set make it a compelling choice for organizations committed to digital transformation and delivering personalized digital experiences.
 
 ---

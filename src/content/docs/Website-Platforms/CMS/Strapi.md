@@ -5,7 +5,7 @@ description: Learn about Strapi, its history, features, and how it compares to o
 
 # **Strapi: Overview, History, Pros & Cons**
 
-## **📌 Overview**  
+## ** Overview**  
 Strapi is an **open-source, headless CMS** built on **Node.js** that empowers developers to create customizable and scalable content management solutions. With its API-first approach, Strapi enables seamless integration with modern front-end frameworks through RESTful and GraphQL APIs. Its flexible content modeling and user-friendly admin panel make it a popular choice for building dynamic digital experiences across websites, mobile apps, and other channels.
 
  **Best For:** **Developers, agencies, and enterprises** looking for a fully customizable, API-first headless CMS with a strong focus on developer experience.  
@@ -14,7 +14,7 @@ Strapi is an **open-source, headless CMS** built on **Node.js** that empowers de
 
 ---
 
-## **📜 History & Evolution**  
+## ** History & Evolution**  
 Strapi was created to provide a modern, open-source alternative for managing and delivering content in a decoupled environment.
 
 - **2015:** Strapi was founded with the goal of delivering an API-first, headless CMS that offers complete control to developers.
@@ -23,57 +23,57 @@ Strapi was created to provide a modern, open-source alternative for managing and
 
 ---
 
-## **⚙️ Key Features & Capabilities**
+## ** Key Features & Capabilities**
 
-### **1️⃣ Flexible Content Modeling**
-✔ **Customizable Schemas:** Define your own content types and fields using a simple, code-driven approach.
-✔ **Dynamic Relationships:** Easily manage complex data structures and relationships between content types.
+### **1⃣ Flexible Content Modeling**
+ **Customizable Schemas:** Define your own content types and fields using a simple, code-driven approach.
+ **Dynamic Relationships:** Easily manage complex data structures and relationships between content types.
 
-### **2️⃣ API-First Architecture**
-✔ **REST & GraphQL APIs:** Seamlessly deliver content to any front-end, ensuring a decoupled architecture.
-✔ **Headless Capabilities:** Fully separates content management from presentation, ideal for modern web development.
+### **2⃣ API-First Architecture**
+ **REST & GraphQL APIs:** Seamlessly deliver content to any front-end, ensuring a decoupled architecture.
+ **Headless Capabilities:** Fully separates content management from presentation, ideal for modern web development.
 
-### **3️⃣ Developer-Friendly Environment**
-✔ **Built on Node.js:** Leverage the performance and scalability of Node.js.
-✔ **Customizable Admin Panel:** Tailor the back-end interface to meet your team’s specific needs.
-✔ **Extensive Plugin Ecosystem:** Enhance functionality with community-developed plugins and integrations.
+### **3⃣ Developer-Friendly Environment**
+ **Built on Node.js:** Leverage the performance and scalability of Node.js.
+ **Customizable Admin Panel:** Tailor the back-end interface to meet your team’s specific needs.
+ **Extensive Plugin Ecosystem:** Enhance functionality with community-developed plugins and integrations.
 
-### **4️⃣ Deployment Flexibility**
-✔ **Self-Hosted or Cloud:** Choose between hosting your own instance or opting for a managed cloud solution.
-✔ **Scalable:** Designed to grow with your project, handling increased traffic and complex requirements.
+### **4⃣ Deployment Flexibility**
+ **Self-Hosted or Cloud:** Choose between hosting your own instance or opting for a managed cloud solution.
+ **Scalable:** Designed to grow with your project, handling increased traffic and complex requirements.
 
-### **5️⃣ Community & Open-Source**
-✔ **Active Community:** Benefit from a vibrant, open-source community contributing to continuous improvements and updates.
-✔ **Comprehensive Documentation:** Extensive guides and tutorials help streamline development and integration.
+### **5⃣ Community & Open-Source**
+ **Active Community:** Benefit from a vibrant, open-source community contributing to continuous improvements and updates.
+ **Comprehensive Documentation:** Extensive guides and tutorials help streamline development and integration.
 
 ---
 
-## **🔄 Strapi vs Competitors**
+## ** Strapi vs Competitors**
 
 | Feature                   | Strapi           | Contentful       | Sanity          | Prismic         |
 |---------------------------|------------------|------------------|-----------------|-----------------|
-| **Ease of Use**           |  Easy (for developers) | ⚠ Moderate  |  Easy         |  Easy         |
+| **Ease of Use**           |  Easy (for developers) |  Moderate  |  Easy         |  Easy         |
 | **Customization**         |  High          |  High          |  High         |  Moderate     |
 | **API Capabilities**      |  REST & GraphQL|  REST & GraphQL|  REST & GraphQL|  REST         |
-| **Deployment Options**    |  Self-Hosted & Cloud | ❌ Cloud-Only | ❌ Cloud-Only  | ❌ Cloud-Only  |
-| **Community & Open-Source**|  Strong       | ⚠ Proprietary   | ⚠ Proprietary  | ⚠ Proprietary   |
+| **Deployment Options**    |  Self-Hosted & Cloud |  Cloud-Only |  Cloud-Only  |  Cloud-Only  |
+| **Community & Open-Source**|  Strong       |  Proprietary   |  Proprietary  |  Proprietary   |
 
 ---
 
 ## ** Pros of Strapi**
-✔ **Highly Customizable:** Full control over content structure and API endpoints with a code-first approach.
-✔ **Flexible Deployment:** Offers both self-hosted and managed cloud options to suit different needs.
-✔ **Robust API Support:** Provides both RESTful and GraphQL APIs, ensuring seamless integration with any front-end.
-✔ **Developer-Centric:** Built on Node.js with an intuitive admin panel, making it ideal for developers and technical teams.
-✔ **Active Open-Source Community:** Continuous improvements, extensive plugins, and comprehensive documentation.
+ **Highly Customizable:** Full control over content structure and API endpoints with a code-first approach.
+ **Flexible Deployment:** Offers both self-hosted and managed cloud options to suit different needs.
+ **Robust API Support:** Provides both RESTful and GraphQL APIs, ensuring seamless integration with any front-end.
+ **Developer-Centric:** Built on Node.js with an intuitive admin panel, making it ideal for developers and technical teams.
+ **Active Open-Source Community:** Continuous improvements, extensive plugins, and comprehensive documentation.
 
 ---
 
-## **❌ Cons of Strapi**
-⚠ **Developer-Dependent:** Not as friendly for non-technical users; requires some coding knowledge for advanced customization.
-⚠ **Learning Curve:** Initial setup and configuration might be challenging for teams new to headless CMS concepts.
-⚠ **Scaling Considerations:** While scalable, managing a self-hosted instance requires proper infrastructure and maintenance.
-⚠ **Ecosystem Maturity:** Though growing, its plugin ecosystem may be less extensive compared to more established headless CMS solutions.
+## ** Cons of Strapi**
+ **Developer-Dependent:** Not as friendly for non-technical users; requires some coding knowledge for advanced customization.
+ **Learning Curve:** Initial setup and configuration might be challenging for teams new to headless CMS concepts.
+ **Scaling Considerations:** While scalable, managing a self-hosted instance requires proper infrastructure and maintenance.
+ **Ecosystem Maturity:** Though growing, its plugin ecosystem may be less extensive compared to more established headless CMS solutions.
 
 ---
 
@@ -86,7 +86,7 @@ Strapi is **ideal for:**
 
 ---
 
-## **💡 Conclusion**
+## ** Conclusion**
 Strapi offers a **powerful, flexible, and developer-friendly headless CMS** that is well-suited for modern web and mobile applications. Its emphasis on customization, combined with robust API support and flexible deployment options, makes it an excellent choice for teams aiming to build scalable, dynamic digital experiences. While it may require technical expertise to fully exploit its capabilities, its active open-source community and comprehensive documentation provide strong support for developers.
 
 ---

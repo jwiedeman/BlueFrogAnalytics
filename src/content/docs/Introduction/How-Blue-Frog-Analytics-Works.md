@@ -27,7 +27,7 @@ When you use Blue Frog Analytics, it **analyzes your website across multiple dim
 
 3. **Detailed Report Generation**  
    - Within minutes, Blue Frog Analytics provides a **comprehensive report** in multiple formats:
-     - 📄 **PDF Report** – A polished, professional breakdown of all issues.  
+     -  **PDF Report** – A polished, professional breakdown of all issues.  
      -  **Excel/CSV Action List** – A structured, step-by-step guide to fixing each issue.  
 
 4. **Fix Recommendations & Insights**  
@@ -38,21 +38,21 @@ When you use Blue Frog Analytics, it **analyzes your website across multiple dim
 
 ---
 
-## 📦 What You Get with Blue Frog Analytics
+##  What You Get with Blue Frog Analytics
 
 | Feature | Free Scan | Full Report ($50) | Subscription ($100/mo) |
 |---------|----------|------------------|------------------|
 | **Major Issue Detection** |  |  |  |
-| **Full Website Scan** | ❌ |  |  |
-| **SEO & Performance Report** | ❌ |  |  |
-| **Security & Compliance Checks** | ❌ |  |  |
-| **Fix Recommendations** | ❌ |  |  |
-| **Daily/Weekly Monitoring** | ❌ | ❌ |  |
-| **Automated Re-Scanning** | ❌ | ❌ |  |
+| **Full Website Scan** |  |  |  |
+| **SEO & Performance Report** |  |  |  |
+| **Security & Compliance Checks** |  |  |  |
+| **Fix Recommendations** |  |  |  |
+| **Daily/Weekly Monitoring** |  |  |  |
+| **Automated Re-Scanning** |  |  |  |
 
 ---
 
-## 🌍 Why Businesses Trust Blue Frog Analytics
+##  Why Businesses Trust Blue Frog Analytics
 
 - **No Setup Required** – Just enter your URL, and Blue Frog Analytics does the rest.  
 - **Instant Actionable Insights** – Reports are easy to read and tell you exactly what needs fixing.  

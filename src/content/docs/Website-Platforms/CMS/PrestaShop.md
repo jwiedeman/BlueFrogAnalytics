@@ -5,7 +5,7 @@ description: Learn about PrestaShop, its history, features, and how it compares 
 
 # **PrestaShop: Overview, History, Pros & Cons**
 
-## **📌 Overview**  
+## ** Overview**  
 PrestaShop is a **free, open-source eCommerce platform** designed for small to medium-sized businesses. It provides a robust and customizable solution that enables merchants to create and manage online stores with ease. Known for its user-friendly interface and extensive extension ecosystem, PrestaShop offers powerful features to support product management, marketing, and multi-channel sales.
 
  **Best For:** **Small to medium-sized businesses** looking for an affordable, customizable eCommerce solution with a strong community and extensive features.  
@@ -14,7 +14,7 @@ PrestaShop is a **free, open-source eCommerce platform** designed for small to m
 
 ---
 
-## **📜 History & Evolution**  
+## ** History & Evolution**  
 PrestaShop was developed to empower merchants with a powerful yet cost-effective solution for online selling.
 
 - **2007:** PrestaShop was launched as an open-source eCommerce platform, quickly gaining popularity among small to medium-sized businesses.
@@ -23,57 +23,57 @@ PrestaShop was developed to empower merchants with a powerful yet cost-effective
 
 ---
 
-## **⚙️ Key Features & Capabilities**
+## ** Key Features & Capabilities**
 
-### **1️⃣ User-Friendly Administration**  
-✔ **Intuitive Dashboard:** Simplifies store management with an easy-to-navigate control panel.  
-✔ **Quick Setup:** Streamlined installation and configuration process to get your store up and running rapidly.
+### **1⃣ User-Friendly Administration**  
+ **Intuitive Dashboard:** Simplifies store management with an easy-to-navigate control panel.  
+ **Quick Setup:** Streamlined installation and configuration process to get your store up and running rapidly.
 
-### **2️⃣ Customization & Extensibility**  
-✔ **Modular Architecture:** Access a vast marketplace of modules and themes to extend functionality and tailor the store to specific business needs.  
-✔ **Responsive Templates:** Choose from numerous responsive designs that can be customized to match your brand.
+### **2⃣ Customization & Extensibility**  
+ **Modular Architecture:** Access a vast marketplace of modules and themes to extend functionality and tailor the store to specific business needs.  
+ **Responsive Templates:** Choose from numerous responsive designs that can be customized to match your brand.
 
-### **3️⃣ Comprehensive eCommerce Tools**  
-✔ **Product & Inventory Management:** Manage products, categories, and stock levels with ease.  
-✔ **Multi-Store Support:** Run multiple stores from a single back-end interface.
-✔ **Advanced SEO & Marketing:** Built-in tools for optimizing product pages, promotions, and social media integrations.
+### **3⃣ Comprehensive eCommerce Tools**  
+ **Product & Inventory Management:** Manage products, categories, and stock levels with ease.  
+ **Multi-Store Support:** Run multiple stores from a single back-end interface.
+ **Advanced SEO & Marketing:** Built-in tools for optimizing product pages, promotions, and social media integrations.
 
-### **4️⃣ Scalability & Performance**  
-✔ **Optimized for Growth:** Designed to handle increasing product catalogs and traffic volumes.  
-✔ **Hosting Flexibility:** Can be hosted on various servers or cloud platforms based on business needs.
+### **4⃣ Scalability & Performance**  
+ **Optimized for Growth:** Designed to handle increasing product catalogs and traffic volumes.  
+ **Hosting Flexibility:** Can be hosted on various servers or cloud platforms based on business needs.
 
-### **5️⃣ Community & Support**  
-✔ **Active Open-Source Community:** Extensive documentation, forums, and community-contributed extensions and themes.
-✔ **Regular Updates:** Continuous improvements and security updates to keep the platform current.
+### **5⃣ Community & Support**  
+ **Active Open-Source Community:** Extensive documentation, forums, and community-contributed extensions and themes.
+ **Regular Updates:** Continuous improvements and security updates to keep the platform current.
 
 ---
 
-## **🔄 PrestaShop vs Competitors**
+## ** PrestaShop vs Competitors**
 
 | Feature                   | PrestaShop        | Magento (Adobe Commerce) | WooCommerce      | OpenCart        |
 |---------------------------|-------------------|--------------------------|------------------|-----------------|
-| **Ease of Use**           |  Easy           | ⚠ Complex               |  Moderate      |  Easy         |
+| **Ease of Use**           |  Easy           |  Complex               |  Moderate      |  Easy         |
 | **Customization**         |  High           |  Extensive             |  High          |  High         |
 | **Extension Ecosystem**   |  Extensive      |  Vast                  |  Extensive     |  Moderate     |
 | **Cost**                  |  Free (Open-Source) | $$$ Enterprise-level   |  Free (Open-Source) |  Free (Open-Source) |
-| **Scalability**           |  Good           |  Enterprise-Grade      | ⚠ Depends on Hosting |  Good       |
+| **Scalability**           |  Good           |  Enterprise-Grade      |  Depends on Hosting |  Good       |
 
 ---
 
 ## ** Pros of PrestaShop**  
-✔ **Cost-Effective:** Free and open-source, making it accessible for businesses with limited budgets.  
-✔ **Highly Customizable:** Offers extensive modules and themes to tailor the online store to specific needs.  
-✔ **User-Friendly Interface:** Intuitive dashboard simplifies store management for non-technical users.  
-✔ **Strong Community Support:** A vibrant community provides a wealth of resources, extensions, and support.  
-✔ **Multi-Store Capability:** Manage multiple storefronts from a single administration panel.
+ **Cost-Effective:** Free and open-source, making it accessible for businesses with limited budgets.  
+ **Highly Customizable:** Offers extensive modules and themes to tailor the online store to specific needs.  
+ **User-Friendly Interface:** Intuitive dashboard simplifies store management for non-technical users.  
+ **Strong Community Support:** A vibrant community provides a wealth of resources, extensions, and support.  
+ **Multi-Store Capability:** Manage multiple storefronts from a single administration panel.
 
 ---
 
-## **❌ Cons of PrestaShop**  
-⚠ **Customization Complexity:** Significant modifications may require technical expertise.  
-⚠ **Performance Optimization:** High traffic stores may need additional optimization and robust hosting solutions.  
-⚠ **Extension Quality Variance:** Not all third-party modules and themes maintain the same quality standards.  
-⚠ **Limited Enterprise Features:** May lack some of the advanced functionalities offered by enterprise-level platforms like Magento.
+## ** Cons of PrestaShop**  
+ **Customization Complexity:** Significant modifications may require technical expertise.  
+ **Performance Optimization:** High traffic stores may need additional optimization and robust hosting solutions.  
+ **Extension Quality Variance:** Not all third-party modules and themes maintain the same quality standards.  
+ **Limited Enterprise Features:** May lack some of the advanced functionalities offered by enterprise-level platforms like Magento.
 
 ---
 
@@ -86,7 +86,7 @@ PrestaShop is **ideal for:**
 
 ---
 
-## **💡 Conclusion**  
+## ** Conclusion**  
 PrestaShop offers a **robust and flexible eCommerce platform** that is well-suited for small to medium-sized businesses. Its combination of ease of use, extensive customization options, and strong community support makes it a compelling choice for merchants looking to build and grow an online store without the complexities and costs associated with enterprise-level solutions.
 
 ---
