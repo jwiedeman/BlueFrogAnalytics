@@ -5,7 +5,7 @@ description: Learn about TinaCMS, its history, features, and how it compares to 
 
 # **TinaCMS: Overview, History, Pros & Cons**
 
-## ** Overview**  
+##**Overview**  
 TinaCMS is an **open-source, headless content management toolkit** designed primarily for developers working with modern static site generators and JavaScript frameworks like React, Next.js, and Gatsby. It allows content editors to make inline, real-time edits directly on the live site, seamlessly integrating with a Git-based workflow. TinaCMS empowers teams to manage content without compromising on the flexibility and performance of a modern development stack.
 
  **Best For:** **Developers, agencies, and content teams** looking to integrate an inline editing experience into their static or headless sites.  
@@ -14,7 +14,7 @@ TinaCMS is an **open-source, headless content management toolkit** designed prim
 
 ---
 
-## ** History & Evolution**  
+##**History & Evolution**  
 TinaCMS was created to simplify the content editing process for modern web projects, focusing on delivering a seamless inline editing experience.
 
 - **2018:** TinaCMS was launched as an open-source project aimed at bridging the gap between developers and content editors for static and decoupled sites.
@@ -23,7 +23,7 @@ TinaCMS was created to simplify the content editing process for modern web proje
 
 ---
 
-## ** Key Features & Capabilities**
+##**Key Features & Capabilities**
 
 ### **1⃣ Inline Editing Experience**
  **Real-Time Editing:** Allows content editors to modify text and media directly on the live site with immediate visual feedback.
@@ -44,7 +44,7 @@ TinaCMS was created to simplify the content editing process for modern web proje
 
 ---
 
-## ** TinaCMS vs Competitors**
+##**TinaCMS vs Competitors**
 
 | Feature                     | TinaCMS          | Netlify CMS      | Forestry.io      | Strapi          |
 |-----------------------------|------------------|------------------|------------------|-----------------|
@@ -56,7 +56,7 @@ TinaCMS was created to simplify the content editing process for modern web proje
 
 ---
 
-## ** Pros of TinaCMS**  
+##**Pros of TinaCMS**  
  **Inline Editing Experience:** Empowers content editors to see their changes live on the site, improving efficiency and user experience.  
  **Seamless Git Integration:** Supports a robust Git-based workflow, ensuring version control and collaboration.  
  **Highly Customizable:** Flexible content models and API-first architecture allow for tailored solutions.  
@@ -65,7 +65,7 @@ TinaCMS was created to simplify the content editing process for modern web proje
 
 ---
 
-## ** Cons of TinaCMS**  
+##**Cons of TinaCMS**  
  **Learning Curve for Non-Developers:** While intuitive, setting up TinaCMS can require developer involvement, which may be challenging for non-technical users.  
  **Dependency on Git Workflows:** Requires familiarity with Git for content management, which might not suit all teams.  
  **Ecosystem Size:** Although growing, the number of plugins and integrations is still smaller compared to more established headless CMS platforms.  
@@ -73,7 +73,7 @@ TinaCMS was created to simplify the content editing process for modern web proje
 
 ---
 
-## ** Who Should Use TinaCMS?**  
+##**Who Should Use TinaCMS?**  
 TinaCMS is **ideal for:**  
  **Developers and agencies** who want to integrate a seamless inline editing experience into static or decoupled sites.  
  **Content teams** that require real-time content editing with robust version control via Git.  
@@ -82,7 +82,7 @@ TinaCMS is **ideal for:**
 
 ---
 
-## ** Conclusion**  
+##**Conclusion**  
 TinaCMS offers a **modern, flexible, and developer-friendly headless CMS solution** with a standout inline editing experience. Its seamless Git integration and customizable content models make it an excellent choice for teams looking to build dynamic digital experiences. While it may require some technical setup, its benefits in real-time content management and developer efficiency position it as a compelling option in the competitive headless CMS landscape.
 
 ---

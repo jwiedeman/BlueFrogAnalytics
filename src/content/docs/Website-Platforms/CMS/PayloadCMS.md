@@ -5,7 +5,7 @@ description: Learn about Payload CMS, its history, features, and how it compares
 
 # **Payload CMS: Overview, History, Pros & Cons**
 
-## ** Overview**  
+##**Overview**  
 Payload CMS is a **headless content management system** built on **Node.js** that is designed for developers who require a modern, flexible, and highly customizable solution for managing digital content. With an emphasis on a developer-first experience, Payload CMS offers a powerful API, custom schema definitions, and a straightforward code-based approach, making it ideal for building tailored digital experiences and integrating with modern front-end frameworks.
 
  **Best For:** **Developers and agencies** looking for a flexible, Node.js-based headless CMS to power custom web applications and digital experiences.  
@@ -14,7 +14,7 @@ Payload CMS is a **headless content management system** built on **Node.js** tha
 
 ---
 
-## ** History & Evolution**  
+##**History & Evolution**  
 Payload CMS was created to address the needs of modern web developers who require full control over their content architecture and prefer a code-first approach.
 
 - **Early 2020s:** Payload CMS was introduced as an open-source headless CMS built on Node.js, focusing on developer flexibility and modern development practices.
@@ -23,7 +23,7 @@ Payload CMS was created to address the needs of modern web developers who requir
 
 ---
 
-## ** Key Features & Capabilities**
+##**Key Features & Capabilities**
 
 ### **1⃣ Developer-First Customization**
  **Custom Schema Definitions:** Define content structures using plain JavaScript, offering complete control over data models.  
@@ -47,7 +47,7 @@ Payload CMS was created to address the needs of modern web developers who requir
 
 ---
 
-## ** Payload CMS vs Competitors**
+##**Payload CMS vs Competitors**
 
 | Feature                    | Payload CMS      | Strapi           | Sanity          | Contentful       |
 |----------------------------|------------------|------------------|-----------------|------------------|
@@ -59,7 +59,7 @@ Payload CMS was created to address the needs of modern web developers who requir
 
 ---
 
-## ** Pros of Payload CMS**  
+##**Pros of Payload CMS**  
  **Highly customizable:** Complete control over content schema and data models using JavaScript.  
  **Modern and performant:** Built on Node.js, ensuring fast performance and scalability.  
  **Flexible API options:** Supports both REST and GraphQL for seamless integration with any front-end.  
@@ -68,7 +68,7 @@ Payload CMS was created to address the needs of modern web developers who requir
 
 ---
 
-## ** Cons of Payload CMS**  
+##**Cons of Payload CMS**  
  **Steeper Learning Curve:** Requires familiarity with Node.js and JavaScript, which might be challenging for non-developers.  
  **Limited Out-of-the-Box Features:** Focused on customization; may require additional development to implement advanced functionalities.  
  **Smaller Ecosystem:** Compared to more mature platforms, it has a smaller pool of plugins and community extensions.  
@@ -76,7 +76,7 @@ Payload CMS was created to address the needs of modern web developers who requir
 
 ---
 
-## ** Who Should Use Payload CMS?**  
+##**Who Should Use Payload CMS?**  
 Payload CMS is **ideal for:**  
  **Developers and technical teams** who require full control over their content architecture.  
  **Agencies and startups** building custom web applications and digital experiences.  
@@ -85,7 +85,7 @@ Payload CMS is **ideal for:**
 
 ---
 
-## ** Conclusion**  
+##**Conclusion**  
 Payload CMS provides a **powerful, modern, and customizable headless CMS solution** built on Node.js. Its focus on a developer-first, code-centric approach makes it an excellent choice for teams looking to create bespoke digital experiences. While it may have a steeper learning curve and a smaller ecosystem than some competitors, its robust API support, high performance, and extensive customization capabilities set it apart for modern web development projects.
 
 ---

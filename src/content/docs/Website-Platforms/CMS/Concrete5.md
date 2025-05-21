@@ -5,7 +5,7 @@ description: Learn about Concrete5, its history, features, and how it compares t
 
 # **Concrete5: Overview, History, Pros & Cons**  
 
-## ** Overview**  
+##**Overview**  
 Concrete5 is a **user-friendly, open-source content management system (CMS)** designed for **business websites, portfolios, and enterprise applications**. Known for its **drag-and-drop interface, in-context editing, and strong security features**, Concrete5 provides an intuitive experience for both developers and non-technical users.  
 
  **Best For:** **Small-to-medium businesses, enterprises, and developers** looking for a **customizable, easy-to-use CMS**.  
@@ -14,7 +14,7 @@ Concrete5 is a **user-friendly, open-source content management system (CMS)** de
 
 ---
 
-## ** History & Evolution**  
+##**History & Evolution**  
 Concrete5 was originally developed in **2003** as a **commercial CMS** but was later released as an **open-source platform in 2008** to compete with WordPress and Joomla.  
 
 - **2003:** Concrete CMS was created as a proprietary system.  
@@ -24,7 +24,7 @@ Concrete5 was originally developed in **2003** as a **commercial CMS** but was l
 
 ---
 
-## ** Key Features & Capabilities**  
+##**Key Features & Capabilities**  
 
 ### **1⃣ In-Context Editing & Drag-and-Drop Builder**  
  **Live, on-page editing** – Edit content directly on the page without switching to a backend dashboard.  
@@ -53,7 +53,7 @@ Concrete5 was originally developed in **2003** as a **commercial CMS** but was l
 
 ---
 
-## ** Concrete5 vs Competitors**  
+##**Concrete5 vs Competitors**  
 
 | Feature                  | Concrete5 | WordPress | Joomla    | Drupal    | Typo3     |
 |--------------------------|----------|-----------|-----------|-----------|-----------|
@@ -66,7 +66,7 @@ Concrete5 was originally developed in **2003** as a **commercial CMS** but was l
 
 ---
 
-## ** Pros of Concrete5**  
+##**Pros of Concrete5**  
  **Intuitive drag-and-drop editing** – No need for backend dashboards.  
  **Strong security and user management features** – Ideal for businesses.  
  **SEO-friendly and performance-optimized** – Built-in tools for search rankings.  
@@ -75,7 +75,7 @@ Concrete5 was originally developed in **2003** as a **commercial CMS** but was l
 
 ---
 
-## ** Cons of Concrete5**  
+##**Cons of Concrete5**  
  **Smaller community** – Fewer themes and plugins than WordPress.  
  **Higher learning curve for advanced customization**.  
  **Not as many third-party integrations** compared to WordPress or Drupal.  
@@ -83,7 +83,7 @@ Concrete5 was originally developed in **2003** as a **commercial CMS** but was l
 
 ---
 
-## ** Who Should Use Concrete5?**  
+##**Who Should Use Concrete5?**  
 Concrete5 is **ideal for:**  
  **Small-to-medium businesses** needing an **easy-to-manage website**.  
  **Enterprise users** requiring **strong security & role-based access control**.  
@@ -92,7 +92,7 @@ Concrete5 is **ideal for:**
 
 ---
 
-## ** Conclusion**  
+##**Conclusion**  
 Concrete5 is a **powerful, secure, and user-friendly CMS** that bridges the gap between **ease of use and enterprise functionality**. While it **lacks the massive ecosystem of WordPress**, it **excels in security, in-context editing, and structured content management**, making it a great choice for **business websites, agencies, and enterprises**.  
 
 ---

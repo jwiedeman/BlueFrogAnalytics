@@ -5,7 +5,7 @@ description: Learn about Bolt CMS, its history, features, and how it compares to
 
 # **Bolt CMS: Overview, History, Pros & Cons**  
 
-## ** Overview**  
+##**Overview**  
 Bolt CMS is a **lightweight, open-source content management system** designed for **developers and content creators** who need **flexibility, simplicity, and structured content management**. Built with **PHP and Symfony**, it offers a **modern, user-friendly CMS** that is easier to use than Drupal but more customizable than WordPress.  
 
  **Best For:** **Developers, small businesses, and agencies** needing a **structured, flexible CMS**.  
@@ -14,7 +14,7 @@ Bolt CMS is a **lightweight, open-source content management system** designed fo
 
 ---
 
-## ** History & Evolution**  
+##**History & Evolution**  
 Bolt CMS was created in **2012** by **Bob den Otter**, with a focus on providing a **developer-friendly yet easy-to-use CMS**.  
 
 - **2012:** Bolt CMS launched as a modern alternative to WordPress and Drupal.  
@@ -24,7 +24,7 @@ Bolt CMS was created in **2012** by **Bob den Otter**, with a focus on providing
 
 ---
 
-## ** Key Features & Capabilities**  
+##**Key Features & Capabilities**  
 
 ### **1⃣ Structured Content Management**  
  **Custom content types** – Define different structures for blogs, products, events, etc.  
@@ -48,7 +48,7 @@ Bolt CMS was created in **2012** by **Bob den Otter**, with a focus on providing
 
 ---
 
-## ** Bolt CMS vs Competitors**  
+##**Bolt CMS vs Competitors**  
 
 | Feature                  | Bolt CMS | WordPress | Grav      | Statamic | Drupal    |
 |--------------------------|---------|-----------|-----------|----------|-----------|
@@ -62,7 +62,7 @@ Bolt CMS was created in **2012** by **Bob den Otter**, with a focus on providing
 
 ---
 
-## ** Pros of Bolt CMS**  
+##**Pros of Bolt CMS**  
  **Structured content types** – Ideal for complex content organization.  
  **Developer-friendly with Symfony & Twig** – Easier to customize.  
  **Faster & lighter than WordPress** – No bloat, optimized for performance.  
@@ -71,7 +71,7 @@ Bolt CMS was created in **2012** by **Bob den Otter**, with a focus on providing
 
 ---
 
-## ** Cons of Bolt CMS**  
+##**Cons of Bolt CMS**  
  **Requires developer knowledge** – Not as beginner-friendly as WordPress.  
  **Limited plugin ecosystem** – Fewer extensions compared to WordPress.  
  **Small community** – Less support and documentation than Drupal or WordPress.  
@@ -79,7 +79,7 @@ Bolt CMS was created in **2012** by **Bob den Otter**, with a focus on providing
 
 ---
 
-## ** Who Should Use Bolt CMS?**  
+##**Who Should Use Bolt CMS?**  
 Bolt CMS is **ideal for:**  
  **Developers & agencies** who need **flexibility and structured content management**.  
  **Small-to-medium businesses** wanting a **faster alternative to WordPress**.  
@@ -88,7 +88,7 @@ Bolt CMS is **ideal for:**
 
 ---
 
-## ** Conclusion**  
+##**Conclusion**  
 Bolt CMS is a **powerful and flexible CMS** that offers **structured content management, a developer-friendly environment, and strong performance**. While **not as beginner-friendly as WordPress**, it is **lighter, faster, and more customizable**, making it a great choice for **developers, agencies, and businesses looking for a structured, modern CMS**.  
 
 ---

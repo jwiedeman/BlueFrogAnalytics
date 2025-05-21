@@ -5,7 +5,7 @@ description: Learn about Strikingly, its history, features, and how it compares 
 
 # **Strikingly: Overview, History, Pros & Cons**
 
-## ** Overview**  
+##**Overview**  
 Strikingly is a **cloud-based website builder** designed primarily for creating stunning one-page websites with ease. It caters to individuals, entrepreneurs, and small businesses who seek a fast, user-friendly solution to establish an online presence without the need for technical skills. With its intuitive drag-and-drop editor, pre-designed templates, and mobile-responsive designs, Strikingly streamlines the process of building visually appealing websites that work seamlessly across devices.
 
  **Best For:** **Individuals, freelancers, and small businesses** looking to quickly launch a professional one-page website or simple multi-page site.  
@@ -14,7 +14,7 @@ Strikingly is a **cloud-based website builder** designed primarily for creating 
 
 ---
 
-## ** History & Evolution**  
+##**History & Evolution**  
 Strikingly was founded with the goal of simplifying website creation, particularly for one-page sites, at a time when many website builders were becoming overly complex.
 
 - **Late 2000s - Early 2010s:** Strikingly was launched as a solution to help users create attractive one-page websites quickly and easily.
@@ -23,7 +23,7 @@ Strikingly was founded with the goal of simplifying website creation, particular
 
 ---
 
-## ** Key Features & Capabilities**
+##**Key Features & Capabilities**
 
 ### **1⃣ Simple & Intuitive Website Builder**
  **Drag-and-Drop Editor:** Build and customize your site without any coding knowledge.
@@ -47,7 +47,7 @@ Strikingly was founded with the goal of simplifying website creation, particular
 
 ---
 
-## ** Strikingly vs Competitors**
+##**Strikingly vs Competitors**
 
 | Feature                   | Strikingly      | Wix             | Weebly          | Jimdo           |
 |---------------------------|-----------------|-----------------|-----------------|-----------------|
@@ -59,7 +59,7 @@ Strikingly was founded with the goal of simplifying website creation, particular
 
 ---
 
-## ** Pros of Strikingly**  
+##**Pros of Strikingly**  
  **Extremely User-Friendly:** Ideal for beginners who need a quick, hassle-free way to build a website.  
  **Fast Website Deployment:** Launch a professional one-page website in minutes.
  **Modern and Responsive Designs:** Offers sleek, visually appealing templates that look great on any device.
@@ -68,7 +68,7 @@ Strikingly was founded with the goal of simplifying website creation, particular
 
 ---
 
-## ** Cons of Strikingly**  
+##**Cons of Strikingly**  
  **Limited Advanced Customization:** May not offer the depth of design and functionality for complex websites.
  **Focus on One-Page Sites:** Best suited for simple, one-page websites, with fewer features for multi-page designs.
  **Basic eCommerce Features:** Advanced eCommerce capabilities are limited compared to more robust platforms.
@@ -76,7 +76,7 @@ Strikingly was founded with the goal of simplifying website creation, particular
 
 ---
 
-## ** Who Should Use Strikingly?**  
+##**Who Should Use Strikingly?**  
 Strikingly is **ideal for:**  
  **Individuals and freelancers** who need to quickly establish an online portfolio or landing page.
  **Small businesses and startups** seeking an affordable, easy-to-use website builder.
@@ -85,7 +85,7 @@ Strikingly is **ideal for:**
 
 ---
 
-## ** Conclusion**  
+##**Conclusion**  
 Strikingly offers a **streamlined, user-friendly website building experience** perfect for creating modern one-page sites. While it may not provide the advanced features required by larger, more complex websites, its focus on simplicity, responsive design, and rapid deployment make it an excellent choice for individuals, startups, and small businesses looking for a quick and attractive online presence.
 
 ---

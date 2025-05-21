@@ -5,7 +5,7 @@ description: Learn about ezplatform (now Ibexa DXP), its history, features, and 
 
 # **ezplatform (Ibexa DXP): Overview, History, Pros & Cons**
 
-## ** Overview**  
+##**Overview**  
 ezplatform, now rebranded as **Ibexa DXP**, is a **flexible, open-source content management system (CMS)** and digital experience platform designed for enterprises. Built on the Symfony framework, it provides powerful tools for **content management, digital marketing, and omnichannel delivery**. The platform enables organizations to create, manage, and deliver personalized digital experiences across websites, mobile apps, and other channels.
 
  **Best For:** **Large enterprises and global brands** that need a unified solution for managing content and digital experiences with strong personalization capabilities.  
@@ -14,7 +14,7 @@ ezplatform, now rebranded as **Ibexa DXP**, is a **flexible, open-source content
 
 ---
 
-## ** History & Evolution**  
+##**History & Evolution**  
 Originally launched as ezplatform, the solution evolved to meet the increasingly complex needs of enterprise digital experiences. The rebranding to **Ibexa DXP** reflects its expanded focus on digital experience management beyond traditional CMS functionalities.
 
 - **2009:** ezplatform was launched as an open-source CMS aimed at simplifying enterprise content management.  
@@ -24,7 +24,7 @@ Originally launched as ezplatform, the solution evolved to meet the increasingly
 
 ---
 
-## ** Key Features & Capabilities**
+##**Key Features & Capabilities**
 
 ### **1⃣ Flexible Content Modeling & Management**  
  **Custom content types and structures:** Tailor your content to meet specific business needs.  
@@ -48,7 +48,7 @@ Originally launched as ezplatform, the solution evolved to meet the increasingly
 
 ---
 
-## ** ezplatform (Ibexa DXP) vs Competitors**
+##**ezplatform (Ibexa DXP) vs Competitors**
 
 | Feature                   | ezplatform (Ibexa DXP) | Drupal           | Adobe Experience Manager | Sitecore         |
 |---------------------------|------------------------|------------------|--------------------------|------------------|
@@ -61,7 +61,7 @@ Originally launched as ezplatform, the solution evolved to meet the increasingly
 
 ---
 
-## ** Pros of ezplatform (Ibexa DXP)**  
+##**Pros of ezplatform (Ibexa DXP)**  
  **Robust content management:** Flexible and powerful tools for managing complex content.  
  **Headless capabilities:** Seamlessly deliver content across multiple digital channels.  
  **Strong personalization tools:** Enhance user engagement with tailored digital experiences.  
@@ -70,7 +70,7 @@ Originally launched as ezplatform, the solution evolved to meet the increasingly
 
 ---
 
-## ** Cons of ezplatform (Ibexa DXP)**  
+##**Cons of ezplatform (Ibexa DXP)**  
  **Steep learning curve:** Requires technical expertise for full customization and setup.  
  **Complex administration:** Not as immediately accessible for non-technical users.  
  **Enterprise pricing:** Higher costs may not suit small businesses or startups.  
@@ -78,7 +78,7 @@ Originally launched as ezplatform, the solution evolved to meet the increasingly
 
 ---
 
-## ** Who Should Use ezplatform (Ibexa DXP)?**  
+##**Who Should Use ezplatform (Ibexa DXP)?**  
 ezplatform (Ibexa DXP) is **ideal for:**  
  **Large enterprises and global brands** needing an integrated digital experience platform.  
  **Organizations with complex content and personalization requirements.**  
@@ -87,7 +87,7 @@ ezplatform (Ibexa DXP) is **ideal for:**
 
 ---
 
-## ** Conclusion**  
+##**Conclusion**  
 ezplatform, now rebranded as **Ibexa DXP**, offers a comprehensive and flexible solution for enterprises seeking to deliver personalized, omnichannel digital experiences. While its implementation requires significant technical expertise and investment, its robust content management, headless capabilities, and powerful personalization tools make it a compelling choice for organizations aiming to transform their digital presence.
 
 ---

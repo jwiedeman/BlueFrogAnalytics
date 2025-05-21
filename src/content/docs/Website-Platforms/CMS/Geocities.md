@@ -5,7 +5,7 @@ description: Learn about GeoCities, its history, features, and legacy as one of 
 
 # **GeoCities: Overview, History, Pros & Cons**
 
-## ** Overview**  
+##**Overview**  
 GeoCities was one of the first **free web hosting and website building platforms** that allowed everyday users to create their own web pages. Launched in the mid-1990s, it democratized web publishing by offering a simple, accessible way for individuals to establish an online presence. Although it has long been defunct, GeoCities remains an important part of internet history and the evolution of website builders.
 
  **Best For (Historically):** **Hobbyists, personal bloggers, and early internet enthusiasts** looking for an easy entry into web publishing.  
@@ -14,7 +14,7 @@ GeoCities was one of the first **free web hosting and website building platforms
 
 ---
 
-## ** History & Evolution**  
+##**History & Evolution**  
 GeoCities was founded in **1994** and became one of the most popular websites of the early internet era:
 
 - **1994:** GeoCities launched, allowing users to create personal web pages for free.  
@@ -24,7 +24,7 @@ GeoCities was founded in **1994** and became one of the most popular websites of
 
 ---
 
-## ** Key Features & Capabilities (Historical)**
+##**Key Features & Capabilities (Historical)**
 
 ### **1⃣ Free Web Hosting & Easy Site Creation**  
  **User-Friendly Tools:** Offered basic HTML editors and templates for non-technical users.  
@@ -40,7 +40,7 @@ GeoCities was founded in **1994** and became one of the most popular websites of
 
 ---
 
-## ** GeoCities vs Modern Website Builders**
+##**GeoCities vs Modern Website Builders**
 
 | Feature                 | GeoCities (Historical)      | Modern Website Builders (e.g., Wix, WordPress) |
 |-------------------------|-----------------------------|-----------------------------------------------|
@@ -52,21 +52,21 @@ GeoCities was founded in **1994** and became one of the most popular websites of
 
 ---
 
-## ** Pros of GeoCities**  
+##**Pros of GeoCities**  
  **Pioneered Free Web Publishing:** Made it accessible for millions to establish an online presence.  
  **User-Friendly for Beginners:** Simple tools that lowered the barrier to entry for web design.  
  **Community-Oriented:** Fostered a sense of belonging and creativity among early internet users.
 
 ---
 
-## ** Cons of GeoCities**  
+##**Cons of GeoCities**  
  **Limited Functionality:** Basic tools and templates that are primitive compared to today’s standards.  
  **Static Websites:** Lacked interactive and dynamic features now expected from modern websites.  
  **Decline in Relevance:** Outdated technology and design eventually led to its shutdown in the face of evolving web standards.
 
 ---
 
-## ** Who Used GeoCities?**  
+##**Who Used GeoCities?**  
 Historically, GeoCities was **ideal for**:  
  **Early internet enthusiasts and hobbyists** looking for an easy way to create personal websites.  
  **Community builders** who wanted to share interests in specific neighborhoods.  
@@ -74,7 +74,7 @@ Historically, GeoCities was **ideal for**:
 
 ---
 
-## ** Conclusion**  
+##**Conclusion**  
 While GeoCities is no longer active, its legacy as one of the pioneering website builders is undeniable. It **revolutionized personal web publishing** in the 1990s by making website creation accessible to everyone, setting the stage for the advanced, feature-rich platforms we use today.
 
 ---

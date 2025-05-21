@@ -5,7 +5,7 @@ description: Learn about Spree Commerce, its history, features, and how it compa
 
 # **Spree Commerce: Overview, History, Pros & Cons**
 
-## ** Overview**  
+##**Overview**  
 Spree Commerce is a **free, open-source eCommerce platform** built on **Ruby on Rails**. Designed for developers and agile teams, Spree offers a highly customizable and modular framework for building online stores. Its flexible architecture and extensive API support make it an attractive choice for businesses seeking a tailored eCommerce solution that can evolve with their needs.
 
  **Best For:** **Developers, agencies, and businesses** that need a customizable, scalable eCommerce solution with a focus on modern web technologies.  
@@ -14,7 +14,7 @@ Spree Commerce is a **free, open-source eCommerce platform** built on **Ruby on 
 
 ---
 
-## ** History & Evolution**  
+##**History & Evolution**  
 Spree Commerce was created to offer a lightweight, modular eCommerce platform that emphasizes flexibility and developer empowerment.
 
 - **2007:** Spree Commerce was launched as an open-source project built on Ruby on Rails, quickly attracting a community of developers.
@@ -23,7 +23,7 @@ Spree Commerce was created to offer a lightweight, modular eCommerce platform th
 
 ---
 
-## ** Key Features & Capabilities**
+##**Key Features & Capabilities**
 
 ### **1⃣ Modular & Flexible Architecture**
  **Extensible Framework:** Built on Ruby on Rails, allowing developers to easily customize and extend functionalities.
@@ -47,7 +47,7 @@ Spree Commerce was created to offer a lightweight, modular eCommerce platform th
 
 ---
 
-## ** Spree Commerce vs Competitors**
+##**Spree Commerce vs Competitors**
 
 | Feature                    | Spree Commerce    | Magento (Adobe Commerce) | WooCommerce      | Shopify (Headless) |
 |----------------------------|-------------------|--------------------------|------------------|--------------------|
@@ -59,7 +59,7 @@ Spree Commerce was created to offer a lightweight, modular eCommerce platform th
 
 ---
 
-## ** Pros of Spree Commerce**  
+##**Pros of Spree Commerce**  
  **Highly Customizable:** Fully open-source with a modular design, offering extensive customization options.
  **Developer-Friendly:** Built on Ruby on Rails with robust APIs, making it ideal for teams with technical expertise.
  **Flexible & Scalable:** Capable of handling multi-store setups and global eCommerce requirements.
@@ -68,7 +68,7 @@ Spree Commerce was created to offer a lightweight, modular eCommerce platform th
 
 ---
 
-## ** Cons of Spree Commerce**  
+##**Cons of Spree Commerce**  
  **Technical Expertise Required:** Best suited for developers; non-technical users may find it challenging.
  **Steeper Learning Curve:** Customization and setup may require significant development resources.
  **Limited Out-of-the-Box Features:** May need additional development or extensions to match the functionalities of enterprise-grade platforms.
@@ -76,7 +76,7 @@ Spree Commerce was created to offer a lightweight, modular eCommerce platform th
 
 ---
 
-## ** Who Should Use Spree Commerce?**  
+##**Who Should Use Spree Commerce?**  
 Spree Commerce is **ideal for:**  
  **Developers and agencies** building custom eCommerce solutions.
  **Businesses with unique requirements** that demand a highly flexible, modular platform.
@@ -85,7 +85,7 @@ Spree Commerce is **ideal for:**
 
 ---
 
-## ** Conclusion**  
+##**Conclusion**  
 Spree Commerce offers a **powerful and flexible eCommerce solution** that is well-suited for businesses seeking complete control over their online stores. Its open-source nature, robust API support, and modular design make it a great option for developers and organizations with specialized requirements, although it may require a higher degree of technical expertise and customization compared to more turnkey solutions.
 
 ---

@@ -5,7 +5,7 @@ description: Learn about Kentico Kontent, its history, features, and how it comp
 
 # **Kentico Kontent: Overview, History, Pros & Cons**
 
-## ** Overview**  
+##**Overview**  
 Kentico Kontent is a **headless content management system (CMS)** designed for enterprises and digital teams to manage and deliver content across multiple channels. As part of the Kentico family, Kontent separates content creation from presentation, empowering teams to design omnichannel experiences with ease. Its API-first approach, robust content modeling, and collaboration features make it ideal for modern digital projects.
 
  **Best For:** **Mid-to-large enterprises and agencies** that need a scalable, cloud-based headless CMS for managing and distributing content across websites, mobile apps, IoT devices, and more.  
@@ -14,7 +14,7 @@ Kentico Kontent is a **headless content management system (CMS)** designed for e
 
 ---
 
-## ** History & Evolution**  
+##**History & Evolution**  
 Kentico Kontent was developed to address the evolving needs of digital content management beyond traditional CMS solutions. As part of the Kentico portfolio, it represents a strategic shift toward headless, cloud-based content management that supports omnichannel digital experiences.
 
 - **2017:** Kentico introduced Kentico Kontent as a cloud-based headless CMS to modernize content management practices.
@@ -23,7 +23,7 @@ Kentico Kontent was developed to address the evolving needs of digital content m
 
 ---
 
-## ** Key Features & Capabilities**
+##**Key Features & Capabilities**
 
 ### **1⃣ API-First & Headless Architecture**  
  **RESTful and GraphQL APIs:** Deliver content seamlessly to any digital channel, decoupling content creation from presentation.  
@@ -47,7 +47,7 @@ Kentico Kontent was developed to address the evolving needs of digital content m
 
 ---
 
-## ** Kentico Kontent vs Competitors**
+##**Kentico Kontent vs Competitors**
 
 | Feature                   | Kentico Kontent   | Contentful        | DatoCMS         | Sanity          | Strapi          |
 |---------------------------|-------------------|-------------------|-----------------|-----------------|-----------------|
@@ -59,7 +59,7 @@ Kentico Kontent was developed to address the evolving needs of digital content m
 
 ---
 
-## ** Pros of Kentico Kontent**  
+##**Pros of Kentico Kontent**  
  **Comprehensive headless CMS:** Enables omnichannel content delivery through an API-first approach.  
  **Flexible content modeling:** Customize content types to meet diverse business requirements.  
  **Collaboration and workflow features:** Streamline content creation with built-in collaboration tools and role-based access.  
@@ -68,7 +68,7 @@ Kentico Kontent was developed to address the evolving needs of digital content m
 
 ---
 
-## ** Cons of Kentico Kontent**  
+##**Cons of Kentico Kontent**  
  **Enterprise pricing:** May be cost-prohibitive for smaller businesses or startups.  
  **Technical expertise required:** Best suited for teams with development resources to fully leverage its API-first capabilities.  
  **Learning curve:** Advanced customization and integrations may require time and training.  
@@ -76,7 +76,7 @@ Kentico Kontent was developed to address the evolving needs of digital content m
 
 ---
 
-## ** Who Should Use Kentico Kontent?**  
+##**Who Should Use Kentico Kontent?**  
 Kentico Kontent is **ideal for:**  
  **Mid-to-large enterprises and agencies** looking for a robust, headless CMS to support omnichannel digital experiences.  
  **Organizations with complex content management needs** that require flexible content modeling and collaboration workflows.  
@@ -85,7 +85,7 @@ Kentico Kontent is **ideal for:**
 
 ---
 
-## ** Conclusion**  
+##**Conclusion**  
 Kentico Kontent offers a **powerful, cloud-based headless CMS solution** designed to meet the needs of modern enterprises. With its flexible content modeling, robust collaboration tools, and seamless integrations, it empowers organizations to deliver consistent, personalized digital experiences across multiple channels. While it requires a significant investment and technical expertise, its comprehensive feature set makes it a strong contender for businesses looking to drive digital transformation.
 
 ---

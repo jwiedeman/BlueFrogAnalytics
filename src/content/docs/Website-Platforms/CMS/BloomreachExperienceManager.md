@@ -5,7 +5,7 @@ description: Learn about Bloomreach Experience Manager (brXM), its history, feat
 
 # **Bloomreach Experience Manager (brXM): Overview, History, Pros & Cons**  
 
-## ** Overview**  
+##**Overview**  
 Bloomreach Experience Manager (brXM) is an **API-driven, headless content management system (CMS)** and **digital experience platform (DXP)** designed for enterprises that require **personalized, scalable, and AI-powered content solutions**. It is built to support **omnichannel content delivery**, integrating seamlessly with eCommerce platforms and digital marketing tools.  
 
  **Best For:** **Enterprise businesses, eCommerce brands, and content-heavy organizations** that require **AI-powered personalization and API-first CMS capabilities**.  
@@ -14,7 +14,7 @@ Bloomreach Experience Manager (brXM) is an **API-driven, headless content manage
 
 ---
 
-## ** History & Evolution**  
+##**History & Evolution**  
 Bloomreach was founded in **2009** as an AI-powered search and personalization platform. Over time, it expanded into the **digital experience space**, acquiring **Hippo CMS** in 2016, which became the foundation for Bloomreach Experience Manager.  
 
 - **2009:** Bloomreach was founded, focusing on AI-powered search and personalization.  
@@ -24,7 +24,7 @@ Bloomreach was founded in **2009** as an AI-powered search and personalization p
 
 ---
 
-## ** Key Features & Capabilities**  
+##**Key Features & Capabilities**  
 
 ### **1⃣ Headless & API-First CMS**  
  **GraphQL & REST API support** for omnichannel content distribution.  
@@ -53,7 +53,7 @@ Bloomreach was founded in **2009** as an AI-powered search and personalization p
 
 ---
 
-## ** Bloomreach vs Competitors**  
+##**Bloomreach vs Competitors**  
 
 | Feature                  | Bloomreach (brXM) | Adobe Experience Manager | Sitecore | Acquia (Drupal) | Contentful |
 |--------------------------|------------------|-------------------------|----------|----------------|------------|
@@ -66,7 +66,7 @@ Bloomreach was founded in **2009** as an AI-powered search and personalization p
 
 ---
 
-## ** Pros of Bloomreach Experience Manager**  
+##**Pros of Bloomreach Experience Manager**  
  **Headless CMS with API-First Flexibility** – Ideal for omnichannel content delivery.  
  **AI-Driven Personalization & Search Optimization** – Increases engagement and conversions.  
  **Seamless eCommerce Integrations** – Works well with Shopify, Magento, and Salesforce Commerce.  
@@ -75,7 +75,7 @@ Bloomreach was founded in **2009** as an AI-powered search and personalization p
 
 ---
 
-## ** Cons of Bloomreach Experience Manager**  
+##**Cons of Bloomreach Experience Manager**  
  **Enterprise Pricing** – Not suitable for small businesses or personal websites.  
  **Requires Developer Support** – API-driven approach means technical knowledge is needed.  
  **Complex Setup for Non-Tech Users** – Compared to WordPress or Shopify.  
@@ -83,7 +83,7 @@ Bloomreach was founded in **2009** as an AI-powered search and personalization p
 
 ---
 
-## ** Who Should Use Bloomreach Experience Manager?**  
+##**Who Should Use Bloomreach Experience Manager?**  
 Bloomreach (brXM) is **ideal for:**  
  **Enterprise organizations** needing **AI-driven personalization**.  
  **eCommerce brands** wanting **seamless content & commerce integration**.  
@@ -92,7 +92,7 @@ Bloomreach (brXM) is **ideal for:**
 
 ---
 
-## ** Conclusion**  
+##**Conclusion**  
 Bloomreach Experience Manager is a **powerful enterprise-level CMS and DXP**, built for businesses that need **scalable, AI-powered personalization and omnichannel content management**. While **it requires a development team and is priced for large businesses**, it is one of the **most advanced solutions for digital commerce and customer experience optimization**.  
 
 ---

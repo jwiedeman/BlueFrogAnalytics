@@ -5,7 +5,7 @@ description: Learn about Prismic, its history, features, and how it compares to 
 
 # **Prismic: Overview, History, Pros & Cons**
 
-## ** Overview**  
+##**Overview**  
 Prismic is a **headless content management system (CMS)** that focuses on providing a flexible, API-first solution for modern web and mobile applications. It enables content teams and developers to manage and deliver structured content across multiple channels using a sleek, intuitive interface. With powerful content modeling (notably its "slices" feature), real-time previews, and multi-language support, Prismic streamlines the content creation process and facilitates omnichannel digital experiences.
 
  **Best For:** **Developers, agencies, and enterprises** that need a headless CMS to support agile, omnichannel content delivery.  
@@ -14,7 +14,7 @@ Prismic is a **headless content management system (CMS)** that focuses on provid
 
 ---
 
-## ** History & Evolution**  
+##**History & Evolution**  
 Prismic was created to meet the growing need for a modern, decoupled CMS that integrates seamlessly into the JAMstack and headless architecture ecosystem.
 
 - **2013:** Prismic was founded with the vision of redefining content management for the modern web.
@@ -23,7 +23,7 @@ Prismic was created to meet the growing need for a modern, decoupled CMS that in
 
 ---
 
-## ** Key Features & Capabilities**
+##**Key Features & Capabilities**
 
 ### **1⃣ API-First & Headless Architecture**
  **RESTful & GraphQL APIs:** Easily fetch and deliver content across websites, mobile apps, and other digital channels.
@@ -46,7 +46,7 @@ Prismic was created to meet the growing need for a modern, decoupled CMS that in
 
 ---
 
-## ** Prismic vs Competitors**
+##**Prismic vs Competitors**
 
 | Feature                   | Prismic          | Contentful      | DatoCMS         | Sanity          | Netlify CMS    |
 |---------------------------|------------------|-----------------|-----------------|-----------------|----------------|
@@ -58,7 +58,7 @@ Prismic was created to meet the growing need for a modern, decoupled CMS that in
 
 ---
 
-## ** Pros of Prismic**  
+##**Pros of Prismic**  
  **Innovative Content Slicing:** Allows for modular, reusable components that streamline page building.  
  **API-First Approach:** Seamlessly integrates with modern front-end frameworks and supports omnichannel delivery.  
  **Real-Time Collaboration:** Instant previews and versioning enhance workflow efficiency.  
@@ -67,7 +67,7 @@ Prismic was created to meet the growing need for a modern, decoupled CMS that in
 
 ---
 
-## ** Cons of Prismic**  
+##**Cons of Prismic**  
  **Proprietary Platform:** Involves subscription costs and potential vendor lock-in.  
  **Learning Curve for Advanced Features:** Customizing slices and complex content models may require additional training.  
  **Smaller Ecosystem:** Fewer third-party integrations compared to some larger headless CMS platforms.  
@@ -75,7 +75,7 @@ Prismic was created to meet the growing need for a modern, decoupled CMS that in
 
 ---
 
-## ** Who Should Use Prismic?**  
+##**Who Should Use Prismic?**  
 Prismic is **ideal for:**  
  **Developers and agencies** building modern web and mobile applications with an API-first approach.  
  **Content teams looking for an agile, flexible CMS** with real-time collaboration features.  
@@ -84,7 +84,7 @@ Prismic is **ideal for:**
 
 ---
 
-## ** Conclusion**  
+##**Conclusion**  
 Prismic offers a **powerful and flexible headless CMS** that is well-suited for modern digital projects. Its innovative approach to content slicing, robust API support, and intuitive interface make it an excellent choice for teams looking to create and manage content across multiple channels. While its proprietary model and advanced features may involve a learning curve, Prismic’s benefits in modularity and collaboration position it as a strong competitor in the headless CMS space.
 
 ---

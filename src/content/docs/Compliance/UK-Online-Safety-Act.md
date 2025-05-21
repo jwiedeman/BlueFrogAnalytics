@@ -26,7 +26,7 @@ This guide will help you **understand, implement, and maintain compliance** with
   - **User-to-User Services:** Platforms allowing users to share content (e.g., social media, forums).
   - **Search Engines:** Services enabling users to discover content online.
   - **Any online service accessible in the UK**, regardless of where the company is based.
-- ** Industry-Specific Considerations:**
+-**Industry-Specific Considerations:**
   - **Social Media Platforms:** Must implement robust content moderation and age verification.
   - **Online Marketplaces:** Ensure product listings do not contain illegal content.
   - **Cloud Storage Services:** Prevent distribution of illegal materials.
@@ -35,7 +35,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 ---
 
 ## **3. What It Covers**
-- ** Key Areas Addressed:**
+-**Key Areas Addressed:**
   -  **Illegal Content:** Prevent and remove content related to terrorism, child sexual abuse, and other illegal activities.
   -  **Harmful Content to Children:** Protect minors from inappropriate or harmful material.
   -  **User Empowerment:** Provide tools for users to report and manage exposure to harmful content.
@@ -64,32 +64,32 @@ This guide will help you **understand, implement, and maintain compliance** with
 
 ## **5. Consequences of Non-Compliance**
 ### **Penalties & Fines**
-- ** Financial Penalties:** Up to £18 million or 10% of annual global turnover, whichever is higher.
-- ** Daily Fines:** Additional fines for ongoing non-compliance.
-- ** Business Restrictions:** Potential blocking of services within the UK.
+-**Financial Penalties:** Up to £18 million or 10% of annual global turnover, whichever is higher.
+-**Daily Fines:** Additional fines for ongoing non-compliance.
+-**Business Restrictions:** Potential blocking of services within the UK.
 
 ### **Legal Actions & Lawsuits**
-- ** Regulatory Investigations:** Ofcom can conduct audits and require information disclosures.
-- ** Criminal Charges:** Senior managers may face personal liability for severe breaches.
-- ** Service Suspension:** Courts can order the suspension of non-compliant services.
+-**Regulatory Investigations:** Ofcom can conduct audits and require information disclosures.
+-**Criminal Charges:** Senior managers may face personal liability for severe breaches.
+-**Service Suspension:** Courts can order the suspension of non-compliant services.
 
 ### **Business Impact**
-- ** Reputational Damage:** Loss of user trust and potential decline in user base.
-- ** Market Access:** Restrictions or bans from operating in the UK market.
-- ** Increased Operational Costs:** Expenses related to implementing compliance measures and potential legal fees.
+-**Reputational Damage:** Loss of user trust and potential decline in user base.
+-**Market Access:** Restrictions or bans from operating in the UK market.
+-**Increased Operational Costs:** Expenses related to implementing compliance measures and potential legal fees.
 
 ---
 
 ## **6. Why the Online Safety Act Exists**
 ### **Historical Background**
-- ** 2017:** Tragic events, such as the death of Molly Russell, highlighted the dangers of online harmful content.
-- ** 2019:** Introduction of the Online Harms White Paper, proposing a duty of care for online platforms.
-- ** 2023:** Enactment of the Online Safety Act to formalize responsibilities and regulatory frameworks.
+-**2017:** Tragic events, such as the death of Molly Russell, highlighted the dangers of online harmful content.
+-**2019:** Introduction of the Online Harms White Paper, proposing a duty of care for online platforms.
+-**2023:** Enactment of the Online Safety Act to formalize responsibilities and regulatory frameworks.
 
 ### **Global Influence & Trends**
-- ** Alignment with International Standards:** Reflects global efforts to regulate online content and protect users.
-- ** Influence on Other Jurisdictions:** Sets a precedent for other countries considering similar legislation.
-- ** Future Updates Expected:**
+-**Alignment with International Standards:** Reflects global efforts to regulate online content and protect users.
+-**Influence on Other Jurisdictions:** Sets a precedent for other countries considering similar legislation.
+-**Future Updates Expected:**
   - **AI and Algorithm Transparency:** Addressing the role of algorithms in content dissemination.
   - **Enhanced Protections for Vulnerable Groups:** Ongoing adjustments to safeguard at-risk users.
 

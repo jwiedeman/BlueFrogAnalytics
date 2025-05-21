@@ -5,7 +5,7 @@ description: Learn about Episerver (now Optimizely), its history, features, and 
 
 # **Episerver (Optimizely): Overview, History, Pros & Cons**
 
-## ** Overview**  
+##**Overview**  
 Episerver, rebranded as **Optimizely**, is an **enterprise-grade digital experience platform (DXP)** that combines robust **content management, digital commerce, and personalization capabilities**. Designed for businesses seeking to deliver engaging, personalized experiences across digital channels, it offers a unified solution to manage websites, eCommerce, and marketing campaigns—all powered by data-driven insights and AI.
 
  **Best For:** **Large enterprises and global brands** that need an integrated solution for content, commerce, and digital marketing.  
@@ -14,7 +14,7 @@ Episerver, rebranded as **Optimizely**, is an **enterprise-grade digital experie
 
 ---
 
-## ** History & Evolution**  
+##**History & Evolution**  
 Originally known as Episerver, the platform evolved over the years to meet the growing demands of digital transformation. In recent years, a strategic rebranding to **Optimizely** has reinforced its focus on data-driven experimentation and optimization across digital channels.
 
 - **1994:** Founded as Episerver, focusing on web content management solutions.  
@@ -25,7 +25,7 @@ Originally known as Episerver, the platform evolved over the years to meet the g
 
 ---
 
-## ** Key Features & Capabilities**
+##**Key Features & Capabilities**
 
 ### **1⃣ Integrated Digital Experience Platform**  
  **Unified CMS & Commerce:** Manage content and digital commerce from a single platform.  
@@ -49,7 +49,7 @@ Originally known as Episerver, the platform evolved over the years to meet the g
 
 ---
 
-## ** Episerver (Optimizely) vs Competitors**
+##**Episerver (Optimizely) vs Competitors**
 
 | Feature                  | Episerver (Optimizely) | Adobe Experience Manager | Sitecore        | Salesforce Commerce Cloud |
 |--------------------------|------------------------|--------------------------|-----------------|---------------------------|
@@ -61,7 +61,7 @@ Originally known as Episerver, the platform evolved over the years to meet the g
 
 ---
 
-## ** Pros of Episerver (Optimizely)**  
+##**Pros of Episerver (Optimizely)**  
  **Integrated platform** combining CMS, commerce, and digital marketing.  
  **Advanced personalization and optimization tools** for data-driven digital experiences.  
  **Omnichannel delivery** ensures consistent branding and user experiences.  
@@ -70,7 +70,7 @@ Originally known as Episerver, the platform evolved over the years to meet the g
 
 ---
 
-## ** Cons of Episerver (Optimizely)**  
+##**Cons of Episerver (Optimizely)**  
  **Steep learning curve** – Best suited for organizations with technical expertise.  
  **High implementation and licensing costs** – Designed for large enterprises rather than small businesses.  
  **Complex customization** may require dedicated development resources.  
@@ -78,7 +78,7 @@ Originally known as Episerver, the platform evolved over the years to meet the g
 
 ---
 
-## ** Who Should Use Episerver (Optimizely)?**  
+##**Who Should Use Episerver (Optimizely)?**  
 Episerver (Optimizely) is **ideal for:**  
  **Large enterprises and global brands** requiring an integrated digital experience platform.  
  **Organizations focused on personalization and data-driven optimization.**  
@@ -87,7 +87,7 @@ Episerver (Optimizely) is **ideal for:**
 
 ---
 
-## ** Conclusion**  
+##**Conclusion**  
 Episerver, now rebranded as **Optimizely**, stands out as a **comprehensive digital experience platform** that blends content management, digital commerce, and marketing optimization. While it may require significant investment and technical know-how, its **advanced personalization, omnichannel capabilities, and robust analytics** make it a top choice for enterprises aiming to deliver exceptional digital experiences.
 
 ---

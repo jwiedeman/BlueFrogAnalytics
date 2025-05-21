@@ -5,7 +5,7 @@ description: Learn about Bludit, its history, features, and how it compares to o
 
 # **Bludit: Overview, History, Pros & Cons**  
 
-## ** Overview**  
+##**Overview**  
 Bludit is a **lightweight, flat-file CMS** designed for **simplicity, speed, and minimal server requirements**. Unlike database-driven CMS platforms, Bludit stores content in **plain text files (JSON format)**, making it **fast, portable, and easy to set up**.  
 
  **Best For:** **Personal blogs, small business sites, and developers who prefer a lightweight CMS**.  
@@ -14,7 +14,7 @@ Bludit is a **lightweight, flat-file CMS** designed for **simplicity, speed, and
 
 ---
 
-## ** History & Evolution**  
+##**History & Evolution**  
 Bludit was created by **Diego Najar** and launched in **2015** as a simple alternative to database-driven CMSs like WordPress.  
 
 - **2015:** Bludit was introduced as a **flat-file CMS**, requiring no MySQL or databases.  
@@ -24,7 +24,7 @@ Bludit was created by **Diego Najar** and launched in **2015** as a simple alter
 
 ---
 
-## ** Key Features & Capabilities**  
+##**Key Features & Capabilities**  
 
 ### **1⃣ Flat-File Architecture**  
  **No database required** – Stores content in JSON files.  
@@ -53,7 +53,7 @@ Bludit was created by **Diego Najar** and launched in **2015** as a simple alter
 
 ---
 
-## ** Bludit vs Competitors**  
+##**Bludit vs Competitors**  
 
 | Feature                  | Bludit | Grav       | Kirby      | Hugo        | Jekyll      |
 |--------------------------|--------|------------|------------|------------|------------|
@@ -66,7 +66,7 @@ Bludit was created by **Diego Najar** and launched in **2015** as a simple alter
 
 ---
 
-## ** Pros of Bludit**  
+##**Pros of Bludit**  
  **Super lightweight and fast** – No database overhead.  
  **Easy to set up** – Install and start using within minutes.  
  **Minimal security risks** – No SQL vulnerabilities.  
@@ -75,7 +75,7 @@ Bludit was created by **Diego Najar** and launched in **2015** as a simple alter
 
 ---
 
-## ** Cons of Bludit**  
+##**Cons of Bludit**  
  **Limited scalability** – Not ideal for large, complex sites.  
  **Fewer themes and plugins** compared to WordPress.  
  **Basic built-in SEO tools** – Requires manual optimization.  
@@ -83,7 +83,7 @@ Bludit was created by **Diego Najar** and launched in **2015** as a simple alter
 
 ---
 
-## ** Who Should Use Bludit?**  
+##**Who Should Use Bludit?**  
 Bludit is **ideal for:**  
  **Personal bloggers** who want a **simple, fast CMS**.  
  **Developers who prefer a database-free setup**.  
@@ -92,7 +92,7 @@ Bludit is **ideal for:**
 
 ---
 
-## ** Conclusion**  
+##**Conclusion**  
 Bludit is a **fast, simple, and lightweight CMS** that’s perfect for users who need **a no-database, easy-to-maintain website**. While it **lacks the scalability of WordPress or Drupal**, it **excels in speed, security, and ease of use**, making it a great choice for **personal blogs, small sites, and minimalist projects**.  
 
 ---
