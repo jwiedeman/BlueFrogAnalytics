@@ -24,27 +24,27 @@ const shouldRenderSearch =
 <header class="bx--header" aria-label="Blue Frog Analytics">
   <link rel="sitemap" href="/sitemap-index.xml" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.css" integrity="sha384-WsHMgfkABRyG494OmuiNmkAOk8nhO1qE+Y6wns6v+EoNoTNxrWxYpl5ZYWFOLPCM" crossorigin="anonymous">
-  <div class="bx--header__container">
-    <!-- Left: Logo -->
-    <div class="bx--header__name">
-      <SiteTitle />
-    </div>
 
-    <!-- Center: Main Navigation -->
-    <nav class="bx--header__nav">
-      <ul class="bx--header__menu-bar">
-        {mainNav.map((item) => (
-          <li><a class="bx--header__menu-item" href={item.link}>{item.label}</a></li>
-        ))}
-      </ul>
-    </nav>
+  <!-- Left: Logo -->
+  <div class="bx--header__name">
+    <SiteTitle />
+  </div>
 
-    <!-- Right: Search & Icons -->
-    <div class="bx--header__global">
-      {shouldRenderSearch && <Search />}
-      <SocialIcons />
-      <ThemeSelect />
-      <LanguageSelect />
-    </div>
+  <!-- Center: Main Navigation -->
+  <nav class="bx--header__nav">
+    <ul class="bx--header__menu-bar">
+      {mainNav.map((item) => (
+        <li><a class="bx--header__menu-item" href={item.link}>{item.label}</a></li>
+      ))}
+    </ul>
+  </nav>
+
+  <!-- Right: Search & Icons -->
+  <div class="bx--header__global">
+    {shouldRenderSearch && <Search />}
+    <SocialIcons />
+    <ThemeSelect />
+    <LanguageSelect />
+
   </div>
 </header>
