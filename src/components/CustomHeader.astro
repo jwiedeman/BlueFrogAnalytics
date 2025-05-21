@@ -21,7 +21,7 @@ const shouldRenderSearch =
   config.pagefind || config.components.Search !== '@astrojs/starlight/components/Search.astro';
 ---
 
-<div class="bx--header custom-header">
+<header class="bx--header custom-header">
   <link rel="sitemap" href="/sitemap-index.xml" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.css" integrity="sha384-WsHMgfkABRyG494OmuiNmkAOk8nhO1qE+Y6wns6v+EoNoTNxrWxYpl5ZYWFOLPCM" crossorigin="anonymous">
   <div class="bx--header__container custom-header-content">
@@ -47,18 +47,18 @@ const shouldRenderSearch =
       <LanguageSelect />
     </div>
   </div>
-</div>
+</header>
 
 <style>
   /* Ensure Header is Properly Aligned in Starlight Layout */
-  .bx--header.custom-header {
+  header.bx--header.custom-header {
     width: 100%;
     position: sticky;
     top: 0;
     z-index: 50;
     margin: 0;
     padding: 0;
-    background: black;
+    background: #333;
   }
 
   /* Remove default padding or margin on the outer <header> wrapper */
@@ -126,7 +126,7 @@ const shouldRenderSearch =
 
   /* Ensure It Doesn't Expand on Doc Pages */
   :global(:root[data-has-sidebar]) .custom-header-content {
-    width: calc(100% - var(--sl-sidebar-width));
+    width: 100%;
   }
 
 
