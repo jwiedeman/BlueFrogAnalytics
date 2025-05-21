@@ -1,32 +1,15 @@
-.doc-tree, .doc-tree ul {
+.doc-accordion {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.tree-node {
-  margin: 0.25rem 0;
+.doc-accordion ul {
+  list-style: none;
+  margin: 0;
   padding-left: 1rem;
-  position: relative;
 }
-.tree-node .node-label,
-.tree-node.leaf > a {
-  cursor: pointer;
-  display: inline-block;
-}
-.tree-node.has-children .node-label::before {
-  content: "▸";
-  position: absolute;
-  left: 0;
-}
-.tree-node.expanded .node-label::before {
-  content: "▾";
-}
-.tree-node.has-children > ul {
-  display: none;
-  margin-left: 1rem;
-}
-.tree-node.expanded > ul {
-  display: block;
+.doc-link-item {
+  margin: 0.25rem 0;
 }
 :root {
   --sl-font-sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
