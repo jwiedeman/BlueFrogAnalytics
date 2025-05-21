@@ -13,7 +13,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 - **📖 Short Description:** A technical specification developed by W3C to improve the accessibility of dynamic web content and web applications for users with disabilities.  
 - **📅 Latest Version:** WAI-ARIA 1.2 (December 2021)  
 - **🏛️ Governing Body:** World Wide Web Consortium (W3C), Web Accessibility Initiative (WAI)  
-- **🎯 Primary Purpose:** Enhance the accessibility of interactive and dynamic web content for people using assistive technologies like screen readers and voice input tools.  
+- ** Primary Purpose:** Enhance the accessibility of interactive and dynamic web content for people using assistive technologies like screen readers and voice input tools.  
 
 ---
 
@@ -33,11 +33,11 @@ This guide will help you **understand, implement, and maintain compliance** with
 
 ## **📂 3. What It Covers**
 - **🔐 Key Accessibility Areas Addressed by WAI-ARIA:**  
-  - ✅ **Landmark Roles** – Identify page sections (e.g., `role="navigation"`, `role="main"`)  
-  - ✅ **Widget Roles** – Improve interaction for complex UI components (e.g., `role="dialog"`, `role="tablist"`)  
-  - ✅ **Live Regions** – Provide updates without disrupting user focus (e.g., `aria-live="polite"`)  
-  - ✅ **Keyboard Navigation & Focus Management** – Define `tabindex`, `aria-activedescendant`, and focus handling  
-  - ✅ **State & Property Attributes** – Indicate states like expanded (`aria-expanded`), hidden (`aria-hidden`), or required (`aria-required`)  
+  -  **Landmark Roles** – Identify page sections (e.g., `role="navigation"`, `role="main"`)  
+  -  **Widget Roles** – Improve interaction for complex UI components (e.g., `role="dialog"`, `role="tablist"`)  
+  -  **Live Regions** – Provide updates without disrupting user focus (e.g., `aria-live="polite"`)  
+  -  **Keyboard Navigation & Focus Management** – Define `tabindex`, `aria-activedescendant`, and focus handling  
+  -  **State & Property Attributes** – Indicate states like expanded (`aria-expanded`), hidden (`aria-hidden`), or required (`aria-required`)  
 
 ---
 
@@ -49,7 +49,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 ✔ **Implement Live Regions for Updates** – Dynamically updated content should notify assistive technologies.  
 ✔ **Ensure Keyboard Accessibility** – All interactive elements should be operable via keyboard.  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **ARIA Roles & Attributes** – Assign proper `role`, `aria-label`, and `aria-describedby` values.  
 ✔ **Keyboard Support & Focus Management** – Ensure logical tab order and keyboard navigability.  
 ✔ **Assistive Technology Compatibility** – Test with screen readers like NVDA, JAWS, and VoiceOver.  
@@ -86,12 +86,12 @@ This guide will help you **understand, implement, and maintain compliance** with
 ### **🌎 Global Influence & Trends**
 - **📢 Used as a foundation for accessibility standards worldwide.**  
 - **📆 Increasing enforcement in lawsuits and government audits.**  
-- **📊 Adoption in modern web frameworks (React, Vue, Angular).**  
+- ** Adoption in modern web frameworks (React, Vue, Angular).**  
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 - **📌 Step 1:** **Use Native HTML Whenever Possible** *(Prefer `<button>` over `role="button"`.)*  
 - **📌 Step 2:** **Apply ARIA Roles Correctly** *(Only where necessary, avoid redundancy.)*  
 - **📌 Step 3:** **Ensure Keyboard & Screen Reader Navigation** *(Tab order, focus indicators.)*  
@@ -99,7 +99,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 - **📌 Step 5:** **Test with Assistive Technologies** *(JAWS, NVDA, VoiceOver, TalkBack.)*  
 
 ### **♻️ Ongoing Compliance Maintenance**
-- **🔍 Regular Testing & Audits** *(Use Lighthouse, Axe, WAVE, and manual reviews.)*  
+- ** Regular Testing & Audits** *(Use Lighthouse, Axe, WAVE, and manual reviews.)*  
 - **📖 Employee Training & Awareness** *(Train developers and designers.)*  
 - **🔄 Keep ARIA Usage Up-to-Date** *(Follow the latest ARIA best practices.)*  
 
@@ -109,9 +109,9 @@ This guide will help you **understand, implement, and maintain compliance** with
 ### **🔗 Official Documentation & Guidelines**
 - **[📖 WAI-ARIA 1.2 Specification](https://www.w3.org/TR/wai-aria-1.2/)**  
 - **[⚖️ W3C WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/)**  
-- **[📊 Web Accessibility Initiative (WAI)](https://www.w3.org/WAI/standards-guidelines/aria/)**  
+- **[ Web Accessibility Initiative (WAI)](https://www.w3.org/WAI/standards-guidelines/aria/)**  
 
-### **🛠️ Industry-Specific Guidance**
+### **️ Industry-Specific Guidance**
 - **🏥 Healthcare:** *(Ensuring accessible patient management systems.)*  
 - **🎓 Education:** *(Improving LMS and student portals for accessibility.)*  
 - **🛍️ E-commerce:** *(Making product filters, search forms, and shopping carts accessible.)*  
@@ -134,9 +134,9 @@ This guide will help you **understand, implement, and maintain compliance** with
 
 ---
 
-## **🚀 Conclusion**
+## ** Conclusion**
 WAI-ARIA **ensures modern web applications remain accessible** to users with disabilities. Implementing it correctly **enhances usability, reduces legal risk, and improves user experience**.
 
-🚀 **Next Steps:**  
-✅ **[Check Your ARIA Implementation](https://www.w3.org/WAI/ARIA/apg/)**  
-✅ **[Use ARIA with WCAG Standards](https://www.w3.org/WAI/standards-guidelines/aria/)**
+ **Next Steps:**  
+ **[Check Your ARIA Implementation](https://www.w3.org/WAI/ARIA/apg/)**  
+ **[Use ARIA with WCAG Standards](https://www.w3.org/WAI/standards-guidelines/aria/)**

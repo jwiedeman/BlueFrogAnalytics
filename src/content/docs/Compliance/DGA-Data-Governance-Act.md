@@ -13,7 +13,7 @@ The **Data Governance Act (DGA)** is an **EU regulation designed to facilitate s
 - **📖 Short Description:** An **EU law that governs data-sharing frameworks, facilitates secure data reuse, and enhances data availability for innovation and public interest.**  
 - **📅 Enforcement Date:** **June 23, 2022 (Effective September 24, 2023)**  
 - **🏛️ Governing Body:** **European Commission (EC) & National Data Authorities in EU Member States**  
-- **🎯 Primary Purpose:**  
+- ** Primary Purpose:**  
   - **Encourage data-driven innovation while protecting privacy and security.**  
   - **Establish frameworks for sharing public sector, private, and personal data under controlled conditions.**  
   - **Support EU-wide data spaces for industries like healthcare, finance, and mobility.**  
@@ -37,11 +37,11 @@ The **Data Governance Act (DGA)** is an **EU regulation designed to facilitate s
 
 ## **📂 3. What the Data Governance Act Governs**
 - **🔐 Types of Data Covered:**  
-  ✅ **Public Sector Data for Reuse** – Non-personal data held by **government bodies (e.g., geospatial, environment, economic data).**  
-  ✅ **Personal Data Sharing for Public Interest** – Citizens **can voluntarily share data for research and public good (data altruism).**  
-  ✅ **Data Intermediaries & Data Marketplaces** – Platforms that **facilitate data-sharing between businesses and individuals.**  
-  ✅ **Cross-Border Data Transfers within the EU** – Ensures **safe and standardized data exchanges across member states.**  
-  ✅ **Sector-Specific Data Spaces** – Covers **EU-wide data ecosystems for key industries.**  
+   **Public Sector Data for Reuse** – Non-personal data held by **government bodies (e.g., geospatial, environment, economic data).**  
+   **Personal Data Sharing for Public Interest** – Citizens **can voluntarily share data for research and public good (data altruism).**  
+   **Data Intermediaries & Data Marketplaces** – Platforms that **facilitate data-sharing between businesses and individuals.**  
+   **Cross-Border Data Transfers within the EU** – Ensures **safe and standardized data exchanges across member states.**  
+   **Sector-Specific Data Spaces** – Covers **EU-wide data ecosystems for key industries.**  
 
 - **📜 Key DGA Rules & Requirements:**  
   - **📂 Data Reuse Conditions:** Public sector data **must be shared fairly and transparently.**  
@@ -60,7 +60,7 @@ The **Data Governance Act (DGA)** is an **EU regulation designed to facilitate s
 ✔ **Data Altruism Compliance** – Organizations that **collect data for research & public good must register and maintain transparency**.  
 ✔ **Secure & Ethical Data Management** – Businesses **must ensure fair and transparent handling of shared data.**  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **Transparency Mechanisms for Data Sharing** – Organizations must **clearly disclose data-sharing terms & user rights.**  
 ✔ **Security & Privacy Controls** – **Encryption, pseudonymization, and anonymization must be applied** where necessary.  
 ✔ **Audit Trails & Compliance Documentation** – Companies must **maintain records of data-sharing activities**.  
@@ -107,8 +107,8 @@ The **Data Governance Act (DGA)** is an **EU regulation designed to facilitate s
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 1️⃣ **Register as a Data Intermediary or Altruism Entity** – **If providing a data-sharing service, obtain regulatory approval.**  
 2️⃣ **Ensure GDPR Compliance for Personal Data** – Align **all data-sharing with EU privacy laws.**  
 3️⃣ **Adopt Transparency & Consent Mechanisms** – **Users must be informed and able to control their shared data.**  
@@ -129,12 +129,12 @@ The **Data Governance Act (DGA)** is an **EU regulation designed to facilitate s
 
 ---
 
-## **🚀 Conclusion**
+## ** Conclusion**
 The **Data Governance Act (DGA)** is crucial for **ethical and secure data-sharing across the EU**, supporting innovation while safeguarding privacy and fair access.
 
 ---
 
-🚀 **Next Steps:**
-✅ **[Register for Data-Sharing Compliance](#)**  
-✅ **[Implement Secure & Fair Data Governance Policies](#)**  
-✅ **[Ensure Transparency & GDPR Alignment](#)**  
+ **Next Steps:**
+ **[Register for Data-Sharing Compliance](#)**  
+ **[Implement Secure & Fair Data Governance Policies](#)**  
+ **[Ensure Transparency & GDPR Alignment](#)**  

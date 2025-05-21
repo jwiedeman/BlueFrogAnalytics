@@ -13,7 +13,7 @@ The **Controlling the Assault of Non-Solicited Pornography And Marketing (CAN-SP
 - **📖 Short Description:** A **U.S. law regulating commercial emails**, preventing **deceptive practices** and ensuring **opt-out rights for consumers**.  
 - **📅 Enforcement Date:** **January 1, 2004**  
 - **🏛️ Governing Body:** **Federal Trade Commission (FTC)**  
-- **🎯 Primary Purpose:** **Protect consumers from misleading, excessive, or fraudulent email marketing** while allowing businesses to engage in legitimate commercial email activities.  
+- ** Primary Purpose:** **Protect consumers from misleading, excessive, or fraudulent email marketing** while allowing businesses to engage in legitimate commercial email activities.  
 
 ---
 
@@ -33,9 +33,9 @@ The **Controlling the Assault of Non-Solicited Pornography And Marketing (CAN-SP
 
 ## **📂 3. What CAN-SPAM Governs**
 - **🔐 Types of Emails Covered:**  
-  ✅ **Commercial Emails** – Emails sent for marketing, promotions, or advertisements.  
-  ✅ **Transactional Emails** *(Exempt but still regulated)* – Emails that contain receipts, account updates, or order confirmations.  
-  ✅ **Fundraising & Political Emails** – Subject to compliance if they promote paid services or collect donations.  
+   **Commercial Emails** – Emails sent for marketing, promotions, or advertisements.  
+   **Transactional Emails** *(Exempt but still regulated)* – Emails that contain receipts, account updates, or order confirmations.  
+   **Fundraising & Political Emails** – Subject to compliance if they promote paid services or collect donations.  
 
 - **📜 Key CAN-SPAM Provisions:**  
   - **No False or Misleading Headers:** Sender name, email address, and domain **must be accurate**.  
@@ -54,7 +54,7 @@ The **Controlling the Assault of Non-Solicited Pornography And Marketing (CAN-SP
 ✔ **Process Unsubscribes Within 10 Days** – Once a user opts out, **you cannot email them again** unless they opt back in.  
 ✔ **Provide a Physical Business Address** – Every email must include a **valid business mailing address**.  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **Automated Unsubscribe Handling** – Ensure opt-outs are **processed automatically**.  
 ✔ **Email Content Monitoring** – Regularly **audit subject lines, headers, and footer details**.  
 ✔ **List Hygiene & Suppression Management** – Maintain **updated opt-out and suppression lists**.  
@@ -98,8 +98,8 @@ The **Controlling the Assault of Non-Solicited Pornography And Marketing (CAN-SP
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 1️⃣ **Audit Your Email Practices** – Ensure **all marketing emails meet CAN-SPAM requirements**.  
 2️⃣ **Implement Double Opt-In** – Although not required, **double opt-in reduces spam complaints**.  
 3️⃣ **Monitor Email Engagement & Complaints** – High spam reports **harm deliverability and trigger fines**.  
@@ -117,21 +117,21 @@ The **Controlling the Assault of Non-Solicited Pornography And Marketing (CAN-SP
 ### **🔗 Official Documentation & Guidelines**
 - **[📖 CAN-SPAM Act Full Legal Text](https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business)**  
 - **[⚖️ FTC Guidelines on Email Compliance](https://www.ftc.gov/tips-advice/business-center/guidance/can-spam-act-compliance-guide-business)**  
-- **[📊 Email Marketing Legal FAQs](https://www.ftc.gov/)**  
+- **[ Email Marketing Legal FAQs](https://www.ftc.gov/)**  
 
-### **🛠️ Tools for CAN-SPAM Compliance**
-- **📊 Email List Hygiene Tools** – ZeroBounce, NeverBounce.  
+### **️ Tools for CAN-SPAM Compliance**
+- ** Email List Hygiene Tools** – ZeroBounce, NeverBounce.  
 - **📢 Unsubscribe & Compliance Management** – Mailchimp, HubSpot, ActiveCampaign.  
-- **🔍 Spam Compliance Testing** – GlockApps, Litmus.  
+- ** Spam Compliance Testing** – GlockApps, Litmus.  
 
 ---
 
-## **🚀 Conclusion**
+## ** Conclusion**
 The **CAN-SPAM Act** ensures that **email marketing remains ethical, transparent, and consumer-friendly**. Compliance **protects businesses from fines**, **improves email deliverability**, and **builds trust with consumers**.
 
 ---
 
-🚀 **Next Steps:**
-✅ **[Audit Your Email Marketing Practices](#)**  
-✅ **[Ensure Clear Opt-Out & Compliance Features](#)**  
-✅ **[Monitor Your Spam Complaints & Compliance Logs](#)**  
+ **Next Steps:**
+ **[Audit Your Email Marketing Practices](#)**  
+ **[Ensure Clear Opt-Out & Compliance Features](#)**  
+ **[Monitor Your Spam Complaints & Compliance Logs](#)**  

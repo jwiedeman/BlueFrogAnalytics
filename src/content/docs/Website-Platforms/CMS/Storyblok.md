@@ -8,9 +8,9 @@ description: Learn about Storyblok, its history, features, and how it compares t
 ## **📌 Overview**  
 Storyblok is a **headless content management system (CMS)** designed to empower developers and content creators with a flexible, API-first approach paired with a unique visual editor. It uses a component-based (or "block-based") system, enabling teams to create reusable content modules that streamline building and managing complex, scalable digital experiences. With its powerful content modeling, real-time collaboration, and seamless integration with modern front-end frameworks, Storyblok is ideal for organizations seeking to deliver engaging omnichannel experiences.
 
-✅ **Best For:** **Developers, agencies, and enterprises** looking for a headless CMS that combines flexible content modeling with an intuitive visual editor and a component-based approach.  
-✅ **Market Position:** Competes with platforms like **Contentful, Prismic, and Sanity**, distinguished by its visual editing capabilities and modular approach to content management.  
-✅ **Core Features:** **API-first architecture, visual editor with live preview, component-based content blocks, flexible content modeling, real-time collaboration, and robust multi-language support.**
+ **Best For:** **Developers, agencies, and enterprises** looking for a headless CMS that combines flexible content modeling with an intuitive visual editor and a component-based approach.  
+ **Market Position:** Competes with platforms like **Contentful, Prismic, and Sanity**, distinguished by its visual editing capabilities and modular approach to content management.  
+ **Core Features:** **API-first architecture, visual editor with live preview, component-based content blocks, flexible content modeling, real-time collaboration, and robust multi-language support.**
 
 ---
 
@@ -51,15 +51,15 @@ Storyblok was developed to address the growing need for a headless CMS that not 
 
 | Feature                      | Storyblok        | Contentful       | Prismic         | Sanity          |
 |------------------------------|------------------|------------------|-----------------|-----------------|
-| **Ease of Use**              | ✅ Very Easy     | ⚠ Moderate      | ✅ Easy         | ✅ Easy         |
-| **Visual Editing**           | ✅ Excellent     | ⚠ Limited       | ⚠ Basic        | ⚠ Limited      |
-| **Content Modeling**         | ✅ Flexible      | ✅ High         | ✅ High         | ✅ High         |
-| **API Support**              | ✅ REST & GraphQL| ✅ REST & GraphQL| ✅ REST         | ✅ REST & GraphQL|
-| **Collaboration Features**   | ✅ Strong        | ⚠ Limited       | ⚠ Basic        | ✅ Good         |
+| **Ease of Use**              |  Very Easy     | ⚠ Moderate      |  Easy         |  Easy         |
+| **Visual Editing**           |  Excellent     | ⚠ Limited       | ⚠ Basic        | ⚠ Limited      |
+| **Content Modeling**         |  Flexible      |  High         |  High         |  High         |
+| **API Support**              |  REST & GraphQL|  REST & GraphQL|  REST         |  REST & GraphQL|
+| **Collaboration Features**   |  Strong        | ⚠ Limited       | ⚠ Basic        |  Good         |
 
 ---
 
-## **✅ Pros of Storyblok**  
+## ** Pros of Storyblok**  
 ✔ **Intuitive Visual Editor:** Empowers content editors to manage and preview content in real time without coding.  
 ✔ **Component-Based Approach:** Reusable content blocks speed up development and ensure design consistency.  
 ✔ **Flexible & Scalable:** Customizable content models and robust API support enable seamless integration across channels.  
@@ -75,12 +75,12 @@ Storyblok was developed to address the growing need for a headless CMS that not 
 
 ---
 
-## **🎯 Who Should Use Storyblok?**  
+## ** Who Should Use Storyblok?**  
 Storyblok is **ideal for:**  
-✅ **Developers and agencies** building modern, headless digital experiences with a focus on design and flexibility.
-✅ **Content teams** that value a visual, intuitive editing environment.
-✅ **Enterprises and startups** needing robust multi-channel content delivery with advanced collaboration features.
-✅ **Organizations looking for a modular, component-based approach** to streamline content management and development.
+ **Developers and agencies** building modern, headless digital experiences with a focus on design and flexibility.
+ **Content teams** that value a visual, intuitive editing environment.
+ **Enterprises and startups** needing robust multi-channel content delivery with advanced collaboration features.
+ **Organizations looking for a modular, component-based approach** to streamline content management and development.
 
 ---
 
@@ -89,7 +89,7 @@ Storyblok delivers a **powerful and user-friendly headless CMS** that stands out
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Explore Storyblok](https://www.storyblok.com/)**  
-✅ **[Compare Storyblok vs Contentful](#)**  
-✅ **[Learn More: Building Modern Digital Experiences with Storyblok](#)**
+ **Next Steps:**  
+ **[Explore Storyblok](https://www.storyblok.com/)**  
+ **[Compare Storyblok vs Contentful](#)**  
+ **[Learn More: Building Modern Digital Experiences with Storyblok](#)**

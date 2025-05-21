@@ -8,9 +8,9 @@ description: Learn about TinaCMS, its history, features, and how it compares to 
 ## **📌 Overview**  
 TinaCMS is an **open-source, headless content management toolkit** designed primarily for developers working with modern static site generators and JavaScript frameworks like React, Next.js, and Gatsby. It allows content editors to make inline, real-time edits directly on the live site, seamlessly integrating with a Git-based workflow. TinaCMS empowers teams to manage content without compromising on the flexibility and performance of a modern development stack.
 
-✅ **Best For:** **Developers, agencies, and content teams** looking to integrate an inline editing experience into their static or headless sites.  
-✅ **Market Position:** Competes with other headless and Git-based content management tools like Netlify CMS and Forestry.io, with a strong emphasis on a live, inline editing experience.  
-✅ **Core Features:** **Inline editing, real-time previews, Git-based workflows, flexible API integrations, and an extensible plugin architecture.**
+ **Best For:** **Developers, agencies, and content teams** looking to integrate an inline editing experience into their static or headless sites.  
+ **Market Position:** Competes with other headless and Git-based content management tools like Netlify CMS and Forestry.io, with a strong emphasis on a live, inline editing experience.  
+ **Core Features:** **Inline editing, real-time previews, Git-based workflows, flexible API integrations, and an extensible plugin architecture.**
 
 ---
 
@@ -48,15 +48,15 @@ TinaCMS was created to simplify the content editing process for modern web proje
 
 | Feature                     | TinaCMS          | Netlify CMS      | Forestry.io      | Strapi          |
 |-----------------------------|------------------|------------------|------------------|-----------------|
-| **Inline Editing**          | ✅ Excellent     | ⚠ None          | ⚠ Basic         | ⚠ None         |
-| **Git Integration**         | ✅ Native        | ✅ Native        | ✅ Native        | ⚠ Limited      |
-| **Customization**           | ✅ High          | ✅ Moderate      | ✅ Moderate      | ✅ High        |
-| **Developer-Friendliness**  | ✅ Strong        | ✅ Strong        | ✅ Moderate      | ✅ Strong      |
-| **Focus**                   | ✅ Headless + Inline | ✅ Headless   | ✅ Headless     | ✅ Headless    |
+| **Inline Editing**          |  Excellent     | ⚠ None          | ⚠ Basic         | ⚠ None         |
+| **Git Integration**         |  Native        |  Native        |  Native        | ⚠ Limited      |
+| **Customization**           |  High          |  Moderate      |  Moderate      |  High        |
+| **Developer-Friendliness**  |  Strong        |  Strong        |  Moderate      |  Strong      |
+| **Focus**                   |  Headless + Inline |  Headless   |  Headless     |  Headless    |
 
 ---
 
-## **✅ Pros of TinaCMS**  
+## ** Pros of TinaCMS**  
 ✔ **Inline Editing Experience:** Empowers content editors to see their changes live on the site, improving efficiency and user experience.  
 ✔ **Seamless Git Integration:** Supports a robust Git-based workflow, ensuring version control and collaboration.  
 ✔ **Highly Customizable:** Flexible content models and API-first architecture allow for tailored solutions.  
@@ -73,12 +73,12 @@ TinaCMS was created to simplify the content editing process for modern web proje
 
 ---
 
-## **🎯 Who Should Use TinaCMS?**  
+## ** Who Should Use TinaCMS?**  
 TinaCMS is **ideal for:**  
-✅ **Developers and agencies** who want to integrate a seamless inline editing experience into static or decoupled sites.  
-✅ **Content teams** that require real-time content editing with robust version control via Git.  
-✅ **Projects built on modern JavaScript frameworks** (e.g., React, Next.js, Gatsby) that benefit from headless CMS architectures.
-✅ **Organizations seeking a flexible and customizable editing solution** that bridges the gap between content management and live website editing.
+ **Developers and agencies** who want to integrate a seamless inline editing experience into static or decoupled sites.  
+ **Content teams** that require real-time content editing with robust version control via Git.  
+ **Projects built on modern JavaScript frameworks** (e.g., React, Next.js, Gatsby) that benefit from headless CMS architectures.
+ **Organizations seeking a flexible and customizable editing solution** that bridges the gap between content management and live website editing.
 
 ---
 
@@ -87,7 +87,7 @@ TinaCMS offers a **modern, flexible, and developer-friendly headless CMS solutio
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Explore TinaCMS](https://tinacms.org/)**  
-✅ **[Compare TinaCMS vs Netlify CMS](#)**  
-✅ **[Learn More: Enhancing Your JAMstack Workflow with TinaCMS](#)**
+ **Next Steps:**  
+ **[Explore TinaCMS](https://tinacms.org/)**  
+ **[Compare TinaCMS vs Netlify CMS](#)**  
+ **[Learn More: Enhancing Your JAMstack Workflow with TinaCMS](#)**

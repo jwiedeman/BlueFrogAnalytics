@@ -13,7 +13,7 @@ The **Commission Nationale de l'Informatique et des Libertés (CNIL)** is **Fran
 - **📖 Short Description:** CNIL establishes **guidelines for data protection, privacy rights, and compliance with GDPR in France**.  
 - **📅 Established:** **1978** *(updated with GDPR enforcement in 2018)*  
 - **🏛️ Governing Body:** **CNIL (French Data Protection Authority)**  
-- **🎯 Primary Purpose:** **Ensure lawful data processing, uphold privacy rights, and guide organizations on GDPR compliance.**  
+- ** Primary Purpose:** **Ensure lawful data processing, uphold privacy rights, and guide organizations on GDPR compliance.**  
 
 ---
 
@@ -33,10 +33,10 @@ The **Commission Nationale de l'Informatique et des Libertés (CNIL)** is **Fran
 
 ## **📂 3. What CNIL Guidelines Govern**
 - **🔐 Types of Data Covered:**  
-  ✅ **Personally Identifiable Information (PII)** – Names, addresses, phone numbers, emails.  
-  ✅ **Sensitive Data** – Health records, biometric data, ethnicity, religion, political opinions.  
-  ✅ **Online Identifiers** – IP addresses, cookies, geolocation, behavioral tracking.  
-  ✅ **Employee & Customer Data** – Workplace surveillance, payroll data, HR records.  
+   **Personally Identifiable Information (PII)** – Names, addresses, phone numbers, emails.  
+   **Sensitive Data** – Health records, biometric data, ethnicity, religion, political opinions.  
+   **Online Identifiers** – IP addresses, cookies, geolocation, behavioral tracking.  
+   **Employee & Customer Data** – Workplace surveillance, payroll data, HR records.  
 
 - **📜 Key CNIL Guidelines:**  
   - **Cookie Consent Rules** – Users must give **explicit consent** before tracking technologies are used.  
@@ -55,7 +55,7 @@ The **Commission Nationale de l'Informatique et des Libertés (CNIL)** is **Fran
 ✔ **Implement Data Minimization Practices** – Organizations must **collect only necessary data** for processing.  
 ✔ **Comply with GDPR Data Protection Principles** – Businesses must follow **accountability, confidentiality, and lawful processing rules**.  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **Use Cookie Banners & Consent Management** – Websites must offer **clear consent options for tracking**.  
 ✔ **Secure Personal Data** – Implement **data encryption, anonymization, and access controls**.  
 ✔ **Data Retention & Deletion Policies** – Define **how long personal data is stored and when it must be deleted**.  
@@ -101,8 +101,8 @@ The **Commission Nationale de l'Informatique et des Libertés (CNIL)** is **Fran
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 1️⃣ **Update Privacy Notices** – Clearly explain **what data is collected and why**.  
 2️⃣ **Implement Cookie Banners** – Allow users to **accept or reject tracking cookies** easily.  
 3️⃣ **Develop Data Access & Deletion Workflows** – Ensure **efficient handling of user requests**.  
@@ -120,16 +120,16 @@ The **Commission Nationale de l'Informatique et des Libertés (CNIL)** is **Fran
 ### **🔗 Official Documentation & Guidelines**
 - **[📖 CNIL Official Website](https://www.cnil.fr/en/home)**  
 - **[⚖️ CNIL GDPR Compliance Guide](https://www.cnil.fr/en/gdpr-toolkit)**  
-- **[📊 CNIL Cookie Guidelines](https://www.cnil.fr/en/cookies-and-other-trackers)**  
+- **[ CNIL Cookie Guidelines](https://www.cnil.fr/en/cookies-and-other-trackers)**  
 
 ---
 
-## **🚀 Conclusion**
+## ** Conclusion**
 The **CNIL Guidelines** are essential for **data privacy and security compliance in France**. Adhering to these rules **ensures GDPR alignment**, **protects consumer rights**, and **prevents legal risks**.
 
 ---
 
-🚀 **Next Steps:**
-✅ **[Assess Your Data Collection & Retention Policies](#)**  
-✅ **[Implement Strong Cookie Consent Mechanisms](#)**  
-✅ **[Ensure Secure & Transparent Data Processing](#)**  
+ **Next Steps:**
+ **[Assess Your Data Collection & Retention Policies](#)**  
+ **[Implement Strong Cookie Consent Mechanisms](#)**  
+ **[Ensure Secure & Transparent Data Processing](#)**  

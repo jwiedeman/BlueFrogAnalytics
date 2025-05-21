@@ -13,7 +13,7 @@ The **Federal Information Security Modernization Act (FISMA)** is a **U.S. feder
 - **📖 Short Description:** A **U.S. federal law that establishes security requirements for federal agencies and contractors managing government information systems.**  
 - **📅 Enacted Date:** **December 17, 2002** *(Updated in 2014 with FISMA Modernization Act)*  
 - **🏛️ Governing Body:** **National Institute of Standards and Technology (NIST), Office of Management and Budget (OMB), and the Department of Homeland Security (DHS)**  
-- **🎯 Primary Purpose:**  
+- ** Primary Purpose:**  
   - **Ensure security and risk management for federal information systems.**  
   - **Establish baseline cybersecurity controls across government agencies.**  
   - **Protect national security data and prevent cyber threats.**  
@@ -36,18 +36,18 @@ The **Federal Information Security Modernization Act (FISMA)** is a **U.S. feder
 
 ## **📂 3. What FISMA Governs**
 - **🔐 Key Security Areas Covered:**  
-  ✅ **Risk Management & Assessment** – **Federal agencies must conduct security risk assessments.**  
-  ✅ **Cybersecurity Standards & Policies** – **Organizations must implement security controls from NIST SP 800-53.**  
-  ✅ **Incident Detection & Response** – **Mandatory protocols for identifying and handling security breaches.**  
-  ✅ **Continuous Monitoring & Audits** – **Regular security audits required to detect vulnerabilities.**  
-  ✅ **System Authorization & Access Controls** – **Government IT systems must be secured against unauthorized access.**  
+   **Risk Management & Assessment** – **Federal agencies must conduct security risk assessments.**  
+   **Cybersecurity Standards & Policies** – **Organizations must implement security controls from NIST SP 800-53.**  
+   **Incident Detection & Response** – **Mandatory protocols for identifying and handling security breaches.**  
+   **Continuous Monitoring & Audits** – **Regular security audits required to detect vulnerabilities.**  
+   **System Authorization & Access Controls** – **Government IT systems must be secured against unauthorized access.**  
 
 - **📜 Key FISMA Requirements:**  
   - **📂 Categorization of Information Systems** – **Each system must be classified based on impact level (Low, Moderate, High).**  
-  - **🔍 Security Control Implementation** – **Agencies must follow NIST 800-53 security controls.**  
+  - ** Security Control Implementation** – **Agencies must follow NIST 800-53 security controls.**  
   - **📢 Continuous Monitoring & Risk Reporting** – **Regular security assessments are required to identify risks.**  
   - **🛡️ Incident Reporting & Response** – **Security breaches must be reported to federal authorities.**  
-  - **📊 Annual FISMA Audits** – **Federal agencies must submit compliance reports to OMB and DHS.**  
+  - ** Annual FISMA Audits** – **Federal agencies must submit compliance reports to OMB and DHS.**  
 
 ---
 
@@ -59,7 +59,7 @@ The **Federal Information Security Modernization Act (FISMA)** is a **U.S. feder
 ✔ **Establish a Cybersecurity Incident Response Plan** – **Organizations must prepare for data breaches.**  
 ✔ **Perform Continuous Monitoring & Annual Audits** – **Security controls must be reviewed and updated regularly.**  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **Access Controls & Multi-Factor Authentication (MFA)** – **Strict identity verification for federal IT systems.**  
 ✔ **Data Encryption (FIPS 140-2 Compliance)** – **Sensitive federal data must be encrypted at rest and in transit.**  
 ✔ **Security Information & Event Management (SIEM)** – **Real-time threat monitoring is required.**  
@@ -108,8 +108,8 @@ The **Federal Information Security Modernization Act (FISMA)** is a **U.S. feder
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 1️⃣ **Identify & Categorize IT Systems by Risk Level** – **Follow FISMA impact categories (Low, Moderate, High).**  
 2️⃣ **Implement NIST 800-53 Security Controls** – **Apply recommended security measures for federal systems.**  
 3️⃣ **Develop an Incident Response & Disaster Recovery Plan** – **Ensure preparedness for security threats.**  
@@ -127,11 +127,11 @@ The **Federal Information Security Modernization Act (FISMA)** is a **U.S. feder
 ### **🔗 Official Documentation & Guidelines**
 - **[📖 FISMA Full Legal Text](https://www.congress.gov/bill/113th-congress/senate-bill/2521)**  
 - **[⚖️ NIST 800-53 Security Controls](https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final)**  
-- **[📊 DHS FISMA Compliance Overview](https://www.dhs.gov/fisma)**  
+- **[ DHS FISMA Compliance Overview](https://www.dhs.gov/fisma)**  
 
 ---
 
-## **🚀 Conclusion**
+## ** Conclusion**
 FISMA **ensures cybersecurity for federal information systems**, protecting **government data from cyber threats and enforcing risk management best practices**.
 
 ---

@@ -13,7 +13,7 @@ The **Personal Data Protection Act (PDPA) of Singapore** is a **comprehensive da
 - **📖 Short Description:** A **Singaporean law governing the responsible collection, use, and disclosure of personal data by businesses while ensuring individual privacy rights.**  
 - **📅 Enacted Date:** **October 15, 2012 (Fully Enforceable Since July 2, 2014, with amendments in 2020 and 2021)**  
 - **🏛️ Governing Body:** **Personal Data Protection Commission (PDPC), Infocomm Media Development Authority (IMDA)**  
-- **🎯 Primary Purpose:**  
+- ** Primary Purpose:**  
   - **Protect the personal data of Singaporean residents.**  
   - **Ensure organizations collect and use data fairly and transparently.**  
   - **Grant individuals control over their personal information.**  
@@ -37,19 +37,19 @@ The **Personal Data Protection Act (PDPA) of Singapore** is a **comprehensive da
 
 ## **📂 3. What PDPA Governs**
 - **🔐 Key Data Protection Areas Covered:**  
-  ✅ **Consent-Based Data Collection** – **Organizations must obtain user consent before collecting personal data.**  
-  ✅ **Data Usage & Purpose Limitation** – **Data can only be used for its stated purpose.**  
-  ✅ **Data Protection & Security** – **Organizations must take steps to prevent unauthorized access or misuse of personal data.**  
-  ✅ **Data Access & Correction Rights** – **Individuals have the right to access and correct their personal data.**  
-  ✅ **Data Retention & Disposal** – **Personal data must not be retained longer than necessary.**  
-  ✅ **Do Not Call (DNC) Registry** – **Businesses must not send marketing messages to numbers listed on the DNC.**  
+   **Consent-Based Data Collection** – **Organizations must obtain user consent before collecting personal data.**  
+   **Data Usage & Purpose Limitation** – **Data can only be used for its stated purpose.**  
+   **Data Protection & Security** – **Organizations must take steps to prevent unauthorized access or misuse of personal data.**  
+   **Data Access & Correction Rights** – **Individuals have the right to access and correct their personal data.**  
+   **Data Retention & Disposal** – **Personal data must not be retained longer than necessary.**  
+   **Do Not Call (DNC) Registry** – **Businesses must not send marketing messages to numbers listed on the DNC.**  
 
 - **📜 Key PDPA Compliance Requirements:**  
   - **📂 Obtain Explicit & Informed User Consent** – **No collecting personal data without consent.**  
-  - **🔍 Purpose Limitation Principle** – **Only collect and use data for legitimate business purposes.**  
+  - ** Purpose Limitation Principle** – **Only collect and use data for legitimate business purposes.**  
   - **📢 Appointment of Data Protection Officer (DPO)** – **Organizations must appoint a DPO to oversee PDPA compliance.**  
   - **🛡️ Data Protection Measures** – **Implement security controls to prevent data breaches.**  
-  - **📊 Data Breach Notification** – **Mandatory reporting of significant breaches to PDPC within three days.**  
+  - ** Data Breach Notification** – **Mandatory reporting of significant breaches to PDPC within three days.**  
 
 ---
 
@@ -61,7 +61,7 @@ The **Personal Data Protection Act (PDPA) of Singapore** is a **comprehensive da
 ✔ **Allow Users to Access, Modify, or Delete Their Data** – **Consumers can request corrections or deletion of their data.**  
 ✔ **Register with the Do Not Call (DNC) Registry** – **Businesses must comply with restrictions on unsolicited marketing.**  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **Data Encryption & Secure Storage** – **Encrypt sensitive data in transit and at rest.**  
 ✔ **Access Controls & Multi-Factor Authentication (MFA)** – **Restrict access to authorized personnel.**  
 ✔ **Data Retention & Secure Disposal Policies** – **Delete or anonymize data once no longer needed.**  
@@ -112,8 +112,8 @@ The **Personal Data Protection Act (PDPA) of Singapore** is a **comprehensive da
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 1️⃣ **Conduct a Data Protection Impact Assessment (DPIA)** – **Identify risks and improve security controls.**  
 2️⃣ **Appoint a Data Protection Officer (DPO)** – **Ensure oversight of PDPA compliance.**  
 3️⃣ **Implement Data Protection Measures (Encryption, Access Controls, Secure Storage)** – **Prevent breaches.**  
@@ -129,7 +129,7 @@ The **Personal Data Protection Act (PDPA) of Singapore** is a **comprehensive da
 
 ---
 
-## **🚀 Conclusion**
+## ** Conclusion**
 The **PDPA ensures responsible data handling in Singapore**, requiring **businesses to implement strict security, transparency, and user privacy controls**.
 
 ---

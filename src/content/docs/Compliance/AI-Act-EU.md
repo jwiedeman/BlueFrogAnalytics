@@ -13,7 +13,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 - **📖 Short Description:** The first comprehensive AI regulation that classifies AI systems based on risk levels and establishes legal obligations for developers, providers, and deployers.  
 - **📅 Enforcement Date:** **Expected in 2025 (finalized in 2024)**  
 - **🏛️ Governing Body:** **European Commission (EC), European Data Protection Board (EDPB), and national regulators**  
-- **🎯 Primary Purpose:** Ensure **safe, transparent, and non-discriminatory AI development and deployment** within the European Union (EU).  
+- ** Primary Purpose:** Ensure **safe, transparent, and non-discriminatory AI development and deployment** within the European Union (EU).  
 
 ---
 
@@ -32,22 +32,22 @@ This guide will help you **understand, implement, and maintain compliance** with
 ---
 
 ## **📂 3. What the AI Act Governs**
-- **📊 AI Systems Classification by Risk:**  
-  ✅ **Unacceptable Risk (Prohibited AI Systems)**  
+- ** AI Systems Classification by Risk:**  
+   **Unacceptable Risk (Prohibited AI Systems)**  
   - **Social scoring AI (e.g., government-controlled credit scoring).**  
   - **Emotion recognition AI in workplaces/schools.**  
   - **Real-time biometric surveillance in public places (with limited exceptions).**  
 
-  ✅ **High-Risk AI (Strict Compliance Requirements)**  
+   **High-Risk AI (Strict Compliance Requirements)**  
   - **AI in hiring, credit scoring, and biometric identification.**  
   - **AI systems used in critical infrastructure (e.g., energy, transport, healthcare).**  
   - **AI used in law enforcement, border control, and legal decisions.**  
 
-  ✅ **Limited Risk AI (Transparency Obligations)**  
+   **Limited Risk AI (Transparency Obligations)**  
   - **Chatbots & AI-generated content must disclose AI involvement.**  
   - **Deepfake detection and labeling required.**  
 
-  ✅ **Minimal Risk AI (No Strict Regulations)**  
+   **Minimal Risk AI (No Strict Regulations)**  
   - **AI for gaming, spam filters, and recommendation systems.**  
   - **No compliance requirements beyond existing consumer protection laws.**  
 
@@ -61,7 +61,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 ✔ **Human Oversight** – High-risk AI must allow **human intervention and decision reversal**.  
 ✔ **Safety & Security Standards** – AI systems must undergo **risk assessments and performance monitoring**.  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **Algorithmic Fairness & Bias Testing** – AI models must be **audited for discriminatory outcomes**.  
 ✔ **Robust Data Protection Measures** – AI processing personal data must comply with **GDPR**.  
 ✔ **Ethical AI Design & Audits** – AI developers must **document and mitigate risks** before deployment.  
@@ -104,8 +104,8 @@ This guide will help you **understand, implement, and maintain compliance** with
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 1️⃣ **Conduct AI Risk Assessments** – Determine if your AI is **high-risk or limited risk**.  
 2️⃣ **Implement Transparency Measures** – Clearly disclose **AI decision-making** to users.  
 3️⃣ **Ensure Human Oversight** – AI must allow **human intervention** where required.  
@@ -123,16 +123,16 @@ This guide will help you **understand, implement, and maintain compliance** with
 ### **🔗 Official Documentation & Guidelines**
 - **[📖 European Commission AI Act Summary](https://ec.europa.eu/digital-strategy/)**  
 - **[⚖️ AI Risk Classification & Compliance Rules](https://eur-lex.europa.eu/)**  
-- **[📊 EU AI Regulatory Sandbox](https://digital-strategy.ec.europa.eu/)**  
+- **[ EU AI Regulatory Sandbox](https://digital-strategy.ec.europa.eu/)**  
 
 ---
 
-## **🚀 Conclusion**
+## ** Conclusion**
 The **AI Act (EU)** sets a global standard for **ethical and accountable AI**. Compliance ensures **fair, safe, and transparent AI** while preventing regulatory penalties and market restrictions.
 
 ---
 
-🚀 **Next Steps:**
-✅ **[Assess Your AI Risk Level](#)**  
-✅ **[Implement AI Transparency & Bias Audits](#)**  
-✅ **[Stay Updated on AI Act Amendments](#)**
+ **Next Steps:**
+ **[Assess Your AI Risk Level](#)**  
+ **[Implement AI Transparency & Bias Audits](#)**  
+ **[Stay Updated on AI Act Amendments](#)**

@@ -8,9 +8,9 @@ description: Learn about Carrd, its history, features, and how it compares to ot
 ## **📌 Overview**  
 Carrd is a **simple, one-page website builder** designed for users who need a **minimalist and fast** way to create landing pages, portfolios, personal sites, or small business pages. It stands out for its **ease of use, affordability, and sleek design templates**, making it a great choice for **non-technical users and creators** who need an elegant online presence without complexity.  
 
-✅ **Best For:** **Freelancers, personal websites, portfolios, startup landing pages, and simple business pages**.  
-✅ **Market Position:** Competes with **Linktree, Wix, Squarespace, and Webflow (for simple landing pages)**.  
-✅ **Core Features:** **Drag-and-drop editor, mobile-friendly templates, simple animations, and integrations with third-party services**.  
+ **Best For:** **Freelancers, personal websites, portfolios, startup landing pages, and simple business pages**.  
+ **Market Position:** Competes with **Linktree, Wix, Squarespace, and Webflow (for simple landing pages)**.  
+ **Core Features:** **Drag-and-drop editor, mobile-friendly templates, simple animations, and integrations with third-party services**.  
 
 ---
 
@@ -57,15 +57,15 @@ Carrd was launched in **2016** by **AJ**, an independent developer who aimed to 
 
 | Feature                  | Carrd      | Linktree  | Wix         | Squarespace | Webflow     |
 |--------------------------|-----------|-----------|------------|-------------|-------------|
-| **Ease of Use**          | ✅ Very Easy | ✅ Very Easy | ✅ Easy   | ⚠ Moderate | ❌ Complex |
-| **Customization**        | ⚠ Limited  | ❌ None    | ✅ High   | ✅ High    | ✅ High    |
-| **Multi-Page Support**   | ❌ No      | ❌ No     | ✅ Yes    | ✅ Yes     | ✅ Yes     |
-| **Ecommerce Support**    | ⚠ Limited  | ❌ No     | ✅ Yes    | ✅ Yes     | ✅ Yes     |
-| **Pricing**              | ✅ Cheap   | ✅ Free   | ❌ Expensive | ❌ Expensive | ❌ Expensive |
+| **Ease of Use**          |  Very Easy |  Very Easy |  Easy   | ⚠ Moderate | ❌ Complex |
+| **Customization**        | ⚠ Limited  | ❌ None    |  High   |  High    |  High    |
+| **Multi-Page Support**   | ❌ No      | ❌ No     |  Yes    |  Yes     |  Yes     |
+| **Ecommerce Support**    | ⚠ Limited  | ❌ No     |  Yes    |  Yes     |  Yes     |
+| **Pricing**              |  Cheap   |  Free   | ❌ Expensive | ❌ Expensive | ❌ Expensive |
 
 ---
 
-## **✅ Pros of Carrd**  
+## ** Pros of Carrd**  
 ✔ **Super easy to use** – Perfect for beginners.  
 ✔ **Extremely affordable** – Pro plans start at just $9/year.  
 ✔ **Beautiful, mobile-friendly templates** for clean one-page sites.  
@@ -82,12 +82,12 @@ Carrd was launched in **2016** by **AJ**, an independent developer who aimed to 
 
 ---
 
-## **🎯 Who Should Use Carrd?**  
+## ** Who Should Use Carrd?**  
 Carrd is **ideal for:**  
-✅ **Freelancers & Personal Branding** – Perfect for simple portfolios.  
-✅ **Small Businesses & Startups** – Great for landing pages.  
-✅ **Social Media Creators** – A good alternative to Linktree.  
-✅ **Event Pages & Minimalist Websites** – Quick and easy to set up.  
+ **Freelancers & Personal Branding** – Perfect for simple portfolios.  
+ **Small Businesses & Startups** – Great for landing pages.  
+ **Social Media Creators** – A good alternative to Linktree.  
+ **Event Pages & Minimalist Websites** – Quick and easy to set up.  
 
 ---
 
@@ -96,7 +96,7 @@ Carrd is a **lightweight, ultra-simple website builder** that excels at **creati
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Try Carrd Free](https://carrd.co/)**  
-✅ **[Compare Carrd vs Linktree](#)**  
-✅ **[Learn More: How to Build a Personal Site with Carrd](#)**  
+ **Next Steps:**  
+ **[Try Carrd Free](https://carrd.co/)**  
+ **[Compare Carrd vs Linktree](#)**  
+ **[Learn More: How to Build a Personal Site with Carrd](#)**  

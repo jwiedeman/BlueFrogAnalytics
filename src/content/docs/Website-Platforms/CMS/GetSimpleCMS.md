@@ -8,9 +8,9 @@ description: Learn about GetSimple CMS, its history, features, and how it compar
 ## **📌 Overview**  
 GetSimple CMS is a **lightweight, flat-file content management system (CMS)** that focuses on simplicity, speed, and ease of use. It does not require a database, making it ideal for small websites and projects where minimal server resources are desired. GetSimple CMS is known for its straightforward installation, intuitive admin interface, and flexible templating system.
 
-✅ **Best For:** **Small websites, personal blogs, and simple business sites** where ease of setup and maintenance is key.  
-✅ **Market Position:** Competes with other flat-file CMS platforms like **Grav and Kirby** while offering a user-friendly experience for non-technical users.  
-✅ **Core Features:** **Flat-file architecture, simple XML-based content storage, easy template customization, and an intuitive dashboard.**
+ **Best For:** **Small websites, personal blogs, and simple business sites** where ease of setup and maintenance is key.  
+ **Market Position:** Competes with other flat-file CMS platforms like **Grav and Kirby** while offering a user-friendly experience for non-technical users.  
+ **Core Features:** **Flat-file architecture, simple XML-based content storage, easy template customization, and an intuitive dashboard.**
 
 ---
 
@@ -51,15 +51,15 @@ GetSimple CMS was created as a response to the complexity of database-driven CMS
 
 | Feature                   | GetSimple CMS  | Grav           | Kirby         | Jekyll         |
 |---------------------------|----------------|----------------|---------------|----------------|
-| **Ease of Use**           | ✅ Very Easy   | ✅ Easy        | ✅ Easy       | ⚠ Requires CLI |
+| **Ease of Use**           |  Very Easy   |  Easy        |  Easy       | ⚠ Requires CLI |
 | **Database Requirement**  | ❌ No          | ❌ No         | ❌ No         | ❌ No          |
-| **Customization**         | ✅ High       | ✅ High       | ✅ High      | ⚠ Limited     |
-| **Community & Extensions**| ⚠ Moderate    | ✅ Growing    | ⚠ Moderate   | ⚠ Limited     |
+| **Customization**         |  High       |  High       |  High      | ⚠ Limited     |
+| **Community & Extensions**| ⚠ Moderate    |  Growing    | ⚠ Moderate   | ⚠ Limited     |
 | **Best For**              | **Simple, small websites** | **Modern flat-file sites** | **Creative, custom projects** | **Developers comfortable with CLI** |
 
 ---
 
-## **✅ Pros of GetSimple CMS**  
+## ** Pros of GetSimple CMS**  
 ✔ **Extremely lightweight and fast** – No database means less overhead.  
 ✔ **User-friendly for beginners** – Ideal for users with minimal technical expertise.  
 ✔ **Easy installation and maintenance** – Simply upload files and start editing.  
@@ -76,12 +76,12 @@ GetSimple CMS was created as a response to the complexity of database-driven CMS
 
 ---
 
-## **🎯 Who Should Use GetSimple CMS?**  
+## ** Who Should Use GetSimple CMS?**  
 GetSimple CMS is **ideal for:**  
-✅ **Small business owners and hobbyists** seeking a simple, fast website solution.  
-✅ **Personal blogs or portfolios** where ease of use is a priority.  
-✅ **Developers looking for a minimalistic CMS** that can be quickly customized.  
-✅ **Users who prefer a flat-file system** to avoid the complexity of databases.
+ **Small business owners and hobbyists** seeking a simple, fast website solution.  
+ **Personal blogs or portfolios** where ease of use is a priority.  
+ **Developers looking for a minimalistic CMS** that can be quickly customized.  
+ **Users who prefer a flat-file system** to avoid the complexity of databases.
 
 ---
 
@@ -90,7 +90,7 @@ GetSimple CMS offers a **straightforward, lightweight content management solutio
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Try GetSimple CMS](http://get-simple.info/)**  
-✅ **[Compare GetSimple CMS vs Grav](#)**  
-✅ **[Learn More: Building a Lightweight Website with Flat-File CMS](#)**
+ **Next Steps:**  
+ **[Try GetSimple CMS](http://get-simple.info/)**  
+ **[Compare GetSimple CMS vs Grav](#)**  
+ **[Learn More: Building a Lightweight Website with Flat-File CMS](#)**

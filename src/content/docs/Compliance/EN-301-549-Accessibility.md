@@ -13,7 +13,7 @@ The **EN 301 549 Accessibility Standard** is the **European Union's official sta
 - **📖 Short Description:** A **European standard that sets accessibility requirements for websites, mobile applications, software, hardware, and digital services.**  
 - **📅 First Published:** **2014 (Updated to align with WCAG 2.1 in 2019)**  
 - **🏛️ Governing Body:** **European Telecommunications Standards Institute (ETSI), European Commission**  
-- **🎯 Primary Purpose:**  
+- ** Primary Purpose:**  
   - **Ensure ICT accessibility for individuals with disabilities.**  
   - **Provide a standardized framework for EU compliance.**  
   - **Improve digital inclusivity across websites, software, and devices.**  
@@ -36,11 +36,11 @@ The **EN 301 549 Accessibility Standard** is the **European Union's official sta
 
 ## **📂 3. What EN 301 549 Governs**
 - **🔐 Key Accessibility Areas Covered:**  
-  ✅ **Web & Mobile Accessibility** – **Websites & apps must meet WCAG 2.1 AA guidelines.**  
-  ✅ **Software Accessibility** – **Operating systems & software must support assistive technologies.**  
-  ✅ **Document Accessibility** – **PDFs, forms, and digital content must be readable by screen readers.**  
-  ✅ **Hardware Accessibility** – **ICT devices must have accessible controls (e.g., alternative input methods).**  
-  ✅ **User Interface & Interaction Requirements** – **Digital interfaces must accommodate different disabilities.**  
+   **Web & Mobile Accessibility** – **Websites & apps must meet WCAG 2.1 AA guidelines.**  
+   **Software Accessibility** – **Operating systems & software must support assistive technologies.**  
+   **Document Accessibility** – **PDFs, forms, and digital content must be readable by screen readers.**  
+   **Hardware Accessibility** – **ICT devices must have accessible controls (e.g., alternative input methods).**  
+   **User Interface & Interaction Requirements** – **Digital interfaces must accommodate different disabilities.**  
 
 - **📜 Key EN 301 549 Requirements:**  
   - **📂 Websites & Digital Content** – Must comply with **WCAG 2.1 AA accessibility criteria.**  
@@ -59,7 +59,7 @@ The **EN 301 549 Accessibility Standard** is the **European Union's official sta
 ✔ **Test & Validate Digital Products for Accessibility** – **Regular testing with assistive technologies is mandatory.**  
 ✔ **Publicly Report Accessibility Compliance** – **EU public sector organizations must publish accessibility statements.**  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **Keyboard & Voice Navigation Support** – **Users must be able to interact without a mouse.**  
 ✔ **Screen Reader Compatibility** – **Websites & apps must work with assistive technologies like NVDA & JAWS.**  
 ✔ **Adjustable Text Size & Contrast** – **Users must be able to modify font size and color contrast.**  
@@ -107,8 +107,8 @@ The **EN 301 549 Accessibility Standard** is the **European Union's official sta
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 1️⃣ **Perform a WCAG 2.1 AA Accessibility Audit** – Identify **compliance gaps in websites, apps, and software.**  
 2️⃣ **Ensure Hardware & IoT Devices Support Accessibility** – **Implement tactile feedback, speech output, and alternative controls.**  
 3️⃣ **Provide Alternative Content Formats** – **Offer transcripts, captions, and readable PDFs.**  
@@ -126,11 +126,11 @@ The **EN 301 549 Accessibility Standard** is the **European Union's official sta
 ### **🔗 Official Documentation & Guidelines**
 - **[📖 EN 301 549 Full Text](https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.01.01_60/en_301549v030101p.pdf)**  
 - **[⚖️ EU Accessibility Act Overview](https://ec.europa.eu/social/main.jsp?catId=1202)**  
-- **[📊 WCAG 2.1 AA Accessibility Guidelines](https://www.w3.org/TR/WCAG21/)**  
+- **[ WCAG 2.1 AA Accessibility Guidelines](https://www.w3.org/TR/WCAG21/)**  
 
 ---
 
-## **🚀 Conclusion**
+## ** Conclusion**
 EN 301 549 **sets the accessibility standard for ICT in the EU**, ensuring **websites, apps, and digital devices are inclusive and compliant**.
 
 ---

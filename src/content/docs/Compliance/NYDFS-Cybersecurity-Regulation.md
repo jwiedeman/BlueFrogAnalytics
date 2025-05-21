@@ -13,7 +13,7 @@ The **New York Department of Financial Services (NYDFS) Cybersecurity Regulation
 - **📖 Short Description:** A **New York State regulation requiring financial institutions to implement and maintain a cybersecurity program to safeguard sensitive data.**  
 - **📅 Enacted Date:** **March 1, 2017 (Fully Enforceable Since March 1, 2019, with 2023 Amendments)**  
 - **🏛️ Governing Body:** **New York Department of Financial Services (NYDFS)**  
-- **🎯 Primary Purpose:**  
+- ** Primary Purpose:**  
   - **Protect consumer financial data from cyber threats and breaches.**  
   - **Ensure financial institutions implement risk-based cybersecurity programs.**  
   - **Enforce accountability and incident response preparedness in the financial sector.**  
@@ -37,18 +37,18 @@ The **New York Department of Financial Services (NYDFS) Cybersecurity Regulation
 
 ## **📂 3. What NYDFS Cybersecurity Regulation Governs**
 - **🔐 Key Cybersecurity Compliance Areas Covered:**  
-  ✅ **Cybersecurity Program & Risk Assessment** – **Firms must develop a risk-based security framework.**  
-  ✅ **Data Protection & Encryption** – **Sensitive financial data must be encrypted both in transit and at rest.**  
-  ✅ **Incident Response & Breach Notification** – **Cybersecurity incidents must be reported to NYDFS within 72 hours.**  
-  ✅ **Access Controls & Multi-Factor Authentication (MFA)** – **Ensure secure access to systems and data.**  
-  ✅ **Third-Party Vendor Security** – **Regulated entities must ensure third-party providers follow cybersecurity requirements.**  
+   **Cybersecurity Program & Risk Assessment** – **Firms must develop a risk-based security framework.**  
+   **Data Protection & Encryption** – **Sensitive financial data must be encrypted both in transit and at rest.**  
+   **Incident Response & Breach Notification** – **Cybersecurity incidents must be reported to NYDFS within 72 hours.**  
+   **Access Controls & Multi-Factor Authentication (MFA)** – **Ensure secure access to systems and data.**  
+   **Third-Party Vendor Security** – **Regulated entities must ensure third-party providers follow cybersecurity requirements.**  
 
 - **📜 Key NYDFS Compliance Requirements:**  
   - **📂 Chief Information Security Officer (CISO) Appointment** – **Firms must designate a qualified security leader.**  
-  - **🔍 Cybersecurity Risk Assessments** – **Annual assessments required to identify vulnerabilities.**  
+  - ** Cybersecurity Risk Assessments** – **Annual assessments required to identify vulnerabilities.**  
   - **📢 Employee Training & Awareness** – **Organizations must provide cybersecurity awareness programs.**  
   - **🛡️ Continuous Security Monitoring** – **Use intrusion detection systems and vulnerability scans.**  
-  - **📊 Annual Certification of Compliance** – **Submit reports verifying cybersecurity measures.**  
+  - ** Annual Certification of Compliance** – **Submit reports verifying cybersecurity measures.**  
 
 ---
 
@@ -60,7 +60,7 @@ The **New York Department of Financial Services (NYDFS) Cybersecurity Regulation
 ✔ **Develop an Incident Response Plan (IRP)** – **Prepare for cyber threats and report breaches within 72 hours.**  
 ✔ **Conduct Regular Penetration Testing & Risk Assessments** – **Identify and mitigate security vulnerabilities.**  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **Data Encryption & Secure Storage** – **Encrypt sensitive data in transit and at rest.**  
 ✔ **Access Controls & Least Privilege Principle** – **Restrict access based on user roles.**  
 ✔ **Continuous Threat Monitoring & SIEM Tools** – **Deploy automated cybersecurity monitoring.**  
@@ -111,8 +111,8 @@ The **New York Department of Financial Services (NYDFS) Cybersecurity Regulation
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 1️⃣ **Conduct a Cybersecurity Risk Assessment** – **Identify weaknesses and mitigation strategies.**  
 2️⃣ **Appoint a CISO to Oversee Cybersecurity Efforts** – **Ensure compliance leadership.**  
 3️⃣ **Implement Multi-Factor Authentication (MFA) & Access Controls** – **Strengthen user authentication.**  
@@ -133,7 +133,7 @@ The **New York Department of Financial Services (NYDFS) Cybersecurity Regulation
 
 ---
 
-## **🚀 Conclusion**
+## ** Conclusion**
 The **NYDFS Cybersecurity Regulation strengthens financial data security**, requiring **institutions to implement risk-based cybersecurity controls and protect against cyber threats**.
 
 ---

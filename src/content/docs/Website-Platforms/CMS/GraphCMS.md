@@ -8,9 +8,9 @@ description: Learn about GraphCMS, its history, features, and how it compares to
 ## **📌 Overview**  
 GraphCMS is a **headless content management system (CMS)** designed with an **API-first, GraphQL-centric approach**. It empowers developers and content teams to manage structured content and deliver it seamlessly across multiple platforms. With its modern architecture, GraphCMS is optimized for omnichannel content delivery, making it an excellent choice for dynamic web and mobile applications.
 
-✅ **Best For:** **Developers, agencies, and enterprises** that need a **scalable, API-first CMS** with robust GraphQL support.  
-✅ **Market Position:** Competes with **Contentful, DatoCMS, and Sanity** in the headless CMS market.  
-✅ **Core Features:** **Native GraphQL API, flexible content modeling, real-time previews, and strong integration capabilities.**
+ **Best For:** **Developers, agencies, and enterprises** that need a **scalable, API-first CMS** with robust GraphQL support.  
+ **Market Position:** Competes with **Contentful, DatoCMS, and Sanity** in the headless CMS market.  
+ **Core Features:** **Native GraphQL API, flexible content modeling, real-time previews, and strong integration capabilities.**
 
 ---
 
@@ -52,15 +52,15 @@ GraphCMS was founded to address the growing need for a headless CMS that leverag
 
 | Feature                   | GraphCMS         | Contentful       | DatoCMS        | Sanity         | Strapi         |
 |---------------------------|------------------|------------------|----------------|----------------|----------------|
-| **Ease of Use**           | ✅ Easy          | ⚠ Moderate      | ✅ Easy        | ✅ Easy        | ⚠ Moderate    |
-| **GraphQL Support**       | ✅ Native        | ✅ Yes           | ✅ Yes         | ✅ Yes         | ⚠ Limited     |
-| **Customization**         | ✅ High          | ✅ High          | ✅ High        | ✅ High        | ✅ High        |
-| **Real-Time Previews**    | ✅ Yes           | ✅ Yes           | ✅ Yes         | ✅ Yes         | ❌ No         |
-| **Open-Source Option**    | ❌ Proprietary   | ❌ Proprietary   | ❌ Proprietary | ❌ Proprietary | ✅ Yes        |
+| **Ease of Use**           |  Easy          | ⚠ Moderate      |  Easy        |  Easy        | ⚠ Moderate    |
+| **GraphQL Support**       |  Native        |  Yes           |  Yes         |  Yes         | ⚠ Limited     |
+| **Customization**         |  High          |  High          |  High        |  High        |  High        |
+| **Real-Time Previews**    |  Yes           |  Yes           |  Yes         |  Yes         | ❌ No         |
+| **Open-Source Option**    | ❌ Proprietary   | ❌ Proprietary   | ❌ Proprietary | ❌ Proprietary |  Yes        |
 
 ---
 
-## **✅ Pros of GraphCMS**  
+## ** Pros of GraphCMS**  
 ✔ **API-first design with native GraphQL support** – Ideal for modern, decoupled applications.  
 ✔ **Flexible content modeling** – Easily define and manage complex content structures.  
 ✔ **Real-time previews and collaborative editing** – Enhance workflow efficiency and reduce turnaround times.  
@@ -76,12 +76,12 @@ GraphCMS was founded to address the growing need for a headless CMS that leverag
 
 ---
 
-## **🎯 Who Should Use GraphCMS?**  
+## ** Who Should Use GraphCMS?**  
 GraphCMS is **ideal for:**  
-✅ **Developers and agencies** building modern web and mobile applications with an API-first approach.  
-✅ **Enterprises** that need scalable, high-performance content delivery across multiple channels.  
-✅ **Teams looking for real-time collaboration and advanced content modeling.**  
-✅ **Organizations committed to leveraging GraphQL** for efficient, flexible content management.
+ **Developers and agencies** building modern web and mobile applications with an API-first approach.  
+ **Enterprises** that need scalable, high-performance content delivery across multiple channels.  
+ **Teams looking for real-time collaboration and advanced content modeling.**  
+ **Organizations committed to leveraging GraphQL** for efficient, flexible content management.
 
 ---
 
@@ -90,7 +90,7 @@ GraphCMS offers a **cutting-edge, GraphQL-first headless CMS** that empowers dev
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Try GraphCMS](https://graphcms.com/)**  
-✅ **[Compare GraphCMS vs Contentful](#)**  
-✅ **[Learn More: API-First Content Management with GraphCMS](#)**
+ **Next Steps:**  
+ **[Try GraphCMS](https://graphcms.com/)**  
+ **[Compare GraphCMS vs Contentful](#)**  
+ **[Learn More: API-First Content Management with GraphCMS](#)**

@@ -8,9 +8,9 @@ description: Learn about Craft CMS, its history, features, and how it compares t
 ## **📌 Overview**  
 Craft CMS is a **flexible, developer-friendly content management system (CMS)** that focuses on providing a **customizable and intuitive experience** for building modern websites. With a strong emphasis on **control and design flexibility**, Craft CMS is ideal for projects that require **bespoke content architectures and high performance**.
 
-✅ **Best For:** **Developers, agencies, and designers** who need a **customizable, robust CMS** for building dynamic websites and digital experiences.  
-✅ **Market Position:** Competes with **WordPress, Drupal, and other flexible CMS platforms**.  
-✅ **Core Features:** **Custom content modeling, Twig templating, headless capabilities, and a user-friendly control panel.**
+ **Best For:** **Developers, agencies, and designers** who need a **customizable, robust CMS** for building dynamic websites and digital experiences.  
+ **Market Position:** Competes with **WordPress, Drupal, and other flexible CMS platforms**.  
+ **Core Features:** **Custom content modeling, Twig templating, headless capabilities, and a user-friendly control panel.**
 
 ---
 
@@ -57,16 +57,16 @@ Craft CMS was launched in **2013** by **Pixel & Tonic** with the goal of providi
 
 | Feature                   | Craft CMS               | WordPress             | Drupal                | Contentful            | Statamic             |
 |---------------------------|-------------------------|-----------------------|-----------------------|-----------------------|----------------------|
-| **Ease of Use**           | ✅ Moderate             | ✅ Easy               | ⚠ Complex             | ⚠ Moderate           | ✅ Easy              |
-| **Customization**         | ✅ High                 | ✅ High               | ✅ High               | ✅ High               | ✅ High              |
-| **Developer-Friendliness**| ✅ Strong               | ⚠ Varies             | ✅ Strong             | ✅ Strong             | ✅ Strong            |
-| **Headless Support**      | ✅ Yes                  | ⚠ Limited            | ✅ Yes                | ✅ Yes                | ✅ Yes               |
-| **Security**              | ✅ Strong               | ⚠ Varies             | ✅ Strong             | ✅ Strong             | ✅ Strong            |
+| **Ease of Use**           |  Moderate             |  Easy               | ⚠ Complex             | ⚠ Moderate           |  Easy              |
+| **Customization**         |  High                 |  High               |  High               |  High               |  High              |
+| **Developer-Friendliness**|  Strong               | ⚠ Varies             |  Strong             |  Strong             |  Strong            |
+| **Headless Support**      |  Yes                  | ⚠ Limited            |  Yes                |  Yes                |  Yes               |
+| **Security**              |  Strong               | ⚠ Varies             |  Strong             |  Strong             |  Strong            |
 | **Best For**              | **Bespoke, custom websites & digital experiences** | **General purpose websites & blogs** | **Complex, enterprise websites** | **API-first, headless applications** | **Modern, flat-file CMS solutions** |
 
 ---
 
-## **✅ Pros of Craft CMS**  
+## ** Pros of Craft CMS**  
 ✔ **Highly customizable** – Ideal for bespoke website projects and unique digital experiences.  
 ✔ **Developer-friendly** – Clean code and powerful API support streamline custom development.  
 ✔ **Flexible content modeling** – Build exactly the content structure you need.  
@@ -83,12 +83,12 @@ Craft CMS was launched in **2013** by **Pixel & Tonic** with the goal of providi
 
 ---
 
-## **🎯 Who Should Use Craft CMS?**  
+## ** Who Should Use Craft CMS?**  
 Craft CMS is **ideal for:**  
-✅ **Developers and agencies** aiming to build custom, high-performance websites.  
-✅ **Designers** who want complete control over front-end presentation and user experience.  
-✅ **Enterprises** needing robust, scalable content solutions with headless capabilities.  
-✅ **Projects requiring complex content modeling** and bespoke functionality.
+ **Developers and agencies** aiming to build custom, high-performance websites.  
+ **Designers** who want complete control over front-end presentation and user experience.  
+ **Enterprises** needing robust, scalable content solutions with headless capabilities.  
+ **Projects requiring complex content modeling** and bespoke functionality.
 
 ---
 
@@ -97,7 +97,7 @@ Craft CMS offers a **modern, flexible, and developer-friendly content management
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Try Craft CMS](https://craftcms.com/)**  
-✅ **[Compare Craft CMS vs WordPress](#)**  
-✅ **[Learn More: Building Custom Websites with Craft CMS](#)**
+ **Next Steps:**  
+ **[Try Craft CMS](https://craftcms.com/)**  
+ **[Compare Craft CMS vs WordPress](#)**  
+ **[Learn More: Building Custom Websites with Craft CMS](#)**

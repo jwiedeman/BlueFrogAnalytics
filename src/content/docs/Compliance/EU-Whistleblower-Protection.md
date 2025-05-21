@@ -13,7 +13,7 @@ The **EU Whistleblower Protection Directive** ensures **legal protection for ind
 - **📖 Short Description:** A **European law that mandates protection for individuals reporting misconduct, fraud, or illegal activities within organizations.**  
 - **📅 Enacted Date:** **December 16, 2019 (Implementation deadline: December 17, 2021)**  
 - **🏛️ Governing Body:** **European Commission, National Authorities, and Ombuds Institutions**  
-- **🎯 Primary Purpose:**  
+- ** Primary Purpose:**  
   - **Ensure safe and confidential reporting of illegal activities.**  
   - **Protect whistleblowers from retaliation.**  
   - **Standardize whistleblower rights across EU member states.**  
@@ -36,15 +36,15 @@ The **EU Whistleblower Protection Directive** ensures **legal protection for ind
 
 ## **📂 3. What the EU Whistleblower Protection Directive Governs**
 - **🔐 Key Areas Covered:**  
-  ✅ **Confidential Reporting Channels** – **Companies must provide secure ways for employees to report misconduct.**  
-  ✅ **Protection from Retaliation** – **Whistleblowers must not face termination, demotion, or harassment.**  
-  ✅ **Obligation to Investigate Reports** – **Organizations must follow up on whistleblower claims promptly.**  
-  ✅ **Legal Assistance & Support for Whistleblowers** – **Whistleblowers must have access to legal resources.**  
-  ✅ **Extended Protection for Witnesses & Supporters** – **Individuals assisting whistleblowers are also safeguarded.**  
+   **Confidential Reporting Channels** – **Companies must provide secure ways for employees to report misconduct.**  
+   **Protection from Retaliation** – **Whistleblowers must not face termination, demotion, or harassment.**  
+   **Obligation to Investigate Reports** – **Organizations must follow up on whistleblower claims promptly.**  
+   **Legal Assistance & Support for Whistleblowers** – **Whistleblowers must have access to legal resources.**  
+   **Extended Protection for Witnesses & Supporters** – **Individuals assisting whistleblowers are also safeguarded.**  
 
 - **📜 Key EU Whistleblower Directive Requirements:**  
   - **📂 Internal Whistleblowing Systems** – Companies **must establish secure reporting channels.**  
-  - **🔍 Investigation & Follow-Up Procedures** – **Organizations must assess and act on reports.**  
+  - ** Investigation & Follow-Up Procedures** – **Organizations must assess and act on reports.**  
   - **📢 External Reporting Options** – **Whistleblowers can report directly to national authorities or the EU.**  
   - **⚖️ Legal Protection Against Retaliation** – **Companies cannot fire, intimidate, or discriminate against whistleblowers.**  
   - **📜 Public Disclosure Protections** – **If internal & external reporting fails, whistleblowers can disclose misconduct publicly.**  
@@ -59,7 +59,7 @@ The **EU Whistleblower Protection Directive** ensures **legal protection for ind
 ✔ **Educate Employees About Whistleblower Rights** – **Organizations must conduct training on reporting procedures.**  
 ✔ **Allow External & Public Reporting Without Penalty** – **Whistleblowers can contact regulators or media if needed.**  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **Whistleblower Hotlines & Digital Reporting Platforms** – **Secure, encrypted communication tools are required.**  
 ✔ **Record-Keeping & Transparency in Investigations** – **Organizations must document reports and responses.**  
 ✔ **Legal Counsel for Whistleblowers** – **Whistleblowers must have access to independent legal guidance.**  
@@ -107,8 +107,8 @@ The **EU Whistleblower Protection Directive** ensures **legal protection for ind
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 1️⃣ **Create a Secure Whistleblower Reporting System** – **Set up an internal platform for confidential reporting.**  
 2️⃣ **Train Employees & Managers on Whistleblower Rights** – **Ensure awareness of protections and reporting steps.**  
 3️⃣ **Establish Clear Investigation & Response Procedures** – **Follow up on whistleblower claims fairly.**  
@@ -126,11 +126,11 @@ The **EU Whistleblower Protection Directive** ensures **legal protection for ind
 ### **🔗 Official Documentation & Guidelines**
 - **[📖 EU Whistleblower Protection Directive Full Text](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32019L1937)**  
 - **[⚖️ European Commission Whistleblower Guidance](https://ec.europa.eu/anti-fraud/)**  
-- **[📊 EU Whistleblower Protection Resources](https://transparency.eu/)**  
+- **[ EU Whistleblower Protection Resources](https://transparency.eu/)**  
 
 ---
 
-## **🚀 Conclusion**
+## ** Conclusion**
 The **EU Whistleblower Protection Directive ensures ethical transparency** by **protecting individuals who report misconduct, fraud, or illegal activities**.  
 
 ---

@@ -13,7 +13,7 @@ The **NIST Cybersecurity Framework (CSF)** is a **set of voluntary guidelines de
 - **📖 Short Description:** A **risk-based cybersecurity framework designed to help organizations protect critical infrastructure and sensitive data from cyber threats.**  
 - **📅 First Released:** **February 12, 2014 (Updated as CSF 2.0 in 2024)**  
 - **🏛️ Governing Body:** **National Institute of Standards and Technology (NIST), U.S. Department of Commerce**  
-- **🎯 Primary Purpose:**  
+- ** Primary Purpose:**  
   - **Provide organizations with a structured approach to cybersecurity risk management.**  
   - **Improve resilience against cyber threats through best practices and risk assessments.**  
   - **Ensure alignment with industry security standards like ISO 27001, CIS Controls, and NIST 800-53.**  
@@ -37,18 +37,18 @@ The **NIST Cybersecurity Framework (CSF)** is a **set of voluntary guidelines de
 
 ## **📂 3. What NIST Cybersecurity Framework Governs**
 - **🔐 Key Cybersecurity Risk Management Areas Covered:**  
-  ✅ **Identify** – **Understand and manage cybersecurity risks in systems, assets, data, and capabilities.**  
-  ✅ **Protect** – **Develop safeguards to ensure service continuity and secure critical functions.**  
-  ✅ **Detect** – **Implement continuous monitoring and threat detection mechanisms.**  
-  ✅ **Respond** – **Have an incident response plan in place to mitigate and contain threats.**  
-  ✅ **Recover** – **Develop resilience strategies to restore operations after a cybersecurity event.**  
+   **Identify** – **Understand and manage cybersecurity risks in systems, assets, data, and capabilities.**  
+   **Protect** – **Develop safeguards to ensure service continuity and secure critical functions.**  
+   **Detect** – **Implement continuous monitoring and threat detection mechanisms.**  
+   **Respond** – **Have an incident response plan in place to mitigate and contain threats.**  
+   **Recover** – **Develop resilience strategies to restore operations after a cybersecurity event.**  
 
 - **📜 Key NIST CSF Compliance Requirements:**  
   - **📂 Risk Assessment & Cybersecurity Governance** – **Identify assets, threats, and vulnerabilities.**  
-  - **🔍 Security Controls Implementation** – **Follow best practices for access control, encryption, and threat detection.**  
+  - ** Security Controls Implementation** – **Follow best practices for access control, encryption, and threat detection.**  
   - **📢 Security Awareness & Training** – **Educate employees on cybersecurity risks and best practices.**  
   - **🛡️ Incident Response & Recovery Planning** – **Prepare for security breaches with a documented response plan.**  
-  - **📊 Continuous Monitoring & Threat Intelligence** – **Regularly assess and improve cybersecurity measures.**  
+  - ** Continuous Monitoring & Threat Intelligence** – **Regularly assess and improve cybersecurity measures.**  
 
 ---
 
@@ -60,7 +60,7 @@ The **NIST Cybersecurity Framework (CSF)** is a **set of voluntary guidelines de
 ✔ **Secure Critical Systems & Data with Access Controls** – **Use encryption, MFA, and least privilege access policies.**  
 ✔ **Continuously Monitor & Improve Security Posture** – **Regularly update security policies and procedures.**  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **Access Management & Multi-Factor Authentication (MFA)** – **Ensure secure user authentication.**  
 ✔ **Network Security & Threat Monitoring** – **Use firewalls, IDS/IPS, and endpoint protection tools.**  
 ✔ **Data Encryption & Secure Storage** – **Encrypt sensitive data at rest and in transit.**  
@@ -110,8 +110,8 @@ The **NIST Cybersecurity Framework (CSF)** is a **set of voluntary guidelines de
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 1️⃣ **Conduct a Risk Assessment Using NIST CSF Functions** – **Identify cybersecurity risks and gaps.**  
 2️⃣ **Develop & Implement Security Policies & Controls** – **Follow best practices in access control, encryption, and monitoring.**  
 3️⃣ **Train Employees on Cybersecurity Awareness** – **Ensure staff knows how to identify and mitigate threats.**  
@@ -129,11 +129,11 @@ The **NIST Cybersecurity Framework (CSF)** is a **set of voluntary guidelines de
 ### **🔗 Official Documentation & Guidelines**
 - **[📖 NIST CSF 2.0 Official Framework](https://www.nist.gov/cyberframework)**  
 - **[⚖️ NIST 800-53 Security Controls](https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final)**  
-- **[📊 Cybersecurity Best Practices](https://www.cisa.gov/cybersecurity-framework)**  
+- **[ Cybersecurity Best Practices](https://www.cisa.gov/cybersecurity-framework)**  
 
 ---
 
-## **🚀 Conclusion**
+## ** Conclusion**
 The **NIST Cybersecurity Framework provides a structured approach to managing cybersecurity risks**, helping **organizations improve resilience against cyber threats and align with industry security standards**.
 
 ---

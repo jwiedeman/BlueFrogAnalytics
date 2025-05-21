@@ -8,9 +8,9 @@ description: Learn about DatoCMS, its history, features, and how it compares to 
 ## **📌 Overview**  
 DatoCMS is a **headless content management system (CMS)** that provides a **cloud-based, API-first platform** designed for developers, marketers, and enterprises. With a focus on structured content, scalability, and flexible integrations, DatoCMS empowers teams to deliver content seamlessly across websites, mobile apps, and digital experiences using modern frameworks.
 
-✅ **Best For:** **Developers, agencies, and enterprises** that need a **flexible, API-driven CMS** for omnichannel content delivery.  
-✅ **Market Position:** Competes with **Contentful, Sanity, Strapi, and Prismic** in the headless CMS market.  
-✅ **Core Features:** **GraphQL & REST APIs, custom content modeling, real-time previews, and robust localization support.**
+ **Best For:** **Developers, agencies, and enterprises** that need a **flexible, API-driven CMS** for omnichannel content delivery.  
+ **Market Position:** Competes with **Contentful, Sanity, Strapi, and Prismic** in the headless CMS market.  
+ **Core Features:** **GraphQL & REST APIs, custom content modeling, real-time previews, and robust localization support.**
 
 ---
 
@@ -56,16 +56,16 @@ DatoCMS was established to address the growing need for a modern, headless CMS t
 
 | Feature                  | DatoCMS    | Contentful | Sanity    | Strapi      | Prismic    |
 |--------------------------|------------|------------|-----------|-------------|------------|
-| **Ease of Use**          | ✅ Easy    | ⚠ Moderate | ✅ Easy   | ⚠ Moderate  | ✅ Easy    |
-| **Headless CMS Support** | ✅ Yes     | ✅ Yes     | ✅ Yes    | ✅ Yes      | ✅ Yes     |
-| **GraphQL API**          | ✅ Yes     | ✅ Yes     | ✅ Yes    | ✅ Yes      | ❌ No      |
-| **Customization**        | ✅ High    | ✅ High    | ✅ High   | ✅ High     | ⚠ Limited |
-| **Localization**         | ✅ Strong  | ✅ Strong  | ✅ Strong | ⚠ Limited  | ⚠ Moderate|
+| **Ease of Use**          |  Easy    | ⚠ Moderate |  Easy   | ⚠ Moderate  |  Easy    |
+| **Headless CMS Support** |  Yes     |  Yes     |  Yes    |  Yes      |  Yes     |
+| **GraphQL API**          |  Yes     |  Yes     |  Yes    |  Yes      | ❌ No      |
+| **Customization**        |  High    |  High    |  High   |  High     | ⚠ Limited |
+| **Localization**         |  Strong  |  Strong  |  Strong | ⚠ Limited  | ⚠ Moderate|
 | **Pricing**              | $$         | $$$        | $$        | Free/Open Source | $$    |
 
 ---
 
-## **✅ Pros of DatoCMS**  
+## ** Pros of DatoCMS**  
 ✔ **Fully API-driven** – Ideal for modern, decoupled architectures with robust GraphQL support.  
 ✔ **Flexible content modeling** – Customize fields and structures to meet project-specific needs.  
 ✔ **Real-time previews and collaboration** – Streamline workflows for teams.  
@@ -81,12 +81,12 @@ DatoCMS was established to address the growing need for a modern, headless CMS t
   
 ---
 
-## **🎯 Who Should Use DatoCMS?**  
+## ** Who Should Use DatoCMS?**  
 DatoCMS is **ideal for:**  
-✅ **Developers and agencies** looking to build modern, headless websites and applications.  
-✅ **Enterprises** needing scalable, API-first content delivery across multiple channels.  
-✅ **Teams managing multilingual content** for global digital experiences.  
-✅ **Projects that require real-time collaboration and preview capabilities.**
+ **Developers and agencies** looking to build modern, headless websites and applications.  
+ **Enterprises** needing scalable, API-first content delivery across multiple channels.  
+ **Teams managing multilingual content** for global digital experiences.  
+ **Projects that require real-time collaboration and preview capabilities.**
 
 ---
 
@@ -95,7 +95,7 @@ DatoCMS is a **robust, flexible, and scalable headless CMS** designed for modern
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Try DatoCMS Free](https://www.datocms.com/)**  
-✅ **[Compare DatoCMS vs Contentful](#)**  
-✅ **[Learn More: Headless CMS Best Practices](#)**
+ **Next Steps:**  
+ **[Try DatoCMS Free](https://www.datocms.com/)**  
+ **[Compare DatoCMS vs Contentful](#)**  
+ **[Learn More: Headless CMS Best Practices](#)**

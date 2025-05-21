@@ -8,9 +8,9 @@ description: Learn about Cosmic JS, its history, features, and how it compares t
 ## **📌 Overview**  
 Cosmic JS is a **headless content management system (CMS)** that provides a **cloud-based, API-driven platform** for developers and content teams. Designed for flexibility and scalability, Cosmic JS allows you to manage and deliver content across websites, mobile apps, and digital experiences without being tied to a specific front-end technology.
 
-✅ **Best For:** **Developers, startups, and enterprises** needing a **flexible headless CMS** for modern web and mobile applications.  
-✅ **Market Position:** Competes with **Contentful, ButterCMS, Strapi, and Sanity** in the headless CMS space.  
-✅ **Core Features:** **API-first architecture, flexible content modeling, media asset management, and easy integration with popular frameworks**.
+ **Best For:** **Developers, startups, and enterprises** needing a **flexible headless CMS** for modern web and mobile applications.  
+ **Market Position:** Competes with **Contentful, ButterCMS, Strapi, and Sanity** in the headless CMS space.  
+ **Core Features:** **API-first architecture, flexible content modeling, media asset management, and easy integration with popular frameworks**.
 
 ---
 
@@ -55,16 +55,16 @@ Cosmic JS was founded to address the growing demand for **decoupled content mana
 
 | Feature                  | Cosmic JS      | Contentful    | ButterCMS   | Strapi      | Sanity     |
 |--------------------------|----------------|---------------|-------------|-------------|------------|
-| **Ease of Use**          | ✅ Easy        | ⚠ Moderate   | ✅ Easy     | ⚠ Moderate | ✅ Easy    |
-| **Headless CMS Support** | ✅ Yes         | ✅ Yes       | ✅ Yes     | ✅ Yes     | ✅ Yes    |
-| **GraphQL API**          | ✅ Yes         | ✅ Yes       | ✅ Yes     | ✅ Yes     | ✅ Yes    |
-| **Customization**        | ✅ High        | ✅ High      | ✅ High    | ✅ High    | ✅ High   |
-| **Media Management**     | ✅ Built-In    | ⚠ Limited    | ✅ Strong   | ⚠ Limited | ✅ Strong  |
+| **Ease of Use**          |  Easy        | ⚠ Moderate   |  Easy     | ⚠ Moderate |  Easy    |
+| **Headless CMS Support** |  Yes         |  Yes       |  Yes     |  Yes     |  Yes    |
+| **GraphQL API**          |  Yes         |  Yes       |  Yes     |  Yes     |  Yes    |
+| **Customization**        |  High        |  High      |  High    |  High    |  High   |
+| **Media Management**     |  Built-In    | ⚠ Limited    |  Strong   | ⚠ Limited |  Strong  |
 | **Pricing**              | $$             | $$$          | $$          | Free (Open Source) | $$     |
 
 ---
 
-## **✅ Pros of Cosmic JS**  
+## ** Pros of Cosmic JS**  
 ✔ **Fully API-driven and headless** – Ideal for modern, decoupled applications.  
 ✔ **Cloud-based with global scalability** – No infrastructure hassles.  
 ✔ **Flexible content modeling** – Tailor content types to your project’s needs.  
@@ -80,12 +80,12 @@ Cosmic JS was founded to address the growing demand for **decoupled content mana
   
 ---
 
-## **🎯 Who Should Use Cosmic JS?**  
+## ** Who Should Use Cosmic JS?**  
 Cosmic JS is **ideal for:**  
-✅ **Developers and startups** looking for a flexible headless CMS solution.  
-✅ **Enterprises** that need scalable, cloud-based content delivery.  
-✅ **Teams building JAMstack websites or mobile apps** requiring decoupled content management.  
-✅ **Projects that demand robust media handling and customization**.
+ **Developers and startups** looking for a flexible headless CMS solution.  
+ **Enterprises** that need scalable, cloud-based content delivery.  
+ **Teams building JAMstack websites or mobile apps** requiring decoupled content management.  
+ **Projects that demand robust media handling and customization**.
 
 ---
 
@@ -94,7 +94,7 @@ Cosmic JS is a **powerful, API-first headless CMS** that offers the flexibility 
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Try Cosmic JS Free](https://www.cosmicjs.com/)**  
-✅ **[Compare Cosmic JS vs Contentful](#)**  
-✅ **[Learn More: Headless CMS Best Practices](#)**
+ **Next Steps:**  
+ **[Try Cosmic JS Free](https://www.cosmicjs.com/)**  
+ **[Compare Cosmic JS vs Contentful](#)**  
+ **[Learn More: Headless CMS Best Practices](#)**

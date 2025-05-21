@@ -8,9 +8,9 @@ description: Learn about Spree Commerce, its history, features, and how it compa
 ## **📌 Overview**  
 Spree Commerce is a **free, open-source eCommerce platform** built on **Ruby on Rails**. Designed for developers and agile teams, Spree offers a highly customizable and modular framework for building online stores. Its flexible architecture and extensive API support make it an attractive choice for businesses seeking a tailored eCommerce solution that can evolve with their needs.
 
-✅ **Best For:** **Developers, agencies, and businesses** that need a customizable, scalable eCommerce solution with a focus on modern web technologies.  
-✅ **Market Position:** Competes with platforms like **Magento, WooCommerce, and Shopify (via headless implementations)** by offering an open-source, developer-friendly alternative.  
-✅ **Core Features:** **Modular architecture, extensive API support, flexible customization, multi-store capabilities, and a vibrant community.**
+ **Best For:** **Developers, agencies, and businesses** that need a customizable, scalable eCommerce solution with a focus on modern web technologies.  
+ **Market Position:** Competes with platforms like **Magento, WooCommerce, and Shopify (via headless implementations)** by offering an open-source, developer-friendly alternative.  
+ **Core Features:** **Modular architecture, extensive API support, flexible customization, multi-store capabilities, and a vibrant community.**
 
 ---
 
@@ -51,15 +51,15 @@ Spree Commerce was created to offer a lightweight, modular eCommerce platform th
 
 | Feature                    | Spree Commerce    | Magento (Adobe Commerce) | WooCommerce      | Shopify (Headless) |
 |----------------------------|-------------------|--------------------------|------------------|--------------------|
-| **Ease of Use**            | ⚠ Moderate        | ⚠ Complex               | ✅ Easy          | ✅ Moderate        |
-| **Customization**          | ✅ Extensive      | ✅ Extensive             | ✅ High          | ✅ High            |
-| **API & Headless Support** | ✅ Robust         | ✅ Strong                | ⚠ Limited       | ✅ Extensive       |
-| **Cost**                   | ✅ Free (Open-Source) | $$$ (Enterprise-Level)  | ✅ Free (Open-Source) | $$-$$$ (Subscription) |
-| **Community Support**      | ✅ Active         | ✅ Vast                  | ✅ Extensive     | ✅ Extensive       |
+| **Ease of Use**            | ⚠ Moderate        | ⚠ Complex               |  Easy          |  Moderate        |
+| **Customization**          |  Extensive      |  Extensive             |  High          |  High            |
+| **API & Headless Support** |  Robust         |  Strong                | ⚠ Limited       |  Extensive       |
+| **Cost**                   |  Free (Open-Source) | $$$ (Enterprise-Level)  |  Free (Open-Source) | $$-$$$ (Subscription) |
+| **Community Support**      |  Active         |  Vast                  |  Extensive     |  Extensive       |
 
 ---
 
-## **✅ Pros of Spree Commerce**  
+## ** Pros of Spree Commerce**  
 ✔ **Highly Customizable:** Fully open-source with a modular design, offering extensive customization options.
 ✔ **Developer-Friendly:** Built on Ruby on Rails with robust APIs, making it ideal for teams with technical expertise.
 ✔ **Flexible & Scalable:** Capable of handling multi-store setups and global eCommerce requirements.
@@ -76,12 +76,12 @@ Spree Commerce was created to offer a lightweight, modular eCommerce platform th
 
 ---
 
-## **🎯 Who Should Use Spree Commerce?**  
+## ** Who Should Use Spree Commerce?**  
 Spree Commerce is **ideal for:**  
-✅ **Developers and agencies** building custom eCommerce solutions.
-✅ **Businesses with unique requirements** that demand a highly flexible, modular platform.
-✅ **Enterprises looking for an open-source alternative** to proprietary eCommerce systems.
-✅ **Teams aiming to leverage headless commerce architectures** for a modern, decoupled approach.
+ **Developers and agencies** building custom eCommerce solutions.
+ **Businesses with unique requirements** that demand a highly flexible, modular platform.
+ **Enterprises looking for an open-source alternative** to proprietary eCommerce systems.
+ **Teams aiming to leverage headless commerce architectures** for a modern, decoupled approach.
 
 ---
 
@@ -90,7 +90,7 @@ Spree Commerce offers a **powerful and flexible eCommerce solution** that is wel
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Explore Spree Commerce](https://spreecommerce.org/)**  
-✅ **[Compare Spree Commerce vs Magento](#)**  
-✅ **[Learn More: Building Custom eCommerce Solutions with Spree Commerce](#)**
+ **Next Steps:**  
+ **[Explore Spree Commerce](https://spreecommerce.org/)**  
+ **[Compare Spree Commerce vs Magento](#)**  
+ **[Learn More: Building Custom eCommerce Solutions with Spree Commerce](#)**

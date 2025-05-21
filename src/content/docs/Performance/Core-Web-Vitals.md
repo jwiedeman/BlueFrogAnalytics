@@ -62,8 +62,8 @@ Users often notice **inconsistent CWV scores** when running tests, and this is d
 
 | Testing Method | Environment | Data Source | Pros | Cons |
 | --- | --- | --- | --- | --- |
-| **Lighthouse (Lab Data)** | **Simulated** | Runs in a **throttled environment** with predefined CPU & network conditions. | ✅ Reproducible | ❌ May not match real-world experience |
-| **Field Data (CrUX Reports, Real User Metrics)** | **Real Users** | Collected from **actual Chrome users** on different devices & network speeds. | ✅ More accurate | ❌ Cannot test unpublished pages |
+| **Lighthouse (Lab Data)** | **Simulated** | Runs in a **throttled environment** with predefined CPU & network conditions. |  Reproducible | ❌ May not match real-world experience |
+| **Field Data (CrUX Reports, Real User Metrics)** | **Real Users** | Collected from **actual Chrome users** on different devices & network speeds. |  More accurate | ❌ Cannot test unpublished pages |
 
 * * * * *
 
@@ -79,9 +79,9 @@ Lighthouse runs **inside Chrome DevTools**, where it **competes for CPU/RAM prio
 
 #### **How to Get More Reliable Lighthouse Results:**
 
-✅ **Close all other Chrome tabs** before running Lighthouse.\
-✅ **Run Lighthouse from a fresh browser session** (Incognito Mode).\
-✅ **Use the CLI instead of DevTools**:
+ **Close all other Chrome tabs** before running Lighthouse.\
+ **Run Lighthouse from a fresh browser session** (Incognito Mode).\
+ **Use the CLI instead of DevTools**:
 
 
 

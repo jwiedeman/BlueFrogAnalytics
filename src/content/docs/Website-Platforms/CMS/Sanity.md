@@ -8,9 +8,9 @@ description: Learn about Sanity, its history, features, and how it compares to o
 ## **📌 Overview**  
 Sanity is a **headless content management system (CMS)** that offers a highly customizable and developer-friendly platform for managing structured content. With its real-time collaboration, flexible content modeling, and powerful APIs (including GraphQL support), Sanity is designed to support modern web applications, mobile apps, and digital experiences. Its open-source core and rich ecosystem make it an excellent choice for teams seeking a scalable, agile, and customizable content platform.
 
-✅ **Best For:** **Developers, agencies, and enterprises** looking for a flexible, API-first headless CMS that enables real-time collaboration and custom content modeling.  
-✅ **Market Position:** Competes with platforms like **Contentful, Prismic, and Strapi** by offering a unique, developer-centric approach and a robust, real-time content studio.  
-✅ **Core Features:** **Flexible content modeling, real-time collaboration, customizable editing interfaces, GraphQL & REST APIs, and a strong developer ecosystem.**
+ **Best For:** **Developers, agencies, and enterprises** looking for a flexible, API-first headless CMS that enables real-time collaboration and custom content modeling.  
+ **Market Position:** Competes with platforms like **Contentful, Prismic, and Strapi** by offering a unique, developer-centric approach and a robust, real-time content studio.  
+ **Core Features:** **Flexible content modeling, real-time collaboration, customizable editing interfaces, GraphQL & REST APIs, and a strong developer ecosystem.**
 
 ---
 
@@ -51,15 +51,15 @@ Sanity was created to address the need for a more adaptable and developer-focuse
 
 | Feature                   | Sanity           | Contentful      | Prismic        | Strapi           |
 |---------------------------|------------------|-----------------|----------------|------------------|
-| **Ease of Use**           | ✅ Easy          | ⚠ Moderate     | ✅ Easy        | ⚠ Moderate      |
-| **Customization**         | ✅ High          | ✅ High         | ✅ Moderate    | ✅ High          |
-| **Real-Time Collaboration**| ✅ Built-In     | ⚠ Limited      | ⚠ Basic       | ❌ No            |
-| **API Capabilities**      | ✅ REST & GraphQL| ✅ REST & GraphQL| ✅ REST       | ✅ REST & GraphQL|
-| **Developer Focus**       | ✅ Strong        | ✅ Moderate     | ✅ Moderate    | ✅ Strong        |
+| **Ease of Use**           |  Easy          | ⚠ Moderate     |  Easy        | ⚠ Moderate      |
+| **Customization**         |  High          |  High         |  Moderate    |  High          |
+| **Real-Time Collaboration**|  Built-In     | ⚠ Limited      | ⚠ Basic       | ❌ No            |
+| **API Capabilities**      |  REST & GraphQL|  REST & GraphQL|  REST       |  REST & GraphQL|
+| **Developer Focus**       |  Strong        |  Moderate     |  Moderate    |  Strong        |
 
 ---
 
-## **✅ Pros of Sanity**  
+## ** Pros of Sanity**  
 ✔ **Highly Flexible Content Modeling:** Create custom schemas tailored to your project's needs.  
 ✔ **Real-Time Collaboration:** Allows teams to edit and manage content simultaneously, enhancing workflow efficiency.  
 ✔ **Powerful API Support:** Leverages both REST and GraphQL for seamless integration with modern applications.  
@@ -76,12 +76,12 @@ Sanity was created to address the need for a more adaptable and developer-focuse
 
 ---
 
-## **🎯 Who Should Use Sanity?**  
+## ** Who Should Use Sanity?**  
 Sanity is **ideal for:**  
-✅ **Developers and agencies** seeking a highly customizable, API-first headless CMS.  
-✅ **Content teams** that require real-time collaboration and flexible content modeling.  
-✅ **Enterprises** looking for scalable, high-performance content management solutions.  
-✅ **Projects that demand tailored digital experiences** across multiple channels.
+ **Developers and agencies** seeking a highly customizable, API-first headless CMS.  
+ **Content teams** that require real-time collaboration and flexible content modeling.  
+ **Enterprises** looking for scalable, high-performance content management solutions.  
+ **Projects that demand tailored digital experiences** across multiple channels.
 
 ---
 
@@ -90,6 +90,6 @@ Sanity offers a **robust, flexible, and modern headless CMS** that empowers team
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Explore Sanity](https://www.sanity.io/)**  
-✅ **[Compare Sanity vs Contentful](#
+ **Next Steps:**  
+ **[Explore Sanity](https://www.sanity.io/)**  
+ **[Compare Sanity vs Contentful](#

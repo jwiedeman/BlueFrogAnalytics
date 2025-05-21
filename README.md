@@ -11,9 +11,9 @@ npm create astro@latest -- --template starlight
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/withastro/starlight&create_from_path=examples/basics)
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwithastro%2Fstarlight%2Ftree%2Fmain%2Fexamples%2Fbasics&project-name=my-starlight-docs&repository-name=my-starlight-docs)
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+> 🧑‍ **Seasoned astronaut?** Delete this file. Have fun!
 
-## 🚀 Project Structure
+##  Project Structure
 
 Inside of your Astro + Starlight project, you'll see the following folders and files:
 

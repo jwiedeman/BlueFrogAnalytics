@@ -13,7 +13,7 @@ The **Digital Markets Act (DMA)** is a landmark **EU regulation aimed at ensurin
 - **📖 Short Description:** A regulation that **curbs anti-competitive practices by dominant tech platforms** to ensure a fair and open digital market in the EU.  
 - **📅 Enforcement Date:** **November 1, 2022** *(Full compliance required by March 6, 2024.)*  
 - **🏛️ Governing Body:** **European Commission (EC), Directorate-General for Competition (DG COMP)**  
-- **🎯 Primary Purpose:**  
+- ** Primary Purpose:**  
   - **Prevent unfair practices by large digital "gatekeepers."**  
   - **Increase competition in key digital markets like search, social media, online advertising, and app stores.**  
   - **Ensure consumers have more choices and control over digital services.**  
@@ -37,11 +37,11 @@ The **Digital Markets Act (DMA)** is a landmark **EU regulation aimed at ensurin
 
 ## **📂 3. What the Digital Markets Act Governs**
 - **🔐 Key Digital Services Covered:**  
-  ✅ **Online Search Engines** – Must **not prioritize their own products over competitors'**.  
-  ✅ **Social Media Platforms** – Must **offer interoperability & fair content moderation.**  
-  ✅ **Online Advertising Services** – Must **be transparent about ad pricing & targeting data.**  
-  ✅ **App Stores & Mobile OS Providers** – Must **allow alternative app distribution & billing options.**  
-  ✅ **Cloud Computing & Digital Marketplaces** – Must **ensure fair access for smaller competitors.**  
+   **Online Search Engines** – Must **not prioritize their own products over competitors'**.  
+   **Social Media Platforms** – Must **offer interoperability & fair content moderation.**  
+   **Online Advertising Services** – Must **be transparent about ad pricing & targeting data.**  
+   **App Stores & Mobile OS Providers** – Must **allow alternative app distribution & billing options.**  
+   **Cloud Computing & Digital Marketplaces** – Must **ensure fair access for smaller competitors.**  
 
 - **📜 Key DMA Requirements for Gatekeepers:**  
   - **Allow users to uninstall pre-installed apps and change default settings.**  
@@ -61,7 +61,7 @@ The **Digital Markets Act (DMA)** is a landmark **EU regulation aimed at ensurin
 ✔ **Interoperability for Messaging Apps** – **Messaging services must work across platforms (e.g., WhatsApp & iMessage).**  
 ✔ **Data Portability & User Control** – **Users must be able to transfer data to another service easily.**  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **APIs for Data Portability & Interoperability** – Platforms must **offer tools to enable service switching.**  
 ✔ **Fair Ranking Algorithms** – **Search & app store results must be based on fair criteria.**  
 ✔ **Ad Transparency Dashboards** – Advertisers must be able to **see how ads are priced & targeted.**  
@@ -111,8 +111,8 @@ The **Digital Markets Act (DMA)** is a landmark **EU regulation aimed at ensurin
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 1️⃣ **Review Platform Market Practices** – Ensure **no self-preferencing in rankings, search, or advertising.**  
 2️⃣ **Allow Third-Party App Stores & Payment Methods** – **Adapt mobile ecosystems to DMA rules.**  
 3️⃣ **Enhance Data Portability & Interoperability** – **Enable seamless switching between platforms.**  
@@ -133,7 +133,7 @@ The **Digital Markets Act (DMA)** is a landmark **EU regulation aimed at ensurin
 
 ---
 
-## **🚀 Conclusion**
+## ** Conclusion**
 The **Digital Markets Act (DMA)** reshapes **how big tech operates in the EU**, ensuring **fair competition, innovation, and consumer choice.**  
 
 ---

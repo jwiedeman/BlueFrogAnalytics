@@ -8,9 +8,9 @@ description: Learn about Directus, its history, features, and how it compares to
 ## **📌 Overview**  
 Directus is an **open-source, headless CMS and API platform** that provides a **customizable content management solution** directly on top of your SQL database. It delivers a real-time data API alongside an intuitive admin app, making it a powerful choice for developers, data teams, and enterprises that want to manage structured content with flexibility and control.
 
-✅ **Best For:** **Developers, data teams, and enterprises** who require a **flexible, API-driven CMS** that integrates directly with existing SQL databases.  
-✅ **Market Position:** Competes with **Contentful, Strapi, Sanity, and DatoCMS** while offering open-source flexibility and direct database connectivity.  
-✅ **Core Features:** **Direct database integration, real-time APIs (REST & GraphQL), customizable admin interface, and robust role-based access control.**
+ **Best For:** **Developers, data teams, and enterprises** who require a **flexible, API-driven CMS** that integrates directly with existing SQL databases.  
+ **Market Position:** Competes with **Contentful, Strapi, Sanity, and DatoCMS** while offering open-source flexibility and direct database connectivity.  
+ **Core Features:** **Direct database integration, real-time APIs (REST & GraphQL), customizable admin interface, and robust role-based access control.**
 
 ---
 
@@ -51,15 +51,15 @@ Directus began as an effort to simplify data management by providing a headless 
 
 | Feature                   | Directus        | Contentful    | Strapi      | Sanity     | DatoCMS    |
 |---------------------------|-----------------|---------------|-------------|------------|------------|
-| **Ease of Use**           | ✅ Easy         | ⚠ Moderate   | ⚠ Moderate | ✅ Easy   | ✅ Easy    |
-| **Direct Database Access**| ✅ Yes          | ❌ No        | ❌ No      | ❌ No     | ❌ No     |
-| **API Support**           | ✅ REST & GraphQL| ✅ Yes       | ✅ Yes     | ✅ Yes   | ✅ Yes    |
-| **Customization**         | ✅ High         | ✅ High      | ✅ High    | ✅ High   | ✅ High   |
-| **Open-Source**           | ✅ Yes          | ⚠ Limited   | ✅ Yes     | ⚠ Limited| ⚠ Limited|
+| **Ease of Use**           |  Easy         | ⚠ Moderate   | ⚠ Moderate |  Easy   |  Easy    |
+| **Direct Database Access**|  Yes          | ❌ No        | ❌ No      | ❌ No     | ❌ No     |
+| **API Support**           |  REST & GraphQL|  Yes       |  Yes     |  Yes   |  Yes    |
+| **Customization**         |  High         |  High      |  High    |  High   |  High   |
+| **Open-Source**           |  Yes          | ⚠ Limited   |  Yes     | ⚠ Limited| ⚠ Limited|
 
 ---
 
-## **✅ Pros of Directus**  
+## ** Pros of Directus**  
 ✔ **Direct SQL database integration** – Manage your existing data without complex migrations.  
 ✔ **Real-time API access** – Keep your applications updated with the latest content instantly.  
 ✔ **Customizable and intuitive admin interface** – Empower teams with minimal technical training.  
@@ -75,12 +75,12 @@ Directus began as an effort to simplify data management by providing a headless 
 
 ---
 
-## **🎯 Who Should Use Directus?**  
+## ** Who Should Use Directus?**  
 Directus is **ideal for:**  
-✅ **Developers and data teams** seeking direct control over SQL databases.  
-✅ **Enterprises** that need a scalable, real-time content management solution.  
-✅ **Organizations preferring open-source software** with customizable administration interfaces.  
-✅ **Projects requiring a flexible API-first approach** to content delivery.
+ **Developers and data teams** seeking direct control over SQL databases.  
+ **Enterprises** that need a scalable, real-time content management solution.  
+ **Organizations preferring open-source software** with customizable administration interfaces.  
+ **Projects requiring a flexible API-first approach** to content delivery.
 
 ---
 
@@ -89,7 +89,7 @@ Directus delivers a **powerful, open-source headless CMS solution** that excels 
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Try Directus Free](https://directus.io/)**  
-✅ **[Compare Directus vs Strapi](#)**  
-✅ **[Learn More: Headless CMS Best Practices](#)**
+ **Next Steps:**  
+ **[Try Directus Free](https://directus.io/)**  
+ **[Compare Directus vs Strapi](#)**  
+ **[Learn More: Headless CMS Best Practices](#)**

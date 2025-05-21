@@ -13,7 +13,7 @@ The **Gramm-Leach-Bliley Act (GLBA)** is a **U.S. federal law that mandates fina
 - **📖 Short Description:** A **U.S. federal law requiring financial institutions to protect consumer financial data, prevent unauthorized access, and maintain transparency in data sharing.**  
 - **📅 Enacted Date:** **November 12, 1999**  
 - **🏛️ Governing Body:** **Federal Trade Commission (FTC), Federal Reserve, Office of the Comptroller of the Currency (OCC), and other financial regulators.**  
-- **🎯 Primary Purpose:**  
+- ** Primary Purpose:**  
   - **Ensure financial institutions secure and protect customer data.**  
   - **Regulate how banks, lenders, and insurers share customer financial information.**  
   - **Mandate consumer rights over financial data access and privacy.**  
@@ -36,18 +36,18 @@ The **Gramm-Leach-Bliley Act (GLBA)** is a **U.S. federal law that mandates fina
 
 ## **📂 3. What GLBA Governs**
 - **🔐 Key Areas of Data Privacy & Security Covered:**  
-  ✅ **Financial Data Collection & Protection** – **Regulates how businesses collect, store, and secure financial information.**  
-  ✅ **Customer Data Sharing & Disclosure** – **Limits how businesses share consumer financial data with third parties.**  
-  ✅ **Privacy Notices & Consumer Rights** – **Requires companies to inform customers about their data-sharing policies.**  
-  ✅ **Data Security Safeguards** – **Mandates businesses to implement measures to prevent unauthorized access.**  
-  ✅ **Third-Party Vendor Compliance** – **Ensures external service providers also follow GLBA regulations.**  
+   **Financial Data Collection & Protection** – **Regulates how businesses collect, store, and secure financial information.**  
+   **Customer Data Sharing & Disclosure** – **Limits how businesses share consumer financial data with third parties.**  
+   **Privacy Notices & Consumer Rights** – **Requires companies to inform customers about their data-sharing policies.**  
+   **Data Security Safeguards** – **Mandates businesses to implement measures to prevent unauthorized access.**  
+   **Third-Party Vendor Compliance** – **Ensures external service providers also follow GLBA regulations.**  
 
 - **📜 Key GLBA Compliance Requirements:**  
   - **📂 Privacy Rule** – **Businesses must provide clear and accurate privacy notices to consumers.**  
-  - **🔍 Safeguards Rule** – **Organizations must implement a written data security plan to protect customer information.**  
+  - ** Safeguards Rule** – **Organizations must implement a written data security plan to protect customer information.**  
   - **📢 Pretexting Protection Rule** – **Prohibits fraudulent access to consumer financial data.**  
   - **🛡️ Data Encryption & Security Controls** – **Businesses must safeguard sensitive financial data.**  
-  - **📊 Annual Risk Assessments & Monitoring** – **Ongoing evaluation of data security measures.**  
+  - ** Annual Risk Assessments & Monitoring** – **Ongoing evaluation of data security measures.**  
 
 ---
 
@@ -59,7 +59,7 @@ The **Gramm-Leach-Bliley Act (GLBA)** is a **U.S. federal law that mandates fina
 ✔ **Monitor Third-Party Vendors Handling Consumer Data** – **Ensure service providers comply with GLBA regulations.**  
 ✔ **Regularly Test & Audit Security Safeguards** – **Conduct annual risk assessments and cybersecurity reviews.**  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **Access Controls & Multi-Factor Authentication (MFA)** – **Restrict data access to authorized personnel only.**  
 ✔ **Data Encryption & Secure Storage** – **Encrypt sensitive financial data both in transit and at rest.**  
 ✔ **Employee Training on Data Protection Policies** – **Ensure staff understands GLBA compliance obligations.**  
@@ -107,8 +107,8 @@ The **Gramm-Leach-Bliley Act (GLBA)** is a **U.S. federal law that mandates fina
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 1️⃣ **Conduct a Security Risk Assessment** – **Identify risks to customer financial data.**  
 2️⃣ **Provide Privacy Notices & Opt-Out Options** – **Ensure consumers are aware of their data rights.**  
 3️⃣ **Encrypt Customer Data & Implement Multi-Factor Authentication (MFA)** – **Strengthen security defenses.**  
@@ -126,11 +126,11 @@ The **Gramm-Leach-Bliley Act (GLBA)** is a **U.S. federal law that mandates fina
 ### **🔗 Official Documentation & Guidelines**
 - **[📖 GLBA Full Legal Text](https://www.ftc.gov/legal-library/browse/statutes/gramm-leach-bliley-act)**  
 - **[⚖️ FTC GLBA Safeguards Rule Guide](https://www.ftc.gov/business-guidance/resources/ftc-safeguards-rule-compliance-guide-businesses)**  
-- **[📊 CFPB Financial Privacy Rights](https://www.consumerfinance.gov/)**  
+- **[ CFPB Financial Privacy Rights](https://www.consumerfinance.gov/)**  
 
 ---
 
-## **🚀 Conclusion**
+## ** Conclusion**
 The **GLBA safeguards consumer financial privacy**, requiring **financial institutions to implement security controls, disclose data practices, and prevent unauthorized access**.
 
 ---

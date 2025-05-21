@@ -8,9 +8,9 @@ description: Learn about ezplatform (now Ibexa DXP), its history, features, and 
 ## **📌 Overview**  
 ezplatform, now rebranded as **Ibexa DXP**, is a **flexible, open-source content management system (CMS)** and digital experience platform designed for enterprises. Built on the Symfony framework, it provides powerful tools for **content management, digital marketing, and omnichannel delivery**. The platform enables organizations to create, manage, and deliver personalized digital experiences across websites, mobile apps, and other channels.
 
-✅ **Best For:** **Large enterprises and global brands** that need a unified solution for managing content and digital experiences with strong personalization capabilities.  
-✅ **Market Position:** Competes with **Drupal, Adobe Experience Manager, and Sitecore** in the enterprise CMS and DXP space.  
-✅ **Core Features:** **Flexible content modeling, headless & API-first architecture, personalization, and robust integration capabilities.**
+ **Best For:** **Large enterprises and global brands** that need a unified solution for managing content and digital experiences with strong personalization capabilities.  
+ **Market Position:** Competes with **Drupal, Adobe Experience Manager, and Sitecore** in the enterprise CMS and DXP space.  
+ **Core Features:** **Flexible content modeling, headless & API-first architecture, personalization, and robust integration capabilities.**
 
 ---
 
@@ -53,15 +53,15 @@ Originally launched as ezplatform, the solution evolved to meet the increasingly
 | Feature                   | ezplatform (Ibexa DXP) | Drupal           | Adobe Experience Manager | Sitecore         |
 |---------------------------|------------------------|------------------|--------------------------|------------------|
 | **Ease of Use**           | ⚠ Moderate             | ⚠ Moderate       | ⚠ Complex               | ⚠ Complex        |
-| **Customization**         | ✅ High                | ✅ High          | ✅ High                  | ✅ High          |
-| **Headless & API-First**  | ✅ Yes                 | ✅ Yes           | ✅ Yes                   | ✅ Yes           |
-| **Enterprise Scalability**| ✅ High               | ✅ High          | ✅ High                  | ✅ High          |
-| **Personalization**       | ✅ Strong              | ⚠ Limited       | ✅ Strong                | ✅ Strong        |
-| **Integration & Extensibility** | ✅ High         | ✅ High          | ✅ High                  | ✅ High          |
+| **Customization**         |  High                |  High          |  High                  |  High          |
+| **Headless & API-First**  |  Yes                 |  Yes           |  Yes                   |  Yes           |
+| **Enterprise Scalability**|  High               |  High          |  High                  |  High          |
+| **Personalization**       |  Strong              | ⚠ Limited       |  Strong                |  Strong        |
+| **Integration & Extensibility** |  High         |  High          |  High                  |  High          |
 
 ---
 
-## **✅ Pros of ezplatform (Ibexa DXP)**  
+## ** Pros of ezplatform (Ibexa DXP)**  
 ✔ **Robust content management:** Flexible and powerful tools for managing complex content.  
 ✔ **Headless capabilities:** Seamlessly deliver content across multiple digital channels.  
 ✔ **Strong personalization tools:** Enhance user engagement with tailored digital experiences.  
@@ -78,12 +78,12 @@ Originally launched as ezplatform, the solution evolved to meet the increasingly
 
 ---
 
-## **🎯 Who Should Use ezplatform (Ibexa DXP)?**  
+## ** Who Should Use ezplatform (Ibexa DXP)?**  
 ezplatform (Ibexa DXP) is **ideal for:**  
-✅ **Large enterprises and global brands** needing an integrated digital experience platform.  
-✅ **Organizations with complex content and personalization requirements.**  
-✅ **Businesses looking for headless CMS capabilities** to power omnichannel digital experiences.  
-✅ **Companies with technical teams capable of managing and customizing an enterprise-grade solution.
+ **Large enterprises and global brands** needing an integrated digital experience platform.  
+ **Organizations with complex content and personalization requirements.**  
+ **Businesses looking for headless CMS capabilities** to power omnichannel digital experiences.  
+ **Companies with technical teams capable of managing and customizing an enterprise-grade solution.
 
 ---
 
@@ -92,7 +92,7 @@ ezplatform, now rebranded as **Ibexa DXP**, offers a comprehensive and flexible 
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Explore Ibexa DXP](https://ibexa.co/)**  
-✅ **[Compare ezplatform vs Drupal](#)**  
-✅ **[Learn More: Building Omnichannel Experiences with Ibexa DXP](#)**
+ **Next Steps:**  
+ **[Explore Ibexa DXP](https://ibexa.co/)**  
+ **[Compare ezplatform vs Drupal](#)**  
+ **[Learn More: Building Omnichannel Experiences with Ibexa DXP](#)**

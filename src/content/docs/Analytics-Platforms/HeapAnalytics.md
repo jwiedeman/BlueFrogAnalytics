@@ -8,8 +8,8 @@ description: Learn about Heap Analytics, its history, features, and how it compa
 ## **📌 Overview**  
 Heap Analytics is an **automated, event-based analytics platform** that simplifies the process of capturing user interactions on websites and mobile apps. Designed for product teams and marketers, Heap automatically tracks every user action without requiring manual event tagging. This enables businesses to quickly derive insights from user behavior, optimize their products, and drive data-informed decisions. Heap’s intuitive interface and robust reporting tools make it a valuable asset for understanding customer journeys and improving conversion rates.
 
-✅ **Best For:** **Product teams, digital marketers, and analysts** who need comprehensive, automatically captured user data to drive product improvements and optimize user experiences.  
-✅ **Core Concept:** Automatically record all user interactions, providing a complete, retroactive view of user behavior without the need for manual tagging.
+ **Best For:** **Product teams, digital marketers, and analysts** who need comprehensive, automatically captured user data to drive product improvements and optimize user experiences.  
+ **Core Concept:** Automatically record all user interactions, providing a complete, retroactive view of user behavior without the need for manual tagging.
 
 ---
 
@@ -46,15 +46,15 @@ Heap Analytics was developed to address the challenges of traditional event trac
 
 | Feature                     | Heap Analytics   | Mixpanel         | Amplitude        | Google Analytics  |
 |-----------------------------|------------------|------------------|------------------|-------------------|
-| **Automatic Event Tracking** | ✅ Excellent  | ⚠ Manual Setup   | ⚠ Manual Setup   | ⚠ Limited          |
-| **Funnel & Cohort Analysis**   | ✅ Advanced   | ✅ Advanced      | ✅ Advanced      | ⚠ Moderate         |
-| **User Segmentation**          | ✅ High       | ✅ High          | ✅ High          | ⚠ Moderate         |
-| **Ease of Use**                | ✅ User-Friendly| ⚠ Moderate      | ⚠ Moderate      | ✅ Moderate         |
-| **Integration Flexibility**    | ✅ Strong     | ✅ Strong        | ✅ Strong        | ✅ Extensive        |
+| **Automatic Event Tracking** |  Excellent  | ⚠ Manual Setup   | ⚠ Manual Setup   | ⚠ Limited          |
+| **Funnel & Cohort Analysis**   |  Advanced   |  Advanced      |  Advanced      | ⚠ Moderate         |
+| **User Segmentation**          |  High       |  High          |  High          | ⚠ Moderate         |
+| **Ease of Use**                |  User-Friendly| ⚠ Moderate      | ⚠ Moderate      |  Moderate         |
+| **Integration Flexibility**    |  Strong     |  Strong        |  Strong        |  Extensive        |
 
 ---
 
-## **✅ Pros of Heap Analytics**
+## ** Pros of Heap Analytics**
 ✔ **Automated Data Collection:** Eliminates the need for manual event tagging, saving time and reducing errors.  
 ✔ **Comprehensive Insights:** Provides a complete picture of user behavior with retroactive analysis capabilities.
 ✔ **Advanced Analysis Tools:** Supports detailed funnel, cohort, and segmentation analysis to drive data-driven decisions.
@@ -71,12 +71,12 @@ Heap Analytics was developed to address the challenges of traditional event trac
 
 ---
 
-## **🎯 Who Should Use Heap Analytics?**
+## ** Who Should Use Heap Analytics?**
 Heap Analytics is **ideal for:**
-✅ **Product teams and digital marketers** seeking to understand detailed user behavior without manual setup.
-✅ **Data analysts** aiming for comprehensive, retroactive analysis of user interactions.
-✅ **Growing businesses** that need scalable analytics to drive product optimization and user engagement.
-✅ **Organizations looking for a balance** between automation and advanced analytical capabilities.
+ **Product teams and digital marketers** seeking to understand detailed user behavior without manual setup.
+ **Data analysts** aiming for comprehensive, retroactive analysis of user interactions.
+ **Growing businesses** that need scalable analytics to drive product optimization and user engagement.
+ **Organizations looking for a balance** between automation and advanced analytical capabilities.
 
 ---
 
@@ -85,7 +85,7 @@ Heap Analytics offers a **powerful, automated solution** for tracking user behav
 
 ---
 
-🚀 **Next Steps:**
-✅ **[Explore Heap Analytics](https://heap.io/)**  
-✅ **[Compare Heap Analytics vs Mixpanel](#)**  
-✅ **[Learn More: Maximizing Product Insights with Heap Analytics](#)**
+ **Next Steps:**
+ **[Explore Heap Analytics](https://heap.io/)**  
+ **[Compare Heap Analytics vs Mixpanel](#)**  
+ **[Learn More: Maximizing Product Insights with Heap Analytics](#)**

@@ -13,7 +13,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 - **📖 Short Description:** The first U.S. law mandating **security requirements for IoT devices**, ensuring that connected devices are protected against cyber threats.  
 - **📅 Enforcement Date:** **January 1, 2020**  
 - **🏛️ Governing Body:** **California Attorney General**  
-- **🎯 Primary Purpose:** Enhance **IoT device security** by requiring manufacturers to implement **reasonable security features** to protect users from **hacking, unauthorized access, and data breaches**.  
+- ** Primary Purpose:** Enhance **IoT device security** by requiring manufacturers to implement **reasonable security features** to protect users from **hacking, unauthorized access, and data breaches**.  
 
 ---
 
@@ -32,10 +32,10 @@ This guide will help you **understand, implement, and maintain compliance** with
 
 ## **📂 3. What the California IoT Security Law Governs**
 - **🔐 Types of Devices Covered:**  
-  ✅ **Any device with an IP address or Bluetooth capability**.  
-  ✅ **Smartphones, smart TVs, wearables, home automation products**.  
-  ✅ **Industrial IoT systems connected to networks**.  
-  ✅ **Medical IoT devices processing patient data**.  
+   **Any device with an IP address or Bluetooth capability**.  
+   **Smartphones, smart TVs, wearables, home automation products**.  
+   **Industrial IoT systems connected to networks**.  
+   **Medical IoT devices processing patient data**.  
 
 - **📜 Key Security Requirements:**  
   - **Unique Device Passwords:** Devices **cannot** have factory default passwords (e.g., "admin/admin").  
@@ -53,7 +53,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 ✔ **Prevent Unauthorized Access** – Implement **network security measures** to prevent device hijacking.  
 ✔ **Data Encryption & Privacy Protections** – Protect user data stored on IoT devices or transmitted over networks.  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **Secure Boot & Code Signing** – Ensure **firmware integrity** with **signed, trusted updates**.  
 ✔ **Access Control Policies** – Devices should use **role-based access control (RBAC)** to limit administrative privileges.  
 ✔ **Device Security Logging** – Implement **logging and monitoring features** to detect intrusions.  
@@ -96,8 +96,8 @@ This guide will help you **understand, implement, and maintain compliance** with
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 1️⃣ **Audit IoT Security** – Identify **weaknesses in authentication, encryption, and updates**.  
 2️⃣ **Eliminate Default Passwords** – Require **unique credentials or password resets on first use**.  
 3️⃣ **Implement Secure Authentication** – Enable **multi-factor authentication and encryption**.  
@@ -115,12 +115,12 @@ This guide will help you **understand, implement, and maintain compliance** with
 ### **🔗 Official Documentation & Guidelines**
 - **[📖 California IoT Security Law (SB-327 & AB-1906)](https://leginfo.legislature.ca.gov/)**  
 - **[⚖️ California Attorney General IoT Security Guidelines](https://oag.ca.gov/)**  
-- **[📊 NIST IoT Cybersecurity Standards](https://www.nist.gov/)**  
+- **[ NIST IoT Cybersecurity Standards](https://www.nist.gov/)**  
 
-### **🛠️ Tools for IoT Security Compliance**
-- **🔍 IoT Vulnerability Scanners** – Tenable, Rapid7, IoT Inspector.  
+### **️ Tools for IoT Security Compliance**
+- ** IoT Vulnerability Scanners** – Tenable, Rapid7, IoT Inspector.  
 - **🔐 Secure Firmware Update Solutions** – ARM TrustZone, Intel Secure Boot.  
-- **📊 IoT Penetration Testing Tools** – OWASP IoT Project, Shodan.  
+- ** IoT Penetration Testing Tools** – OWASP IoT Project, Shodan.  
 
 ### **📌 Case Studies & Examples**
 - **❌ IoT Breach Example:** Mirai Botnet attack (2016) used **insecure IoT devices** to crash major websites.  
@@ -133,12 +133,12 @@ This guide will help you **understand, implement, and maintain compliance** with
 
 ---
 
-## **🚀 Conclusion**
+## ** Conclusion**
 The **California IoT Security Law** sets a new standard for **IoT security** in the U.S. Ensuring compliance **protects consumers**, prevents **cybersecurity risks**, and **builds trust**.
 
 ---
 
-🚀 **Next Steps:**
-✅ **[Audit Your IoT Device Security](#)**  
-✅ **[Implement Secure Authentication & Encryption](#)**  
-✅ **[Develop an IoT Security Patch Management Plan](#)**  
+ **Next Steps:**
+ **[Audit Your IoT Device Security](#)**  
+ **[Implement Secure Authentication & Encryption](#)**  
+ **[Develop an IoT Security Patch Management Plan](#)**  

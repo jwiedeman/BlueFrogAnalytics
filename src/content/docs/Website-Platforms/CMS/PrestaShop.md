@@ -8,9 +8,9 @@ description: Learn about PrestaShop, its history, features, and how it compares 
 ## **📌 Overview**  
 PrestaShop is a **free, open-source eCommerce platform** designed for small to medium-sized businesses. It provides a robust and customizable solution that enables merchants to create and manage online stores with ease. Known for its user-friendly interface and extensive extension ecosystem, PrestaShop offers powerful features to support product management, marketing, and multi-channel sales.
 
-✅ **Best For:** **Small to medium-sized businesses** looking for an affordable, customizable eCommerce solution with a strong community and extensive features.  
-✅ **Market Position:** Competes with platforms like **Magento, WooCommerce, and OpenCart** by offering a balance of flexibility and ease-of-use at a lower cost.  
-✅ **Core Features:** **Intuitive admin interface, customizable templates, multi-store support, a wide range of modules and themes, and built-in SEO tools.**
+ **Best For:** **Small to medium-sized businesses** looking for an affordable, customizable eCommerce solution with a strong community and extensive features.  
+ **Market Position:** Competes with platforms like **Magento, WooCommerce, and OpenCart** by offering a balance of flexibility and ease-of-use at a lower cost.  
+ **Core Features:** **Intuitive admin interface, customizable templates, multi-store support, a wide range of modules and themes, and built-in SEO tools.**
 
 ---
 
@@ -52,15 +52,15 @@ PrestaShop was developed to empower merchants with a powerful yet cost-effective
 
 | Feature                   | PrestaShop        | Magento (Adobe Commerce) | WooCommerce      | OpenCart        |
 |---------------------------|-------------------|--------------------------|------------------|-----------------|
-| **Ease of Use**           | ✅ Easy           | ⚠ Complex               | ✅ Moderate      | ✅ Easy         |
-| **Customization**         | ✅ High           | ✅ Extensive             | ✅ High          | ✅ High         |
-| **Extension Ecosystem**   | ✅ Extensive      | ✅ Vast                  | ✅ Extensive     | ✅ Moderate     |
-| **Cost**                  | ✅ Free (Open-Source) | $$$ Enterprise-level   | ✅ Free (Open-Source) | ✅ Free (Open-Source) |
-| **Scalability**           | ✅ Good           | ✅ Enterprise-Grade      | ⚠ Depends on Hosting | ✅ Good       |
+| **Ease of Use**           |  Easy           | ⚠ Complex               |  Moderate      |  Easy         |
+| **Customization**         |  High           |  Extensive             |  High          |  High         |
+| **Extension Ecosystem**   |  Extensive      |  Vast                  |  Extensive     |  Moderate     |
+| **Cost**                  |  Free (Open-Source) | $$$ Enterprise-level   |  Free (Open-Source) |  Free (Open-Source) |
+| **Scalability**           |  Good           |  Enterprise-Grade      | ⚠ Depends on Hosting |  Good       |
 
 ---
 
-## **✅ Pros of PrestaShop**  
+## ** Pros of PrestaShop**  
 ✔ **Cost-Effective:** Free and open-source, making it accessible for businesses with limited budgets.  
 ✔ **Highly Customizable:** Offers extensive modules and themes to tailor the online store to specific needs.  
 ✔ **User-Friendly Interface:** Intuitive dashboard simplifies store management for non-technical users.  
@@ -77,12 +77,12 @@ PrestaShop was developed to empower merchants with a powerful yet cost-effective
 
 ---
 
-## **🎯 Who Should Use PrestaShop?**  
+## ** Who Should Use PrestaShop?**  
 PrestaShop is **ideal for:**  
-✅ **Small to medium-sized businesses** seeking an affordable and flexible eCommerce solution.  
-✅ **Entrepreneurs and online retailers** who require a customizable platform with a rich ecosystem of add-ons.  
-✅ **Merchants looking for a user-friendly solution** that does not require extensive technical expertise to manage.
-✅ **Businesses aiming to scale gradually** while keeping initial costs low.
+ **Small to medium-sized businesses** seeking an affordable and flexible eCommerce solution.  
+ **Entrepreneurs and online retailers** who require a customizable platform with a rich ecosystem of add-ons.  
+ **Merchants looking for a user-friendly solution** that does not require extensive technical expertise to manage.
+ **Businesses aiming to scale gradually** while keeping initial costs low.
 
 ---
 
@@ -91,7 +91,7 @@ PrestaShop offers a **robust and flexible eCommerce platform** that is well-suit
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Explore PrestaShop](https://www.prestashop.com/)**  
-✅ **[Compare PrestaShop vs WooCommerce](#)**  
-✅ **[Learn More: Optimizing Your Online Store with PrestaShop](#)**
+ **Next Steps:**  
+ **[Explore PrestaShop](https://www.prestashop.com/)**  
+ **[Compare PrestaShop vs WooCommerce](#)**  
+ **[Learn More: Optimizing Your Online Store with PrestaShop](#)**

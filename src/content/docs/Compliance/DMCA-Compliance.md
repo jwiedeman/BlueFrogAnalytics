@@ -13,7 +13,7 @@ The **Digital Millennium Copyright Act (DMCA)** is a **U.S. copyright law design
 - **📖 Short Description:** A **U.S. law that strengthens copyright protection in the digital age, setting rules for content takedowns and online platform liability.**  
 - **📅 Enacted Date:** **October 28, 1998**  
 - **🏛️ Governing Body:** **U.S. Copyright Office, Federal Courts, Internet Service Providers (ISPs)**  
-- **🎯 Primary Purpose:**  
+- ** Primary Purpose:**  
   - **Protect digital content creators from copyright infringement.**  
   - **Provide legal protection (safe harbor) for online platforms that handle DMCA takedown requests properly.**  
   - **Regulate digital rights management (DRM) and anti-circumvention measures.**  
@@ -36,17 +36,17 @@ The **Digital Millennium Copyright Act (DMCA)** is a **U.S. copyright law design
 
 ## **📂 3. What the DMCA Governs**
 - **🔐 Key Digital Copyright Protections:**  
-  ✅ **Online Copyright Infringement & Liability Protections** – Platforms must **remove infringing content upon request.**  
-  ✅ **DMCA Takedown Notices** – Copyright holders can **submit formal requests to remove stolen content.**  
-  ✅ **Counter-Notices & Dispute Resolution** – Users accused of infringement **can challenge takedown requests.**  
-  ✅ **Anti-Circumvention Rules** – **Prohibits bypassing DRM protections on digital content.**  
-  ✅ **Safe Harbor Protections for Online Platforms** – Platforms **are not liable for user-uploaded content if they respond to DMCA requests.**  
+   **Online Copyright Infringement & Liability Protections** – Platforms must **remove infringing content upon request.**  
+   **DMCA Takedown Notices** – Copyright holders can **submit formal requests to remove stolen content.**  
+   **Counter-Notices & Dispute Resolution** – Users accused of infringement **can challenge takedown requests.**  
+   **Anti-Circumvention Rules** – **Prohibits bypassing DRM protections on digital content.**  
+   **Safe Harbor Protections for Online Platforms** – Platforms **are not liable for user-uploaded content if they respond to DMCA requests.**  
 
 - **📜 Key DMCA Rules & Requirements:**  
   - **📄 Platforms must have a designated DMCA agent** registered with the **U.S. Copyright Office.**  
   - **⚠️ Takedown notices must be handled promptly** or the platform risks **legal liability.**  
   - **🔄 Counter-notices must be processed** if a user disputes a takedown.  
-  - **🔧 Digital locks & DRM must not be bypassed** for unauthorized copying or sharing.  
+  - ** Digital locks & DRM must not be bypassed** for unauthorized copying or sharing.  
 
 ---
 
@@ -58,7 +58,7 @@ The **Digital Millennium Copyright Act (DMCA)** is a **U.S. copyright law design
 ✔ **Enable Counter-Notices for Disputes** – **Users must be allowed to contest takedown claims.**  
 ✔ **Maintain Transparency & Record-Keeping** – **Keep records of DMCA complaints and responses.**  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **Notice-and-Takedown Mechanism** – Set up a **system for reporting and removing infringing content.**  
 ✔ **Counter-Notice & Restoration Process** – Ensure **users can appeal false takedown claims.**  
 ✔ **Digital Rights Management (DRM) Protections** – Prevent **unauthorized duplication or bypassing of copyright protections.**  
@@ -106,8 +106,8 @@ The **Digital Millennium Copyright Act (DMCA)** is a **U.S. copyright law design
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 1️⃣ **Register a DMCA Agent** – **Ensure your company has an official contact for copyright complaints.**  
 2️⃣ **Develop a Takedown Process** – **Set up an easy-to-use system for reporting and removing infringing content.**  
 3️⃣ **Enable Fair Counter-Notices** – **Allow users to dispute false claims.**  
@@ -125,11 +125,11 @@ The **Digital Millennium Copyright Act (DMCA)** is a **U.S. copyright law design
 ### **🔗 Official Documentation & Guidelines**
 - **[📖 DMCA Full Legal Text](https://www.copyright.gov/legislation/dmca.pdf)**  
 - **[⚖️ U.S. Copyright Office DMCA Overview](https://www.copyright.gov/dmca/)**  
-- **[📊 Safe Harbor & Online Platform Guidelines](https://www.copyright.gov/onlinesp/)**  
+- **[ Safe Harbor & Online Platform Guidelines](https://www.copyright.gov/onlinesp/)**  
 
 ---
 
-## **🚀 Conclusion**
+## ** Conclusion**
 DMCA **protects digital content while ensuring fair content-sharing practices**. Compliance **prevents lawsuits, safeguards platforms, and balances copyright protection with user rights.**
 
 ---

@@ -8,9 +8,9 @@ description: Learn about Strapi, its history, features, and how it compares to o
 ## **📌 Overview**  
 Strapi is an **open-source, headless CMS** built on **Node.js** that empowers developers to create customizable and scalable content management solutions. With its API-first approach, Strapi enables seamless integration with modern front-end frameworks through RESTful and GraphQL APIs. Its flexible content modeling and user-friendly admin panel make it a popular choice for building dynamic digital experiences across websites, mobile apps, and other channels.
 
-✅ **Best For:** **Developers, agencies, and enterprises** looking for a fully customizable, API-first headless CMS with a strong focus on developer experience.  
-✅ **Market Position:** Competes with platforms like **Contentful, Sanity, and Prismic**, offering the advantage of full open-source control and a vibrant developer community.  
-✅ **Core Features:** **Flexible content modeling, REST & GraphQL APIs, customizable admin panel, robust plugin ecosystem, and support for both self-hosted and cloud deployments.**
+ **Best For:** **Developers, agencies, and enterprises** looking for a fully customizable, API-first headless CMS with a strong focus on developer experience.  
+ **Market Position:** Competes with platforms like **Contentful, Sanity, and Prismic**, offering the advantage of full open-source control and a vibrant developer community.  
+ **Core Features:** **Flexible content modeling, REST & GraphQL APIs, customizable admin panel, robust plugin ecosystem, and support for both self-hosted and cloud deployments.**
 
 ---
 
@@ -52,15 +52,15 @@ Strapi was created to provide a modern, open-source alternative for managing and
 
 | Feature                   | Strapi           | Contentful       | Sanity          | Prismic         |
 |---------------------------|------------------|------------------|-----------------|-----------------|
-| **Ease of Use**           | ✅ Easy (for developers) | ⚠ Moderate  | ✅ Easy         | ✅ Easy         |
-| **Customization**         | ✅ High          | ✅ High          | ✅ High         | ✅ Moderate     |
-| **API Capabilities**      | ✅ REST & GraphQL| ✅ REST & GraphQL| ✅ REST & GraphQL| ✅ REST         |
-| **Deployment Options**    | ✅ Self-Hosted & Cloud | ❌ Cloud-Only | ❌ Cloud-Only  | ❌ Cloud-Only  |
-| **Community & Open-Source**| ✅ Strong       | ⚠ Proprietary   | ⚠ Proprietary  | ⚠ Proprietary   |
+| **Ease of Use**           |  Easy (for developers) | ⚠ Moderate  |  Easy         |  Easy         |
+| **Customization**         |  High          |  High          |  High         |  Moderate     |
+| **API Capabilities**      |  REST & GraphQL|  REST & GraphQL|  REST & GraphQL|  REST         |
+| **Deployment Options**    |  Self-Hosted & Cloud | ❌ Cloud-Only | ❌ Cloud-Only  | ❌ Cloud-Only  |
+| **Community & Open-Source**|  Strong       | ⚠ Proprietary   | ⚠ Proprietary  | ⚠ Proprietary   |
 
 ---
 
-## **✅ Pros of Strapi**
+## ** Pros of Strapi**
 ✔ **Highly Customizable:** Full control over content structure and API endpoints with a code-first approach.
 ✔ **Flexible Deployment:** Offers both self-hosted and managed cloud options to suit different needs.
 ✔ **Robust API Support:** Provides both RESTful and GraphQL APIs, ensuring seamless integration with any front-end.
@@ -77,12 +77,12 @@ Strapi was created to provide a modern, open-source alternative for managing and
 
 ---
 
-## **🎯 Who Should Use Strapi?**
+## ** Who Should Use Strapi?**
 Strapi is **ideal for:**  
-✅ **Developers and agencies** seeking a fully customizable, open-source headless CMS.
-✅ **Enterprises** looking for flexible deployment options (self-hosted or cloud) and robust API capabilities.
-✅ **Projects that require a modern, decoupled content architecture** to power dynamic digital experiences.
-✅ **Teams with technical expertise** who can leverage its customization and integration capabilities to create tailored solutions.
+ **Developers and agencies** seeking a fully customizable, open-source headless CMS.
+ **Enterprises** looking for flexible deployment options (self-hosted or cloud) and robust API capabilities.
+ **Projects that require a modern, decoupled content architecture** to power dynamic digital experiences.
+ **Teams with technical expertise** who can leverage its customization and integration capabilities to create tailored solutions.
 
 ---
 
@@ -91,7 +91,7 @@ Strapi offers a **powerful, flexible, and developer-friendly headless CMS** that
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Explore Strapi](https://strapi.io/)**  
-✅ **[Compare Strapi vs Contentful](#)**  
-✅ **[Learn More: Building Headless CMS Solutions with Strapi](#)**
+ **Next Steps:**  
+ **[Explore Strapi](https://strapi.io/)**  
+ **[Compare Strapi vs Contentful](#)**  
+ **[Learn More: Building Headless CMS Solutions with Strapi](#)**

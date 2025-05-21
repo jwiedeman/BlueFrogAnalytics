@@ -17,7 +17,7 @@ This guide will help you **understand, implement, and maintain compliance** with
   - **National Institute of Standards and Technology (NIST)**  
   - **Office of Management and Budget (OMB)**  
   - **Federal Trade Commission (FTC) (for private-sector implications)**  
-- **🎯 Primary Purpose:** Improve the resilience, security, and incident response of federal and private-sector critical infrastructure against cyber threats.  
+- ** Primary Purpose:** Improve the resilience, security, and incident response of federal and private-sector critical infrastructure against cyber threats.  
 
 ---
 
@@ -37,12 +37,12 @@ This guide will help you **understand, implement, and maintain compliance** with
 
 ## **📂 3. What It Covers**
 - **🔐 Key Cybersecurity Areas Addressed:**  
-  - ✅ **Zero Trust Architecture (ZTA)** *(Mandates the adoption of Zero Trust security models.)*  
-  - ✅ **Enhanced Threat Information Sharing** *(Improves real-time intelligence sharing between government and private sector.)*  
-  - ✅ **Software Supply Chain Security** *(Ensures secure development and integrity of software components.)*  
-  - ✅ **Incident Detection & Response** *(Requires federal agencies to implement endpoint detection and response (EDR).)*  
-  - ✅ **Cloud Security Adoption** *(Accelerates the migration to secure cloud-based infrastructures.)*  
-  - ✅ **Multi-Factor Authentication (MFA) & Encryption** *(Mandates MFA and data encryption across federal networks.)*  
+  -  **Zero Trust Architecture (ZTA)** *(Mandates the adoption of Zero Trust security models.)*  
+  -  **Enhanced Threat Information Sharing** *(Improves real-time intelligence sharing between government and private sector.)*  
+  -  **Software Supply Chain Security** *(Ensures secure development and integrity of software components.)*  
+  -  **Incident Detection & Response** *(Requires federal agencies to implement endpoint detection and response (EDR).)*  
+  -  **Cloud Security Adoption** *(Accelerates the migration to secure cloud-based infrastructures.)*  
+  -  **Multi-Factor Authentication (MFA) & Encryption** *(Mandates MFA and data encryption across federal networks.)*  
 
 ---
 
@@ -55,7 +55,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 ✔ **Enforce Multi-Factor Authentication (MFA) & Encryption** – Strengthen login security and data protection.  
 ✔ **Improve Incident Response & Reporting** – Meet mandatory reporting deadlines for cyber incidents.  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **Use Secure Software Development Practices** – Align with NIST’s Secure Software Development Framework (SSDF).  
 ✔ **Deploy Continuous Monitoring & Risk Assessment Tools** – Utilize AI and automation for real-time threat detection.  
 ✔ **Encrypt Data in Transit & At Rest** – Apply encryption standards (AES-256, TLS 1.2/1.3).  
@@ -99,8 +99,8 @@ This guide will help you **understand, implement, and maintain compliance** with
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 - **📌 Step 1:** **Adopt a Zero Trust Security Model** *(Verify all users, limit access, and segment networks.)*  
 - **📌 Step 2:** **Secure Software Supply Chains** *(Implement security reviews and SBOM (Software Bill of Materials).)*  
 - **📌 Step 3:** **Deploy Multi-Factor Authentication & Strong Encryption** *(MFA + end-to-end encryption.)*  
@@ -108,7 +108,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 - **📌 Step 5:** **Perform Regular Cybersecurity Audits** *(Assess compliance and mitigate risks proactively.)*  
 
 ### **♻️ Ongoing Compliance Maintenance**
-- **🔍 Conduct Security Risk Assessments** *(Align with NIST and CISA frameworks.)*  
+- ** Conduct Security Risk Assessments** *(Align with NIST and CISA frameworks.)*  
 - **📖 Train Employees on Cybersecurity Awareness** *(Reduce human error and phishing risks.)*  
 - **🔄 Update Security Policies & Protocols** *(Adapt to evolving cyber threats.)*  
 
@@ -118,9 +118,9 @@ This guide will help you **understand, implement, and maintain compliance** with
 ### **🔗 Official Documentation & Guidelines**
 - **[📖 Executive Order 14028 Full Text](https://www.whitehouse.gov/briefing-room/statements-releases/2021/05/12/executive-order-on-improving-the-nations-cybersecurity/)**  
 - **[⚖️ NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)**  
-- **[📊 CISA Cybersecurity Guidelines](https://www.cisa.gov/cybersecurity)**  
+- **[ CISA Cybersecurity Guidelines](https://www.cisa.gov/cybersecurity)**  
 
-### **🛠️ Industry-Specific Guidance**
+### **️ Industry-Specific Guidance**
 - **🏦 Finance & Banking:** *(Align with FFIEC, PCI DSS, and FS-ISAC cybersecurity standards.)*  
 - **🏥 Healthcare:** *(Secure PHI data in compliance with HIPAA cybersecurity rules.)*  
 - **🏛️ Government Contractors:** *(Meet CMMC 2.0 and FedRAMP cloud security standards.)*  
@@ -137,7 +137,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Assess Your Cybersecurity Compliance](#)**  
-✅ **[Implement EO 14028 Best Practices](#)**  
-✅ **[Stay Updated on Cybersecurity Regulations](#)**
+ **Next Steps:**  
+ **[Assess Your Cybersecurity Compliance](#)**  
+ **[Implement EO 14028 Best Practices](#)**  
+ **[Stay Updated on Cybersecurity Regulations](#)**

@@ -13,7 +13,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 - **📖 Short Description:** A set of security standards designed to protect cardholder data and prevent fraud in credit and debit card transactions.  
 - **📅 Latest Version:** PCI DSS **v4.0** *(Released March 2022, replaces v3.2.1 by March 31, 2024.)*  
 - **🏛️ Governing Body:** Payment Card Industry Security Standards Council (PCI SSC)  
-- **🎯 Primary Purpose:** Establish **security controls** for organizations that handle **payment card data** to prevent data breaches, fraud, and financial losses.  
+- ** Primary Purpose:** Establish **security controls** for organizations that handle **payment card data** to prevent data breaches, fraud, and financial losses.  
 
 ---
 
@@ -35,11 +35,11 @@ This guide will help you **understand, implement, and maintain compliance** with
 
 ## **📂 3. What It Covers**
 - **🔐 Key Security Areas Addressed:**  
-  - ✅ **Cardholder Data Protection** *(Encryption, masking, and secure storage of credit card numbers.)*  
-  - ✅ **Access Control & Authentication** *(Restricting access to payment data and enforcing MFA.)*  
-  - ✅ **Network Security & Firewalls** *(Securing POS systems and payment networks.)*  
-  - ✅ **Vulnerability & Patch Management** *(Regular scanning and updating of payment systems.)*  
-  - ✅ **Incident Response & Breach Reporting** *(Detecting and responding to security breaches.)*  
+  -  **Cardholder Data Protection** *(Encryption, masking, and secure storage of credit card numbers.)*  
+  -  **Access Control & Authentication** *(Restricting access to payment data and enforcing MFA.)*  
+  -  **Network Security & Firewalls** *(Securing POS systems and payment networks.)*  
+  -  **Vulnerability & Patch Management** *(Regular scanning and updating of payment systems.)*  
+  -  **Incident Response & Breach Reporting** *(Detecting and responding to security breaches.)*  
 
 ---
 
@@ -53,7 +53,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 ✔ **Monitor & Test Networks Regularly** – Perform penetration testing and log monitoring.  
 ✔ **Maintain an Information Security Policy** – Document policies and train employees on security best practices.  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **Tokenization & Encryption of Card Data** – Mask card numbers in databases and logs.  
 ✔ **Strong Authentication & MFA Enforcement** – Require multi-factor authentication for payment system access.  
 ✔ **Regular Security Audits & Penetration Testing** – Detect vulnerabilities in payment infrastructure.  
@@ -98,8 +98,8 @@ This guide will help you **understand, implement, and maintain compliance** with
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 - **📌 Step 1:** **Determine Your PCI DSS Compliance Level** *(Based on annual transaction volume.)*  
 - **📌 Step 2:** **Use a PCI-Compliant Payment Processor** *(Reduce the scope of compliance.)*  
 - **📌 Step 3:** **Encrypt Cardholder Data & Secure Storage** *(Avoid storing unencrypted payment data.)*  
@@ -108,7 +108,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 - **📌 Step 6:** **Conduct Annual Security Assessments** *(Complete Self-Assessment Questionnaires (SAQ) or hire a Qualified Security Assessor (QSA).)*  
 
 ### **♻️ Ongoing Compliance Maintenance**
-- **🔍 Conduct Quarterly Vulnerability Scans** *(Required for PCI DSS Level 1 & 2 businesses.)*  
+- ** Conduct Quarterly Vulnerability Scans** *(Required for PCI DSS Level 1 & 2 businesses.)*  
 - **📖 Monitor Transaction Logs & Anomalies** *(Detect fraudulent activity.)*  
 - **🔄 Update Security Policies & Patch Systems Regularly** *(Prevent exploits and zero-day attacks.)*  
 
@@ -118,9 +118,9 @@ This guide will help you **understand, implement, and maintain compliance** with
 ### **🔗 Official Documentation & Guidelines**
 - **[📖 PCI DSS Official Website](https://www.pcisecuritystandards.org/)**  
 - **[⚖️ PCI DSS v4.0 Summary](https://www.pcisecuritystandards.org/document_library?document=pci_dss_v4-0_summary)**  
-- **[📊 Visa & Mastercard Compliance Guidelines](https://usa.visa.com/support/small-business/security-compliance.html)**  
+- **[ Visa & Mastercard Compliance Guidelines](https://usa.visa.com/support/small-business/security-compliance.html)**  
 
-### **🛠️ Industry-Specific Guidance**
+### **️ Industry-Specific Guidance**
 - **🏦 Finance:** *(Banks and fintech companies must comply with PCI Level 1 standards.)*  
 - **🏥 Healthcare:** *(PCI-compliant systems are required for processing medical payments.)*  
 - **🛍️ E-commerce:** *(Web-based businesses must use secure checkout processes.)*  
@@ -137,7 +137,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Assess Your PCI DSS Compliance Level](#)**  
-✅ **[Implement Best Practices for Payment Security](#)**  
-✅ **[Stay Updated on Payment Fraud Prevention](#)**
+ **Next Steps:**  
+ **[Assess Your PCI DSS Compliance Level](#)**  
+ **[Implement Best Practices for Payment Security](#)**  
+ **[Stay Updated on Payment Fraud Prevention](#)**

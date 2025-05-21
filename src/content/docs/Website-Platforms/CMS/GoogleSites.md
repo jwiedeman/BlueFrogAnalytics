@@ -8,9 +8,9 @@ description: Learn about Google Sites, its history, features, and how it compare
 ## **📌 Overview**  
 Google Sites is a **free, cloud-based website builder** designed for users who need to create simple, functional websites without coding. Integrated with Google Workspace, it is perfect for internal team sites, educational projects, and basic informational websites. Its ease of use and collaborative features make it an attractive choice for non-technical users.
 
-✅ **Best For:** **Small projects, intranet sites, educational purposes, and simple business websites**.  
-✅ **Market Position:** Competes with other basic website builders like **Wix and Weebly**, but stands out due to its integration with Google’s suite of tools.  
-✅ **Core Features:** **Drag-and-drop editing, integration with Google Workspace, collaborative editing, and responsive design.**
+ **Best For:** **Small projects, intranet sites, educational purposes, and simple business websites**.  
+ **Market Position:** Competes with other basic website builders like **Wix and Weebly**, but stands out due to its integration with Google’s suite of tools.  
+ **Core Features:** **Drag-and-drop editing, integration with Google Workspace, collaborative editing, and responsive design.**
 
 ---
 
@@ -48,15 +48,15 @@ Google Sites was developed as part of Google’s effort to simplify web publishi
 
 | Feature                  | Google Sites      | Wix             | Weebly           | WordPress.com    |
 |--------------------------|-------------------|-----------------|------------------|------------------|
-| **Ease of Use**          | ✅ Very Easy      | ✅ Easy         | ✅ Easy          | ✅ Easy          |
-| **Integration**          | ✅ Google Workspace | ⚠ Limited    | ⚠ Limited       | ⚠ Limited       |
-| **Customization**        | ⚠ Basic          | ✅ High         | ✅ Moderate      | ✅ High          |
-| **Collaboration**        | ✅ Strong        | ⚠ Limited      | ⚠ Limited       | ⚠ Limited       |
-| **Pricing**              | ✅ Free          | ⚠ Paid Plans   | ⚠ Paid Plans    | ⚠ Free/Paid Plans |
+| **Ease of Use**          |  Very Easy      |  Easy         |  Easy          |  Easy          |
+| **Integration**          |  Google Workspace | ⚠ Limited    | ⚠ Limited       | ⚠ Limited       |
+| **Customization**        | ⚠ Basic          |  High         |  Moderate      |  High          |
+| **Collaboration**        |  Strong        | ⚠ Limited      | ⚠ Limited       | ⚠ Limited       |
+| **Pricing**              |  Free          | ⚠ Paid Plans   | ⚠ Paid Plans    | ⚠ Free/Paid Plans |
 
 ---
 
-## **✅ Pros of Google Sites**  
+## ** Pros of Google Sites**  
 ✔ **Extremely user-friendly:** Ideal for beginners with its intuitive drag-and-drop interface.  
 ✔ **Free and cloud-based:** No hosting fees, with reliable performance from Google’s infrastructure.  
 ✔ **Seamless integration:** Works well with other Google Workspace tools for a connected workflow.  
@@ -71,11 +71,11 @@ Google Sites was developed as part of Google’s effort to simplify web publishi
 
 ---
 
-## **🎯 Who Should Use Google Sites?**  
+## ** Who Should Use Google Sites?**  
 Google Sites is **ideal for:**  
-✅ **Educational institutions and small teams** needing a quick way to publish information.  
-✅ **Businesses looking for a basic online presence** without the need for advanced features.  
-✅ **Internal corporate sites or intranets** where collaboration and integration with Google Workspace are priorities.
+ **Educational institutions and small teams** needing a quick way to publish information.  
+ **Businesses looking for a basic online presence** without the need for advanced features.  
+ **Internal corporate sites or intranets** where collaboration and integration with Google Workspace are priorities.
   
 ---
 
@@ -84,7 +84,7 @@ Google Sites offers a **simple, free, and collaborative website building solutio
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Try Google Sites](https://sites.google.com/)**  
-✅ **[Compare Google Sites vs Wix](#)**  
-✅ **[Learn More: Building Collaborative Websites with Google Sites](#)**
+ **Next Steps:**  
+ **[Try Google Sites](https://sites.google.com/)**  
+ **[Compare Google Sites vs Wix](#)**  
+ **[Learn More: Building Collaborative Websites with Google Sites](#)**

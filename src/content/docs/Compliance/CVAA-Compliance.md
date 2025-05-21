@@ -13,7 +13,7 @@ The **Twenty-First Century Communications and Video Accessibility Act (CVAA)** i
 - **📖 Short Description:** A **U.S. law requiring digital communications and video content to be accessible** to individuals with disabilities, including those who are deaf, hard of hearing, blind, or visually impaired.  
 - **📅 Enforcement Date:** **October 8, 2010** *(updated in 2013 for online video captions & accessibility rules.)*  
 - **🏛️ Governing Body:** **Federal Communications Commission (FCC)**  
-- **🎯 Primary Purpose:** Ensure **equal access to digital communications and media content** for individuals with disabilities by enforcing **telecom, online media, and video accessibility standards**.  
+- ** Primary Purpose:** Ensure **equal access to digital communications and media content** for individuals with disabilities by enforcing **telecom, online media, and video accessibility standards**.  
 
 ---
 
@@ -33,11 +33,11 @@ The **Twenty-First Century Communications and Video Accessibility Act (CVAA)** i
 
 ## **📂 3. What CVAA Governs**
 - **🔐 Types of Technology & Content Covered:**  
-  ✅ **Telecommunications Services** – VoIP, video conferencing, real-time text messaging.  
-  ✅ **Video Programming** – Broadcast, cable, and streaming video content.  
-  ✅ **Hardware Devices** – Smartphones, tablets, smart TVs, remote controls.  
-  ✅ **User Interfaces & Menus** – Navigation features on streaming devices & smart TVs.  
-  ✅ **Assistive Technology Integration** – Compatibility with screen readers, Braille displays, TTY devices.  
+   **Telecommunications Services** – VoIP, video conferencing, real-time text messaging.  
+   **Video Programming** – Broadcast, cable, and streaming video content.  
+   **Hardware Devices** – Smartphones, tablets, smart TVs, remote controls.  
+   **User Interfaces & Menus** – Navigation features on streaming devices & smart TVs.  
+   **Assistive Technology Integration** – Compatibility with screen readers, Braille displays, TTY devices.  
 
 - **📜 Key CVAA Accessibility Requirements:**  
   - **Closed Captions for Video Content** – TV and online videos **must have captions that meet FCC standards**.  
@@ -56,7 +56,7 @@ The **Twenty-First Century Communications and Video Accessibility Act (CVAA)** i
 ✔ **Telecom & VoIP Services Must Support Assistive Technologies** – **Real-time text (RTT), TTY, and speech-to-text options are required.**  
 ✔ **Provide Consumer Support & Accessibility Documentation** – **Clear instructions must be available for users needing accessibility features.**  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **Real-Time Text (RTT) & TTY Compatibility** – Ensure **telecommunication systems work with assistive devices.**  
 ✔ **Captioning for Live & On-Demand Video** – Implement **FCC-compliant closed captions on TV and online platforms.**  
 ✔ **Voice Command & Screen Reader Support** – Enable **compatibility with NVDA, JAWS, and VoiceOver.**  
@@ -102,8 +102,8 @@ The **Twenty-First Century Communications and Video Accessibility Act (CVAA)** i
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 1️⃣ **Conduct an Accessibility Audit** – Review **all communication tools & media content for CVAA compliance.**  
 2️⃣ **Ensure FCC-Compliant Captions & Audio Descriptions** – Implement **text-to-speech features & assistive tech support.**  
 3️⃣ **Develop User-Friendly Interfaces** – Ensure **smart TVs, apps, and devices meet accessibility standards.**  
@@ -121,16 +121,16 @@ The **Twenty-First Century Communications and Video Accessibility Act (CVAA)** i
 ### **🔗 Official Documentation & Guidelines**
 - **[📖 CVAA Full Legal Text](https://www.fcc.gov/general/twenty-first-century-communications-and-video-accessibility-act-2010)**  
 - **[⚖️ FCC Accessibility Guidelines](https://www.fcc.gov/accessibility)**  
-- **[📊 CVAA Compliance & Consumer Rights](https://www.fcc.gov/consumers/guides/21st-century-communications-and-video-accessibility-act-cvaa)**  
+- **[ CVAA Compliance & Consumer Rights](https://www.fcc.gov/consumers/guides/21st-century-communications-and-video-accessibility-act-cvaa)**  
 
 ---
 
-## **🚀 Conclusion**
+## ** Conclusion**
 CVAA ensures **digital communications and video content are fully accessible**, protecting the rights of individuals with disabilities. Compliance **enhances usability, prevents legal risks, and builds inclusivity in technology and media**.
 
 ---
 
-🚀 **Next Steps:**
-✅ **[Audit Your Content & Platforms for Accessibility](#)**  
-✅ **[Ensure Compliance with Captions, Audio Descriptions & UI Accessibility](#)**  
-✅ **[Implement Assistive Tech Support & Accessibility Training](#)**  
+ **Next Steps:**
+ **[Audit Your Content & Platforms for Accessibility](#)**  
+ **[Ensure Compliance with Captions, Audio Descriptions & UI Accessibility](#)**  
+ **[Implement Assistive Tech Support & Accessibility Training](#)**  

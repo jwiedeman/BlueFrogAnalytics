@@ -1703,11 +1703,11 @@ The practice of **improving a website’s visibility on search engines** to incr
 
 ### **SEO Audit**
 A comprehensive **analysis of a website’s SEO health**, including:  
-✅ Technical issues  
-✅ On-page optimization  
-✅ Backlink profile  
-✅ Site speed & UX  
-✅ Indexability  
+ Technical issues  
+ On-page optimization  
+ Backlink profile  
+ Site speed & UX  
+ Indexability  
 
 ### **SERP (Search Engine Results Page)**
 The page displayed after a user enters a search query.  
@@ -2146,4 +2146,4 @@ A **design pattern** where alternating rows in a table have different background
 
 ---
 
-🚀 **This glossary will continue expanding! Let us know if you'd like any new terms added.**
+ **This glossary will continue expanding! Let us know if you'd like any new terms added.**

@@ -13,7 +13,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 - **📖 Short Description:** A human rights treaty that promotes and protects the rights of persons with disabilities, including digital accessibility.  
 - **📅 Enacted:** December 13, 2006 (Adopted by the UN), entered into force May 3, 2008  
 - **🏛️ Governing Body:** United Nations (UN), Committee on the Rights of Persons with Disabilities (CRPD)  
-- **🎯 Primary Purpose:** Ensure equal access to information, communication, and technology for persons with disabilities.  
+- ** Primary Purpose:** Ensure equal access to information, communication, and technology for persons with disabilities.  
 
 ---
 
@@ -34,11 +34,11 @@ This guide will help you **understand, implement, and maintain compliance** with
 
 ## **📂 3. What It Covers**
 - **🔐 Key Accessibility Areas Addressed:**  
-  - ✅ **Web & Mobile Accessibility** *(Ensuring websites and apps meet accessibility standards like WCAG.)*  
-  - ✅ **Assistive Technology Compatibility** *(Screen readers, voice commands, and other assistive tools must be supported.)*  
-  - ✅ **Digital Documents & Multimedia** *(PDFs, videos, and other content must be accessible.)*  
-  - ✅ **Accessible Communication Channels** *(Chatbots, customer service, and online portals must be inclusive.)*  
-  - ✅ **Smart Cities & Digital Infrastructure** *(Public digital services must cater to all users.)*  
+  -  **Web & Mobile Accessibility** *(Ensuring websites and apps meet accessibility standards like WCAG.)*  
+  -  **Assistive Technology Compatibility** *(Screen readers, voice commands, and other assistive tools must be supported.)*  
+  -  **Digital Documents & Multimedia** *(PDFs, videos, and other content must be accessible.)*  
+  -  **Accessible Communication Channels** *(Chatbots, customer service, and online portals must be inclusive.)*  
+  -  **Smart Cities & Digital Infrastructure** *(Public digital services must cater to all users.)*  
 
 ---
 
@@ -50,7 +50,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 ✔ **Ensure Robust Compatibility** – Support assistive technologies like screen readers and magnifiers.  
 ✔ **Adopt Inclusive Design Practices** – Integrate accessibility from the start of product development.  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **Follow WCAG 2.1 or Higher** – Web and mobile content should meet **AA or AAA** compliance.  
 ✔ **Use Semantic HTML & ARIA Landmarks** – Ensure accessibility in dynamic web content.  
 ✔ **Enable Closed Captions & Transcripts** – Provide text alternatives for multimedia.  
@@ -94,8 +94,8 @@ This guide will help you **understand, implement, and maintain compliance** with
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 - **📌 Step 1:** **Assess Current Digital Accessibility** *(Use WCAG 2.1 guidelines for evaluation.)*  
 - **📌 Step 2:** **Implement Web & Mobile Accessibility Features** *(Alt text, captions, keyboard navigation.)*  
 - **📌 Step 3:** **Ensure Assistive Technology Compatibility** *(Support screen readers and voice commands.)*  
@@ -103,7 +103,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 - **📌 Step 5:** **Perform Regular Audits & User Testing** *(Engage persons with disabilities in testing.)*  
 
 ### **♻️ Ongoing Compliance Maintenance**
-- **🔍 Conduct Periodic Accessibility Audits** *(Use tools like WAVE, Axe, and Lighthouse.)*  
+- ** Conduct Periodic Accessibility Audits** *(Use tools like WAVE, Axe, and Lighthouse.)*  
 - **📖 Train Staff on Inclusive Design** *(Ensure accessibility best practices are followed.)*  
 - **🔄 Update Digital Policies & Standards** *(Stay aligned with evolving accessibility regulations.)*  
 
@@ -113,9 +113,9 @@ This guide will help you **understand, implement, and maintain compliance** with
 ### **🔗 Official Documentation & Guidelines**
 - **[📖 UNCRPD Full Text](https://www.un.org/development/desa/disabilities/convention-on-the-rights-of-persons-with-disabilities.html)**  
 - **[⚖️ Web Content Accessibility Guidelines (WCAG)](https://www.w3.org/WAI/standards-guidelines/wcag/)**  
-- **[📊 United Nations Accessibility Resources](https://www.un.org/en/accessibility)**  
+- **[ United Nations Accessibility Resources](https://www.un.org/en/accessibility)**  
 
-### **🛠️ Industry-Specific Guidance**
+### **️ Industry-Specific Guidance**
 - **🏛️ Government Services:** *(Digital public services must meet accessibility laws.)*  
 - **🏥 Healthcare:** *(Patient portals and telemedicine must be accessible.)*  
 - **🛍️ E-commerce:** *(Online stores must support screen readers and keyboard navigation.)*  
@@ -132,7 +132,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Evaluate Your Digital Accessibility Compliance](#)**  
-✅ **[Implement WCAG & UNCRPD Best Practices](#)**  
-✅ **[Stay Updated on Global Accessibility Regulations](#)**
+ **Next Steps:**  
+ **[Evaluate Your Digital Accessibility Compliance](#)**  
+ **[Implement WCAG & UNCRPD Best Practices](#)**  
+ **[Stay Updated on Global Accessibility Regulations](#)**

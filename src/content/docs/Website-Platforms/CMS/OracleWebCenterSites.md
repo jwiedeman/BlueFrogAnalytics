@@ -8,9 +8,9 @@ description: Learn about Oracle WebCenter Sites, its history, features, and how 
 ## **📌 Overview**  
 Oracle WebCenter Sites is an **enterprise-grade web content management system (CMS)** designed for large organizations to deliver personalized, high-performance digital experiences. As part of Oracle’s suite of enterprise solutions, WebCenter Sites focuses on omnichannel content delivery, advanced targeting, and robust integration capabilities, making it a powerful tool for digital marketing and customer engagement.
 
-✅ **Best For:** **Large enterprises and global organizations** requiring a scalable, secure, and fully integrated digital experience platform.  
-✅ **Market Position:** Competes with other enterprise-level CMS and DXP solutions such as **Adobe Experience Manager, Sitecore, and Liferay** by offering deep personalization, robust scalability, and extensive integration with Oracle’s ecosystem.  
-✅ **Core Features:** **Omnichannel publishing, advanced targeting and personalization, enterprise scalability, rich integration options, and comprehensive analytics.**
+ **Best For:** **Large enterprises and global organizations** requiring a scalable, secure, and fully integrated digital experience platform.  
+ **Market Position:** Competes with other enterprise-level CMS and DXP solutions such as **Adobe Experience Manager, Sitecore, and Liferay** by offering deep personalization, robust scalability, and extensive integration with Oracle’s ecosystem.  
+ **Core Features:** **Omnichannel publishing, advanced targeting and personalization, enterprise scalability, rich integration options, and comprehensive analytics.**
 
 ---
 
@@ -52,14 +52,14 @@ Oracle WebCenter Sites has evolved as part of Oracle’s commitment to enterpris
 | Feature                    | Oracle WebCenter Sites  | Adobe Experience Manager | Sitecore             | Liferay              |
 |----------------------------|-------------------------|--------------------------|----------------------|----------------------|
 | **Ease of Use**            | ⚠ Moderate              | ⚠ Complex               | ⚠ Complex            | ⚠ Moderate           |
-| **Customization**          | ✅ High                 | ✅ High                  | ✅ High              | ✅ High              |
-| **Integration Capabilities** | ✅ Extensive (especially within Oracle ecosystem) | ✅ Extensive    | ✅ Extensive        | ✅ Extensive         |
-| **Personalization & Targeting** | ✅ Advanced         | ✅ Advanced              | ✅ Advanced          | ⚠ Moderate          |
-| **Scalability & Security** | ✅ Enterprise-Grade     | ✅ Enterprise-Grade      | ✅ Enterprise-Grade  | ✅ Enterprise-Grade  |
+| **Customization**          |  High                 |  High                  |  High              |  High              |
+| **Integration Capabilities** |  Extensive (especially within Oracle ecosystem) |  Extensive    |  Extensive        |  Extensive         |
+| **Personalization & Targeting** |  Advanced         |  Advanced              |  Advanced          | ⚠ Moderate          |
+| **Scalability & Security** |  Enterprise-Grade     |  Enterprise-Grade      |  Enterprise-Grade  |  Enterprise-Grade  |
 
 ---
 
-## **✅ Pros of Oracle WebCenter Sites**  
+## ** Pros of Oracle WebCenter Sites**  
 ✔ **Omnichannel publishing:** Delivers consistent digital experiences across multiple platforms.  
 ✔ **Advanced personalization:** Robust tools for targeted marketing and dynamic content delivery.  
 ✔ **Scalable and secure:** Designed to support large enterprises with high traffic and stringent security requirements.  
@@ -76,12 +76,12 @@ Oracle WebCenter Sites has evolved as part of Oracle’s commitment to enterpris
 
 ---
 
-## **🎯 Who Should Use Oracle WebCenter Sites?**  
+## ** Who Should Use Oracle WebCenter Sites?**  
 Oracle WebCenter Sites is **ideal for:**  
-✅ **Large enterprises and global organizations** needing a robust, scalable CMS.  
-✅ **Companies with complex digital marketing needs** that require advanced personalization and targeting.  
-✅ **Organizations invested in Oracle’s ecosystem** that benefit from deep integration with other Oracle products.  
-✅ **Businesses with dedicated IT and development teams** prepared to manage and customize an enterprise-grade platform.
+ **Large enterprises and global organizations** needing a robust, scalable CMS.  
+ **Companies with complex digital marketing needs** that require advanced personalization and targeting.  
+ **Organizations invested in Oracle’s ecosystem** that benefit from deep integration with other Oracle products.  
+ **Businesses with dedicated IT and development teams** prepared to manage and customize an enterprise-grade platform.
 
 ---
 
@@ -90,7 +90,7 @@ Oracle WebCenter Sites offers a **comprehensive and powerful solution** for mana
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Explore Oracle WebCenter Sites](https://www.oracle.com/webcenter/sites/)**  
-✅ **[Compare Oracle WebCenter Sites vs Adobe Experience Manager](#)**  
-✅ **[Learn More: Enterprise Content Management with Oracle WebCenter Sites](#)**
+ **Next Steps:**  
+ **[Explore Oracle WebCenter Sites](https://www.oracle.com/webcenter/sites/)**  
+ **[Compare Oracle WebCenter Sites vs Adobe Experience Manager](#)**  
+ **[Learn More: Enterprise Content Management with Oracle WebCenter Sites](#)**

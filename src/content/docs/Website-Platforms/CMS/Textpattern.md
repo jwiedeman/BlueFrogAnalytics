@@ -8,9 +8,9 @@ description: Learn about Textpattern, its history, features, and how it compares
 ## **📌 Overview**  
 Textpattern is an **open-source content management system (CMS)** known for its simplicity, flexibility, and lightweight architecture. It is designed primarily for content creators and developers who value a clean, minimalistic interface along with powerful content modeling capabilities. Textpattern offers a straightforward approach to website management, making it a popular choice for bloggers, small businesses, and creative professionals who require an efficient and customizable platform without unnecessary complexity.
 
-✅ **Best For:** **Bloggers, small businesses, and creative professionals** seeking a simple yet flexible CMS that is easy to use and customize.  
-✅ **Market Position:** Competes with platforms like **WordPress, Grav, and other lightweight CMSs** by focusing on minimalism, ease of customization, and performance.  
-✅ **Core Features:** **Intuitive admin interface, flexible content modeling, robust templating system, and lightweight performance.**
+ **Best For:** **Bloggers, small businesses, and creative professionals** seeking a simple yet flexible CMS that is easy to use and customize.  
+ **Market Position:** Competes with platforms like **WordPress, Grav, and other lightweight CMSs** by focusing on minimalism, ease of customization, and performance.  
+ **Core Features:** **Intuitive admin interface, flexible content modeling, robust templating system, and lightweight performance.**
 
 ---
 
@@ -51,15 +51,15 @@ Textpattern was developed with a focus on delivering a streamlined content manag
 
 | Feature                   | Textpattern      | WordPress       | Grav          | MODX           |
 |---------------------------|------------------|-----------------|---------------|----------------|
-| **Ease of Use**           | ✅ Easy          | ✅ Easy         | ✅ Easy       | ⚠ Moderate    |
-| **Flexibility**           | ✅ High          | ✅ High         | ✅ High       | ✅ High        |
-| **Performance**           | ✅ Lightweight   | ⚠ Varies       | ✅ Very Fast  | ✅ Fast        |
-| **Customization**         | ✅ Robust        | ✅ Extensive    | ✅ Flexible   | ✅ Very High   |
-| **Community Support**     | ⚠ Moderate      | ✅ Extensive    | ✅ Active     | ✅ Active      |
+| **Ease of Use**           |  Easy          |  Easy         |  Easy       | ⚠ Moderate    |
+| **Flexibility**           |  High          |  High         |  High       |  High        |
+| **Performance**           |  Lightweight   | ⚠ Varies       |  Very Fast  |  Fast        |
+| **Customization**         |  Robust        |  Extensive    |  Flexible   |  Very High   |
+| **Community Support**     | ⚠ Moderate      |  Extensive    |  Active     |  Active      |
 
 ---
 
-## **✅ Pros of Textpattern**  
+## ** Pros of Textpattern**  
 ✔ **Lightweight and Fast:** Optimized for performance with a minimalist design that ensures quick load times.  
 ✔ **User-Friendly Interface:** Intuitive admin panel that simplifies content creation and management.  
 ✔ **Flexible Content Modeling:** Offers robust templating and custom field options to build tailored digital experiences.  
@@ -76,12 +76,12 @@ Textpattern was developed with a focus on delivering a streamlined content manag
 
 ---
 
-## **🎯 Who Should Use Textpattern?**  
+## ** Who Should Use Textpattern?**  
 Textpattern is **ideal for:**  
-✅ **Bloggers and writers** seeking a clean, content-focused platform.
-✅ **Small businesses and creative professionals** that need a lightweight and efficient CMS.
-✅ **Developers and agencies** looking for an open-source solution with flexible content modeling.
-✅ **Users prioritizing speed and simplicity** over extensive out-of-the-box features.
+ **Bloggers and writers** seeking a clean, content-focused platform.
+ **Small businesses and creative professionals** that need a lightweight and efficient CMS.
+ **Developers and agencies** looking for an open-source solution with flexible content modeling.
+ **Users prioritizing speed and simplicity** over extensive out-of-the-box features.
 
 ---
 
@@ -90,7 +90,7 @@ Textpattern offers a **streamlined, efficient, and highly customizable CMS** tha
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Explore Textpattern](https://textpattern.com/)**  
-✅ **[Compare Textpattern vs WordPress](#)**  
-✅ **[Learn More: Building Content-Driven Websites with Textpattern](#)**
+ **Next Steps:**  
+ **[Explore Textpattern](https://textpattern.com/)**  
+ **[Compare Textpattern vs WordPress](#)**  
+ **[Learn More: Building Content-Driven Websites with Textpattern](#)**

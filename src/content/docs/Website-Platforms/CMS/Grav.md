@@ -8,9 +8,9 @@ description: Learn about Grav, its history, features, and how it compares to oth
 ## **📌 Overview**  
 Grav is a **modern, flat-file content management system (CMS)** known for its speed, simplicity, and flexibility. Unlike traditional database-driven CMS platforms, Grav stores content in files, which makes it highly portable and easy to set up. Its robust caching, modular architecture, and extensive theming and plugin ecosystem have made it a popular choice among developers looking for a lightweight yet powerful CMS.
 
-✅ **Best For:** **Developers, designers, and small-to-medium websites** that require a fast, customizable, and low-maintenance CMS.  
-✅ **Market Position:** Competes with other flat-file CMS platforms such as **Kirby and GetSimple**, and offers a modern alternative to heavier CMS systems.  
-✅ **Core Features:** **Flat-file architecture, flexible content modeling, fast performance, easy theming, and a powerful plugin system.**
+ **Best For:** **Developers, designers, and small-to-medium websites** that require a fast, customizable, and low-maintenance CMS.  
+ **Market Position:** Competes with other flat-file CMS platforms such as **Kirby and GetSimple**, and offers a modern alternative to heavier CMS systems.  
+ **Core Features:** **Flat-file architecture, flexible content modeling, fast performance, easy theming, and a powerful plugin system.**
 
 ---
 
@@ -51,15 +51,15 @@ Grav was launched to provide a streamlined, file-based alternative to traditiona
 
 | Feature                   | Grav           | Kirby          | GetSimple CMS  | Jekyll         |
 |---------------------------|----------------|----------------|----------------|----------------|
-| **Ease of Use**           | ✅ Easy        | ✅ Easy        | ✅ Very Easy   | ⚠ Requires CLI |
+| **Ease of Use**           |  Easy        |  Easy        |  Very Easy   | ⚠ Requires CLI |
 | **Database Requirement**  | ❌ No         | ❌ No         | ❌ No         | ❌ No          |
-| **Customization**         | ✅ High       | ✅ High       | ✅ Moderate    | ✅ High        |
-| **Performance**           | ✅ Very Fast  | ✅ Fast       | ✅ Fast        | ✅ Very Fast   |
-| **Community & Ecosystem** | ✅ Strong     | ⚠ Moderate   | ⚠ Smaller     | ✅ Extensive   |
+| **Customization**         |  High       |  High       |  Moderate    |  High        |
+| **Performance**           |  Very Fast  |  Fast       |  Fast        |  Very Fast   |
+| **Community & Ecosystem** |  Strong     | ⚠ Moderate   | ⚠ Smaller     |  Extensive   |
 
 ---
 
-## **✅ Pros of Grav**  
+## ** Pros of Grav**  
 ✔ **Highly performant and lightweight:** Ideal for fast-loading websites.  
 ✔ **No database dependency:** Simplifies setup and reduces maintenance overhead.  
 ✔ **Flexible and customizable:** Adapt content and design easily with modular themes and plugins.  
@@ -75,12 +75,12 @@ Grav was launched to provide a streamlined, file-based alternative to traditiona
 
 ---
 
-## **🎯 Who Should Use Grav?**  
+## ** Who Should Use Grav?**  
 Grav is **ideal for:**  
-✅ **Developers and designers** who appreciate a modern, file-based CMS with high performance.  
-✅ **Small to medium-sized websites** that require fast load times and easy portability.  
-✅ **Users who prefer minimal server maintenance** and straightforward site deployment.  
-✅ **Projects that benefit from flexible content modeling and modern templating systems.**
+ **Developers and designers** who appreciate a modern, file-based CMS with high performance.  
+ **Small to medium-sized websites** that require fast load times and easy portability.  
+ **Users who prefer minimal server maintenance** and straightforward site deployment.  
+ **Projects that benefit from flexible content modeling and modern templating systems.**
 
 ---
 
@@ -89,7 +89,7 @@ Grav offers a **powerful, fast, and flexible flat-file CMS solution** that is pe
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Try Grav](https://getgrav.org/)**  
-✅ **[Compare Grav vs Kirby](#)**  
-✅ **[Learn More: Building Fast Websites with Flat-File CMS](#)**
+ **Next Steps:**  
+ **[Try Grav](https://getgrav.org/)**  
+ **[Compare Grav vs Kirby](#)**  
+ **[Learn More: Building Fast Websites with Flat-File CMS](#)**

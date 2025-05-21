@@ -100,4 +100,4 @@ def create_docs():
 
 if __name__ == "__main__":
     create_docs()
-    print("✅ Documentation structure updated with `.md` files!")
+    print(" Documentation structure updated with `.md` files!")

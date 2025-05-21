@@ -14,7 +14,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 - **📅 First Adopted:** September 23, 1980  
 - **📅 Latest Update:** 2013 *(Expanded to include risk management, accountability, and security measures.)*  
 - **🏛️ Governing Body:** Organisation for Economic Co-operation and Development (OECD)  
-- **🎯 Primary Purpose:** Provide **privacy principles** that guide **responsible data handling, transborder data flows, and individual privacy rights**.  
+- ** Primary Purpose:** Provide **privacy principles** that guide **responsible data handling, transborder data flows, and individual privacy rights**.  
 
 ---
 
@@ -35,14 +35,14 @@ This guide will help you **understand, implement, and maintain compliance** with
 
 ## **📂 3. What It Covers**
 - **🔐 Key Privacy Principles Addressed:**  
-  - ✅ **Collection Limitation Principle** *(Limit data collection to necessary and lawful purposes.)*  
-  - ✅ **Data Quality Principle** *(Ensure data accuracy, relevance, and currency.)*  
-  - ✅ **Purpose Specification Principle** *(Clearly define and communicate data usage purposes.)*  
-  - ✅ **Use Limitation Principle** *(Restrict data use beyond consented purposes.)*  
-  - ✅ **Security Safeguards Principle** *(Protect data from unauthorized access and breaches.)*  
-  - ✅ **Openness Principle** *(Promote transparency in data processing practices.)*  
-  - ✅ **Individual Participation Principle** *(Enable users to access, correct, and delete their data.)*  
-  - ✅ **Accountability Principle** *(Data controllers must take responsibility for compliance.)*  
+  -  **Collection Limitation Principle** *(Limit data collection to necessary and lawful purposes.)*  
+  -  **Data Quality Principle** *(Ensure data accuracy, relevance, and currency.)*  
+  -  **Purpose Specification Principle** *(Clearly define and communicate data usage purposes.)*  
+  -  **Use Limitation Principle** *(Restrict data use beyond consented purposes.)*  
+  -  **Security Safeguards Principle** *(Protect data from unauthorized access and breaches.)*  
+  -  **Openness Principle** *(Promote transparency in data processing practices.)*  
+  -  **Individual Participation Principle** *(Enable users to access, correct, and delete their data.)*  
+  -  **Accountability Principle** *(Data controllers must take responsibility for compliance.)*  
 
 ---
 
@@ -55,7 +55,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 ✔ **Enable Data Subject Rights** – Allow individuals to access, update, and delete personal information.  
 ✔ **Implement Accountability & Risk Management** – Conduct privacy impact assessments and train employees.  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **Use Data Anonymization & Pseudonymization** – Protect personally identifiable information (PII).  
 ✔ **Deploy Secure Authentication & Access Controls** – Limit access based on the least privilege principle.  
 ✔ **Regular Privacy & Security Audits** – Monitor compliance with internal and external audits.  
@@ -101,8 +101,8 @@ This guide will help you **understand, implement, and maintain compliance** with
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 - **📌 Step 1:** **Conduct a Data Mapping Exercise** *(Identify what personal data is collected and processed.)*  
 - **📌 Step 2:** **Update Privacy Policies & Disclosures** *(Align with OECD principles of transparency and fairness.)*  
 - **📌 Step 3:** **Implement Secure Data Processing Practices** *(Use encryption, anonymization, and access controls.)*  
@@ -110,7 +110,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 - **📌 Step 5:** **Monitor & Audit Data Processing Activities** *(Regular assessments for compliance gaps.)*  
 
 ### **♻️ Ongoing Compliance Maintenance**
-- **🔍 Conduct Privacy Impact Assessments (PIAs)** *(Identify risks before launching new data projects.)*  
+- ** Conduct Privacy Impact Assessments (PIAs)** *(Identify risks before launching new data projects.)*  
 - **📖 Provide Employee Training on Data Privacy** *(Ensure compliance awareness across teams.)*  
 - **🔄 Update Privacy Policies Regularly** *(Adapt to new regulatory changes and risks.)*  
 
@@ -120,9 +120,9 @@ This guide will help you **understand, implement, and maintain compliance** with
 ### **🔗 Official Documentation & Guidelines**
 - **[📖 OECD Privacy Guidelines Full Text](https://www.oecd.org/sti/ieconomy/privacy.htm)**  
 - **[⚖️ GDPR Overview](https://gdpr.eu/what-is-gdpr/)**  
-- **[📊 OECD Digital Security Risk Management](https://www.oecd.org/sti/digital-security/)**  
+- **[ OECD Digital Security Risk Management](https://www.oecd.org/sti/digital-security/)**  
 
-### **🛠️ Industry-Specific Guidance**
+### **️ Industry-Specific Guidance**
 - **🏛️ Public Sector:** *(Aligns with government digital transformation privacy policies.)*  
 - **🏥 Healthcare:** *(Supports compliance with HIPAA, GDPR, and patient data protection.)*  
 - **🛍️ Retail & Digital Marketing:** *(Ensures consumer privacy in online transactions.)*  
@@ -139,7 +139,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Assess Your Data Privacy Compliance](#)**  
-✅ **[Implement OECD Privacy Best Practices](#)**  
-✅ **[Stay Updated on Global Data Protection Regulations](#)**
+ **Next Steps:**  
+ **[Assess Your Data Privacy Compliance](#)**  
+ **[Implement OECD Privacy Best Practices](#)**  
+ **[Stay Updated on Global Data Protection Regulations](#)**

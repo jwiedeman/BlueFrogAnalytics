@@ -10,11 +10,11 @@ Hello, world!
 ## **📌 Overview**  
 Chartbeat is a **real-time web analytics platform** designed to help publishers and content creators understand audience behavior as it happens. By providing real-time insights into user engagement, Chartbeat empowers teams to optimize content strategy, increase on-site engagement, and drive better editorial decisions. Its focus on live data, audience attention metrics, and content performance makes it an essential tool for newsrooms, media companies, and digital publishers.
 
-✅ **Best For:**  
+ **Best For:**  
 - **Publishers, media organizations, and content teams** seeking to monitor and react to audience behavior in real time.  
 - **Digital marketers and analysts** looking for actionable insights to optimize content strategy and improve engagement.
 
-✅ **Core Features:**  
+ **Core Features:**  
 - **Real-Time Analytics:** Up-to-the-minute insights into pageviews, time on page, and reader engagement.  
 - **Audience Attention Metrics:** Tools that measure how long users spend on content and which articles capture the most attention.  
 - **Customizable Dashboards:** Tailor reporting to highlight key performance indicators relevant to your content and audience.  
@@ -57,7 +57,7 @@ Chartbeat emerged from the need for real-time insights in digital publishing, ev
 
 ## **🔄 Pros & Cons**
 
-### **✅ Pros**
+### ** Pros**
 ✔ **Immediate Insights:** Real-time data allows for rapid adjustments and proactive content optimization.  
 ✔ **Enhanced Engagement Metrics:** Detailed attention and scroll tracking provide valuable insights into content performance.  
 ✔ **Customizable Reporting:** Flexible dashboards let publishers focus on the KPIs that matter most.  
@@ -72,12 +72,12 @@ Chartbeat emerged from the need for real-time insights in digital publishing, ev
 
 ---
 
-## **🎯 Who Should Use Chartbeat?**
+## ** Who Should Use Chartbeat?**
 Chartbeat is **ideal for:**
-✅ **Media companies and newsrooms** that need to monitor and react to audience engagement in real time.
-✅ **Digital publishers** seeking to optimize content based on immediate performance data.
-✅ **Marketing teams and content strategists** looking to improve user engagement and conversion rates.
-✅ **Organizations that require a data-driven approach** to editorial and marketing decisions in a fast-paced digital environment.
+ **Media companies and newsrooms** that need to monitor and react to audience engagement in real time.
+ **Digital publishers** seeking to optimize content based on immediate performance data.
+ **Marketing teams and content strategists** looking to improve user engagement and conversion rates.
+ **Organizations that require a data-driven approach** to editorial and marketing decisions in a fast-paced digital environment.
 
 ---
 
@@ -86,7 +86,7 @@ Chartbeat is a **powerful real-time analytics platform** that delivers immediate
 
 ---
 
-🚀 **Next Steps:**
-✅ **[Explore Chartbeat](https://chartbeat.com/)**  
-✅ **[Learn More: Best Practices for Real-Time Analytics](#)**  
-✅ **[Compare Chartbeat vs Traditional Analytics Tools](#)**
+ **Next Steps:**
+ **[Explore Chartbeat](https://chartbeat.com/)**  
+ **[Learn More: Best Practices for Real-Time Analytics](#)**  
+ **[Compare Chartbeat vs Traditional Analytics Tools](#)**

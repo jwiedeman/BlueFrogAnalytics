@@ -8,9 +8,9 @@ description: Learn about commercetools, its history, features, and how it compar
 ## **📌 Overview**  
 commercetools is a **cloud-native, headless eCommerce platform** designed for **enterprise businesses** that require **flexibility, scalability, and API-driven commerce solutions**. Unlike traditional eCommerce platforms, commercetools follows a **microservices-based, API-first, cloud-native, and headless (MACH) architecture**, allowing brands to **build highly customized shopping experiences** across multiple digital channels.  
 
-✅ **Best For:** **Enterprises, large retailers, B2B commerce, and brands needing a scalable, API-driven eCommerce solution.**  
-✅ **Market Position:** Competes with **Shopify Plus, Magento (Adobe Commerce), BigCommerce Enterprise, and Salesforce Commerce Cloud.**  
-✅ **Core Features:** **Headless commerce, API-first architecture, multi-channel selling, and microservices-based flexibility.**  
+ **Best For:** **Enterprises, large retailers, B2B commerce, and brands needing a scalable, API-driven eCommerce solution.**  
+ **Market Position:** Competes with **Shopify Plus, Magento (Adobe Commerce), BigCommerce Enterprise, and Salesforce Commerce Cloud.**  
+ **Core Features:** **Headless commerce, API-first architecture, multi-channel selling, and microservices-based flexibility.**  
 
 ---
 
@@ -58,17 +58,17 @@ commercetools was founded in **2006** in Germany and has grown into a **leading 
 
 | Feature                   | commercetools | Shopify Plus | Magento (Adobe Commerce) | BigCommerce Enterprise | Salesforce Commerce Cloud |
 |---------------------------|--------------|--------------|--------------------------|------------------------|--------------------------|
-| **API-First, Headless**    | ✅ Yes       | ⚠ Limited   | ⚠ Partial Support       | ⚠ Limited              | ✅ Yes                   |
-| **Microservices-Based**    | ✅ Yes       | ❌ No       | ❌ No                    | ❌ No                   | ✅ Yes                   |
-| **Customization**         | ✅ High      | ⚠ Moderate  | ✅ High                  | ⚠ Moderate              | ✅ High                  |
-| **Scalability**           | ✅ High      | ✅ High     | ✅ High                  | ✅ High                 | ✅ High                  |
-| **Multi-Channel Selling** | ✅ Yes       | ✅ Yes      | ✅ Yes                   | ✅ Yes                  | ✅ Yes                   |
-| **B2B & B2C Support**     | ✅ Yes       | ❌ No       | ✅ Yes                   | ✅ Yes                  | ✅ Yes                   |
+| **API-First, Headless**    |  Yes       | ⚠ Limited   | ⚠ Partial Support       | ⚠ Limited              |  Yes                   |
+| **Microservices-Based**    |  Yes       | ❌ No       | ❌ No                    | ❌ No                   |  Yes                   |
+| **Customization**         |  High      | ⚠ Moderate  |  High                  | ⚠ Moderate              |  High                  |
+| **Scalability**           |  High      |  High     |  High                  |  High                 |  High                  |
+| **Multi-Channel Selling** |  Yes       |  Yes      |  Yes                   |  Yes                  |  Yes                   |
+| **B2B & B2C Support**     |  Yes       | ❌ No       |  Yes                   |  Yes                  |  Yes                   |
 | **Pricing**               | **Enterprise-Level** | **Expensive** | **Expensive** | **Expensive** | **Enterprise-Level** |
 
 ---
 
-## **✅ Pros of commercetools**  
+## ** Pros of commercetools**  
 ✔ **Fully API-driven & headless** – Total flexibility for developers.  
 ✔ **Microservices-based architecture** – Modular approach for scaling.  
 ✔ **Multi-cloud hosting** – Choose between AWS, Azure, or Google Cloud.  
@@ -85,12 +85,12 @@ commercetools was founded in **2006** in Germany and has grown into a **leading 
 
 ---
 
-## **🎯 Who Should Use commercetools?**  
+## ** Who Should Use commercetools?**  
 commercetools is **ideal for:**  
-✅ **Enterprise brands & retailers** needing a **scalable, API-driven commerce solution**.  
-✅ **Companies with multi-channel sales strategies** (web, mobile, in-store, IoT).  
-✅ **Developers and agencies** looking for a **fully customizable eCommerce platform**.  
-✅ **Businesses shifting to composable commerce** with **headless architecture**.  
+ **Enterprise brands & retailers** needing a **scalable, API-driven commerce solution**.  
+ **Companies with multi-channel sales strategies** (web, mobile, in-store, IoT).  
+ **Developers and agencies** looking for a **fully customizable eCommerce platform**.  
+ **Businesses shifting to composable commerce** with **headless architecture**.  
 
 ---
 
@@ -99,7 +99,7 @@ commercetools is a **powerful, API-first eCommerce platform** built for **enterp
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Try commercetools](https://commercetools.com/)**  
-✅ **[Compare commercetools vs Shopify Plus](#)**  
-✅ **[Learn More: Headless Commerce Explained](#)**  
+ **Next Steps:**  
+ **[Try commercetools](https://commercetools.com/)**  
+ **[Compare commercetools vs Shopify Plus](#)**  
+ **[Learn More: Headless Commerce Explained](#)**  

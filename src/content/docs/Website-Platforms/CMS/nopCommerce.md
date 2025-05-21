@@ -8,9 +8,9 @@ description: Learn about nopCommerce, its history, features, and how it compares
 ## **📌 Overview**  
 nopCommerce is a **free, open-source eCommerce platform** built on **ASP.NET Core and SQL Server**. It is designed to offer a robust, scalable, and highly customizable solution for online retailers. With a comprehensive set of built-in features and an extensive plugin ecosystem, nopCommerce caters to businesses ranging from small online stores to large enterprises looking for a powerful, cost-effective eCommerce solution.
 
-✅ **Best For:** **Small to mid-sized businesses and enterprises** seeking a customizable, scalable eCommerce platform with a strong developer community and enterprise-grade features.  
-✅ **Market Position:** Competes with platforms like **Magento (Adobe Commerce), Shopify, and WooCommerce** by offering an open-source alternative built on Microsoft technologies.  
-✅ **Core Features:** **Multi-store support, responsive design, advanced product and order management, robust SEO and marketing tools, and comprehensive customization options.**
+ **Best For:** **Small to mid-sized businesses and enterprises** seeking a customizable, scalable eCommerce platform with a strong developer community and enterprise-grade features.  
+ **Market Position:** Competes with platforms like **Magento (Adobe Commerce), Shopify, and WooCommerce** by offering an open-source alternative built on Microsoft technologies.  
+ **Core Features:** **Multi-store support, responsive design, advanced product and order management, robust SEO and marketing tools, and comprehensive customization options.**
 
 ---
 
@@ -51,15 +51,15 @@ nopCommerce was first released to leverage the power of ASP.NET for creating a f
 
 | Feature                   | nopCommerce          | Magento (Adobe Commerce) | Shopify            | WooCommerce      |
 |---------------------------|----------------------|--------------------------|--------------------|------------------|
-| **Customization**         | ✅ Extensive         | ✅ Extensive             | ⚠ Limited          | ✅ High          |
-| **Scalability**           | ✅ High              | ✅ Enterprise-Grade      | ✅ Moderate        | ⚠ Depends on Hosting |
-| **Cost**                  | ✅ Free (Open-Source)| $$$ (Enterprise)         | $$ (Subscription)  | $ (Variable)     |
+| **Customization**         |  Extensive         |  Extensive             | ⚠ Limited          |  High          |
+| **Scalability**           |  High              |  Enterprise-Grade      |  Moderate        | ⚠ Depends on Hosting |
+| **Cost**                  |  Free (Open-Source)| $$$ (Enterprise)         | $$ (Subscription)  | $ (Variable)     |
 | **Platform**              | ASP.NET Core         | PHP                      | Cloud-Based        | PHP              |
-| **Multi-Store Support**   | ✅ Yes               | ✅ Yes                   | ⚠ Limited          | ⚠ With Plugins   |
+| **Multi-Store Support**   |  Yes               |  Yes                   | ⚠ Limited          | ⚠ With Plugins   |
 
 ---
 
-## **✅ Pros of nopCommerce**  
+## ** Pros of nopCommerce**  
 ✔ **Cost-Effective:** Free and open-source, reducing the initial investment.  
 ✔ **Highly Customizable:** Full source code access allows for tailored solutions to meet specific business needs.  
 ✔ **Scalable:** Suitable for both small stores and large enterprises with high traffic and extensive product catalogs.  
@@ -76,12 +76,12 @@ nopCommerce was first released to leverage the power of ASP.NET for creating a f
 
 ---
 
-## **🎯 Who Should Use nopCommerce?**  
+## ** Who Should Use nopCommerce?**  
 nopCommerce is **ideal for:**  
-✅ **Small to mid-sized businesses and enterprises** seeking a scalable, customizable eCommerce platform.  
-✅ **Organizations invested in Microsoft technologies** that need an open-source solution with enterprise-level capabilities.  
-✅ **Merchants with complex product catalogs and multi-store requirements** who require robust marketing and SEO tools.  
-✅ **Developers and IT teams** looking for a platform that offers full control over customization and integration.
+ **Small to mid-sized businesses and enterprises** seeking a scalable, customizable eCommerce platform.  
+ **Organizations invested in Microsoft technologies** that need an open-source solution with enterprise-level capabilities.  
+ **Merchants with complex product catalogs and multi-store requirements** who require robust marketing and SEO tools.  
+ **Developers and IT teams** looking for a platform that offers full control over customization and integration.
 
 ---
 
@@ -90,7 +90,7 @@ nopCommerce offers a **powerful, free, and highly customizable eCommerce solutio
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Explore nopCommerce](https://www.nopcommerce.com/)**  
-✅ **[Compare nopCommerce vs Magento](#)**  
-✅ **[Learn More: B
+ **Next Steps:**  
+ **[Explore nopCommerce](https://www.nopcommerce.com/)**  
+ **[Compare nopCommerce vs Magento](#)**  
+ **[Learn More: B

@@ -13,7 +13,7 @@ The **Personal Data Protection Act (PDPA) of Thailand** is a **comprehensive dat
 - **📖 Short Description:** A **Thai data protection law that governs the responsible collection, use, and disclosure of personal data while ensuring individual privacy rights.**  
 - **📅 Enacted Date:** **May 27, 2019 (Fully Enforceable Since June 1, 2022)**  
 - **🏛️ Governing Body:** **Personal Data Protection Committee (PDPC), Ministry of Digital Economy and Society (MDES)**  
-- **🎯 Primary Purpose:**  
+- ** Primary Purpose:**  
   - **Protect personal data of Thai residents from misuse.**  
   - **Ensure organizations obtain user consent before collecting personal data.**  
   - **Grant individuals control over their personal data, including access, correction, and deletion rights.**  
@@ -37,18 +37,18 @@ The **Personal Data Protection Act (PDPA) of Thailand** is a **comprehensive dat
 
 ## **📂 3. What PDPA Thailand Governs**
 - **🔐 Key Data Protection Areas Covered:**  
-  ✅ **Consent-Based Data Collection** – **Organizations must obtain explicit user consent before collecting personal data.**  
-  ✅ **Purpose Limitation & Data Minimization** – **Data must only be collected for specified, necessary purposes.**  
-  ✅ **Data Protection & Security** – **Organizations must implement security measures to prevent unauthorized data access.**  
-  ✅ **User Rights (Access, Correction, Deletion, Objection)** – **Individuals can control their personal data.**  
-  ✅ **Cross-Border Data Transfers** – **Restrictions apply when transferring personal data outside Thailand.**  
+   **Consent-Based Data Collection** – **Organizations must obtain explicit user consent before collecting personal data.**  
+   **Purpose Limitation & Data Minimization** – **Data must only be collected for specified, necessary purposes.**  
+   **Data Protection & Security** – **Organizations must implement security measures to prevent unauthorized data access.**  
+   **User Rights (Access, Correction, Deletion, Objection)** – **Individuals can control their personal data.**  
+   **Cross-Border Data Transfers** – **Restrictions apply when transferring personal data outside Thailand.**  
 
 - **📜 Key PDPA Compliance Requirements:**  
   - **📂 Obtain Explicit & Informed User Consent** – **No data collection without user agreement.**  
-  - **🔍 Clearly Disclose Data Processing Purposes** – **Organizations must provide transparency on data usage.**  
+  - ** Clearly Disclose Data Processing Purposes** – **Organizations must provide transparency on data usage.**  
   - **📢 Appoint a Data Protection Officer (DPO) (if applicable)** – **Required for businesses processing large-scale or sensitive personal data.**  
   - **🛡️ Implement Security Measures to Prevent Data Breaches** – **Encryption and access controls are mandatory.**  
-  - **📊 Data Breach Notification** – **Must notify PDPC and affected individuals of significant breaches within 72 hours.**  
+  - ** Data Breach Notification** – **Must notify PDPC and affected individuals of significant breaches within 72 hours.**  
 
 ---
 
@@ -60,7 +60,7 @@ The **Personal Data Protection Act (PDPA) of Thailand** is a **comprehensive dat
 ✔ **Allow Individuals to Access, Modify, or Delete Their Data** – **Consumers have full rights over their data.**  
 ✔ **Ensure Third-Party & Cross-Border Data Transfers Are Compliant** – **Data sent abroad must have adequate protection.**  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **Data Encryption & Secure Storage** – **Protect personal data from breaches.**  
 ✔ **Access Control & Multi-Factor Authentication (MFA)** – **Restrict data access to authorized users.**  
 ✔ **Data Retention & Secure Disposal Policies** – **Personal data should not be stored longer than necessary.**  
@@ -109,8 +109,8 @@ The **Personal Data Protection Act (PDPA) of Thailand** is a **comprehensive dat
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 1️⃣ **Conduct a Data Protection Impact Assessment (DPIA)** – **Identify risks and implement controls.**  
 2️⃣ **Appoint a Data Protection Officer (DPO) (if required)** – **Ensure oversight of PDPA compliance.**  
 3️⃣ **Implement Data Protection Measures (Encryption, Access Controls, Secure Storage)** – **Secure personal data.**  
@@ -126,7 +126,7 @@ The **Personal Data Protection Act (PDPA) of Thailand** is a **comprehensive dat
 
 ---
 
-## **🚀 Conclusion**
+## ** Conclusion**
 The **PDPA Thailand ensures responsible data handling**, requiring **businesses to follow strict security, transparency, and user privacy controls** to **protect personal data and avoid regulatory penalties**.
 
 ---

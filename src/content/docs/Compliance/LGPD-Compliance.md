@@ -14,7 +14,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 - **📅 Enacted:** August 14, 2018  
 - **📅 Effective Date:** September 18, 2020 *(Enforcement began August 2021)*  
 - **🏛️ Governing Body:** National Data Protection Authority (ANPD - Autoridade Nacional de Proteção de Dados)  
-- **🎯 Primary Purpose:** Establish guidelines for collecting, processing, storing, and sharing **personal data** while ensuring individuals' rights to privacy and data security.  
+- ** Primary Purpose:** Establish guidelines for collecting, processing, storing, and sharing **personal data** while ensuring individuals' rights to privacy and data security.  
 
 ---
 
@@ -35,11 +35,11 @@ This guide will help you **understand, implement, and maintain compliance** with
 
 ## **📂 3. What It Covers**
 - **🔐 Key Data Protection Areas Addressed:**  
-  - ✅ **Personal Data Processing** *(Collection, storage, and sharing of user information.)*  
-  - ✅ **Sensitive Data Protections** *(Stricter rules for biometric, health, and financial data.)*  
-  - ✅ **User Consent & Transparency** *(Clear disclosure of data use and opt-in requirements.)*  
-  - ✅ **Data Subject Rights** *(Access, correction, deletion, portability, and opt-out rights.)*  
-  - ✅ **International Data Transfers** *(Regulations for cross-border data movement.)*  
+  -  **Personal Data Processing** *(Collection, storage, and sharing of user information.)*  
+  -  **Sensitive Data Protections** *(Stricter rules for biometric, health, and financial data.)*  
+  -  **User Consent & Transparency** *(Clear disclosure of data use and opt-in requirements.)*  
+  -  **Data Subject Rights** *(Access, correction, deletion, portability, and opt-out rights.)*  
+  -  **International Data Transfers** *(Regulations for cross-border data movement.)*  
 
 ---
 
@@ -52,7 +52,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 ✔ **Establish Data Processing Agreements (DPAs)** – Ensure third-party vendors comply with LGPD.  
 ✔ **Maintain Data Processing Records** – Document the purpose, method, and legal basis for data collection.  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **Data Encryption & Anonymization** – Protect sensitive personal data at rest and in transit.  
 ✔ **User Consent & Preferences Management** – Allow users to opt in/out of data collection.  
 ✔ **Incident Response & Breach Notification** – Notify ANPD and users of breaches within a reasonable timeframe.  
@@ -94,8 +94,8 @@ This guide will help you **understand, implement, and maintain compliance** with
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 - **📌 Step 1:** **Assess Data Collection & Processing Practices** *(Identify what personal data is collected.)*  
 - **📌 Step 2:** **Update Privacy Policies & Terms of Use** *(Ensure transparency in data handling.)*  
 - **📌 Step 3:** **Implement User Consent Mechanisms** *(Enable opt-in and preference settings.)*  
@@ -104,7 +104,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 - **📌 Step 6:** **Train Employees on LGPD Regulations** *(Ensure compliance across teams.)*  
 
 ### **♻️ Ongoing Compliance Maintenance**
-- **🔍 Conduct Data Protection Audits** *(Evaluate risks and compliance gaps.)*  
+- ** Conduct Data Protection Audits** *(Evaluate risks and compliance gaps.)*  
 - **📖 Monitor Regulatory Updates from ANPD** *(Adjust policies as laws evolve.)*  
 - **🔄 Update Security Measures & Vendor Contracts** *(Ensure continuous compliance.)*  
 
@@ -114,9 +114,9 @@ This guide will help you **understand, implement, and maintain compliance** with
 ### **🔗 Official Documentation & Guidelines**
 - **[📖 LGPD Full Legal Text (Portuguese)](https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/L13709.htm)**  
 - **[⚖️ ANPD Official Website](https://www.gov.br/anpd/pt-br)**  
-- **[📊 LGPD Compliance Checklist](https://iapp.org/resources/article/lgpd-checklist/)**  
+- **[ LGPD Compliance Checklist](https://iapp.org/resources/article/lgpd-checklist/)**  
 
-### **🛠️ Industry-Specific Guidance**
+### **️ Industry-Specific Guidance**
 - **🏛️ Public Sector:** *(Government agencies must implement strict privacy controls.)*  
 - **🏥 Healthcare:** *(Ensure protection of patient records and consent-based data use.)*  
 - **🛍️ E-commerce & Digital Marketing:** *(Enable user opt-outs and limit tracking.)*  
@@ -133,7 +133,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Assess Your LGPD Readiness](#)**  
-✅ **[Implement Privacy by Design Best Practices](#)**  
-✅ **[Stay Updated on ANPD Regulations](#)**
+ **Next Steps:**  
+ **[Assess Your LGPD Readiness](#)**  
+ **[Implement Privacy by Design Best Practices](#)**  
+ **[Stay Updated on ANPD Regulations](#)**

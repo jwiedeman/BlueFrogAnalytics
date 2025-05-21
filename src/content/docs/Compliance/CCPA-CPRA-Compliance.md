@@ -15,7 +15,7 @@ The **California Consumer Privacy Act (CCPA)** and its expanded version, the **C
   - **CCPA:** January 1, 2020  
   - **CPRA:** January 1, 2023 (enhancements to CCPA)  
 - **🏛️ Governing Body:** **California Privacy Protection Agency (CPPA) & California Attorney General**  
-- **🎯 Primary Purpose:** Protect consumer privacy by **giving individuals control over their personal information** while regulating how businesses collect, use, and share data.  
+- ** Primary Purpose:** Protect consumer privacy by **giving individuals control over their personal information** while regulating how businesses collect, use, and share data.  
 
 ---
 
@@ -34,10 +34,10 @@ The **California Consumer Privacy Act (CCPA)** and its expanded version, the **C
 
 ## **📂 3. What CCPA & CPRA Govern**
 - **🔐 Types of Data Covered:**  
-  ✅ **Personally Identifiable Information (PII)** – Names, addresses, email addresses, phone numbers.  
-  ✅ **Online Identifiers** – IP addresses, cookies, browsing history, geolocation.  
-  ✅ **Sensitive Personal Information (SPIN)** *(CPRA Addition)* – Social Security numbers, biometric data, racial/ethnic origins, financial details.  
-  ✅ **Consumer Profiles & Behavioral Data** – AI-driven profiling, purchase history, and targeted advertising data.  
+   **Personally Identifiable Information (PII)** – Names, addresses, email addresses, phone numbers.  
+   **Online Identifiers** – IP addresses, cookies, browsing history, geolocation.  
+   **Sensitive Personal Information (SPIN)** *(CPRA Addition)* – Social Security numbers, biometric data, racial/ethnic origins, financial details.  
+   **Consumer Profiles & Behavioral Data** – AI-driven profiling, purchase history, and targeted advertising data.  
 
 - **📜 Key Consumer Rights Under CCPA & CPRA:**  
   - **Right to Know:** Consumers can request **what personal data is collected, used, or shared**.  
@@ -56,7 +56,7 @@ The **California Consumer Privacy Act (CCPA)** and its expanded version, the **C
 ✔ **Strengthen Data Security Measures** – Implement **encryption, access controls, and security audits** to protect consumer data.  
 ✔ **Contractual Obligations for Third Parties** – Ensure **vendors and service providers comply with CCPA/CPRA**.  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **Consent Management Systems** – Automate **opt-in/opt-out tracking for data sharing and sales**.  
 ✔ **Consumer Request Handling** – Implement **systems for processing deletion and correction requests**.  
 ✔ **Risk Assessments & Audits** – Conduct **annual privacy risk assessments** to ensure compliance.  
@@ -100,8 +100,8 @@ The **California Consumer Privacy Act (CCPA)** and its expanded version, the **C
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 1️⃣ **Update Privacy Policies** – Clearly outline **data collection, usage, and consumer rights**.  
 2️⃣ **Implement Opt-Out Mechanisms** – Enable a **"Do Not Sell or Share My Data"** link.  
 3️⃣ **Develop Consumer Request Handling** – Automate **data access, deletion, and correction processes**.  
@@ -119,16 +119,16 @@ The **California Consumer Privacy Act (CCPA)** and its expanded version, the **C
 ### **🔗 Official Documentation & Guidelines**
 - **[📖 CCPA Full Legal Text](https://oag.ca.gov/privacy/ccpa)**  
 - **[⚖️ CPRA & California Privacy Protection Agency](https://cppa.ca.gov/)**  
-- **[📊 Consumer Privacy FAQs](https://oag.ca.gov/)**  
+- **[ Consumer Privacy FAQs](https://oag.ca.gov/)**  
 
 ---
 
-## **🚀 Conclusion**
+## ** Conclusion**
 The **CCPA & CPRA** establish **some of the strictest data privacy regulations in the U.S.** Compliance ensures **consumer trust, legal security, and data transparency**.
 
 ---
 
-🚀 **Next Steps:**
-✅ **[Audit Your Data Collection Practices](#)**  
-✅ **[Implement Opt-Out Mechanisms & Consent Management](#)**  
-✅ **[Train Employees on CCPA & CPRA Compliance](#)**  
+ **Next Steps:**
+ **[Audit Your Data Collection Practices](#)**  
+ **[Implement Opt-Out Mechanisms & Consent Management](#)**  
+ **[Train Employees on CCPA & CPRA Compliance](#)**  

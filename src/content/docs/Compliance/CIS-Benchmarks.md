@@ -13,7 +13,7 @@ The **CIS Benchmarks** are a globally recognized set of **best practices** for s
 - **📖 Short Description:** A set of **security configuration standards** designed to **protect IT infrastructure, cloud environments, operating systems, and software**.  
 - **📅 First Released:** **2000 (updated regularly)**  
 - **🏛️ Governing Body:** **Center for Internet Security (CIS)**  
-- **🎯 Primary Purpose:** Strengthen **cybersecurity defenses** by providing **configuration best practices** for organizations, governments, and enterprises worldwide.  
+- ** Primary Purpose:** Strengthen **cybersecurity defenses** by providing **configuration best practices** for organizations, governments, and enterprises worldwide.  
 
 ---
 
@@ -33,11 +33,11 @@ The **CIS Benchmarks** are a globally recognized set of **best practices** for s
 
 ## **📂 3. What CIS Benchmarks Govern**
 - **🔐 Systems & Environments Covered:**  
-  ✅ **Operating Systems:** Windows, Linux, macOS, Solaris.  
-  ✅ **Cloud Platforms:** AWS, Azure, Google Cloud.  
-  ✅ **Databases:** SQL Server, MySQL, PostgreSQL, Oracle DB.  
-  ✅ **Network Devices:** Firewalls, routers, VPNs.  
-  ✅ **Web Browsers & Applications:** Chrome, Firefox, Microsoft Edge, Microsoft Office.  
+   **Operating Systems:** Windows, Linux, macOS, Solaris.  
+   **Cloud Platforms:** AWS, Azure, Google Cloud.  
+   **Databases:** SQL Server, MySQL, PostgreSQL, Oracle DB.  
+   **Network Devices:** Firewalls, routers, VPNs.  
+   **Web Browsers & Applications:** Chrome, Firefox, Microsoft Edge, Microsoft Office.  
 
 - **📜 CIS Benchmark Categories:**  
   - **Level 1 Benchmarks:** Basic security configurations with **minimal impact on usability**.  
@@ -54,7 +54,7 @@ The **CIS Benchmarks** are a globally recognized set of **best practices** for s
 ✔ **Apply Principle of Least Privilege (PoLP)** – Restrict **user and system permissions** to the minimum necessary.  
 ✔ **Enforce Strong Authentication & Logging** – Use **multi-factor authentication (MFA), audit logs, and event monitoring**.  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **Harden Operating Systems & Servers** – Secure **Windows, Linux, and macOS configurations** based on **CIS guidelines**.  
 ✔ **Cloud Security Configuration** – Follow **CIS cloud benchmarks for AWS, Azure, and GCP**.  
 ✔ **Automate CIS Benchmark Checks** – Use **CIS-CAT Pro**, **AWS Config**, or **Azure Policy** for compliance monitoring.  
@@ -94,8 +94,8 @@ The **CIS Benchmarks** are a globally recognized set of **best practices** for s
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 1️⃣ **Download the Latest CIS Benchmarks** – Get **CIS configuration guides** for your IT environment.  
 2️⃣ **Run a CIS Benchmark Assessment** – Use **CIS-CAT Pro or automated tools** to check compliance.  
 3️⃣ **Implement Recommended Secure Settings** – Apply **Level 1 or Level 2 configurations** based on risk tolerance.  
@@ -113,21 +113,21 @@ The **CIS Benchmarks** are a globally recognized set of **best practices** for s
 ### **🔗 Official Documentation & Guidelines**
 - **[📖 CIS Benchmarks Library](https://www.cisecurity.org/cis-benchmarks/)**  
 - **[⚖️ CIS Controls (v8) Framework](https://www.cisecurity.org/controls/v8/)**  
-- **[📊 CIS-CAT Pro Security Assessment Tool](https://www.cisecurity.org/cis-cat-pro)**  
+- **[ CIS-CAT Pro Security Assessment Tool](https://www.cisecurity.org/cis-cat-pro)**  
 
-### **🛠️ Tools for CIS Compliance**
-- **📊 CIS-CAT Pro** – Automated assessment & reporting for CIS benchmarks.  
-- **🔍 AWS Security Hub** – Monitors AWS infrastructure against CIS cloud benchmarks.  
+### **️ Tools for CIS Compliance**
+- ** CIS-CAT Pro** – Automated assessment & reporting for CIS benchmarks.  
+- ** AWS Security Hub** – Monitors AWS infrastructure against CIS cloud benchmarks.  
 - **🔐 Microsoft Defender for Cloud** – Checks Azure compliance with CIS standards.  
 
 ---
 
-## **🚀 Conclusion**
+## ** Conclusion**
 CIS Benchmarks **set the standard for IT security best practices**, helping organizations **secure infrastructure, meet compliance requirements, and prevent cyber threats**.
 
 ---
 
-🚀 **Next Steps:**
-✅ **[Download & Implement CIS Benchmarks](#)**  
-✅ **[Run a CIS-CAT Security Assessment](#)**  
-✅ **[Automate Compliance Monitoring & Patch Management](#)**  
+ **Next Steps:**
+ **[Download & Implement CIS Benchmarks](#)**  
+ **[Run a CIS-CAT Security Assessment](#)**  
+ **[Automate Compliance Monitoring & Patch Management](#)**  

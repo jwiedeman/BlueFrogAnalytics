@@ -8,9 +8,9 @@ description: Learn about Kentico Kontent, its history, features, and how it comp
 ## **📌 Overview**  
 Kentico Kontent is a **headless content management system (CMS)** designed for enterprises and digital teams to manage and deliver content across multiple channels. As part of the Kentico family, Kontent separates content creation from presentation, empowering teams to design omnichannel experiences with ease. Its API-first approach, robust content modeling, and collaboration features make it ideal for modern digital projects.
 
-✅ **Best For:** **Mid-to-large enterprises and agencies** that need a scalable, cloud-based headless CMS for managing and distributing content across websites, mobile apps, IoT devices, and more.  
-✅ **Market Position:** Competes with platforms such as **Contentful, DatoCMS, and Sanity** by offering extensive customization, collaboration, and integration capabilities in a cloud-native environment.  
-✅ **Core Features:** **API-first architecture, flexible content modeling, collaboration workflows, multi-language support, and seamless integration with various front-end frameworks.**
+ **Best For:** **Mid-to-large enterprises and agencies** that need a scalable, cloud-based headless CMS for managing and distributing content across websites, mobile apps, IoT devices, and more.  
+ **Market Position:** Competes with platforms such as **Contentful, DatoCMS, and Sanity** by offering extensive customization, collaboration, and integration capabilities in a cloud-native environment.  
+ **Core Features:** **API-first architecture, flexible content modeling, collaboration workflows, multi-language support, and seamless integration with various front-end frameworks.**
 
 ---
 
@@ -51,15 +51,15 @@ Kentico Kontent was developed to address the evolving needs of digital content m
 
 | Feature                   | Kentico Kontent   | Contentful        | DatoCMS         | Sanity          | Strapi          |
 |---------------------------|-------------------|-------------------|-----------------|-----------------|-----------------|
-| **Ease of Use**           | ✅ Easy           | ⚠ Moderate        | ✅ Easy         | ✅ Easy         | ⚠ Moderate      |
-| **API-First Approach**    | ✅ Yes            | ✅ Yes            | ✅ Yes          | ✅ Yes          | ⚠ Partial       |
-| **Content Collaboration** | ✅ Robust         | ⚠ Limited         | ✅ Good         | ✅ Good         | ⚠ Basic         |
-| **Customization**         | ✅ High           | ✅ High           | ✅ High         | ✅ High         | ✅ High         |
-| **Cloud-Native**          | ✅ Yes            | ✅ Yes            | ✅ Yes          | ✅ Yes          | ❌ Self-hosted    |
+| **Ease of Use**           |  Easy           | ⚠ Moderate        |  Easy         |  Easy         | ⚠ Moderate      |
+| **API-First Approach**    |  Yes            |  Yes            |  Yes          |  Yes          | ⚠ Partial       |
+| **Content Collaboration** |  Robust         | ⚠ Limited         |  Good         |  Good         | ⚠ Basic         |
+| **Customization**         |  High           |  High           |  High         |  High         |  High         |
+| **Cloud-Native**          |  Yes            |  Yes            |  Yes          |  Yes          | ❌ Self-hosted    |
 
 ---
 
-## **✅ Pros of Kentico Kontent**  
+## ** Pros of Kentico Kontent**  
 ✔ **Comprehensive headless CMS:** Enables omnichannel content delivery through an API-first approach.  
 ✔ **Flexible content modeling:** Customize content types to meet diverse business requirements.  
 ✔ **Collaboration and workflow features:** Streamline content creation with built-in collaboration tools and role-based access.  
@@ -76,12 +76,12 @@ Kentico Kontent was developed to address the evolving needs of digital content m
 
 ---
 
-## **🎯 Who Should Use Kentico Kontent?**  
+## ** Who Should Use Kentico Kontent?**  
 Kentico Kontent is **ideal for:**  
-✅ **Mid-to-large enterprises and agencies** looking for a robust, headless CMS to support omnichannel digital experiences.  
-✅ **Organizations with complex content management needs** that require flexible content modeling and collaboration workflows.  
-✅ **Development teams** that prefer a cloud-native, API-first solution to power modern front-end applications.  
-✅ **Businesses focused on digital transformation** and integrated marketing strategies.
+ **Mid-to-large enterprises and agencies** looking for a robust, headless CMS to support omnichannel digital experiences.  
+ **Organizations with complex content management needs** that require flexible content modeling and collaboration workflows.  
+ **Development teams** that prefer a cloud-native, API-first solution to power modern front-end applications.  
+ **Businesses focused on digital transformation** and integrated marketing strategies.
 
 ---
 
@@ -90,7 +90,7 @@ Kentico Kontent offers a **powerful, cloud-based headless CMS solution** designe
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Explore Kentico Kontent](https://kontent.ai/)**  
-✅ **[Compare Kentico Kontent vs Contentful](#)**  
-✅ **[Learn More: Omnichannel Content Delivery with Kentico Kontent](#)**
+ **Next Steps:**  
+ **[Explore Kentico Kontent](https://kontent.ai/)**  
+ **[Compare Kentico Kontent vs Contentful](#)**  
+ **[Learn More: Omnichannel Content Delivery with Kentico Kontent](#)**

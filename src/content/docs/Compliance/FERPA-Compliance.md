@@ -13,7 +13,7 @@ The **Family Educational Rights and Privacy Act (FERPA)** is a **U.S. federal la
 - **📖 Short Description:** A **U.S. federal law that governs access, use, and protection of student education records, ensuring privacy rights for students and parents.**  
 - **📅 Enacted Date:** **August 21, 1974** *(Amended several times, including updates for digital education.)*  
 - **🏛️ Governing Body:** **U.S. Department of Education (DOE), Family Policy Compliance Office (FPCO)**  
-- **🎯 Primary Purpose:**  
+- ** Primary Purpose:**  
   - **Give parents and eligible students control over educational records.**  
   - **Restrict unauthorized disclosure of student data.**  
   - **Ensure institutions implement proper data security and privacy protections.**  
@@ -36,15 +36,15 @@ The **Family Educational Rights and Privacy Act (FERPA)** is a **U.S. federal la
 
 ## **📂 3. What FERPA Governs**
 - **🔐 Key Areas Covered:**  
-  ✅ **Student Educational Records** – **Schools must protect records containing personally identifiable information (PII).**  
-  ✅ **Parental & Student Rights** – **Parents (or students over 18) can review, correct, or request deletion of records.**  
-  ✅ **Disclosure Restrictions** – **Institutions cannot share student data without consent (with limited exceptions).**  
-  ✅ **Data Security & Storage** – **Schools must implement safeguards to prevent unauthorized access.**  
-  ✅ **Third-Party Data Sharing** – **EdTech companies must comply with FERPA protections.**  
+   **Student Educational Records** – **Schools must protect records containing personally identifiable information (PII).**  
+   **Parental & Student Rights** – **Parents (or students over 18) can review, correct, or request deletion of records.**  
+   **Disclosure Restrictions** – **Institutions cannot share student data without consent (with limited exceptions).**  
+   **Data Security & Storage** – **Schools must implement safeguards to prevent unauthorized access.**  
+   **Third-Party Data Sharing** – **EdTech companies must comply with FERPA protections.**  
 
 - **📜 Key FERPA Rules & Requirements:**  
   - **📂 Right to Access & Correct Records** – Parents & eligible students **must have the ability to review and request corrections.**  
-  - **🔍 Written Consent for Disclosure** – Schools **must obtain consent before sharing student records (with some legal exceptions).**  
+  - ** Written Consent for Disclosure** – Schools **must obtain consent before sharing student records (with some legal exceptions).**  
   - **📢 Directory Information Exception** – Some basic info **(name, email, etc.) may be shared unless parents opt out.**  
   - **⚠️ Data Breach & Security Best Practices** – **Institutions must implement safeguards for protecting student data.**  
   - **📜 FERPA & Online Learning** – **Digital platforms handling student data must meet FERPA compliance.**  
@@ -59,7 +59,7 @@ The **Family Educational Rights and Privacy Act (FERPA)** is a **U.S. federal la
 ✔ **Train Staff on FERPA Compliance** – **Employees handling student records must be educated on compliance.**  
 ✔ **Monitor Third-Party Data Handling** – **Vendors handling student data must follow FERPA rules.**  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **Role-Based Access Control (RBAC)** – **Only authorized personnel can access student records.**  
 ✔ **Secure Data Transmission & Storage** – **Use encryption to protect student data at rest and in transit.**  
 ✔ **Audit & Monitor Record Access** – **Track who accesses student information to prevent misuse.**  
@@ -107,8 +107,8 @@ The **Family Educational Rights and Privacy Act (FERPA)** is a **U.S. federal la
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 1️⃣ **Review & Secure Student Data Storage Systems** – **Ensure encrypted databases & access control measures.**  
 2️⃣ **Train Staff & Faculty on FERPA Rules** – **Educate teachers, administrators, and IT staff on compliance.**  
 3️⃣ **Obtain Written Consent Before Sharing Student Data** – **Except in legally permitted cases.**  
@@ -126,11 +126,11 @@ The **Family Educational Rights and Privacy Act (FERPA)** is a **U.S. federal la
 ### **🔗 Official Documentation & Guidelines**
 - **[📖 FERPA Full Legal Text](https://www2.ed.gov/policy/gen/guid/fpco/ferpa/index.html)**  
 - **[⚖️ U.S. Department of Education FERPA Guide](https://studentprivacy.ed.gov/)**  
-- **[📊 Best Practices for Digital Education Privacy](https://www2.ed.gov/about/offices/list/ptac/index.html)**  
+- **[ Best Practices for Digital Education Privacy](https://www2.ed.gov/about/offices/list/ptac/index.html)**  
 
 ---
 
-## **🚀 Conclusion**
+## ** Conclusion**
 FERPA **protects student education records and ensures privacy rights**, requiring **schools, colleges, and EdTech companies to follow strict data security and disclosure rules**.
 
 ---

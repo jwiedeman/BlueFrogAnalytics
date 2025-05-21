@@ -8,9 +8,9 @@ description: Learn about Bludit, its history, features, and how it compares to o
 ## **📌 Overview**  
 Bludit is a **lightweight, flat-file CMS** designed for **simplicity, speed, and minimal server requirements**. Unlike database-driven CMS platforms, Bludit stores content in **plain text files (JSON format)**, making it **fast, portable, and easy to set up**.  
 
-✅ **Best For:** **Personal blogs, small business sites, and developers who prefer a lightweight CMS**.  
-✅ **Market Position:** Competes with **Grav, Kirby, Hugo, and Jekyll**.  
-✅ **Core Features:** **Flat-file architecture, Markdown support, no database required, and fast performance**.  
+ **Best For:** **Personal blogs, small business sites, and developers who prefer a lightweight CMS**.  
+ **Market Position:** Competes with **Grav, Kirby, Hugo, and Jekyll**.  
+ **Core Features:** **Flat-file architecture, Markdown support, no database required, and fast performance**.  
 
 ---
 
@@ -57,16 +57,16 @@ Bludit was created by **Diego Najar** and launched in **2015** as a simple alter
 
 | Feature                  | Bludit | Grav       | Kirby      | Hugo        | Jekyll      |
 |--------------------------|--------|------------|------------|------------|------------|
-| **Ease of Use**          | ✅ Very Easy | ✅ Easy | ✅ Easy | ⚠ Requires CLI | ⚠ Requires CLI |
+| **Ease of Use**          |  Very Easy |  Easy |  Easy | ⚠ Requires CLI | ⚠ Requires CLI |
 | **Database Required**    | ❌ No  | ❌ No      | ❌ No      | ❌ No      | ❌ No      |
-| **Customization**        | ✅ Themes & Plugins | ✅ Advanced | ✅ Advanced | ⚠ Limited | ⚠ Limited |
-| **Performance**          | ✅ Very Fast | ✅ Fast | ✅ Fast | ✅ Very Fast | ✅ Very Fast |
-| **SEO Features**         | ✅ Built-In | ✅ Strong | ✅ Strong | ⚠ Requires Setup | ⚠ Requires Setup |
+| **Customization**        |  Themes & Plugins |  Advanced |  Advanced | ⚠ Limited | ⚠ Limited |
+| **Performance**          |  Very Fast |  Fast |  Fast |  Very Fast |  Very Fast |
+| **SEO Features**         |  Built-In |  Strong |  Strong | ⚠ Requires Setup | ⚠ Requires Setup |
 | **Best For**             | **Blogs & Small Sites** | **Developers & SMBs** | **Designers & Agencies** | **Static Sites** | **Static Blogs** |
 
 ---
 
-## **✅ Pros of Bludit**  
+## ** Pros of Bludit**  
 ✔ **Super lightweight and fast** – No database overhead.  
 ✔ **Easy to set up** – Install and start using within minutes.  
 ✔ **Minimal security risks** – No SQL vulnerabilities.  
@@ -83,12 +83,12 @@ Bludit was created by **Diego Najar** and launched in **2015** as a simple alter
 
 ---
 
-## **🎯 Who Should Use Bludit?**  
+## ** Who Should Use Bludit?**  
 Bludit is **ideal for:**  
-✅ **Personal bloggers** who want a **simple, fast CMS**.  
-✅ **Developers who prefer a database-free setup**.  
-✅ **Small businesses** needing a **basic, lightweight website**.  
-✅ **Privacy-conscious users** avoiding **cloud-based CMS solutions**.  
+ **Personal bloggers** who want a **simple, fast CMS**.  
+ **Developers who prefer a database-free setup**.  
+ **Small businesses** needing a **basic, lightweight website**.  
+ **Privacy-conscious users** avoiding **cloud-based CMS solutions**.  
 
 ---
 
@@ -97,7 +97,7 @@ Bludit is a **fast, simple, and lightweight CMS** that’s perfect for users who
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Try Bludit Free](https://www.bludit.com/)**  
-✅ **[Compare Bludit vs WordPress](#)**  
-✅ **[Learn More: Flat-File CMS vs Database-Driven CMS](#)**  
+ **Next Steps:**  
+ **[Try Bludit Free](https://www.bludit.com/)**  
+ **[Compare Bludit vs WordPress](#)**  
+ **[Learn More: Flat-File CMS vs Database-Driven CMS](#)**  

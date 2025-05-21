@@ -27,12 +27,12 @@ jobs:
         run: npm install
 
       - name: Install Playwright Browsers
-        run: npx playwright install  # ✅ Fixes missing Chromium issue
+        run: npx playwright install  #  Fixes missing Chromium issue
 
       - name: Build Astro Site
         run: |
           npm run build
-          touch dist/.nojekyll  # ✅ Prevent GitHub from stripping assets
+          touch dist/.nojekyll  #  Prevent GitHub from stripping assets
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

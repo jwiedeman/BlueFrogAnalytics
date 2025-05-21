@@ -8,9 +8,9 @@ description: Learn about Shopware, its history, features, and how it compares to
 ## **📌 Overview**  
 Shopware is a **modern, open-source eCommerce platform** known for its innovative design and flexibility. Originally developed in Germany, Shopware emphasizes user experience and storytelling, enabling merchants to create engaging, visually appealing online stores. With a modular architecture and extensive customization capabilities, Shopware is suitable for businesses ranging from small startups to large enterprises seeking a robust yet adaptable solution.
 
-✅ **Best For:** **Small to large businesses** that prioritize unique design, customer experience, and flexibility in their online store development.  
-✅ **Market Position:** Competes with platforms such as **Magento, Shopify, and PrestaShop** by offering a feature-rich, design-focused approach to eCommerce.  
-✅ **Core Features:** **Customizable storefronts, intuitive drag-and-drop editing, powerful marketing tools, multi-channel support, and a flexible plugin ecosystem.**
+ **Best For:** **Small to large businesses** that prioritize unique design, customer experience, and flexibility in their online store development.  
+ **Market Position:** Competes with platforms such as **Magento, Shopify, and PrestaShop** by offering a feature-rich, design-focused approach to eCommerce.  
+ **Core Features:** **Customizable storefronts, intuitive drag-and-drop editing, powerful marketing tools, multi-channel support, and a flexible plugin ecosystem.**
 
 ---
 
@@ -51,15 +51,15 @@ Shopware was founded in **2000** in Germany and has steadily evolved over the ye
 
 | Feature                   | Shopware         | Magento (Adobe Commerce) | Shopify           | PrestaShop        |
 |---------------------------|------------------|--------------------------|-------------------|-------------------|
-| **Ease of Use**           | ✅ Moderate      | ⚠ Complex               | ✅ Easy           | ✅ Moderate       |
-| **Customization**         | ✅ High          | ✅ Extensive             | ⚠ Limited         | ✅ High           |
-| **Design & UX Focus**     | ✅ Strong        | ⚠ Moderate              | ✅ Good           | ✅ Moderate       |
-| **Scalability**           | ✅ High          | ✅ Enterprise-Grade      | ✅ Moderate       | ✅ Moderate       |
-| **Extension Ecosystem**   | ✅ Growing       | ✅ Vast                  | ✅ Extensive      | ✅ Extensive      |
+| **Ease of Use**           |  Moderate      | ⚠ Complex               |  Easy           |  Moderate       |
+| **Customization**         |  High          |  Extensive             | ⚠ Limited         |  High           |
+| **Design & UX Focus**     |  Strong        | ⚠ Moderate              |  Good           |  Moderate       |
+| **Scalability**           |  High          |  Enterprise-Grade      |  Moderate       |  Moderate       |
+| **Extension Ecosystem**   |  Growing       |  Vast                  |  Extensive      |  Extensive      |
 
 ---
 
-## **✅ Pros of Shopware**  
+## ** Pros of Shopware**  
 ✔ **Strong Focus on Design:** Emphasizes storytelling and customer experience, making it ideal for brands that value visual appeal.  
 ✔ **Flexible and Modular:** Highly customizable with a robust plugin ecosystem to tailor functionalities.  
 ✔ **Scalable:** Suitable for growing businesses with complex needs and multi-channel strategies.  
@@ -75,12 +75,12 @@ Shopware was founded in **2000** in Germany and has steadily evolved over the ye
 
 ---
 
-## **🎯 Who Should Use Shopware?**  
+## ** Who Should Use Shopware?**  
 Shopware is **ideal for:**  
-✅ **Small to medium-sized businesses and enterprises** that prioritize customer experience and design.  
-✅ **Brands seeking a visually appealing and engaging online store** with flexible customization options.  
-✅ **Developers and agencies** that want an open-source platform with headless capabilities for omnichannel strategies.  
-✅ **Organizations looking for scalable solutions** that can grow with increasing traffic and product complexity.
+ **Small to medium-sized businesses and enterprises** that prioritize customer experience and design.  
+ **Brands seeking a visually appealing and engaging online store** with flexible customization options.  
+ **Developers and agencies** that want an open-source platform with headless capabilities for omnichannel strategies.  
+ **Organizations looking for scalable solutions** that can grow with increasing traffic and product complexity.
 
 ---
 
@@ -89,7 +89,7 @@ Shopware delivers a **modern and flexible eCommerce solution** that stands out f
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Explore Shopware](https://www.shopware.com/)**  
-✅ **[Compare Shopware vs Magento](#)**  
-✅ **[Learn More: Building Engaging Online Experiences with Shopware](#)**
+ **Next Steps:**  
+ **[Explore Shopware](https://www.shopware.com/)**  
+ **[Compare Shopware vs Magento](#)**  
+ **[Learn More: Building Engaging Online Experiences with Shopware](#)**

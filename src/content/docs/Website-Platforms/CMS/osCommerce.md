@@ -8,9 +8,9 @@ description: Learn about osCommerce, its history, features, and how it compares 
 ## **📌 Overview**  
 osCommerce is a **free, open-source eCommerce platform** designed for small to medium-sized online retailers. It provides the essential tools needed to set up an online store, manage products, process orders, and integrate with various payment gateways. While its feature set is more basic compared to modern, enterprise-grade platforms, osCommerce remains popular among budget-conscious businesses due to its cost-effectiveness and extensive community support.
 
-✅ **Best For:** Small to medium-sized businesses and startups that need a cost-effective, straightforward eCommerce solution.  
-✅ **Market Position:** Competes with platforms like **PrestaShop and WooCommerce**, offering a simple, open-source alternative to more complex enterprise systems.  
-✅ **Core Features:** **Basic shopping cart functionality, product and order management, multiple payment gateway integrations, customizable templates, and a large community of add-ons and extensions.**
+ **Best For:** Small to medium-sized businesses and startups that need a cost-effective, straightforward eCommerce solution.  
+ **Market Position:** Competes with platforms like **PrestaShop and WooCommerce**, offering a simple, open-source alternative to more complex enterprise systems.  
+ **Core Features:** **Basic shopping cart functionality, product and order management, multiple payment gateway integrations, customizable templates, and a large community of add-ons and extensions.**
 
 ---
 
@@ -44,15 +44,15 @@ osCommerce is a **free, open-source eCommerce platform** designed for small to m
 
 | Feature                   | osCommerce        | PrestaShop       | WooCommerce      | Magento (Adobe Commerce) |
 |---------------------------|-------------------|------------------|------------------|--------------------------|
-| **Ease of Use**           | ✅ Moderate       | ✅ Moderate      | ✅ Easy          | ⚠ Complex                |
-| **Customization**         | ✅ Moderate       | ✅ High          | ✅ High          | ✅ Extensive             |
-| **Extension Ecosystem**   | ✅ Extensive      | ✅ Strong        | ✅ Extensive     | ✅ Vast                  |
-| **Feature Set**           | ⚠ Basic          | ✅ Moderate      | ✅ Moderate      | ✅ Comprehensive         |
-| **Cost**                  | ✅ Free (Open-Source) | ✅ Free (Open-Source) | ✅ Free (Open-Source) | $$$ (Enterprise-Level) |
+| **Ease of Use**           |  Moderate       |  Moderate      |  Easy          | ⚠ Complex                |
+| **Customization**         |  Moderate       |  High          |  High          |  Extensive             |
+| **Extension Ecosystem**   |  Extensive      |  Strong        |  Extensive     |  Vast                  |
+| **Feature Set**           | ⚠ Basic          |  Moderate      |  Moderate      |  Comprehensive         |
+| **Cost**                  |  Free (Open-Source) |  Free (Open-Source) |  Free (Open-Source) | $$$ (Enterprise-Level) |
 
 ---
 
-## **✅ Pros of osCommerce**  
+## ** Pros of osCommerce**  
 ✔ **Cost-Effective:** No licensing fees make it an attractive option for budget-conscious businesses.  
 ✔ **Strong Community Support:** A large user base provides extensive resources, add-ons, and themes.  
 ✔ **Simplicity:** Straightforward features make it suitable for small to medium-sized stores with basic requirements.  
@@ -68,12 +68,12 @@ osCommerce is a **free, open-source eCommerce platform** designed for small to m
 
 ---
 
-## **🎯 Who Should Use osCommerce?**  
+## ** Who Should Use osCommerce?**  
 osCommerce is **ideal for:**  
-✅ **Small to medium-sized businesses and startups** looking for an affordable eCommerce solution.  
-✅ **Merchants seeking an open-source platform** with extensive community support and customization options.  
-✅ **Users with basic online store requirements** who do not need advanced, enterprise-level features.  
-✅ **Developers willing to invest in customization** to tailor the platform to specific needs.
+ **Small to medium-sized businesses and startups** looking for an affordable eCommerce solution.  
+ **Merchants seeking an open-source platform** with extensive community support and customization options.  
+ **Users with basic online store requirements** who do not need advanced, enterprise-level features.  
+ **Developers willing to invest in customization** to tailor the platform to specific needs.
 
 ---
 
@@ -82,7 +82,7 @@ osCommerce remains a viable, cost-effective eCommerce solution for businesses wi
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Explore osCommerce](https://www.oscommerce.com/)**  
-✅ **[Compare osCommerce vs PrestaShop](#)**  
-✅ **[Learn More: Building a Basic Online Store with osCommerce](#)**
+ **Next Steps:**  
+ **[Explore osCommerce](https://www.oscommerce.com/)**  
+ **[Compare osCommerce vs PrestaShop](#)**  
+ **[Learn More: Building a Basic Online Store with osCommerce](#)**

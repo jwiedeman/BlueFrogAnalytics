@@ -16,7 +16,7 @@ This guide will help you **understand, implement, and maintain compliance** with
   - **Data Breach Notification Provisions:** October 23, 2019  
   - **Data Security Requirements:** March 21, 2020  
 - **🏛️ Governing Body:** New York Attorney General’s Office (NYAG)  
-- **🎯 Primary Purpose:** Expand **data breach notification** rules and require **reasonable cybersecurity practices** to protect New York residents' personal data.  
+- ** Primary Purpose:** Expand **data breach notification** rules and require **reasonable cybersecurity practices** to protect New York residents' personal data.  
 
 ---
 
@@ -37,11 +37,11 @@ This guide will help you **understand, implement, and maintain compliance** with
 
 ## **📂 3. What It Covers**
 - **🔐 Key Data Protection Areas Addressed:**  
-  - ✅ **Expanded Data Breach Definitions** *(Covers unauthorized access, not just exposure.)*  
-  - ✅ **Mandatory Security Safeguards** *(Administrative, technical, and physical protections required.)*  
-  - ✅ **Stronger Breach Notification Rules** *(Businesses must notify affected individuals and the NY Attorney General.)*  
-  - ✅ **Third-Party Vendor Security Requirements** *(Organizations are responsible for ensuring vendor compliance.)*  
-  - ✅ **Data Disposal & Retention Rules** *(Minimize risk by securely disposing of unnecessary data.)*  
+  -  **Expanded Data Breach Definitions** *(Covers unauthorized access, not just exposure.)*  
+  -  **Mandatory Security Safeguards** *(Administrative, technical, and physical protections required.)*  
+  -  **Stronger Breach Notification Rules** *(Businesses must notify affected individuals and the NY Attorney General.)*  
+  -  **Third-Party Vendor Security Requirements** *(Organizations are responsible for ensuring vendor compliance.)*  
+  -  **Data Disposal & Retention Rules** *(Minimize risk by securely disposing of unnecessary data.)*  
 
 ---
 
@@ -54,7 +54,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 ✔ **Encrypt & Protect Personal Data** – Use encryption, pseudonymization, and secure storage.  
 ✔ **Securely Dispose of Personal Data** – Prevent unauthorized access to outdated records.  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **Access Control & Authentication** – Implement MFA and role-based access.  
 ✔ **Data Encryption** – Encrypt data at rest and in transit.  
 ✔ **Regular Security Audits & Risk Assessments** – Conduct cybersecurity reviews.  
@@ -98,8 +98,8 @@ This guide will help you **understand, implement, and maintain compliance** with
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 - **📌 Step 1:** **Assess Data Collection & Security Practices** *(Identify risks and vulnerabilities.)*  
 - **📌 Step 2:** **Implement Required Security Safeguards** *(Access controls, encryption, logging.)*  
 - **📌 Step 3:** **Develop a Data Breach Response Plan** *(Ensure timely notifications.)*  
@@ -108,7 +108,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 - **📌 Step 6:** **Perform Regular Security Audits & Risk Assessments** *(Maintain compliance.)*  
 
 ### **♻️ Ongoing Compliance Maintenance**
-- **🔍 Conduct Annual Cybersecurity Reviews** *(Identify and fix security gaps.)*  
+- ** Conduct Annual Cybersecurity Reviews** *(Identify and fix security gaps.)*  
 - **📖 Monitor NYAG Guidance & Updates** *(Stay ahead of regulatory changes.)*  
 - **🔄 Update Incident Response Plans** *(Ensure a rapid response to data breaches.)*  
 
@@ -118,9 +118,9 @@ This guide will help you **understand, implement, and maintain compliance** with
 ### **🔗 Official Documentation & Guidelines**
 - **[📖 SHIELD Act Full Text](https://www.nysenate.gov/legislation/bills/2019/s5575)**  
 - **[⚖️ NY Attorney General SHIELD Act Enforcement](https://ag.ny.gov/consumer-fraudsbureau)**  
-- **[📊 Cybersecurity Best Practices for NY Businesses](https://www.dfs.ny.gov/industry_guidance/cybersecurity_requirements)**  
+- **[ Cybersecurity Best Practices for NY Businesses](https://www.dfs.ny.gov/industry_guidance/cybersecurity_requirements)**  
 
-### **🛠️ Industry-Specific Guidance**
+### **️ Industry-Specific Guidance**
 - **🏦 Finance & Banking:** *(Align with NYDFS cybersecurity laws.)*  
 - **🏥 Healthcare:** *(Ensure compliance with both HIPAA & SHIELD Act.)*  
 - **🛍️ Retail & E-commerce:** *(Secure customer payment data.)*  
@@ -137,7 +137,7 @@ This guide will help you **understand, implement, and maintain compliance** with
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Assess Your SHIELD Act Compliance](#)**  
-✅ **[Implement Cybersecurity Best Practices](#)**  
-✅ **[Stay Updated on NY Data Protection Laws](#)**
+ **Next Steps:**  
+ **[Assess Your SHIELD Act Compliance](#)**  
+ **[Implement Cybersecurity Best Practices](#)**  
+ **[Stay Updated on NY Data Protection Laws](#)**

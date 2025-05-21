@@ -13,7 +13,7 @@ The **Digital Services Act (DSA)** is a **comprehensive EU regulation aimed at m
 - **📖 Short Description:** A **landmark EU law regulating digital services to prevent illegal content, ensure platform accountability, and protect user rights online.**  
 - **📅 Enforcement Date:** **November 16, 2022** *(Full compliance deadlines vary by platform size.)*  
 - **🏛️ Governing Body:** **European Commission (EC), National Digital Services Coordinators (NDSCs)**  
-- **🎯 Primary Purpose:**  
+- ** Primary Purpose:**  
   - **Increase online platform accountability for illegal content & harmful activities.**  
   - **Improve transparency in digital advertising & recommendation systems.**  
   - **Enhance user rights & content moderation standards.**  
@@ -38,15 +38,15 @@ The **Digital Services Act (DSA)** is a **comprehensive EU regulation aimed at m
 
 ## **📂 3. What the Digital Services Act Governs**
 - **🔐 Key Areas of Regulation:**  
-  ✅ **Illegal Content & Hate Speech** – Platforms must **detect, remove, and prevent illegal content** (e.g., terrorism, child exploitation, fraud).  
-  ✅ **User Data & Privacy Protections** – Requires **clear data handling policies and limits tracking.**  
-  ✅ **Online Advertising Transparency** – Platforms must **reveal why users see certain ads and who paid for them.**  
-  ✅ **Algorithmic Transparency** – Platforms must **explain content ranking & recommendation systems.**  
-  ✅ **Misinformation & Fake News Prevention** – Requires **fact-checking, user reporting tools, and mitigation strategies.**  
+   **Illegal Content & Hate Speech** – Platforms must **detect, remove, and prevent illegal content** (e.g., terrorism, child exploitation, fraud).  
+   **User Data & Privacy Protections** – Requires **clear data handling policies and limits tracking.**  
+   **Online Advertising Transparency** – Platforms must **reveal why users see certain ads and who paid for them.**  
+   **Algorithmic Transparency** – Platforms must **explain content ranking & recommendation systems.**  
+   **Misinformation & Fake News Prevention** – Requires **fact-checking, user reporting tools, and mitigation strategies.**  
 
 - **📜 Key DSA Requirements for Platforms:**  
   - **📂 Content Moderation Rules:** Platforms **must provide clear content removal policies and appeal processes.**  
-  - **📊 Algorithm & Ad Transparency:** Users must **see why they receive specific ads or recommendations.**  
+  - ** Algorithm & Ad Transparency:** Users must **see why they receive specific ads or recommendations.**  
   - **📜 Trusted Flaggers & Content Reporting:** Platforms must **respond faster to reports from verified sources.**  
   - **🛡️ Protection Against Systemic Risks:** Large platforms must **conduct risk assessments to prevent harm (e.g., political manipulation).**  
   - **🔄 Data Access for Researchers:** Independent auditors **can access platform data for regulatory reviews.**  
@@ -61,7 +61,7 @@ The **Digital Services Act (DSA)** is a **comprehensive EU regulation aimed at m
 ✔ **Ensure Algorithmic Fairness** – **Content ranking & recommendation systems must be transparent.**  
 ✔ **Cooperate with EU Regulators** – **Platforms must provide compliance reports & risk assessments.**  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **Develop Moderation & Reporting Tools** – **Enable content flagging, user reporting, and appeals.**  
 ✔ **Publish Transparency Reports** – **Platforms must report how much content was removed & why.**  
 ✔ **Ensure Ad Targeting & AI Algorithm Audits** – **Prevent unfair biases in digital advertising.**  
@@ -109,8 +109,8 @@ The **Digital Services Act (DSA)** is a **comprehensive EU regulation aimed at m
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 1️⃣ **Review Platform Moderation & Removal Policies** – Ensure **clear enforcement of content rules.**  
 2️⃣ **Increase Transparency in Ads & Algorithms** – **Disclose ad targeting criteria and content ranking methods.**  
 3️⃣ **Develop Stronger User Reporting & Appeal Systems** – **Allow users to challenge moderation decisions.**  
@@ -131,7 +131,7 @@ The **Digital Services Act (DSA)** is a **comprehensive EU regulation aimed at m
 
 ---
 
-## **🚀 Conclusion**
+## ** Conclusion**
 The **Digital Services Act (DSA)** reshapes **how online platforms operate in the EU**, enforcing **safer, fairer, and more transparent digital services**.
 
 ---

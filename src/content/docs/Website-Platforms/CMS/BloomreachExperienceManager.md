@@ -8,9 +8,9 @@ description: Learn about Bloomreach Experience Manager (brXM), its history, feat
 ## **📌 Overview**  
 Bloomreach Experience Manager (brXM) is an **API-driven, headless content management system (CMS)** and **digital experience platform (DXP)** designed for enterprises that require **personalized, scalable, and AI-powered content solutions**. It is built to support **omnichannel content delivery**, integrating seamlessly with eCommerce platforms and digital marketing tools.  
 
-✅ **Best For:** **Enterprise businesses, eCommerce brands, and content-heavy organizations** that require **AI-powered personalization and API-first CMS capabilities**.  
-✅ **Market Position:** Competes with **Adobe Experience Manager (AEM), Sitecore, Acquia (Drupal), and Contentful**.  
-✅ **Core Features:** **AI-driven personalization, headless CMS architecture, API integrations, and robust content management**.  
+ **Best For:** **Enterprise businesses, eCommerce brands, and content-heavy organizations** that require **AI-powered personalization and API-first CMS capabilities**.  
+ **Market Position:** Competes with **Adobe Experience Manager (AEM), Sitecore, Acquia (Drupal), and Contentful**.  
+ **Core Features:** **AI-driven personalization, headless CMS architecture, API integrations, and robust content management**.  
 
 ---
 
@@ -57,16 +57,16 @@ Bloomreach was founded in **2009** as an AI-powered search and personalization p
 
 | Feature                  | Bloomreach (brXM) | Adobe Experience Manager | Sitecore | Acquia (Drupal) | Contentful |
 |--------------------------|------------------|-------------------------|----------|----------------|------------|
-| **Ease of Use**          | ✅ Moderate | ❌ Complex | ❌ Complex | ⚠ Requires Drupal Knowledge | ✅ Easy |
-| **Headless CMS Support** | ✅ Yes (API-First) | ✅ Yes | ✅ Yes | ✅ Yes | ✅ Yes |
-| **AI & Personalization** | ✅ AI-Powered | ✅ Adobe Sensei AI | ✅ Sitecore XP | ✅ Acquia Personalization | ⚠ Limited |
-| **eCommerce Integration**| ✅ Strong (Shopify, Magento, SFCC) | ⚠ Requires Custom Integration | ✅ Yes | ❌ No Native Support | ⚠ Limited |
-| **Enterprise Security**  | ✅ Strong Compliance | ✅ Strong Compliance | ✅ Strong Compliance | ✅ Strong Compliance | ✅ Strong Compliance |
+| **Ease of Use**          |  Moderate | ❌ Complex | ❌ Complex | ⚠ Requires Drupal Knowledge |  Easy |
+| **Headless CMS Support** |  Yes (API-First) |  Yes |  Yes |  Yes |  Yes |
+| **AI & Personalization** |  AI-Powered |  Adobe Sensei AI |  Sitecore XP |  Acquia Personalization | ⚠ Limited |
+| **eCommerce Integration**|  Strong (Shopify, Magento, SFCC) | ⚠ Requires Custom Integration |  Yes | ❌ No Native Support | ⚠ Limited |
+| **Enterprise Security**  |  Strong Compliance |  Strong Compliance |  Strong Compliance |  Strong Compliance |  Strong Compliance |
 | **Cost**                 | **Enterprise Pricing** | **Very Expensive** | **Expensive** | **Expensive** | **Moderate** |
 
 ---
 
-## **✅ Pros of Bloomreach Experience Manager**  
+## ** Pros of Bloomreach Experience Manager**  
 ✔ **Headless CMS with API-First Flexibility** – Ideal for omnichannel content delivery.  
 ✔ **AI-Driven Personalization & Search Optimization** – Increases engagement and conversions.  
 ✔ **Seamless eCommerce Integrations** – Works well with Shopify, Magento, and Salesforce Commerce.  
@@ -83,12 +83,12 @@ Bloomreach was founded in **2009** as an AI-powered search and personalization p
 
 ---
 
-## **🎯 Who Should Use Bloomreach Experience Manager?**  
+## ** Who Should Use Bloomreach Experience Manager?**  
 Bloomreach (brXM) is **ideal for:**  
-✅ **Enterprise organizations** needing **AI-driven personalization**.  
-✅ **eCommerce brands** wanting **seamless content & commerce integration**.  
-✅ **Marketing teams** looking for **advanced segmentation and automation**.  
-✅ **Companies managing content across multiple digital channels**.  
+ **Enterprise organizations** needing **AI-driven personalization**.  
+ **eCommerce brands** wanting **seamless content & commerce integration**.  
+ **Marketing teams** looking for **advanced segmentation and automation**.  
+ **Companies managing content across multiple digital channels**.  
 
 ---
 
@@ -97,7 +97,7 @@ Bloomreach Experience Manager is a **powerful enterprise-level CMS and DXP**, bu
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Try Bloomreach Experience Manager](https://www.bloomreach.com/)**  
-✅ **[Compare Bloomreach vs AEM](#)**  
-✅ **[Learn More: Headless CMS vs Traditional CMS](#)**  
+ **Next Steps:**  
+ **[Try Bloomreach Experience Manager](https://www.bloomreach.com/)**  
+ **[Compare Bloomreach vs AEM](#)**  
+ **[Learn More: Headless CMS vs Traditional CMS](#)**  

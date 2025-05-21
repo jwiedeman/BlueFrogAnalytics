@@ -8,9 +8,9 @@ description: Learn about Liferay, its history, features, and how it compares to 
 ## **📌 Overview**  
 Liferay is an **enterprise-grade digital experience platform (DXP)** known for its powerful **portal and collaboration capabilities**. Designed for large organizations, Liferay enables businesses to build, manage, and deliver personalized digital experiences across web, mobile, and enterprise intranets. With its extensive suite of integrated tools for content management, collaboration, and workflow automation, Liferay serves as a comprehensive solution for digital transformation.
 
-✅ **Best For:** **Large enterprises and government organizations** seeking a robust, scalable platform for web portals, intranets, and customer engagement.  
-✅ **Market Position:** Competes with other enterprise portals and DXPs such as **Adobe Experience Manager, IBM Web Content Manager, and Sitecore**.  
-✅ **Core Features:** **Integrated portal framework, customizable content management, collaboration tools, workflow automation, and strong security and scalability.**
+ **Best For:** **Large enterprises and government organizations** seeking a robust, scalable platform for web portals, intranets, and customer engagement.  
+ **Market Position:** Competes with other enterprise portals and DXPs such as **Adobe Experience Manager, IBM Web Content Manager, and Sitecore**.  
+ **Core Features:** **Integrated portal framework, customizable content management, collaboration tools, workflow automation, and strong security and scalability.**
 
 ---
 
@@ -53,14 +53,14 @@ Liferay was initially developed as a portal solution and has evolved into a comp
 | Feature                   | Liferay             | Adobe Experience Manager | IBM WCM               | Sitecore               |
 |---------------------------|---------------------|--------------------------|-----------------------|------------------------|
 | **Ease of Use**           | ⚠ Moderate         | ⚠ Complex               | ⚠ Moderate           | ⚠ Complex             |
-| **Customization**         | ✅ High            | ✅ High                  | ✅ High               | ✅ High                |
-| **Collaboration Tools**   | ✅ Strong          | ⚠ Limited               | ✅ Strong              | ⚠ Moderate            |
-| **Integration Capabilities** | ✅ Extensive    | ✅ Extensive             | ✅ Extensive          | ✅ Extensive           |
-| **Scalability & Security** | ✅ Enterprise-Grade | ✅ Enterprise-Grade     | ✅ Enterprise-Grade   | ✅ Enterprise-Grade    |
+| **Customization**         |  High            |  High                  |  High               |  High                |
+| **Collaboration Tools**   |  Strong          | ⚠ Limited               |  Strong              | ⚠ Moderate            |
+| **Integration Capabilities** |  Extensive    |  Extensive             |  Extensive          |  Extensive           |
+| **Scalability & Security** |  Enterprise-Grade |  Enterprise-Grade     |  Enterprise-Grade   |  Enterprise-Grade    |
 
 ---
 
-## **✅ Pros of Liferay**  
+## ** Pros of Liferay**  
 ✔ **Comprehensive enterprise portal:** Combines content management, collaboration, and integration in one platform.  
 ✔ **Highly customizable and extensible:** Adaptable to diverse business requirements and workflows.  
 ✔ **Strong integration capabilities:** Seamlessly connects with other enterprise systems.  
@@ -77,12 +77,12 @@ Liferay was initially developed as a portal solution and has evolved into a comp
 
 ---
 
-## **🎯 Who Should Use Liferay?**  
+## ** Who Should Use Liferay?**  
 Liferay is **ideal for:**  
-✅ **Large enterprises and government organizations** seeking an integrated digital experience and portal solution.  
-✅ **Businesses requiring robust collaboration and workflow automation** to streamline internal and external communications.  
-✅ **Organizations needing deep integration with other enterprise systems** such as CRM, ERP, and HR platforms.  
-✅ **Companies focused on delivering personalized, omnichannel digital experiences** to a diverse user base.
+ **Large enterprises and government organizations** seeking an integrated digital experience and portal solution.  
+ **Businesses requiring robust collaboration and workflow automation** to streamline internal and external communications.  
+ **Organizations needing deep integration with other enterprise systems** such as CRM, ERP, and HR platforms.  
+ **Companies focused on delivering personalized, omnichannel digital experiences** to a diverse user base.
 
 ---
 
@@ -91,7 +91,7 @@ Liferay stands out as a **powerful, enterprise-grade DXP** that delivers robust 
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Explore Liferay](https://www.liferay.com/)**  
-✅ **[Compare Liferay vs Adobe Experience Manager](#)**  
-✅ **[Learn More: Implementing Enterprise Portals with Liferay](#)**
+ **Next Steps:**  
+ **[Explore Liferay](https://www.liferay.com/)**  
+ **[Compare Liferay vs Adobe Experience Manager](#)**  
+ **[Learn More: Implementing Enterprise Portals with Liferay](#)**

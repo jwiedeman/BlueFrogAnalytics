@@ -8,9 +8,9 @@ description: Learn about Silverstripe, its history, features, and how it compare
 ## **📌 Overview**  
 Silverstripe is an **open-source content management system (CMS)** and framework designed to offer both flexibility and ease of use. It is well-regarded for its clean code architecture, intuitive admin interface, and robust development framework, which allows developers to create custom digital experiences without being restricted by predefined templates. Silverstripe is used by a variety of organizations—from small businesses to large enterprises—seeking a balance between customizability and user-friendliness.
 
-✅ **Best For:** **Developers, agencies, and organizations** looking for a customizable CMS that combines a user-friendly interface with powerful development capabilities.  
-✅ **Market Position:** Competes with platforms like **WordPress, Drupal, and MODX** by providing a framework that emphasizes clean code and flexible content modeling without sacrificing ease-of-use for content editors.  
-✅ **Core Features:** **Intuitive content editing, flexible templating system, strong API support, robust security, and a modular, developer-friendly architecture.**
+ **Best For:** **Developers, agencies, and organizations** looking for a customizable CMS that combines a user-friendly interface with powerful development capabilities.  
+ **Market Position:** Competes with platforms like **WordPress, Drupal, and MODX** by providing a framework that emphasizes clean code and flexible content modeling without sacrificing ease-of-use for content editors.  
+ **Core Features:** **Intuitive content editing, flexible templating system, strong API support, robust security, and a modular, developer-friendly architecture.**
 
 ---
 
@@ -52,15 +52,15 @@ Silverstripe was developed to bridge the gap between highly flexible frameworks 
 
 | Feature                   | Silverstripe       | WordPress         | Drupal           | MODX             |
 |---------------------------|--------------------|-------------------|------------------|------------------|
-| **Ease of Use**           | ✅ Moderate        | ✅ Very Easy      | ⚠ Moderate      | ✅ Moderate      |
-| **Customization**         | ✅ High            | ✅ High           | ✅ High         | ✅ High          |
-| **Developer-Friendliness**| ✅ Strong          | ⚠ Mixed           | ✅ Strong        | ✅ Strong        |
-| **Security**              | ✅ Strong          | ⚠ Depends on Plugins | ✅ Strong     | ✅ Strong        |
-| **Community Support**     | ✅ Active          | ✅ Extensive      | ✅ Extensive     | ⚠ Smaller       |
+| **Ease of Use**           |  Moderate        |  Very Easy      | ⚠ Moderate      |  Moderate      |
+| **Customization**         |  High            |  High           |  High         |  High          |
+| **Developer-Friendliness**|  Strong          | ⚠ Mixed           |  Strong        |  Strong        |
+| **Security**              |  Strong          | ⚠ Depends on Plugins |  Strong     |  Strong        |
+| **Community Support**     |  Active          |  Extensive      |  Extensive     | ⚠ Smaller       |
 
 ---
 
-## **✅ Pros of Silverstripe**  
+## ** Pros of Silverstripe**  
 ✔ **Balanced Approach:** Combines a user-friendly admin interface with powerful customization options for developers.  
 ✔ **Flexible Templating:** Offers a robust templating system that allows for bespoke design and functionality.  
 ✔ **Strong Security & Performance:** Regular updates and best practices ensure a secure and efficient platform.  
@@ -77,12 +77,12 @@ Silverstripe was developed to bridge the gap between highly flexible frameworks 
 
 ---
 
-## **🎯 Who Should Use Silverstripe?**  
+## ** Who Should Use Silverstripe?**  
 Silverstripe is **ideal for:**  
-✅ **Developers and agencies** seeking a flexible, customizable CMS for bespoke projects.  
-✅ **Organizations** that require a secure and scalable solution with robust content management and version control.  
-✅ **Businesses looking for a balance** between ease of use for content editors and extensive customization for developers.  
-✅ **Enterprises** that value a clean codebase and modern development practices.
+ **Developers and agencies** seeking a flexible, customizable CMS for bespoke projects.  
+ **Organizations** that require a secure and scalable solution with robust content management and version control.  
+ **Businesses looking for a balance** between ease of use for content editors and extensive customization for developers.  
+ **Enterprises** that value a clean codebase and modern development practices.
 
 ---
 
@@ -91,7 +91,7 @@ Silverstripe offers a **powerful and flexible CMS solution** that strikes a bala
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Explore Silverstripe](https://www.silverstripe.org/)**  
-✅ **[Compare Silverstripe vs WordPress](#)**  
-✅ **[Learn More: Building Custom Websites with Silverstripe](#)**
+ **Next Steps:**  
+ **[Explore Silverstripe](https://www.silverstripe.org/)**  
+ **[Compare Silverstripe vs WordPress](#)**  
+ **[Learn More: Building Custom Websites with Silverstripe](#)**

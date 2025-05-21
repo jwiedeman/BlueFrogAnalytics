@@ -8,9 +8,9 @@ description: Learn about Payload CMS, its history, features, and how it compares
 ## **📌 Overview**  
 Payload CMS is a **headless content management system** built on **Node.js** that is designed for developers who require a modern, flexible, and highly customizable solution for managing digital content. With an emphasis on a developer-first experience, Payload CMS offers a powerful API, custom schema definitions, and a straightforward code-based approach, making it ideal for building tailored digital experiences and integrating with modern front-end frameworks.
 
-✅ **Best For:** **Developers and agencies** looking for a flexible, Node.js-based headless CMS to power custom web applications and digital experiences.  
-✅ **Market Position:** Competes with other headless CMS platforms like **Strapi, Sanity, and Contentful**, with a focus on a fully customizable and code-centric approach.  
-✅ **Core Features:** **Customizable content schema, RESTful and GraphQL APIs, built-in authentication and access control, and a focus on extensibility via JavaScript.**
+ **Best For:** **Developers and agencies** looking for a flexible, Node.js-based headless CMS to power custom web applications and digital experiences.  
+ **Market Position:** Competes with other headless CMS platforms like **Strapi, Sanity, and Contentful**, with a focus on a fully customizable and code-centric approach.  
+ **Core Features:** **Customizable content schema, RESTful and GraphQL APIs, built-in authentication and access control, and a focus on extensibility via JavaScript.**
 
 ---
 
@@ -51,15 +51,15 @@ Payload CMS was created to address the needs of modern web developers who requir
 
 | Feature                    | Payload CMS      | Strapi           | Sanity          | Contentful       |
 |----------------------------|------------------|------------------|-----------------|------------------|
-| **Developer Experience**   | ✅ Excellent     | ✅ Good          | ✅ Good         | ⚠ Moderate      |
-| **Customization**          | ✅ High          | ✅ High          | ✅ High         | ✅ High          |
-| **API Capabilities**       | ✅ REST & GraphQL| ✅ REST & GraphQL| ✅ REST & GraphQL| ✅ REST & GraphQL |
-| **Technology Stack**       | ✅ Node.js       | ✅ Node.js       | ❌ Proprietary  | ❌ Proprietary   |
-| **Open-Source**            | ✅ Yes           | ✅ Yes           | ✅ Yes          | ❌ Limited       |
+| **Developer Experience**   |  Excellent     |  Good          |  Good         | ⚠ Moderate      |
+| **Customization**          |  High          |  High          |  High         |  High          |
+| **API Capabilities**       |  REST & GraphQL|  REST & GraphQL|  REST & GraphQL|  REST & GraphQL |
+| **Technology Stack**       |  Node.js       |  Node.js       | ❌ Proprietary  | ❌ Proprietary   |
+| **Open-Source**            |  Yes           |  Yes           |  Yes          | ❌ Limited       |
 
 ---
 
-## **✅ Pros of Payload CMS**  
+## ** Pros of Payload CMS**  
 ✔ **Highly customizable:** Complete control over content schema and data models using JavaScript.  
 ✔ **Modern and performant:** Built on Node.js, ensuring fast performance and scalability.  
 ✔ **Flexible API options:** Supports both REST and GraphQL for seamless integration with any front-end.  
@@ -76,12 +76,12 @@ Payload CMS was created to address the needs of modern web developers who requir
 
 ---
 
-## **🎯 Who Should Use Payload CMS?**  
+## ** Who Should Use Payload CMS?**  
 Payload CMS is **ideal for:**  
-✅ **Developers and technical teams** who require full control over their content architecture.  
-✅ **Agencies and startups** building custom web applications and digital experiences.  
-✅ **Projects prioritizing performance and modern development practices** in a Node.js environment.  
-✅ **Organizations looking for a flexible, API-first headless CMS** that integrates seamlessly with modern front-end frameworks.
+ **Developers and technical teams** who require full control over their content architecture.  
+ **Agencies and startups** building custom web applications and digital experiences.  
+ **Projects prioritizing performance and modern development practices** in a Node.js environment.  
+ **Organizations looking for a flexible, API-first headless CMS** that integrates seamlessly with modern front-end frameworks.
 
 ---
 
@@ -90,7 +90,7 @@ Payload CMS provides a **powerful, modern, and customizable headless CMS solutio
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Explore Payload CMS](https://payloadcms.com/)**  
-✅ **[Compare Payload CMS vs Strapi](#)**  
-✅ **[Learn More: Building Custom Headless CMS Solutions with Payload CMS](#)**
+ **Next Steps:**  
+ **[Explore Payload CMS](https://payloadcms.com/)**  
+ **[Compare Payload CMS vs Strapi](#)**  
+ **[Learn More: Building Custom Headless CMS Solutions with Payload CMS](#)**

@@ -8,11 +8,11 @@ description: Learn about X Ads, its history, features, and how it compares to ot
 ## **📌 Overview**  
 X Ads is a **digital advertising platform** formerly known as Twitter Ads, now rebranded as X Ads. It enables brands to reach and engage audiences on the X social network through a variety of ad formats including promoted posts, video ads, and more. Leveraging detailed audience insights, advanced targeting options, and real-time analytics, X Ads is designed to help businesses drive engagement, increase brand awareness, and boost conversions in a fast-paced social media environment.
 
-✅ **Best For:**  
+ **Best For:**  
 - **Marketers and advertisers** targeting a diverse, global audience on X.  
 - **Brands seeking to engage with audiences through real-time, conversation-driven content.  
 
-✅ **Core Features:**  
+ **Core Features:**  
 - **Diverse Ad Formats:** Promoted tweets (now X posts), video ads, carousel ads, and conversation ads.  
 - **Advanced Targeting:** Demographic, interest-based, and behavioral targeting, along with custom audience creation.  
 - **Real-Time Analytics:** Detailed performance tracking and reporting to optimize campaigns.  
@@ -56,15 +56,15 @@ X Ads has evolved along with the platform formerly known as Twitter, adapting to
 
 | Feature                    | X Ads              | Facebook Ads      | Instagram Ads     | LinkedIn Ads      |
 |----------------------------|--------------------|-------------------|-------------------|-------------------|
-| **Audience Targeting**     | ✅ Advanced        | ✅ Advanced       | ✅ Advanced       | ✅ Excellent      |
-| **Ad Format Diversity**    | ✅ Extensive       | ✅ Extensive      | ✅ Extensive      | ⚠ Moderate       |
-| **Real-Time Analytics**    | ✅ Robust          | ✅ Robust         | ✅ Robust         | ✅ Strong         |
-| **Platform Engagement**    | ✅ High            | ✅ High           | ✅ High           | ⚠ Niche          |
-| **Ease of Use**            | ✅ Moderate        | ✅ Easy           | ✅ Easy           | ⚠ Moderate       |
+| **Audience Targeting**     |  Advanced        |  Advanced       |  Advanced       |  Excellent      |
+| **Ad Format Diversity**    |  Extensive       |  Extensive      |  Extensive      | ⚠ Moderate       |
+| **Real-Time Analytics**    |  Robust          |  Robust         |  Robust         |  Strong         |
+| **Platform Engagement**    |  High            |  High           |  High           | ⚠ Niche          |
+| **Ease of Use**            |  Moderate        |  Easy           |  Easy           | ⚠ Moderate       |
 
 ---
 
-## **✅ Pros of X Ads**
+## ** Pros of X Ads**
 ✔ **Advanced Targeting:** Detailed audience segmentation enables precise ad delivery to highly engaged users.
 ✔ **Diverse Ad Formats:** A wide range of creative options to suit various campaign objectives.
 ✔ **Real-Time Optimization:** Robust analytics and reporting tools facilitate continuous campaign improvement.
@@ -81,12 +81,12 @@ X Ads has evolved along with the platform formerly known as Twitter, adapting to
 
 ---
 
-## **🎯 Who Should Use X Ads?**
+## ** Who Should Use X Ads?**
 X Ads is **ideal for:**
-✅ **Marketers and advertisers** seeking to reach a diverse, engaged audience on X.
-✅ **Brands looking to drive real-time engagement** through conversation-driven content.
-✅ **Digital agencies** aiming to implement sophisticated, multi-format campaigns.
-✅ **Organizations with a focus on social media advertising** and data-driven campaign optimization.
+ **Marketers and advertisers** seeking to reach a diverse, engaged audience on X.
+ **Brands looking to drive real-time engagement** through conversation-driven content.
+ **Digital agencies** aiming to implement sophisticated, multi-format campaigns.
+ **Organizations with a focus on social media advertising** and data-driven campaign optimization.
 
 ---
 
@@ -95,7 +95,7 @@ X Ads offers a **powerful and versatile platform** for digital advertising on X,
 
 ---
 
-🚀 **Next Steps:**
-✅ **[Explore X Ads](https://ads.twitter.com/)**  
-✅ **[Compare X Ads vs Facebook Ads](#)**  
-✅ **[Learn More: Optimizing Your Social Media Campaigns with X Ads](#)**
+ **Next Steps:**
+ **[Explore X Ads](https://ads.twitter.com/)**  
+ **[Compare X Ads vs Facebook Ads](#)**  
+ **[Learn More: Optimizing Your Social Media Campaigns with X Ads](#)**

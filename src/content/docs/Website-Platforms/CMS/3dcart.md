@@ -10,9 +10,9 @@ description: Learn about 3dcart, its history, features, and how it compares to o
 
 🚨 **Update:** In 2020, **3dcart was acquired by Shift4 Payments** and rebranded as **Shift4Shop**, offering similar features with added payment processing benefits.  
 
-✅ **Best For:** Small-to-medium businesses looking for **a customizable, SEO-friendly eCommerce solution**.  
-✅ **Market Position:** Competes with **Shopify, WooCommerce, BigCommerce, and Magento**.  
-✅ **Core Features:** **No transaction fees, built-in CRM, B2B & wholesale support, advanced SEO tools**.  
+ **Best For:** Small-to-medium businesses looking for **a customizable, SEO-friendly eCommerce solution**.  
+ **Market Position:** Competes with **Shopify, WooCommerce, BigCommerce, and Magento**.  
+ **Core Features:** **No transaction fees, built-in CRM, B2B & wholesale support, advanced SEO tools**.  
 
 ---
 
@@ -58,16 +58,16 @@ description: Learn about 3dcart, its history, features, and how it compares to o
 
 | Feature                 | 3dcart (Shift4Shop) | Shopify         | BigCommerce      | WooCommerce    |
 |-------------------------|--------------------|----------------|-----------------|----------------|
-| **Ease of Use**         | ✅ Moderate       | ✅ Very Easy   | ✅ Easy         | ⚠ Requires Setup |
-| **SEO Features**        | ✅ Advanced       | ⚠ Limited     | ✅ Strong       | ✅ Strong      |
-| **No Transaction Fees** | ✅ Yes (w/ Shift4) | ❌ No (Unless using Shopify Payments) | ✅ Yes | ✅ Yes |
-| **Customization**       | ✅ Full Control   | ⚠ Limited     | ✅ API Access   | ✅ Full Control |
-| **B2B & Wholesale**     | ✅ Built-in       | ❌ Requires Apps | ✅ Yes | ⚠ Limited |
+| **Ease of Use**         |  Moderate       |  Very Easy   |  Easy         | ⚠ Requires Setup |
+| **SEO Features**        |  Advanced       | ⚠ Limited     |  Strong       |  Strong      |
+| **No Transaction Fees** |  Yes (w/ Shift4) | ❌ No (Unless using Shopify Payments) |  Yes |  Yes |
+| **Customization**       |  Full Control   | ⚠ Limited     |  API Access   |  Full Control |
+| **B2B & Wholesale**     |  Built-in       | ❌ Requires Apps |  Yes | ⚠ Limited |
 | **Pricing**             | Free (w/ Shift4 Payments) | Starts at **$29/month** | Starts at **$39/month** | Free (but hosting required) |
 
 ---
 
-## **✅ Pros of 3dcart**  
+## ** Pros of 3dcart**  
 ✔ **No additional transaction fees** with **Shift4 Payments**.  
 ✔ **Advanced SEO tools** for better search rankings.  
 ✔ **Highly customizable** with full HTML & CSS control.  
@@ -84,12 +84,12 @@ description: Learn about 3dcart, its history, features, and how it compares to o
 
 ---
 
-## **🎯 Who Should Use 3dcart?**  
+## ** Who Should Use 3dcart?**  
 3dcart (Shift4Shop) is **ideal for businesses that:**  
-✅ Want a **feature-rich, SEO-friendly eCommerce solution**.  
-✅ **Sell B2B or wholesale products** and need flexible pricing.  
-✅ Prefer **zero transaction fees** by using Shift4 Payments.  
-✅ Want **more control over design and customization** than Shopify.  
+ Want a **feature-rich, SEO-friendly eCommerce solution**.  
+ **Sell B2B or wholesale products** and need flexible pricing.  
+ Prefer **zero transaction fees** by using Shift4 Payments.  
+ Want **more control over design and customization** than Shopify.  
 
 ---
 
@@ -98,7 +98,7 @@ description: Learn about 3dcart, its history, features, and how it compares to o
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Try Shift4Shop Free](https://www.shift4shop.com/)**  
-✅ **[Compare Shift4Shop vs Shopify](#)**  
-✅ **[Learn More: SEO Best Practices for Shift4Shop](#)**  
+ **Next Steps:**  
+ **[Try Shift4Shop Free](https://www.shift4shop.com/)**  
+ **[Compare Shift4Shop vs Shopify](#)**  
+ **[Learn More: SEO Best Practices for Shift4Shop](#)**  

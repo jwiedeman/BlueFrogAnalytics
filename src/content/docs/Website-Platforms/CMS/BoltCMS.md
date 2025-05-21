@@ -8,9 +8,9 @@ description: Learn about Bolt CMS, its history, features, and how it compares to
 ## **📌 Overview**  
 Bolt CMS is a **lightweight, open-source content management system** designed for **developers and content creators** who need **flexibility, simplicity, and structured content management**. Built with **PHP and Symfony**, it offers a **modern, user-friendly CMS** that is easier to use than Drupal but more customizable than WordPress.  
 
-✅ **Best For:** **Developers, small businesses, and agencies** needing a **structured, flexible CMS**.  
-✅ **Market Position:** Competes with **WordPress, Grav, Statamic, and OctoberCMS**.  
-✅ **Core Features:** **Custom content types, Twig-based templating, headless API, and built-in multilingual support**.  
+ **Best For:** **Developers, small businesses, and agencies** needing a **structured, flexible CMS**.  
+ **Market Position:** Competes with **WordPress, Grav, Statamic, and OctoberCMS**.  
+ **Core Features:** **Custom content types, Twig-based templating, headless API, and built-in multilingual support**.  
 
 ---
 
@@ -52,17 +52,17 @@ Bolt CMS was created in **2012** by **Bob den Otter**, with a focus on providing
 
 | Feature                  | Bolt CMS | WordPress | Grav      | Statamic | Drupal    |
 |--------------------------|---------|-----------|-----------|----------|-----------|
-| **Ease of Use**          | ✅ Moderate | ✅ Easy | ✅ Easy | ✅ Moderate | ❌ Complex |
-| **Database Required**    | ✅ Yes | ✅ Yes | ❌ No | ✅ Optional | ✅ Yes |
-| **Customization**        | ✅ High | ✅ High | ✅ High | ✅ High | ✅ High |
-| **SEO Features**         | ✅ Built-In | ✅ Strong | ⚠ Basic | ✅ Strong | ✅ Strong |
-| **Headless CMS Support** | ✅ Yes | ⚠ Limited | ✅ Yes | ✅ Yes | ✅ Yes |
-| **Performance**          | ✅ Fast | ⚠ Medium | ✅ Very Fast | ✅ Fast | ⚠ Medium |
+| **Ease of Use**          |  Moderate |  Easy |  Easy |  Moderate | ❌ Complex |
+| **Database Required**    |  Yes |  Yes | ❌ No |  Optional |  Yes |
+| **Customization**        |  High |  High |  High |  High |  High |
+| **SEO Features**         |  Built-In |  Strong | ⚠ Basic |  Strong |  Strong |
+| **Headless CMS Support** |  Yes | ⚠ Limited |  Yes |  Yes |  Yes |
+| **Performance**          |  Fast | ⚠ Medium |  Very Fast |  Fast | ⚠ Medium |
 | **Best For**             | **Developers & Small Businesses** | **General Users & Bloggers** | **Flat-file CMS Users** | **Agencies & Developers** | **Enterprise & Government** |
 
 ---
 
-## **✅ Pros of Bolt CMS**  
+## ** Pros of Bolt CMS**  
 ✔ **Structured content types** – Ideal for complex content organization.  
 ✔ **Developer-friendly with Symfony & Twig** – Easier to customize.  
 ✔ **Faster & lighter than WordPress** – No bloat, optimized for performance.  
@@ -79,12 +79,12 @@ Bolt CMS was created in **2012** by **Bob den Otter**, with a focus on providing
 
 ---
 
-## **🎯 Who Should Use Bolt CMS?**  
+## ** Who Should Use Bolt CMS?**  
 Bolt CMS is **ideal for:**  
-✅ **Developers & agencies** who need **flexibility and structured content management**.  
-✅ **Small-to-medium businesses** wanting a **faster alternative to WordPress**.  
-✅ **Projects requiring headless CMS capabilities** for modern web development.  
-✅ **Users who prefer Symfony & Twig** over WordPress's PHP template system.  
+ **Developers & agencies** who need **flexibility and structured content management**.  
+ **Small-to-medium businesses** wanting a **faster alternative to WordPress**.  
+ **Projects requiring headless CMS capabilities** for modern web development.  
+ **Users who prefer Symfony & Twig** over WordPress's PHP template system.  
 
 ---
 
@@ -93,7 +93,7 @@ Bolt CMS is a **powerful and flexible CMS** that offers **structured content man
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Try Bolt CMS](https://bolt.cm/)**  
-✅ **[Compare Bolt CMS vs WordPress](#)**  
-✅ **[Learn More: Structured Content Management in Bolt](#)**  
+ **Next Steps:**  
+ **[Try Bolt CMS](https://bolt.cm/)**  
+ **[Compare Bolt CMS vs WordPress](#)**  
+ **[Learn More: Structured Content Management in Bolt](#)**  

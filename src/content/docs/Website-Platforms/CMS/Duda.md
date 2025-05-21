@@ -8,9 +8,9 @@ description: Learn about Duda, its history, features, and how it compares to oth
 ## **📌 Overview**  
 Duda is a **cloud-based website builder and design platform** tailored for **web professionals, agencies, and businesses**. It emphasizes **ease of use, collaboration, and advanced customization** for creating responsive websites, landing pages, and online stores without deep technical expertise.
 
-✅ **Best For:** **Agencies, freelancers, and small-to-medium businesses** looking for a **fast, collaborative, and customizable website builder**.  
-✅ **Market Position:** Competes with **Wix, Squarespace, Webflow, and WordPress.com**.  
-✅ **Core Features:** **Drag-and-drop editor, multi-site management, built-in SEO tools, and white-label solutions for agencies**.
+ **Best For:** **Agencies, freelancers, and small-to-medium businesses** looking for a **fast, collaborative, and customizable website builder**.  
+ **Market Position:** Competes with **Wix, Squarespace, Webflow, and WordPress.com**.  
+ **Core Features:** **Drag-and-drop editor, multi-site management, built-in SEO tools, and white-label solutions for agencies**.
 
 ---
 
@@ -55,15 +55,15 @@ Duda was founded to address the need for a professional website building tool th
 
 | Feature                   | Duda            | Wix              | Squarespace    | Webflow        | WordPress.com |
 |---------------------------|-----------------|------------------|----------------|----------------|---------------|
-| **Ease of Use**           | ✅ Very Easy    | ✅ Very Easy     | ✅ Easy        | ⚠ Moderate    | ✅ Easy       |
-| **Multi-Site Management** | ✅ Built-In     | ❌ Limited       | ❌ Limited     | ❌ Limited     | ⚠ Limited    |
-| **Collaboration Tools**   | ✅ Strong       | ⚠ Moderate      | ⚠ Moderate    | ⚠ Moderate    | ❌ None      |
-| **Customization**         | ✅ High         | ⚠ Limited       | ✅ Moderate    | ✅ High       | ✅ High       |
-| **E-commerce Support**    | ✅ Yes          | ✅ Yes          | ✅ Yes         | ✅ Yes         | ✅ Yes       |
+| **Ease of Use**           |  Very Easy    |  Very Easy     |  Easy        | ⚠ Moderate    |  Easy       |
+| **Multi-Site Management** |  Built-In     | ❌ Limited       | ❌ Limited     | ❌ Limited     | ⚠ Limited    |
+| **Collaboration Tools**   |  Strong       | ⚠ Moderate      | ⚠ Moderate    | ⚠ Moderate    | ❌ None      |
+| **Customization**         |  High         | ⚠ Limited       |  Moderate    |  High       |  High       |
+| **E-commerce Support**    |  Yes          |  Yes          |  Yes         |  Yes         |  Yes       |
 
 ---
 
-## **✅ Pros of Duda**  
+## ** Pros of Duda**  
 ✔ **Intuitive and fast website building** – Perfect for agencies and professionals.  
 ✔ **Robust multi-site and collaboration features** – Ideal for managing numerous client projects.  
 ✔ **Responsive design** – Ensures websites look great on any device.  
@@ -79,12 +79,12 @@ Duda was founded to address the need for a professional website building tool th
 
 ---
 
-## **🎯 Who Should Use Duda?**  
+## ** Who Should Use Duda?**  
 Duda is **ideal for:**  
-✅ **Agencies and freelancers** who manage multiple client websites and need collaboration features.  
-✅ **Small-to-medium businesses** looking for a professional, responsive website without extensive development.  
-✅ **Marketers** who want integrated SEO and marketing tools in an easy-to-use platform.  
-✅ **Designers** seeking a balance between ease of use and customization flexibility.
+ **Agencies and freelancers** who manage multiple client websites and need collaboration features.  
+ **Small-to-medium businesses** looking for a professional, responsive website without extensive development.  
+ **Marketers** who want integrated SEO and marketing tools in an easy-to-use platform.  
+ **Designers** seeking a balance between ease of use and customization flexibility.
 
 ---
 
@@ -93,7 +93,7 @@ Duda is a **powerful website builder** that strikes a balance between **ease of 
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Try Duda Free](https://www.duda.co/)**  
-✅ **[Compare Duda vs Wix](#)**  
-✅ **[Learn More: Building Responsive Websites with Duda](#)**
+ **Next Steps:**  
+ **[Try Duda Free](https://www.duda.co/)**  
+ **[Compare Duda vs Wix](#)**  
+ **[Learn More: Building Responsive Websites with Duda](#)**

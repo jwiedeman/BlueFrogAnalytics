@@ -8,9 +8,9 @@ description: Learn about Netlify CMS, its history, features, and how it compares
 ## **📌 Overview**  
 Netlify CMS is an **open-source, Git-based headless content management system (CMS)** designed to work with static site generators and modern web development workflows. It provides an intuitive, browser-based interface for editing content stored in your Git repository, allowing developers and content editors to collaborate seamlessly. With a focus on simplicity, version control, and ease of integration with platforms like Netlify, it’s an ideal solution for projects that leverage JAMstack architecture.
 
-✅ **Best For:** **Developers, content editors, and agencies** building static sites with frameworks such as Gatsby, Hugo, Jekyll, or Next.js.  
-✅ **Market Position:** Competes with other headless CMS solutions (e.g., Contentful, Forestry) by emphasizing a Git-based workflow and seamless integration with modern hosting platforms.  
-✅ **Core Features:** **Git-based version control, intuitive UI, customizable content models, and integration with static site generators.**
+ **Best For:** **Developers, content editors, and agencies** building static sites with frameworks such as Gatsby, Hugo, Jekyll, or Next.js.  
+ **Market Position:** Competes with other headless CMS solutions (e.g., Contentful, Forestry) by emphasizing a Git-based workflow and seamless integration with modern hosting platforms.  
+ **Core Features:** **Git-based version control, intuitive UI, customizable content models, and integration with static site generators.**
 
 ---
 
@@ -51,15 +51,15 @@ Netlify CMS was created to simplify content management for static sites and JAMs
 
 | Feature                   | Netlify CMS       | Contentful       | Forestry.io      | Strapi           |
 |---------------------------|-------------------|------------------|------------------|------------------|
-| **Workflow**              | ✅ Git-Based      | ⚠ API-Centric    | ✅ Git-Based     | ⚠ API-Centric    |
-| **Ease of Use**           | ✅ Easy (for static sites) | ⚠ Moderate  | ✅ Easy          | ⚠ Moderate      |
-| **Integration with Static Site Generators** | ✅ Excellent   | ⚠ Limited    | ✅ Excellent    | ⚠ Moderate      |
-| **Customization**         | ✅ High           | ✅ High          | ✅ High          | ✅ High          |
-| **Open-Source**           | ✅ Yes            | ❌ Proprietary   | ❌ Proprietary   | ✅ Yes           |
+| **Workflow**              |  Git-Based      | ⚠ API-Centric    |  Git-Based     | ⚠ API-Centric    |
+| **Ease of Use**           |  Easy (for static sites) | ⚠ Moderate  |  Easy          | ⚠ Moderate      |
+| **Integration with Static Site Generators** |  Excellent   | ⚠ Limited    |  Excellent    | ⚠ Moderate      |
+| **Customization**         |  High           |  High          |  High          |  High          |
+| **Open-Source**           |  Yes            | ❌ Proprietary   | ❌ Proprietary   |  Yes           |
 
 ---
 
-## **✅ Pros of Netlify CMS**  
+## ** Pros of Netlify CMS**  
 ✔ **Seamless Git integration:** Ideal for teams already using Git workflows for content management.  
 ✔ **Intuitive interface:** Easy for content editors to use without technical training.  
 ✔ **Optimized for static sites:** Perfect for JAMstack projects with fast performance and simple deployment.  
@@ -76,12 +76,12 @@ Netlify CMS was created to simplify content management for static sites and JAMs
 
 ---
 
-## **🎯 Who Should Use Netlify CMS?**  
+## ** Who Should Use Netlify CMS?**  
 Netlify CMS is **ideal for:**  
-✅ **Developers and agencies building static sites** with modern JAMstack architectures.  
-✅ **Content editors who prefer a simple, Git-based workflow** for managing website content.  
-✅ **Teams looking for an open-source, customizable CMS** integrated with continuous deployment pipelines.  
-✅ **Projects that prioritize performance, version control, and collaboration** in a static site environment.
+ **Developers and agencies building static sites** with modern JAMstack architectures.  
+ **Content editors who prefer a simple, Git-based workflow** for managing website content.  
+ **Teams looking for an open-source, customizable CMS** integrated with continuous deployment pipelines.  
+ **Projects that prioritize performance, version control, and collaboration** in a static site environment.
 
 ---
 
@@ -90,7 +90,7 @@ Netlify CMS provides a **modern, flexible, and Git-based content management solu
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Try Netlify CMS](https://www.netlifycms.org/)**  
-✅ **[Compare Netlify CMS vs Forestry.io](#)**  
-✅ **[Learn More: Implementing JAMstack with Netlify CMS](#)**
+ **Next Steps:**  
+ **[Try Netlify CMS](https://www.netlifycms.org/)**  
+ **[Compare Netlify CMS vs Forestry.io](#)**  
+ **[Learn More: Implementing JAMstack with Netlify CMS](#)**

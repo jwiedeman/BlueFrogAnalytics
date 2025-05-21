@@ -13,7 +13,7 @@ The **Federal Risk and Authorization Management Program (FedRAMP)** is a **U.S. 
 - **📖 Short Description:** A **U.S. government compliance program that establishes security requirements for cloud service providers (CSPs) working with federal agencies.**  
 - **📅 Enacted Date:** **December 2011**  
 - **🏛️ Governing Body:** **U.S. General Services Administration (GSA), FedRAMP Program Management Office (PMO), Joint Authorization Board (JAB), and federal agency security officers.**  
-- **🎯 Primary Purpose:**  
+- ** Primary Purpose:**  
   - **Standardize cloud security for federal agencies.**  
   - **Ensure consistent security controls for cloud service providers.**  
   - **Reduce security assessment duplication for government agencies.**  
@@ -36,18 +36,18 @@ The **Federal Risk and Authorization Management Program (FedRAMP)** is a **U.S. 
 
 ## **📂 3. What FedRAMP Governs**
 - **🔐 Key Areas of Security Compliance:**  
-  ✅ **Cloud Security Controls** – **Defines over 400 security requirements based on NIST SP 800-53.**  
-  ✅ **Risk-Based Authorization Process** – **Requires third-party security assessments before federal use.**  
-  ✅ **Continuous Monitoring** – **Mandates ongoing security reviews & reporting for authorized cloud services.**  
-  ✅ **Incident Response & Data Protection** – **Ensures CSPs have clear security breach handling policies.**  
-  ✅ **Secure Cloud Operations** – **CSPs must demonstrate adherence to cybersecurity best practices.**  
+   **Cloud Security Controls** – **Defines over 400 security requirements based on NIST SP 800-53.**  
+   **Risk-Based Authorization Process** – **Requires third-party security assessments before federal use.**  
+   **Continuous Monitoring** – **Mandates ongoing security reviews & reporting for authorized cloud services.**  
+   **Incident Response & Data Protection** – **Ensures CSPs have clear security breach handling policies.**  
+   **Secure Cloud Operations** – **CSPs must demonstrate adherence to cybersecurity best practices.**  
 
 - **📜 Key FedRAMP Compliance Requirements:**  
   - **📂 Security Baselines (Low, Moderate, High)** – **Different security levels based on data sensitivity.**  
-  - **🔍 Third-Party Security Assessments** – **CSPs must undergo external audits by a FedRAMP-accredited Third-Party Assessment Organization (3PAO).**  
+  - ** Third-Party Security Assessments** – **CSPs must undergo external audits by a FedRAMP-accredited Third-Party Assessment Organization (3PAO).**  
   - **📢 Continuous Security Monitoring** – **Providers must submit monthly vulnerability scans & annual audits.**  
   - **🛡️ Incident Response Plan** – **CSPs must have formal procedures for security breaches.**  
-  - **📊 FedRAMP Marketplace Listing** – **Certified cloud services are published for federal agencies.**  
+  - ** FedRAMP Marketplace Listing** – **Certified cloud services are published for federal agencies.**  
 
 ---
 
@@ -59,7 +59,7 @@ The **Federal Risk and Authorization Management Program (FedRAMP)** is a **U.S. 
 ✔ **Maintain Continuous Security Monitoring** – **CSPs must submit regular security updates & vulnerability reports.**  
 ✔ **Ensure Data Encryption & Secure Access Controls** – **Strict encryption & authentication standards apply to all cloud environments.**  
 
-### **🔧 Technical & Operational Requirements**
+### ** Technical & Operational Requirements**
 ✔ **Access Control & Multi-Factor Authentication (MFA)** – **Cloud services must enforce strong identity verification.**  
 ✔ **Data Encryption Standards** – **Sensitive data must be encrypted at rest & in transit (FIPS 140-2 compliance).**  
 ✔ **Security Incident Logging & Monitoring** – **Providers must log security events and monitor for threats.**  
@@ -108,8 +108,8 @@ The **Federal Risk and Authorization Management Program (FedRAMP)** is a **U.S. 
 
 ---
 
-## **🛠️ 7. Implementation & Best Practices**
-### **✅ How to Become Compliant**
+## **️ 7. Implementation & Best Practices**
+### ** How to Become Compliant**
 1️⃣ **Select the Appropriate FedRAMP Security Level** – **Low, Moderate, or High Impact.**  
 2️⃣ **Engage a Third-Party Assessment Organization (3PAO)** – **Get an independent security review.**  
 3️⃣ **Submit a Security Authorization Package** – **Includes system security plan, risk assessment, and penetration testing results.**  
@@ -127,11 +127,11 @@ The **Federal Risk and Authorization Management Program (FedRAMP)** is a **U.S. 
 ### **🔗 Official Documentation & Guidelines**
 - **[📖 FedRAMP Official Website](https://www.fedramp.gov/)**  
 - **[⚖️ FedRAMP Security Requirements](https://www.fedramp.gov/resources/documents/)**  
-- **[📊 NIST SP 800-53 Security Controls](https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final)**  
+- **[ NIST SP 800-53 Security Controls](https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final)**  
 
 ---
 
-## **🚀 Conclusion**
+## ** Conclusion**
 **FedRAMP ensures cloud security for U.S. government agencies**, protecting **sensitive federal data and enforcing cybersecurity best practices**.
 
 ---

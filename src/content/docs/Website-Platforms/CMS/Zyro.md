@@ -8,9 +8,9 @@ description: Learn about Zyro, its history, features, and how it compares to oth
 ## **📌 Overview**  
 Zyro is a **cloud-based website builder** designed to help users quickly create professional websites, online stores, and landing pages with ease. Emphasizing simplicity, affordability, and modern design, Zyro offers an intuitive drag-and-drop editor along with AI-powered tools that assist with content creation and layout design. Its straightforward approach makes it an excellent choice for individuals, small businesses, and startups looking for a hassle-free way to build a digital presence.
 
-✅ **Best For:** **Individuals, small businesses, and startups** seeking a cost-effective, easy-to-use platform for creating professional websites and online stores.  
-✅ **Market Position:** Competes with website builders like **Wix, Squarespace, and Weebly**, distinguished by its affordable pricing, fast setup, and AI-driven features.  
-✅ **Core Features:** **Drag-and-drop editor, modern responsive templates, integrated eCommerce, AI-powered design tools, and built-in SEO capabilities.**
+ **Best For:** **Individuals, small businesses, and startups** seeking a cost-effective, easy-to-use platform for creating professional websites and online stores.  
+ **Market Position:** Competes with website builders like **Wix, Squarespace, and Weebly**, distinguished by its affordable pricing, fast setup, and AI-driven features.  
+ **Core Features:** **Drag-and-drop editor, modern responsive templates, integrated eCommerce, AI-powered design tools, and built-in SEO capabilities.**
 
 ---
 
@@ -51,15 +51,15 @@ Zyro was developed with the goal of simplifying website creation for non-technic
 
 | Feature                   | Zyro            | Wix             | Squarespace      | Weebly           |
 |---------------------------|-----------------|-----------------|------------------|------------------|
-| **Ease of Use**           | ✅ Very Easy    | ✅ Easy         | ✅ Easy          | ✅ Very Easy     |
-| **Design Quality**        | ✅ Modern       | ✅ High         | ✅ Excellent     | ✅ Good          |
-| **AI Tools**              | ✅ Innovative   | ⚠ Limited      | ⚠ Basic         | ⚠ Basic         |
-| **eCommerce Capabilities**| ✅ Strong       | ✅ Strong      | ✅ Strong        | ✅ Moderate      |
+| **Ease of Use**           |  Very Easy    |  Easy         |  Easy          |  Very Easy     |
+| **Design Quality**        |  Modern       |  High         |  Excellent     |  Good          |
+| **AI Tools**              |  Innovative   | ⚠ Limited      | ⚠ Basic         | ⚠ Basic         |
+| **eCommerce Capabilities**|  Strong       |  Strong      |  Strong        |  Moderate      |
 | **Pricing**               | $$ Affordable   | $$-$$$         | $$$              | $$              |
 
 ---
 
-## **✅ Pros of Zyro**
+## ** Pros of Zyro**
 ✔ **User-Friendly:** Intuitive drag-and-drop interface makes website creation quick and accessible.
 ✔ **AI-Powered Features:** Innovative tools help generate content and optimize design, saving time and enhancing creativity.
 ✔ **Modern & Responsive Templates:** High-quality designs ensure your website looks professional on all devices.
@@ -76,12 +76,12 @@ Zyro was developed with the goal of simplifying website creation for non-technic
 
 ---
 
-## **🎯 Who Should Use Zyro?**
+## ** Who Should Use Zyro?**
 Zyro is **ideal for:**
-✅ **Individuals and small businesses** looking for a quick, affordable way to build a professional website.
-✅ **Entrepreneurs and startups** seeking a simple eCommerce solution with modern design aesthetics.
-✅ **Users interested in AI-powered design and content creation** to streamline the website building process.
-✅ **Non-technical users** who want an all-in-one platform with integrated hosting, security, and support.
+ **Individuals and small businesses** looking for a quick, affordable way to build a professional website.
+ **Entrepreneurs and startups** seeking a simple eCommerce solution with modern design aesthetics.
+ **Users interested in AI-powered design and content creation** to streamline the website building process.
+ **Non-technical users** who want an all-in-one platform with integrated hosting, security, and support.
 
 ---
 
@@ -90,7 +90,7 @@ Zyro provides a **modern, intuitive, and affordable website building solution** 
 
 ---
 
-🚀 **Next Steps:**  
-✅ **[Explore Zyro](https://zyro.com/)**  
-✅ **[Compare Zyro vs Wix](#)**  
-✅ **[Learn More: Creating a Modern Website with Zyro](#)**
+ **Next Steps:**  
+ **[Explore Zyro](https://zyro.com/)**  
+ **[Compare Zyro vs Wix](#)**  
+ **[Learn More: Creating a Modern Website with Zyro](#)**
