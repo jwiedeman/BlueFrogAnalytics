@@ -101,6 +101,7 @@ export default defineConfig({
     sidebar,
     components: {
       Header: './src/components/CustomHeader.astro',
+      Footer: './src/components/CustomFooter.astro',
     },
 	  head: [
       // Adding google analytics
