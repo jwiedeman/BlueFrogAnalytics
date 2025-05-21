@@ -91,6 +91,13 @@ export default defineConfig({
           });
         },
       },
+      {
+        name: "remove-starlight-css",
+        enforce: "post",
+        transformIndexHtml(html) {
+          return html.replace(/<link[^>]*href="[^"]*starlight[^"]*"[^>]*>/gi, "");
+        },
+      },
     ],
   },
 
