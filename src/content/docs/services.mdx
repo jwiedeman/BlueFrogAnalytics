@@ -7,11 +7,25 @@ template: splash
 <div class="carbon-hero">
   <h1>Lead the Pack in Digital Innovation</h1>
   <p>Don’t settle for second place—uncover the data-driven tactics powering industry frontrunners.</p>
-  <a href="/community/contact/" class="bx--btn bx--btn--primary">Claim Your Complimentary Growth Blueprint</a>
+  <button data-modal-target="#blueprint-modal" class="bx--btn bx--btn--primary">Claim Your Complimentary Growth Blueprint</button>
 </div>
+<div class="bx--toast-notification" role="alert">
+  <div class="bx--toast-notification__details">
+    <h3 class="bx--toast-notification__title">Limited-Time Deal</h3>
+    <p class="bx--toast-notification__subtitle">10% off Quick Tech & Growth Audit this month</p>
+  </div>
+  <button class="bx--toast-notification__close-button" type="button" aria-label="close"></button>
+</div>
+
 
 # Services & Features
 
+<div data-tabs class="bx--tabs">
+  <ul class="bx--tabs__nav" role="tablist">
+    <li class="bx--tabs__nav-item bx--tabs__nav-item--selected" data-target="#advisory" role="tab">Advisory Packages</li>
+    <li class="bx--tabs__nav-item" data-target="#courses" role="tab">Courses & DIY Tools</li>
+  </ul>
+  <div id="advisory" class="bx--tab-content" role="tabpanel">
 <div class="bx--grid bx--grid--condensed">
   <div class="bx--row">
     <div class="bx--col-sm-12 bx--col-md-6 bx--col-lg-4">
@@ -58,7 +72,7 @@ template: splash
     </div>
     <div class="bx--col-sm-12 bx--col-md-6 bx--col-lg-4">
       <div class="bx--tile">
-        <h3>Professional Advisory</h3>
+        <h3>Professional Advisory <span class="bx--tag bx--tag--green">Best Value</span></h3>
         <p>20 hours/month with bi-weekly strategy meetings and dedicated Slack/email support plus KPI analysis.<br />
         <strong>$7500/month</strong> – Team size: 1 advisor – Premium support: Monthly – Free updates: Monthly.</p>
       </div>
@@ -84,6 +98,12 @@ template: splash
         <strong>$2500/month</strong> – Team size: 1 advisor – Premium support: 3 months – Free updates: One-time.</p>
       </div>
     </div>
+  </div>
+</div>
+</div>
+<div id="courses" class="bx--tab-content" role="tabpanel" hidden>
+<div class="bx--grid bx--grid--condensed">
+  <div class="bx--row">
     <div class="bx--col-sm-12 bx--col-md-6 bx--col-lg-4">
       <div class="bx--tile">
         <h3>DIY Growth Toolkit</h3>
@@ -100,6 +120,22 @@ template: splash
     </div>
   </div>
 </div>
+</div>
+</div>
+## Pricing Overview
+
+<table class="bx--data-table bx--data-table--compact">
+  <thead>
+    <tr><th>Package</th><th>Price</th><th>Support</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Micro Audit</td><td>$300</td><td>2 weeks</td></tr>
+    <tr><td>SMB Advisory</td><td>$3000</td><td>Priority email & Slack</td></tr>
+    <tr><td>Professional Advisory</td><td>$7500</td><td>Slack/email</td></tr>
+    <tr><td>Analytics Mastery Course</td><td>$1000</td><td>Lifetime updates</td></tr>
+  </tbody>
+</table>
+
 
 ## Services
 
@@ -107,8 +143,8 @@ Explore my refined service pillars and how I can help your business.
 
 <div class="bx--grid bx--grid--condensed">
   <div class="bx--row">
-    <div class="bx--col-sm-12 bx--col-md-6 bx--col-lg-4"><h3>Strategy &amp; Architecture</h3><p>Service Info</p></div>
-    <div class="bx--col-sm-12 bx--col-md-6 bx--col-lg-4"><h3>Implementation &amp; Engineering</h3><p>Service Info</p></div>
+    <div class="bx--col-sm-12 bx--col-md-6 bx--col-lg-4"><h3>Strategy &amp; Architecture <span data-toggletip class="bx--toggletip"><button class="bx--toggletip-label">?</button><span class="bx--toggletip-content">Blueprint planning and system design</span></span></h3><p>Service Info</p></div>
+    <div class="bx--col-sm-12 bx--col-md-6 bx--col-lg-4"><h3>Implementation &amp; Engineering <span data-toggletip class="bx--toggletip"><button class="bx--toggletip-label">?</button><span class="bx--toggletip-content">Hands-on setup and integrations</span></span></h3><p>Service Info</p></div>
     <div class="bx--col-sm-12 bx--col-md-6 bx--col-lg-4"><h3>Quality Assurance &amp; Compliance</h3><p>Service Info</p></div>
     <div class="bx--col-sm-12 bx--col-md-6 bx--col-lg-4"><h3>Growth &amp; Optimization</h3><p>Service Info</p></div>
     <div class="bx--col-sm-12 bx--col-md-6 bx--col-lg-4"><h3>Training &amp; Enablement</h3><p>Service Info</p></div>
@@ -117,8 +153,32 @@ Explore my refined service pillars and how I can help your business.
     <div class="bx--col-sm-12 bx--col-md-6 bx--col-lg-4"><h3>Creative Direction &amp; Coordination</h3><p>Service Info</p></div>
   </div>
 </div>
+<ul class="bx--progress">
+  <li class="bx--progress-step bx--progress-step--current">
+    <span class="bx--progress-label">Discovery</span>
+  </li>
+  <li class="bx--progress-step">
+    <span class="bx--progress-label">Implementation</span>
+  </li>
+  <li class="bx--progress-step">
+    <span class="bx--progress-label">Growth</span>
+  </li>
+</ul>
 
-<a href="/community/contact/" class="bx--btn bx--btn--primary">Claim Your Complimentary Growth Blueprint</a>
+
+<button data-modal-target="#blueprint-modal" class="bx--btn bx--btn--primary">Claim Your Complimentary Growth Blueprint</button>
 
 </div>
 
+<div data-modal id="blueprint-modal" class="bx--modal" tabindex="-1" role="dialog">
+  <div class="bx--modal-container">
+    <p class="bx--modal-header__heading bx--type-beta">Claim Your Complimentary Growth Blueprint</p>
+    <div class="bx--modal-content">
+      <p>Ready to accelerate growth? Contact us and we'll craft a free strategy blueprint tailored to your goals.</p>
+      <a href="/community/contact/" class="bx--btn bx--btn--primary">Contact Us</a>
+    </div>
+    <div class="bx--modal-footer">
+      <button class="bx--btn bx--btn--secondary" data-modal-close>Close</button>
+    </div>
+  </div>
+</div>
