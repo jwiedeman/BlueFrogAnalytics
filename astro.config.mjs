@@ -93,7 +93,10 @@ export default defineConfig({
       },
     ],
   },
-  integrations: [astroExpressiveCode(), mdx(), sitemap(), starlight({
+  integrations: [
+    astroExpressiveCode(),
+    mdx(),
+    starlight({
     title: 'Blue Frog Analytics',
     social: {
       github: 'https://github.com/jwiedeman',
@@ -149,8 +152,10 @@ export default defineConfig({
           });
         `,
       },
-    ],
-  })],
+      ],
+    }),
+    sitemap(),
+  ],
   markdown: {
         remarkPlugins: [remarkMath,remarkMermaid],
         rehypePlugins: [rehypeKatex]
