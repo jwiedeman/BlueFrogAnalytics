@@ -56,3 +56,46 @@ main {
   gap: 1rem;
   justify-content: center;
 }
+
+/* Header customizations */
+.bx--header__global {
+  display: flex;
+  align-items: center;
+}
+
+.bx--header__global .bx--header__action {
+  display: flex;
+  align-items: center;
+}
+
+.bx--header .bx--btn--ghost {
+  color: #f4f4f4;
+  border-color: #f4f4f4;
+}
+
+@media (max-width: 800px) {
+  .bx--header__nav {
+    display: none;
+    position: absolute;
+    top: var(--cds--ui-shell--header-height);
+    left: 0;
+    width: 100%;
+    background: #161616;
+    flex-direction: column;
+    padding: 0.5rem 1rem;
+  }
+
+  .bx--header__nav.nav-open {
+    display: flex;
+  }
+
+  .bx--header__menu-bar {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .bx--header__menu-item {
+    padding: 0.5rem 0;
+    width: 100%;
+  }
+}
