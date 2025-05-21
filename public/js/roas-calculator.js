@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+
     resultsEl.innerHTML = `<table><tr><th>Scenario</th><th>ROAS</th><th>Daily Profit</th><th>6-Mo Profit</th></tr>${scenarios
       .map(s => `<tr><td>${s.name}</td><td>${s.roas.toFixed(2)}</td><td>${s.dailyProfit.toFixed(2)}</td><td>${s.totalProfit.toFixed(2)}</td></tr>`)
       .join('')}</table>`;
@@ -50,12 +51,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const x = d3.scaleLinear().domain([1, DAYS]).range([0, innerWidth]);
     const y = d3.scaleLinear()
       .domain([0, d3.max(series, s => d3.max(s.values, v => v.profit))])
+
       .nice()
       .range([innerHeight, 0]);
 
     const line = d3.line()
+
       .x(d => x(d.day))
       .y(d => y(d.profit));
+
 
     const g = chartEl.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
     g.append('g').attr('transform', `translate(0,${innerHeight})`).call(d3.axisBottom(x));
