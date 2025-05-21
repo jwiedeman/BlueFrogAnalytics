@@ -31,7 +31,7 @@ body {
 }
 
 /* Remove gap between header and main content */
-.bx--header {
+header {
   margin-bottom: 0;
 }
 main {
