@@ -1,6 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import starlight from '@astrojs/starlight';
+// Using MDX for .md/.mdx rendering and Sitemap generation
 import fs from 'fs';
 import path from 'path';
 import sitemap from '@astrojs/sitemap';
@@ -8,7 +8,7 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import remarkMermaid from 'remark-mermaidjs'
 import mdx from '@astrojs/mdx';
-import astroExpressiveCode from 'astro-expressive-code';
+// Removed expressive-code integration to drop starlight deps
 
 const DOCS_DIR = 'src/content/docs';
 const isDev = process.env.NODE_ENV === 'development';
@@ -91,86 +91,18 @@ export default defineConfig({
           });
         },
       },
-      {
-        name: "remove-starlight-css",
-        enforce: "post",
-        transformIndexHtml(html) {
-          return html.replace(/<link[^>]*href="[^"]*starlight[^"]*"[^>]*>/gi, "");
-        },
-      },
     ],
   },
 
-  integrations: [astroExpressiveCode(), mdx(), starlight({
+  integrations: [
+    // MDX for .md/.mdx with math
+    mdx({
+      extension: ['.md', '.mdx'],
+      remarkPlugins: [remarkMath, remarkMermaid],
+      rehypePlugins: [rehypeKatex],
+    }),
+    // Sitemap generation
+    sitemap(),
+  ],
 
-    title: 'Blue Frog Analytics',
-    social: {
-      github: 'https://github.com/jwiedeman',
-    },
-    sidebar,
-    components: {
-      Header: './src/components/CustomHeader.astro',
-      Footer: './src/components/CustomFooter.astro',
-    },
-          head: [
-      { tag: 'link', attrs: { rel: 'stylesheet', href: 'https://unpkg.com/carbon-components/css/carbon-components.min.css' } },
-      { tag: 'link', attrs: { rel: 'preconnect', href: 'https://fonts.googleapis.com' } },
-      { tag: 'link', attrs: { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' } },
-      { tag: 'link', attrs: { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&display=swap' } },
-      { tag: 'link', attrs: { rel: 'stylesheet', href: '/css/carbon.css' } },
-      { tag: 'script', attrs: { src: 'https://unpkg.com/carbon-components/scripts/carbon-components.min.js', defer: true } },
-      { tag: 'script', content: 'window.addEventListener("DOMContentLoaded",()=>{if(window.CarbonComponents){window.CarbonComponents.watch();}});' },
-      // Adding google analytics
-      {
-        tag: 'script',
-        attrs: {
-          src: `https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`,
-        },
-      },
-      {
-        tag: 'script',
-        content: `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', '${googleAnalyticsId}');
-        `,
-      },
-      {
-        tag: 'script',
-        content: `
-          if (!localStorage.getItem('starlight-theme')) {
-            document.documentElement.setAttribute('data-theme', 'light');
-            localStorage.setItem('starlight-theme', 'light');
-          }
-        `,
-      },
-      {
-        tag: 'script',
-        content: `
-          document.addEventListener('DOMContentLoaded', () => {
-            function openHashDetails() {
-              const id = location.hash.slice(1);
-              if (!id) return;
-              const el = document.getElementById(id) ||
-                          document.getElementById(id.replace(/-/g, '_')) ||
-                          document.getElementById(id.replace(/_/g, '-'));
-              if (el && el.tagName.toLowerCase() === 'details') {
-                el.open = true;
-              }
-            }
-            openHashDetails();
-            window.addEventListener('hashchange', openHashDetails);
-          });
-        `,
-      },
-
-    ],
-  }), sitemap()],
-
-  markdown: {
-        remarkPlugins: [remarkMath,remarkMermaid],
-        rehypePlugins: [rehypeKatex]
-    }
 });

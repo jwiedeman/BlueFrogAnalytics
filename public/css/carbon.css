@@ -1,3 +1,33 @@
+.doc-tree, .doc-tree ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.tree-node {
+  margin: 0.25rem 0;
+  padding-left: 1rem;
+  position: relative;
+}
+.tree-node .node-label,
+.tree-node.leaf > a {
+  cursor: pointer;
+  display: inline-block;
+}
+.tree-node.has-children .node-label::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+}
+.tree-node.expanded .node-label::before {
+  content: "▾";
+}
+.tree-node.has-children > ul {
+  display: none;
+  margin-left: 1rem;
+}
+.tree-node.expanded > ul {
+  display: block;
+}
 :root {
   --sl-font-sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
   --sl-color-primary: #0f62fe; /* Carbon blue */
@@ -39,6 +69,51 @@ header {
 main {
   margin-top: 0;
   padding-top: 0;
+}
+
+/* Documentation pages: ensure content is not hidden under the fixed header */
+#main-content {
+  padding-top: var(--cds--ui-shell--header-height);
+}
+/* Docs pages layout */
+.docs-container {
+  display: grid;
+  grid-template-columns: 16rem 1fr 16rem;
+  gap: 2rem;
+  max-width: var(--sl-content-width);
+  margin: 0 auto;
+  /* push content below fixed header and add bottom padding */
+  padding: calc(var(--cds--ui-shell--header-height) + 1rem) 1rem 2rem;
+}
+
+.docs-main {
+  padding: 1rem 0;
+}
+
+.sidebar-left,
+.sidebar-right {
+  position: sticky;
+  top: var(--cds--ui-shell--header-height);
+  max-height: calc(100vh - var(--cds--ui-shell--header-height));
+  overflow-y: auto;
+}
+
+.sidebar-left {
+  border-right: 1px solid #e0e0e0;
+  padding-right: 1rem;
+}
+
+.sidebar-right {
+  border-left: 1px solid #e0e0e0;
+  padding-left: 1rem;
+}
+
+.sidebar-left input[type="search"] {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  box-sizing: border-box;
 }
 
 

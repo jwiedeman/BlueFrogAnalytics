@@ -1,0 +1,42 @@
+---
+export const prerender = true;
+let i;
+/**
+ * Generate static paths for all documentation pages
+ */
+export function getStaticPaths() {
+  const modules = import.meta.glob('../content/docs/**/*.{md,mdx}', { eager: true });
+  const paths = [];
+  for (const filePath in modules) {
+    const rawKey = filePath.replace('../content/docs/', '').replace(/\.(md|mdx)$/, '');
+    if (rawKey === 'index') continue;
+    const segments = rawKey.split('/');
+    // Use lowercase slugs for URL paths to match case-insensitive requests
+    paths.push({ params: { slug: rawKey.toLowerCase() } });
+  }
+  return paths;
+}
+import DocsLayout from '../components/DocsLayout.astro';
+// Load all doc modules eagerly
+const pages = import.meta.glob('../content/docs/**/*.{md,mdx}', { eager: true });
+// Get slug param (array of lowercase segments)
+const slugArray = Astro.params.slug;
+const requestPath = Array.isArray(slugArray) ? slugArray.join('/') : slugArray;
+// Find matching entry (case-insensitive)
+let entry = null;
+for (const [filePath, mod] of Object.entries(pages)) {
+  const rawKey = filePath.replace('../content/docs/', '').replace(/\.(md|mdx)$/, '');
+  if (rawKey.toLowerCase() === requestPath.toLowerCase()) {
+    entry = mod;
+    break;
+  }
+}
+if (!entry) {
+  throw new Error('404');
+}
+const Content = entry.default;
+const headings = entry.getHeadings?.() ?? [];
+---
+<DocsLayout headings={headings}>
+  <Content />
+</DocsLayout>

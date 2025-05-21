@@ -1,10 +1,5 @@
 ---
-import config from 'virtual:starlight/user-config';
-
-import LanguageSelect from 'virtual:starlight/components/LanguageSelect';
-import Search from 'virtual:starlight/components/Search';
-import ThemeSelect from 'virtual:starlight/components/ThemeSelect';
-
+// Simplified Carbon header without any Starlight dependencies
 const mainNav = [
   { label: 'Home', link: '/' },
   { label: 'About', link: '/about/' },
@@ -12,48 +7,34 @@ const mainNav = [
   { label: 'Tests', link: '/testing/' },
   { label: 'Docs', link: '/introduction/how-blue-frog-analytics-works' },
 ];
-
-const shouldRenderSearch =
-  config.pagefind || config.components.Search !== '@astrojs/starlight/components/Search.astro';
 ---
-<!-- 1. Skip link for accessibility -->
+<!-- Skip link for accessibility -->
 <a href="#main-content" class="bx--skip-to-content">Skip to main content</a>
-
-<!-- 2. Carbon header -->
+<!-- Carbon header -->
 <header class="bx--header bx--theme--dark" role="banner" aria-label="Blue Frog Analytics">
-    <!-- 3. (Optional) hamburger menu trigger if you have a side-nav -->
-    <button class="bx--header__menu-trigger bx--header__action" aria-label="Open menu">
-      <!-- You can use your own SVG or Carbon’s menu icon -->
-      <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" class="bx--header__menu-trigger__icon" width="20" height="20" viewBox="0 0 32 32"><path d="M4 23h24v2H4zm0-8h24v2H4zm0-8h24v2H4z"/></svg>
-    </button>
+  <!-- Hamburger menu trigger -->
+  <button class="bx--header__menu-trigger bx--header__action" aria-label="Open menu">
+    <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"
+      class="bx--header__menu-trigger__icon" width="20" height="20" viewBox="0 0 32 32">
+      <path d="M4 23h24v2H4zm0-8h24v2H4zm0-8h24v2H4z" />
+    </svg>
+  </button>
+  <!-- Site title -->
+  <a href="/" class="bx--header__name" aria-label="Blue Frog Analytics home">
+    <span class="bx--header__name--prefix">Blue Frog</span>
+    <span class="bx--header__name--text">Analytics</span>
+  </a>
+  <!-- Navigation links -->
+  <nav class="bx--header__nav" aria-label="Product Navigation">
+    <ul class="bx--header__menu-bar">
+      {mainNav.map(item => (
+        <li key={item.link}>
+          <a class="bx--header__menu-item" href={item.link}>{item.label}</a>
+        </li>
+      ))}
+    </ul>
+  </nav>
 
-    <!-- 4. Header name -->
-    <a href="/" class="bx--header__name" aria-label="Blue Frog Analytics home">
-      <span class="bx--header__name--prefix">Blue Frog</span>
-      <span class="bx--header__name--text">Analytics</span>
-    </a>
-
-    <!-- 5. Centered nav -->
-    <nav class="bx--header__nav" aria-label="Product Navigation">
-      <ul class="bx--header__menu-bar">
-        {mainNav.map((item) => (
-          <li key={item.link}>
-            <a class="bx--header__menu-item" href={item.link}>
-              {item.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
-
-    <!-- 6. Global utilities, in Carbon’s prescribed order -->
-    <div class="bx--header__global ">
-      {shouldRenderSearch && (
-        <Search class="bx--header__action bx--header__search" size="md" />
-      )}
-
-      <ThemeSelect class="bx--header__action cyan-50 " />
-      <LanguageSelect class="bx--header__action bx--header__app-switcher" />
-    </div>
+  <!-- 6. Global utilities (search, theme, language) removed -->
 </header>
-<script type="module" src="/js/header.js"></script>
+<!-- Removed starlight mobile menu toggle script -->
