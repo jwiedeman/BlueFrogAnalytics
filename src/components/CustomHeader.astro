@@ -61,6 +61,12 @@ const shouldRenderSearch =
     background: var(--cds-background);
   }
 
+  /* Remove default padding or margin on the outer <header> wrapper */
+  :global(header) {
+    margin: 0;
+    padding: 0;
+  }
+
   .bx--header__container.header-content {
     display: flex;
     align-items: center;
