@@ -43,28 +43,30 @@ const docTree = buildTree();
     <div class="docs-container">
       <aside class="sidebar-left">
         <input id="doc-search" type="search" placeholder="Search docs..." />
-        <ul class="doc-tree">
+        <ul data-accordion class="bx--accordion doc-accordion">
           {(() => {
-            function renderNodes(nodes) {
-              return nodes.map(node => {
-                if (node.children?.length) {
-                  return (
-                    <li class="tree-node has-children">
-                      <span class="node-label">{node.label}</span>
-                      <ul>
-                        {renderNodes(node.children)}
-                      </ul>
-                    </li>
-                  );
-                }
-                return (
-                  <li class="tree-node leaf">
-                    <a href={node.path}>{node.label}</a>
-                  </li>
-                );
-              });
+            function flattenLeaves(node, arr = []) {
+              if (node.path) arr.push({ label: node.label, path: node.path });
+              node.children?.forEach(child => flattenLeaves(child, arr));
+              return arr;
             }
-            return renderNodes(docTree);
+            return docTree.map((cat, i) => (
+              <li class="bx--accordion__item" key={i}>
+                <button class="bx--accordion__heading" aria-expanded="false" aria-controls={`acc-${i}`}> 
+                  <svg aria-hidden="true" class="bx--accordion__arrow" width="16" height="16">
+                    <path d="M8 12L3 7l1.41-1.41L8 9.17l3.59-3.58L13 7z" />
+                  </svg>
+                  <div class="bx--accordion__title">{cat.label}</div>
+                </button>
+                <div id={`acc-${i}`} class="bx--accordion__content">
+                  <ul>
+                    {flattenLeaves(cat).map(page => (
+                      <li class="doc-link-item" key={page.path}><a href={page.path}>{page.label}</a></li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            ));
           })()}
         </ul>
       </aside>
@@ -87,14 +89,12 @@ const docTree = buildTree();
       const input = document.getElementById('doc-search');
       input.addEventListener('input', () => {
         const filter = input.value.toLowerCase();
-        document.querySelectorAll('.sidebar-left .tree-node').forEach(li => {
+        document.querySelectorAll('.doc-link-item').forEach(li => {
           li.style.display = li.textContent.toLowerCase().includes(filter) ? '' : 'none';
         });
-      });
-      // Expand/collapse tree nodes
-      document.querySelectorAll('.tree-node.has-children .node-label').forEach(span => {
-        span.addEventListener('click', () => {
-          span.parentElement.classList.toggle('expanded');
+        document.querySelectorAll('.bx--accordion__item').forEach(item => {
+          const visible = Array.from(item.querySelectorAll('.doc-link-item')).some(li => li.style.display !== 'none');
+          item.style.display = visible ? '' : 'none';
         });
       });
     </script>
