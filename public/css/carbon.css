@@ -234,3 +234,13 @@ main {
     padding: 0 0.5rem;
   }
 }
+/* Ensure dropdown menus match header background */
+.bx--dropdown-list,
+.bx--list-box__menu {
+  background: #161616;
+  color: #f5f5f5;
+}
+.bx--dropdown-item > .bx--dropdown-link,
+.bx--list-box__menu-item {
+  color: #f5f5f5;
+}
