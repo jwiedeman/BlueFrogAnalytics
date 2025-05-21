@@ -98,15 +98,23 @@ hero:
 <style>{`
 
   #roas-form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem;
     margin-bottom: 1rem;
+    align-items: start;
   }
-  #roas-form label {
+  #roas-form .bx--form-item {
     display: flex;
     flex-direction: column;
+  }
+  #roas-form label {
     font-weight: bold;
+    margin-bottom: 0.25rem;
+  }
+
+  #roas-form input {
+    width: 100%;
   }
 
   #roas-form small {
