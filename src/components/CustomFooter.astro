@@ -2,10 +2,10 @@
 import SocialIcons from 'virtual:starlight/components/SocialIcons';
 const year = new Date().getFullYear();
 ---
-<footer class="footer">
-  <div class="footer-content">
+<footer class="bx--footer footer">
+  <div class="bx--footer__row footer-content">
     <p class="copy">© {year} Blue Frog Analytics</p>
-    <nav class="footer-nav">
+    <nav class="bx--footer-nav footer-nav">
       <a href="/about/">About</a>
       <a href="/privacy-policy/">Privacy Policy</a>
       <a href="/terms-of-service/">Terms of Service</a>
@@ -16,12 +16,12 @@ const year = new Date().getFullYear();
 </footer>
 
 <style>
-.footer {
+.bx--footer.footer {
   padding: 2rem 1rem;
   border-top: 1px solid var(--sl-color-gray-6);
   margin-top: 4rem;
 }
-.footer-content {
+.bx--footer__row.footer-content {
   max-width: var(--sl-content-width);
   margin: 0 auto;
   display: flex;
@@ -29,13 +29,13 @@ const year = new Date().getFullYear();
   align-items: center;
   gap: 1rem;
 }
-.footer-nav {
+.bx--footer-nav.footer-nav {
   display: flex;
   gap: 1.5rem;
   flex-wrap: wrap;
   justify-content: center;
 }
-.footer-nav a {
+.bx--footer-nav.footer-nav a {
   text-decoration: none;
   color: var(--sl-color-text);
 }

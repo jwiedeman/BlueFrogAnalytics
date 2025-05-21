@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const allBtn = document.createElement('button');
     allBtn.type = 'button';
+    allBtn.className = 'bx--btn bx--btn--secondary';
     allBtn.textContent = 'Select All';
     allBtn.addEventListener('click', () => {
       selectedColumns = [...ANALYTICS_KEYS];
@@ -95,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const clearBtn = document.createElement('button');
     clearBtn.type = 'button';
+    clearBtn.className = 'bx--btn bx--btn--tertiary';
     clearBtn.textContent = 'Clear';
     clearBtn.addEventListener('click', () => {
       selectedColumns = [];
@@ -107,8 +109,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ANALYTICS_KEYS.forEach(key => {
       const label = document.createElement('label');
+      label.className = 'bx--checkbox-wrapper';
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
+      checkbox.className = 'bx--checkbox';
       checkbox.value = key;
       checkbox.checked = selectedColumns.includes(key);
       checkbox.addEventListener('change', () => {
@@ -122,7 +126,10 @@ document.addEventListener('DOMContentLoaded', () => {
       adjustTableWidth();
     });
       label.appendChild(checkbox);
-      label.appendChild(document.createTextNode(' ' + formatName(key)));
+      const span = document.createElement('span');
+      span.className = 'bx--checkbox-label';
+      span.textContent = ' ' + formatName(key);
+      label.appendChild(span);
       panel.appendChild(label);
     });
   }

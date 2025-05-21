@@ -1,0 +1,26 @@
+:root {
+  --sl-font-sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --sl-color-primary: #0f62fe; /* Carbon blue */
+  --sl-color-accent: #ff832b; /* Carbon orange */
+  --sl-border-radius: 0;
+}
+
+/* Ensure header and footer adhere to Carbon spacing */
+.bx--header {
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+}
+
+.bx--footer {
+  padding: 2rem 1rem;
+  border-top: 1px solid #e0e0e0;
+  margin-top: 4rem;
+}
+
+/* Utility container matching Carbon grid width */
+.carbon-container {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
