@@ -60,13 +60,12 @@ const shouldRenderSearch =
   }
 
   .bx--header__container.header-content {
-    display: grid;
-    grid-template-columns: auto 1fr auto; /* Logo | Nav (flexible) | Right icons */
+    display: flex;
     align-items: center;
-    max-width: var(--sl-content-width);
-    margin: 0 auto;
+    justify-content: space-between;
+    padding: 0 2rem;
     height: var(--sl-header-height);
-    
+    width: 100%;
   }
 
   /* Logo Position */
@@ -119,13 +118,9 @@ const shouldRenderSearch =
 
   /* Ensure It Doesn't Expand on Doc Pages */
   :global(:root[data-has-sidebar]) .header-content {
-    max-width: calc(100% - var(--sl-sidebar-width));
+    width: calc(100% - var(--sl-sidebar-width));
   }
 
-  /* Prevent Jumping by Enforcing Consistent Sizing */
-  .header-content > * {
-    min-width: 150px; /* Ensures each section retains space */
-  }
 
   /* Mobile Adjustments */
   @media (max-width: 768px) {
