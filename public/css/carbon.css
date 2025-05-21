@@ -32,6 +32,7 @@ body {
   font-family: var(--sl-font-sans);
   background: var(--cds-background);
   color: var(--cds-text);
+  margin: 0; /* Remove default body margin */
 }
 
 
