@@ -7,7 +7,7 @@ BASE_DIR = "src/content/docs"
 docs_structure = {
     "Introduction": [
         "Welcome.md",
-        "How-ViperScan-Works.md",
+        "How-Blue-Frog-Analytics-Works.md",
         "Use-Cases.md",
         "Terminology-Glossary.md"
     ],
@@ -64,7 +64,7 @@ docs_structure = {
         "Server-Side-Tagging.md"
     ],
     "API Reference": [
-        "ViperScan-API-Docs.md", "Authentication.md",
+        "Blue-Frog-Analytics-API-Docs.md", "Authentication.md",
         "Webhooks.md", "Data-Exports.md"
     ],
     "Case Studies & Use Cases": [

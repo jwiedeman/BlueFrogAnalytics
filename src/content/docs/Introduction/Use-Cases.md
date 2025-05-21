@@ -1,9 +1,9 @@
 ---
-title: Use Cases for ViperScan
-description: Learn about ViperScan's Use Cases.
+title: Use Cases for Blue Frog Analytics
+description: Learn about Blue Frog Analytics's Use Cases.
 ---
 
-ViperScan is a **comprehensive website scanning, auditing, and analytics tool** designed for businesses, agencies, and developers to **identify issues, improve performance, and ensure compliance**. Below are the key use cases where ViperScan provides **immediate value**.
+Blue Frog Analytics is a **comprehensive website scanning, auditing, and analytics tool** designed for businesses, agencies, and developers to **identify issues, improve performance, and ensure compliance**. Below are the key use cases where Blue Frog Analytics provides **immediate value**.
 
 ---
 
@@ -11,7 +11,7 @@ ViperScan is a **comprehensive website scanning, auditing, and analytics tool** 
 ### **Who Benefits?**
 🔹 Website owners, developers, SEO agencies, eCommerce stores, enterprises.
 
-### **How ViperScan Helps**
+### **How Blue Frog Analytics Helps**
 ✅ **Crawl & Indexation Checks** – Identify broken pages, orphaned pages, and indexability issues.  
 ✅ **Technical SEO Audit** – Fix missing meta tags, heading structures, and schema markup issues.  
 ✅ **Core Web Vitals Monitoring** – Detect speed, responsiveness, and layout shift issues.  
@@ -26,7 +26,7 @@ ViperScan is a **comprehensive website scanning, auditing, and analytics tool** 
 ### **Who Benefits?**
 🔹 Marketing teams, PPC managers, SEO consultants, analytics specialists.
 
-### **How ViperScan Helps**
+### **How Blue Frog Analytics Helps**
 ✅ **Tracking Validation** – Ensures Google Analytics, Meta Pixel, and other tracking codes fire correctly.  
 ✅ **Campaign Parameter Testing** – Validates UTM tracking for paid ads and referral accuracy.  
 ✅ **Event Tracking Audits** – Confirms form submissions, button clicks, and eCommerce transactions are captured properly.  
@@ -40,7 +40,7 @@ ViperScan is a **comprehensive website scanning, auditing, and analytics tool** 
 ### **Who Benefits?**
 🔹 Enterprises, government organizations, privacy officers, legal teams.
 
-### **How ViperScan Helps**
+### **How Blue Frog Analytics Helps**
 ✅ **Privacy Compliance Scans** – Detects tracking scripts that may violate **GDPR, CCPA, CPRA, and PECR**.  
 ✅ **Cookie & Consent Banner Checks** – Validates proper implementation of cookie consent frameworks.  
 ✅ **ADA & WCAG Accessibility Scanning** – Identifies web accessibility issues for disabled users.  
@@ -54,7 +54,7 @@ ViperScan is a **comprehensive website scanning, auditing, and analytics tool** 
 ### **Who Benefits?**
 🔹 Agencies, startups, enterprises, digital marketers.
 
-### **How ViperScan Helps**
+### **How Blue Frog Analytics Helps**
 ✅ **Competitor Website Analysis** – Uncover **SEO, backlink strategies, and technology stack** insights.  
 ✅ **Ad & Tracking Intelligence** – Detect **competitors' Google Ads, Meta Pixel, and analytics strategies**.  
 ✅ **Market Trend Monitoring** – Identify **patterns in website technology adoption** and digital trends.  
@@ -67,7 +67,7 @@ ViperScan is a **comprehensive website scanning, auditing, and analytics tool** 
 ### **Who Benefits?**
 🔹 Shopify/WooCommerce store owners, product managers, CRO specialists.
 
-### **How ViperScan Helps**
+### **How Blue Frog Analytics Helps**
 ✅ **Site Speed Optimization** – Detect slow product pages that impact conversion rates.  
 ✅ **Broken Product Links & 404s** – Identify and fix **discontinued product pages or redirect errors**.  
 ✅ **Checkout Funnel Monitoring** – Uncover **abandonment points and UX issues** affecting sales.  
@@ -81,7 +81,7 @@ ViperScan is a **comprehensive website scanning, auditing, and analytics tool** 
 ### **Who Benefits?**
 🔹 Enterprise marketing teams, IT departments, content strategists.
 
-### **How ViperScan Helps**
+### **How Blue Frog Analytics Helps**
 ✅ **Global Site Monitoring** – Automates audits for **multi-domain enterprises**.  
 ✅ **Brand Consistency Checks** – Detects **logo, typography, and brand guideline violations**.  
 ✅ **Automated Reporting** – Generates **actionable reports for executives & stakeholders**.  
@@ -95,7 +95,7 @@ ViperScan is a **comprehensive website scanning, auditing, and analytics tool** 
 ### **Who Benefits?**
 🔹 Web developers, UI/UX designers, conversion specialists.
 
-### **How ViperScan Helps**
+### **How Blue Frog Analytics Helps**
 ✅ **Front-End Bug Detection** – Finds **JavaScript errors, UI bugs, and rendering issues**.  
 ✅ **Mobile & Cross-Browser Testing** – Ensures pages function correctly **across all devices and browsers**.  
 ✅ **Lazy Loading & Image Optimization** – Detects **slow-loading images and unoptimized assets**.  
@@ -109,7 +109,7 @@ ViperScan is a **comprehensive website scanning, auditing, and analytics tool** 
 ### **Who Benefits?**
 🔹 Federal, state, and municipal agencies, healthcare, education institutions.
 
-### **How ViperScan Helps**
+### **How Blue Frog Analytics Helps**
 ✅ **Accessibility Compliance** – Ensures government websites meet **Section 508, WCAG 2.1, and IDEA Act** standards.  
 ✅ **Data Protection Audits** – Flags **unsecured public records, outdated SSL certificates, and PII risks**.  
 ✅ **Page Performance for Citizen Engagement** – Ensures fast loading times for critical public services.  
@@ -119,8 +119,8 @@ ViperScan is a **comprehensive website scanning, auditing, and analytics tool** 
 
 ---
 
-# **💡 Why ViperScan?**
-ViperScan is **more than just a website audit tool**—it’s a **full-scale digital optimization platform**. Whether you're an **SEO agency, eCommerce store, enterprise brand, or government entity**, our **self-serve reports and automated insights empower you** to **fix issues, enhance performance, and stay compliant**.
+# **💡 Why Blue Frog Analytics?**
+Blue Frog Analytics is **more than just a website audit tool**—it’s a **full-scale digital optimization platform**. Whether you're an **SEO agency, eCommerce store, enterprise brand, or government entity**, our **self-serve reports and automated insights empower you** to **fix issues, enhance performance, and stay compliant**.
 
 🚀 **Next Steps:**
 ✅ **[Try a Free Website Scan](#)**  
