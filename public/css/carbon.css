@@ -64,7 +64,7 @@ body {
 /* Remove gap between header and main content */
 header {
   margin: 0;
-  padding: 30px;
+  padding: 0;
 }
 main {
   margin-top: 0;
@@ -254,7 +254,6 @@ main {
   display: none;
   position: fixed;
   top: var(--cds--ui-shell--header-height);
-  bottom: 0;
   left: 0;
   width: 16rem;
   background: #161616;
