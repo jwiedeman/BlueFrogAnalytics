@@ -21,119 +21,28 @@ const shouldRenderSearch =
   config.pagefind || config.components.Search !== '@astrojs/starlight/components/Search.astro';
 ---
 
-<header class="bx--header custom-header">
+<header class="bx--header" aria-label="Blue Frog Analytics">
   <link rel="sitemap" href="/sitemap-index.xml" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.css" integrity="sha384-WsHMgfkABRyG494OmuiNmkAOk8nhO1qE+Y6wns6v+EoNoTNxrWxYpl5ZYWFOLPCM" crossorigin="anonymous">
-  <div class="bx--header__container custom-header-content">
-    <!-- Left: Logo -->
-    <div class="title-wrapper">
-      <SiteTitle />
-    </div>
+  <!-- Left: Logo -->
+  <div class="bx--header__name">
+    <SiteTitle />
+  </div>
 
-    <!-- Center: Main Navigation -->
-    <nav class="bx--header__nav main-nav">
-      <ul class="bx--header__menu-bar">
-        {mainNav.map((item) => (
-          <li><a class="bx--header__menu-item" href={item.link}>{item.label}</a></li>
-        ))}
-      </ul>
-    </nav>
+  <!-- Center: Main Navigation -->
+  <nav class="bx--header__nav">
+    <ul class="bx--header__menu-bar">
+      {mainNav.map((item) => (
+        <li><a class="bx--header__menu-item" href={item.link}>{item.label}</a></li>
+      ))}
+    </ul>
+  </nav>
 
-    <!-- Right: Search & Icons -->
-    <div class="bx--header__global right-group">
-      {shouldRenderSearch && <Search />}
-      <SocialIcons />
-      <ThemeSelect />
-      <LanguageSelect />
-    </div>
+  <!-- Right: Search & Icons -->
+  <div class="bx--header__global">
+    {shouldRenderSearch && <Search />}
+    <SocialIcons />
+    <ThemeSelect />
+    <LanguageSelect />
   </div>
 </header>
-
-<style>
-  /* Ensure Header is Properly Aligned in Starlight Layout */
-  header.bx--header.custom-header {
-    width: 100%;
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    margin: 0;
-    padding: 0;
-    background: #333;
-  }
-
-  /* Remove default padding or margin on the outer <header> wrapper */
-  :global(header) {
-    margin: 0;
-    padding: 0;
-  }
-
-  .bx--header__container.custom-header-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0;
-    height: var(--sl-header-height);
-    width: 100%;
-  }
-
-  /* Logo Position */
-  .title-wrapper {
-    display: flex;
-    align-items: center;
-  }
-
-  /* Fix Nav Misalignment */
-  .bx--header__nav.main-nav {
-    display: flex;
-    justify-content: center;
-  }
-
-  .bx--header__menu-bar {
-    display: flex;
-    gap: 1.5rem;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .bx--header__menu-item {
-    text-decoration: none;
-    font-weight: bold;
-    color: var(--sl-color-text);
-    transition: color 0.2s ease-in-out;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-  }
-
-  .bx--header__menu-item:hover {
-    background: var(--sl-color-gray-3);
-    color: var(--sl-color-primary);
-  }
-
-  /* Keep right-side controls aligned */
-  .bx--header__global.right-group {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  /* Keep Header Within the Starlight Grid */
-  @media (min-width: 50rem) {
-    :global(:root[data-has-sidebar]) .custom-header {
-      position: relative;
-    }
-  }
-
-  /* Ensure It Doesn't Expand on Doc Pages */
-  :global(:root[data-has-sidebar]) .custom-header-content {
-    width: 100%;
-  }
-
-
-  /* Mobile Adjustments */
-  @media (max-width: 768px) {
-    .main-nav {
-      display: none;
-    }
-  }
-</style>
