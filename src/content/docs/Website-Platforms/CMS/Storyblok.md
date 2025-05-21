@@ -5,7 +5,7 @@ description: Learn about Storyblok, its history, features, and how it compares t
 
 # **Storyblok: Overview, History, Pros & Cons**
 
-## **📌 Overview**  
+## ** Overview**  
 Storyblok is a **headless content management system (CMS)** designed to empower developers and content creators with a flexible, API-first approach paired with a unique visual editor. It uses a component-based (or "block-based") system, enabling teams to create reusable content modules that streamline building and managing complex, scalable digital experiences. With its powerful content modeling, real-time collaboration, and seamless integration with modern front-end frameworks, Storyblok is ideal for organizations seeking to deliver engaging omnichannel experiences.
 
  **Best For:** **Developers, agencies, and enterprises** looking for a headless CMS that combines flexible content modeling with an intuitive visual editor and a component-based approach.  
@@ -14,7 +14,7 @@ Storyblok is a **headless content management system (CMS)** designed to empower 
 
 ---
 
-## **📜 History & Evolution**  
+## ** History & Evolution**  
 Storyblok was developed to address the growing need for a headless CMS that not only provides developers with powerful APIs but also enables non-technical users to manage content easily through a visual interface.
 
 - **2017:** Storyblok was founded with the goal of bridging the gap between developers and content editors by offering an innovative visual editing experience.
@@ -23,55 +23,55 @@ Storyblok was developed to address the growing need for a headless CMS that not 
 
 ---
 
-## **⚙️ Key Features & Capabilities**
+## ** Key Features & Capabilities**
 
-### **1️⃣ API-First & Headless Architecture**
-✔ **RESTful & GraphQL APIs:** Easily integrate with any front-end framework and deliver content across multiple channels.
-✔ **Decoupled Content Management:** Separates content creation from presentation, offering complete flexibility.
+### **1⃣ API-First & Headless Architecture**
+ **RESTful & GraphQL APIs:** Easily integrate with any front-end framework and deliver content across multiple channels.
+ **Decoupled Content Management:** Separates content creation from presentation, offering complete flexibility.
 
-### **2️⃣ Visual Editor & Component-Based System**
-✔ **Visual Editor:** Intuitive, drag-and-drop interface with live previews, allowing non-technical users to manage content visually.
-✔ **Component-Based Content Blocks:** Create reusable content modules ("blocks") that simplify complex layouts and accelerate development.
+### **2⃣ Visual Editor & Component-Based System**
+ **Visual Editor:** Intuitive, drag-and-drop interface with live previews, allowing non-technical users to manage content visually.
+ **Component-Based Content Blocks:** Create reusable content modules ("blocks") that simplify complex layouts and accelerate development.
 
-### **3️⃣ Flexible Content Modeling**
-✔ **Customizable Schemas:** Define and manage content types that precisely fit your project's needs.
-✔ **Multi-Language & Localization:** Easily manage content for global audiences with built-in localization support.
+### **3⃣ Flexible Content Modeling**
+ **Customizable Schemas:** Define and manage content types that precisely fit your project's needs.
+ **Multi-Language & Localization:** Easily manage content for global audiences with built-in localization support.
 
-### **4️⃣ Real-Time Collaboration & Workflow**
-✔ **Collaboration Tools:** Work concurrently with team members using real-time editing and commenting features.
-✔ **Versioning & History:** Track content changes and roll back when necessary, ensuring smooth content workflows.
+### **4⃣ Real-Time Collaboration & Workflow**
+ **Collaboration Tools:** Work concurrently with team members using real-time editing and commenting features.
+ **Versioning & History:** Track content changes and roll back when necessary, ensuring smooth content workflows.
 
-### **5️⃣ Extensibility & Integrations**
-✔ **Plugin Ecosystem:** Extend functionality with integrations and custom plugins.
-✔ **Seamless Integrations:** Connect with popular tools and platforms such as eCommerce systems, analytics, and marketing automation tools.
+### **5⃣ Extensibility & Integrations**
+ **Plugin Ecosystem:** Extend functionality with integrations and custom plugins.
+ **Seamless Integrations:** Connect with popular tools and platforms such as eCommerce systems, analytics, and marketing automation tools.
 
 ---
 
-## **🔄 Storyblok vs Competitors**
+## ** Storyblok vs Competitors**
 
 | Feature                      | Storyblok        | Contentful       | Prismic         | Sanity          |
 |------------------------------|------------------|------------------|-----------------|-----------------|
-| **Ease of Use**              |  Very Easy     | ⚠ Moderate      |  Easy         |  Easy         |
-| **Visual Editing**           |  Excellent     | ⚠ Limited       | ⚠ Basic        | ⚠ Limited      |
+| **Ease of Use**              |  Very Easy     |  Moderate      |  Easy         |  Easy         |
+| **Visual Editing**           |  Excellent     |  Limited       |  Basic        |  Limited      |
 | **Content Modeling**         |  Flexible      |  High         |  High         |  High         |
 | **API Support**              |  REST & GraphQL|  REST & GraphQL|  REST         |  REST & GraphQL|
-| **Collaboration Features**   |  Strong        | ⚠ Limited       | ⚠ Basic        |  Good         |
+| **Collaboration Features**   |  Strong        |  Limited       |  Basic        |  Good         |
 
 ---
 
 ## ** Pros of Storyblok**  
-✔ **Intuitive Visual Editor:** Empowers content editors to manage and preview content in real time without coding.  
-✔ **Component-Based Approach:** Reusable content blocks speed up development and ensure design consistency.  
-✔ **Flexible & Scalable:** Customizable content models and robust API support enable seamless integration across channels.  
-✔ **Real-Time Collaboration:** Facilitates teamwork with built-in editing and versioning features.  
-✔ **Multi-Language Support:** Built-in tools simplify managing content for global audiences.
+ **Intuitive Visual Editor:** Empowers content editors to manage and preview content in real time without coding.  
+ **Component-Based Approach:** Reusable content blocks speed up development and ensure design consistency.  
+ **Flexible & Scalable:** Customizable content models and robust API support enable seamless integration across channels.  
+ **Real-Time Collaboration:** Facilitates teamwork with built-in editing and versioning features.  
+ **Multi-Language Support:** Built-in tools simplify managing content for global audiences.
 
 ---
 
-## **❌ Cons of Storyblok**  
-⚠ **Learning Curve for Developers:** Customizing schemas and integrations may require technical expertise.
-⚠ **Subscription Costs:** Pricing can add up as your content needs and user base grow.
-⚠ **Ecosystem Size:** Although growing, the range of third-party plugins is still smaller compared to some larger headless CMS platforms.
+## ** Cons of Storyblok**  
+ **Learning Curve for Developers:** Customizing schemas and integrations may require technical expertise.
+ **Subscription Costs:** Pricing can add up as your content needs and user base grow.
+ **Ecosystem Size:** Although growing, the range of third-party plugins is still smaller compared to some larger headless CMS platforms.
 
 ---
 
@@ -84,7 +84,7 @@ Storyblok is **ideal for:**
 
 ---
 
-## **💡 Conclusion**  
+## ** Conclusion**  
 Storyblok delivers a **powerful and user-friendly headless CMS** that stands out with its visual editor and component-based content management system. Its flexible architecture, robust API support, and real-time collaboration make it a strong choice for teams aiming to build engaging, omnichannel digital experiences. While it may require a bit of a learning curve for advanced customizations, its benefits in efficiency and ease of use position it as a compelling option in the competitive headless CMS market.
 
 ---

@@ -5,7 +5,7 @@ description: Learn about Google Sites, its history, features, and how it compare
 
 # **Google Sites: Overview, History, Pros & Cons**
 
-## **📌 Overview**  
+## ** Overview**  
 Google Sites is a **free, cloud-based website builder** designed for users who need to create simple, functional websites without coding. Integrated with Google Workspace, it is perfect for internal team sites, educational projects, and basic informational websites. Its ease of use and collaborative features make it an attractive choice for non-technical users.
 
  **Best For:** **Small projects, intranet sites, educational purposes, and simple business websites**.  
@@ -14,7 +14,7 @@ Google Sites is a **free, cloud-based website builder** designed for users who n
 
 ---
 
-## **📜 History & Evolution**  
+## ** History & Evolution**  
 Google Sites was developed as part of Google’s effort to simplify web publishing for everyone:
 
 - **2008:** Launched as part of Google Apps (now Google Workspace), providing an easy way for teams to collaborate on websites.
@@ -23,51 +23,51 @@ Google Sites was developed as part of Google’s effort to simplify web publishi
 
 ---
 
-## **⚙️ Key Features & Capabilities**
+## ** Key Features & Capabilities**
 
-### **1️⃣ User-Friendly Editor**  
-✔ **Drag-and-drop interface:** Simplifies website creation with an intuitive editor.  
-✔ **Responsive templates:** Automatically optimized for various devices.  
-✔ **No coding required:** Accessible for users of all technical skill levels.
+### **1⃣ User-Friendly Editor**  
+ **Drag-and-drop interface:** Simplifies website creation with an intuitive editor.  
+ **Responsive templates:** Automatically optimized for various devices.  
+ **No coding required:** Accessible for users of all technical skill levels.
 
-### **2️⃣ Integration with Google Workspace**  
-✔ **Seamless integration:** Easily embed documents, calendars, and other Google services.  
-✔ **Collaborative editing:** Multiple users can work on the site simultaneously.
+### **2⃣ Integration with Google Workspace**  
+ **Seamless integration:** Easily embed documents, calendars, and other Google services.  
+ **Collaborative editing:** Multiple users can work on the site simultaneously.
 
-### **3️⃣ Cloud-Based & Free**  
-✔ **Free hosting:** Google provides reliable hosting with your Google account.  
-✔ **Cloud storage integration:** Leverage Google Drive for media and file management.
+### **3⃣ Cloud-Based & Free**  
+ **Free hosting:** Google provides reliable hosting with your Google account.  
+ **Cloud storage integration:** Leverage Google Drive for media and file management.
 
-### **4️⃣ Basic Customization & SEO**  
-✔ **Simple design options:** Customize layouts and themes for a basic online presence.  
-✔ **Built-in SEO settings:** Basic options to manage meta information and page URLs.
+### **4⃣ Basic Customization & SEO**  
+ **Simple design options:** Customize layouts and themes for a basic online presence.  
+ **Built-in SEO settings:** Basic options to manage meta information and page URLs.
 
 ---
 
-## **🔄 Google Sites vs Competitors**
+## ** Google Sites vs Competitors**
 
 | Feature                  | Google Sites      | Wix             | Weebly           | WordPress.com    |
 |--------------------------|-------------------|-----------------|------------------|------------------|
 | **Ease of Use**          |  Very Easy      |  Easy         |  Easy          |  Easy          |
-| **Integration**          |  Google Workspace | ⚠ Limited    | ⚠ Limited       | ⚠ Limited       |
-| **Customization**        | ⚠ Basic          |  High         |  Moderate      |  High          |
-| **Collaboration**        |  Strong        | ⚠ Limited      | ⚠ Limited       | ⚠ Limited       |
-| **Pricing**              |  Free          | ⚠ Paid Plans   | ⚠ Paid Plans    | ⚠ Free/Paid Plans |
+| **Integration**          |  Google Workspace |  Limited    |  Limited       |  Limited       |
+| **Customization**        |  Basic          |  High         |  Moderate      |  High          |
+| **Collaboration**        |  Strong        |  Limited      |  Limited       |  Limited       |
+| **Pricing**              |  Free          |  Paid Plans   |  Paid Plans    |  Free/Paid Plans |
 
 ---
 
 ## ** Pros of Google Sites**  
-✔ **Extremely user-friendly:** Ideal for beginners with its intuitive drag-and-drop interface.  
-✔ **Free and cloud-based:** No hosting fees, with reliable performance from Google’s infrastructure.  
-✔ **Seamless integration:** Works well with other Google Workspace tools for a connected workflow.  
-✔ **Collaborative:** Allows multiple users to edit and update content in real-time.
+ **Extremely user-friendly:** Ideal for beginners with its intuitive drag-and-drop interface.  
+ **Free and cloud-based:** No hosting fees, with reliable performance from Google’s infrastructure.  
+ **Seamless integration:** Works well with other Google Workspace tools for a connected workflow.  
+ **Collaborative:** Allows multiple users to edit and update content in real-time.
 
 ---
 
-## **❌ Cons of Google Sites**  
-⚠ **Limited customization:** Fewer design options compared to more advanced website builders.  
-⚠ **Basic functionality:** Lacks advanced features like eCommerce, extensive plugins, or sophisticated SEO tools.  
-⚠ **Not ideal for complex websites:** Best suited for simple, informational sites rather than dynamic, high-traffic platforms.
+## ** Cons of Google Sites**  
+ **Limited customization:** Fewer design options compared to more advanced website builders.  
+ **Basic functionality:** Lacks advanced features like eCommerce, extensive plugins, or sophisticated SEO tools.  
+ **Not ideal for complex websites:** Best suited for simple, informational sites rather than dynamic, high-traffic platforms.
 
 ---
 
@@ -79,7 +79,7 @@ Google Sites is **ideal for:**
   
 ---
 
-## **💡 Conclusion**  
+## ** Conclusion**  
 Google Sites offers a **simple, free, and collaborative website building solution** that excels in integration with Google Workspace. While it may lack the advanced customization and feature depth of other platforms, its ease of use and reliable performance make it an excellent choice for basic websites, internal projects, and educational purposes.
 
 ---
