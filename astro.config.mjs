@@ -105,7 +105,8 @@ export default defineConfig({
       Header: './src/components/CustomHeader.astro',
       Footer: './src/components/CustomFooter.astro',
     },
-	  head: [
+          head: [
+      { tag: 'link', attrs: { rel: 'stylesheet', href: '/css/nasa.css' } },
       // Adding google analytics
       {
         tag: 'script',

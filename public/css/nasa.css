@@ -1,0 +1,15 @@
+:root {
+  --sl-font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --sl-color-primary: #0b3d91; /* NASA blue */
+  --sl-color-accent: #fc3d21;  /* NASA red */
+  --sl-border-radius: 0;       /* crisp edges */
+}
+
+/* Hero adjustments */
+.sl-hero {
+  text-align: center;
+}
+.sl-hero h1 {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
