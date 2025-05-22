@@ -20,7 +20,7 @@ const { Content } = await post.render();
     {post.data.pubDate && <p>{post.data.pubDate.toLocaleDateString()}</p>}
     <Content />
     {post.data.tags?.length ? (
-      <p>Tags: {post.data.tags.map(t => <a href={`/blog/tags/${t}/`}>{t}</a>).join(', ')}</p>
+      <p>Tags: {post.data.tags.map(t => <a href={`/blog/tags/${t}`}>{t}</a>).join(', ')}</p>
     ) : null}
   </article>
 </BlogLayout>

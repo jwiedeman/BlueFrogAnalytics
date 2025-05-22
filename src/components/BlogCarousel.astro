@@ -4,7 +4,7 @@ const { posts = [] } = Astro.props;
 <div class="blog-carousel" data-carousel>
   {posts.map((post, idx) => (
     <div class="carousel-slide" data-index={idx} hidden={idx !== 0}>
-      <h2 class="carousel-title"><a href={post.url}>{post.data.title}</a></h2>
+      <h2 class="carousel-title"><a href={`/blog/${post.slug}`}>{post.data.title}</a></h2>
       {post.data.description && <p class="carousel-desc">{post.data.description}</p>}
     </div>
   ))}
