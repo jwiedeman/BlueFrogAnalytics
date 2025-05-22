@@ -305,8 +305,13 @@ main#main-content > * {
 }
 
 // Desktop header: add separator between logo and nav
+/* Increase site logo text size globally */
+.bx--header__name.site-logo {
+  font-size: 130%;
+}
+
 @media (min-width: 768px) {
-  .site-logo {
+  .bx--header__name.site-logo {
     padding-right: 1rem;
     margin-right: 1rem;
     border-right: 1px solid rgba(40, 40, 40, 0.2);
