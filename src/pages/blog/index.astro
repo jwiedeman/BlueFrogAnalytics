@@ -4,41 +4,61 @@ import BlogLayout from '../../components/BlogLayout.astro';
 
 import BlogCarousel from '../../components/BlogCarousel.astro';
 import RecentPosts from '../../components/RecentPosts.astro';
-import CategoryTabs from '../../components/CategoryTabs.astro';
+import BlogPostCard from '../../components/BlogPostCard.astro';
 
 
 const posts = await getCollection('blog');
 const sorted = posts.sort((a,b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const featured = sorted.slice(0,3);
-const categories = {
-  analytics: sorted.filter(p => (p.data.tags || []).includes('analytics')),
-  seo: sorted.filter(p => (p.data.tags || []).includes('seo')),
-  search: sorted.filter(p => (p.data.tags || []).includes('search')),
-};
+const tags = Array.from(new Set(posts.flatMap(p => p.data.tags || [])));
 ---
 <BlogLayout>
-  <h1>Blog</h1>
-  <input id="blog-search" type="search" placeholder="Search posts..." />
-  <section class="blog-hero bx--grid">
-    <div class="bx--row">
-      <div class="bx--col-sm-4 bx--col-md-6 bx--col-lg-12">
-        <BlogCarousel posts={featured} />
+  <div class="blog-page">
+    <h1>Blog</h1>
+    <section class="blog-search bx--grid">
+      <div class="bx--row">
+        <div class="bx--col-lg-16">
+          <div data-search class="bx--search bx--search--lg" role="search">
+            <label for="blog-search" class="bx--label bx--visually-hidden">Search posts</label>
+            <input id="blog-search" type="text" class="bx--search-input" placeholder="Search posts..." />
+          </div>
+          <div class="tag-filter">
+            {tags.map(t => <span class="bx--tag" data-tag={t}>{t}</span>)}
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="bx--col-sm-4 bx--col-md-2 bx--col-lg-4">
-        <RecentPosts posts={sorted.slice(0,5)} />
+    <section class="blog-hero bx--grid">
+      <div class="bx--row">
+        <div class="bx--col-sm-4 bx--col-md-6 bx--col-lg-12">
+          <BlogCarousel posts={featured} />
+        </div>
+
+        <div class="bx--col-sm-4 bx--col-md-2 bx--col-lg-4">
+          <RecentPosts posts={sorted.slice(0,5)} />
+        </div>
       </div>
-    </div>
-  </section>
-  <section class="blog-tabs bx--grid">
-    <CategoryTabs categories={categories} />
+    </section>
 
-  </section>
-  <script src="/js/blog-search.js" defer></script>
-  <script src="/js/hero-carousel.js" defer></script>
-  <style>
-    .blog-hero { margin-bottom: 2rem; }
-
-    .blog-tabs .bx--tab-content { padding-top: 1rem; }
-  </style>
+    <section class="blog-posts bx--grid">
+      <div class="bx--row" id="posts-list">
+        {sorted.map(post => (
+          <div class="bx--col-lg-4 bx--col-md-8 bx--col-sm-4">
+            <BlogPostCard post={post} />
+          </div>
+        ))}
+      </div>
+    </section>
+    <script src="/js/blog-search.js" defer></script>
+    <script src="/js/hero-carousel.js" defer></script>
+    <style>
+      #main-content > .blog-page { max-width: none; padding: 0; }
+      .blog-search { margin-bottom: 1rem; }
+      .tag-filter { margin-top: 0.5rem; }
+      .tag-filter .bx--tag { margin-right: 0.5rem; cursor: pointer; }
+      .tag-filter .bx--tag.active { background: #0f62fe; color: #fff; }
+      .blog-hero { margin-bottom: 2rem; }
+    </style>
+  </div>
 </BlogLayout>
