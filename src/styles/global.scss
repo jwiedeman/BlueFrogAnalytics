@@ -25,6 +25,13 @@ body {
   padding-right: 3rem;
 }
 
+/* Consistent horizontal rule styling */
+hr {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 2rem 0;
+}
+
 @media (max-width: 767px) {
   body {
     padding-left: 1rem;
@@ -72,6 +79,20 @@ body {
   border-left: 1px solid #e0e0e0;
   padding-left: 1rem;
 }
+// Right sidebar article headings
+.sidebar-right ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.sidebar-right li {
+  margin: 0.25rem 0;
+}
+.sidebar-right li[data-depth='3'] { margin-left: 1rem; }
+.sidebar-right li[data-depth='4'] { margin-left: 2rem; }
+.sidebar-right li[data-depth='5'] { margin-left: 3rem; }
+.sidebar-right li[data-depth='6'] { margin-left: 4rem; }
 // Search input in sidebars
 .sidebar-left input[type="search"] {
   width: 100%;
