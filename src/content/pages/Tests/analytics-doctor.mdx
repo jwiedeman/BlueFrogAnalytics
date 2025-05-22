@@ -19,15 +19,19 @@ template: splash
     <button type="submit" class="bx--btn bx--btn--primary">Scan</button>
   </form>
   <div id="status"></div>
-  <div id="progress-container">
-    <div id="progress-bar"></div>
+  <div id="progress-container" class="bx--progress-bar">
+    <div class="bx--progress-bar__track">
+      <div id="progress-bar" class="bx--progress-bar__bar" style="width:0%"></div>
+    </div>
   </div>
   <div id="eta"></div>
-  <div id="filter-container" class="filter-container">
+  <div id="filter-container" class="bx--form-item">
     <label for="column-select" class="bx--label">Analytics columns:</label>
     <select id="column-select" multiple class="bx--multi-select" size="4"></select>
-    <button id="select-all" type="button" class="bx--btn bx--btn--secondary">Select All</button>
-    <button id="clear-all" type="button" class="bx--btn bx--btn--tertiary">Clear</button>
+    <div class="bx--btn-set">
+      <button id="select-all" type="button" class="bx--btn bx--btn--secondary">Select All</button>
+      <button id="clear-all" type="button" class="bx--btn bx--btn--tertiary">Clear</button>
+    </div>
   </div>
   <div id="summary" class="summary-panel"></div>
   <div id="table-wrapper">
@@ -61,27 +65,6 @@ template: splash
   display: flex;
   flex-direction: column;
 }
-#progress-container {
-  background: var(--sl-color-gray-4);
-  height: 0.5rem;
-  position: relative;
-  margin-bottom: 0.5rem;
-}
-#progress-bar {
-  background: var(--sl-color-primary);
-  height: 100%;
-  width: 0%;
-}
-.filter-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-.filter-container select {
-  min-width: 12rem;
-}
 .summary-panel ul {
   padding-left: 1.5rem;
 }
@@ -90,30 +73,6 @@ template: splash
   word-break: break-word;
 }
 
-.analytics-pill {
-  display: inline-block;
-  padding: 0.1rem 0.4rem;
-  margin-right: 0.25rem;
-  border-radius: 0.5rem;
-  background: whitesmoke;
-  color: black;
-  font-size: 0.75rem;
-  text-decoration: none;
-}
-
-.analytics-pill.google-analytics { background: #fde2c6; }
-.analytics-pill.google-tag-manager { background: #e0ecfa; }
-.analytics-pill.segment { background: #e1faf3; }
-.analytics-pill.meta-pixel { background: #e7f0fd; }
-.analytics-pill.bing { background: #e3f1fd; }
-.analytics-pill.adobe-analytics { background: #efe6fb; }
-.analytics-pill.mixpanel { background: #f3e6ff; }
-.analytics-pill.hotjar { background: #ffe8e8; }
-.analytics-pill.amplitude { background: #e8ecff; }
-
-.analytics-pill.method-native { background: #f7f7f7; }
-.analytics-pill.method-gtm { background: #f0f0f0; }
-.analytics-pill.method-segment { background: #e9e9e9; }
 
 /* Table styling */
 #table-wrapper {

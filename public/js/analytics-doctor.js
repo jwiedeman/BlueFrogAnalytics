@@ -134,11 +134,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const canonical = canonicalize(key);
             const idSlug = slugify(canonical + '-note');
             const methodSlug = slugify('method-' + method);
-            const pillClass = 'analytics-pill ' + slugify(canonical);
+            const pillClass = 'analytics-pill bx--tag bx--tag--blue ' + slugify(canonical);
+            const methodClass = 'analytics-pill bx--tag bx--tag--gray method-' + slugify(method);
             td.className = 'analytics-cell';
             td.innerHTML =
               `<a href="#${idSlug}" class="${pillClass}">${ids}</a>` +
-              ` <a href="#${methodSlug}" class="analytics-pill method-${slugify(method)}">via ${method}</a>`;
+              ` <a href="#${methodSlug}" class="${methodClass}">via ${method}</a>`;
           } else {
             td.textContent = '';
           }
@@ -186,11 +187,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const canonical = canonicalize(name);
         const idSlug = slugify(canonical + '-note');
         const methodSlug = slugify('method-' + method);
-        const pillClass = 'analytics-pill ' + slugify(canonical);
+        const pillClass = 'analytics-pill bx--tag bx--tag--blue ' + slugify(canonical);
+        const methodClass = 'analytics-pill bx--tag bx--tag--gray method-' + slugify(method);
         li.innerHTML =
           `${formatName(name)} ` +
           `<a href="#${idSlug}" class="${pillClass}">${ids}</a>` +
-          ` <a href="#${methodSlug}" class="analytics-pill method-${slugify(method)}">via ${method}</a>`;
+          ` <a href="#${methodSlug}" class="${methodClass}">via ${method}</a>`;
         ul.appendChild(li);
       }
     }
