@@ -2,17 +2,10 @@
 const { posts = [] } = Astro.props;
 ---
 <aside class="recent-posts">
-  <h3>Recent Posts</h3>
-  <ul class="recent-posts-list">
+  <h3 class="bx--type-productive-heading-02">Recent Posts</h3>
+  <ul class="bx--list--unordered">
     {posts.map(p => (
-      <li><a href={`/blog/${p.slug}`}>{p.data.title}</a></li>
+      <li><a href={`/blog/${p.slug}`} class="bx--link">{p.data.title}</a></li>
     ))}
   </ul>
 </aside>
-<style>
-.recent-posts-list { list-style: none; padding: 0; }
-.recent-posts-list li { margin-bottom: 0.5rem; }
-.recent-posts { position: relative; z-index: 1; }
-.recent-posts-list a { text-decoration: none; color: inherit; }
-.recent-posts-list a:hover { text-decoration: underline; }
-</style>
