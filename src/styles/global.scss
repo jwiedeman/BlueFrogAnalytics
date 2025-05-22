@@ -167,6 +167,22 @@ main#main-content > * {
   padding-bottom: 1.2rem;
 }
 
+/* Unified layout wrappers for MDX pages */
+.carbon-container,
+.section {
+  max-width: var(--sl-content-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.carbon-hero,
+.hero-section {
+  max-width: var(--sl-content-width);
+  margin: 0 auto 2rem;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
 .bx--dropdown-item > .bx--dropdown-link,
 .bx--list-box__menu-item {
   color: #f5f5f5;
