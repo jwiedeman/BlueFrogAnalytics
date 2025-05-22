@@ -1,16 +1,3 @@
-.doc-accordion {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.doc-accordion ul {
-  list-style: none;
-  margin: 0;
-  padding-left: 1rem;
-}
-.doc-link-item {
-  margin: 0.25rem 0;
-}
 :root {
   --sl-font-sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
   --sl-color-primary: #0f62fe; /* Carbon blue */
