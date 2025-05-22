@@ -43,7 +43,7 @@ const docTree = buildTree();
     <div class="docs-container">
       <aside class="sidebar-left">
         <input id="doc-search" type="search" placeholder="Search docs..." />
-        <ul data-accordion class="bx--accordion doc-accordion">
+        <ul data-accordion class="bx--accordion">
           {(() => {
             function flattenLeaves(node, arr = []) {
               if (node.path) arr.push({ label: node.label, path: node.path });
@@ -59,9 +59,9 @@ const docTree = buildTree();
                   <div class="bx--accordion__title">{cat.label}</div>
                 </button>
                 <div id={`acc-${i}`} class="bx--accordion__content">
-                  <ul>
+                  <ul class="bx--list--unordered">
                     {flattenLeaves(cat).map(page => (
-                      <li class="doc-link-item" key={page.path}><a href={page.path}>{page.label}</a></li>
+                      <li key={page.path}><a href={page.path}>{page.label}</a></li>
                     ))}
                   </ul>
                 </div>
