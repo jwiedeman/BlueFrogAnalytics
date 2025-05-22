@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import BlogLayout from '../../components/BlogLayout.astro';
 
-import BlogCarousel from '../../components/BlogCarousel.astro';
+import FeaturedHero from '../../components/FeaturedHero.astro';
 import RecentPosts from '../../components/RecentPosts.astro';
 import BlogPostCard from '../../components/BlogPostCard.astro';
 
@@ -15,22 +15,18 @@ const tags = Array.from(new Set(posts.flatMap(p => p.data.tags || [])));
 <BlogLayout>
   <div class="blog-page">
     <section class="blog-hero bx--grid">
-      <div class="bx--row">
-        <div class="bx--col-lg-16">
-          <BlogCarousel posts={featured} />
-        </div>
-      </div>
+      <FeaturedHero posts={featured} />
     </section>
 
     <section class="blog-search bx--grid">
       <div class="bx--row">
-        <div class="bx--col-lg-12">
+        <div class="bx--col-sm-8 bx--col-md-8 bx--col-lg-8">
           <div data-search class="bx--search bx--search--lg" role="search">
             <label for="blog-search" class="bx--label bx--visually-hidden">Search posts</label>
             <input id="blog-search" type="text" class="bx--search-input" placeholder="Search posts..." />
           </div>
         </div>
-        <div class="bx--col-lg-4 tags-col">
+        <div class="bx--col-sm-8 bx--col-md-8 bx--col-lg-8 tags-col">
           <div class="tag-filter">
             {tags.map(t => <span class="bx--tag" data-tag={t}>{t}</span>)}
           </div>
@@ -40,7 +36,7 @@ const tags = Array.from(new Set(posts.flatMap(p => p.data.tags || [])));
 
     <section class="blog-posts bx--grid">
       <div class="bx--row">
-        <div class="bx--col-lg-12">
+        <div class="bx--col-sm-8 bx--col-md-8 bx--col-lg-12">
           <div class="bx--row" id="posts-list">
             {sorted.map(post => (
               <div class="bx--col-lg-4 bx--col-md-8 bx--col-sm-4">
@@ -49,13 +45,12 @@ const tags = Array.from(new Set(posts.flatMap(p => p.data.tags || [])));
             ))}
           </div>
         </div>
-        <div class="bx--col-lg-4">
+        <div class="bx--col-sm-8 bx--col-md-8 bx--col-lg-4">
           <RecentPosts posts={sorted.slice(0,5)} />
         </div>
       </div>
     </section>
     <script src="/js/blog-search.js" defer></script>
-    <script src="/js/hero-carousel.js" defer></script>
     <style>
       #main-content > .blog-page { max-width: none; padding: 0; }
       .blog-hero { margin-bottom: 1rem; }

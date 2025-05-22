@@ -1,0 +1,37 @@
+---
+import BlogPostCard from './BlogPostCard.astro';
+const { posts = [] } = Astro.props;
+const [first, second, third] = posts;
+---
+<div class="featured-hero">
+  <div class="bx--row">
+    <div class="bx--col-lg-8 bx--col-md-8 bx--col-sm-4 featured-main">
+      {first && <BlogPostCard post={first} />}
+    </div>
+    <div class="bx--col-lg-8 bx--col-md-8 bx--col-sm-4">
+      <div class="bx--row">
+        {second && (
+          <div class="bx--col-lg-16 small-card">
+            <BlogPostCard post={second} />
+          </div>
+        )}
+        {third && (
+          <div class="bx--col-lg-16 small-card">
+            <BlogPostCard post={third} />
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+.featured-main .blog-card {
+  height: 100%;
+}
+.small-card .blog-card {
+  margin-bottom: 1rem;
+}
+.featured-hero .blog-card {
+  height: 100%;
+}
+</style>
