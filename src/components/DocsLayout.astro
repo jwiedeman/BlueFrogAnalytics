@@ -61,7 +61,7 @@ const docTree = buildTree();
                 <div id={`acc-${i}`} class="bx--accordion__content">
                   <ul class="bx--list--unordered">
                     {flattenLeaves(cat).map(page => (
-                      <li key={page.path}><a href={page.path}>{page.label}</a></li>
+                      <li class="doc-link-item" key={page.path}><a href={page.path}>{page.label}</a></li>
                     ))}
                   </ul>
                 </div>
@@ -97,6 +97,23 @@ const docTree = buildTree();
           item.style.display = visible ? '' : 'none';
         });
       });
+
+      // Keep current page link highlighted and its folder open
+      const current = window.location.pathname.replace(/\/$/, '').toLowerCase();
+      const link = Array.from(document.querySelectorAll('.sidebar-left a')).find(a => {
+        const href = a.getAttribute('href');
+        if (!href) return false;
+        return href.replace(/\/$/, '').toLowerCase() === current;
+      });
+      if (link) {
+        link.classList.add('active');
+        const item = link.closest('.bx--accordion__item');
+        if (item) {
+          item.classList.add('bx--accordion__item--active');
+          const heading = item.querySelector('.bx--accordion__heading');
+          if (heading) heading.setAttribute('aria-expanded', 'true');
+        }
+      }
     </script>
   </body>
 </html>

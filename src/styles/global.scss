@@ -255,6 +255,12 @@ main#main-content > * {
   text-decoration: underline;
 }
 
+// Docs sidebar: highlight active article link
+.sidebar-left a.active {
+  color: var(--sl-color-primary);
+  text-decoration: underline;
+}
+
 // Desktop header: add separator between logo and nav
 @media (min-width: 768px) {
   .site-logo {
