@@ -324,3 +324,39 @@ main#main-content > * {
     border-right: 1px solid rgba(40, 40, 40, 0.2);
   }
 }
+/* NASA-inspired styles for Services page */
+.nasa-hero {
+  background: #ffffff;
+  color: var(--cds-text);
+  border-bottom: 4px solid var(--sl-color-accent);
+  padding: 3rem 1rem;
+  text-align: center;
+}
+.nasa-hero h1 {
+  font-size: 2.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+.nasa-hero p {
+  font-size: 1.25rem;
+  margin: 0 auto 1.5rem;
+  max-width: 60ch;
+}
+.nasa-btn {
+  background-color: var(--sl-color-accent);
+  color: #ffffff;
+  border: none;
+}
+.nasa-btn:hover,
+.nasa-btn:focus {
+  background-color: #d8321b;
+}
+.nasa-tile {
+  background: #ffffff;
+  border-left: 4px solid var(--sl-color-accent);
+  padding: 1.5rem;
+}
+.nasa-tile h3 {
+  margin-top: 0;
+}
