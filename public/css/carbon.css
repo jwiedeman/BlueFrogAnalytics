@@ -95,37 +95,12 @@ body {
   justify-content: center;
 }
 
-/* Header customizations */
-.bx--header__global {
-  display: flex;
-  align-items: center;
-}
 
-.bx--header__global .bx--header__action {
-  display: flex;
-  align-items: center;
-}
 
-.bx--header .bx--btn--ghost {
-  color: #f4f4f4;
-  border-color: #f4f4f4;
-}
 
-/* Ensure header actions and links are visible */
-.bx--header,
-.bx--header a,
-.bx--header button {
-  color: #f5f5f5;
-}
 
-.bx--header__name {
-  color: #f5f5f5;
-}
 
-.bx--header__action svg {
-  fill: #f5f5f5;
-  color: #f5f5f5;
-}
+
 
 /* Provide spacing and width for the search bar */
 .bx--header__search {
@@ -158,20 +133,8 @@ body {
   z-index: 1000;
 }
 
-.bx--header__nav.nav-open {
-  display: flex;
-}
 
-.bx--header__menu-bar {
-  flex-direction: column;
-  width: 100%;
-}
 
-.bx--header__menu-item {
-  padding: 0.5rem 0;
-  width: 100%;
-  color: #f5f5f5;
-}
 
 
 @media (min-width: 768px) {
@@ -187,17 +150,13 @@ body {
     flex-direction: row;
     padding: 0;
     align-items: center;
-    height: var(--cds--ui-shell--header-height);
   }
   .bx--header__menu-bar {
     flex-direction: row;
     width: auto;
     gap: 0rem;
   }
-  .bx--header__menu-item {
-    width: auto;
-    padding: 0 0.5rem;
-  }
+  
 }
 
 /* Ensure dropdown menus match header background */
