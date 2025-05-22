@@ -5,17 +5,19 @@ import '../styles/global.scss';
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<!-- IBM Carbon CSS -->
-<link rel="stylesheet" href="https://unpkg.com/carbon-components/css/carbon-components.min.css" />
+<!-- IBM Carbon CSS (loaded asynchronously to avoid render blocking) -->
+<link rel="preload" as="style" href="https://unpkg.com/carbon-components/css/carbon-components.min.css" onload="this.onload=null;this.rel='stylesheet'" />
+<noscript><link rel="stylesheet" href="https://unpkg.com/carbon-components/css/carbon-components.min.css" /></noscript>
 <!-- IBM Plex Sans font -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&display=swap" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&display=swap" /></noscript>
 
 <!-- Carbon JS (for interactive components) -->
 <script src="https://unpkg.com/carbon-components/scripts/carbon-components.min.js" defer></script>
 <script>
-  window.addEventListener("DOMContentLoaded", () => {
+  window.addEventListener("load", () => {
     if (window.CarbonComponents) {
       window.CarbonComponents.watch();
     }

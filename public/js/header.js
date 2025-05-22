@@ -18,5 +18,5 @@ function initHeaderMenu() {
 if (document.readyState !== 'loading') {
   initHeaderMenu();
 } else {
-  document.addEventListener('DOMContentLoaded', initHeaderMenu);
+  window.addEventListener('load', initHeaderMenu);
 }

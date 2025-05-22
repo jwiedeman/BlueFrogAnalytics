@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
   const API_BASE_URL = 'https://66f4-24-20-99-62.ngrok-free.app';
   const ANALYTICS_KEYS = [
     'google_analytics',

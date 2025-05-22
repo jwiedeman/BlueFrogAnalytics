@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
   const form = document.getElementById('roas-form');
   const exportBtn = document.getElementById('export');
   const resultsEl = document.getElementById('roas-results');
