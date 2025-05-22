@@ -2,25 +2,23 @@
 const { post } = Astro.props;
 const url = `/blog/${post.slug}`;
 ---
-<article class="bx--tile bx--tile--clickable blog-card" data-tags={(post.data.tags || []).join(' ')} onclick={`if(!event.target.closest('a')){window.location='${url}'}` }>
-
-  <h2 class="blog-card-title"><a href={url}>{post.data.title}</a></h2>
-
-  {post.data.pubDate && <p class="blog-card-date">{post.data.pubDate.toLocaleDateString()}</p>}
-  {post.data.description && <p class="blog-card-desc">{post.data.description}</p>}
+<article
+  class="bx--tile bx--tile--clickable bx--tile--light blog-card"
+  data-tags={(post.data.tags || []).join(' ')}
+  onclick={`if(!event.target.closest('a')){window.location='${url}'}`}
+>
+  <h3 class="bx--type-expressive-heading-03">
+    <a href={url} class="bx--link">{post.data.title}</a>
+  </h3>
+  {post.data.pubDate && (
+    <p class="bx--type-productive-heading-01">{post.data.pubDate.toLocaleDateString()}</p>
+  )}
+  {post.data.description && <p>{post.data.description}</p>}
   {post.data.tags?.length ? (
-    <p class="blog-card-tags">{post.data.tags.map(t => <a href={`/blog/tags/${t}`}>{t}</a>).join(', ')}</p>
+    <p>
+      {post.data.tags.map(t => (
+        <a href={`/blog/tags/${t}`} class="bx--tag">{t}</a>
+      ))}
+    </p>
   ) : null}
 </article>
-<style>
-.blog-card {
-  margin-bottom: 2rem;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-.blog-card-title { margin: 0 0 0.25rem; }
-.blog-card-date { margin: 0 0 0.5rem; color: #6f6f6f; }
-.blog-card-tags a { margin-right: 0.5rem; text-decoration: none; font-size: 0.85rem; }
-</style>
