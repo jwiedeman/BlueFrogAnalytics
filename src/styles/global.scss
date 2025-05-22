@@ -80,6 +80,8 @@ body {
 .hero-content {
   position: relative;
   z-index: 1;
+  /* Left-align hero text for better readability */
+  text-align: left;
 }
 
 #ascii-art {
@@ -102,6 +104,13 @@ body {
 }
 
 // Button group for calls to action
+.hero-section .hero-content .bx--btn-set {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+  margin-top: 1rem;
+}
+/* Fallback: center other .bx--btn-set instances remain centered */
 .bx--btn-set {
   display: flex;
   gap: 1rem;
@@ -129,7 +138,7 @@ body {
   display: none;
   position: static;
   width: 100%;
-  background: #161616;
+
   flex-direction: column;
   padding: 0.5rem 1rem;
   z-index: 1000;
