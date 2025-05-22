@@ -9,7 +9,7 @@ template: splash
 {/* Hero Section */}
 <div className="bx--grid hero-section bx--theme--g100">
   <div className="bx--row">
-    <div className="bx--col-lg-8 bx--offset-lg-2 text-center">
+    <div className="bx--col-lg-8 bx--offset-lg-2 text-center hero-content">
       <h1 className="bx--type-expressive-heading-05">Precision analytics for the modern web.</h1>
       <p className="bx--type-body-long-02">
         Inspired by Carbon’s design principles, Blue Frog Analytics audits and optimizes every metric. Launch with confidence—and keep your site performing at its peak.
@@ -20,6 +20,7 @@ template: splash
       </div>
     </div>
   </div>
+  <div id="ascii-art" aria-hidden="true"></div>
 </div>
 
 {/* Mission Overview - Enhanced Visual Layout */}
@@ -136,3 +137,5 @@ template: splash
     </div>
   </div>
 </div>
+
+<script type="module" src="/js/ascii-hero.js" defer></script>
