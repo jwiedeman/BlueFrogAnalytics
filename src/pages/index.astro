@@ -1,20 +1,9 @@
 ---
 // Homepage structured with Carbon sections
-import BaseHead from '../components/BaseHead.astro';
-import CustomHeader from '../components/CustomHeader.astro';
-import CustomFooter from '../components/CustomFooter.astro';
+import DocLayout from '../components/DocLayout.astro';
 import IndexPage from '../content/docs/index.mdx';
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead />
-  </head>
-  <body>
-    <CustomHeader />
-    <main id="main-content">
-      <IndexPage />
-    </main>
-    <CustomFooter />
-  </body>
-</html>
+<DocLayout>
+  <IndexPage />
+</DocLayout>
