@@ -58,15 +58,13 @@ const sidebar = [
   { label: 'Analytics Platforms', items: scanDocsFolder(path.join(DOCS_DIR, 'Analytics-Platforms')), collapsed: true },
   { label: 'Ad Platforms', items: scanDocsFolder(path.join(DOCS_DIR, 'Ad-Platforms')), collapsed: true },
   { label: 'Implementation Guides', items: scanDocsFolder(path.join(DOCS_DIR, 'Implementation-Guides')), collapsed: true },
-  { label: 'Web Tracking Fundamentals', items: scanDocsFolder(path.join(DOCS_DIR, 'Web-Tracking-Fundamentals')), collapsed: true },
+  { label: 'Learning', items: scanDocsFolder(path.join(DOCS_DIR, 'Learning')), collapsed: true },
   { label: 'Compliance & Privacy', items: scanDocsFolder(path.join(DOCS_DIR, 'Compliance')), collapsed: true },
   { label: 'Performance', items: scanDocsFolder(path.join(DOCS_DIR, 'Performance')), collapsed: true },
   { label: 'SEO', items: scanDocsFolder(path.join(DOCS_DIR, 'SEO')), collapsed: true },
   { label: 'Advanced Concepts', items: scanDocsFolder(path.join(DOCS_DIR, 'Advanced-Concepts')), collapsed: true },
-  { label: 'Debugging & Troubleshooting', items: scanDocsFolder(path.join(DOCS_DIR, 'Debugging')), collapsed: true },
   { label: 'Integrations', items: scanDocsFolder(path.join(DOCS_DIR, 'Integrations')), collapsed: true },
-  { label: 'API Reference', items: scanDocsFolder(path.join(DOCS_DIR, 'API-Reference')), collapsed: true },
-  { label: 'Case Studies & Use Cases', items: scanDocsFolder(path.join(DOCS_DIR, 'CaseStudies')), collapsed: true },
+  { label: 'Blue Frog Analytics', items: scanDocsFolder(path.join(DOCS_DIR, 'BlueFrogAnalytics')), collapsed: true },
   { label: 'Community & Support', items: scanDocsFolder(path.join(DOCS_DIR, 'Community')), collapsed: true }
 
 ];
