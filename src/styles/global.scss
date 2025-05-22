@@ -22,6 +22,13 @@ body {
   padding-right: 3rem;
 }
 
+@media (max-width: 767px) {
+  body {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
 
 
 
@@ -36,6 +43,16 @@ body {
   max-width: var(--sl-content-width);
   margin: 0 auto;
   padding: 1rem 1rem 2rem;
+}
+
+@media (max-width: 767px) {
+  .docs-container {
+    grid-template-columns: 1fr;
+  }
+  .sidebar-left,
+  .sidebar-right {
+    display: none;
+  }
 }
 .sidebar-left,
 .sidebar-right {
@@ -81,6 +98,18 @@ body {
   margin-bottom: 2rem;
   padding: 2rem 3rem;
   background: #ffffff;
+}
+
+@media (max-width: 767px) {
+  .hero-section {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 2rem 1rem;
+  }
+  #ascii-art {
+    display: none;
+  }
 }
 
 .hero-content {
