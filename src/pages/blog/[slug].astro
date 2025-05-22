@@ -10,7 +10,9 @@ export async function getStaticPaths() {
 const { slug } = Astro.params;
 const post = await getEntryBySlug('blog', slug);
 if (!post) throw new Error('Post not found');
-const Content = post.render().Content;
+
+const { Content } = await post.render();
+
 ---
 <BlogLayout>
   <article>
