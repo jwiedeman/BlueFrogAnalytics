@@ -1,23 +1,39 @@
 ---
 import { getCollection } from 'astro:content';
 import BlogLayout from '../../components/BlogLayout.astro';
-import BlogPostCard from '../../components/BlogPostCard.astro';
+import BlogCarousel from '../../components/BlogCarousel.astro';
+import RecentPosts from '../../components/RecentPosts.astro';
+import CategoryTabs from '../../components/CategoryTabs.astro';
 
 const posts = await getCollection('blog');
 const sorted = posts.sort((a,b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-const tags = Array.from(new Set(posts.flatMap(p => p.data.tags || [])));
+const featured = sorted.slice(0,3);
+const categories = {
+  analytics: sorted.filter(p => (p.data.tags || []).includes('analytics')),
+  seo: sorted.filter(p => (p.data.tags || []).includes('seo')),
+  search: sorted.filter(p => (p.data.tags || []).includes('search')),
+};
 ---
 <BlogLayout>
   <h1>Blog</h1>
   <input id="blog-search" type="search" placeholder="Search posts..." />
-  <div class="tag-cloud">
-    {tags.map(t => <a href={`/blog/tags/${t}/`}>{t}</a>)}
-  </div>
-  <div id="posts-list">
-    {sorted.map(post => <BlogPostCard post={post} />)}
-  </div>
+  <section class="blog-hero bx--grid">
+    <div class="bx--row">
+      <div class="bx--col-sm-4 bx--col-md-6 bx--col-lg-12">
+        <BlogCarousel posts={featured} />
+      </div>
+      <div class="bx--col-sm-4 bx--col-md-2 bx--col-lg-4">
+        <RecentPosts posts={sorted.slice(0,5)} />
+      </div>
+    </div>
+  </section>
+  <section class="blog-tabs bx--grid">
+    <CategoryTabs categories={categories} />
+  </section>
   <script src="/js/blog-search.js" defer></script>
+  <script src="/js/hero-carousel.js" defer></script>
   <style>
-    .tag-cloud a { margin-right: 0.5rem; }
+    .blog-hero { margin-bottom: 2rem; }
+    .blog-tabs .bx--tab-content { padding-top: 1rem; }
   </style>
 </BlogLayout>

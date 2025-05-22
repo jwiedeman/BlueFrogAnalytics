@@ -1,0 +1,15 @@
+---
+const { posts = [] } = Astro.props;
+---
+<aside class="recent-posts">
+  <h3>Recent Posts</h3>
+  <ul class="recent-posts-list">
+    {posts.map(p => (
+      <li><a href={p.url}>{p.data.title}</a></li>
+    ))}
+  </ul>
+</aside>
+<style>
+.recent-posts-list { list-style: none; padding: 0; }
+.recent-posts-list li { margin-bottom: 0.5rem; }
+</style>
