@@ -46,6 +46,7 @@ const docTree = buildTree();
         <ul data-accordion class="bx--accordion">
           {(() => {
             function renderNodes(nodes) {
+
               return nodes.map(node => {
                 if (node.children?.length) {
                   return (
@@ -60,6 +61,7 @@ const docTree = buildTree();
                 return (
                   <li class="doc-link-item">
                     <a href={node.path}>{node.label}</a>
+
                   </li>
                 );
               });
