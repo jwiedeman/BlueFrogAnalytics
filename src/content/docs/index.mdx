@@ -4,148 +4,135 @@ description: Advanced website auditing, SEO optimization, and compliance monitor
 template: splash
 ---
 
-<div class="carbon-hero">
-  <h1>Precision analytics for the modern web.</h1>
-  <p>Inspired by IBM's Carbon design principles, Blue Frog Analytics audits and optimizes every metric. Launch with confidence and keep your site performing at its peak.</p>
-  <div class="hero-actions">
-    <a href="/introduction/how-blue-frog-analytics-works" class="bx--btn bx--btn--primary">Get Started</a>
-    <a href="/introduction/use-cases" class="bx--btn bx--btn--secondary">Learn More</a>
-  </div>
-</div>
-<div class="carbon-container">
 
-## Mission Overview
 
-Blue Frog Analytics is an **intelligent web auditing platform** for teams that demand accuracy.
-It delivers **precise insights** into tracking, SEO, and performance—so issues are resolved before they jeopardize your mission.
-
-### Core Capabilities
-- **Tracking Validation** – Ensure Google Analytics, Meta, Bing, and other platforms are properly integrated.
-- **SEO Enhancements** – Improve Core Web Vitals, metadata, and structured data.
-- **Performance Insights** – Identify bottlenecks, slow pages, and rendering inefficiencies.
-- **Compliance Checks** – Stay compliant with **GDPR, CPRA, WCAG**, and other global regulations.
-
----
-
-## Launch Sequence
-
-<div class="bx--grid bx--grid--condensed">
-  <div class="bx--row">
-    <div class="bx--col-sm-12 bx--col-md-6 bx--col-lg-4">
-      <div class="bx--tile">
-        <h3>Scan Your Website</h3>
-        <p>Enter your domain, and Blue Frog Analytics performs a deep audit, identifying tracking, SEO, and performance issues.</p>
-      </div>
-    </div>
-    <div class="bx--col-sm-12 bx--col-md-6 bx--col-lg-4">
-      <div class="bx--tile">
-        <h3>Get Actionable Reports</h3>
-        <p>Receive <strong>detailed breakdowns</strong> of your site’s analytics gaps, SEO weaknesses, and compliance risks.</p>
-      </div>
-    </div>
-    <div class="bx--col-sm-12 bx--col-md-6 bx--col-lg-4">
-      <div class="bx--tile">
-        <h3>Implement Fixes</h3>
-        <p>Follow <strong>step-by-step optimization guides</strong> tailored to your site’s unique needs.</p>
-      </div>
-    </div>
-    <div class="bx--col-sm-12 bx--col-md-6 bx--col-lg-4">
-      <div class="bx--tile">
-        <h3>Monitor &amp; Improve</h3>
-        <p>Run <strong>scheduled scans</strong> and track improvements over time to ensure ongoing performance and compliance.</p>
+{/* Hero Section */}
+<div className="bx--grid hero-section bx--theme--g100">
+  <div className="bx--row">
+    <div className="bx--col-lg-8 bx--offset-lg-2 text-center">
+      <h1 className="bx--type-expressive-heading-05">Precision analytics for the modern web.</h1>
+      <p className="bx--type-body-long-02">
+        Inspired by Carbon’s design principles, Blue Frog Analytics audits and optimizes every metric. Launch with confidence—and keep your site performing at its peak.
+      </p>
+      <div className="bx--btn-set" style={{ justifyContent: 'center' }}>
+        <a href="/introduction/how-blue-frog-analytics-works" className="bx--btn bx--btn--primary">Get Started</a>
+        <a href="/introduction/use-cases" className="bx--btn bx--btn--secondary">Learn More</a>
       </div>
     </div>
   </div>
 </div>
 
----
+{/* Mission Overview - Enhanced Visual Layout */}
+<div className="bx--grid bx--theme--g10 section">
+  <div className="bx--row">
+    <div className="bx--col-lg-12 text-center">
+      <h2 className="bx--type-productive-heading-03">Mission Overview</h2>
+      <p className="bx--type-body-long-02 bx--col-lg-8 bx--offset-lg-2">
+        Blue Frog Analytics is an <strong>intelligent web auditing platform</strong> designed for teams demanding accuracy. Delivering <strong>precise insights</strong> into tracking, SEO, and performance issues before they become critical.
+      </p>
+    </div>
+  </div>
 
-##  Why Choose Blue Frog Analytics?
-
-<div class="bx--grid bx--grid--condensed">
-  <div class="bx--row">
-    <div class="bx--col-sm-12 bx--col-md-6 bx--col-lg-4">
-      <div class="bx--tile">
-        <h3>Data Accuracy &amp; Validation</h3>
-        <p>Ensure tracking pixels, tags, and events fire correctly—no more lost data.</p>
+  <div className="bx--row" style={{ marginTop: '2rem' }}>
+    {[
+      ['Tracking Validation', 'Ensure accurate GA, Meta, and Bing integrations.'],
+      ['SEO Enhancements', 'Optimize Core Web Vitals, metadata, and structured data.'],
+      ['Performance Insights', 'Identify bottlenecks & improve page speeds.'],
+      ['Compliance Checks', 'Stay compliant with GDPR, CPRA, and WCAG.']
+    ].map(([title, desc]) => (
+      <div key={title} className="bx--col-lg-3 bx--col-md-4 bx--col-sm-4">
+        <div className="bx--tile bx--tile--clickable bx--tile--light">
+          <h4 className="bx--type-heading-compact-01">{title}</h4>
+          <p className="bx--type-body-short-01">{desc}</p>
+        </div>
       </div>
-    </div>
-    <div class="bx--col-sm-12 bx--col-md-6 bx--col-lg-4">
-      <div class="bx--tile">
-        <h3>Performance Optimization</h3>
-        <p>Identify bottlenecks and boost site speed with AI-driven suggestions.</p>
-      </div>
-    </div>
-    <div class="bx--col-sm-12 bx--col-md-6 bx--col-lg-4">
-      <div class="bx--tile">
-        <h3>SEO &amp; Compliance Insights</h3>
-        <p>Uncover metadata issues, accessibility problems, and compliance gaps.</p>
-      </div>
-    </div>
-    <div class="bx--col-sm-12 bx--col-md-6 bx--col-lg-4">
-      <div class="bx--tile">
-        <h3>Custom Reporting &amp; Integrations</h3>
-        <p>Export reports, track historical data, and integrate insights into your workflow.</p>
-      </div>
-    </div>
+    ))}
   </div>
 </div>
 
----
-
-## **Mission Steps to Optimize Your Website**
-
-<ol class="bx--list--ordered">
-  <li><strong>Enter Your Domain</strong><br />
-  Get started by inputting your website URL into <strong>Blue Frog Analytics</strong>.</li>
-  <li><strong>Run a Full Website Audit</strong><br />
-  Our system will scan for <strong>tracking issues, SEO gaps, and performance bottlenecks</strong>.</li>
-  <li><strong>Receive Actionable Reports</strong><br />
-  Instantly get a <strong>detailed breakdown</strong> of errors and optimization opportunities.</li>
-  <li><strong>Fix &amp; Monitor Performance</strong><br />
-  Implement fixes, then <strong>re-scan periodically</strong> to maintain peak site health.</li>
-</ol>
-
----
-
-##  **Use Blue Frog Analytics for Your Needs**
-
-<div class="bx--grid bx--grid--condensed">
-  <div class="bx--row">
-    <div class="bx--col-sm-12 bx--col-md-4">
-      <h3>Developers</h3>
-      <ul class="bx--list--unordered">
-        <li>Ensure all tracking scripts fire correctly</li>
-        <li>Debug <strong>Google Analytics &amp; Meta Pixel</strong></li>
-        <li>Optimize <strong>Core Web Vitals &amp; Page Speed</strong></li>
-      </ul>
+{/* Launch Sequence - Enhanced Visual Layout */}
+<div className="bx--grid bx--theme--g90 section">
+  <div className="bx--row">
+    <div className="bx--col-lg-12 text-center">
+      <h2 className="bx--type-productive-heading-03" style={{color: 'white'}}>🛰️ Launch Sequence</h2>
     </div>
-    <div class="bx--col-sm-12 bx--col-md-4">
-      <h3>Marketers</h3>
-      <ul class="bx--list--unordered">
-        <li>Validate conversions &amp; <strong>attribution tracking</strong></li>
-        <li>Ensure <strong>SEO best practices</strong></li>
-        <li>Detect lost <strong>UTM parameters</strong> in paid ads</li>
-      </ul>
-    </div>
-    <div class="bx--col-sm-12 bx--col-md-4">
-      <h3>Compliance Teams</h3>
-      <ul class="bx--list--unordered">
-        <li>Audit <strong>GDPR, CPRA, &amp; accessibility (WCAG)</strong></li>
-        <li>Verify <strong>cookie consent tracking</strong></li>
-        <li>Identify <strong>data privacy risks</strong> before they escalate</li>
-      </ul>
-    </div>
+  </div>
+
+  <div className="bx--row" style={{ marginTop: '2rem' }}>
+    {[
+      ['Scan Your Website', 'Audit your tracking, SEO, and performance issues thoroughly.'],
+      ['Actionable Reports', 'Gain detailed, clear insights to drive decisions.'],
+      ['Implement Fixes', 'Easy-to-follow, step-by-step optimization guides.'],
+      ['Monitor & Improve', 'Run scheduled scans ensuring ongoing site health.']
+    ].map(([title, desc]) => (
+      <div key={title} className="bx--col-lg-3 bx--col-md-4 bx--col-sm-4">
+        <div className="bx--card bx--card--inverse bx--tile--clickable">
+          <div className="bx--card__content">
+            <h4 className="bx--type-heading-compact-01" style={{color: 'white'}}>{title}</h4>
+            <p className="bx--type-body-short-01" style={{color: '#f4f4f4'}}>{desc}</p>
+          </div>
+        </div>
+      </div>
+    ))}
   </div>
 </div>
 
----
+{/* Why Choose Blue Frog */}
+<div className="bx--grid section bx--theme--white">
+  <div className="bx--row">
+    <div className="bx--col-lg-12 text-center">
+      <h2 className="bx--type-productive-heading-04 section-title">Why Choose Blue Frog Analytics?</h2>
+    </div>
+  </div>
+  <div className="bx--row">
+    {[
+      ['Data Accuracy', 'No lost pixels or tags.'],
+      ['Performance Optimization', 'AI suggestions for speed.'],
+      ['SEO & Compliance', 'Reveal compliance gaps.'],
+      ['Custom Reporting', 'Seamless integrations.']
+    ].map(([title, desc]) => (
+      <div key={title} className="bx--col-lg-3 bx--col-md-4 bx--col-sm-4">
+        <div className="bx--card">
+          <div className="bx--card__content">
+            <h4 className="bx--type-heading-compact-01">{title}</h4>
+            <p>{desc}</p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
 
-## Ignite Your Mission
+{/* Use Cases */}
+<div className="bx--grid section bx--theme--g10">
+  <div className="bx--row">
+    <div className="bx--col-lg-12 text-center">
+      <h2 className="bx--type-productive-heading-04 section-title">Use Cases & Workflows</h2>
+    </div>
+  </div>
+  <div className="bx--row">
+    {[
+      ['Developers', 'Debugging & optimization.'],
+      ['Marketers', 'Conversions & SEO.'],
+      ['Compliance', 'GDPR, CPRA, WCAG audits.']
+    ].map(([title, desc]) => (
+      <div key={title} className="bx--col-lg-4 bx--col-md-4 bx--col-sm-4">
+        <div className="bx--tile bx--tile--clickable">
+          <h4 className="bx--type-heading-compact-01">{title}</h4>
+          <p>{desc}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
 
-<a href="/introduction/how-blue-frog-analytics-works" class="bx--btn bx--btn--primary">Begin Your Launch</a>
-
-<a href="/introduction/how-blue-frog-analytics-works" class="bx--btn bx--btn--secondary">Review Flight Plan</a>
-
-<a href="/introduction/how-blue-frog-analytics-works" class="bx--btn bx--btn--ghost">View Documentation</a>
+{/* Call to Action */}
+<div className="bx--grid section bx--theme--white">
+  <div className="bx--row">
+    <div className="bx--col-lg-8 bx--offset-lg-2 text-center">
+      <h2 className="bx--type-productive-heading-04 section-title">Ready to launch your mission?</h2>
+      <p className="bx--type-body-long-02">Start your free audit now and experience Blue Frog Analytics.</p>
+      <a href="/introduction/how-blue-frog-analytics-works" className="bx--btn bx--btn--primary">Launch Audit</a>
+    </div>
+  </div>
 </div>

@@ -4,7 +4,7 @@
   --sl-color-accent: #ff832b; /* Carbon orange */
   --sl-border-radius: 0;
   --cds-text: #161616;
-  --cds--ui-shell--header-height: 68px;
+  --cds--ui-shell--header-height: 100px;
   --cds-background: #f4f4f4;
 }
 
@@ -12,31 +12,22 @@
 
 .bx--footer {
   padding: 2rem 1rem;
-  border-top: 1px solid #e0e0e0;
-  margin-top: 4rem;
+  border-top: 2px solid #e0e0e0;
+  margin-top: 5rem;
 }
 
 
-/* Utility container matching Carbon grid width */
-.carbon-container {
-  max-width: 80rem;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
 
 body {
   font-family: var(--sl-font-sans);
   background: var(--cds-background);
   color: var(--cds-text);
-  margin: 0; /* Remove default body margin */
+
 }
 
 
 
-/* Documentation pages: ensure content is not hidden under the fixed header */
-#main-content {
-  padding-top: var(--cds--ui-shell--header-height);
-}
+
 /* Docs pages layout */
 .docs-container {
   display: grid;
@@ -44,13 +35,11 @@ body {
   gap: 2rem;
   max-width: var(--sl-content-width);
   margin: 0 auto;
-  /* push content below fixed header and add bottom padding */
-  padding: calc(var(--cds--ui-shell--header-height) + 1rem) 1rem 2rem;
+  /* vertical padding: top and bottom spacing */
+  padding: 1rem 1rem 2rem;
 }
 
-.docs-main {
-  padding: 1rem 0;
-}
+
 
 .sidebar-left,
 .sidebar-right {
@@ -79,20 +68,18 @@ body {
 }
 
 
-/* Hero section styling */
-.carbon-hero {
+/* Hero section using Carbon grid classes */
+.hero-grid {
   background: var(--cds-background);
   padding: 4rem 1rem;
   text-align: center;
 }
-.carbon-hero h1 {
-  margin: 0 0 1rem;
-}
-.hero-actions {
-  margin-top: 1rem;
+/* Button group for calls to action */
+.bx--btn-set {
   display: flex;
   gap: 1rem;
   justify-content: center;
+  margin-top: 1rem;
 }
 
 
@@ -165,6 +152,16 @@ body {
   background: #161616;
   color: #f5f5f5;
 }
+
+
+
+/* Global content box: constrain width and center content for all pages */
+main#main-content > * {
+  max-width: var(--sl-content-width);
+  margin: 0 auto;
+  padding: 7rem 3rem;
+}
+}
 .bx--dropdown-item > .bx--dropdown-link,
 .bx--list-box__menu-item {
   color: #f5f5f5;
@@ -199,6 +196,42 @@ body {
 @media (min-width: 768px) {
   #side-nav {
     display: none !important;
+  }
+}
+
+/* Docs page: render article links as normal text (no blue or underline) */
+.docs-main a {
+  color: var(--cds-text);
+  text-decoration: none;
+}
+/* Docs page: render article links as normal text (no blue or underline) */
+.docs-main a:hover,
+.docs-main a:focus {
+  /* indicate link on hover/focus */
+  color: var(--sl-color-primary);
+  text-decoration: underline;
+}
+
+/* Docs page sidebars: render sidebar navigation links as normal text */
+.sidebar-left a,
+.sidebar-right a {
+  color: var(--cds-text);
+  text-decoration: none;
+}
+.sidebar-left a:hover,
+.sidebar-right a:hover,
+.sidebar-left a:focus,
+.sidebar-right a:focus {
+  color: var(--sl-color-primary);
+  text-decoration: underline;
+}
+
+/* Desktop header: add separator between logo and nav */
+@media (min-width: 768px) {
+  .site-logo {
+    padding-right: 1rem;
+    margin-right: 1rem;
+    border-right: 1px solid rgba(40, 40, 40, 0.2);
   }
 }
 

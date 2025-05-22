@@ -1,8 +1,20 @@
 ---
-// Homepage - loads index.mdx from docs content
-import DocLayout from '../components/DocLayout.astro';
+// Homepage structured with Carbon sections
+import BaseHead from '../components/BaseHead.astro';
+import CustomHeader from '../components/CustomHeader.astro';
+import CustomFooter from '../components/CustomFooter.astro';
 import IndexPage from '../content/docs/index.mdx';
 ---
-<DocLayout>
-  <IndexPage />
-</DocLayout>
+
+<html lang="en">
+  <head>
+    <BaseHead />
+  </head>
+  <body>
+    <CustomHeader />
+    <main id="main-content">
+      <IndexPage />
+    </main>
+    <CustomFooter />
+  </body>
+</html>
