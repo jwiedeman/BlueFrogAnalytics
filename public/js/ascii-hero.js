@@ -14,7 +14,9 @@ if (asciiEl) {
     // Shrink slightly so the frog fits the right side of the hero
     const width = 60;
 
-    const ratio = img.height / img.width;
+    // Adjust for character aspect ratio so the frog isn't stretched
+    const charAspect = 0.55;
+    const ratio = (img.height / img.width) * charAspect;
     const canvas = document.createElement('canvas');
     canvas.width = width;
     canvas.height = Math.floor(width * ratio);
