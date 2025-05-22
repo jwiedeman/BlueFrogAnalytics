@@ -3,40 +3,56 @@ title: Analytics Doctor
 description: Scan a domain for analytics implementations.
 template: splash
 ---
-<div id="analytics-root" class="carbon-container">
-<div class="carbon-hero">
-  <h1>Scan your website for common analytics tags.</h1>
-</div>
-  <form id="scan-form" class="bx--form">
-    <div class="bx--form-item">
-      <label for="domain" class="bx--label">Enter domain:</label>
-      <input type="text" id="domain" name="domain" placeholder="example.com" class="bx--text-input" />
+<div id="analytics-root" class="carbon-container bx--grid bx--grid--condensed">
+  <div class="bx--row">
+    <div class="bx--col-lg-8 bx--offset-lg-2">
+      <div class="carbon-hero">
+        <h1>Scan your website for common analytics tags.</h1>
+      </div>
+      <form id="scan-form" class="bx--form">
+        <fieldset class="bx--fieldset">
+          <legend class="bx--label">Domain</legend>
+          <div class="bx--form-item">
+            <label for="domain" class="bx--label">Enter domain:</label>
+            <input type="text" id="domain" name="domain" placeholder="example.com" class="bx--text-input" />
+          </div>
+        </fieldset>
+        <fieldset class="bx--fieldset">
+          <legend class="bx--label">Scan Options</legend>
+          <div class="bx--form-item">
+            <label for="max-pages" class="bx--label">Max pages (up to 250):</label>
+            <input type="number" id="max-pages" name="max-pages" min="1" max="250" value="50" class="bx--text-input" />
+          </div>
+        </fieldset>
+        <button type="submit" class="bx--btn bx--btn--primary">Scan</button>
+      </form>
+      <div id="status"></div>
+      <div id="progress-container" class="bx--progress-bar">
+        <div class="bx--progress-bar__track">
+          <div id="progress-bar" class="bx--progress-bar__bar" style="width:0%"></div>
+        </div>
+      </div>
+      <div id="eta"></div>
+      <fieldset id="filter-container" class="bx--fieldset">
+        <legend class="bx--label">Analytics columns</legend>
+        <div class="bx--form-item">
+          <select id="column-select" multiple class="bx--multi-select" size="4"></select>
+        </div>
+        <div class="bx--btn-set">
+          <button id="select-all" type="button" class="bx--btn bx--btn--secondary">Select All</button>
+          <button id="clear-all" type="button" class="bx--btn bx--btn--tertiary">Clear</button>
+        </div>
+      </fieldset>
+      <div id="summary" class="summary-panel"></div>
+      <div id="table-wrapper">
+        <table id="pages-table" class="bx--data-table bx--data-table--compact">
+          <thead>
+            <tr id="pages-header"></tr>
+          </thead>
+          <tbody id="pages-body"></tbody>
+        </table>
+      </div>
     </div>
-    <div class="bx--form-item">
-      <label for="max-pages" class="bx--label">Max pages (up to 250):</label>
-      <input type="number" id="max-pages" name="max-pages" min="1" max="250" value="50" class="bx--text-input" />
-    </div>
-    <button type="submit" class="bx--btn bx--btn--primary">Scan</button>
-  </form>
-  <div id="status"></div>
-  <div id="progress-container">
-    <div id="progress-bar"></div>
-  </div>
-  <div id="eta"></div>
-  <div id="filter-container" class="filter-container">
-    <label for="column-select" class="bx--label">Analytics columns:</label>
-    <select id="column-select" multiple class="bx--multi-select" size="4"></select>
-    <button id="select-all" type="button" class="bx--btn bx--btn--secondary">Select All</button>
-    <button id="clear-all" type="button" class="bx--btn bx--btn--tertiary">Clear</button>
-  </div>
-  <div id="summary" class="summary-panel"></div>
-  <div id="table-wrapper">
-    <table id="pages-table" class="bx--data-table bx--data-table--compact">
-      <thead>
-        <tr id="pages-header"></tr>
-      </thead>
-      <tbody id="pages-body"></tbody>
-    </table>
   </div>
 </div>
 
@@ -60,27 +76,6 @@ template: splash
 #scan-form .bx--form-item {
   display: flex;
   flex-direction: column;
-}
-#progress-container {
-  background: var(--sl-color-gray-4);
-  height: 0.5rem;
-  position: relative;
-  margin-bottom: 0.5rem;
-}
-#progress-bar {
-  background: var(--sl-color-primary);
-  height: 100%;
-  width: 0%;
-}
-.filter-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-.filter-container select {
-  min-width: 12rem;
 }
 .summary-panel ul {
   padding-left: 1.5rem;
@@ -139,7 +134,10 @@ template: splash
 
 `}</style>
 
-<h2 id="analytics-reference">Analytics Tag Reference</h2>
+<div class="bx--grid bx--grid--condensed">
+  <div class="bx--row">
+    <div class="bx--col-lg-8 bx--offset-lg-2">
+      <h2 id="analytics-reference" class="bx--type-productive-heading-03">Analytics Tag Reference</h2>
 
 <details id="google-analytics-note">
 <summary>Google Analytics 4</summary>
@@ -170,3 +168,7 @@ Tags fired through Google Tag Manager.
 <summary>via Segment</summary>
 Tags fired through Segment or similar customer data platforms.
 </details>
+
+    </div>
+  </div>
+</div>
