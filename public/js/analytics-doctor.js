@@ -288,8 +288,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let el = document.getElementById(id) ||
       document.getElementById(id.replace(/-/g, '_')) ||
       document.getElementById(id.replace(/_/g, '-'));
-    if (el && el.tagName.toLowerCase() === 'details') {
+    if (!el) return;
+    if (el.tagName.toLowerCase() === 'details') {
       el.open = true;
+    } else if (el.classList.contains('bx--accordion__item')) {
+      const heading = el.querySelector('.bx--accordion__heading');
+      if (heading && heading.getAttribute('aria-expanded') === 'false') {
+        heading.click();
+      }
     }
   }
 
