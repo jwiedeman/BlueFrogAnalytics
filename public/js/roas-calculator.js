@@ -6,13 +6,13 @@ window.addEventListener('load', () => {
   const width = +chartEl.attr('width');
   const height = +chartEl.attr('height');
 
-  const subFields = document.querySelector('.sub-fields');
-  const svcFields = document.querySelector('.svc-fields');
+  const subFields = document.getElementById('subscription-fields');
+  const svcFields = document.getElementById('service-fields');
   const toggleFields = () => {
     const subOn = document.getElementById('subscription').checked;
     const svcOn = document.getElementById('service').checked;
-    subFields.style.display = subOn ? 'flex' : 'none';
-    svcFields.style.display = svcOn ? 'flex' : 'none';
+    subFields.style.display = subOn ? 'block' : 'none';
+    svcFields.style.display = svcOn ? 'block' : 'none';
     subFields.querySelectorAll('input').forEach(i => (i.disabled = !subOn));
     svcFields.querySelectorAll('input').forEach(i => (i.disabled = !svcOn));
   };
