@@ -11,81 +11,109 @@ hero:
 <div id="roas-root" class="carbon-container">
 <form id="roas-form" class="bx--form">
 
-<div class="bx--form-item">
-  <label for="aov" class="bx--label">AOV</label>
-  <input type="number" id="aov" value="100" step="0.01" class="bx--text-input" />
-  <small>Average order value per initial purchase. Added to customer LTV.</small>
-</div>
-<div class="bx--form-item">
-  <label for="cogs" class="bx--label">COGS</label>
-  <input type="number" id="cogs" value="40" step="0.01" class="bx--text-input" />
-  <small>Cost of goods sold per unit. Deducted from revenue and used in breakeven.</small>
-</div>
-<div class="bx--form-item">
-  <label for="spend" class="bx--label">Ad Spend</label>
-  <input type="number" id="spend" value="1000" step="0.01" class="bx--text-input" />
-  <small>Total advertising budget for the scenario.</small>
-</div>
-<div class="bx--form-item">
-  <label for="cpc" class="bx--label">CPC</label>
-  <input type="number" id="cpc" value="1" step="0.01" class="bx--text-input" />
-  <small>Cost per click used to estimate traffic from spend.</small>
-</div>
-<div class="bx--form-item">
-  <label for="cvr" class="bx--label">CVR (%)</label>
-  <input type="number" id="cvr" value="2" step="0.01" class="bx--text-input" />
-  <small>Conversion rate from lead to customer. Adjusted by scenario.</small>
-</div>
+<fieldset class="bx--fieldset">
+  <legend class="bx--label">Product</legend>
+  <div class="bx--form-item">
+    <label for="aov" class="bx--label">AOV</label>
+    <input type="number" id="aov" value="100" step="0.01" class="bx--text-input" />
+    <small>Average order value per initial purchase. Added to customer LTV.</small>
+  </div>
+  <div class="bx--form-item">
+    <label for="cogs" class="bx--label">COGS</label>
+    <input type="number" id="cogs" value="40" step="0.01" class="bx--text-input" />
+    <small>Cost of goods sold per unit. Deducted from revenue.</small>
+  </div>
+</fieldset>
 
-<div class="bx--form-item">
-  <label class="bx--label"><input type="checkbox" id="subscription" /> Subscription</label>
-  <small>Include subscription revenue in lifetime value.</small>
-</div>
-<div class="bx--form-item sub-fields">
-  <label class="bx--label">Monthly Price <input type="number" id="sub-price" value="30" step="0.01" class="bx--text-input" /></label>
-    <small>Recurring subscription fee charged each month.</small>
-  <label class="bx--label">Lifetime (mo) <input type="number" id="sub-life" value="6" step="1" class="bx--text-input" /></label>
-    <small>Expected months a subscriber remains active.</small>
-</div>
+<fieldset class="bx--fieldset">
+  <legend class="bx--label">Advertising</legend>
+  <div class="bx--form-item">
+    <label for="spend" class="bx--label">Ad Spend</label>
+    <input type="number" id="spend" value="1000" step="0.01" class="bx--text-input" />
+    <small>Total advertising budget for the scenario.</small>
+  </div>
+  <div class="bx--form-item">
+    <label for="cpc" class="bx--label">CPC</label>
+    <input type="number" id="cpc" value="1" step="0.01" class="bx--text-input" />
+    <small>Cost per click used to estimate traffic from spend.</small>
+  </div>
+  <div class="bx--form-item">
+    <label for="ctr" class="bx--label">CTR (%)</label>
+    <input type="number" id="ctr" value="2" step="0.01" class="bx--text-input" />
+    <small>Percent of clicks that turn into leads.</small>
+  </div>
+  <div class="bx--form-item">
+    <label for="cvr" class="bx--label">CVR (%)</label>
+    <input type="number" id="cvr" value="2" step="0.01" class="bx--text-input" />
+    <small>Conversion rate from lead to customer.</small>
+  </div>
+</fieldset>
 
-<div class="bx--form-item">
-  <label class="bx--label"><input type="checkbox" id="service" /> Services</label>
-  <small>Enable if you sell services that close after a lead.</small>
-</div>
-<div class="bx--form-item svc-fields">
-  <label class="bx--label">Booking Price <input type="number" id="svc-price" value="300" step="0.01" class="bx--text-input" /></label>
-    <small>Revenue from an initial service booking.</small>
-  <label class="bx--label">Contract Len (mo) <input type="number" id="svc-len" value="1" step="1" class="bx--text-input" /></label>
-    <small>Contract length in months to project service revenue.</small>
+<fieldset class="bx--fieldset">
+  <legend class="bx--label">Subscription</legend>
+  <div class="bx--form-item">
+    <input type="checkbox" id="subscription" class="bx--checkbox" />
+    <label for="subscription" class="bx--checkbox-label">Enable subscription revenue</label>
+    <small>Include subscription revenue in lifetime value.</small>
+  </div>
+  <div id="subscription-fields" class="sub-fields" style="display:none">
+    <div class="bx--form-item">
+      <label for="sub-price" class="bx--label">Monthly Price</label>
+      <input type="number" id="sub-price" value="30" step="0.01" class="bx--text-input" />
+      <small>Recurring subscription fee per month.</small>
+    </div>
+    <div class="bx--form-item">
+      <label for="sub-life" class="bx--label">Lifetime (mo)</label>
+      <input type="number" id="sub-life" value="6" step="1" class="bx--text-input" />
+      <small>Expected months a subscriber remains active.</small>
+    </div>
+  </div>
+</fieldset>
 
-</div>
+<fieldset class="bx--fieldset">
+  <legend class="bx--label">Services</legend>
+  <div class="bx--form-item">
+    <input type="checkbox" id="service" class="bx--checkbox" />
+    <label for="service" class="bx--checkbox-label">Enable services</label>
+    <small>Enable if you sell services that close after a lead.</small>
+  </div>
+  <div id="service-fields" class="svc-fields" style="display:none">
+    <div class="bx--form-item">
+      <label for="svc-price" class="bx--label">Booking Price</label>
+      <input type="number" id="svc-price" value="300" step="0.01" class="bx--text-input" />
+      <small>Revenue from an initial service booking.</small>
+    </div>
+    <div class="bx--form-item">
+      <label for="svc-len" class="bx--label">Contract Len (mo)</label>
+      <input type="number" id="svc-len" value="1" step="1" class="bx--text-input" />
+      <small>Contract length in months.</small>
+    </div>
+    <div class="bx--form-item">
+      <label for="l2c" class="bx--label">Lead→Close (%)</label>
+      <input type="number" id="l2c" value="30" step="0.1" class="bx--text-input" />
+      <small>Percent of leads that become clients.</small>
+    </div>
+  </div>
+</fieldset>
 
-<div class="bx--form-item">
-  <label for="ctr" class="bx--label">CTR (%)</label>
-  <input type="number" id="ctr" value="2" step="0.01" class="bx--text-input" />
-  <small>Percent of clicks that turn into leads.</small>
-</div>
-<div class="bx--form-item">
-  <label for="l2c" class="bx--label">Lead→Close (%)</label>
-  <input type="number" id="l2c" value="30" step="0.1" class="bx--text-input" />
-  <small>Percent of leads that become clients when services are on.</small>
-</div>
-<div class="bx--form-item">
-  <label for="team" class="bx--label">Team Costs</label>
-  <input type="number" id="team" value="0" step="0.01" class="bx--text-input" />
-  <small>Fixed team costs included in profit calculations.</small>
-</div>
-<div class="bx--form-item">
-  <label for="tools" class="bx--label">Tools Cost</label>
-  <input type="number" id="tools" value="0" step="0.01" class="bx--text-input" />
-  <small>Ongoing tool expenses included in profit.</small>
-</div>
-<div class="bx--form-item">
-  <label for="fulfill" class="bx--label">Fulfillment Cost</label>
-  <input type="number" id="fulfill" value="0" step="0.01" class="bx--text-input" />
-  <small>Other fulfillment costs factored into profit.</small>
-</div>
-
+<fieldset class="bx--fieldset">
+  <legend class="bx--label">Costs</legend>
+  <div class="bx--form-item">
+    <label for="team" class="bx--label">Team Costs</label>
+    <input type="number" id="team" value="0" step="0.01" class="bx--text-input" />
+    <small>Fixed team costs included in profit calculations.</small>
+  </div>
+  <div class="bx--form-item">
+    <label for="tools" class="bx--label">Tools Cost</label>
+    <input type="number" id="tools" value="0" step="0.01" class="bx--text-input" />
+    <small>Ongoing tool expenses included in profit.</small>
+  </div>
+  <div class="bx--form-item">
+    <label for="fulfill" class="bx--label">Fulfillment Cost</label>
+    <input type="number" id="fulfill" value="0" step="0.01" class="bx--text-input" />
+    <small>Other fulfillment costs factored into profit.</small>
+  </div>
+</fieldset>
 
 <button type="submit" class="bx--btn bx--btn--primary">Calculate</button>
 <button id="export" type="button" class="bx--btn">Download CSV</button>
@@ -95,56 +123,6 @@ hero:
 </div>
 
 
-<style>{`
-
-  #roas-form {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 0.75rem;
-    margin-bottom: 1rem;
-    align-items: start;
-  }
-  #roas-form .bx--form-item {
-    display: flex;
-    flex-direction: column;
-  }
-  #roas-form label {
-    font-weight: bold;
-    margin-bottom: 0.25rem;
-  }
-
-  #roas-form input {
-    width: 100%;
-  }
-
-  #roas-form small {
-    font-weight: normal;
-  }
-
-  #roas-results table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-  }
-  #roas-results th,
-  #roas-results td {
-    border: 1px solid #ccc;
-    padding: 4px;
-    text-align: right;
-  }
-  #roas-results th:first-child,
-  #roas-results td:first-child {
-    text-align: left;
-  }
-  #roas-chart {
-    margin-top: 1rem;
-  }
-  .sub-fields,
-  .svc-fields {
-    display: none;
-  }
-
-`}</style>
 
 
 <script src="https://cdn.jsdelivr.net/npm/d3@7" defer></script>
