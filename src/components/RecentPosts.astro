@@ -12,4 +12,7 @@ const { posts = [] } = Astro.props;
 <style>
 .recent-posts-list { list-style: none; padding: 0; }
 .recent-posts-list li { margin-bottom: 0.5rem; }
+.recent-posts { position: relative; z-index: 1; }
+.recent-posts-list a { text-decoration: none; color: inherit; }
+.recent-posts-list a:hover { text-decoration: underline; }
 </style>
