@@ -1,20 +1,24 @@
 ---
 const { post } = Astro.props;
+const url = `/blog/${post.slug}`;
 ---
-<article class="blog-card" data-tags={(post.data.tags || []).join(' ')} onclick={`if(!event.target.closest('a')){window.location='${post.url}'}` }>
+<article class="bx--tile bx--tile--clickable blog-card" data-tags={(post.data.tags || []).join(' ')} onclick={`if(!event.target.closest('a')){window.location='${url}'}` }>
 
-  <h2 class="blog-card-title"><a href={post.url}>{post.data.title}</a></h2>
+  <h2 class="blog-card-title"><a href={url}>{post.data.title}</a></h2>
 
   {post.data.pubDate && <p class="blog-card-date">{post.data.pubDate.toLocaleDateString()}</p>}
   {post.data.description && <p class="blog-card-desc">{post.data.description}</p>}
   {post.data.tags?.length ? (
-    <p class="blog-card-tags">{post.data.tags.map(t => <a href={`/blog/tags/${t}/`}>{t}</a>).join(', ')}</p>
+    <p class="blog-card-tags">{post.data.tags.map(t => <a href={`/blog/tags/${t}`}>{t}</a>).join(', ')}</p>
   ) : null}
 </article>
 <style>
 .blog-card {
   margin-bottom: 2rem;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .blog-card-title { margin: 0 0 0.25rem; }
 .blog-card-date { margin: 0 0 0.5rem; color: #6f6f6f; }

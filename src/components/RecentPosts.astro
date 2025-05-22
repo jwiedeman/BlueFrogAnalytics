@@ -5,7 +5,7 @@ const { posts = [] } = Astro.props;
   <h3>Recent Posts</h3>
   <ul class="recent-posts-list">
     {posts.map(p => (
-      <li><a href={p.url}>{p.data.title}</a></li>
+      <li><a href={`/blog/${p.slug}`}>{p.data.title}</a></li>
     ))}
   </ul>
 </aside>

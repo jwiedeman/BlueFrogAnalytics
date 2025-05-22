@@ -14,7 +14,7 @@ for (const post of posts) {
   <h1>Tags</h1>
   <ul>
     {Array.from(tagMap.entries()).map(([tag, count]) => (
-      <li key={tag}><a href={`/blog/tags/${tag}/`}>{tag} ({count})</a></li>
+      <li key={tag}><a href={`/blog/tags/${tag}`}>{tag} ({count})</a></li>
     ))}
   </ul>
 </BlogLayout>
