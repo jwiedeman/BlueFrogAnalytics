@@ -2,12 +2,13 @@
 
 :root {
   --sl-font-sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
-  --sl-color-primary: #{colors.$blue-60};
-  --sl-color-accent: #{colors.$orange-50};
+  /* NASA-inspired palette */
+  --sl-color-primary: #0b3d91; /* NASA blue */
+  --sl-color-accent: #fc3d21; /* NASA red */
   --sl-border-radius: 0;
   --cds-text: #161616;
   --cds--ui-shell--header-height: 100px;
-  --cds-background: #f4f4f4;
+  --cds-background: #f0f0f0;
 }
 
 /* Global page body styles */
@@ -218,8 +219,14 @@ main#main-content > * {
 .carbon-container,
 .section {
   max-width: var(--sl-content-width);
-  margin: 0 auto;
-  padding: 0 1rem;
+  margin: 0 auto 2rem;
+  padding: 2rem 1rem;
+}
+
+/* Ensure final sections don't add extra space */
+.carbon-container:last-child,
+.section:last-child {
+  margin-bottom: 0;
 }
 
 .carbon-hero {
@@ -306,7 +313,9 @@ main#main-content > * {
 
 // Desktop header: add separator between logo and nav
 /* Increase site logo text size globally */
+
 .bx--header__name.site-logo {
+
   font-size: 130%;
 }
 
@@ -317,3 +326,4 @@ main#main-content > * {
     border-right: 1px solid rgba(40, 40, 40, 0.2);
   }
 }
+
