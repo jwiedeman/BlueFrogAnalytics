@@ -2,9 +2,9 @@
 
 :root {
   --sl-font-sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
-  /* NASA-inspired palette */
+  /* Site palette */
   --sl-color-primary: #0b3d91; /* NASA blue */
-  --sl-color-accent: #fc3d21; /* NASA red */
+  --sl-color-accent: #{colors.$blue-60};
   --sl-border-radius: 0;
   --cds-text: #161616;
   --cds--ui-shell--header-height: 100px;
@@ -326,4 +326,3 @@ main#main-content > * {
     border-right: 1px solid rgba(40, 40, 40, 0.2);
   }
 }
-
