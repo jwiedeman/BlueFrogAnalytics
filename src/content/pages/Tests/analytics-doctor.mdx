@@ -142,35 +142,79 @@ template: splash
     <div class="bx--col-lg-8 bx--offset-lg-2">
       <h2 id="analytics-reference" class="bx--type-productive-heading-03">Analytics Tag Reference</h2>
 
-<details id="google-analytics-note">
-<summary>Google Analytics 4</summary>
-GA4 tags send data to your Google Analytics property. The ID shown is your measurement ID.
-</details>
+      <ul data-accordion class="bx--accordion">
+        <li id="google-analytics-note" class="bx--accordion__item">
+          <button class="bx--accordion__heading" aria-expanded="false" aria-controls="ga4-pane">
+            <svg aria-hidden="true" class="bx--accordion__arrow" width="16" height="16">
+              <path d="M8 12L3 7l1.41-1.41L8 9.17l3.59-3.58L13 7z" />
+            </svg>
+            <div class="bx--accordion__title">Google Analytics 4</div>
+          </button>
+          <div id="ga4-pane" class="bx--accordion__content">
+            GA4 tags send data to your Google Analytics property. The ID shown is your measurement ID.
+          </div>
+        </li>
 
-<details id="google-tag-manager-note">
-<summary>Google Tag Manager</summary>
-This represents the GTM container embedded on the page. The ID is your container ID.
-</details>
+        <li id="google-tag-manager-note" class="bx--accordion__item">
+          <button class="bx--accordion__heading" aria-expanded="false" aria-controls="gtm-pane">
+            <svg aria-hidden="true" class="bx--accordion__arrow" width="16" height="16">
+              <path d="M8 12L3 7l1.41-1.41L8 9.17l3.59-3.58L13 7z" />
+            </svg>
+            <div class="bx--accordion__title">Google Tag Manager</div>
+          </button>
+          <div id="gtm-pane" class="bx--accordion__content">
+            This represents the GTM container embedded on the page. The ID is your container ID.
+          </div>
+        </li>
 
-<details id="segment-note">
-<summary>Segment</summary>
-Analytics that are loaded through Segment. The ID refers to your Segment write key.
-</details>
+        <li id="segment-note" class="bx--accordion__item">
+          <button class="bx--accordion__heading" aria-expanded="false" aria-controls="segment-pane">
+            <svg aria-hidden="true" class="bx--accordion__arrow" width="16" height="16">
+              <path d="M8 12L3 7l1.41-1.41L8 9.17l3.59-3.58L13 7z" />
+            </svg>
+            <div class="bx--accordion__title">Segment</div>
+          </button>
+          <div id="segment-pane" class="bx--accordion__content">
+            Analytics that are loaded through Segment. The ID refers to your Segment write key.
+          </div>
+        </li>
 
-<details id="method-native">
-<summary>Native Implementation</summary>
-The tag is loaded directly on the page without a tag manager.
-</details>
+        <li id="method-native" class="bx--accordion__item">
+          <button class="bx--accordion__heading" aria-expanded="false" aria-controls="native-pane">
+            <svg aria-hidden="true" class="bx--accordion__arrow" width="16" height="16">
+              <path d="M8 12L3 7l1.41-1.41L8 9.17l3.59-3.58L13 7z" />
+            </svg>
+            <div class="bx--accordion__title">Native Implementation</div>
+          </button>
+          <div id="native-pane" class="bx--accordion__content">
+            The tag is loaded directly on the page without a tag manager.
+          </div>
+        </li>
 
-<details id="method-gtm">
-<summary>via GTM</summary>
-Tags fired through Google Tag Manager.
-</details>
+        <li id="method-gtm" class="bx--accordion__item">
+          <button class="bx--accordion__heading" aria-expanded="false" aria-controls="via-gtm-pane">
+            <svg aria-hidden="true" class="bx--accordion__arrow" width="16" height="16">
+              <path d="M8 12L3 7l1.41-1.41L8 9.17l3.59-3.58L13 7z" />
+            </svg>
+            <div class="bx--accordion__title">via GTM</div>
+          </button>
+          <div id="via-gtm-pane" class="bx--accordion__content">
+            Tags fired through Google Tag Manager.
+          </div>
+        </li>
 
-<details id="method-segment">
-<summary>via Segment</summary>
-Tags fired through Segment or similar customer data platforms.
-</details>
+        <li id="method-segment" class="bx--accordion__item">
+          <button class="bx--accordion__heading" aria-expanded="false" aria-controls="via-segment-pane">
+            <svg aria-hidden="true" class="bx--accordion__arrow" width="16" height="16">
+              <path d="M8 12L3 7l1.41-1.41L8 9.17l3.59-3.58L13 7z" />
+            </svg>
+            <div class="bx--accordion__title">via Segment</div>
+          </button>
+          <div id="via-segment-pane" class="bx--accordion__content">
+            Tags fired through Segment or similar customer data platforms.
+          </div>
+        </li>
+      </ul>
 
     </div>
   </div>
