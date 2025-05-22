@@ -10,110 +10,221 @@ This glossary provides definitions for important terms related to Blue Frog Anal
 
 ## A
 
-
 ### A/B Testing (Split Testing)
-A method of comparing two versions of a webpage, ad, or email to determine which performs better.  
- Common in conversion rate optimization (CRO), PPC, and email marketing.  
+A method of comparing two versions of a webpage, ad, or email to determine which performs better.
+ Common in conversion rate optimization (CRO), PPC, and email marketing.
  **Metrics tested:** Click-through rate (CTR), bounce rate, conversion rate.
 
+### Abandonment Rate
+Percentage of users who begin but don’t complete a desired action (e.g., checkout abandonment, form abandonment).
+ Importance: Key indicator for conversion optimization.
+
 ### Above the Fold
-The portion of a webpage that is visible without scrolling.  
+The portion of a webpage that is visible without scrolling.
  **SEO & UX Tip:** Place key CTAs and important content above the fold for higher engagement.
 
 ### Accelerated Mobile Pages (AMP)
-A Google-backed framework that speeds up mobile web pages by using lightweight HTML and JavaScript.  
- **Pros:** Faster load times, better mobile experience.  
+A Google-backed framework that speeds up mobile web pages by using lightweight HTML and JavaScript.
+ **Pros:** Faster load times, better mobile experience.
  **Cons:** Limited design flexibility, dependency on Google's caching.
 
+### Accessibility
+The practice of ensuring digital content and websites can be easily used by individuals with disabilities.
+ Standards: WCAG (Web Content Accessibility Guidelines).
+ SEO Impact: Improves user experience and can enhance rankings.
+
 ### Account-Based Marketing (ABM)
-A B2B marketing strategy where campaigns are personalized for high-value accounts instead of broad audiences.  
- **Key tactics:**  
-   - Hyper-targeted content.  
-   - Personalized outreach.  
+A B2B marketing strategy where campaigns are personalized for high-value accounts instead of broad audiences.
+ **Key tactics:**
+   - Hyper-targeted content.
+   - Personalized outreach.
    - Multi-channel engagement.
 
+### Actionable Analytics
+Insights from data analysis that directly inform clear and measurable marketing actions.
+ Emphasis: Real-world applications over general data.
+
 ### Ad Extensions
-Additional features that enhance Google Ads by providing extra information.  
+Additional features that enhance Google Ads by providing extra information.
  **Types:**
-   - Sitelink Extensions: Extra page links.  
-   - Call Extensions: Phone numbers.  
-   - Location Extensions: Business address.  
+   - Sitelink Extensions: Extra page links.
+   - Call Extensions: Phone numbers.
+   - Location Extensions: Business address.
    - Structured Snippets: Key product/service details.
 
 ### Ad Fatigue
-When an audience sees the same ad too many times, leading to lower engagement and performance.  
+When an audience sees the same ad too many times, leading to lower engagement and performance.
  **Solution:** Rotate creatives, adjust targeting, or use frequency capping.
 
+### Ad Impression
+A metric indicating how often an advertisement is displayed to users, regardless of clicks or interactions.
+ Important in PPC campaign analysis.
+
+### Ad Inventory
+The available ad spaces on a website or app that can be sold to advertisers.
+ Types: Display, video, native, in-app.
+
+### Ad Network
+A platform that connects advertisers with publishers to manage digital ad placements.
+ Examples: Google AdSense, Taboola, Outbrain.
+
 ### Ad Rank
-A Google Ads metric that determines an ad’s position in search results.  
+A Google Ads metric that determines an ad’s position in search results.
  **Formula:**  Ad Rank = Bid Amount × Quality Score × Expected Impact of Ad Extensions
 
  Higher Ad Rank = Better placement at lower costs.
 
 ### Ad Retargeting (Remarketing)
-A strategy that shows ads to users who previously visited a website but didn’t convert.  
+A strategy that shows ads to users who previously visited a website but didn’t convert.
  Platforms: Google Display Network, Facebook, LinkedIn, YouTube Ads.
 
+### Ad Server
+Software or platforms used to manage, store, deliver, and report on digital advertising campaigns.
+ Examples: Google Ad Manager, OpenX.
+
+### Ad Viewability
+The measure of whether an ad was actually viewable to users (typically at least 50% visible for 1 second for display ads).
+ Tools: Integral Ad Science, Moat Analytics.
+
+### Adaptive Design
+A website design approach that serves different versions of a webpage tailored to different devices or screen sizes, distinct from responsive design.
+ SEO Impact: Can positively affect mobile rankings and UX.
+
+### Advanced Segments (Analytics)
+Custom segments in analytics platforms that isolate specific visitor behaviors or attributes for targeted analysis.
+ Platforms: Google Analytics, Adobe Analytics.
+
+### Affiliate Link
+A specific URL containing affiliate tracking codes used to monitor traffic and conversions from affiliates.
+ Importance: Tracking ROI and commissions accurately.
+
 ### Affiliate Marketing
-A performance-based marketing model where affiliates earn commissions for referring sales or leads.  
- **Examples:**  
-- Blogs promoting products with affiliate links.  
+A performance-based marketing model where affiliates earn commissions for referring sales or leads.
+ **Examples:**
+- Blogs promoting products with affiliate links.
 - YouTube reviews with sponsored links.
 
+### Affinity Audiences
+Groups defined by Google Ads based on interests, lifestyle, and habits, used for broad audience targeting.
+ Use Case: Increasing brand awareness in PPC campaigns.
+
+### Agile Marketing
+A marketing methodology inspired by agile software development, emphasizing rapid iteration, flexibility, testing, and data-driven decisions.
+ Components: Sprints, stand-ups, iterative testing.
+
+### AI Marketing (Artificial Intelligence Marketing)
+Leveraging AI technologies to automate, optimize, and enhance marketing campaigns and strategies.
+ Applications: Personalization, predictive analytics, chatbots, dynamic content.
+
+### Alexa Rank
+A measure formerly used by Amazon’s Alexa to rank websites globally based on estimated traffic and engagement.
+ Note: Alexa.com retired in 2022 but still cited historically.
+
 ### Algorithm (Search Engine Algorithm)
-A complex formula used by Google, Bing, and other search engines to rank webpages.  
+A complex formula used by Google, Bing, and other search engines to rank webpages.
  Major Google Algorithm Updates:
-- Panda: Penalized low-quality content.  
-- Penguin: Targeted spammy backlinks.  
-- BERT: Improved natural language processing.  
+- Panda: Penalized low-quality content.
+- Penguin: Targeted spammy backlinks.
+- BERT: Improved natural language processing.
 - Helpful Content Update: Prioritizes human-written content.
 
+### Algorithmic Penalty (SEO)
+A ranking penalty automatically applied by search engines when a site violates their guidelines.
+ Examples: Panda (low-quality content), Penguin (spammy backlinks).
+
 ### Alt Text (Alternative Text)
-A descriptive attribute added to images for accessibility and SEO.  
+A descriptive attribute added to images for accessibility and SEO.
  **SEO Benefit:** Helps images rank in Google Image Search.
 
+### Analytics Dashboard
+A visual interface displaying key performance indicators (KPIs) and other important metrics for easy monitoring.
+ Examples: Google Data Studio (Looker Studio), Tableau dashboards.
+
+### Anchor Link
+A link directing users to a specific section within the same webpage (in-page navigation).
+ Use: Improves UX and dwell time.
+
 ### Anchor Text
-The clickable text of a hyperlink.  
- **Best Practices:**  
-- Use descriptive keywords instead of "click here."  
+The clickable text of a hyperlink.
+ **Best Practices:**
+- Use descriptive keywords instead of "click here."
 - Avoid over-optimized anchor text to prevent penalties.
 
 ### API (Application Programming Interface)
-A set of rules and protocols that allow different software to communicate.  
+A set of rules and protocols that allow different software to communicate.
  Common in marketing automation, analytics integrations, and web applications.
 
+### App Store Optimization (ASO)
+The process of optimizing mobile applications to rank higher in app store search results.
+ Components: Keywords, titles, reviews, download velocity.
+
 ### Attribution Model
-A system that assigns credit to different touchpoints in a user's conversion journey.  
- **Types:**  
-- First-click: Credit goes to the first interaction.  
-- Last-click: The final interaction gets full credit.  
+A system that assigns credit to different touchpoints in a user's conversion journey.
+ **Types:**
+- First-click: Credit goes to the first interaction.
+- Last-click: The final interaction gets full credit.
 - Multi-touch: Distributes credit across multiple interactions.
 
+### Audience Insights
+Data analysis reports about audience demographics, interests, behaviors, and preferences, helping marketers tailor content and campaigns.
+ Sources: Google Analytics, social media analytics.
+
+### Audience Segmentation
+The process of dividing an audience into subgroups based on common characteristics, behavior, or interests.
+ Types: Demographic, psychographic, behavioral, geographic.
+
+### Augmented Reality (AR) Marketing
+Marketing strategies using AR technology to overlay digital content onto physical environments, enhancing user interaction and product visualization.
+ Example: Virtual try-ons for fashion brands.
+
 ### Authority (Domain & Page Authority)
-A metric that predicts how likely a webpage or domain is to rank in search engines.  
- Measured by Moz’s DA (Domain Authority) & PA (Page Authority).  
+A metric that predicts how likely a webpage or domain is to rank in search engines.
+ Measured by Moz’s DA (Domain Authority) & PA (Page Authority).
  Higher authority = Stronger ranking potential.
+
+### Authority Site
+A website highly trusted and respected by users and search engines within its niche, often due to high-quality content, backlinks, and expertise.
+ Importance: Stronger ranking potential and SEO performance.
 
 ### Auto-Tagging
 A Google Ads feature that automatically adds tracking parameters to URLs for better campaign measurement in Google Analytics.
 
+### Automated Bidding (PPC)
+An AI-driven feature in Google Ads and other platforms that automatically sets bid amounts based on predefined campaign objectives.
+ Strategies: Maximize clicks, Target CPA, Target ROAS.
+
+### Autoplay Video Ads
+Videos embedded in webpages or social media feeds that play automatically upon page load or scroll.
+ Considerations: Potentially high impressions but may negatively affect UX.
+
 ### Average Order Value (AOV)
-A key eCommerce metric that calculates the average amount spent per transaction.  
+A key eCommerce metric that calculates the average amount spent per transaction.
  **Formula:**  AOV = Total Revenue / Number of Orders
 
  Increase AOV through upsells, bundles, and volume discounts.
 
+### Average Position (PPC)
+Formerly used metric indicating the average position an ad appeared on search engine result pages (SERPs).
+ Deprecated by Google Ads, replaced with Impression Share metrics.
+
+### Average Revenue per User (ARPU)
+A metric commonly used in subscription-based businesses to determine the revenue generated by each user.
+ **Formula:** ARPU = Total Revenue / Total Users
+
+### Average Session Duration
+A Google Analytics metric measuring the average length of user visits on a site.
+ Insight: Indicates user engagement level and content effectiveness.
+
 ### Awareness Stage (Marketing Funnel)
-The top of the funnel (TOFU) where potential customers discover a brand or solution.  
+The top of the funnel (TOFU) where potential customers discover a brand or solution.
  Common Awareness Strategies:
-- Content marketing (blog posts, videos).  
-- Social media marketing.  
+- Content marketing (blog posts, videos).
+- Social media marketing.
 - Display & search ads.
 
 ---
 
 ## B
-
 
 ### Backlink
 
