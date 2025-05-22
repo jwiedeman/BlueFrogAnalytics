@@ -5,7 +5,7 @@ description: Learn about GetSimple CMS, its history, features, and how it compar
 
 # **GetSimple CMS: Overview, History, Pros & Cons**
 
-##**Overview**  
+## **Overview**  
 GetSimple CMS is a **lightweight, flat-file content management system (CMS)** that focuses on simplicity, speed, and ease of use. It does not require a database, making it ideal for small websites and projects where minimal server resources are desired. GetSimple CMS is known for its straightforward installation, intuitive admin interface, and flexible templating system.
 
  **Best For:** **Small websites, personal blogs, and simple business sites** where ease of setup and maintenance is key.  
@@ -14,7 +14,7 @@ GetSimple CMS is a **lightweight, flat-file content management system (CMS)** th
 
 ---
 
-##**History & Evolution**  
+## **History & Evolution**  
 GetSimple CMS was created as a response to the complexity of database-driven CMS platforms. It aims to provide a simple and lightweight alternative for users who need a straightforward content management solution without the overhead of a traditional database.
 
 - **2009:** GetSimple CMS was launched, targeting users who preferred an easy-to-install, flat-file solution for small websites.
@@ -23,7 +23,7 @@ GetSimple CMS was created as a response to the complexity of database-driven CMS
 
 ---
 
-##**Key Features & Capabilities**
+## **Key Features & Capabilities**
 
 ### **1⃣ Flat-File Architecture**
  **No Database Required:** Content is stored in XML files, simplifying installation and maintenance.  
@@ -47,7 +47,7 @@ GetSimple CMS was created as a response to the complexity of database-driven CMS
 
 ---
 
-##**GetSimple CMS vs Competitors**
+## **GetSimple CMS vs Competitors**
 
 | Feature                   | GetSimple CMS  | Grav           | Kirby         | Jekyll         |
 |---------------------------|----------------|----------------|---------------|----------------|
@@ -59,7 +59,7 @@ GetSimple CMS was created as a response to the complexity of database-driven CMS
 
 ---
 
-##**Pros of GetSimple CMS**  
+## **Pros of GetSimple CMS**  
  **Extremely lightweight and fast** – No database means less overhead.  
  **User-friendly for beginners** – Ideal for users with minimal technical expertise.  
  **Easy installation and maintenance** – Simply upload files and start editing.  
@@ -68,7 +68,7 @@ GetSimple CMS was created as a response to the complexity of database-driven CMS
 
 ---
 
-##**Cons of GetSimple CMS**  
+## **Cons of GetSimple CMS**  
  **Limited scalability** – Best suited for small websites; not ideal for large or complex sites.  
  **Basic feature set** – Lacks some advanced functionalities found in larger CMS platforms.  
  **Smaller community** – Fewer plugins and themes compared to more popular CMSs.  
@@ -76,7 +76,7 @@ GetSimple CMS was created as a response to the complexity of database-driven CMS
 
 ---
 
-##**Who Should Use GetSimple CMS?**  
+## **Who Should Use GetSimple CMS?**  
 GetSimple CMS is **ideal for:**  
  **Small business owners and hobbyists** seeking a simple, fast website solution.  
  **Personal blogs or portfolios** where ease of use is a priority.  
@@ -85,7 +85,7 @@ GetSimple CMS is **ideal for:**
 
 ---
 
-##**Conclusion**  
+## **Conclusion**  
 GetSimple CMS offers a **straightforward, lightweight content management solution** perfect for small projects and personal websites. Its **ease of use, fast performance, and simple setup** make it an attractive option for those who need a no-frills CMS without the complexities of database management. While it may not scale for larger projects, its simplicity is its greatest strength for small-scale applications.
 
 ---

@@ -5,7 +5,7 @@ description: Learn about MODX, its history, features, and how it compares to oth
 
 # **MODX: Overview, History, Pros & Cons**
 
-##**Overview**  
+## **Overview**  
 MODX is a **flexible, open-source content management system (CMS)** and web application framework designed for developers and designers who need complete control over website design and functionality. Renowned for its clean code, robust security, and powerful templating engine, MODX enables the creation of highly customized digital experiences without the constraints imposed by more opinionated CMS platforms.
 
  **Best For:** **Developers, agencies, and designers** seeking a highly customizable CMS that offers creative freedom and full control over site architecture.  
@@ -14,7 +14,7 @@ MODX is a **flexible, open-source content management system (CMS)** and web appl
 
 ---
 
-##**History & Evolution**  
+## **History & Evolution**  
 MODX was developed to provide a more flexible alternative to mainstream CMS platforms:
 
 - **2004:** MODX was initially released, offering a fresh approach to content management with a focus on flexibility and creative control.
@@ -24,7 +24,7 @@ MODX was developed to provide a more flexible alternative to mainstream CMS plat
 
 ---
 
-##**Key Features & Capabilities**
+## **Key Features & Capabilities**
 
 ### **1⃣ Flexible Templating & Content Modeling**  
  **Customizable Templates:** Utilize a powerful templating engine to build unique, responsive designs with complete freedom.  
@@ -48,7 +48,7 @@ MODX was developed to provide a more flexible alternative to mainstream CMS plat
 
 ---
 
-##**MODX vs Competitors**
+## **MODX vs Competitors**
 
 | Feature                   | MODX           | WordPress        | Drupal          | Joomla         |
 |---------------------------|----------------|------------------|-----------------|----------------|
@@ -60,7 +60,7 @@ MODX was developed to provide a more flexible alternative to mainstream CMS plat
 
 ---
 
-##**Pros of MODX**  
+## **Pros of MODX**  
  **Unparalleled Flexibility:** Offers complete control over design and functionality, ideal for bespoke projects.  
  **Developer-Centric:** Extensive APIs and clean code make it easy to extend and customize without restrictions.  
  **Strong Security:** Built with best practices in mind, ensuring robust protection for enterprise sites.  
@@ -69,14 +69,14 @@ MODX was developed to provide a more flexible alternative to mainstream CMS plat
 
 ---
 
-##**Cons of MODX**  
+## **Cons of MODX**  
  **Steep Learning Curve:** Its flexibility comes at the cost of a higher initial learning barrier, especially for non-developers.  
  **Limited Out-of-the-Box Features:** Lacks the extensive pre-built themes and plugins available in more mainstream CMS platforms.  
  **Smaller Market Share:** A smaller user base compared to WordPress or Drupal may result in fewer third-party integrations.
 
 ---
 
-##**Who Should Use MODX?**  
+## **Who Should Use MODX?**  
 MODX is **ideal for:**  
  **Developers and agencies** who require full creative and technical control over their projects.  
  **Custom web projects** that need tailored content structures and unique design implementations.  
@@ -85,7 +85,7 @@ MODX is **ideal for:**
 
 ---
 
-##**Conclusion**  
+## **Conclusion**  
 MODX stands out as a **powerful, flexible, and secure CMS** that offers complete control to developers and designers. While it may not be the best choice for beginners seeking a plug-and-play solution, its robust architecture, extensive customization options, and strong community support make it an excellent option for complex, bespoke digital experiences.
 
 ---

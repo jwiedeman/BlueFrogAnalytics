@@ -5,7 +5,7 @@ description: Learn about Miva Merchant, its history, features, and how it compar
 
 # **Miva Merchant: Overview, History, Pros & Cons**
 
-##**Overview**  
+## **Overview**  
 Miva Merchant is a **feature-rich eCommerce platform** designed for businesses of various sizes. Known for its robust shopping cart, extensive customization options, and scalability, Miva Merchant offers merchants the tools needed to build and manage online stores with complex product catalogs and dynamic pricing models. With both cloud-hosted and self-hosted options, it caters to a diverse range of business needs.
 
  **Best For:** **Small to large businesses and enterprises** looking for a powerful, customizable eCommerce solution with strong support for multi-channel sales.  
@@ -14,7 +14,7 @@ Miva Merchant is a **feature-rich eCommerce platform** designed for businesses o
 
 ---
 
-##**History & Evolution**  
+## **History & Evolution**  
 Miva Merchant has a long-standing history in the eCommerce space, evolving from a traditional shopping cart solution into a comprehensive platform that supports a wide range of online selling needs.
 
 - **1997:** Miva Merchant was founded, initially focusing on providing robust shopping cart software for online merchants.
@@ -24,7 +24,7 @@ Miva Merchant has a long-standing history in the eCommerce space, evolving from 
 
 ---
 
-##**Key Features & Capabilities**
+## **Key Features & Capabilities**
 
 ### **1⃣ Customizable Storefront & Shopping Cart**
  **Flexible Templates and Themes:** Create a unique online store with customizable designs.
@@ -48,7 +48,7 @@ Miva Merchant has a long-standing history in the eCommerce space, evolving from 
 
 ---
 
-##**Miva Merchant vs Competitors**
+## **Miva Merchant vs Competitors**
 
 | Feature                   | Miva Merchant      | Shopify         | Magento (Adobe Commerce) | BigCommerce       |
 |---------------------------|--------------------|-----------------|--------------------------|-------------------|
@@ -60,7 +60,7 @@ Miva Merchant has a long-standing history in the eCommerce space, evolving from 
 
 ---
 
-##**Pros of Miva Merchant**  
+## **Pros of Miva Merchant**  
  **High Customizability:** Extensive options to tailor storefronts and functionality to unique business needs.  
  **Scalable Solution:** Handles large product catalogs and high traffic, suitable for growing businesses.  
  **Flexible Hosting Options:** Choice between cloud-hosted and self-hosted deployments.  
@@ -69,7 +69,7 @@ Miva Merchant has a long-standing history in the eCommerce space, evolving from 
 
 ---
 
-##**Cons of Miva Merchant**  
+## **Cons of Miva Merchant**  
  **Complexity:** May require technical expertise to fully customize and manage, particularly in self-hosted setups.  
  **Cost:** Enterprise-level features and hosting options can be more expensive compared to simpler eCommerce solutions.  
  **Smaller Ecosystem:** Fewer third-party extensions and community resources compared to platforms like Magento or Shopify.  
@@ -77,7 +77,7 @@ Miva Merchant has a long-standing history in the eCommerce space, evolving from 
 
 ---
 
-##**Who Should Use Miva Merchant?**  
+## **Who Should Use Miva Merchant?**  
 Miva Merchant is **ideal for:**  
  **Growing businesses and enterprises** that require a robust and scalable eCommerce solution.  
  **Merchants with complex product catalogs** and pricing models.  
@@ -86,7 +86,7 @@ Miva Merchant is **ideal for:**
 
 ---
 
-##**Conclusion**  
+## **Conclusion**  
 Miva Merchant offers a **comprehensive and flexible eCommerce platform** that is well-suited for businesses aiming to build a scalable, feature-rich online store. While its complexity and cost may present challenges for smaller enterprises, its robust customization, powerful integrations, and flexible hosting options make it an excellent choice for merchants with advanced requirements.
 
 ---

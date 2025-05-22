@@ -5,7 +5,7 @@ description: Learn about KeystoneJS, its history, features, and how it compares 
 
 # **KeystoneJS: Overview, History, Pros & Cons**
 
-##**Overview**  
+## **Overview**  
 KeystoneJS is an **open-source content management system (CMS) and web application platform** built on **Node.js**. It is designed for developers who require a flexible and customizable solution to build modern websites and applications. KeystoneJS combines an intuitive admin UI with a powerful, code-first approach, making it ideal for creating headless CMS solutions as well as traditional web applications.
 
  **Best For:** **Developers and agencies** looking to build customized, scalable web applications and headless CMS solutions using JavaScript and Node.js.  
@@ -14,7 +14,7 @@ KeystoneJS is an **open-source content management system (CMS) and web applicati
 
 ---
 
-##**History & Evolution**  
+## **History & Evolution**  
 KeystoneJS was initially released to provide a developer-friendly CMS built on Node.js. Over time, it has evolved to support modern web development practices and has become a popular choice for building both headless and traditional CMS-driven websites.
 
 - **Early 2010s:** KeystoneJS was introduced as a lightweight CMS framework for Node.js, focusing on simplicity and flexibility.
@@ -23,7 +23,7 @@ KeystoneJS was initially released to provide a developer-friendly CMS built on N
 
 ---
 
-##**Key Features & Capabilities**
+## **Key Features & Capabilities**
 
 ### **1⃣ Flexible Content Modeling**  
  **Schema-driven approach:** Define custom content types using JavaScript, giving full control over your data structure.  
@@ -48,7 +48,7 @@ KeystoneJS was initially released to provide a developer-friendly CMS built on N
 
 ---
 
-##**KeystoneJS vs Competitors**
+## **KeystoneJS vs Competitors**
 
 | Feature                   | KeystoneJS          | Strapi             | Ghost             | Directus         |
 |---------------------------|---------------------|--------------------|-------------------|------------------|
@@ -60,7 +60,7 @@ KeystoneJS was initially released to provide a developer-friendly CMS built on N
 
 ---
 
-##**Pros of KeystoneJS**  
+## **Pros of KeystoneJS**  
  **Highly flexible and customizable:** Ideal for bespoke applications with custom content needs.  
  **API-first architecture:** Offers both GraphQL and REST APIs for versatile content delivery.  
  **Full-stack JavaScript:** Simplifies development by using a single language across client and server.  
@@ -69,14 +69,14 @@ KeystoneJS was initially released to provide a developer-friendly CMS built on N
 
 ---
 
-##**Cons of KeystoneJS**  
+## **Cons of KeystoneJS**  
  **Learning curve for beginners:** Requires familiarity with JavaScript and Node.js for full utilization.  
  **Documentation variability:** While improving, some users may find the documentation less comprehensive compared to more established CMSs.  
  **Less plug-and-play:** May require more custom development for certain features compared to more opinionated platforms.
 
 ---
 
-##**Who Should Use KeystoneJS?**  
+## **Who Should Use KeystoneJS?**  
 KeystoneJS is **ideal for:**  
  **Developers and agencies** building custom web applications or headless CMS solutions.  
  **Full-stack JavaScript teams** who want to streamline development with a unified technology stack.  
@@ -85,7 +85,7 @@ KeystoneJS is **ideal for:**
 
 ---
 
-##**Conclusion**  
+## **Conclusion**  
 KeystoneJS offers a **powerful and flexible CMS solution** for developers looking to build custom, scalable web applications using Node.js. Its API-first approach, full-stack JavaScript environment, and robust customization capabilities make it a compelling choice for modern digital projects. While it may require more technical expertise than some plug-and-play platforms, its flexibility and active community support deliver a highly adaptable solution for dynamic content management.
 
 ---

@@ -5,7 +5,7 @@ description: Learn about BigCommerce.
 
 # **BigCommerce: Overview, History, Pros & Cons**
 
-##**Overview**
+## **Overview**
 BigCommerce is a **leading eCommerce platform** designed for **businesses of all sizes**, from startups to enterprise-level merchants. It offers a **scalable, feature-rich, and customizable** SaaS (Software as a Service) solution that enables merchants to **build, manage, and grow online stores** without extensive technical expertise.
 
  **Best For:** **Mid-to-large businesses**, B2B & B2C merchants, companies needing **scalability & flexibility**.  
@@ -14,7 +14,7 @@ BigCommerce is a **leading eCommerce platform** designed for **businesses of all
 
 ---
 
-##**History & Evolution**
+## **History & Evolution**
 BigCommerce was **founded in 2009** by **Eddie Machaalani and Mitchell Harper** in Sydney, Australia.  
  Initially focused on **small businesses**, it evolved into an **enterprise-grade solution**.  
  **2015:** Opened U.S. headquarters in Austin, Texas.  
@@ -24,7 +24,7 @@ BigCommerce was **founded in 2009** by **Eddie Machaalani and Mitchell Harper** 
 
 ---
 
-##**Key Features & Capabilities**
+## **Key Features & Capabilities**
 BigCommerce provides **a robust set of features** that differentiate it from other eCommerce platforms:
 
 ### **1⃣ Ease of Use**
@@ -54,7 +54,7 @@ BigCommerce provides **a robust set of features** that differentiate it from oth
 
 ---
 
-##**BigCommerce vs Competitors**
+## **BigCommerce vs Competitors**
 | Feature            | BigCommerce       | Shopify          | WooCommerce     | Magento (Adobe Commerce) |
 |--------------------|------------------|------------------|----------------|--------------------------|
 | **Ease of Use**    |  Easy UI        |  Very User-Friendly |  Requires WordPress |  Requires Development |
@@ -67,7 +67,7 @@ BigCommerce provides **a robust set of features** that differentiate it from oth
 
 ---
 
-##**Pros of BigCommerce**
+## **Pros of BigCommerce**
  **No additional transaction fees**, making it cost-effective for high-volume sellers.  
  **Scalability for growing businesses**, from startups to enterprises.  
  **Built-in SEO and marketing tools**, reducing reliance on third-party apps.  
@@ -77,7 +77,7 @@ BigCommerce provides **a robust set of features** that differentiate it from oth
 
 ---
 
-##**Cons of BigCommerce**
+## **Cons of BigCommerce**
  **Pricing scales with revenue** – Once a store **exceeds $50K/year**, it **automatically upgrades to a higher plan**.  
  **Fewer themes & apps** compared to Shopify (smaller app ecosystem).  
  **Limited free themes** – Most professional themes cost **$150-$300**.  
@@ -86,7 +86,7 @@ BigCommerce provides **a robust set of features** that differentiate it from oth
 
 ---
 
-##**Who Should Use BigCommerce?**
+## **Who Should Use BigCommerce?**
 BigCommerce is **ideal for businesses that:**
  Want to **avoid Shopify's transaction fees**.  
  Need **scalability without switching platforms**.  
@@ -96,7 +96,7 @@ BigCommerce is **ideal for businesses that:**
 
 ---
 
-##**Conclusion**
+## **Conclusion**
 BigCommerce is a **powerful, scalable eCommerce platform** built for businesses that need **robust features, strong SEO, and multi-channel sales** without the added costs of transaction fees. While it has **fewer themes and apps than Shopify**, its **flexibility, security, and scalability** make it a **great alternative for serious eCommerce brands**.
 
 ---

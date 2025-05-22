@@ -5,7 +5,7 @@ description: Learn about Directus, its history, features, and how it compares to
 
 # **Directus: Overview, History, Pros & Cons**
 
-##**Overview**  
+## **Overview**  
 Directus is an **open-source, headless CMS and API platform** that provides a **customizable content management solution** directly on top of your SQL database. It delivers a real-time data API alongside an intuitive admin app, making it a powerful choice for developers, data teams, and enterprises that want to manage structured content with flexibility and control.
 
  **Best For:** **Developers, data teams, and enterprises** who require a **flexible, API-driven CMS** that integrates directly with existing SQL databases.  
@@ -14,7 +14,7 @@ Directus is an **open-source, headless CMS and API platform** that provides a **
 
 ---
 
-##**History & Evolution**  
+## **History & Evolution**  
 Directus began as an effort to simplify data management by providing a headless CMS that works directly with your SQL database. Over time, it evolved into a fully-featured, open-source content management solution used across various industries.
 
 - **2011:** Directus was initially developed to provide an intuitive interface for managing SQL database content.  
@@ -23,7 +23,7 @@ Directus began as an effort to simplify data management by providing a headless 
 
 ---
 
-##**Key Features & Capabilities**
+## **Key Features & Capabilities**
 
 ### **1⃣ API-First & Headless Architecture**  
  **RESTful and GraphQL APIs** – Easily retrieve and manage content across multiple platforms.  
@@ -47,7 +47,7 @@ Directus began as an effort to simplify data management by providing a headless 
 
 ---
 
-##**Directus vs Competitors**
+## **Directus vs Competitors**
 
 | Feature                   | Directus        | Contentful    | Strapi      | Sanity     | DatoCMS    |
 |---------------------------|-----------------|---------------|-------------|------------|------------|
@@ -59,7 +59,7 @@ Directus began as an effort to simplify data management by providing a headless 
 
 ---
 
-##**Pros of Directus**  
+## **Pros of Directus**  
  **Direct SQL database integration** – Manage your existing data without complex migrations.  
  **Real-time API access** – Keep your applications updated with the latest content instantly.  
  **Customizable and intuitive admin interface** – Empower teams with minimal technical training.  
@@ -68,14 +68,14 @@ Directus began as an effort to simplify data management by providing a headless 
 
 ---
 
-##**Cons of Directus**  
+## **Cons of Directus**  
  **Requires some technical expertise** – Best suited for teams familiar with SQL and database management.  
  **Smaller plugin ecosystem** – Fewer third-party integrations compared to some commercial headless CMS platforms.  
  **Customization may require coding** – Not entirely plug-and-play for non-developers.
 
 ---
 
-##**Who Should Use Directus?**  
+## **Who Should Use Directus?**  
 Directus is **ideal for:**  
  **Developers and data teams** seeking direct control over SQL databases.  
  **Enterprises** that need a scalable, real-time content management solution.  
@@ -84,7 +84,7 @@ Directus is **ideal for:**
 
 ---
 
-##**Conclusion**  
+## **Conclusion**  
 Directus delivers a **powerful, open-source headless CMS solution** that excels in **direct database integration and real-time data management**. Its API-first design, combined with a customizable admin interface and robust security features, makes it an excellent choice for developers and enterprises looking to maintain full control over their structured content.
 
 ---

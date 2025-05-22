@@ -5,7 +5,7 @@ description: Learn about CMS Made Simple, its history, features, and how it comp
 
 # **CMS Made Simple: Overview, History, Pros & Cons**  
 
-##**Overview**  
+## **Overview**  
 CMS Made Simple (CMSMS) is an **open-source content management system** designed for **small-to-medium-sized websites** that require **simplicity, flexibility, and ease of use**. It offers a **lightweight, PHP-based CMS** with a focus on **performance, user-friendly templating, and extendability via modules**.  
 
  **Best For:** **Small businesses, developers, and agencies** needing a **simple yet customizable CMS**.  
@@ -14,7 +14,7 @@ CMS Made Simple (CMSMS) is an **open-source content management system** designed
 
 ---
 
-##**History & Evolution**  
+## **History & Evolution**  
 CMS Made Simple was launched in **2004** by **Ted Kulp** as a **simpler alternative to Joomla and WordPress**.  
 
 - **2004:** CMS Made Simple was created to provide an **easy-to-use CMS for developers and small businesses**.  
@@ -24,7 +24,7 @@ CMS Made Simple was launched in **2004** by **Ted Kulp** as a **simpler alternat
 
 ---
 
-##**Key Features & Capabilities**  
+## **Key Features & Capabilities**  
 
 ### **1⃣ Simplicity & Lightweight Performance**  
  **Easy installation** – Minimal setup compared to WordPress or Joomla.  
@@ -53,7 +53,7 @@ CMS Made Simple was launched in **2004** by **Ted Kulp** as a **simpler alternat
 
 ---
 
-##**CMS Made Simple vs Competitors**  
+## **CMS Made Simple vs Competitors**  
 
 | Feature                  | CMS Made Simple | WordPress | Joomla     | Grav        | ProcessWire |
 |--------------------------|----------------|-----------|------------|-------------|-------------|
@@ -66,7 +66,7 @@ CMS Made Simple was launched in **2004** by **Ted Kulp** as a **simpler alternat
 
 ---
 
-##**Pros of CMS Made Simple**  
+## **Pros of CMS Made Simple**  
  **Lightweight & fast** – Minimal resource usage, ideal for small-to-medium websites.  
  **Customizable templates** – Uses **Smarty templating** for structured design.  
  **Easy to use** – Simplified admin panel compared to Joomla or Drupal.  
@@ -75,7 +75,7 @@ CMS Made Simple was launched in **2004** by **Ted Kulp** as a **simpler alternat
 
 ---
 
-##**Cons of CMS Made Simple**  
+## **Cons of CMS Made Simple**  
  **Not as beginner-friendly as WordPress** – Requires some technical knowledge.  
  **Smaller community & plugin ecosystem** – Fewer themes and extensions.  
  **Limited eCommerce capabilities** – Requires third-party integrations.  
@@ -83,7 +83,7 @@ CMS Made Simple was launched in **2004** by **Ted Kulp** as a **simpler alternat
 
 ---
 
-##**Who Should Use CMS Made Simple?**  
+## **Who Should Use CMS Made Simple?**  
 CMS Made Simple is **ideal for:**  
  **Small business owners** who need an easy-to-maintain website.  
  **Developers & agencies** looking for a **lightweight, structured CMS**.  
@@ -92,7 +92,7 @@ CMS Made Simple is **ideal for:**
 
 ---
 
-##**Conclusion**  
+## **Conclusion**  
 CMS Made Simple is a **fast, flexible, and lightweight CMS** designed for **small-to-medium businesses, developers, and agencies** who need **structured content management without the complexity of Joomla or WordPress**. While it **lacks the vast plugin ecosystem of WordPress**, it **excels in performance, templating, and SEO optimization**, making it a great alternative for those looking for a **leaner CMS solution**.  
 
 ---
