@@ -13,14 +13,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&display=swap" /></noscript>
-    <link rel="preload" as="style" href="/css/carbon.css" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="/css/carbon.css" /></noscript>
-    <script src="https://unpkg.com/carbon-components/scripts/carbon-components.min.js" defer></script>
     <script>
       window.addEventListener('load', () => {
-        if (window.CarbonComponents) {
-          window.CarbonComponents.watch();
-        }
+        const s = document.createElement('script');
+        s.src = 'https://unpkg.com/carbon-components/scripts/carbon-components.min.js';
+        s.onload = () => { window.CarbonComponents?.watch(); };
+        document.body.appendChild(s);
       });
     </script>
   </head>
