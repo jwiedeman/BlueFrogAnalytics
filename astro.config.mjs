@@ -8,6 +8,7 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import remarkMermaid from 'remark-mermaidjs'
 import mdx from '@astrojs/mdx';
+import remarkGlossaryLinks from './src/plugins/remark-glossary-links.js';
 // Removed expressive-code integration to drop starlight deps
 
 const DOCS_DIR = 'src/content/docs';
@@ -98,7 +99,7 @@ export default defineConfig({
     // MDX for .md/.mdx with math
     mdx({
       extension: ['.md', '.mdx'],
-      remarkPlugins: [remarkMath, remarkMermaid],
+      remarkPlugins: [remarkMath, remarkMermaid, remarkGlossaryLinks],
       rehypePlugins: [rehypeKatex],
     }),
     // Sitemap generation
