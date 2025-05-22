@@ -1,0 +1,20 @@
+---
+import BlogPostCard from './BlogPostCard.astro';
+const { categories = {} } = Astro.props;
+const names = Object.keys(categories);
+---
+<div data-tabs class="bx--tabs">
+  <ul class="bx--tabs__nav" role="tablist">
+    {names.map((name, i) => (
+      <li class={`bx--tabs__nav-item${i === 0 ? ' bx--tabs__nav-item--selected' : ''}`} data-target={`#tab-${name}`} role="tab">{name.charAt(0).toUpperCase() + name.slice(1)}</li>
+    ))}
+  </ul>
+  {names.map((name, i) => (
+    <div id={`tab-${name}`} class="bx--tab-content" role="tabpanel" hidden={i !== 0}>
+      {categories[name].length ? categories[name].map(p => <BlogPostCard post={p} />) : <p>No articles found.</p>}
+    </div>
+  ))}
+</div>
+<style>
+.bx--tab-content { padding-top: 1rem; }
+</style>
