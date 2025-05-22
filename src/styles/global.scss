@@ -16,6 +16,8 @@ body {
   font-family: var(--sl-font-sans);
   background: var(--cds-background);
   color: var(--cds-text);
+  /* Prevent horizontal scrollbars from full-width sections */
+  overflow-x: hidden;
   /* Offset all pages below the fixed header */
   padding-top: 7rem;
   padding-bottom: 1rem;
