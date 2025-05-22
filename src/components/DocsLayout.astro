@@ -46,20 +46,22 @@ const docTree = buildTree();
         <ul data-accordion class="bx--accordion">
           {(() => {
             function renderNodes(nodes) {
-              return nodes.map((node) => {
-                const hasChildren = node.children && node.children.length > 0;
-                return (
-                  <li class={hasChildren ? 'doc-folder' : 'doc-link-item'} key={node.path ?? node.name}>
-                    {node.path && !hasChildren ? (
-                      <a href={node.path}>{node.label}</a>
-                    ) : (
-                      <span>{node.label}</span>
-                    )}
-                    {hasChildren && (
+
+              return nodes.map(node => {
+                if (node.children?.length) {
+                  return (
+                    <li class="doc-folder">
+                      <span class="folder-label">{node.label}</span>
                       <ul class="bx--list--unordered">
                         {renderNodes(node.children)}
                       </ul>
-                    )}
+                    </li>
+                  );
+                }
+                return (
+                  <li class="doc-link-item">
+                    <a href={node.path}>{node.label}</a>
+
                   </li>
                 );
               });
