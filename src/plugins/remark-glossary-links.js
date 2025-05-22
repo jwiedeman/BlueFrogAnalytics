@@ -43,7 +43,11 @@ export default function remarkGlossaryLinks() {
       children: [{type: 'text', value: match}],
     }),
   ]);
-  return (tree) => {
+  return (tree, file) => {
+    // Only process files within the documentation directory
+    if (!file?.path || !file.path.includes(path.posix.join('content', 'docs'))) {
+      return;
+    }
     findAndReplace(tree, replacements, {ignore: ['link', 'heading', 'code', 'inlineCode']});
   };
 }
