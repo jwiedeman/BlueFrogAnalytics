@@ -15,12 +15,35 @@ const { Content } = await post.render();
 
 ---
 <BlogLayout>
-  <article>
-    <h1>{post.data.title}</h1>
-    {post.data.pubDate && <p>{post.data.pubDate.toLocaleDateString()}</p>}
-    <Content />
-    {post.data.tags?.length ? (
-      <p>Tags: {post.data.tags.map(t => <a href={`/blog/tags/${t}`}>{t}</a>).join(', ')}</p>
-    ) : null}
-  </article>
+  <div class="bx--grid bx--grid--condensed carbon-hero bx--theme--white">
+    <div class="bx--row">
+      <div class="bx--col-lg-8 bx--offset-lg-2">
+        <nav class="bx--breadcrumb" aria-label="Breadcrumb">
+          <ol class="bx--breadcrumb-list">
+            <li class="bx--breadcrumb-item"><a href="/blog">Blog</a></li>
+            <li class="bx--breadcrumb-item"><span>{post.data.title}</span></li>
+          </ol>
+        </nav>
+        <h1 class="bx--type-expressive-heading-05">{post.data.title}</h1>
+        {post.data.pubDate && (
+          <p class="bx--type-delta">{post.data.pubDate.toLocaleDateString()}</p>
+        )}
+      </div>
+    </div>
+  </div>
+
+  <div class="bx--grid bx--grid--condensed carbon-container bx--theme--white">
+    <div class="bx--row">
+      <div class="bx--col-lg-8 bx--offset-lg-2">
+        <Content />
+        {post.data.tags?.length ? (
+          <p>
+            {post.data.tags.map(t => (
+              <a href={`/blog/tags/${t}`} class="bx--tag" key={t}>{t}</a>
+            ))}
+          </p>
+        ) : null}
+      </div>
+    </div>
+  </div>
 </BlogLayout>
