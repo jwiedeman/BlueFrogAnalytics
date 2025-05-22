@@ -44,15 +44,7 @@ body {
   margin: 0; /* Remove default body margin */
 }
 
-/* Remove gap between header and main content */
-header {
-  margin: 0;
-  padding: 0;
-}
-main {
-  margin-top: 0;
-  padding-top: 0;
-}
+
 
 /* Documentation pages: ensure content is not hidden under the fixed header */
 #main-content {
@@ -213,7 +205,7 @@ main {
   .bx--header__menu-bar {
     flex-direction: row;
     width: auto;
-    gap: 1rem;
+    gap: 0rem;
   }
   .bx--header__menu-item {
     width: auto;
@@ -235,8 +227,8 @@ main {
 /* Side navigation styles */
 #side-nav {
   display: none;
-  position: fixed;
-  top: var(--cds--ui-shell--header-height);
+  position:sticky;
+
   left: 0;
   width: 16rem;
   background: #161616;
