@@ -1,0 +1,20 @@
+---
+import { getCollection } from 'astro:content';
+import BlogLayout from '../../../components/BlogLayout.astro';
+
+const posts = await getCollection('blog');
+const tagMap = new Map();
+for (const post of posts) {
+  (post.data.tags || []).forEach(tag => {
+    tagMap.set(tag, (tagMap.get(tag) || 0) + 1);
+  });
+}
+---
+<BlogLayout>
+  <h1>Tags</h1>
+  <ul>
+    {Array.from(tagMap.entries()).map(([tag, count]) => (
+      <li key={tag}><a href={`/blog/tags/${tag}/`}>{tag} ({count})</a></li>
+    ))}
+  </ul>
+</BlogLayout>
