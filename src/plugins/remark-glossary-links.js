@@ -36,6 +36,7 @@ export default function remarkGlossaryLinks() {
   const terms = loadGlossary();
   const replacements = Object.entries(terms).map(([term, slug]) => [
     new RegExp(`(?<!\\w)${escapeRegExp(term)}(?!\\w)`, 'gi'),
+
     (match) => ({
       type: 'link',
       url: `/introduction/terminology-glossary#${slug}`,
