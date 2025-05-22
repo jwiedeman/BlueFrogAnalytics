@@ -23,69 +23,74 @@ template: splash
   <div id="ascii-art" aria-hidden="true"></div>
 </div>
 
-{/* Mission Overview - Enhanced Visual Layout */}
-<div className="bx--grid bx--theme--g10 section">
+{/* Mission Overview */}
+<section className="bx--grid bx--theme--g10 section">
   <div className="bx--row">
-    <div className="bx--col-lg-12 text-center">
-      <h2 className="bx--type-productive-heading-03">Mission Overview</h2>
-      <p className="bx--type-body-long-02 bx--col-lg-8 bx--offset-lg-2">
-        Blue Frog Analytics is an <strong>intelligent web auditing platform</strong> designed for teams demanding accuracy. Delivering <strong>precise insights</strong> into tracking, SEO, and performance issues before they become critical.
+    <div className="bx--col-lg-12 bx--text-center">
+      <h2 className="bx--type-expressive-heading-04">Mission Overview</h2>
+    </div>
+    <div className="bx--col-lg-8 bx--offset-lg-2 bx--text-center">
+      <p className="bx--type-body-long-02">
+        Blue Frog Analytics is an <strong>intelligent web auditing platform</strong> designed for teams demanding accuracy. Delivering <strong>precise insights</strong> into tracking, SEO and performance issues before they become critical.
       </p>
     </div>
   </div>
 
-  <div className="bx--row" style={{ marginTop: '2rem' }}>
+  <div className="bx--row bx--row--condensed" style={{ marginTop: '2rem' }}>
     {[
-      ['Tracking Validation', 'Ensure accurate GA, Meta, and Bing integrations.'],
-      ['SEO Enhancements', 'Optimize Core Web Vitals, metadata, and structured data.'],
+      ['Tracking Validation', 'Ensure accurate GA, Meta and Bing integrations.'],
+      ['SEO Enhancements', 'Optimize Core Web Vitals, metadata and structured data.'],
       ['Performance Insights', 'Identify bottlenecks & improve page speeds.'],
-      ['Compliance Checks', 'Stay compliant with GDPR, CPRA, and WCAG.']
+      ['Compliance Checks', 'Stay compliant with GDPR, CPRA and WCAG.']
     ].map(([title, desc]) => (
       <div key={title} className="bx--col-lg-3 bx--col-md-4 bx--col-sm-4">
-        <div className="bx--tile bx--tile--clickable bx--tile--light">
+        <div className="bx--tile bx--tile--light bx--tile--clickable">
           <h4 className="bx--type-heading-compact-01">{title}</h4>
           <p className="bx--type-body-short-01">{desc}</p>
         </div>
       </div>
     ))}
   </div>
-</div>
+</section>
 
-{/* Launch Sequence - Enhanced Visual Layout */}
-<div className="bx--grid bx--theme--g10 section">
+{/* Launch Sequence */}
+<section className="bx--grid bx--theme--g10 section">
   <div className="bx--row">
-    <div className="bx--col-lg-12 text-center">
-      <h2 className="bx--type-productive-heading-03"> Launch Sequence</h2>
+    <div className="bx--col-lg-12 bx--text-center">
+      <h2 className="bx--type-expressive-heading-04">Launch Sequence</h2>
     </div>
   </div>
 
-  <div className="bx--row" style={{ marginTop: '2rem' }}>
-    {[
-      ['Scan Your Website', 'Audit your tracking, SEO, and performance issues thoroughly.'],
-      ['Actionable Reports', 'Gain detailed, clear insights to drive decisions.'],
-      ['Implement Fixes', 'Easy-to-follow, step-by-step optimization guides.'],
-      ['Monitor & Improve', 'Run scheduled scans ensuring ongoing site health.']
-    ].map(([title, desc]) => (
-      <div key={title} className="bx--col-lg-3 bx--col-md-4 bx--col-sm-4">
-        <div className="bx--card bx--card--inverse bx--tile--clickable">
-          <div className="bx--card__content">
-            <h4 className="bx--type-heading-compact-01">{title}</h4>
-            <p className="bx--type-body-short-01">{desc}</p>
-          </div>
-        </div>
-      </div>
-    ))}
+  <div className="bx--row bx--col-lg-8 bx--offset-lg-2" style={{ marginTop: '2rem' }}>
+    <ol className="bx--list--ordered bx--list--expressive">
+      <li>
+        <p className="bx--type-heading-compact-01">Scan Your Website</p>
+        <p className="bx--type-body-short-01">Audit your tracking, SEO and performance issues thoroughly.</p>
+      </li>
+      <li>
+        <p className="bx--type-heading-compact-01">Actionable Reports</p>
+        <p className="bx--type-body-short-01">Gain detailed, clear insights to drive decisions.</p>
+      </li>
+      <li>
+        <p className="bx--type-heading-compact-01">Implement Fixes</p>
+        <p className="bx--type-body-short-01">Easy-to-follow, step-by-step optimization guides.</p>
+      </li>
+      <li>
+        <p className="bx--type-heading-compact-01">Monitor & Improve</p>
+        <p className="bx--type-body-short-01">Run scheduled scans ensuring ongoing site health.</p>
+      </li>
+    </ol>
   </div>
-</div>
+</section>
 
 {/* Why Choose Blue Frog */}
-<div className="bx--grid section bx--theme--white">
+<section className="bx--grid section bx--theme--white">
   <div className="bx--row">
-    <div className="bx--col-lg-12 text-center">
-      <h2 className="bx--type-productive-heading-04 section-title">Why Choose Blue Frog Analytics?</h2>
+    <div className="bx--col-lg-12 bx--text-center">
+      <h2 className="bx--type-expressive-heading-04 section-title">Why Choose Blue Frog Analytics?</h2>
     </div>
   </div>
-  <div className="bx--row">
+  <div className="bx--row bx--row--condensed" style={{ marginTop: '2rem' }}>
     {[
       ['Data Accuracy', 'No lost pixels or tags.'],
       ['Performance Optimization', 'AI suggestions for speed.'],
@@ -96,22 +101,22 @@ template: splash
         <div className="bx--card">
           <div className="bx--card__content">
             <h4 className="bx--type-heading-compact-01">{title}</h4>
-            <p>{desc}</p>
+            <p className="bx--type-body-short-01">{desc}</p>
           </div>
         </div>
       </div>
     ))}
   </div>
-</div>
+</section>
 
 {/* Use Cases */}
-<div className="bx--grid section bx--theme--g10">
+<section className="bx--grid section bx--theme--g10">
   <div className="bx--row">
-    <div className="bx--col-lg-12 text-center">
-      <h2 className="bx--type-productive-heading-04 section-title">Use Cases & Workflows</h2>
+    <div className="bx--col-lg-12 bx--text-center">
+      <h2 className="bx--type-expressive-heading-04 section-title">Use Cases & Workflows</h2>
     </div>
   </div>
-  <div className="bx--row">
+  <div className="bx--row bx--row--condensed" style={{ marginTop: '2rem' }}>
     {[
       ['Developers', 'Debugging & optimization.'],
       ['Marketers', 'Conversions & SEO.'],
@@ -120,22 +125,22 @@ template: splash
       <div key={title} className="bx--col-lg-4 bx--col-md-4 bx--col-sm-4">
         <div className="bx--tile bx--tile--clickable">
           <h4 className="bx--type-heading-compact-01">{title}</h4>
-          <p>{desc}</p>
+          <p className="bx--type-body-short-01">{desc}</p>
         </div>
       </div>
     ))}
   </div>
-</div>
+</section>
 
 {/* Call to Action */}
-<div className="bx--grid section bx--theme--white">
+<section className="bx--grid section bx--theme--white">
   <div className="bx--row">
-    <div className="bx--col-lg-8 bx--offset-lg-2 text-center">
-      <h2 className="bx--type-productive-heading-04 section-title">Ready to launch your mission?</h2>
+    <div className="bx--col-lg-8 bx--offset-lg-2 bx--text-center">
+      <h2 className="bx--type-expressive-heading-04 section-title">Ready to launch your mission?</h2>
       <p className="bx--type-body-long-02">Start your free audit now and experience Blue Frog Analytics.</p>
       <a href="/introduction/how-blue-frog-analytics-works" className="bx--btn bx--btn--primary">Launch Audit</a>
     </div>
   </div>
-</div>
+</section>
 
 <script type="module" src="/js/ascii-hero.js" defer></script>
