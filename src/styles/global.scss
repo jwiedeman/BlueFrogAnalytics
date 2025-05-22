@@ -75,6 +75,12 @@ body {
   min-height: 40vh;
   display: flex;
   align-items: center;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-bottom: 2rem;
+  padding: 2rem 3rem;
+  background: #ffffff;
 }
 
 .hero-content {
@@ -187,8 +193,7 @@ main#main-content > * {
   padding: 0 1rem;
 }
 
-.carbon-hero,
-.hero-section {
+.carbon-hero {
   max-width: var(--sl-content-width);
   margin: 0 auto 2rem;
   padding: 2rem 1rem;
