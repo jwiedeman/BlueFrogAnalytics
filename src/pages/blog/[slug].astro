@@ -1,0 +1,24 @@
+---
+import { getCollection, getEntryBySlug } from 'astro:content';
+import BlogLayout from '../../components/BlogLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(p => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const post = await getEntryBySlug('blog', slug);
+if (!post) throw new Error('Post not found');
+const { Content } = await post.render();
+---
+<BlogLayout>
+  <article>
+    <h1>{post.data.title}</h1>
+    {post.data.pubDate && <p>{post.data.pubDate.toLocaleDateString()}</p>}
+    <Content />
+    {post.data.tags?.length ? (
+      <p>Tags: {post.data.tags.map(t => <a href={`/blog/tags/${t}/`}>{t}</a>).join(', ')}</p>
+    ) : null}
+  </article>
+</BlogLayout>

@@ -1,0 +1,17 @@
+---
+import BaseHead from './BaseHead.astro';
+import CustomHeader from './CustomHeader.astro';
+import CustomFooter from './CustomFooter.astro';
+---
+<html lang="en">
+  <head>
+    <BaseHead />
+  </head>
+  <body>
+    <CustomHeader />
+    <main id="main-content">
+      <slot />
+    </main>
+    <CustomFooter />
+  </body>
+</html>
