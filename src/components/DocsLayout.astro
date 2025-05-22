@@ -75,9 +75,11 @@ const docTree = buildTree();
       </main>
       <aside class="sidebar-right">
         <nav>
-          <ul>
+          <ul class="bx--tree-view">
             {headings?.map(h => (
-              <li><a href={`#${h.slug}`}>{h.text}</a></li>
+              <li class="bx--tree-view__node" data-depth={h.depth}>
+                <a href={`#${h.slug}`}>{h.text}</a>
+              </li>
             ))}
           </ul>
         </nav>
