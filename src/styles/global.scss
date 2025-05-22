@@ -1,29 +1,29 @@
+@use '@carbon/colors' as colors;
+
 :root {
   --sl-font-sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
-  --sl-color-primary: #0f62fe; /* Carbon blue */
-  --sl-color-accent: #ff832b; /* Carbon orange */
+  --sl-color-primary: #{colors.$blue-60};
+  --sl-color-accent: #{colors.$orange-50};
   --sl-border-radius: 0;
   --cds-text: #161616;
   --cds--ui-shell--header-height: 100px;
   --cds-background: #f4f4f4;
 }
 
-
-
-.bx--footer {
-  padding: 2rem 1rem;
-  border-top: 2px solid #e0e0e0;
-  margin-top: 5rem;
-}
-
-
-
+/* Global page body styles */
 body {
   font-family: var(--sl-font-sans);
   background: var(--cds-background);
   color: var(--cds-text);
-
+  /* Offset all pages below the fixed header */
+  padding-top: 7rem;
+  padding-bottom: 1rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
+
+
+
 
 
 
@@ -35,12 +35,8 @@ body {
   gap: 2rem;
   max-width: var(--sl-content-width);
   margin: 0 auto;
-  /* vertical padding: top and bottom spacing */
   padding: 1rem 1rem 2rem;
 }
-
-
-
 .sidebar-left,
 .sidebar-right {
   position: sticky;
@@ -48,17 +44,15 @@ body {
   max-height: calc(100vh - var(--cds--ui-shell--header-height));
   overflow-y: auto;
 }
-
 .sidebar-left {
   border-right: 1px solid #e0e0e0;
   padding-right: 1rem;
 }
-
 .sidebar-right {
   border-left: 1px solid #e0e0e0;
   padding-left: 1rem;
 }
-
+// Search input in sidebars
 .sidebar-left input[type="search"] {
   width: 100%;
   margin-bottom: 1rem;
@@ -67,14 +61,14 @@ body {
   box-sizing: border-box;
 }
 
-
-/* Hero section using Carbon grid classes */
+// Hero section using Carbon grid classes
 .hero-grid {
   background: var(--cds-background);
   padding: 4rem 1rem;
   text-align: center;
 }
-/* Button group for calls to action */
+
+// Button group for calls to action
 .bx--btn-set {
   display: flex;
   gap: 1rem;
@@ -82,14 +76,7 @@ body {
   margin-top: 1rem;
 }
 
-
-
-
-
-
-
-
-/* Provide spacing and width for the search bar */
+// Provide spacing and width for the search bar
 .bx--header__search {
   margin: 0 0.5rem;
 }
@@ -98,7 +85,7 @@ body {
   width: 200px;
 }
 
-/* Center the hamburger icon */
+// Center the hamburger icon
 .bx--header__menu-trigger {
   display: flex;
   align-items: center;
@@ -107,11 +94,6 @@ body {
 
 .bx--header__nav {
   display: none;
-  /*
-   Allow the navigation container to grow with its contents rather than
-   overlaying the page. Positioning it statically ensures the element's
-   height expands based on the menu items inside.
-  */
   position: static;
   width: 100%;
   background: #161616;
@@ -120,12 +102,8 @@ body {
   z-index: 1000;
 }
 
-
-
-
-
 @media (min-width: 768px) {
-  /* Show nav links inline on larger screens */
+  // Show nav links inline on larger screens
   .bx--header__menu-trigger {
     display: none;
   }
@@ -143,81 +121,83 @@ body {
     width: auto;
     gap: 0rem;
   }
-  
 }
 
-/* Ensure dropdown menus match header background */
+// Ensure dropdown menus match header background
 .bx--dropdown-list,
 .bx--list-box__menu {
   background: #161616;
   color: #f5f5f5;
 }
 
-
-
-/* Global content box: constrain width and center content for all pages */
+// Global content box: constrain width and center content for all pages
 main#main-content > * {
   max-width: var(--sl-content-width);
   margin: 0 auto;
-  padding: 7rem 3rem;
+  padding-bottom: 1.2rem;
 }
-}
+
 .bx--dropdown-item > .bx--dropdown-link,
 .bx--list-box__menu-item {
   color: #f5f5f5;
 }
 
-/* Side navigation styles */
+// Side navigation styles
 #side-nav {
   display: none;
-  position:sticky;
-
+  position: sticky;
   left: 0;
   width: 16rem;
   background: #161616;
   padding: 1rem;
   z-index: 1100;
 }
+
 #side-nav.bx--side-nav--expanded {
   display: block;
 }
+
 #side-nav .bx--side-nav__items {
   list-style: none;
   margin: 0;
   padding: 0;
 }
+
 #side-nav .bx--side-nav__item {
   margin: 0.5rem 0;
 }
+
 #side-nav .bx--side-nav__link {
   color: #f5f5f5;
   text-decoration: none;
 }
+
 @media (min-width: 768px) {
   #side-nav {
     display: none !important;
   }
 }
 
-/* Docs page: render article links as normal text (no blue or underline) */
+// Docs page: render article links as normal text (no blue or underline)
 .docs-main a {
   color: var(--cds-text);
   text-decoration: none;
 }
-/* Docs page: render article links as normal text (no blue or underline) */
+
+// Docs page: indicate link on hover/focus
 .docs-main a:hover,
 .docs-main a:focus {
-  /* indicate link on hover/focus */
   color: var(--sl-color-primary);
   text-decoration: underline;
 }
 
-/* Docs page sidebars: render sidebar navigation links as normal text */
+// Docs page sidebars: render sidebar navigation links as normal text
 .sidebar-left a,
 .sidebar-right a {
   color: var(--cds-text);
   text-decoration: none;
 }
+
 .sidebar-left a:hover,
 .sidebar-right a:hover,
 .sidebar-left a:focus,
@@ -226,7 +206,7 @@ main#main-content > * {
   text-decoration: underline;
 }
 
-/* Desktop header: add separator between logo and nav */
+// Desktop header: add separator between logo and nav
 @media (min-width: 768px) {
   .site-logo {
     padding-right: 1rem;
@@ -234,4 +214,3 @@ main#main-content > * {
     border-right: 1px solid rgba(40, 40, 40, 0.2);
   }
 }
-

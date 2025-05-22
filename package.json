@@ -20,6 +20,9 @@
   },
   "devDependencies": {
     "@astrojs/mdx": "^4.2.6",
-    "astro": "^5.7.14"
+    "@carbon/colors": "^11.0.0",
+    "astro": "^5.7.14",
+    "sass": "^1.66.1",
+    "sass-embedded": "^1.89.0"
   }
 }
