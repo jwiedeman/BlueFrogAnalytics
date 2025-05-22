@@ -1,12 +1,19 @@
 // Simple ASCII art generator for the hero section
 const asciiEl = document.getElementById('ascii-art');
 if (asciiEl) {
-  const imgUrl = 'https://static.taminomartinius.de/avatar.png';
+
+  // Use the poison dart frog image for the hero background
+  const imgUrl =
+    'https://media.istockphoto.com/id/93218208/photo/blue-poison-dart-frog-against-white-background.jpg?b=1&s=612x612&w=0&k=20&c=5o7sCMfedFx3TQ16JDbl0jAQLTo5UTfogcFCVwz7bmI=';
+
   const chars = ' .:-=+*#%@';
   const img = new Image();
   img.crossOrigin = 'Anonymous';
   img.onload = () => {
-    const width = 80;
+
+    // Shrink slightly so the frog fits the right side of the hero
+    const width = 60;
+
     const ratio = img.height / img.width;
     const canvas = document.createElement('canvas');
     canvas.width = width;
