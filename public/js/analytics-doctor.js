@@ -307,6 +307,8 @@ document.addEventListener('DOMContentLoaded', () => {
       openDetailsFromHash(hash);
     });
   });
-
   openDetailsFromHash(location.hash);
+  window.addEventListener('hashchange', () => {
+    openDetailsFromHash(location.hash);
+  });
 });
