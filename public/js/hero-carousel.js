@@ -6,7 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function show(n) {
     slides.forEach((s, i) => { s.hidden = i !== n; });
   }
+
   show(index);
+
   const prev = carousel.querySelector('.carousel-prev');
   const next = carousel.querySelector('.carousel-next');
   prev && prev.addEventListener('click', () => {
