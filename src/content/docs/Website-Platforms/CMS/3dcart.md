@@ -5,7 +5,7 @@ description: Learn about 3dcart, its history, features, and how it compares to o
 
 # **3dcart: Overview, History, Pros & Cons**  
 
-##**Overview**  
+## **Overview**  
 3dcart was a **popular eCommerce platform** designed for **small to mid-sized businesses**, offering an **all-in-one SaaS solution** for building and managing online stores. Known for its **built-in SEO tools, advanced customization options, and robust inventory management**, 3dcart aimed to provide **merchants with full control over their eCommerce operations**.  
 
  **Update:** In 2020, **3dcart was acquired by Shift4 Payments** and rebranded as **Shift4Shop**, offering similar features with added payment processing benefits.  
@@ -16,7 +16,7 @@ description: Learn about 3dcart, its history, features, and how it compares to o
 
 ---
 
-##**History & Evolution**  
+## **History & Evolution**  
 3dcart was founded in **1997** by **Gonzalo Gil**, with the goal of creating an **affordable yet powerful eCommerce platform** for small businesses.  
 
 - **1997:** 3dcart was launched, focusing on providing a feature-rich online store builder.  
@@ -25,7 +25,7 @@ description: Learn about 3dcart, its history, features, and how it compares to o
 
 ---
 
-##**Key Features & Capabilities**  
+## **Key Features & Capabilities**  
 
 ### **1⃣ Ease of Use**  
  **Drag-and-drop website builder** with pre-made templates.  
@@ -54,7 +54,7 @@ description: Learn about 3dcart, its history, features, and how it compares to o
 
 ---
 
-##**3dcart vs Competitors**  
+## **3dcart vs Competitors**  
 
 | Feature                 | 3dcart (Shift4Shop) | Shopify         | BigCommerce      | WooCommerce    |
 |-------------------------|--------------------|----------------|-----------------|----------------|
@@ -67,7 +67,7 @@ description: Learn about 3dcart, its history, features, and how it compares to o
 
 ---
 
-##**Pros of 3dcart**  
+## **Pros of 3dcart**  
  **No additional transaction fees** with **Shift4 Payments**.  
  **Advanced SEO tools** for better search rankings.  
  **Highly customizable** with full HTML & CSS control.  
@@ -76,7 +76,7 @@ description: Learn about 3dcart, its history, features, and how it compares to o
 
 ---
 
-##**Cons of 3dcart**  
+## **Cons of 3dcart**  
  **Requires Shift4 Payments for the free plan**, limiting payment flexibility.  
  **Not as user-friendly** as Shopify or Wix.  
  **Fewer templates** compared to Shopify and WooCommerce.  
@@ -84,7 +84,7 @@ description: Learn about 3dcart, its history, features, and how it compares to o
 
 ---
 
-##**Who Should Use 3dcart?**  
+## **Who Should Use 3dcart?**  
 3dcart (Shift4Shop) is **ideal for businesses that:**  
  Want a **feature-rich, SEO-friendly eCommerce solution**.  
  **Sell B2B or wholesale products** and need flexible pricing.  
@@ -93,7 +93,7 @@ description: Learn about 3dcart, its history, features, and how it compares to o
 
 ---
 
-##**Conclusion**  
+## **Conclusion**  
 3dcart (now **Shift4Shop**) remains a **powerful alternative to Shopify and BigCommerce**, offering **strong SEO, no transaction fees, and advanced B2B features**. However, its **learning curve and Shift4 payment requirement** may not suit all merchants. For businesses focused on SEO and wholesale/B2B sales, it’s a **great option with strong customization capabilities**.  
 
 ---

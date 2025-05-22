@@ -5,7 +5,7 @@ description: Learn about Carrd, its history, features, and how it compares to ot
 
 # **Carrd: Overview, History, Pros & Cons**  
 
-##**Overview**  
+## **Overview**  
 Carrd is a **simple, one-page website builder** designed for users who need a **minimalist and fast** way to create landing pages, portfolios, personal sites, or small business pages. It stands out for its **ease of use, affordability, and sleek design templates**, making it a great choice for **non-technical users and creators** who need an elegant online presence without complexity.  
 
  **Best For:** **Freelancers, personal websites, portfolios, startup landing pages, and simple business pages**.  
@@ -14,7 +14,7 @@ Carrd is a **simple, one-page website builder** designed for users who need a **
 
 ---
 
-##**History & Evolution**  
+## **History & Evolution**  
 Carrd was launched in **2016** by **AJ**, an independent developer who aimed to create a **lightweight, easy-to-use website builder** that focused on **one-page sites**.  
 
 - **2016:** Carrd was introduced as a **one-page site builder** with **free and premium plans**.  
@@ -24,7 +24,7 @@ Carrd was launched in **2016** by **AJ**, an independent developer who aimed to 
 
 ---
 
-##**Key Features & Capabilities**  
+## **Key Features & Capabilities**  
 
 ### **1⃣ Simple & Fast One-Page Site Builder**  
  **Drag-and-drop editor** – No coding required.  
@@ -53,7 +53,7 @@ Carrd was launched in **2016** by **AJ**, an independent developer who aimed to 
 
 ---
 
-##**Carrd vs Competitors**  
+## **Carrd vs Competitors**  
 
 | Feature                  | Carrd      | Linktree  | Wix         | Squarespace | Webflow     |
 |--------------------------|-----------|-----------|------------|-------------|-------------|
@@ -65,7 +65,7 @@ Carrd was launched in **2016** by **AJ**, an independent developer who aimed to 
 
 ---
 
-##**Pros of Carrd**  
+## **Pros of Carrd**  
  **Super easy to use** – Perfect for beginners.  
  **Extremely affordable** – Pro plans start at just $9/year.  
  **Beautiful, mobile-friendly templates** for clean one-page sites.  
@@ -74,7 +74,7 @@ Carrd was launched in **2016** by **AJ**, an independent developer who aimed to 
 
 ---
 
-##**Cons of Carrd**  
+## **Cons of Carrd**  
  **Only supports one-page websites** – No multi-page functionality.  
  **Limited eCommerce features** – Best for simple payment collection.  
  **Fewer third-party integrations** than Wix or Squarespace.  
@@ -82,7 +82,7 @@ Carrd was launched in **2016** by **AJ**, an independent developer who aimed to 
 
 ---
 
-##**Who Should Use Carrd?**  
+## **Who Should Use Carrd?**  
 Carrd is **ideal for:**  
  **Freelancers & Personal Branding** – Perfect for simple portfolios.  
  **Small Businesses & Startups** – Great for landing pages.  
@@ -91,7 +91,7 @@ Carrd is **ideal for:**
 
 ---
 
-##**Conclusion**  
+## **Conclusion**  
 Carrd is a **lightweight, ultra-simple website builder** that excels at **creating elegant, one-page sites quickly and affordably**. While it **lacks multi-page support and deep customization**, it is **perfect for portfolios, landing pages, and personal sites**, especially for users looking for a **budget-friendly alternative to Wix or Squarespace**.  
 
 ---

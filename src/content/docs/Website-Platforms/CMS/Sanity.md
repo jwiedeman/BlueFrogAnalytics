@@ -5,7 +5,7 @@ description: Learn about Sanity, its history, features, and how it compares to o
 
 # **Sanity: Overview, History, Pros & Cons**
 
-##**Overview**  
+## **Overview**  
 Sanity is a **headless content management system (CMS)** that offers a highly customizable and developer-friendly platform for managing structured content. With its real-time collaboration, flexible content modeling, and powerful APIs (including GraphQL support), Sanity is designed to support modern web applications, mobile apps, and digital experiences. Its open-source core and rich ecosystem make it an excellent choice for teams seeking a scalable, agile, and customizable content platform.
 
  **Best For:** **Developers, agencies, and enterprises** looking for a flexible, API-first headless CMS that enables real-time collaboration and custom content modeling.  
@@ -14,7 +14,7 @@ Sanity is a **headless content management system (CMS)** that offers a highly cu
 
 ---
 
-##**History & Evolution**  
+## **History & Evolution**  
 Sanity was created to address the need for a more adaptable and developer-focused headless CMS in the age of modern web development.
 
 - **2015:** Sanity was founded with a vision to bring real-time collaboration and flexible content modeling to headless CMS solutions.
@@ -23,7 +23,7 @@ Sanity was created to address the need for a more adaptable and developer-focuse
 
 ---
 
-##**Key Features & Capabilities**
+## **Key Features & Capabilities**
 
 ### **1⃣ Flexible Content Modeling**
  **Custom Schemas:** Define your own content structures using JavaScript-based schema definitions.
@@ -47,7 +47,7 @@ Sanity was created to address the need for a more adaptable and developer-focuse
 
 ---
 
-##**Sanity vs Competitors**
+## **Sanity vs Competitors**
 
 | Feature                   | Sanity           | Contentful      | Prismic        | Strapi           |
 |---------------------------|------------------|-----------------|----------------|------------------|
@@ -59,7 +59,7 @@ Sanity was created to address the need for a more adaptable and developer-focuse
 
 ---
 
-##**Pros of Sanity**  
+## **Pros of Sanity**  
  **Highly Flexible Content Modeling:** Create custom schemas tailored to your project's needs.  
  **Real-Time Collaboration:** Allows teams to edit and manage content simultaneously, enhancing workflow efficiency.  
  **Powerful API Support:** Leverages both REST and GraphQL for seamless integration with modern applications.  
@@ -68,7 +68,7 @@ Sanity was created to address the need for a more adaptable and developer-focuse
 
 ---
 
-##**Cons of Sanity**  
+## **Cons of Sanity**  
  **Learning Curve:** Advanced customization and schema definitions may require a good understanding of JavaScript and modern development practices.  
  **Complex Setup for Non-Developers:** Best suited for technical teams; may be challenging for users without developer support.  
  **Proprietary Hosting Costs:** While the core is open-source, hosted plans can add to overall expenses for large-scale deployments.  
@@ -76,7 +76,7 @@ Sanity was created to address the need for a more adaptable and developer-focuse
 
 ---
 
-##**Who Should Use Sanity?**  
+## **Who Should Use Sanity?**  
 Sanity is **ideal for:**  
  **Developers and agencies** seeking a highly customizable, API-first headless CMS.  
  **Content teams** that require real-time collaboration and flexible content modeling.  
@@ -85,7 +85,7 @@ Sanity is **ideal for:**
 
 ---
 
-##**Conclusion**  
+## **Conclusion**  
 Sanity offers a **robust, flexible, and modern headless CMS** that empowers teams to build dynamic digital experiences. With its real-time collaboration, powerful API support, and customizable content modeling, Sanity stands out as a top choice for organizations aiming to adopt a truly agile and developer-centric content management strategy.
 
 ---

@@ -5,7 +5,7 @@ description: Learn about Cosmic JS, its history, features, and how it compares t
 
 # **Cosmic JS: Overview, History, Pros & Cons**
 
-##**Overview**  
+## **Overview**  
 Cosmic JS is a **headless content management system (CMS)** that provides a **cloud-based, API-driven platform** for developers and content teams. Designed for flexibility and scalability, Cosmic JS allows you to manage and deliver content across websites, mobile apps, and digital experiences without being tied to a specific front-end technology.
 
  **Best For:** **Developers, startups, and enterprises** needing a **flexible headless CMS** for modern web and mobile applications.  
@@ -14,7 +14,7 @@ Cosmic JS is a **headless content management system (CMS)** that provides a **cl
 
 ---
 
-##**History & Evolution**  
+## **History & Evolution**  
 Cosmic JS was founded to address the growing demand for **decoupled content management solutions** that cater to modern development workflows. It has since evolved into a robust, cloud-based CMS trusted by developers for its simplicity and scalability.
 
 - **2015:** Cosmic JS was launched as a **headless CMS** focusing on ease of integration and API-first design.
@@ -24,7 +24,7 @@ Cosmic JS was founded to address the growing demand for **decoupled content mana
 
 ---
 
-##**Key Features & Capabilities**
+## **Key Features & Capabilities**
 
 ### **1⃣ API-First Headless Architecture**  
  **RESTful API & GraphQL support** – Retrieve and manage content seamlessly.  
@@ -51,7 +51,7 @@ Cosmic JS was founded to address the growing demand for **decoupled content mana
 
 ---
 
-##**Cosmic JS vs Competitors**
+## **Cosmic JS vs Competitors**
 
 | Feature                  | Cosmic JS      | Contentful    | ButterCMS   | Strapi      | Sanity     |
 |--------------------------|----------------|---------------|-------------|-------------|------------|
@@ -64,7 +64,7 @@ Cosmic JS was founded to address the growing demand for **decoupled content mana
 
 ---
 
-##**Pros of Cosmic JS**  
+## **Pros of Cosmic JS**  
  **Fully API-driven and headless** – Ideal for modern, decoupled applications.  
  **Cloud-based with global scalability** – No infrastructure hassles.  
  **Flexible content modeling** – Tailor content types to your project’s needs.  
@@ -73,14 +73,14 @@ Cosmic JS was founded to address the growing demand for **decoupled content mana
 
 ---
 
-##**Cons of Cosmic JS**  
+## **Cons of Cosmic JS**  
  **Pricing structure** – Can become expensive as your content needs grow.  
  **Learning curve for non-developers** – Best suited for technical teams.  
  **Smaller community** – Fewer third-party integrations compared to more established competitors.
   
 ---
 
-##**Who Should Use Cosmic JS?**  
+## **Who Should Use Cosmic JS?**  
 Cosmic JS is **ideal for:**  
  **Developers and startups** looking for a flexible headless CMS solution.  
  **Enterprises** that need scalable, cloud-based content delivery.  
@@ -89,7 +89,7 @@ Cosmic JS is **ideal for:**
 
 ---
 
-##**Conclusion**  
+## **Conclusion**  
 Cosmic JS is a **powerful, API-first headless CMS** that offers the flexibility and scalability modern web and mobile applications demand. While it may require some technical expertise and has a pricing model geared toward growing businesses, its **robust API, flexible content modeling, and strong media management** make it an excellent choice for developers and enterprises alike.
 
 ---
