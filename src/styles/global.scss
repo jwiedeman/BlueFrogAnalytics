@@ -7,7 +7,8 @@
   --sl-color-accent: #{colors.$blue-60};
   --sl-border-radius: 0;
   --cds-text: #161616;
-  --cds--ui-shell--header-height: 100px;
+  /* Use Carbon default header height */
+  --cds--ui-shell--header-height: 3rem;
   --cds-background: #f0f0f0;
 }
 
@@ -18,11 +19,9 @@ body {
   color: var(--cds-text);
   /* Prevent horizontal scrollbars from full-width sections */
   overflow-x: hidden;
-  /* Offset all pages below the fixed header */
-  padding-top: 7rem;
+  /* Offset pages below the fixed header */
+  padding-top: var(--cds--ui-shell--header-height);
   padding-bottom: 1rem;
-  padding-left: 3rem;
-  padding-right: 3rem;
 }
 
 /* Consistent horizontal rule styling */
@@ -32,12 +31,7 @@ hr {
   margin: 2rem 0;
 }
 
-@media (max-width: 767px) {
-  body {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-}
+
 
 
 
@@ -250,6 +244,12 @@ main#main-content > * {
 .carbon-container:last-child,
 .section:last-child {
   margin-bottom: 0;
+}
+
+/* Space out tiles within standardized sections */
+.carbon-container .bx--tile,
+.section .bx--tile {
+  margin-bottom: 1rem;
 }
 
 .carbon-hero {

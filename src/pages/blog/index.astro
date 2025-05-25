@@ -14,11 +14,11 @@ const tags = Array.from(new Set(posts.flatMap(p => p.data.tags || [])));
 ---
 <BlogLayout>
   <div class="blog-page">
-    <section class="blog-hero bx--grid">
+    <section class="blog-hero carbon-container bx--grid">
       <FeaturedHero posts={featured} />
     </section>
 
-    <section class="blog-search bx--grid">
+    <section class="blog-search carbon-container bx--grid">
 
       <div class="search-row bx--row">
 
@@ -36,7 +36,7 @@ const tags = Array.from(new Set(posts.flatMap(p => p.data.tags || [])));
       </div>
     </section>
 
-    <section class="blog-posts bx--grid">
+    <section class="blog-posts carbon-container bx--grid">
       <div class="bx--row">
         <div class="bx--col-sm-8 bx--col-md-8 bx--col-lg-12">
           <div class="bx--row" id="posts-list">
@@ -54,7 +54,6 @@ const tags = Array.from(new Set(posts.flatMap(p => p.data.tags || [])));
     </section>
     <script src="/js/blog-search.js" defer></script>
     <style>
-      #main-content > .blog-page { max-width: none; padding: 0; }
       .blog-hero { margin-bottom: 1rem; }
       .blog-search { margin-bottom: 2rem; }
       .search-row { display: flex; flex-wrap: wrap; align-items: center; }
