@@ -1,11 +1,11 @@
 :root {
-  --sl-font-sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --sl-font-sans: "Helvetica Neue", Arial, sans-serif;
   /* Site palette */
-  --sl-color-primary: #0b3d91; /* NASA blue */
-  --sl-color-accent: #4682b4;
+  --sl-color-primary: #305580; /* slate blue */
+  --sl-color-accent: #88a5c9;
   --sl-border-radius: 0;
-  --bs-primary: #0b3d91;
-  --bs-body-bg: #f8f9fa;
+  --bs-primary: #305580;
+  --bs-body-bg: #fcfdff;
   --bs-body-color: #161616;
   --header-height: 3.5rem;
 }
@@ -27,6 +27,12 @@ hr {
   border: none;
   border-top: 1px solid #e0e0e0;
   margin: 2rem 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-weight: 400;
 }
 
 
@@ -332,18 +338,3 @@ main#main-content > * {
   text-decoration: underline;
 }
 
-// Desktop header: add separator between logo and nav
-/* Increase site logo text size globally */
-
-.bx--header__name.site-logo {
-
-  font-size: 130%;
-}
-
-@media (min-width: 768px) {
-  .bx--header__name.site-logo {
-    padding-right: 1rem;
-    margin-right: 1rem;
-    border-right: 1px solid rgba(40, 40, 40, 0.2);
-  }
-}
