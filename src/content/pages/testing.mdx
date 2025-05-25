@@ -4,36 +4,44 @@ description: Interactive tools for validating analytics implementations.
 template: splash
 ---
 
-<div className="bx--grid hero-section bx--theme--white">
-  <div className="bx--row">
-    <div className="bx--col-lg-8 bx--offset-lg-2 text-center hero-content">
-      <h1 className="bx--type-expressive-heading-05">Validate your tracking setup.</h1>
-      <p className="bx--type-body-long-02">Explore Blue Frog Analytics's testing utilities in full-screen mode.</p>
+<div className="container-fluid hero-section bg-white">
+  <div className="row">
+    <div className="col-lg-8 offset-lg-2 text-center hero-content">
+      <h1 className="display-4">Validate your tracking setup.</h1>
+      <p className="lead">Explore Blue Frog Analytics's testing utilities in full-screen mode.</p>
     </div>
   </div>
 </div>
 
-<div className="bx--grid bx--theme--g10 section">
-  <div className="bx--row">
-    <div className="bx--col-lg-8 bx--offset-lg-2">
-      <h2 className="bx--type-productive-heading-03">Testing Tools</h2>
-      <p className="bx--type-body-long-02">
+<div className="container bg-light">
+  <div className="row">
+    <div className="col-lg-8 offset-lg-2">
+      <h2 className="h2">Testing Tools</h2>
+      <p className="mb-4">
         A collection of free tools for validating and exploring different aspects of web development.
       </p>
     </div>
   </div>
 
-  <div className="bx--row" style={{ marginTop: '2rem' }}>
-    <div className="bx--col-sm-12 bx--col-md-4">
-      <a href="/tests/analytics-doctor" className="bx--tile bx--tile--clickable bx--tile--light">
-        <h4 className="bx--type-heading-compact-01">Analytics Doctor</h4>
-        <p className="bx--type-body-short-01">Scan a domain for analytics implementations.</p>
+  <div className="row g-4">
+    <div className="col-sm-12 col-md-6 col-lg-4">
+      <a href="/tests/analytics-doctor" className="text-decoration-none">
+        <div className="card h-100">
+          <div className="card-body">
+            <h5 className="card-title">Analytics Doctor</h5>
+            <p className="card-text">Scan a domain for analytics implementations.</p>
+          </div>
+        </div>
       </a>
     </div>
-    <div className="bx--col-sm-12 bx--col-md-4">
-      <a href="/tests/roas-calculator" className="bx--tile bx--tile--clickable bx--tile--light">
-        <h4 className="bx--type-heading-compact-01">ROAS &amp; Reality Check Calculator</h4>
-        <p className="bx--type-body-short-01">Simulate advertising performance across scenarios.</p>
+    <div className="col-sm-12 col-md-6 col-lg-4">
+      <a href="/tests/roas-calculator" className="text-decoration-none">
+        <div className="card h-100">
+          <div className="card-body">
+            <h5 className="card-title">ROAS &amp; Reality Check Calculator</h5>
+            <p className="card-text">Simulate advertising performance across scenarios.</p>
+          </div>
+        </div>
       </a>
     </div>
   </div>
