@@ -1,6 +1,7 @@
 ---
 import { getCollection, getEntryBySlug } from 'astro:content';
 import BlogLayout from '../../components/BlogLayout.astro';
+import BlogPostCard from '../../components/BlogPostCard.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -12,6 +13,12 @@ const post = await getEntryBySlug('blog', slug);
 if (!post) throw new Error('Post not found');
 
 const { Content } = await post.render();
+
+const allPosts = await getCollection('blog');
+const relatedPosts = allPosts
+  .filter(p => p.slug !== slug && p.data.tags?.some(t => post.data.tags?.includes(t)))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 4);
 
 ---
 <BlogLayout>
@@ -61,4 +68,17 @@ const { Content } = await post.render();
       </footer>
     ) : null}
   </article>
+
+  {relatedPosts.length ? (
+    <section class="container mb-5">
+      <h2 class="h4 mb-3">Related Posts</h2>
+      <div class="row g-4">
+        {relatedPosts.map(p => (
+          <div class="col-md-6 col-lg-3" key={p.slug}>
+            <BlogPostCard post={p} />
+          </div>
+        ))}
+      </div>
+    </section>
+  ) : null}
 </BlogLayout>
