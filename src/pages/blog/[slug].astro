@@ -15,31 +15,31 @@ const { Content } = await post.render();
 
 ---
 <BlogLayout>
-  <div class="bx--grid bx--grid--condensed carbon-hero bx--theme--white">
-    <div class="bx--row">
-      <div class="bx--col-lg-8 bx--offset-lg-2">
-        <nav class="bx--breadcrumb" aria-label="Breadcrumb">
-          <ol class="bx--breadcrumb-list">
-            <li class="bx--breadcrumb-item"><a href="/blog">Blog</a></li>
-            <li class="bx--breadcrumb-item"><span>{post.data.title}</span></li>
+  <div class="container my-4">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2">
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/blog">Blog</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{post.data.title}</li>
           </ol>
         </nav>
-        <h1 class="bx--type-expressive-heading-05">{post.data.title}</h1>
+        <h1>{post.data.title}</h1>
         {post.data.pubDate && (
-          <p class="bx--type-delta">{post.data.pubDate.toLocaleDateString()}</p>
+          <p class="text-muted">{post.data.pubDate.toLocaleDateString()}</p>
         )}
       </div>
     </div>
   </div>
 
-  <div class="bx--grid bx--grid--condensed carbon-container bx--theme--white">
-    <div class="bx--row">
-      <div class="bx--col-lg-8 bx--offset-lg-2">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2">
         <Content />
         {post.data.tags?.length ? (
           <p>
             {post.data.tags.map(t => (
-              <a href={`/blog/tags/${t}`} class="bx--tag" key={t}>{t}</a>
+              <a href={`/blog/tags/${t}`} class="badge bg-secondary me-1" key={t}>{t}</a>
             ))}
           </p>
         ) : null}

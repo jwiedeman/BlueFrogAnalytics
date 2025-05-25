@@ -1,5 +1,5 @@
 ---
-// Carbon global header with responsive side navigation
+// Bootstrap navbar for site navigation
 const mainNav = [
   { label: 'Home', link: '/' },
   { label: 'About', link: '/about' },
@@ -10,43 +10,26 @@ const mainNav = [
 ];
 ---
 <!-- Skip link for accessibility -->
-<a href="#main-content" class="bx--skip-to-content">Skip to main content</a>
-<!-- Carbon header -->
-<header class="bx--header bx--theme--dark" role="banner" aria-label="Blue Frog Analytics">
-  <!-- Hamburger menu trigger -->
-  <button class="bx--header__action bx--header__menu-trigger" aria-label="Open menu" data-target="#side-nav">
-    <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" class="bx--header__menu-trigger__icon" width="20" height="20" viewBox="0 0 32 32">
-      <path d="M4 23h24v2H4zm0-8h24v2H4zm0-8h24v2H4z" />
-    </svg>
-  </button>
-  <!-- Site title -->
-  <a href="/" class="bx--header__name site-logo" aria-label="Blue Frog Analytics home">
-    <span class="site-logo-prefix">BlueFrog</span><span class="site-logo-analytics">Analytics</span>
-  </a>
-  <!-- Navigation links -->
-  <nav class="bx--header__nav" aria-label="Product Navigation">
-    <ul class="bx--header__menu-bar">
-      {mainNav.map(item => (
-        <li key={item.link}>
-          <a class="bx--header__menu-item" href={item.link}>{item.label}</a>
-        </li>
-      ))}
-    </ul>
-  </nav>
-
-  <!-- 6. Global utilities (search, theme, language) removed -->
-</header>
-<!-- Side navigation for mobile -->
-<nav id="side-nav" class="bx--side-nav" aria-label="Side navigation">
-  <ul class="bx--side-nav__items">
-    {mainNav.map(item => (
-      <li class="bx--side-nav__item" key={item.link}>
-        <a class="bx--side-nav__link" href={item.link}>{item.label}</a>
-      </li>
-    ))}
-  </ul>
+<a href="#main-content" class="visually-hidden-focusable">Skip to main content</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" aria-label="Main navigation">
+  <div class="container-fluid">
+    <a class="navbar-brand site-logo" href="/">
+      <span class="site-logo-prefix">BlueFrog</span><span class="site-logo-analytics">Analytics</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        {mainNav.map(item => (
+          <li class="nav-item" key={item.link}>
+            <a class="nav-link" href={item.link}>{item.label}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
 </nav>
-<script src="/js/header.js" defer></script>
 <style>
   .site-logo-prefix {
     color: var(--sl-color-primary);
