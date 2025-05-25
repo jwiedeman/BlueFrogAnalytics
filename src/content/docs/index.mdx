@@ -7,20 +7,23 @@ template: splash
 
 
 {/* Hero Section */}
-<section className="container py-5 bg-white text-center">
-  <div className="row justify-content-center">
-    <div className="col-lg-8">
+<section className="container-fluid hero-section landing-hero bg-white">
+  <div className="row">
+    <div className="col-lg-8 offset-lg-2 hero-content">
       <h1 className="display-4">Precision analytics for the modern web.</h1>
       <p className="lead">
         Inspired by NASA's clean aesthetic, Blue Frog Analytics audits and optimizes every metric. Launch with confidence—and keep your site performing at its peak.
       </p>
-      <div className="d-flex gap-3 justify-content-center">
+      <div className="d-flex gap-3">
         <a href="/introduction/how-blue-frog-analytics-works" className="btn btn-primary">Get Started</a>
         <a href="/introduction/use-cases" className="btn btn-outline-primary">Learn More</a>
       </div>
     </div>
   </div>
+  <div id="ascii-art" aria-hidden="true"></div>
 </section>
+
+<script type="module" src="/js/ascii-hero.js" defer></script>
 
 {/* Mission Overview */}
 <section className="container py-5 bg-light">
