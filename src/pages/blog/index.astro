@@ -19,16 +19,16 @@ const tags = Array.from(new Set(posts.flatMap(p => p.data.tags || [])));
     </section>
 
     <section class="container mb-4 blog-search">
-      <div class="row g-3 align-items-center search-row">
-        <div class="col-lg-8">
+      <div class="row g-3 search-row">
+        <div class="col-12">
           <div role="search">
             <label for="blog-search" class="visually-hidden">Search posts</label>
             <input id="blog-search" type="text" class="form-control" placeholder="Search posts..." />
           </div>
         </div>
-        <div class="col-lg-4 text-lg-end tags-col">
+        <div class="col-12">
           <div class="tag-filter">
-            {tags.map(t => <span class="badge bg-secondary ms-1" data-tag={t}>{t}</span>)}
+            {tags.map(t => <span class="badge bg-secondary me-1" data-tag={t}>{t}</span>)}
           </div>
         </div>
       </div>
