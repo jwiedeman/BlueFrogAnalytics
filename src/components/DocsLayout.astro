@@ -8,6 +8,9 @@ const { headings } = Astro.props;
 
 // Build a nested tree structure from docs content
 const modules = import.meta.glob('../content/docs/**/*.{md,mdx}', { eager: true });
+const docsRaw = import.meta.glob('../content/docs/**/*.{md,mdx}', { eager: true, as: 'raw' });
+const blogInfo = import.meta.glob('../content/blog/**/*.{md,mdx}', { eager: true });
+const blogRaw = import.meta.glob('../content/blog/**/*.{md,mdx}', { eager: true, as: 'raw' });
 function buildTree() {
   const tree = [];
   for (const [filePath, mod] of Object.entries(modules)) {
@@ -33,6 +36,26 @@ function buildTree() {
 }
 const docTree = buildTree();
 
+const searchIndex = [];
+for (const [file, mod] of Object.entries(modules)) {
+  const rawKey = file.replace('../content/docs/', '').replace(/\.(md|mdx)$/, '');
+  searchIndex.push({
+    title: mod.frontmatter?.title || '',
+    tags: mod.frontmatter?.tags || [],
+    body: docsRaw[file],
+    url: '/' + rawKey.toLowerCase() + '/',
+  });
+}
+for (const [file, mod] of Object.entries(blogInfo)) {
+  const slug = file.replace('../content/blog/', '').replace(/\.(md|mdx)$/, '');
+  searchIndex.push({
+    title: mod.frontmatter?.title || '',
+    tags: mod.frontmatter?.tags || [],
+    body: blogRaw[file],
+    url: '/blog/' + slug.toLowerCase() + '/',
+  });
+}
+
 ---
 <html lang="en">
   <head>
@@ -42,7 +65,10 @@ const docTree = buildTree();
     <CustomHeader />
     <div class="docs-container container-fluid">
       <aside class="sidebar-left">
-        <input id="doc-search" type="search" placeholder="Search docs..." />
+        <div class="position-relative mb-3">
+          <input id="doc-search" type="search" class="form-control" placeholder="Search docs..." autocomplete="off" />
+          <ul id="search-results" class="list-group position-absolute w-100 d-none search-dropdown"></ul>
+        </div>
         <div class="accordion" id="docAccordion">
           {(() => {
             function renderNodes(nodes) {
@@ -50,17 +76,17 @@ const docTree = buildTree();
               return nodes.map(node => {
                 if (node.children?.length) {
                   return (
-                    <li class="doc-folder">
+                    <li class="doc-folder list-group-item">
                       <span class="folder-label">{node.label}</span>
-                      <ul class="list-unstyled">
+                      <ul class="list-group list-group-flush ms-2">
                         {renderNodes(node.children)}
                       </ul>
                     </li>
                   );
                 }
                 return (
-                  <li class="doc-link-item">
-                    <a href={node.path}>{node.label}</a>
+                  <li class="doc-link-item list-group-item">
+                    <a class="text-decoration-none" href={node.path}>{node.label}</a>
 
                   </li>
                 );
@@ -75,7 +101,7 @@ const docTree = buildTree();
                 </h2>
                 <div id={`acc-${i}`} class="accordion-collapse collapse" data-bs-parent="#docAccordion">
                   <div class="accordion-body p-0">
-                    <ul class="list-unstyled">
+                    <ul class="list-group list-group-flush">
                       {renderNodes(cat.children)}
                     </ul>
                   </div>
@@ -101,22 +127,39 @@ const docTree = buildTree();
       </aside>
     </div>
     <CustomFooter />
+    <script id="search-data" type="application/json">{JSON.stringify(searchIndex)}</script>
     <script client:load>
-      // Live filter for search
+      const searchData = JSON.parse(document.getElementById('search-data').textContent);
       const input = document.getElementById('doc-search');
+      const results = document.getElementById('search-results');
+
+      function fuzzy(text, query) {
+        const words = query.toLowerCase().split(/\s+/).filter(Boolean);
+        const t = text.toLowerCase();
+        return words.every(w => t && t.includes(w));
+      }
+
       input.addEventListener('input', () => {
-        const filter = input.value.toLowerCase();
-        document.querySelectorAll('.doc-link-item').forEach(li => {
-          li.style.display = li.textContent.toLowerCase().includes(filter) ? '' : 'none';
+        const q = input.value.trim();
+        results.innerHTML = '';
+        if (!q) {
+          results.classList.add('d-none');
+          return;
+        }
+        const matches = searchData.filter(item => fuzzy(item.title + ' ' + item.body + ' ' + item.tags.join(' '), q));
+        matches.slice(0, 10).forEach(m => {
+          const li = document.createElement('li');
+          li.className = 'list-group-item';
+          li.innerHTML = `<a href="${m.url}" class="text-decoration-none">${m.title}</a>`;
+          results.appendChild(li);
         });
-        document.querySelectorAll('.doc-folder').forEach(folder => {
-          const visible = Array.from(folder.querySelectorAll('.doc-link-item')).some(li => li.style.display !== 'none');
-          folder.style.display = visible ? '' : 'none';
-        });
-        document.querySelectorAll('.accordion-item').forEach(item => {
-          const visible = Array.from(item.querySelectorAll('.doc-link-item')).some(li => li.style.display !== 'none');
-          item.style.display = visible ? '' : 'none';
-        });
+        results.classList.toggle('d-none', matches.length === 0);
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!results.contains(e.target) && e.target !== input) {
+          results.classList.add('d-none');
+        }
       });
 
       // Keep current page link highlighted and its folder open
