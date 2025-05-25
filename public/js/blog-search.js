@@ -5,10 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function filterPosts() {
     const filter = input ? input.value.toLowerCase() : '';
-    document.querySelectorAll('.blog-card').forEach(card => {
+    document.querySelectorAll('#posts-list .blog-card').forEach(card => {
+      const wrapper = card.closest('.col-sm-6') || card;
       const text = card.textContent.toLowerCase();
       const tagMatch = !activeTag || (card.dataset.tags || '').includes(activeTag);
-      card.style.display = text.includes(filter) && tagMatch ? '' : 'none';
+      wrapper.style.display = text.includes(filter) && tagMatch ? '' : 'none';
     });
   }
 

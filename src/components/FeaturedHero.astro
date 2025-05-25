@@ -4,11 +4,11 @@ const { posts = [] } = Astro.props;
 const [first, second, third] = posts;
 ---
 <div class="featured-hero">
-  <div class="row g-3">
-    <div class="col-lg-8 featured-main">
+  <div class="row g-3 align-items-stretch">
+    <div class="col-md-8 featured-main">
       {first && <BlogPostCard post={first} />}
     </div>
-    <div class="col-lg-4 d-grid gap-3">
+    <div class="col-md-4 d-grid gap-3">
       {second && <BlogPostCard post={second} />}
       {third && <BlogPostCard post={third} />}
     </div>
