@@ -63,6 +63,7 @@ const tags = Array.from(new Set(posts.flatMap(p => p.data.tags || [])));
       .search-row .bx--search { width: 100%; }
       .tag-filter .bx--tag { margin-left: 0.5rem; cursor: pointer; }
       .tag-filter .bx--tag.active { background: #0f62fe; color: #fff; }
-    </style>
+      #posts-list > div { margin-bottom: 2rem; }
+   </style>
   </div>
 </BlogLayout>
