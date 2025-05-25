@@ -14,7 +14,7 @@ const currentPath =
     ? '/'
     : Astro.url.pathname.replace(/\/$/, '').toLowerCase();
 function isActive(item) {
-  const link = item.link.replace(/\/$/, '').toLowerCase();
+  const link = item.link === '/' ? '/' : item.link.replace(/\/$/, '').toLowerCase();
 
   if (item.label === 'Docs') return isDocs;
   if (item.label === 'Tests') {
