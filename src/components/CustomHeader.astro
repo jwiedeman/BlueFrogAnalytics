@@ -1,5 +1,6 @@
 ---
 // Bootstrap navbar for site navigation
+const { isDocs = false } = Astro.props;
 const mainNav = [
   { label: 'Home', link: '/' },
   { label: 'About', link: '/about' },
@@ -8,6 +9,17 @@ const mainNav = [
   { label: 'Blog', link: '/blog' },
   { label: 'Docs', link: '/introduction/how-blue-frog-analytics-works' },
 ];
+const currentPath = Astro.url.pathname.replace(/\/$/, '').toLowerCase();
+function isActive(item) {
+  const link = item.link.replace(/\/$/, '').toLowerCase();
+  if (item.label === 'Docs') return isDocs;
+  if (item.label === 'Tests') {
+    return currentPath.startsWith('/testing') || currentPath.startsWith('/tests');
+  }
+  if (item.label === 'Blog') return currentPath.startsWith('/blog');
+  if (link === '/') return currentPath === '/';
+  return currentPath === link || currentPath.startsWith(link + '/');
+}
 ---
 <!-- Skip link for accessibility -->
 <a href="#main-content" class="visually-hidden-focusable">Skip to main content</a>
@@ -24,7 +36,7 @@ const mainNav = [
       <ul class="navbar-nav mb-2 mb-lg-0">
         {mainNav.map(item => (
           <li class="nav-item" key={item.link}>
-            <a class="nav-link" href={item.link}>{item.label}</a>
+            <a class={`nav-link${isActive(item) ? ' active' : ''}`} href={item.link}>{item.label}</a>
           </li>
         ))}
       </ul>
@@ -45,6 +57,7 @@ const mainNav = [
   .navbar-charcoal {
     --bs-navbar-color: #36454f;
     --bs-navbar-hover-color: var(--sl-color-primary);
+    --bs-navbar-active-color: var(--sl-color-primary);
     --bs-navbar-brand-color: #36454f;
     --bs-navbar-brand-hover-color: var(--sl-color-primary);
   }
