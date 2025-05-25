@@ -95,8 +95,10 @@ for (const [file, mod] of Object.entries(blogInfo)) {
                   return (
                     <li class={`doc-folder list-group-item${open}`}>
                       <span class="folder-label">{node.label}</span>
+
                       <ul class="list-group list-group-flush ms-2">
                         {renderNodes(node.children, activeNames)}
+
                       </ul>
                     </li>
                   );
@@ -206,6 +208,7 @@ for (const [file, mod] of Object.entries(blogInfo)) {
             label.parentElement.classList.toggle('open');
           });
         });
+
 
       // Keep current page link highlighted and its folder open
         const normalizePath = (p) => p.toLowerCase().replace(/\/?(index\.html)?$/, '');

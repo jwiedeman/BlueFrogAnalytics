@@ -384,7 +384,7 @@ main#main-content > :not(.container-fluid) {
 
 .doc-folder > ul {
   display: none;
-  margin-left: 1rem;
+  margin-left: 1rem !important;
   padding-left: 0;
 }
 
@@ -397,6 +397,6 @@ main#main-content > :not(.container-fluid) {
 }
 
 .doc-link-item {
-  margin-left: 0.5rem;
+  margin-left: 0.5rem !important;
 }
 
