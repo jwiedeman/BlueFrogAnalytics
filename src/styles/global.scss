@@ -339,7 +339,7 @@ main#main-content > :not(.container-fluid) {
 }
 
 // Docs sidebar: highlight active article link
-.sidebar-left a.active {
+.sidebar-left a.doc-active {
   color: var(--sl-color-primary);
   text-decoration: underline;
   background-color: #e9ecef;
