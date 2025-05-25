@@ -134,8 +134,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const canonical = canonicalize(key);
             const idSlug = slugify(canonical + '-note');
             const methodSlug = slugify('method-' + method);
-            const pillClass = 'analytics-pill bx--tag bx--tag--blue ' + slugify(canonical);
-            const methodClass = 'analytics-pill bx--tag bx--tag--gray method-' + slugify(method);
+            const pillClass = 'analytics-pill badge bg-primary ' + slugify(canonical);
+            const methodClass = 'analytics-pill badge bg-secondary method-' + slugify(method);
             td.className = 'analytics-cell';
             td.innerHTML =
               `<a href="#${idSlug}" class="${pillClass}">${ids}</a>` +
@@ -187,8 +187,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const canonical = canonicalize(name);
         const idSlug = slugify(canonical + '-note');
         const methodSlug = slugify('method-' + method);
-        const pillClass = 'analytics-pill bx--tag bx--tag--blue ' + slugify(canonical);
-        const methodClass = 'analytics-pill bx--tag bx--tag--gray method-' + slugify(method);
+        const pillClass = 'analytics-pill badge bg-primary ' + slugify(canonical);
+        const methodClass = 'analytics-pill badge bg-secondary method-' + slugify(method);
         li.innerHTML =
           `${formatName(name)} ` +
           `<a href="#${idSlug}" class="${pillClass}">${ids}</a>` +
@@ -293,10 +293,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!el) return;
     if (el.tagName.toLowerCase() === 'details') {
       el.open = true;
-    } else if (el.classList.contains('bx--accordion__item')) {
-      const heading = el.querySelector('.bx--accordion__heading');
-      if (heading && heading.getAttribute('aria-expanded') === 'false') {
-        heading.click();
+    } else if (el.classList.contains('accordion-item')) {
+      const button = el.querySelector('.accordion-button');
+      if (button && button.classList.contains('collapsed')) {
+        button.click();
       }
     }
   }
