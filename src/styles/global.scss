@@ -364,6 +364,30 @@ main#main-content > * {
   font-weight: 600;
 }
 
+.doc-folder > .folder-label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.doc-folder > .folder-label::before {
+  content: '▸';
+  margin-right: 4px;
+  transition: transform 0.1s ease-in-out;
+}
+
+.doc-folder.open > .folder-label::before {
+  transform: rotate(90deg);
+}
+
+.doc-folder > ul {
+  display: none;
+}
+
+.doc-folder.open > ul {
+  display: block;
+}
+
 .doc-link-item a {
   display: block;
 }

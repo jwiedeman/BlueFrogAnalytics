@@ -162,6 +162,13 @@ for (const [file, mod] of Object.entries(blogInfo)) {
         }
       });
 
+      // Toggle folders in the sidebar
+      document.querySelectorAll('.doc-folder > .folder-label').forEach(label => {
+        label.addEventListener('click', () => {
+          label.parentElement.classList.toggle('open');
+        });
+      });
+
       // Keep current page link highlighted and its folder open
       const current = window.location.pathname.replace(/\/$/, '').toLowerCase();
       const link = Array.from(document.querySelectorAll('.sidebar-left a')).find(a => {
@@ -171,11 +178,22 @@ for (const [file, mod] of Object.entries(blogInfo)) {
       });
       if (link) {
         link.classList.add('active');
+
+        let folder = link.closest('.doc-folder');
+        while (folder) {
+          folder.classList.add('open');
+          folder = folder.parentElement.closest('.doc-folder');
+        }
+
         const item = link.closest('.accordion-item');
         if (item) {
-          item.classList.add('show');
+          const collapse = item.querySelector('.accordion-collapse');
+          if (collapse) collapse.classList.add('show');
           const heading = item.querySelector('.accordion-button');
-          if (heading) heading.setAttribute('aria-expanded', 'true');
+          if (heading) {
+            heading.classList.remove('collapsed');
+            heading.setAttribute('aria-expanded', 'true');
+          }
         }
       }
     </script>
