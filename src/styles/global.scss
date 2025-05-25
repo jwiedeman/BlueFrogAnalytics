@@ -353,3 +353,18 @@ main#main-content > * {
   transform: translateY(-4px);
 }
 
+// Docs search dropdown styling
+.search-dropdown {
+  max-height: 60vh;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.doc-folder {
+  font-weight: 600;
+}
+
+.doc-link-item a {
+  display: block;
+}
+
