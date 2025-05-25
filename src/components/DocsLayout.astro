@@ -36,6 +36,23 @@ function buildTree() {
 }
 const docTree = buildTree();
 
+// Determine breadcrumb based on current path
+const currentPath = Astro.url.pathname.replace(/\/$/, '').toLowerCase();
+function findPath(nodes, parents = []) {
+  for (const node of nodes) {
+    const nodePath = node.path?.replace(/\/$/, '').toLowerCase();
+    if (nodePath === currentPath) {
+      return [...parents, node];
+    }
+    if (node.children?.length) {
+      const result = findPath(node.children, [...parents, node]);
+      if (result) return result;
+    }
+  }
+  return null;
+}
+const breadcrumbNodes = findPath(docTree) || [];
+
 const searchIndex = [];
 for (const [file, mod] of Object.entries(modules)) {
   const rawKey = file.replace('../content/docs/', '').replace(/\.(md|mdx)$/, '');
@@ -112,6 +129,20 @@ for (const [file, mod] of Object.entries(blogInfo)) {
         </div>
       </aside>
       <main id="main-content" class="docs-main">
+        {breadcrumbNodes.length ? (
+          <nav aria-label="Breadcrumb" class="mb-3">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              {breadcrumbNodes.map((node, idx) => (
+                idx < breadcrumbNodes.length - 1 ? (
+                  <li class="breadcrumb-item" key={idx}><a href={node.path}>{node.label}</a></li>
+                ) : (
+                  <li class="breadcrumb-item active" aria-current="page" key={idx}>{node.label}</li>
+                )
+              ))}
+            </ol>
+          </nav>
+        ) : null}
         <slot />
       </main>
       <aside class="sidebar-right">
