@@ -339,7 +339,7 @@ main#main-content > :not(.container-fluid) {
 }
 
 // Docs sidebar: highlight active article link
-.sidebar-left a.active {
+.sidebar-left a.doc-active {
   color: var(--sl-color-primary);
   text-decoration: underline;
   background-color: #e9ecef;
@@ -384,7 +384,7 @@ main#main-content > :not(.container-fluid) {
 
 .doc-folder > ul {
   display: none;
-  margin-left: 1rem;
+  margin-left: 1rem !important;
   padding-left: 0;
 }
 
