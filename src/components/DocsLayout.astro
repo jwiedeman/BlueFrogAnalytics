@@ -95,7 +95,7 @@ for (const [file, mod] of Object.entries(blogInfo)) {
                   return (
                     <li class="doc-folder list-group-item">
                       <span class="folder-label">{node.label}</span>
-                      <ul class="list-group list-group-flush ms-2">
+                      <ul class="list-group list-group-flush">
                         {renderNodes(node.children)}
                       </ul>
                     </li>
@@ -203,7 +203,14 @@ for (const [file, mod] of Object.entries(blogInfo)) {
         });
 
       // Keep current page link highlighted and its folder open
-        const normalizePath = (p) => p.toLowerCase().replace(/\/?(index\.html)?$/, '');
+
+        const normalizePath = (p) => {
+          try {
+            p = new URL(p, window.location.origin).pathname;
+          } catch {}
+          return p.toLowerCase().replace(/\/?(index\.html)?$/, '');
+        };
+
         const current = normalizePath(window.location.pathname);
         const link = Array.from(document.querySelectorAll('.sidebar-left a')).find(a => {
           const href = a.getAttribute('href');
