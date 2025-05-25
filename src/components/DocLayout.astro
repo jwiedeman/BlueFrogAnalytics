@@ -3,6 +3,9 @@
 import BaseHead from './BaseHead.astro';
 import CustomHeader from './CustomHeader.astro';
 import CustomFooter from './CustomFooter.astro';
+
+const { fluid = false } = Astro.props;
+const mainClass = fluid ? 'container-fluid' : 'container';
 ---
 <html lang="en">
   <head>
@@ -10,7 +13,7 @@ import CustomFooter from './CustomFooter.astro';
   </head>
   <body>
     <CustomHeader />
-    <main id="main-content" class="bx--content">
+    <main id="main-content" class={`bx--content ${mainClass}`}>
       <slot />
     </main>
     <CustomFooter />
