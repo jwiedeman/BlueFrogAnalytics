@@ -40,10 +40,10 @@ const docTree = buildTree();
   </head>
   <body>
     <CustomHeader />
-    <div class="docs-container">
+    <div class="docs-container container-fluid">
       <aside class="sidebar-left">
         <input id="doc-search" type="search" placeholder="Search docs..." />
-        <ul data-accordion class="bx--accordion">
+        <div class="accordion" id="docAccordion">
           {(() => {
             function renderNodes(nodes) {
 
@@ -52,7 +52,7 @@ const docTree = buildTree();
                   return (
                     <li class="doc-folder">
                       <span class="folder-label">{node.label}</span>
-                      <ul class="bx--list--unordered">
+                      <ul class="list-unstyled">
                         {renderNodes(node.children)}
                       </ul>
                     </li>
@@ -67,31 +67,32 @@ const docTree = buildTree();
               });
             }
             return docTree.map((cat, i) => (
-              <li class="bx--accordion__item" key={i}>
-                <button class="bx--accordion__heading" aria-expanded="false" aria-controls={`acc-${i}`}>
-                  <svg aria-hidden="true" class="bx--accordion__arrow" width="16" height="16">
-                    <path d="M8 12L3 7l1.41-1.41L8 9.17l3.59-3.58L13 7z" />
-                  </svg>
-                  <div class="bx--accordion__title">{cat.label}</div>
-                </button>
-                <div id={`acc-${i}`} class="bx--accordion__content">
-                  <ul class="bx--list--unordered">
-                    {renderNodes(cat.children)}
-                  </ul>
+              <div class="accordion-item" key={i}>
+                <h2 class="accordion-header" id={`heading-${i}`}> 
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={`#acc-${i}`} aria-expanded="false" aria-controls={`acc-${i}`}> 
+                    {cat.label}
+                  </button>
+                </h2>
+                <div id={`acc-${i}`} class="accordion-collapse collapse" data-bs-parent="#docAccordion">
+                  <div class="accordion-body p-0">
+                    <ul class="list-unstyled">
+                      {renderNodes(cat.children)}
+                    </ul>
+                  </div>
                 </div>
-              </li>
+              </div>
             ));
           })()}
-        </ul>
+        </div>
       </aside>
       <main id="main-content" class="docs-main">
         <slot />
       </main>
       <aside class="sidebar-right">
         <nav>
-          <ul class="bx--tree-view">
+          <ul class="list-unstyled">
             {headings?.map(h => (
-              <li class="bx--tree-view__node" data-depth={h.depth}>
+              <li style={`margin-left: ${h.depth * 0.5}rem`}>
                 <a href={`#${h.slug}`}>{h.text}</a>
               </li>
             ))}
@@ -112,7 +113,7 @@ const docTree = buildTree();
           const visible = Array.from(folder.querySelectorAll('.doc-link-item')).some(li => li.style.display !== 'none');
           folder.style.display = visible ? '' : 'none';
         });
-        document.querySelectorAll('.bx--accordion__item').forEach(item => {
+        document.querySelectorAll('.accordion-item').forEach(item => {
           const visible = Array.from(item.querySelectorAll('.doc-link-item')).some(li => li.style.display !== 'none');
           item.style.display = visible ? '' : 'none';
         });
@@ -127,10 +128,10 @@ const docTree = buildTree();
       });
       if (link) {
         link.classList.add('active');
-        const item = link.closest('.bx--accordion__item');
+        const item = link.closest('.accordion-item');
         if (item) {
-          item.classList.add('bx--accordion__item--active');
-          const heading = item.querySelector('.bx--accordion__heading');
+          item.classList.add('show');
+          const heading = item.querySelector('.accordion-button');
           if (heading) heading.setAttribute('aria-expanded', 'true');
         }
       }

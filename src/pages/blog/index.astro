@@ -14,40 +14,40 @@ const tags = Array.from(new Set(posts.flatMap(p => p.data.tags || [])));
 ---
 <BlogLayout>
   <div class="blog-page">
-    <section class="blog-hero carbon-container bx--grid">
+    <section class="blog-hero container">
       <FeaturedHero posts={featured} />
     </section>
 
-    <section class="blog-search carbon-container bx--grid">
+    <section class="blog-search container">
 
-      <div class="search-row bx--row">
+      <div class="search-row row">
 
-        <div class="bx--col-sm-8 bx--col-md-8 bx--col-lg-8">
-          <div data-search class="bx--search bx--search--lg" role="search">
-            <label for="blog-search" class="bx--label bx--visually-hidden">Search posts</label>
-            <input id="blog-search" type="text" class="bx--search-input" placeholder="Search posts..." />
+        <div class="col-12 col-lg-8">
+          <div role="search">
+            <label for="blog-search" class="visually-hidden">Search posts</label>
+            <input id="blog-search" type="text" class="form-control" placeholder="Search posts..." />
           </div>
         </div>
-        <div class="bx--col-sm-8 bx--col-md-8 bx--col-lg-8 tags-col">
+        <div class="col-12 col-lg-8 tags-col">
           <div class="tag-filter">
-            {tags.map(t => <span class="bx--tag" data-tag={t}>{t}</span>)}
+            {tags.map(t => <span class="badge bg-secondary ms-2" data-tag={t}>{t}</span>)}
           </div>
         </div>
       </div>
     </section>
 
-    <section class="blog-posts carbon-container bx--grid">
-      <div class="bx--row">
-        <div class="bx--col-sm-8 bx--col-md-8 bx--col-lg-12">
-          <div class="bx--row" id="posts-list">
+    <section class="blog-posts container">
+      <div class="row">
+        <div class="col-12 col-lg-8">
+          <div class="row" id="posts-list">
             {sorted.map(post => (
-              <div class="bx--col-lg-4 bx--col-md-8 bx--col-sm-4">
+              <div class="col-sm-6 col-lg-4">
                 <BlogPostCard post={post} />
               </div>
             ))}
           </div>
         </div>
-        <div class="bx--col-sm-8 bx--col-md-8 bx--col-lg-4">
+        <div class="col-12 col-lg-4">
           <RecentPosts posts={sorted.slice(0,5)} />
         </div>
       </div>
@@ -59,9 +59,9 @@ const tags = Array.from(new Set(posts.flatMap(p => p.data.tags || [])));
       .search-row { display: flex; flex-wrap: wrap; align-items: center; }
       .tags-col { display: flex; align-items: center; justify-content: flex-end; }
       .tag-filter { margin-top: 0.5rem; }
-      .search-row .bx--search { width: 100%; }
-      .tag-filter .bx--tag { margin-left: 0.5rem; cursor: pointer; }
-      .tag-filter .bx--tag.active { background: #0f62fe; color: #fff; }
+      .search-row [role='search'] { width: 100%; }
+      .tag-filter .badge { margin-left: 0.5rem; cursor: pointer; }
+      .tag-filter .badge.active { background: #0b3d91; }
       #posts-list > div { margin-bottom: 2rem; }
    </style>
   </div>
