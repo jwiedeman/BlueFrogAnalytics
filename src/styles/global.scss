@@ -344,3 +344,12 @@ main#main-content > * {
   text-decoration: underline;
 }
 
+// Subtle animation for service cards
+.service-card {
+  transition: transform 0.2s ease-in-out;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+}
+
