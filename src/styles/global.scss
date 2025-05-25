@@ -123,6 +123,11 @@ h1, h2, h3, h4, h5, h6 {
   background: #ffffff;
 }
 
+// Landing page hero gets extra height
+.landing-hero {
+  min-height: 50vh;
+}
+
 @media (max-width: 767px) {
   .hero-section {
     width: 100%;
