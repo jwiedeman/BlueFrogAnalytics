@@ -48,7 +48,7 @@ h1, h2, h3, h4, h5, h6 {
 .docs-container {
   display: grid;
   grid-template-columns: 16rem 1fr 16rem;
-  gap: 2rem;
+  gap: 2.5rem;
   max-width: var(--sl-content-width);
   margin: 1rem auto 0;
   padding: 1rem 1rem 2rem;
@@ -384,6 +384,8 @@ main#main-content > :not(.container-fluid) {
 
 .doc-folder > ul {
   display: none;
+  margin-left: 1rem;
+  padding-left: 0;
 }
 
 .doc-folder.open > ul {
@@ -392,5 +394,9 @@ main#main-content > :not(.container-fluid) {
 
 .doc-link-item a {
   display: block;
+}
+
+.doc-link-item {
+  margin-left: 0.5rem;
 }
 
