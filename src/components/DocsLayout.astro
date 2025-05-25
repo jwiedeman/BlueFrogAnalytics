@@ -160,9 +160,10 @@ for (const [file, mod] of Object.entries(blogInfo)) {
     <CustomFooter />
     <script id="search-data" type="application/json">{JSON.stringify(searchIndex)}</script>
     <script client:load>
-      const searchData = JSON.parse(document.getElementById('search-data').textContent);
-      const input = document.getElementById('doc-search');
-      const results = document.getElementById('search-results');
+      document.addEventListener('DOMContentLoaded', () => {
+        const searchData = JSON.parse(document.getElementById('search-data').textContent);
+        const input = document.getElementById('doc-search');
+        const results = document.getElementById('search-results');
 
       function fuzzy(text, query) {
         const words = query.toLowerCase().split(/\s+/).filter(Boolean);
@@ -194,39 +195,40 @@ for (const [file, mod] of Object.entries(blogInfo)) {
       });
 
       // Toggle folders in the sidebar
-      document.querySelectorAll('.doc-folder > .folder-label').forEach(label => {
-        label.addEventListener('click', () => {
-          label.parentElement.classList.toggle('open');
+        document.querySelectorAll('.doc-folder > .folder-label').forEach(label => {
+          label.addEventListener('click', () => {
+            label.parentElement.classList.toggle('open');
+          });
         });
-      });
 
       // Keep current page link highlighted and its folder open
-      const current = window.location.pathname.replace(/\/$/, '').toLowerCase();
-      const link = Array.from(document.querySelectorAll('.sidebar-left a')).find(a => {
-        const href = a.getAttribute('href');
-        if (!href) return false;
-        return href.replace(/\/$/, '').toLowerCase() === current;
-      });
-      if (link) {
-        link.classList.add('active');
+        const current = window.location.pathname.replace(/\/$/, '').toLowerCase();
+        const link = Array.from(document.querySelectorAll('.sidebar-left a')).find(a => {
+          const href = a.getAttribute('href');
+          if (!href) return false;
+          return href.replace(/\/$/, '').toLowerCase() === current;
+        });
+        if (link) {
+          link.classList.add('active');
 
-        let folder = link.closest('.doc-folder');
-        while (folder) {
-          folder.classList.add('open');
-          folder = folder.parentElement.closest('.doc-folder');
-        }
+          let folder = link.closest('.doc-folder');
+          while (folder) {
+            folder.classList.add('open');
+            folder = folder.parentElement.closest('.doc-folder');
+          }
 
-        const item = link.closest('.accordion-item');
-        if (item) {
-          const collapse = item.querySelector('.accordion-collapse');
-          if (collapse) collapse.classList.add('show');
-          const heading = item.querySelector('.accordion-button');
-          if (heading) {
-            heading.classList.remove('collapsed');
-            heading.setAttribute('aria-expanded', 'true');
+          const item = link.closest('.accordion-item');
+          if (item) {
+            const collapse = item.querySelector('.accordion-collapse');
+            if (collapse) collapse.classList.add('show');
+            const heading = item.querySelector('.accordion-button');
+            if (heading) {
+              heading.classList.remove('collapsed');
+              heading.setAttribute('aria-expanded', 'true');
+            }
           }
         }
-      }
+      });
     </script>
   </body>
 </html>
