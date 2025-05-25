@@ -202,11 +202,13 @@ for (const [file, mod] of Object.entries(blogInfo)) {
           });
         });
 
-      // Keep current page link highlighted and its folder open
+
         const normalizePath = (p) => {
           const url = new URL(p, window.location.origin);
           return url.pathname.toLowerCase().replace(/\/?(index\.html)?$/, '');
         };
+
+
         const current = normalizePath(window.location.pathname);
         const link = Array.from(document.querySelectorAll('.sidebar-left a')).find(a => {
           const href = a.getAttribute('href');
