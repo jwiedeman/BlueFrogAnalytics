@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const input = document.getElementById('blog-search');
-  const tags = document.querySelectorAll('.tag-filter .bx--tag');
+  const tags = document.querySelectorAll('.tag-filter .badge');
   let activeTag = '';
 
   function filterPosts() {
