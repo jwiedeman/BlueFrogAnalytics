@@ -9,12 +9,13 @@ const mainNav = [
   { label: 'Blog', link: '/blog' },
   { label: 'Docs', link: '/introduction/how-blue-frog-analytics-works' },
 ];
-const currentPath = Astro.url.pathname.replace(/\/$/, '').toLowerCase();
+const currentPath =
+  Astro.url.pathname === '/'
+    ? '/'
+    : Astro.url.pathname.replace(/\/$/, '').toLowerCase();
 function isActive(item) {
-  let link = item.link.toLowerCase();
-  if (link !== '/') {
-    link = link.replace(/\/$/, '');
-  }
+  const link = item.link.replace(/\/$/, '').toLowerCase();
+
   if (item.label === 'Docs') return isDocs;
   if (item.label === 'Tests') {
     return currentPath.startsWith('/testing') || currentPath.startsWith('/tests');
