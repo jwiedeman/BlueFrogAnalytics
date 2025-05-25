@@ -78,8 +78,8 @@ for (const [file, mod] of Object.entries(blogInfo)) {
   <head>
     <BaseHead />
   </head>
-  <body>
-    <CustomHeader />
+  <body class="docs-layout">
+    <CustomHeader isDocs={true} />
     <div class="docs-container container-fluid">
       <aside class="sidebar-left">
         <div class="position-relative mb-3">
@@ -161,6 +161,7 @@ for (const [file, mod] of Object.entries(blogInfo)) {
     <script id="search-data" type="application/json">{JSON.stringify(searchIndex)}</script>
     <script client:load>
       const onReady = () => {
+
         const searchData = JSON.parse(document.getElementById('search-data').textContent);
         const input = document.getElementById('doc-search');
         const results = document.getElementById('search-results');
@@ -228,6 +229,7 @@ for (const [file, mod] of Object.entries(blogInfo)) {
             }
           }
         }
+
       };
 
       if (document.readyState === 'loading') {
@@ -235,6 +237,7 @@ for (const [file, mod] of Object.entries(blogInfo)) {
       } else {
         onReady();
       }
+
     </script>
   </body>
 </html>
