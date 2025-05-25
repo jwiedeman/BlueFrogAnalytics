@@ -3,7 +3,7 @@ window.addEventListener('load', () => {
   const exportBtn = document.getElementById('export');
   const resultsEl = document.getElementById('roas-results');
   const chartEl = d3.select('#roas-chart');
-  const width = +chartEl.attr('width');
+  const width = chartEl.node().clientWidth || +chartEl.attr('width');
   const height = +chartEl.attr('height');
 
   const subFields = document.getElementById('subscription-fields');
@@ -90,7 +90,7 @@ window.addEventListener('load', () => {
     const rows = scenarios.map(s => `
       <tr><td>${s.name}</td><td>${s.roas.toFixed(2)}</td><td>${s.cac.toFixed(2)}</td><td>${s.breakeven.toFixed(2)}</td><td>${s.profit.toFixed(2)}</td><td>${s.ltvCac.toFixed(2)}</td></tr>`).join('');
 
-    resultsEl.innerHTML = `<table class="bx--data-table bx--data-table--compact"><thead><tr><th>Scenario</th><th>ROAS</th><th>CAC</th><th>Breakeven ROAS</th><th>Profit</th><th>LTV/CAC</th></tr></thead><tbody>${rows}</tbody></table>`;
+    resultsEl.innerHTML = `<table class="table table-sm table-bordered"><thead><tr><th>Scenario</th><th>ROAS</th><th>CAC</th><th>Breakeven ROAS</th><th>Profit</th><th>LTV/CAC</th></tr></thead><tbody>${rows}</tbody></table>`;
 
     drawChart(scenarios);
   };
