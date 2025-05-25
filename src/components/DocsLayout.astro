@@ -160,7 +160,8 @@ for (const [file, mod] of Object.entries(blogInfo)) {
     <CustomFooter />
     <script id="search-data" type="application/json">{JSON.stringify(searchIndex)}</script>
     <script client:load>
-      document.addEventListener('DOMContentLoaded', () => {
+      const onReady = () => {
+
         const searchData = JSON.parse(document.getElementById('search-data').textContent);
         const input = document.getElementById('doc-search');
         const results = document.getElementById('search-results');
@@ -228,7 +229,15 @@ for (const [file, mod] of Object.entries(blogInfo)) {
             }
           }
         }
-      });
+
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', onReady);
+      } else {
+        onReady();
+      }
+
     </script>
   </body>
 </html>
