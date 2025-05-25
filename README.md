@@ -1,6 +1,6 @@
 # Blue Frog Analytics Docs
 
-This repository hosts the documentation site for **Blue Frog Analytics**. It uses [Astro](https://astro.build) with Starlight for documentation features and is styled with IBM's [Carbon Design System](https://carbondesignsystem.com).
+This repository hosts the documentation site for **Blue Frog Analytics**. It is built with [Astro](https://astro.build) and styled using IBM's [Carbon Design System](https://carbondesignsystem.com).
 
 ## Getting Started
 

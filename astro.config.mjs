@@ -9,7 +9,7 @@ import rehypeKatex from 'rehype-katex';
 import remarkMermaid from 'remark-mermaidjs'
 import mdx from '@astrojs/mdx';
 import remarkGlossaryLinks from './src/plugins/remark-glossary-links.js';
-// Removed expressive-code integration to drop starlight deps
+// Removed expressive-code integration to simplify dependencies
 
 const DOCS_DIR = 'src/content/docs';
 const isDev = process.env.NODE_ENV === 'development';
