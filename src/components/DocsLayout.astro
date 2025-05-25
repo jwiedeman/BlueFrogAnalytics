@@ -88,43 +88,50 @@ for (const [file, mod] of Object.entries(blogInfo)) {
         </div>
         <div class="accordion" id="docAccordion">
           {(() => {
-            function renderNodes(nodes) {
-
+            function renderNodes(nodes, activeNames) {
               return nodes.map(node => {
                 if (node.children?.length) {
+                  const open = activeNames.includes(node.name) ? ' open' : '';
                   return (
-                    <li class="doc-folder list-group-item">
+                    <li class={`doc-folder list-group-item${open}`}>
                       <span class="folder-label">{node.label}</span>
-                      <ul class="list-group list-group-flush">
-                        {renderNodes(node.children)}
+
+                      <ul class="list-group list-group-flush ms-2">
+                        {renderNodes(node.children, activeNames)}
+
                       </ul>
                     </li>
                   );
                 }
+                const isActive = node.path?.replace(/\/$/, '').toLowerCase() === currentPath;
                 return (
                   <li class="doc-link-item list-group-item">
-                    <a class="text-decoration-none" href={node.path}>{node.label}</a>
+                    <a class={`text-decoration-none${isActive ? ' doc-active' : ''}`} href={node.path}>{node.label}</a>
 
                   </li>
                 );
               });
             }
-            return docTree.map((cat, i) => (
-              <div class="accordion-item" key={i}>
-                <h2 class="accordion-header" id={`heading-${i}`}> 
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={`#acc-${i}`} aria-expanded="false" aria-controls={`acc-${i}`}> 
-                    {cat.label}
-                  </button>
-                </h2>
-                <div id={`acc-${i}`} class="accordion-collapse collapse" data-bs-parent="#docAccordion">
-                  <div class="accordion-body p-0">
-                    <ul class="list-group list-group-flush">
-                      {renderNodes(cat.children)}
-                    </ul>
+            const activeNames = breadcrumbNodes.map(n => n.name);
+            return docTree.map((cat, i) => {
+              const activeCat = activeNames[0] === cat.name;
+              return (
+                <div class="accordion-item" key={i}>
+                  <h2 class="accordion-header" id={`heading-${i}`}>
+                    <button class={`accordion-button${activeCat ? '' : ' collapsed'}`} type="button" data-bs-toggle="collapse" data-bs-target={`#acc-${i}`} aria-expanded={activeCat ? 'true' : 'false'} aria-controls={`acc-${i}`}>
+                      {cat.label}
+                    </button>
+                  </h2>
+                  <div id={`acc-${i}`} class={`accordion-collapse collapse${activeCat ? ' show' : ''}`} data-bs-parent="#docAccordion">
+                    <div class="accordion-body p-0">
+                      <ul class="list-group list-group-flush">
+                        {renderNodes(cat.children, activeNames)}
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ));
+              );
+            });
           })()}
         </div>
       </aside>
@@ -205,7 +212,6 @@ for (const [file, mod] of Object.entries(blogInfo)) {
 
       // Keep current page link highlighted and its folder open
         const normalizePath = (p) => p.toLowerCase().replace(/\/?(index\.html)?$/, '');
-
         const current = normalizePath(window.location.pathname);
         const link = Array.from(document.querySelectorAll('.sidebar-left a')).find(a => {
           const href = a.getAttribute('href');
