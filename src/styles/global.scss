@@ -50,7 +50,7 @@ h1, h2, h3, h4, h5, h6 {
   grid-template-columns: 16rem 1fr 16rem;
   gap: 2rem;
   max-width: var(--sl-content-width);
-  margin: 0 auto;
+  margin: 1rem auto 0;
   padding: 1rem 1rem 2rem;
 }
 
@@ -342,6 +342,8 @@ main#main-content > :not(.container-fluid) {
 .sidebar-left a.active {
   color: var(--sl-color-primary);
   text-decoration: underline;
+  background-color: #e9ecef;
+  font-weight: 600;
 }
 
 // Subtle animation for service cards
