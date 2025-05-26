@@ -19,8 +19,10 @@ import DashboardLayout from '../components/DashboardLayout.astro';
             emailEl.textContent = user.email;
           }
         });
-        logoutBtn.addEventListener('click', () => {
-          window.authSignOut();
+        logoutBtn.addEventListener('click', async () => {
+          window.loggingOut = true;
+          await window.authSignOut();
+          window.location.href = '/';
         });
       }
     });

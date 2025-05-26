@@ -131,7 +131,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     }
     if (!user && window.location.pathname.startsWith('/dashboard')) {
-      window.location.href = '/login';
+      if (!window.loggingOut) {
+        window.location.href = '/login';
+      }
     }
   });
 });
