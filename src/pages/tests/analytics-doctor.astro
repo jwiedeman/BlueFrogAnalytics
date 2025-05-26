@@ -1,8 +1,8 @@
 ---
 import DocLayout from '../../components/DocLayout.astro';
-import PageContent from '../../content/pages/Tests/analytics-doctor.mdx';
+import PageContent, { frontmatter as doctorFm } from '../../content/pages/Tests/analytics-doctor.mdx';
 ---
-<DocLayout fluid={true}>
+<DocLayout fluid={true} title={doctorFm.title} description={doctorFm.description}>
   <PageContent />
 </DocLayout>
 

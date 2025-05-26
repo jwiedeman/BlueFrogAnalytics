@@ -2,6 +2,9 @@
 import { getCollection } from 'astro:content';
 import BlogLayout from '../../components/BlogLayout.astro';
 
+const title = 'Blog';
+const description = 'Latest news and updates from Blue Frog Analytics.';
+
 import FeaturedHero from '../../components/FeaturedHero.astro';
 import RecentPosts from '../../components/RecentPosts.astro';
 import BlogPostCard from '../../components/BlogPostCard.astro';
@@ -12,7 +15,7 @@ const sorted = posts.sort((a,b) => b.data.pubDate.valueOf() - a.data.pubDate.val
 const featured = sorted.slice(0,3);
 const tags = Array.from(new Set(posts.flatMap(p => p.data.tags || [])));
 ---
-<BlogLayout>
+<BlogLayout title={title} description={description}>
   <div class="blog-page">
     <section class="container mb-4 blog-hero">
       <h1 class="display-5 mb-1">Blog</h1>

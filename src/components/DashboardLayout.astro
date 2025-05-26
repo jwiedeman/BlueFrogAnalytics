@@ -4,6 +4,8 @@ import CustomHeader from './CustomHeader.astro';
 import CustomFooter from './CustomFooter.astro';
 import FirebaseScripts from './FirebaseScripts.astro';
 
+const { title, description } = Astro.props;
+
 // Navigation for authenticated users inside the dashboard
 const dashNav = [
   { label: 'Dashboard Home', link: '/dashboard' },
@@ -21,7 +23,7 @@ function isActive(item) {
 ---
 <html lang="en">
   <head>
-    <BaseHead />
+    <BaseHead title={title} description={description} />
   </head>
   <body class="d-flex flex-column min-vh-100">
     <CustomHeader />

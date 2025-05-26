@@ -12,6 +12,9 @@ const { slug } = Astro.params;
 const post = await getEntryBySlug('blog', slug);
 if (!post) throw new Error('Post not found');
 
+const pageTitle = post.data.title;
+const pageDesc = post.data.description ?? '';
+
 const { Content } = await post.render();
 
 const allPosts = await getCollection('blog');
@@ -21,7 +24,7 @@ const relatedPosts = allPosts
   .slice(0, 4);
 
 ---
-<BlogLayout>
+<BlogLayout title={pageTitle} description={pageDesc}>
   <article class="blog-article">
     <header class="mb-4 pb-3 border-bottom">
       <div class="container">

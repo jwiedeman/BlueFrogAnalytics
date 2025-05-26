@@ -1,8 +1,11 @@
 ---
 import DocLayout from '../components/DocLayout.astro';
 import FirebaseScripts from '../components/FirebaseScripts.astro';
+
+const title = 'Client Login';
+const description = 'Sign in to access the Blue Frog Analytics dashboard.';
 ---
-<DocLayout>
+<DocLayout title={title} description={description}>
   <section class="container py-5" style="max-width: 420px;">
     <h1 class="text-center mb-4">Welcome Back</h1>
     <form id="login-form">

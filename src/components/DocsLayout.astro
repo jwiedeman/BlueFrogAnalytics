@@ -4,7 +4,7 @@ import CustomHeader from './CustomHeader.astro';
 import CustomFooter from './CustomFooter.astro';
 
 // Receive headings from page content
-const { headings } = Astro.props;
+const { headings, title, description } = Astro.props;
 
 // Build a nested tree structure from docs content
 const modules = import.meta.glob('../content/docs/**/*.{md,mdx}', { eager: true });
@@ -76,7 +76,7 @@ for (const [file, mod] of Object.entries(blogInfo)) {
 ---
 <html lang="en">
   <head>
-    <BaseHead />
+    <BaseHead title={title} description={description} />
   </head>
   <body class="docs-layout d-flex flex-column min-vh-100">
     <CustomHeader isDocs={true} />
