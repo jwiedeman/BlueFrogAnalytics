@@ -370,6 +370,10 @@ body.dark-mode #side-nav .bx--side-nav__link {
   z-index: 1000;
 }
 
+.search-snippet {
+  font-size: 0.85rem;
+}
+
 // Tree-style sidebar buttons based on Bootstrap sidebar example
 .btn-toggle {
   display: flex;
