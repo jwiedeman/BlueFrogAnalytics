@@ -13,7 +13,9 @@ const { title = 'Blue Frog Analytics', description = '', url } = Astro.props;
 <link rel="canonical" href={url ?? Astro.url.href} />
 <meta property="og:title" content={title} />
 {description && <meta property="og:description" content={description} />}
+
 <meta name="robots" content="index,follow" />
+
 <meta property="og:type" content="website" />
 <meta property="og:url" content={url ?? Astro.url.href} />
 

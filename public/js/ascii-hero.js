@@ -4,7 +4,7 @@ if (asciiEl) {
   // Configuration variables for the hero frog ASCII art
   const imgUrl = 'https://media.istockphoto.com/id/93218208/photo/blue-poison-dart-frog-against-white-background.jpg?b=1&s=612x612&w=0&k=20&c=5o7sCMfedFx3TQ16JDbl0jAQLTo5UTfogcFCVwz7bmI=';
   const width = 150;              // Width of ASCII art in characters
-  const charAspect = 1;           // Character height/width ratio
+  const charAspect = 0.55;        // Character height/width ratio
   const backgroundThreshold = 0.92; // Skip pixels brighter than this
   const chars = ' .:-=+*#%@';     // Characters for art from light to dark
 
