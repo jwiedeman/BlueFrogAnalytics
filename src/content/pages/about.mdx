@@ -10,7 +10,9 @@ template: splash
       <h1 className="display-4">A One-Stop Solution to Smooth Out the Gears of Business</h1>
     </div>
   </div>
+  <div id="ascii-art" aria-hidden="true"></div>
 </section>
+<script type="module" src="/js/ascii-hero.js" defer></script>
 
 <section className="container py-5 bg-white">
   <div className="row">
@@ -32,11 +34,18 @@ template: splash
     <div className="col-lg-8 offset-lg-2">
       <h3 className="h3">The Vision</h3>
       <p>At its core, Blue Frog Analytics is about <strong>optimizing efficiency</strong>. I envisioned a single solution that:</p>
-      <ul className="list-unstyled">
-        <li><strong>Streamlines complex workflows</strong></li>
-        <li><strong>Integrates critical insights</strong> across tracking, SEO, performance, and compliance</li>
-        <li><strong>Eliminates the gaps and friction points</strong> that slow down business processes</li>
-      </ul>
+      <div className="row text-center gy-4">
+        {[
+          ['bi bi-gear-fill', 'Streamlines complex workflows'],
+          ['bi bi-bar-chart-line-fill', 'Integrates critical insights across tracking, SEO, performance, and compliance'],
+          ['bi bi-lightning-charge-fill', 'Eliminates the friction that slows business processes']
+        ].map(([icon, text]) => (
+          <div key={text} className="col-md-4">
+            <i className={`${icon} display-5 text-primary`}></i>
+            <p className="mt-2 mb-0">{text}</p>
+          </div>
+        ))}
+      </div>
       <p>
         Blue Frog Analytics isn't just another auditing tool&mdash;it's the grease in the gears that keeps
         the machinery of modern business running smoothly. Our goal is to help teams make informed
@@ -51,11 +60,18 @@ template: splash
     <div className="col-lg-8 offset-lg-2">
       <h3 className="h3">The Problem I Saw</h3>
       <p>During my time working in analytics, I noticed:</p>
-      <ul className="list-unstyled">
-        <li><strong>Siloed Data &amp; Tools:</strong> Each department often had its own system, creating redundancies and disconnects.</li>
-        <li><strong>Missed Opportunities:</strong> Critical insights were hidden in complex data, and actionable information was often delayed.</li>
-        <li><strong>Inefficiencies:</strong> Valuable time was wasted toggling between multiple platforms to piece together a complete picture.</li>
-      </ul>
+      <div className="row text-center gy-4">
+        {[
+          ['bi bi-database-fill-gear', 'Siloed Data & Tools: each department using its own system created redundancies and disconnects.'],
+          ['bi bi-eye-slash-fill', 'Missed Opportunities: critical insights were hidden in complex data and often delayed.'],
+          ['bi bi-hourglass-split', 'Inefficiencies: too much time spent switching between platforms for a full picture.']
+        ].map(([icon, text]) => (
+          <div key={text} className="col-md-4">
+            <i className={`${icon} display-5 text-primary`}></i>
+            <p className="mt-2 mb-0">{text}</p>
+          </div>
+        ))}
+      </div>
       <p>
         These challenges not only impacted day-to-day operations but also stifled innovation and growth.
         It became clear that what was needed was a <strong>one-stop solution</strong> that could address these pain points head-on.
@@ -69,11 +85,18 @@ template: splash
     <div className="col-lg-8 offset-lg-2">
       <h3 className="h3">The Birth of Blue Frog Analytics</h3>
       <p>Fueled by a passion to make a difference, I set out to build Blue Frog Analytics. The platform was designed to:</p>
-      <ul className="list-unstyled">
-        <li><strong>Unify Data Streams:</strong> Bring together tracking, SEO, performance, and compliance insights in one cohesive dashboard.</li>
-        <li><strong>Simplify Complexities:</strong> Provide clear, actionable guidance to address issues before they escalate.</li>
-        <li><strong>Empower Every Role:</strong> Whether you're a developer troubleshooting tracking issues, a marketer fine-tuning SEO, or a compliance officer ensuring regulatory adherence, Blue Frog Analytics is built with you in mind.</li>
-      </ul>
+      <div className="row text-center gy-4">
+        {[
+          ['bi bi-diagram-3-fill', 'Unify Data Streams: one dashboard for tracking, SEO, performance and compliance insights'],
+          ['bi bi-sliders2-vertical', 'Simplify Complexities: clear guidance to resolve issues before they escalate'],
+          ['bi bi-people-fill', 'Empower Every Role: from developers to marketers to compliance teams']
+        ].map(([icon, text]) => (
+          <div key={text} className="col-md-4">
+            <i className={`${icon} display-5 text-primary`}></i>
+            <p className="mt-2 mb-0">{text}</p>
+          </div>
+        ))}
+      </div>
       <p>By bridging the gaps between roles and reducing friction, Blue Frog Analytics helps teams work smarter, faster, and more harmoniously.</p>
     </div>
   </div>
