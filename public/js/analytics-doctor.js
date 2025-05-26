@@ -44,7 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   function canonicalizeMethod(method) {
-    const cleaned = String(method || '').toLowerCase().replace(/[^a-z0-9_]+/g, '_');
+    let cleaned = String(method || '').toLowerCase().replace(/[^a-z0-9_]+/g, '_');
+    if (cleaned.startsWith('via_')) {
+      cleaned = cleaned.slice(4);
+    }
     return METHOD_VARIATIONS[cleaned] || cleaned;
   }
 
@@ -160,8 +163,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const methodClass = 'analytics-pill badge bg-secondary method-' + slugify(method);
             const span = document.createElement('span');
             span.innerHTML =
-              ` <a href="#${idSlug}" class="${pillClass}">${ids}</a>` +
-              ` <a href="#${methodSlug}" class="${methodClass}">via ${method}</a>`;
+              ` (<a href="#${idSlug}" class="${pillClass}">${ids}</a> via ` +
+              `<a href="#${methodSlug}" class="${methodClass}">${method}</a>)`;
             li.appendChild(span);
           }
         });
@@ -237,8 +240,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const methodClass = 'analytics-pill badge bg-secondary method-' + slugify(method);
         li.innerHTML =
           `${formatName(name)} ` +
-          `<a href="#${idSlug}" class="${pillClass}">${ids}</a>` +
-          ` <a href="#${methodSlug}" class="${methodClass}">via ${method}</a>`;
+          `(<a href="#${idSlug}" class="${pillClass}">${ids}</a> via ` +
+          `<a href="#${methodSlug}" class="${methodClass}">${method}</a>)`;
         ul.appendChild(li);
       }
     }
