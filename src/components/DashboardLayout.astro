@@ -1,0 +1,55 @@
+---
+import BaseHead from './BaseHead.astro';
+import CustomHeader from './CustomHeader.astro';
+import CustomFooter from './CustomFooter.astro';
+import FirebaseScripts from './FirebaseScripts.astro';
+
+const dashNav = [
+  { label: 'Dashboard', link: '/dashboard' },
+  { label: 'Home', link: '/' },
+  { label: 'About', link: '/about' },
+  { label: 'Services', link: '/services' },
+  { label: 'Tests', link: '/testing' },
+  { label: 'Blog', link: '/blog' },
+  { label: 'Docs', link: '/introduction/how-blue-frog-analytics-works' },
+];
+const currentPath =
+  Astro.url.pathname === '/'
+    ? '/'
+    : Astro.url.pathname.replace(/\/$/, '').toLowerCase();
+function isActive(item) {
+  const link = item.link === '/' ? '/' : item.link.replace(/\/$/, '').toLowerCase();
+  return currentPath === link || currentPath.startsWith(link + '/');
+}
+---
+<html lang="en">
+  <head>
+    <BaseHead />
+  </head>
+  <body>
+    <CustomHeader />
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-dark dashboard-side-nav">
+          <ul class="nav flex-column pt-3">
+            {dashNav.map(item => (
+              <li class="nav-item" key={item.link}>
+                <a class={`nav-link text-light${isActive(item) ? ' active' : ''}`} href={item.link}>{item.label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <main id="main-content" class="col-md-10 py-4">
+          <slot />
+        </main>
+      </div>
+    </div>
+    <CustomFooter />
+    <FirebaseScripts />
+  </body>
+</html>
+<style>
+.dashboard-side-nav {
+  min-height: calc(100vh - var(--header-height));
+}
+</style>
