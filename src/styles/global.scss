@@ -363,33 +363,29 @@ main#main-content > :not(.container-fluid) {
   z-index: 1000;
 }
 
-.doc-folder {
-  font-weight: 600;
-}
-
-.doc-folder > summary.folder-label {
-  cursor: pointer;
+// Tree-style sidebar buttons based on Bootstrap sidebar example
+.btn-toggle {
   display: flex;
   align-items: center;
-  list-style: none;
+  width: 100%;
+  padding: 0.25rem 0.5rem;
+  font-weight: 600;
+  background-color: transparent;
+  border: 0;
 }
 
-.doc-folder > summary.folder-label::-webkit-details-marker {
-  display: none;
-}
-
-.doc-folder > summary.folder-label::before {
+.btn-toggle::before {
   content: '▸';
-  margin-right: 4px;
-  transition: transform 0.1s ease-in-out;
+  margin-right: 0.25rem;
+  transition: transform 0.2s ease-in-out;
 }
 
-.doc-folder[open] > summary.folder-label::before {
+.btn-toggle[aria-expanded='true']::before {
   transform: rotate(90deg);
 }
 
-.doc-folder > ul {
-  margin-left: 1rem !important;
+.btn-toggle-nav {
+  margin-left: 1rem;
   padding-left: 0;
 }
 
