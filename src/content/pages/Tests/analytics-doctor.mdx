@@ -28,11 +28,11 @@ template: splash
       </div>
       <div id="eta" class="mb-3"></div>
       <div id="filter-container" class="mb-3">
-        <label for="column-select" class="form-label">Analytics columns</label>
-        <select id="column-select" multiple class="form-select mb-2" size="4"></select>
+        <label class="form-label">Analytics columns</label>
+        <div id="column-buttons" class="d-flex flex-wrap gap-2 mb-2"></div>
         <div class="btn-group" role="group">
-          <button id="select-all" type="button" class="btn btn-secondary">Select All</button>
-          <button id="clear-all" type="button" class="btn btn-outline-secondary">Clear</button>
+          <button id="select-all" type="button" class="btn btn-secondary btn-sm">All</button>
+          <button id="clear-all" type="button" class="btn btn-outline-secondary btn-sm">Clear</button>
         </div>
       </div>
       <div id="summary" class="summary-panel"></div>

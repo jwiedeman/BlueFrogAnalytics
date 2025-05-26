@@ -77,15 +77,33 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function renderFilter() {
-    const select = document.getElementById('column-select');
-    if (!select) return;
-    select.innerHTML = '';
+    const container = document.getElementById('column-buttons');
+    if (!container) return;
+    container.innerHTML = '';
     ANALYTICS_KEYS.forEach(key => {
-      const opt = document.createElement('option');
-      opt.value = key;
-      opt.textContent = formatName(key);
-      opt.selected = selectedColumns.includes(key);
-      select.appendChild(opt);
+      const id = `col-${key}`;
+      const input = document.createElement('input');
+      input.type = 'checkbox';
+      input.className = 'btn-check';
+      input.id = id;
+      input.value = key;
+      input.autocomplete = 'off';
+      input.checked = selectedColumns.includes(key);
+      const label = document.createElement('label');
+      label.className = 'btn btn-outline-primary btn-sm rounded-pill';
+      label.setAttribute('for', id);
+      label.textContent = formatName(key);
+      container.appendChild(input);
+      container.appendChild(label);
+    });
+
+    container.querySelectorAll('input').forEach(input => {
+      input.addEventListener('change', () => {
+        selectedColumns = Array.from(container.querySelectorAll('input:checked')).map(i => i.value);
+        saveSelected();
+        if (lastResult) renderResults(lastResult);
+        adjustTableWidth();
+      });
     });
   }
 
@@ -258,19 +276,11 @@ document.addEventListener('DOMContentLoaded', () => {
   renderFilter();
   adjustTableWidth();
 
-  const selectEl = document.getElementById('column-select');
-  selectEl?.addEventListener('change', () => {
-    selectedColumns = Array.from(selectEl.selectedOptions).map(o => o.value);
-    saveSelected();
-    if (lastResult) renderResults(lastResult);
-    adjustTableWidth();
-  });
 
   document.getElementById('select-all')?.addEventListener('click', () => {
     selectedColumns = [...ANALYTICS_KEYS];
     saveSelected();
     renderFilter();
-    Array.from(selectEl.options).forEach(o => (o.selected = true));
     if (lastResult) renderResults(lastResult);
     adjustTableWidth();
   });
@@ -279,7 +289,6 @@ document.addEventListener('DOMContentLoaded', () => {
     selectedColumns = [];
     saveSelected();
     renderFilter();
-    Array.from(selectEl.options).forEach(o => (o.selected = false));
     if (lastResult) renderResults(lastResult);
     adjustTableWidth();
   });
