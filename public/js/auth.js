@@ -28,6 +28,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   window.authSignOut = () => signOut(auth);
 
+  const showAlert = (msg, type = 'danger') => {
+    if (!loginAlert) return;
+    loginAlert.textContent = msg;
+    loginAlert.className = `alert alert-${type} mt-3`;
+    loginAlert.classList.remove('d-none');
+  };
+
   if (isSignInWithEmailLink(auth, window.location.href)) {
     let email = window.localStorage.getItem('emailForSignIn');
     if (!email) {
@@ -44,6 +51,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   const loginForm = document.getElementById('login-form');
+  const loginAlert = document.getElementById('login-alert');
   const confirmModalEl = document.getElementById('confirm-modal');
   const confirmModal = confirmModalEl ? new bootstrap.Modal(confirmModalEl) : null;
 
@@ -52,6 +60,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       e.preventDefault();
       const email = loginForm.querySelector('#login-email').value;
       const password = loginForm.querySelector('#login-password').value;
+      if (loginAlert) loginAlert.classList.add('d-none');
       try {
         await signInWithEmailAndPassword(auth, email, password);
         window.location.href = '/dashboard';
@@ -61,7 +70,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           document.getElementById('confirm-email').value = email;
           confirmModal.show();
         } else {
-          alert(err.message);
+          showAlert(err.message);
         }
       }
     });
@@ -91,34 +100,20 @@ document.addEventListener('DOMContentLoaded', async () => {
   const googleBtn = document.getElementById('google-login');
   if (googleBtn) {
     googleBtn.addEventListener('click', async () => {
+      if (loginAlert) loginAlert.classList.add('d-none');
       try {
         await signInWithPopup(auth, new GoogleAuthProvider());
         window.location.href = '/dashboard';
       } catch (err) {
-        alert(err.message);
+        showAlert(err.message);
       }
     });
   }
 
   const emailLinkBtn = document.getElementById('email-link-btn');
   if (emailLinkBtn) {
-    emailLinkBtn.addEventListener('click', async () => {
-      const email = document.getElementById('login-email').value;
-      if (!email) {
-        alert('Please enter your email first');
-        return;
-      }
-      try {
-        await sendSignInLinkToEmail(auth, email, {
-          handleCodeInApp: true,
-          url: window.location.origin + '/login'
-        });
-        window.localStorage.setItem('emailForSignIn', email);
-        emailLinkBtn.textContent = 'Check your email for the link';
-        emailLinkBtn.disabled = true;
-      } catch (err) {
-        alert(err.message);
-      }
+    emailLinkBtn.addEventListener('click', () => {
+      showAlert('Email link login is not supported yet.', 'info');
     });
   }
 
