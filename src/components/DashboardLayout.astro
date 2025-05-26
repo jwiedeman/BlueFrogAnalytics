@@ -26,9 +26,9 @@ function isActive(item) {
   <head>
     <BaseHead />
   </head>
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <CustomHeader />
-    <div class="container-fluid">
+    <div class="container-fluid flex-grow-1">
       <div class="row">
         <nav class="col-md-2 d-none d-md-block bg-dark dashboard-side-nav">
           <ul class="nav flex-column pt-3">
@@ -39,7 +39,7 @@ function isActive(item) {
             ))}
           </ul>
         </nav>
-        <main id="main-content" class="col-md-10 py-4">
+        <main id="main-content" class="col-md-10 py-4 flex-grow-1">
           <slot />
         </main>
       </div>
