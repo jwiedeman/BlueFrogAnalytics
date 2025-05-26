@@ -366,30 +366,30 @@ main#main-content > :not(.container-fluid) {
   font-weight: 600;
 }
 
-.doc-folder > .folder-label {
+.doc-folder > summary.folder-label {
   cursor: pointer;
   display: flex;
   align-items: center;
+  list-style: none;
 }
 
-.doc-folder > .folder-label::before {
+.doc-folder > summary.folder-label::-webkit-details-marker {
+  display: none;
+}
+
+.doc-folder > summary.folder-label::before {
   content: '▸';
   margin-right: 4px;
   transition: transform 0.1s ease-in-out;
 }
 
-.doc-folder.open > .folder-label::before {
+.doc-folder[open] > summary.folder-label::before {
   transform: rotate(90deg);
 }
 
 .doc-folder > ul {
-  display: none;
   margin-left: 1rem !important;
   padding-left: 0;
-}
-
-.doc-folder.open > ul {
-  display: block;
 }
 
 .doc-link-item a {

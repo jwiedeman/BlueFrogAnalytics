@@ -91,15 +91,15 @@ for (const [file, mod] of Object.entries(blogInfo)) {
             function renderNodes(nodes, activeNames) {
               return nodes.map(node => {
                 if (node.children?.length) {
-                  const open = activeNames.includes(node.name) ? ' open' : '';
+                  const isOpen = activeNames.includes(node.name);
                   return (
-                    <li class={`doc-folder list-group-item${open}`}>
-                      <span class="folder-label">{node.label}</span>
-
-                      <ul class="list-group list-group-flush ms-2">
-                        {renderNodes(node.children, activeNames)}
-
-                      </ul>
+                    <li class="list-group-item p-0">
+                      <details class="doc-folder" open={isOpen}>
+                        <summary class="folder-label">{node.label}</summary>
+                        <ul class="list-group list-group-flush ms-2">
+                          {renderNodes(node.children, activeNames)}
+                        </ul>
+                      </details>
                     </li>
                   );
                 }
@@ -107,7 +107,6 @@ for (const [file, mod] of Object.entries(blogInfo)) {
                 return (
                   <li class="doc-link-item list-group-item">
                     <a class={`text-decoration-none${isActive ? ' doc-active' : ''}`} href={node.path}>{node.label}</a>
-
                   </li>
                 );
               });
@@ -202,12 +201,7 @@ for (const [file, mod] of Object.entries(blogInfo)) {
         }
       });
 
-      // Toggle folders in the sidebar
-        document.querySelectorAll('.doc-folder > .folder-label').forEach(label => {
-          label.addEventListener('click', () => {
-            label.parentElement.classList.toggle('open');
-          });
-        });
+      // No manual toggle needed - <details> handles open state
 
 
       // Keep current page link highlighted and its folder open
@@ -221,10 +215,10 @@ for (const [file, mod] of Object.entries(blogInfo)) {
         if (link) {
           link.classList.add('doc-active');
 
-          let folder = link.closest('.doc-folder');
+          let folder = link.closest('details.doc-folder');
           while (folder) {
-            folder.classList.add('open');
-            folder = folder.parentElement.closest('.doc-folder');
+            folder.setAttribute('open', '');
+            folder = folder.parentElement.closest('details.doc-folder');
           }
 
           const item = link.closest('.accordion-item');
