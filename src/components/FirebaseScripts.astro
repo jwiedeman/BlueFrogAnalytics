@@ -8,8 +8,8 @@ const config = {
   appId: import.meta.env.PUBLIC_FIREBASE_APP_ID
 };
 ---
-<script>
-  window.firebaseConfig = JSON.parse('{"apiKey":"' + config.apiKey + '","authDomain":"' + config.authDomain + '","projectId":"' + config.projectId + '","storageBucket":"' + config.storageBucket + '","messagingSenderId":"' + config.messagingSenderId + '","appId":"' + config.appId + '"}');
+<script define:vars={{ firebaseConfig: config }}>
+  window.firebaseConfig = firebaseConfig;
 </script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js" type="module"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js" type="module"></script>
