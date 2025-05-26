@@ -167,11 +167,11 @@ for (const [file, mod] of Object.entries(blogInfo)) {
       </aside>
     </div>
     <CustomFooter />
-    <script id="search-data" type="application/json">{JSON.stringify(searchIndex)}</script>
-    <script client:load>
+    <!-- Docs search logic -->
+    <script client:load is:inline define:vars={{ searchIndex }}>
       const onReady = () => {
 
-        const searchData = JSON.parse(document.getElementById('search-data').textContent);
+        const searchData = searchIndex;
         const input = document.getElementById('doc-search');
         const results = document.getElementById('search-results');
 
