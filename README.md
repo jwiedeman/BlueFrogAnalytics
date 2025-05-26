@@ -1,6 +1,6 @@
 # Blue Frog Analytics Docs
 
-This repository hosts the documentation site for **Blue Frog Analytics**. It is built with [Astro](https://astro.build) and styled using [Bootstrap&nbsp;5](https://getbootstrap.com).
+This repository hosts the documentation site for **Blue Frog Analytics**. It is built with [Astro](https://astro.build) and styled using [Bootstrap&nbsp;5](https://getbootstrap.com). All site fonts follow the typography recommendations from NASA's 1976 Graphics Standard Manual, using Helvetica throughout.
 
 ## Getting Started
 

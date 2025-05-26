@@ -1,5 +1,6 @@
 :root {
-  --sl-font-sans: "Helvetica Neue", Arial, sans-serif;
+  /* Use fonts from the 1976 NASA Graphics Standard Manual */
+  --sl-font-sans: Helvetica, "Helvetica Neue", Arial, sans-serif;
   /* Site palette */
   /* Use Bootstrap's default blue for primary theme colors */
   --sl-color-primary: #0d6efd;
@@ -167,7 +168,8 @@ h1, h2, h3, h4, h5, h6 {
 
   justify-content: center;
   align-items: center;
-  font-family: "Courier New", Courier, monospace;
+  /* NASA manual does not recommend a monospaced font; use Helvetica */
+  font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
   font-size: 8px;
   line-height: 8px;
   pointer-events: none;
