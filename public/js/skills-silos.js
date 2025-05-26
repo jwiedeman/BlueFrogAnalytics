@@ -47,9 +47,8 @@ function initSkillLines() {
     silos.forEach((silo) => {
       const rect = silo.getBoundingClientRect();
       const x1 = heroRect.left + heroRect.width / 2 - contRect.left;
-      const y1 = 0;
+      const y1 = heroRect.top + heroRect.height / 2 - contRect.top;
       const x2 = rect.left + rect.width / 2 - contRect.left;
-
       const y2 = rect.top + rect.height / 2 - contRect.top;
 
       const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
@@ -82,8 +81,13 @@ function initSkillLines() {
       circle.setAttribute('cx', cx);
       circle.setAttribute('cy', cy);
       if (progress > 0.95) {
-        silo.classList.add('glow');
-        setTimeout(() => silo.classList.remove('glow'), 500);
+        circle.style.display = 'none';
+        if (!silo.classList.contains('glow')) {
+          silo.classList.add('glow');
+          setTimeout(() => silo.classList.remove('glow'), 500);
+        }
+      } else {
+        circle.style.display = 'block';
       }
     });
     requestAnimationFrame(animate);
