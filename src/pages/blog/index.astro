@@ -15,7 +15,8 @@ const tags = Array.from(new Set(posts.flatMap(p => p.data.tags || [])));
 <BlogLayout>
   <div class="blog-page">
     <section class="container mb-4 blog-hero">
-      <h1 class="display-5 mb-3">News</h1>
+      <h1 class="display-5 mb-1">Blog</h1>
+      <p class="lead">Latest news and updates</p>
       <FeaturedHero posts={featured} />
     </section>
 

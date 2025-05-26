@@ -6,7 +6,7 @@ const mainNav = [
   { label: 'About', link: '/about' },
   { label: 'Services', link: '/services' },
   { label: 'Tests', link: '/testing' },
-  { label: 'News', link: '/blog' },
+  { label: 'Blog', link: '/blog' },
   { label: 'Docs', link: '/introduction/how-blue-frog-analytics-works' },
 ];
 const currentPath =
@@ -20,7 +20,7 @@ function isActive(item) {
   if (item.label === 'Tests') {
     return currentPath.startsWith('/testing') || currentPath.startsWith('/tests');
   }
-  if (item.label === 'News') return currentPath.startsWith('/blog');
+  if (item.label === 'Blog') return currentPath.startsWith('/blog');
   if (link === '/') return currentPath === '/';
   return currentPath === link || currentPath.startsWith(link + '/');
 }
