@@ -1,0 +1,28 @@
+---
+title: Performance Check
+description: Measure site performance using Lighthouse.
+template: splash
+---
+
+<div id="perf-root" class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="text-center mb-4">
+        <h1>Performance Check</h1>
+        <p>Evaluate site speed using Lighthouse performance metrics.</p>
+      </div>
+      <form id="perf-form" class="row gy-2 gx-3 align-items-end mb-3">
+        <div class="col-md-8">
+          <label for="perf-url" class="form-label">Enter URL</label>
+          <input type="url" id="perf-url" name="url" placeholder="https://example.com" class="form-control" />
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mt-3">Run Test</button>
+        </div>
+      </form>
+      <div id="perf-results"></div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="/js/performance-check.js" defer></script>

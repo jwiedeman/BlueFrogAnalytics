@@ -1,0 +1,8 @@
+---
+import DocLayout from '../../components/DocLayout.astro';
+import PageContent, { frontmatter as seoFm } from '../../content/pages/Tests/seo-check.mdx';
+---
+<DocLayout title={seoFm.title} description={seoFm.description}>
+  <PageContent />
+</DocLayout>
+
