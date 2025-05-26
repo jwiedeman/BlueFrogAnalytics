@@ -1,0 +1,28 @@
+---
+import DashboardLayout from '../../components/DashboardLayout.astro';
+---
+<DashboardLayout>
+  <section class="container py-5 text-center">
+    <h1>Profile</h1>
+    <p id="user-email" class="mb-4"></p>
+  </section>
+  <script type="module">
+    document.addEventListener('DOMContentLoaded', () => {
+      const emailEl = document.getElementById('user-email');
+      const init = () => {
+        window.onAuthStateChanged(window.firebaseAuth, user => {
+          if (!user) {
+            window.location.href = '/login';
+          } else {
+            emailEl.textContent = user.email;
+          }
+        });
+      };
+      if (window.firebaseAuth) {
+        init();
+      } else {
+        document.addEventListener('firebase-init', init, { once: true });
+      }
+    });
+  </script>
+</DashboardLayout>

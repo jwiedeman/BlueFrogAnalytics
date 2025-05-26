@@ -4,14 +4,11 @@ import CustomHeader from './CustomHeader.astro';
 import CustomFooter from './CustomFooter.astro';
 import FirebaseScripts from './FirebaseScripts.astro';
 
+// Navigation for authenticated users inside the dashboard
 const dashNav = [
-  { label: 'Dashboard', link: '/dashboard' },
-  { label: 'Home', link: '/' },
-  { label: 'About', link: '/about' },
-  { label: 'Services', link: '/services' },
-  { label: 'Tests', link: '/testing' },
-  { label: 'Blog', link: '/blog' },
-  { label: 'Docs', link: '/introduction/how-blue-frog-analytics-works' },
+  { label: 'Dashboard Home', link: '/dashboard' },
+  { label: 'Profile', link: '/dashboard/profile' },
+  { label: 'Settings', link: '/dashboard/settings' },
 ];
 const currentPath =
   Astro.url.pathname === '/'
