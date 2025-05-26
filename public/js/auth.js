@@ -28,6 +28,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   window.authSignOut = () => signOut(auth);
 
+  // Notify other scripts that Firebase has initialized
+  document.dispatchEvent(new Event('firebase-init'));
+
   const showAlert = (msg, type = 'danger') => {
     if (!loginAlert) return;
     loginAlert.textContent = msg;

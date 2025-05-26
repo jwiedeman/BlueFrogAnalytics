@@ -11,7 +11,8 @@ import DashboardLayout from '../components/DashboardLayout.astro';
     document.addEventListener('DOMContentLoaded', () => {
       const emailEl = document.getElementById('user-email');
       const logoutBtn = document.getElementById('logout');
-      if (window.firebaseAuth) {
+
+      const init = () => {
         window.onAuthStateChanged(window.firebaseAuth, user => {
           if (!user) {
             window.location.href = '/login';
@@ -24,6 +25,12 @@ import DashboardLayout from '../components/DashboardLayout.astro';
           await window.authSignOut();
           window.location.href = '/';
         });
+      };
+
+      if (window.firebaseAuth) {
+        init();
+      } else {
+        document.addEventListener('firebase-init', init, { once: true });
       }
     });
   </script>
