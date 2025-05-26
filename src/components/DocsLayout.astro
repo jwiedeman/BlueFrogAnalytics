@@ -88,25 +88,28 @@ for (const [file, mod] of Object.entries(blogInfo)) {
         </div>
         <div class="accordion" id="docAccordion">
           {(() => {
-            function renderNodes(nodes, activeNames) {
-              return nodes.map(node => {
+            function renderNodes(nodes, activeNames, prefix = '') {
+              return nodes.map((node, idx) => {
+                const id = `${prefix}${idx}`;
                 if (node.children?.length) {
                   const isOpen = activeNames.includes(node.name);
                   return (
-                    <li class="list-group-item p-0">
-                      <details class="doc-folder" open={isOpen}>
-                        <summary class="folder-label">{node.label}</summary>
-                        <ul class="list-group list-group-flush ms-2">
-                          {renderNodes(node.children, activeNames)}
+                    <li class="list-group-item p-0" key={id}>
+                      <button class={`btn btn-toggle w-100 text-start${isOpen ? '' : ' collapsed'}`} type="button" data-bs-toggle="collapse" data-bs-target={`#tree-${id}`} aria-expanded={isOpen ? 'true' : 'false'}>
+                        {node.label}
+                      </button>
+                      <div class={`collapse${isOpen ? ' show' : ''}`} id={`tree-${id}`}>
+                        <ul class="btn-toggle-nav list-unstyled">
+                          {renderNodes(node.children, activeNames, `${id}-`)}
                         </ul>
-                      </details>
+                      </div>
                     </li>
                   );
                 }
                 const isActive = node.path?.replace(/\/$/, '').toLowerCase() === currentPath;
                 return (
-                  <li class="doc-link-item list-group-item">
-                    <a class={`text-decoration-none${isActive ? ' doc-active' : ''}`} href={node.path}>{node.label}</a>
+                  <li class="doc-link-item list-group-item p-0" key={id}>
+                    <a class={`text-decoration-none d-block ps-4${isActive ? ' doc-active' : ''}`} href={node.path}>{node.label}</a>
                   </li>
                 );
               });
@@ -124,7 +127,7 @@ for (const [file, mod] of Object.entries(blogInfo)) {
                   <div id={`acc-${i}`} class={`accordion-collapse collapse${activeCat ? ' show' : ''}`} data-bs-parent="#docAccordion">
                     <div class="accordion-body p-0">
                       <ul class="list-group list-group-flush">
-                        {renderNodes(cat.children, activeNames)}
+                        {renderNodes(cat.children, activeNames, `${i}-`)}
                       </ul>
                     </div>
                   </div>
@@ -215,10 +218,15 @@ for (const [file, mod] of Object.entries(blogInfo)) {
         if (link) {
           link.classList.add('doc-active');
 
-          let folder = link.closest('details.doc-folder');
-          while (folder) {
-            folder.setAttribute('open', '');
-            folder = folder.parentElement.closest('details.doc-folder');
+          let collapseEl = link.closest('.collapse');
+          while (collapseEl) {
+            collapseEl.classList.add('show');
+            const btn = document.querySelector(`[data-bs-target="#${collapseEl.id}"]`);
+            if (btn) {
+              btn.classList.remove('collapsed');
+              btn.setAttribute('aria-expanded', 'true');
+            }
+            collapseEl = collapseEl.parentElement.closest('.collapse');
           }
 
           const item = link.closest('.accordion-item');
