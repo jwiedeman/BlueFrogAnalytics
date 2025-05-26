@@ -7,9 +7,9 @@ import CustomFooter from './CustomFooter.astro';
   <head>
     <BaseHead />
   </head>
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <CustomHeader />
-    <main id="main-content" class="container pt-4">
+    <main id="main-content" class="container pt-4 flex-grow-1">
       <slot />
     </main>
     <CustomFooter />

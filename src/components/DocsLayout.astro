@@ -78,9 +78,9 @@ for (const [file, mod] of Object.entries(blogInfo)) {
   <head>
     <BaseHead />
   </head>
-  <body class="docs-layout">
+  <body class="docs-layout d-flex flex-column min-vh-100">
     <CustomHeader isDocs={true} />
-    <div class="docs-container container-fluid">
+    <div class="docs-container container-fluid flex-grow-1">
       <aside class="sidebar-left">
         <div class="position-relative mb-3">
           <input id="doc-search" type="search" class="form-control" placeholder="Search docs..." autocomplete="off" />
