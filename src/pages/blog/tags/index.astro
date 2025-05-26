@@ -2,6 +2,9 @@
 import { getCollection } from 'astro:content';
 import BlogLayout from '../../../components/BlogLayout.astro';
 
+const title = 'Blog Tags';
+const description = 'Browse posts by tag.';
+
 const posts = await getCollection('blog');
 const tagMap = new Map();
 for (const post of posts) {
@@ -10,7 +13,7 @@ for (const post of posts) {
   });
 }
 ---
-<BlogLayout>
+<BlogLayout title={title} description={description}>
   <h1>Tags</h1>
   <ul>
     {Array.from(tagMap.entries()).map(([tag, count]) => (

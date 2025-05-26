@@ -2,10 +2,12 @@
 import BaseHead from './BaseHead.astro';
 import CustomHeader from './CustomHeader.astro';
 import CustomFooter from './CustomFooter.astro';
+
+const { title, description } = Astro.props;
 ---
 <html lang="en">
   <head>
-    <BaseHead />
+    <BaseHead title={title} description={description} />
   </head>
   <body class="d-flex flex-column min-vh-100">
     <CustomHeader />

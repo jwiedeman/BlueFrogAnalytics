@@ -1,8 +1,8 @@
 ---
 import DocLayout from '../../components/DocLayout.astro';
-import PageContent from '../../content/pages/Tests/roas-calculator.mdx';
+import PageContent, { frontmatter as roasFm } from '../../content/pages/Tests/roas-calculator.mdx';
 ---
-<DocLayout>
+<DocLayout title={roasFm.title} description={roasFm.description}>
   <PageContent />
 </DocLayout>
 

@@ -1,8 +1,8 @@
 ---
 // Renders the Testing Tools page
 import DocLayout from '../components/DocLayout.astro';
-import TestingContent from '../content/pages/testing.mdx';
+import TestingContent, { frontmatter as testingFm } from '../content/pages/testing.mdx';
 ---
-<DocLayout fluid={true}>
+<DocLayout fluid={true} title={testingFm.title} description={testingFm.description}>
   <TestingContent />
 </DocLayout>
