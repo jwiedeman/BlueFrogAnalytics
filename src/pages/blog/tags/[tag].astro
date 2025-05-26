@@ -3,16 +3,19 @@ import { getCollection } from 'astro:content';
 import BlogLayout from '../../../components/BlogLayout.astro';
 import BlogPostCard from '../../../components/BlogPostCard.astro';
 
+const { tag } = Astro.params;
+const title = `Posts tagged ${tag}`;
+const description = `Articles related to ${tag}.`;
+
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   const tags = new Set(posts.flatMap(p => p.data.tags || []));
   return Array.from(tags).map(tag => ({ params: { tag } }));
 }
 
-const { tag } = Astro.params;
 const posts = (await getCollection('blog')).filter(p => p.data.tags?.includes(tag));
 ---
-<BlogLayout>
+<BlogLayout title={title} description={description}>
   <h1>Posts tagged {tag}</h1>
   {posts.map(post => <BlogPostCard post={post} />)}
 </BlogLayout>

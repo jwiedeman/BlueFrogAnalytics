@@ -1,8 +1,8 @@
 ---
 // Renders the Terms of Service page
 import DocLayout from '../components/DocLayout.astro';
-import TermsContent from '../content/pages/terms-of-service.mdx';
+import TermsContent, { frontmatter as termsFm } from '../content/pages/terms-of-service.mdx';
 ---
-<DocLayout>
+<DocLayout title={termsFm.title} description={termsFm.description}>
   <TermsContent />
 </DocLayout>
