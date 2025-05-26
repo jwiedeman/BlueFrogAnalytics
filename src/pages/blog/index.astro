@@ -15,6 +15,7 @@ const tags = Array.from(new Set(posts.flatMap(p => p.data.tags || [])));
 <BlogLayout>
   <div class="blog-page">
     <section class="container mb-4 blog-hero">
+      <h1 class="display-5 mb-3">News</h1>
       <FeaturedHero posts={featured} />
     </section>
 
@@ -23,12 +24,14 @@ const tags = Array.from(new Set(posts.flatMap(p => p.data.tags || [])));
         <div class="col-12">
           <div role="search">
             <label for="blog-search" class="visually-hidden">Search posts</label>
-            <input id="blog-search" type="text" class="form-control" placeholder="Search posts..." />
+            <input id="blog-search" type="text" class="form-control form-control-lg" placeholder="Search posts..." />
           </div>
         </div>
         <div class="col-12">
           <div class="tag-filter">
-            {tags.map(t => <span class="badge bg-secondary me-1" data-tag={t}>{t}</span>)}
+            {tags.map(t => (
+              <span class="badge bg-secondary text-uppercase me-1" data-tag={t}>{t}</span>
+            ))}
           </div>
         </div>
       </div>
@@ -37,9 +40,9 @@ const tags = Array.from(new Set(posts.flatMap(p => p.data.tags || [])));
     <section class="container blog-posts">
       <div class="row">
         <div class="col-lg-8">
-          <div class="row g-4" id="posts-list">
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="posts-list">
             {sorted.map(post => (
-              <div class="col-sm-6">
+              <div class="col">
                 <BlogPostCard post={post} />
               </div>
             ))}

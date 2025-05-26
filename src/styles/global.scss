@@ -16,6 +16,7 @@ body {
   font-family: var(--sl-font-sans);
   background: var(--bs-body-bg);
   color: var(--bs-body-color);
+  line-height: 1.6;
   /* Prevent horizontal scrollbars from full-width sections */
   overflow-x: hidden;
   /* Offset pages below the fixed header */
@@ -31,9 +32,9 @@ hr {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  font-weight: 400;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
 }
 
 
