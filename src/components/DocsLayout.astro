@@ -171,14 +171,15 @@ for (const [file, mod] of Object.entries(blogInfo)) {
       </div>
     </div>
     <CustomFooter />
-    <script id="search-data" type="application/json">{JSON.stringify(searchIndex)}</script>
-    <script client:load>
+    <!-- Docs search logic -->
+    <script client:load is:inline define:vars={{ searchIndex }}>
       const onReady = () => {
 
-        const searchData = JSON.parse(document.getElementById('search-data').textContent);
+        const searchData = searchIndex;
         const input = document.getElementById('doc-search');
         const panel = document.getElementById('search-panel');
         const results = document.getElementById('search-results');
+
 
         const updatePanelPos = () => {
           const rect = input.getBoundingClientRect();
@@ -220,7 +221,9 @@ for (const [file, mod] of Object.entries(blogInfo)) {
           panel.classList.add('d-none');
           return;
         }
+
         updatePanelPos();
+
         const words = q.split(/\s+/).filter(Boolean);
         const matches = [];
         for (const item of searchData) {

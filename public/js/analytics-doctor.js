@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'hotjar',
     'amplitude'
   ];
+  const PAGE_SIZE = 25;
 
   // Map common variations to canonical keys to ensure links always resolve
   const KEY_VARIATIONS = {
@@ -28,6 +29,23 @@ document.addEventListener('DOMContentLoaded', () => {
   function canonicalize(key) {
     const cleaned = key.toLowerCase().replace(/[^a-z0-9_]+/g, '_');
     return KEY_VARIATIONS[cleaned] || cleaned;
+  }
+
+  const METHOD_VARIATIONS = {
+    gtm: 'gtm',
+    google_tag_manager: 'gtm',
+    'google_tag': 'gtm',
+    tag_manager: 'gtm',
+    gtag: 'gtm',
+    gtm_ss: 'gtm',
+    gtm_server: 'gtm',
+    segment: 'segment',
+    'segment_io': 'segment'
+  };
+
+  function canonicalizeMethod(method) {
+    const cleaned = String(method || '').toLowerCase().replace(/[^a-z0-9_]+/g, '_');
+    return METHOD_VARIATIONS[cleaned] || cleaned;
   }
 
   const STORAGE_KEY = 'analyticsColumns';
@@ -59,16 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(selectedColumns));
   }
 
-  function adjustTableWidth() {
-    const wrapper = document.getElementById('table-wrapper');
-    if (!wrapper) return;
-    const cols = selectedColumns.length + 1; // include URL column
-    if (cols <= 3) {
-      wrapper.classList.add('boxed');
-    } else {
-      wrapper.classList.remove('boxed');
-    }
-  }
+
 
   function formatName(key) {
     return key
@@ -102,33 +111,29 @@ document.addEventListener('DOMContentLoaded', () => {
         selectedColumns = Array.from(container.querySelectorAll('input:checked')).map(i => i.value);
         saveSelected();
         if (lastResult) renderResults(lastResult);
-        adjustTableWidth();
       });
     });
   }
 
   function renderResults(data) {
     lastResult = data;
-    adjustTableWidth();
-    const headerRow = document.getElementById('pages-header');
-    const bodyEl = document.getElementById('pages-body');
+    const listEl = document.getElementById('pages-list');
+    const paginationEl = document.getElementById('pagination');
     const summaryEl = document.getElementById('summary');
-
-    headerRow.innerHTML = '';
-    bodyEl.innerHTML = '';
+    listEl.innerHTML = '';
+    paginationEl.innerHTML = '';
     summaryEl.innerHTML = '';
 
-    headerRow.appendChild(document.createElement('th')).textContent = 'URL';
-    selectedColumns.forEach(key => {
-      const th = document.createElement('th');
-      th.textContent = formatName(key);
-      headerRow.appendChild(th);
-    });
+    const pages = data.page_results ? Object.entries(data.page_results) : [];
+    let currentPage = 1;
 
-    if (data.page_results) {
-      for (const [url, analytics] of Object.entries(data.page_results)) {
-        const tr = document.createElement('tr');
-        const urlCell = document.createElement('td');
+    function renderPage(pageNum) {
+      listEl.innerHTML = '';
+      const start = (pageNum - 1) * PAGE_SIZE;
+      const slice = pages.slice(start, start + PAGE_SIZE);
+      slice.forEach(([url, analytics]) => {
+        const li = document.createElement('li');
+        li.className = 'list-group-item';
         const link = document.createElement('a');
         let path;
         try {
@@ -141,31 +146,54 @@ document.addEventListener('DOMContentLoaded', () => {
         link.href = url;
         link.target = '_blank';
         link.rel = 'noopener';
-        urlCell.appendChild(link);
-        tr.appendChild(urlCell);
+        li.appendChild(link);
+
         selectedColumns.forEach(key => {
-          const td = document.createElement('td');
           const entry = analytics[key];
           if (entry) {
             const ids = (entry.ids || []).join(', ') || 'unknown id';
-            const method = entry.method || 'native';
+            const method = canonicalizeMethod(entry.method || 'native');
             const canonical = canonicalize(key);
             const idSlug = slugify(canonical + '-note');
             const methodSlug = slugify('method-' + method);
             const pillClass = 'analytics-pill badge bg-primary ' + slugify(canonical);
             const methodClass = 'analytics-pill badge bg-secondary method-' + slugify(method);
-            td.className = 'analytics-cell';
-            td.innerHTML =
-              `<a href="#${idSlug}" class="${pillClass}">${ids}</a>` +
+            const span = document.createElement('span');
+            span.innerHTML =
+              ` <a href="#${idSlug}" class="${pillClass}">${ids}</a>` +
               ` <a href="#${methodSlug}" class="${methodClass}">via ${method}</a>`;
-          } else {
-            td.textContent = '';
+            li.appendChild(span);
           }
-          tr.appendChild(td);
         });
-        bodyEl.appendChild(tr);
+
+        listEl.appendChild(li);
+      });
+    }
+
+    function renderPagination() {
+      paginationEl.innerHTML = '';
+      const totalPages = Math.ceil(pages.length / PAGE_SIZE);
+      if (totalPages <= 1) return;
+      for (let i = 1; i <= totalPages; i++) {
+        const item = document.createElement('li');
+        item.className = 'page-item' + (i === currentPage ? ' active' : '');
+        const a = document.createElement('a');
+        a.className = 'page-link';
+        a.href = '#';
+        a.textContent = i;
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          currentPage = i;
+          renderPage(currentPage);
+          renderPagination();
+        });
+        item.appendChild(a);
+        paginationEl.appendChild(item);
       }
     }
+
+    renderPage(currentPage);
+    renderPagination();
 
     const summaryTitle = document.createElement('h2');
     summaryTitle.textContent = 'Summary';
@@ -201,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
       for (const [name, info] of Object.entries(data.found_analytics)) {
         const li = document.createElement('li');
         const ids = (info.ids || []).join(', ') || 'unknown id';
-        const method = info.method || 'native';
+        const method = canonicalizeMethod(info.method || 'native');
         const canonical = canonicalize(name);
         const idSlug = slugify(canonical + '-note');
         const methodSlug = slugify('method-' + method);
@@ -228,8 +256,8 @@ document.addEventListener('DOMContentLoaded', () => {
     statusEl.textContent = 'Resolving domain variants...';
     progressBar.style.width = '0%';
     etaEl.textContent = '';
-    document.getElementById('pages-header').innerHTML = '';
-    document.getElementById('pages-body').innerHTML = '';
+    document.getElementById('pages-list').innerHTML = '';
+    document.getElementById('pagination').innerHTML = '';
     document.getElementById('summary').innerHTML = '';
 
     const es = new EventSource(`${API_BASE_URL}/scan-stream?domain=${encodeURIComponent(domain)}&maxPages=${maxPages}`);
@@ -274,7 +302,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   loadSelected();
   renderFilter();
-  adjustTableWidth();
 
 
   document.getElementById('select-all')?.addEventListener('click', () => {
@@ -282,7 +309,6 @@ document.addEventListener('DOMContentLoaded', () => {
     saveSelected();
     renderFilter();
     if (lastResult) renderResults(lastResult);
-    adjustTableWidth();
   });
 
   document.getElementById('clear-all')?.addEventListener('click', () => {
@@ -290,7 +316,6 @@ document.addEventListener('DOMContentLoaded', () => {
     saveSelected();
     renderFilter();
     if (lastResult) renderResults(lastResult);
-    adjustTableWidth();
   });
 
   function openDetailsFromHash(hash) {
