@@ -19,7 +19,9 @@ function initSkillLines() {
       const x1 = heroRect.left + heroRect.width / 2 - contRect.left;
       const y1 = 0;
       const x2 = rect.left + rect.width / 2 - contRect.left;
-      const y2 = rect.top - contRect.top;
+
+      const y2 = rect.top + rect.height / 2 - contRect.top;
+
       const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
       line.setAttribute('x1', x1);
       line.setAttribute('y1', y1);
