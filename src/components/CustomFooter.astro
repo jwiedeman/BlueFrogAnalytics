@@ -1,8 +1,9 @@
 ---
 // Simplified footer using Bootstrap classes
 const year = new Date().getFullYear();
+const isDashboard = Astro.url.pathname.startsWith('/dashboard');
 ---
-<footer class="bg-dark text-light py-4 mt-5">
+<footer class={`py-4 mt-5 ${isDashboard ? 'bg-dark text-light' : 'bg-light text-dark'}`}>
   <div class="container text-center">
     <p class="copy">© {year} Blue Frog Analytics</p>
     <nav class="d-flex justify-content-center gap-3 flex-wrap">
