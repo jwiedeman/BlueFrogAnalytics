@@ -397,3 +397,15 @@ main#main-content > :not(.container-fluid) {
   margin-left: 0.5rem !important;
 }
 
+/* Consistent spacing for docs navigation */
+.sidebar-left .accordion-button,
+.sidebar-left .btn-toggle,
+.sidebar-left .doc-link-item a {
+  padding: 0.25rem 0.5rem;
+}
+
+.sidebar-left .doc-link-item a {
+  padding-left: 1rem !important;
+  padding-right: 0.5rem;
+}
+
