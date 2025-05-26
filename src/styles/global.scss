@@ -153,6 +153,40 @@ h1, h2, h3, h4, h5, h6 {
   text-align: left;
 }
 
+// Rotating feature list
+#feature-rotator {
+  position: relative;
+  overflow: hidden;
+  height: 2rem;
+  margin-top: 1rem;
+}
+
+.feature-slide {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  white-space: nowrap;
+  transition: transform 0.5s, opacity 0.5s, filter 0.5s;
+  filter: blur(2px);
+}
+
+.feature-slide.active {
+  opacity: 1;
+  filter: none;
+}
+
+.feature-slide.next {
+  transform: translateX(-150%);
+  opacity: 0.3;
+}
+
+.feature-slide.prev {
+  transform: translateX(50%);
+  opacity: 0;
+}
+
 
 // Skill silos display below hero
 #skills-container {
@@ -186,10 +220,25 @@ h1, h2, h3, h4, h5, h6 {
 .skill-line {
   stroke: var(--bs-secondary);
   stroke-width: 2;
+  opacity: 0.2;
+}
+
+.skill-line.active {
+  opacity: 1;
 }
 
 .skill-pulse {
   fill: var(--bs-primary);
+  display: none;
+}
+
+.skill-line.active + .skill-pulse {
+  display: block;
+}
+
+#skills-container .silo.active {
+  background: var(--bs-primary);
+  color: #fff;
 }
 
 .silo.glow {

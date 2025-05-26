@@ -3,11 +3,41 @@
 function initSkillLines() {
   const hero = document.querySelector('.hero-content');
   const container = document.getElementById('skills-container');
-  if (!hero || !container) return;
+  const featureRotator = document.getElementById('feature-rotator');
+  if (!hero || !container || !featureRotator) return;
 
   const svg = container.querySelector('svg');
   const silos = Array.from(container.querySelectorAll('.silo'));
+  const features = Array.from(featureRotator.querySelectorAll('.feature-slide'));
   const lines = [];
+  let featureIndex = 0;
+
+  function highlight(names) {
+    silos.forEach((s) => s.classList.remove('active'));
+    lines.forEach(({ line, circle }) => {
+      line.classList.remove('active');
+      circle.style.display = 'none';
+    });
+    lines.forEach(({ line, circle, silo }) => {
+      const label = silo.textContent.trim();
+      if (names.includes(label)) {
+        line.classList.add('active');
+        circle.style.display = 'block';
+        silo.classList.add('active');
+      }
+    });
+  }
+
+  function showFeature(i) {
+    features.forEach((f) => f.classList.remove('prev', 'active', 'next'));
+    const prev = (i - 1 + features.length) % features.length;
+    const next = (i + 1) % features.length;
+    features[i].classList.add('active');
+    features[prev].classList.add('prev');
+    features[next].classList.add('next');
+    const names = (features[i].dataset.silos || '').split(',').map((s) => s.trim());
+    highlight(names);
+  }
 
   function draw() {
     svg.innerHTML = '';
@@ -41,6 +71,7 @@ function initSkillLines() {
   function animate(time) {
     const t = (time || 0) / 1000;
     lines.forEach(({ line, circle, silo }, idx) => {
+      if (!line.classList.contains('active')) return;
       const x1 = parseFloat(line.getAttribute('x1'));
       const y1 = parseFloat(line.getAttribute('y1'));
       const x2 = parseFloat(line.getAttribute('x2'));
@@ -60,6 +91,11 @@ function initSkillLines() {
 
   window.addEventListener('resize', draw);
   draw();
+  showFeature(featureIndex);
+  setInterval(() => {
+    featureIndex = (featureIndex + 1) % features.length;
+    showFeature(featureIndex);
+  }, 3000);
   requestAnimationFrame(animate);
 }
 
