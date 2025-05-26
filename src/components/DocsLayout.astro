@@ -214,6 +214,13 @@ for (const [file, mod] of Object.entries(blogInfo)) {
         return body.slice(0, 150).replace(/\n/g, ' ') + '...';
       }
 
+      function slugify(str) {
+        return String(str)
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '');
+      }
+
       input.addEventListener('input', () => {
         const q = input.value.trim().toLowerCase();
         results.innerHTML = '';
@@ -238,7 +245,27 @@ for (const [file, mod] of Object.entries(blogInfo)) {
           const li = document.createElement('li');
           li.className = 'list-group-item';
           const snippet = getSnippet(m.body, words);
-          li.innerHTML = `<a href="${m.url}" class="text-decoration-none fw-bold">${m.title}</a><div class="small text-muted search-snippet">${snippet}</div>`;
+
+          const headingMatches = [];
+          const regex = /^#{1,6}\s+(.*)$/gm;
+          let hm;
+          while ((hm = regex.exec(m.body)) !== null) {
+            const text = hm[1].trim();
+            const lower = text.toLowerCase();
+            if (words.some(w => lower.includes(w))) {
+              headingMatches.push({ text, slug: slugify(text) });
+            }
+          }
+
+          const headingsHtml = headingMatches.length
+            ? '<ul class="small mb-0">' +
+              headingMatches
+                .map(h => `<li><a href="${m.url}#${h.slug}" class="text-decoration-none">${h.text}</a></li>`)
+                .join('') +
+              '</ul>'
+            : '';
+
+          li.innerHTML = `<a href="${m.url}" class="text-decoration-none fw-bold">${m.title}</a><div class="small text-muted search-snippet">${snippet}</div>${headingsHtml}`;
           results.appendChild(li);
         });
         panel.classList.toggle('d-none', matches.length === 0);
