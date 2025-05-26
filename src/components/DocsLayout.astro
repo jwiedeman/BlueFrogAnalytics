@@ -84,7 +84,6 @@ for (const [file, mod] of Object.entries(blogInfo)) {
       <aside class="sidebar-left">
         <div class="position-relative mb-3">
           <input id="doc-search" type="search" class="form-control" placeholder="Search docs..." autocomplete="off" />
-          <ul id="search-results" class="list-group position-absolute w-100 d-none search-dropdown"></ul>
         </div>
         <div class="accordion" id="docAccordion">
           {(() => {
@@ -166,6 +165,11 @@ for (const [file, mod] of Object.entries(blogInfo)) {
         </nav>
       </aside>
     </div>
+    <div id="search-panel" class="search-panel d-none">
+      <div class="container py-3">
+        <ul id="search-results" class="list-group search-dropdown"></ul>
+      </div>
+    </div>
     <CustomFooter />
     <!-- Docs search logic -->
     <script client:load is:inline define:vars={{ searchIndex }}>
@@ -173,7 +177,18 @@ for (const [file, mod] of Object.entries(blogInfo)) {
 
         const searchData = searchIndex;
         const input = document.getElementById('doc-search');
+        const panel = document.getElementById('search-panel');
         const results = document.getElementById('search-results');
+
+
+        const updatePanelPos = () => {
+          const rect = input.getBoundingClientRect();
+          const top = rect.bottom;
+          panel.style.top = `${top}px`;
+          panel.style.maxHeight = `calc(100vh - ${top}px)`;
+        };
+
+        updatePanelPos();
 
       function scoreItem(text, words) {
         let score = 0;
@@ -203,9 +218,12 @@ for (const [file, mod] of Object.entries(blogInfo)) {
         const q = input.value.trim().toLowerCase();
         results.innerHTML = '';
         if (!q) {
-          results.classList.add('d-none');
+          panel.classList.add('d-none');
           return;
         }
+
+        updatePanelPos();
+
         const words = q.split(/\s+/).filter(Boolean);
         const matches = [];
         for (const item of searchData) {
@@ -223,14 +241,17 @@ for (const [file, mod] of Object.entries(blogInfo)) {
           li.innerHTML = `<a href="${m.url}" class="text-decoration-none fw-bold">${m.title}</a><div class="small text-muted search-snippet">${snippet}</div>`;
           results.appendChild(li);
         });
-        results.classList.toggle('d-none', matches.length === 0);
+        panel.classList.toggle('d-none', matches.length === 0);
       });
 
       document.addEventListener('click', (e) => {
-        if (!results.contains(e.target) && e.target !== input) {
-          results.classList.add('d-none');
+        if (!panel.contains(e.target) && e.target !== input) {
+          panel.classList.add('d-none');
         }
       });
+
+      window.addEventListener('resize', updatePanelPos);
+      window.addEventListener('scroll', updatePanelPos);
 
       // No manual toggle needed - <details> handles open state
 
