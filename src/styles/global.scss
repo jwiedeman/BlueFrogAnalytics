@@ -6,8 +6,8 @@
   --sl-color-accent: #88a5c9;
   --sl-border-radius: 0;
   --bs-primary: #0d6efd;
-  --bs-body-bg: #fcfdff;
-  --bs-body-color: #161616;
+  --bs-body-bg: #121212;
+  --bs-body-color: #f5f5f5;
   --header-height: 3.5rem;
 }
 
@@ -121,7 +121,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-right: calc(50% - 50vw);
   margin-bottom: 2rem;
   padding: 2rem 3rem;
-  background: #ffffff;
+  background: #1e1e1e;
 }
 
 // Landing page hero gets extra height
@@ -409,3 +409,12 @@ main#main-content > :not(.container-fluid) {
   padding-right: 0.5rem;
 }
 
+
+/* Dark mode overrides */
+.bg-white,
+.bg-light {
+  background-color: #1e1e1e !important;
+}
+.text-dark {
+  color: #f5f5f5 !important;
+}
