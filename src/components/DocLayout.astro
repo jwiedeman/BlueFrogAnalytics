@@ -3,6 +3,7 @@
 import BaseHead from './BaseHead.astro';
 import CustomHeader from './CustomHeader.astro';
 import CustomFooter from './CustomFooter.astro';
+import FirebaseScripts from './FirebaseScripts.astro';
 
 const { fluid = false } = Astro.props;
 const mainClass = fluid ? 'container-fluid' : 'container';
@@ -17,5 +18,6 @@ const mainClass = fluid ? 'container-fluid' : 'container';
       <slot />
     </main>
     <CustomFooter />
+    <FirebaseScripts />
   </body>
 </html>
