@@ -6,8 +6,8 @@
   --sl-color-accent: #88a5c9;
   --sl-border-radius: 0;
   --bs-primary: #0d6efd;
-  --bs-body-bg: #121212;
-  --bs-body-color: #f5f5f5;
+  --bs-body-bg: #ffffff;
+  --bs-body-color: #212529;
   --header-height: 3.5rem;
 }
 
@@ -22,6 +22,13 @@ body {
   /* Offset pages below the fixed header */
   padding-top: var(--header-height);
   padding-bottom: 1rem;
+}
+
+body.dark-mode {
+  --bs-body-bg: #121212;
+  --bs-body-color: #f5f5f5;
+  background: var(--bs-body-bg);
+  color: var(--bs-body-color);
 }
 
 /* Consistent horizontal rule styling */
@@ -121,7 +128,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-right: calc(50% - 50vw);
   margin-bottom: 2rem;
   padding: 2rem 3rem;
-  background: #1e1e1e;
+  background: var(--bs-body-bg);
 }
 
 // Landing page hero gets extra height
@@ -230,8 +237,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 // Ensure dropdown menus match header background
-.bx--dropdown-list,
-.bx--list-box__menu {
+body.dark-mode .bx--dropdown-list,
+body.dark-mode .bx--list-box__menu {
   background: #161616;
   color: #f5f5f5;
 }
@@ -270,13 +277,13 @@ main#main-content > :not(.container-fluid) {
   text-align: center;
 }
 
-.bx--dropdown-item > .bx--dropdown-link,
-.bx--list-box__menu-item {
+body.dark-mode .bx--dropdown-item > .bx--dropdown-link,
+body.dark-mode .bx--list-box__menu-item {
   color: #f5f5f5;
 }
 
 // Side navigation styles
-#side-nav {
+body.dark-mode #side-nav {
   display: none;
   position: sticky;
   left: 0;
@@ -286,27 +293,27 @@ main#main-content > :not(.container-fluid) {
   z-index: 1100;
 }
 
-#side-nav.bx--side-nav--expanded {
+body.dark-mode #side-nav.bx--side-nav--expanded {
   display: block;
 }
 
-#side-nav .bx--side-nav__items {
+body.dark-mode #side-nav .bx--side-nav__items {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-#side-nav .bx--side-nav__item {
+body.dark-mode #side-nav .bx--side-nav__item {
   margin: 0.5rem 0;
 }
 
-#side-nav .bx--side-nav__link {
+body.dark-mode #side-nav .bx--side-nav__link {
   color: #f5f5f5;
   text-decoration: none;
 }
 
 @media (min-width: 768px) {
-  #side-nav {
+  body.dark-mode #side-nav {
     display: none !important;
   }
 }
@@ -411,10 +418,23 @@ main#main-content > :not(.container-fluid) {
 
 
 /* Dark mode overrides */
-.bg-white,
-.bg-light {
+body.dark-mode .bg-white,
+body.dark-mode .bg-light {
   background-color: #1e1e1e !important;
 }
-.text-dark {
+body.dark-mode .text-dark {
   color: #f5f5f5 !important;
+}
+body.dark-mode .hero-section {
+  background: #1e1e1e;
+}
+body.dark-mode .bx--dropdown-list,
+body.dark-mode .bx--list-box__menu,
+body.dark-mode #side-nav {
+  background: #161616;
+}
+body.dark-mode .bx--dropdown-item > .bx--dropdown-link,
+body.dark-mode .bx--list-box__menu-item,
+body.dark-mode #side-nav .bx--side-nav__link {
+  color: #f5f5f5;
 }
