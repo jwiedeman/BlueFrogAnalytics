@@ -123,6 +123,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   onAuthStateChanged(auth, user => {
     const loginBtn = document.getElementById('login-btn');
     const dashBtn = document.getElementById('dash-btn');
+    const dashNav = document.getElementById('dashboard-nav');
     const onDashboard = window.location.pathname.startsWith('/dashboard');
     document.body.classList.toggle('dark-mode', !!user && onDashboard);
     if (loginBtn && dashBtn) {
@@ -133,6 +134,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         loginBtn.classList.remove('d-none');
         dashBtn.classList.add('d-none');
       }
+    }
+    if (dashNav) {
+      dashNav.classList.toggle('d-none', !user);
     }
     if (!user && window.location.pathname.startsWith('/dashboard')) {
       if (!window.loggingOut) {

@@ -3,7 +3,7 @@
 const { isDocs = false } = Astro.props;
 const isDashboard = Astro.url.pathname.startsWith('/dashboard');
 const mainNav = [
-  { label: 'Dashboard', link: '/dashboard' },
+  { label: 'Dashboard', link: '/dashboard', isDash: true },
   { label: 'Home', link: '/' },
   { label: 'About', link: '/about' },
   { label: 'Services', link: '/services' },
@@ -45,7 +45,7 @@ function isActive(item) {
     <div class="collapse navbar-collapse" id="mainNav">
       <ul class="navbar-nav mb-2 mb-lg-0 me-auto">
         {mainNav.map(item => (
-          <li class="nav-item" key={item.link}>
+          <li class={`nav-item${item.isDash ? ' d-none' : ''}`} key={item.link} id={item.isDash ? 'dashboard-nav' : undefined}>
             <a class={`nav-link${isActive(item) ? ' active' : ''}`} href={item.link}>{item.label}</a>
           </li>
         ))}
