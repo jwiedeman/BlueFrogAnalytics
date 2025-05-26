@@ -2,6 +2,7 @@
 // Bootstrap navbar for site navigation
 const { isDocs = false } = Astro.props;
 const mainNav = [
+  { label: 'Dashboard', link: '/dashboard' },
   { label: 'Home', link: '/' },
   { label: 'About', link: '/about' },
   { label: 'Services', link: '/services' },
@@ -45,7 +46,7 @@ function isActive(item) {
         ))}
       </ul>
       <a id="login-btn" class="btn btn-outline-light ms-lg-2" href="/login">Client Login</a>
-      <a id="dash-btn" class="btn btn-outline-light ms-lg-2 d-none" href="/dashboard">Dashboard</a>
+      <a id="dash-btn" class="btn btn-outline-light ms-lg-2 d-none" href="/dashboard">Profile</a>
     </div>
   </div>
 </nav>
