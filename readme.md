@@ -11,6 +11,9 @@ npm install
 npm run dev
 ```
 
+Create a `.env` file based on `.env.example` and add your Firebase project
+credentials before running the dev server.
+
 ## Building
 
 Generate the production build:

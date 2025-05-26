@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     createUserWithEmailAndPassword,
     signInWithPopup,
     GoogleAuthProvider,
+    sendSignInLinkToEmail,
+    signInWithEmailLink,
+    isSignInWithEmailLink,
     onAuthStateChanged,
     signOut
   }] = await Promise.all([
@@ -20,7 +23,25 @@ document.addEventListener('DOMContentLoaded', async () => {
   const app = initializeApp(window.firebaseConfig);
   const auth = getAuth(app);
 
+  window.firebaseAuth = auth;
+  window.onAuthStateChanged = onAuthStateChanged;
+
   window.authSignOut = () => signOut(auth);
+
+  if (isSignInWithEmailLink(auth, window.location.href)) {
+    let email = window.localStorage.getItem('emailForSignIn');
+    if (!email) {
+      email = window.prompt('Please provide your email for confirmation');
+    }
+    try {
+      await signInWithEmailLink(auth, email, window.location.href);
+      window.localStorage.removeItem('emailForSignIn');
+      window.location.href = '/dashboard';
+      return;
+    } catch (err) {
+      alert(err.message);
+    }
+  }
 
   const loginForm = document.getElementById('login-form');
   const confirmModalEl = document.getElementById('confirm-modal');
@@ -73,6 +94,28 @@ document.addEventListener('DOMContentLoaded', async () => {
       try {
         await signInWithPopup(auth, new GoogleAuthProvider());
         window.location.href = '/dashboard';
+      } catch (err) {
+        alert(err.message);
+      }
+    });
+  }
+
+  const emailLinkBtn = document.getElementById('email-link-btn');
+  if (emailLinkBtn) {
+    emailLinkBtn.addEventListener('click', async () => {
+      const email = document.getElementById('login-email').value;
+      if (!email) {
+        alert('Please enter your email first');
+        return;
+      }
+      try {
+        await sendSignInLinkToEmail(auth, email, {
+          handleCodeInApp: true,
+          url: window.location.origin + '/login'
+        });
+        window.localStorage.setItem('emailForSignIn', email);
+        emailLinkBtn.textContent = 'Check your email for the link';
+        emailLinkBtn.disabled = true;
       } catch (err) {
         alert(err.message);
       }
