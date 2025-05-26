@@ -4,7 +4,8 @@ if (asciiEl) {
   // Configuration variables for the hero frog ASCII art
   const imgUrl = 'https://media.istockphoto.com/id/93218208/photo/blue-poison-dart-frog-against-white-background.jpg?b=1&s=612x612&w=0&k=20&c=5o7sCMfedFx3TQ16JDbl0jAQLTo5UTfogcFCVwz7bmI=';
   const width = 150;              // Width of ASCII art in characters
-  const charAspect = 0.55;        // Character height/width ratio
+  const charAspect = 1;           // Character height/width ratio
+  const backgroundThreshold = 0.92; // Skip pixels brighter than this
   const chars = ' .:-=+*#%@';     // Characters for art from light to dark
 
   // Animation parameters
@@ -48,6 +49,10 @@ if (asciiEl) {
         const i = (y * canvas.width + x) * 4;
         const r = data[i], g = data[i + 1], b = data[i + 2];
         const brightness = (r + g + b) / brightnessDivCurrent;
+        if (brightness > backgroundThreshold) {
+          row += ' ';
+          continue;
+        }
         // Compute character index and clamp to valid range
         let idx = Math.floor((1 - brightness) * (chars.length - 1));
         idx = Math.max(0, Math.min(chars.length - 1, idx));
