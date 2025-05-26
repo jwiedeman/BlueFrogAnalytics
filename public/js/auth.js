@@ -120,6 +120,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   onAuthStateChanged(auth, user => {
     const loginBtn = document.getElementById('login-btn');
     const dashBtn = document.getElementById('dash-btn');
+    document.body.classList.toggle('dark-mode', !!user);
     if (loginBtn && dashBtn) {
       if (user) {
         loginBtn.classList.add('d-none');
