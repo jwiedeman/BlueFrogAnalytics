@@ -167,32 +167,60 @@ for (const [file, mod] of Object.entries(blogInfo)) {
       </aside>
     </div>
     <CustomFooter />
-    <script id="search-data" type="application/json">{JSON.stringify(searchIndex)}</script>
-    <script client:load>
+    <!-- Docs search logic -->
+    <script client:load is:inline define:vars={{ searchIndex }}>
       const onReady = () => {
 
-        const searchData = JSON.parse(document.getElementById('search-data').textContent);
+        const searchData = searchIndex;
         const input = document.getElementById('doc-search');
         const results = document.getElementById('search-results');
 
-      function fuzzy(text, query) {
-        const words = query.toLowerCase().split(/\s+/).filter(Boolean);
-        const t = text.toLowerCase();
-        return words.every(w => t && t.includes(w));
+      function scoreItem(text, words) {
+        let score = 0;
+        for (const w of words) {
+          const regex = new RegExp(w, 'gi');
+          const matches = text.match(regex);
+          if (!matches) return 0;
+          score += matches.length;
+        }
+        return score;
+      }
+
+      function getSnippet(body, words) {
+        const lower = body.toLowerCase();
+        for (const w of words) {
+          const idx = lower.indexOf(w);
+          if (idx !== -1) {
+            const start = Math.max(0, idx - 40);
+            const end = Math.min(body.length, idx + 110);
+            return body.slice(start, end).replace(/\n/g, ' ') + '...';
+          }
+        }
+        return body.slice(0, 150).replace(/\n/g, ' ') + '...';
       }
 
       input.addEventListener('input', () => {
-        const q = input.value.trim();
+        const q = input.value.trim().toLowerCase();
         results.innerHTML = '';
         if (!q) {
           results.classList.add('d-none');
           return;
         }
-        const matches = searchData.filter(item => fuzzy(item.title + ' ' + item.body + ' ' + item.tags.join(' '), q));
+        const words = q.split(/\s+/).filter(Boolean);
+        const matches = [];
+        for (const item of searchData) {
+          const text = (item.title + ' ' + item.body + ' ' + item.tags.join(' ')).toLowerCase();
+          const score = scoreItem(text, words);
+          if (score > 0) {
+            matches.push({ ...item, score });
+          }
+        }
+        matches.sort((a, b) => b.score - a.score);
         matches.slice(0, 10).forEach(m => {
           const li = document.createElement('li');
           li.className = 'list-group-item';
-          li.innerHTML = `<a href="${m.url}" class="text-decoration-none">${m.title}</a>`;
+          const snippet = getSnippet(m.body, words);
+          li.innerHTML = `<a href="${m.url}" class="text-decoration-none fw-bold">${m.title}</a><div class="small text-muted search-snippet">${snippet}</div>`;
           results.appendChild(li);
         });
         results.classList.toggle('d-none', matches.length === 0);
