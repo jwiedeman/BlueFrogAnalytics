@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import BlogLayout from '../../../components/BlogLayout.astro';
+import BlogPostCard from '../../../components/BlogPostCard.astro';
+
+export async function getStaticPaths() {
+  function slugify(str) {
+    return String(str)
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  }
+  const posts = (await getCollection('blog')).filter(p => p.data.published);
+  const authors = new Set(posts.map(p => slugify(p.data.author || '')));
+  return Array.from(authors).map(author => ({ params: { author } }));
+}
+
+const { author } = Astro.params;
+
+function slugify(str) {
+  return String(str)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+const posts = (await getCollection('blog'))
+  .filter(p => p.data.published)
+  .filter(p => slugify(p.data.author || '') === author);
+
+const authorName = posts[0]?.data.author || author.replace(/-/g, ' ');
+const title = `Posts by ${authorName}`;
+const description = `Articles written by ${authorName}.`;
+---
+<BlogLayout title={title} description={description}>
+  <h1>Posts by {authorName}</h1>
+  {posts.map(post => (
+    <BlogPostCard post={post} />
+  ))}
+</BlogLayout>
