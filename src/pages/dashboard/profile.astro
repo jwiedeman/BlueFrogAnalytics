@@ -5,22 +5,117 @@ const title = 'Profile';
 const description = 'Manage your account details.';
 ---
 <DashboardLayout title={title} description={description}>
-  <section class="container py-5 text-center">
-    <h1>Profile</h1>
-    <p id="user-email" class="mb-4"></p>
+  <section class="container py-5" style="max-width: 600px;">
+    <h1 class="text-center mb-4">Profile</h1>
+    <form id="profile-form">
+      <div class="mb-3">
+        <label for="profile-name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="profile-name" />
+      </div>
+      <div class="mb-3">
+        <label for="profile-payment" class="form-label">Payment Preference</label>
+        <input type="text" class="form-control" id="profile-payment" />
+      </div>
+      <div class="mb-3">
+        <label for="profile-domains" class="form-label">Domains to Monitor</label>
+        <textarea
+          class="form-control"
+          id="profile-domains"
+          rows="2"
+          placeholder="example.com, test.com"
+        ></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="profile-tests" class="form-label">Tests & Frequency</label>
+        <textarea
+          class="form-control"
+          id="profile-tests"
+          rows="2"
+          placeholder="accessibility=7, seo=30"
+        ></textarea>
+        <div class="form-text">Use comma separated <code>test=days</code></div>
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Save Profile</button>
+      <div id="profile-alert" class="alert d-none mt-3" role="alert"></div>
+    </form>
   </section>
   <script type="module">
     document.addEventListener('DOMContentLoaded', () => {
-      const emailEl = document.getElementById('user-email');
+      const nameEl = document.getElementById('profile-name');
+      const payEl = document.getElementById('profile-payment');
+      const domEl = document.getElementById('profile-domains');
+      const testsEl = document.getElementById('profile-tests');
+      const alertEl = document.getElementById('profile-alert');
+      const formEl = document.getElementById('profile-form');
+
+      const showAlert = (msg, type = 'danger') => {
+        alertEl.textContent = msg;
+        alertEl.className = `alert alert-${type} mt-3`;
+        alertEl.classList.remove('d-none');
+      };
+
+      const populate = data => {
+        if (data.name) nameEl.value = data.name;
+        if (data.payment_preference) payEl.value = data.payment_preference;
+        if (Array.isArray(data.domains)) domEl.value = data.domains.join(', ');
+        if (data.tests) {
+          testsEl.value = Object.entries(data.tests)
+            .map(([k, v]) => `${k}=${v}`)
+            .join(', ');
+        }
+      };
+
       const init = () => {
-        window.onAuthStateChanged(window.firebaseAuth, user => {
+        window.onAuthStateChanged(window.firebaseAuth, async user => {
           if (!user) {
             window.location.href = '/login';
+            return;
+          }
+          const token = await user.getIdToken();
+          const res = await fetch('/api/profile', {
+            headers: { Authorization: `Bearer ${token}` }
+          });
+          if (res.ok) {
+            populate(await res.json());
+          }
+        });
+
+        formEl.addEventListener('submit', async e => {
+          e.preventDefault();
+          const user = window.firebaseAuth.currentUser;
+          if (!user) return;
+          const token = await user.getIdToken();
+          const domains = domEl.value
+            .split(',')
+            .map(d => d.trim())
+            .filter(Boolean);
+          const tests = {};
+          testsEl.value.split(',').forEach(pair => {
+            const [k, v] = pair.split('=');
+            if (k && v) tests[k.trim()] = parseInt(v, 10) || 0;
+          });
+          const res = await fetch('/api/profile', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              name: nameEl.value,
+              paymentPreference: payEl.value,
+              domains,
+              tests
+            })
+          });
+          if (res.ok) {
+            showAlert('Profile saved', 'success');
           } else {
-            emailEl.textContent = user.email;
+            const data = await res.json();
+            showAlert(data.error || 'Error');
           }
         });
       };
+
       if (window.firebaseAuth) {
         init();
       } else {

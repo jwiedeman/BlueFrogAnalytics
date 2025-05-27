@@ -2,6 +2,7 @@ import express from 'express';
 import { initializeApp, cert } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 import { Client } from 'cassandra-driver';
+import { createHash } from 'crypto';
 import fs from 'fs';
 
 const serviceAccountPath = process.env.FIREBASE_SERVICE_ACCOUNT;
@@ -36,7 +37,7 @@ async function authMiddleware(req, res, next) {
   if (!token) return res.status(401).json({ error: 'Unauthorized' });
   try {
     const decoded = await firebaseAuth.verifyIdToken(token);
-    req.uid = decoded.uid;
+    req.uid = createHash('sha256').update(decoded.uid).digest('hex');
     next();
   } catch {
     res.status(401).json({ error: 'Unauthorized' });

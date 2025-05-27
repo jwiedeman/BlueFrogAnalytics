@@ -29,10 +29,17 @@ Documentation content lives in `src/content/docs` and static assets live in `pub
 ## Profile Service
 
 The optional profile service provides an API for storing user profiles in Cassandra.
-Start it locally with:
+Each user's Firebase UID is hashed with SHA-256 before being stored to keep the table
+keys non-identifiable. Start it locally with:
 
 ```bash
 node server/profileServer.js
 ```
 
 Environment variables for the service are defined in `.env.example`.
+The API exposes two routes:
+
+```
+POST /api/profile  - Create or update a profile
+GET  /api/profile  - Retrieve the current user's profile
+```
