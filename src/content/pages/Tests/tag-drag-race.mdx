@@ -1,0 +1,28 @@
+---
+title: Third-Party Tag Drag Race
+description: Waterfall animation ranking external scripts by impact.
+template: splash
+---
+
+<div id="drag-root" class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="text-center mb-4">
+        <h1>Third-Party Tag Drag Race</h1>
+        <p>Visualize script impact on time-to-interactive, carbon footprint, and privacy risk.</p>
+      </div>
+      <form id="drag-form" class="row gy-2 gx-3 align-items-end mb-3">
+        <div class="col-md-8">
+          <label for="drag-url" class="form-label">Enter URL</label>
+          <input type="url" id="drag-url" name="url" placeholder="https://example.com" class="form-control" />
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mt-3">Run Test</button>
+        </div>
+      </form>
+      <div id="drag-results"></div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="/js/tag-drag-race.js" defer></script>
