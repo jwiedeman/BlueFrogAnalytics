@@ -5,6 +5,30 @@ import { Client } from 'cassandra-driver';
 import { createHash } from 'crypto';
 import fs from 'fs';
 
+// Basic security headers and rate limiting without extra dependencies
+const securityHeaders = (req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  res.setHeader('Referrer-Policy', 'same-origin');
+  next();
+};
+
+const rateMap = new Map();
+const RATE_WINDOW = 60 * 1000; // 1 minute
+const RATE_LIMIT = 100;
+const rateLimiter = (req, res, next) => {
+  const ip = req.ip;
+  const now = Date.now();
+  const hits = (rateMap.get(ip) || []).filter(ts => now - ts < RATE_WINDOW);
+  hits.push(now);
+  rateMap.set(ip, hits);
+  if (hits.length > RATE_LIMIT) {
+    return res.status(429).json({ error: 'Too many requests' });
+  }
+  next();
+};
+
 const serviceAccountPath = process.env.FIREBASE_SERVICE_ACCOUNT;
 const firebaseApp = initializeApp({
   credential: cert(JSON.parse(fs.readFileSync(serviceAccountPath, 'utf8')))
@@ -29,7 +53,10 @@ await cassandraClient.execute(`
 `);
 
 const app = express();
-app.use(express.json());
+app.disable('x-powered-by');
+app.use(express.json({ limit: '10kb' }));
+app.use(securityHeaders);
+app.use(rateLimiter);
 
 async function authMiddleware(req, res, next) {
   const header = req.headers.authorization || '';
@@ -46,6 +73,14 @@ async function authMiddleware(req, res, next) {
 
 app.post('/api/profile', authMiddleware, async (req, res) => {
   const { name, paymentPreference, domains = [], tests = {} } = req.body;
+  if (
+    typeof name !== 'string' ||
+    typeof paymentPreference !== 'string' ||
+    !Array.isArray(domains) ||
+    typeof tests !== 'object' || tests === null
+  ) {
+    return res.status(400).json({ error: 'Invalid payload' });
+  }
   try {
     await cassandraClient.execute(
       'INSERT INTO user_profiles (uid, name, payment_preference, domains, tests) VALUES (?, ?, ?, ?, ?)',
