@@ -4,6 +4,13 @@ import BlogLayout from '../../components/BlogLayout.astro';
 import BlogPostCard from '../../components/BlogPostCard.astro';
 import { applyGitDates } from '../../utils/git-dates.js';
 
+function slugify(str) {
+  return String(str)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
 export async function getStaticPaths() {
   const posts = (await getCollection('blog')).filter(p => p.data.published);
   return posts.map(p => ({ params: { slug: p.slug } }));
@@ -45,7 +52,11 @@ const relatedPosts = allPosts
             <h1 class="display-4">{post.data.title}</h1>
             {post.data.originalPubDate && (
               <p class="text-muted mb-0">
-                {post.data.author ? `${post.data.author} • ` : ''}
+                {post.data.author ? (
+                  <>
+                    <a href={`/blog/authors/${slugify(post.data.author)}`} class="text-decoration-none">{post.data.author}</a>{' '}•{' '}
+                  </>
+                ) : ''}
                 {post.data.originalPubDate.toLocaleDateString()} • {readingTime} min read
               </p>
             )}
