@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BlogLayout from '../../../components/BlogLayout.astro';
 import BlogPostCard from '../../../components/BlogPostCard.astro';
+import { applyGitDates } from '../../../utils/git-dates.js';
 
 export async function getStaticPaths() {
   function slugify(str) {
@@ -27,6 +28,8 @@ function slugify(str) {
 const posts = (await getCollection('blog'))
   .filter(p => p.data.published)
   .filter(p => slugify(p.data.author || '') === author);
+
+posts.forEach(applyGitDates);
 
 const authorName = posts[0]?.data.author || author.replace(/-/g, ' ');
 const title = `Posts by ${authorName}`;

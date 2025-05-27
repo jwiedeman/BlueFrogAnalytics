@@ -1,11 +1,13 @@
 ---
 import { getCollection } from 'astro:content';
 import BlogLayout from '../../../components/BlogLayout.astro';
+import { applyGitDates } from '../../../utils/git-dates.js';
 
 const title = 'Blog Tags';
 const description = 'Browse posts by tag.';
 
 const posts = (await getCollection('blog')).filter(p => p.data.published);
+posts.forEach(applyGitDates);
 const tagMap = new Map();
 for (const post of posts) {
   (post.data.tags || []).forEach(tag => {

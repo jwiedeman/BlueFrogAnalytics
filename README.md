@@ -47,3 +47,10 @@ docker run -p 3001:3001 \
 ```
 
 Provide environment variables for your Firebase service account and Cassandra configuration. The server listens on port `3001`.
+
+## Blog Post Dates
+
+Blog post front matter does not require manual publish or update dates. During
+build, each post's `pubDate`, `originalPubDate`, and `updatedDate` are populated
+from the git history. The earliest commit becomes the publish date and the most
+recent commit becomes the updated date.
