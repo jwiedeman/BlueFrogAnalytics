@@ -17,6 +17,9 @@ const pageDesc = post.data.description ?? '';
 
 const { Content } = await post.render();
 
+const words = post.body.split(/\s+/g).length;
+const readingTime = Math.max(1, Math.ceil(words / 200));
+
 const allPosts = (await getCollection('blog')).filter(p => p.data.published);
 const relatedPosts = allPosts
   .filter(p => p.slug !== slug && p.data.tags?.some(t => post.data.tags?.includes(t)))
@@ -29,17 +32,27 @@ const relatedPosts = allPosts
     <header class="mb-4 pb-3 border-bottom">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 offset-lg-2 text-center">
+          <div class="col-lg-8 offset-lg-2">
             <nav aria-label="Breadcrumb" class="mb-2">
-              <ol class="breadcrumb justify-content-center">
+              <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/blog">Blog</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{post.data.title}</li>
               </ol>
             </nav>
             <h1 class="display-4">{post.data.title}</h1>
-            {post.data.pubDate && (
-              <p class="text-muted mb-0">{post.data.pubDate.toLocaleDateString()}</p>
-            )}
+            <p class="text-muted small mb-0">
+              {post.data.author && `By ${post.data.author} · `}
+              {post.data.originalPubDate
+                ? `Published ${post.data.originalPubDate.toLocaleDateString()}`
+                : post.data.pubDate
+                ? `Published ${post.data.pubDate.toLocaleDateString()}`
+                : ''}
+              {post.data.updatedDate &&
+                post.data.updatedDate.valueOf() !==
+                  (post.data.originalPubDate?.valueOf() ?? post.data.pubDate.valueOf()) &&
+                ` · Updated ${post.data.updatedDate.toLocaleDateString()}`}
+              {` · ${readingTime} min read`}
+            </p>
           </div>
         </div>
       </div>
