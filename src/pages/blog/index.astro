@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BlogLayout from '../../components/BlogLayout.astro';
+import { applyGitDates } from '../../utils/git-dates.js';
 
 const title = 'Blog';
 const description = 'Latest news and updates from Blue Frog Analytics.';
@@ -11,6 +12,7 @@ import BlogPostCard from '../../components/BlogPostCard.astro';
 
 
 const posts = (await getCollection('blog')).filter(p => p.data.published);
+posts.forEach(applyGitDates);
 const sorted = posts.sort((a,b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const featured = sorted.slice(0,3);
 const tags = Array.from(new Set(posts.flatMap(p => p.data.tags || [])));
