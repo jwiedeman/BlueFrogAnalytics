@@ -4,20 +4,20 @@ import BlogLayout from '../../components/BlogLayout.astro';
 import BlogPostCard from '../../components/BlogPostCard.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+  const posts = (await getCollection('blog')).filter(p => p.data.published);
   return posts.map(p => ({ params: { slug: p.slug } }));
 }
 
 const { slug } = Astro.params;
 const post = await getEntryBySlug('blog', slug);
-if (!post) throw new Error('Post not found');
+if (!post || !post.data.published) throw new Error('Post not found');
 
 const pageTitle = post.data.title;
 const pageDesc = post.data.description ?? '';
 
 const { Content } = await post.render();
 
-const allPosts = await getCollection('blog');
+const allPosts = (await getCollection('blog')).filter(p => p.data.published);
 const relatedPosts = allPosts
   .filter(p => p.slug !== slug && p.data.tags?.some(t => post.data.tags?.includes(t)))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())

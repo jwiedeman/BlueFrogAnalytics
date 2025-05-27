@@ -10,7 +10,7 @@ import RecentPosts from '../../components/RecentPosts.astro';
 import BlogPostCard from '../../components/BlogPostCard.astro';
 
 
-const posts = await getCollection('blog');
+const posts = (await getCollection('blog')).filter(p => p.data.published);
 const sorted = posts.sort((a,b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const featured = sorted.slice(0,3);
 const tags = Array.from(new Set(posts.flatMap(p => p.data.tags || [])));
