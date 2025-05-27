@@ -49,7 +49,7 @@ docs_structure = {
         "Common-Issues.md", "Debugging-GA4.md",
         "Debugging-GTM.md", "Debugging-Adobe-Analytics.md"
     ],
-    "Integrations": [
+    "Learning/Integrations": [
         "Google-Tag-Manager.md", "Facebook-Pixel.md",
         "LinkedIn-Insights-Tag.md", "TikTok-Pixel.md",
         "Server-Side-Tagging.md"
