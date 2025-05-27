@@ -20,13 +20,17 @@ const mainClass = fluid ? 'container-fluid' : 'container';
     <CustomFooter />
     <FirebaseScripts />
     <script is:inline>
-      const { hash } = window.location;
-      if (hash) {
-        const el = document.getElementById(hash.slice(1));
-        if (el) {
-          setTimeout(() => el.scrollIntoView(), 50);
+      function scrollToHash() {
+        const { hash } = window.location;
+        if (hash) {
+          const el = document.getElementById(hash.slice(1));
+          if (el) {
+            setTimeout(() => el.scrollIntoView(), 50);
+          }
         }
       }
+      scrollToHash();
+      window.addEventListener('hashchange', scrollToHash);
     </script>
   </body>
 </html>

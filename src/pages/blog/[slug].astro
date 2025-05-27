@@ -26,7 +26,7 @@ const allPosts = (await getCollection('blog')).filter(p => p.data.published);
 allPosts.forEach(applyGitDates);
 const relatedPosts = allPosts
   .filter(p => p.slug !== slug && p.data.tags?.some(t => post.data.tags?.includes(t)))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .sort((a, b) => (b.data.pubDate?.valueOf() ?? 0) - (a.data.pubDate?.valueOf() ?? 0))
   .slice(0, 4);
 
 ---
