@@ -50,8 +50,8 @@ await cassandraClient.execute(`
     email text,
     phone text,
     payment_preference text,
-    domains list<text>,
-    tests map<text,int>
+    domains text,
+    tests text
   )
 `);
 
@@ -105,8 +105,8 @@ app.post('/api/profile', authMiddleware, async (req, res) => {
         email,
         phone,
         paymentPreference,
-        domains,
-        tests
+        JSON.stringify(domains),
+        JSON.stringify(tests)
       ],
       { prepare: true }
     );
@@ -124,7 +124,22 @@ app.get('/api/profile', authMiddleware, async (req, res) => {
       [req.uid],
       { prepare: true }
     );
-    res.json(result.rows[0] || {});
+    const profile = result.rows[0] || {};
+    if (profile.domains) {
+      try {
+        profile.domains = JSON.parse(profile.domains);
+      } catch {
+        profile.domains = [];
+      }
+    }
+    if (profile.tests) {
+      try {
+        profile.tests = JSON.parse(profile.tests);
+      } catch {
+        profile.tests = {};
+      }
+    }
+    res.json(profile);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Database error' });
