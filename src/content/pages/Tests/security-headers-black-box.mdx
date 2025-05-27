@@ -1,0 +1,28 @@
+---
+title: Security Headers Black-Box
+description: Grade security headers and generate server config.
+template: splash
+---
+
+<div id="security-root" class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="text-center mb-4">
+        <h1>Security Headers Black-Box</h1>
+        <p>Evaluate HTTP security headers and generate snippets.</p>
+      </div>
+      <form id="security-form" class="row gy-2 gx-3 align-items-end mb-3">
+        <div class="col-md-8">
+          <label for="security-url" class="form-label">Enter URL</label>
+          <input type="url" id="security-url" name="url" placeholder="https://example.com" class="form-control" />
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mt-3">Run Test</button>
+        </div>
+      </form>
+      <div id="security-results"></div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="/js/security-headers-black-box.js" defer></script>

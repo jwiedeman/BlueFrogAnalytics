@@ -1,0 +1,7 @@
+---
+import DocLayout from '../../components/DocLayout.astro';
+import PageContent, { frontmatter as convertFm } from '../../content/pages/Tests/image-next-gen-converter.mdx';
+---
+<DocLayout title={convertFm.title} description={convertFm.description}>
+  <PageContent />
+</DocLayout>
