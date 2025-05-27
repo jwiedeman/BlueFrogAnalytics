@@ -43,3 +43,21 @@ The API exposes two routes:
 POST /api/profile  - Create or update a profile
 GET  /api/profile  - Retrieve the current user's profile
 ```
+
+### Cassandra Setup
+
+Create the `profiles` keyspace and `user_profiles` table before running the profile service:
+
+```sql
+CREATE KEYSPACE IF NOT EXISTS profiles WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};
+
+CREATE TABLE IF NOT EXISTS profiles.user_profiles (
+  uid text PRIMARY KEY,
+  name text,
+  payment_preference text,
+  domains list<text>,
+  tests map<text,int>
+);
+```
+
+The server will connect using the contact points and data center specified in the environment variables.
