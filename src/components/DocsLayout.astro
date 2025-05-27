@@ -35,8 +35,15 @@ function buildTree() {
   return tree;
 }
 const docTree = buildTree();
+function sortTree(nodes) {
+  nodes.sort((a, b) => a.name.localeCompare(b.name));
+  for (const n of nodes) {
+    if (n.children?.length) sortTree(n.children);
+  }
+}
+sortTree(docTree);
 const introIndex = docTree.findIndex(n => n.name.toLowerCase() === 'introduction');
-if (introIndex > 0) {
+if (introIndex > -1) {
   const [intro] = docTree.splice(introIndex, 1);
   docTree.unshift(intro);
 }
