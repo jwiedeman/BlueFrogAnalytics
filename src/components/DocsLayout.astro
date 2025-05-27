@@ -337,16 +337,25 @@ for (const [file, mod] of Object.entries(blogInfo)) {
           }
 
           const item = link.closest('.accordion-item');
-          if (item) {
-            const collapse = item.querySelector('.accordion-collapse');
-            if (collapse) collapse.classList.add('show');
-            const heading = item.querySelector('.accordion-button');
-            if (heading) {
-              heading.classList.remove('collapsed');
-              heading.setAttribute('aria-expanded', 'true');
-            }
+        if (item) {
+          const collapse = item.querySelector('.accordion-collapse');
+          if (collapse) collapse.classList.add('show');
+          const heading = item.querySelector('.accordion-button');
+          if (heading) {
+            heading.classList.remove('collapsed');
+            heading.setAttribute('aria-expanded', 'true');
           }
         }
+      }
+
+      // Ensure anchored headings aren't hidden behind the fixed nav
+      const { hash } = window.location;
+      if (hash) {
+        const el = document.getElementById(hash.slice(1));
+        if (el) {
+          setTimeout(() => el.scrollIntoView(), 50);
+        }
+      }
 
       };
 

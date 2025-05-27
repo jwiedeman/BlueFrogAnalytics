@@ -15,5 +15,14 @@ const { title, description } = Astro.props;
       <slot />
     </main>
     <CustomFooter />
+    <script is:inline>
+      const { hash } = window.location;
+      if (hash) {
+        const el = document.getElementById(hash.slice(1));
+        if (el) {
+          setTimeout(() => el.scrollIntoView(), 50);
+        }
+      }
+    </script>
   </body>
 </html>
