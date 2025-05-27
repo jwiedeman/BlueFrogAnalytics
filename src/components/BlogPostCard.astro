@@ -12,6 +12,11 @@ const url = `/blog/${post.slug}`;
         <small class="text-muted">{post.data.pubDate.toLocaleDateString()}</small>
       </p>
     )}
+    {post.data.updatedDate && post.data.updatedDate.getTime() !== post.data.pubDate?.getTime() ? (
+      <p class="card-subtitle mb-2">
+        <small class="text-muted">Updated {post.data.updatedDate.toLocaleDateString()}</small>
+      </p>
+    ) : null}
     {post.data.description && <p class="card-text">{post.data.description}</p>}
     {post.data.tags?.length ? (
       <p class="mb-0">

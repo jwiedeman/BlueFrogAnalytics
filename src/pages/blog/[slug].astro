@@ -2,6 +2,7 @@
 import { getCollection, getEntryBySlug } from 'astro:content';
 import BlogLayout from '../../components/BlogLayout.astro';
 import BlogPostCard from '../../components/BlogPostCard.astro';
+import { applyGitDates } from '../../utils/git-dates.js';
 
 export async function getStaticPaths() {
   const posts = (await getCollection('blog')).filter(p => p.data.published);
@@ -11,6 +12,7 @@ export async function getStaticPaths() {
 const { slug } = Astro.params;
 const post = await getEntryBySlug('blog', slug);
 if (!post || !post.data.published) throw new Error('Post not found');
+applyGitDates(post);
 
 const pageTitle = post.data.title;
 const pageDesc = post.data.description ?? '';
@@ -18,6 +20,7 @@ const pageDesc = post.data.description ?? '';
 const { Content } = await post.render();
 
 const allPosts = (await getCollection('blog')).filter(p => p.data.published);
+allPosts.forEach(applyGitDates);
 const relatedPosts = allPosts
   .filter(p => p.slug !== slug && p.data.tags?.some(t => post.data.tags?.includes(t)))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -40,6 +43,9 @@ const relatedPosts = allPosts
             {post.data.pubDate && (
               <p class="text-muted mb-0">{post.data.pubDate.toLocaleDateString()}</p>
             )}
+            {post.data.updatedDate && post.data.updatedDate.getTime() !== post.data.pubDate?.getTime() ? (
+              <p class="text-muted">Updated {post.data.updatedDate.toLocaleDateString()}</p>
+            ) : null}
           </div>
         </div>
       </div>
