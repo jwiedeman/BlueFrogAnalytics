@@ -45,7 +45,10 @@ await cassandraClient.connect();
 await cassandraClient.execute(`
   CREATE TABLE IF NOT EXISTS user_profiles (
     uid text PRIMARY KEY,
-    name text,
+    first_name text,
+    last_name text,
+    email text,
+    phone text,
     payment_preference text,
     domains list<text>,
     tests map<text,int>
@@ -72,9 +75,20 @@ async function authMiddleware(req, res, next) {
 }
 
 app.post('/api/profile', authMiddleware, async (req, res) => {
-  const { name, paymentPreference, domains = [], tests = {} } = req.body;
+  const {
+    firstName,
+    lastName,
+    email,
+    phone,
+    paymentPreference,
+    domains = [],
+    tests = {}
+  } = req.body;
   if (
-    typeof name !== 'string' ||
+    typeof firstName !== 'string' ||
+    typeof lastName !== 'string' ||
+    typeof email !== 'string' ||
+    typeof phone !== 'string' ||
     typeof paymentPreference !== 'string' ||
     !Array.isArray(domains) ||
     typeof tests !== 'object' || tests === null
@@ -83,8 +97,17 @@ app.post('/api/profile', authMiddleware, async (req, res) => {
   }
   try {
     await cassandraClient.execute(
-      'INSERT INTO user_profiles (uid, name, payment_preference, domains, tests) VALUES (?, ?, ?, ?, ?)',
-      [req.uid, name, paymentPreference, domains, tests],
+      'INSERT INTO user_profiles (uid, first_name, last_name, email, phone, payment_preference, domains, tests) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+      [
+        req.uid,
+        firstName,
+        lastName,
+        email,
+        phone,
+        paymentPreference,
+        domains,
+        tests
+      ],
       { prepare: true }
     );
     res.json({ success: true });

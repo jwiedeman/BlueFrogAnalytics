@@ -9,8 +9,20 @@ const description = 'Manage your account details.';
     <h1 class="text-center mb-4">Profile</h1>
     <form id="profile-form">
       <div class="mb-3">
-        <label for="profile-name" class="form-label">Name</label>
-        <input type="text" class="form-control" id="profile-name" />
+        <label for="profile-first-name" class="form-label">First Name</label>
+        <input type="text" class="form-control" id="profile-first-name" />
+      </div>
+      <div class="mb-3">
+        <label for="profile-last-name" class="form-label">Last Name</label>
+        <input type="text" class="form-control" id="profile-last-name" />
+      </div>
+      <div class="mb-3">
+        <label for="profile-email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="profile-email" />
+      </div>
+      <div class="mb-3">
+        <label for="profile-phone" class="form-label">Phone</label>
+        <input type="text" class="form-control" id="profile-phone" />
       </div>
       <div class="mb-3">
         <label for="profile-payment" class="form-label">Payment Preference</label>
@@ -41,7 +53,10 @@ const description = 'Manage your account details.';
   </section>
   <script type="module">
     document.addEventListener('DOMContentLoaded', () => {
-      const nameEl = document.getElementById('profile-name');
+      const firstEl = document.getElementById('profile-first-name');
+      const lastEl = document.getElementById('profile-last-name');
+      const emailEl = document.getElementById('profile-email');
+      const phoneEl = document.getElementById('profile-phone');
       const payEl = document.getElementById('profile-payment');
       const domEl = document.getElementById('profile-domains');
       const testsEl = document.getElementById('profile-tests');
@@ -55,7 +70,10 @@ const description = 'Manage your account details.';
       };
 
       const populate = data => {
-        if (data.name) nameEl.value = data.name;
+        if (data.first_name) firstEl.value = data.first_name;
+        if (data.last_name) lastEl.value = data.last_name;
+        if (data.email) emailEl.value = data.email;
+        if (data.phone) phoneEl.value = data.phone;
         if (data.payment_preference) payEl.value = data.payment_preference;
         if (Array.isArray(data.domains)) domEl.value = data.domains.join(', ');
         if (data.tests) {
@@ -101,7 +119,10 @@ const description = 'Manage your account details.';
               Authorization: `Bearer ${token}`
             },
             body: JSON.stringify({
-              name: nameEl.value,
+              firstName: firstEl.value,
+              lastName: lastEl.value,
+              email: emailEl.value,
+              phone: phoneEl.value,
               paymentPreference: payEl.value,
               domains,
               tests
