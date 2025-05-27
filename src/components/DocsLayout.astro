@@ -356,13 +356,18 @@ for (const [file, mod] of Object.entries(blogInfo)) {
       }
 
       // Ensure anchored headings aren't hidden behind the fixed nav
-      const { hash } = window.location;
-      if (hash) {
-        const el = document.getElementById(hash.slice(1));
-        if (el) {
-          setTimeout(() => el.scrollIntoView(), 50);
+      function scrollToHash() {
+        const { hash } = window.location;
+        if (hash) {
+          const el = document.getElementById(hash.slice(1));
+          if (el) {
+            setTimeout(() => el.scrollIntoView(), 50);
+          }
         }
       }
+
+      scrollToHash();
+      window.addEventListener('hashchange', scrollToHash);
 
       };
 
