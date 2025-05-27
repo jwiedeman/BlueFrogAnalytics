@@ -53,6 +53,7 @@ const tags = Array.from(new Set(posts.flatMap(p => p.data.tags || [])));
               </div>
             ))}
           </div>
+          <nav id="blog-pagination" class="mt-4" aria-label="Blog pagination"></nav>
         </div>
         <div class="col-lg-4">
           <RecentPosts posts={sorted.slice(0,5)} />
