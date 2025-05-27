@@ -35,6 +35,11 @@ function buildTree() {
   return tree;
 }
 const docTree = buildTree();
+const introIndex = docTree.findIndex(n => n.name.toLowerCase() === 'introduction');
+if (introIndex > 0) {
+  const [intro] = docTree.splice(introIndex, 1);
+  docTree.unshift(intro);
+}
 
 // Determine breadcrumb based on current path
 const currentPath = Astro.url.pathname.replace(/\/$/, '').toLowerCase();
