@@ -2,14 +2,16 @@
 import BaseHead from './BaseHead.astro';
 import CustomHeader from './CustomHeader.astro';
 import CustomFooter from './CustomFooter.astro';
+
+const { title, description } = Astro.props;
 ---
 <html lang="en">
   <head>
-    <BaseHead />
+    <BaseHead title={title} description={description} />
   </head>
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <CustomHeader />
-    <main id="main-content" class="container pt-4">
+    <main id="main-content" class="container pt-5 flex-grow-1">
       <slot />
     </main>
     <CustomFooter />

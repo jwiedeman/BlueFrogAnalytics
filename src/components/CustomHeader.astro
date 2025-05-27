@@ -1,12 +1,15 @@
 ---
 // Bootstrap navbar for site navigation
 const { isDocs = false } = Astro.props;
+const isDashboard = Astro.url.pathname.startsWith('/dashboard');
 const mainNav = [
+  { label: 'Dashboard', link: '/dashboard', isDash: true },
   { label: 'Home', link: '/' },
   { label: 'About', link: '/about' },
   { label: 'Services', link: '/services' },
-  { label: 'Tests', link: '/testing' },
-  { label: 'News', link: '/blog' },
+  { label: 'Tests & Tools', link: '/testing' },
+  { label: 'Blog', link: '/blog' },
+  { label: 'Contact', link: '/contact' },
   { label: 'Docs', link: '/introduction/how-blue-frog-analytics-works' },
 ];
 const currentPath =
@@ -17,17 +20,21 @@ function isActive(item) {
   const link = item.link === '/' ? '/' : item.link.replace(/\/$/, '').toLowerCase();
 
   if (item.label === 'Docs') return isDocs;
-  if (item.label === 'Tests') {
+  if (item.label === 'Tests & Tools') {
     return currentPath.startsWith('/testing') || currentPath.startsWith('/tests');
   }
-  if (item.label === 'News') return currentPath.startsWith('/blog');
+  if (item.label === 'Blog') return currentPath.startsWith('/blog');
   if (link === '/') return currentPath === '/';
   return currentPath === link || currentPath.startsWith(link + '/');
 }
 ---
 <!-- Skip link for accessibility -->
 <a href="#main-content" class="visually-hidden-focusable">Skip to main content</a>
-<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top navbar-charcoal" aria-label="Main navigation">
+<nav class={
+  `navbar navbar-expand-lg fixed-top ${
+    isDashboard ? 'navbar-dark bg-dark' : 'navbar-light bg-light navbar-charcoal'
+  }`
+} aria-label="Main navigation">
   <div class="container-fluid">
     <a class="navbar-brand site-logo" href="/">
       <span class="site-logo-prefix">BlueFrog</span><span class="site-logo-analytics">Analytics</span>
@@ -37,13 +44,27 @@ function isActive(item) {
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="mainNav">
-      <ul class="navbar-nav mb-2 mb-lg-0">
+      <ul class="navbar-nav mb-2 mb-lg-0 me-auto">
         {mainNav.map(item => (
-          <li class="nav-item" key={item.link}>
+          <li class={`nav-item${item.isDash ? ' d-none' : ''}`} key={item.link} id={item.isDash ? 'dashboard-nav' : undefined}>
             <a class={`nav-link${isActive(item) ? ' active' : ''}`} href={item.link}>{item.label}</a>
           </li>
         ))}
       </ul>
+      <a
+        id="login-btn"
+        class={`btn ${isDashboard ? 'btn-outline-light' : 'btn-outline-primary'} ms-lg-2`}
+        href="/login"
+      >
+        Client Login
+      </a>
+      <a
+        id="dash-btn"
+        class={`btn ${isDashboard ? 'btn-outline-light' : 'btn-outline-primary'} ms-lg-2 d-none`}
+        href="/dashboard"
+      >
+        Dashboard
+      </a>
     </div>
   </div>
 </nav>

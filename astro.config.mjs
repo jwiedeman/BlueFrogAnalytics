@@ -53,20 +53,13 @@ const scanDocsFolder = (dir, basePath = '') => {
 // Manually Define First-Level Sections (but auto-scan subfolders)
 const sidebar = [
   { label: 'Introduction', items: scanDocsFolder(path.join(DOCS_DIR, 'Introduction')), collapsed: false },
-  { label: 'Getting Started', items: scanDocsFolder(path.join(DOCS_DIR, 'Getting-Started')), collapsed: false },
   { label: 'Website Platforms', items: scanDocsFolder(path.join(DOCS_DIR, 'Website-Platforms')), collapsed: true },
   { label: 'Analytics Platforms', items: scanDocsFolder(path.join(DOCS_DIR, 'Analytics-Platforms')), collapsed: true },
   { label: 'Ad Platforms', items: scanDocsFolder(path.join(DOCS_DIR, 'Ad-Platforms')), collapsed: true },
   { label: 'Implementation Guides', items: scanDocsFolder(path.join(DOCS_DIR, 'Implementation-Guides')), collapsed: true },
-
   { label: 'Learning', items: scanDocsFolder(path.join(DOCS_DIR, 'Learning')), collapsed: true },
   { label: 'Compliance & Privacy', items: scanDocsFolder(path.join(DOCS_DIR, 'Compliance')), collapsed: true },
-  { label: 'Performance', items: scanDocsFolder(path.join(DOCS_DIR, 'Performance')), collapsed: true },
-  { label: 'SEO', items: scanDocsFolder(path.join(DOCS_DIR, 'SEO')), collapsed: true },
-  { label: 'Advanced Concepts', items: scanDocsFolder(path.join(DOCS_DIR, 'Advanced-Concepts')), collapsed: true },
-  { label: 'Integrations', items: scanDocsFolder(path.join(DOCS_DIR, 'Integrations')), collapsed: true },
-  { label: 'Blue Frog Analytics', items: scanDocsFolder(path.join(DOCS_DIR, 'BlueFrogAnalytics')), collapsed: true },
-  { label: 'Community & Support', items: scanDocsFolder(path.join(DOCS_DIR, 'Community')), collapsed: true }
+  { label: 'Blue Frog Analytics', items: scanDocsFolder(path.join(DOCS_DIR, 'BlueFrogAnalytics')), collapsed: true }
 
 
 ];

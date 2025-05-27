@@ -1,0 +1,27 @@
+---
+import DashboardLayout from '../../components/DashboardLayout.astro';
+
+const title = 'Settings';
+const description = 'Configure your dashboard preferences.';
+---
+<DashboardLayout title={title} description={description}>
+  <section class="container py-5 text-center">
+    <h1>Settings</h1>
+  </section>
+  <script type="module">
+    document.addEventListener('DOMContentLoaded', () => {
+      const init = () => {
+        window.onAuthStateChanged(window.firebaseAuth, user => {
+          if (!user) {
+            window.location.href = '/login';
+          }
+        });
+      };
+      if (window.firebaseAuth) {
+        init();
+      } else {
+        document.addEventListener('firebase-init', init, { once: true });
+      }
+    });
+  </script>
+</DashboardLayout>

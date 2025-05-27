@@ -3,13 +3,14 @@
 import BaseHead from './BaseHead.astro';
 import CustomHeader from './CustomHeader.astro';
 import CustomFooter from './CustomFooter.astro';
+import FirebaseScripts from './FirebaseScripts.astro';
 
-const { fluid = false } = Astro.props;
+const { fluid = false, title, description } = Astro.props;
 const mainClass = fluid ? 'container-fluid' : 'container';
 ---
 <html lang="en">
   <head>
-    <BaseHead />
+    <BaseHead title={title} description={description} />
   </head>
   <body>
     <CustomHeader />
@@ -17,5 +18,6 @@ const mainClass = fluid ? 'container-fluid' : 'container';
       <slot />
     </main>
     <CustomFooter />
+    <FirebaseScripts />
   </body>
 </html>

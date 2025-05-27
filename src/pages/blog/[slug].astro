@@ -2,34 +2,43 @@
 import { getCollection, getEntryBySlug } from 'astro:content';
 import BlogLayout from '../../components/BlogLayout.astro';
 import BlogPostCard from '../../components/BlogPostCard.astro';
+import { applyGitDates } from '../../utils/git-dates.js';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+  const posts = (await getCollection('blog')).filter(p => p.data.published);
   return posts.map(p => ({ params: { slug: p.slug } }));
 }
 
 const { slug } = Astro.params;
 const post = await getEntryBySlug('blog', slug);
-if (!post) throw new Error('Post not found');
+if (!post || !post.data.published) throw new Error('Post not found');
+applyGitDates(post);
+
+const pageTitle = post.data.title;
+const pageDesc = post.data.description ?? '';
 
 const { Content } = await post.render();
 
-const allPosts = await getCollection('blog');
+const words = post.body.split(/\s+/g).length;
+const readingTime = Math.max(1, Math.ceil(words / 200));
+
+const allPosts = (await getCollection('blog')).filter(p => p.data.published);
+allPosts.forEach(applyGitDates);
 const relatedPosts = allPosts
   .filter(p => p.slug !== slug && p.data.tags?.some(t => post.data.tags?.includes(t)))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 4);
 
 ---
-<BlogLayout>
+<BlogLayout title={pageTitle} description={pageDesc}>
   <article class="blog-article">
     <header class="mb-4 pb-3 border-bottom">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 offset-lg-2 text-center">
+          <div class="col-lg-8 offset-lg-2">
             <nav aria-label="Breadcrumb" class="mb-2">
-              <ol class="breadcrumb justify-content-center">
-                <li class="breadcrumb-item"><a href="/blog">News</a></li>
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/blog">Blog</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{post.data.title}</li>
               </ol>
             </nav>
@@ -37,6 +46,9 @@ const relatedPosts = allPosts
             {post.data.pubDate && (
               <p class="text-muted mb-0">{post.data.pubDate.toLocaleDateString()}</p>
             )}
+            {post.data.updatedDate && post.data.updatedDate.getTime() !== post.data.pubDate?.getTime() ? (
+              <p class="text-muted">Updated {post.data.updatedDate.toLocaleDateString()}</p>
+            ) : null}
           </div>
         </div>
       </div>

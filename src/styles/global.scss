@@ -1,13 +1,14 @@
 :root {
-  --sl-font-sans: "Helvetica Neue", Arial, sans-serif;
+  /* Use fonts from the 1976 NASA Graphics Standard Manual */
+  --sl-font-sans: Helvetica, "Helvetica Neue", Arial, sans-serif;
   /* Site palette */
   /* Use Bootstrap's default blue for primary theme colors */
   --sl-color-primary: #0d6efd;
   --sl-color-accent: #88a5c9;
   --sl-border-radius: 0;
   --bs-primary: #0d6efd;
-  --bs-body-bg: #fcfdff;
-  --bs-body-color: #161616;
+  --bs-body-bg: #ffffff;
+  --bs-body-color: #212529;
   --header-height: 3.5rem;
 }
 
@@ -24,6 +25,13 @@ body {
   padding-bottom: 1rem;
 }
 
+body.dark-mode {
+  --bs-body-bg: #121212;
+  --bs-body-color: #f5f5f5;
+  background: var(--bs-body-bg);
+  color: var(--bs-body-color);
+}
+
 /* Consistent horizontal rule styling */
 hr {
   border: none;
@@ -35,6 +43,11 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   line-height: 1.2;
   margin-bottom: 0.75rem;
+}
+
+/* Ensure anchors linked via headings are not hidden behind the fixed nav */
+h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
+  scroll-margin-top: calc(var(--header-height) + 0.5rem);
 }
 
 
@@ -121,7 +134,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-right: calc(50% - 50vw);
   margin-bottom: 2rem;
   padding: 2rem 3rem;
-  background: #ffffff;
+  background: var(--bs-body-bg);
 }
 
 // Landing page hero gets extra height
@@ -136,9 +149,6 @@ h1, h2, h3, h4, h5, h6 {
     margin-right: 0;
     padding: 2rem 1rem;
   }
-  #ascii-art {
-    display: none;
-  }
 }
 
 .hero-content {
@@ -148,24 +158,6 @@ h1, h2, h3, h4, h5, h6 {
   text-align: left;
 }
 
-#ascii-art {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-
-  width: 25%;
-  display: flex;
-  flex-direction: column;
-
-  justify-content: center;
-  align-items: center;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 8px;
-  line-height: 8px;
-  pointer-events: none;
-  white-space: pre;
-}
 
 // Button group for calls to action
 .hero-section .hero-content .bx--btn-set {
@@ -230,8 +222,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 // Ensure dropdown menus match header background
-.bx--dropdown-list,
-.bx--list-box__menu {
+body.dark-mode .bx--dropdown-list,
+body.dark-mode .bx--list-box__menu {
   background: #161616;
   color: #f5f5f5;
 }
@@ -270,13 +262,13 @@ main#main-content > :not(.container-fluid) {
   text-align: center;
 }
 
-.bx--dropdown-item > .bx--dropdown-link,
-.bx--list-box__menu-item {
+body.dark-mode .bx--dropdown-item > .bx--dropdown-link,
+body.dark-mode .bx--list-box__menu-item {
   color: #f5f5f5;
 }
 
 // Side navigation styles
-#side-nav {
+body.dark-mode #side-nav {
   display: none;
   position: sticky;
   left: 0;
@@ -286,27 +278,27 @@ main#main-content > :not(.container-fluid) {
   z-index: 1100;
 }
 
-#side-nav.bx--side-nav--expanded {
+body.dark-mode #side-nav.bx--side-nav--expanded {
   display: block;
 }
 
-#side-nav .bx--side-nav__items {
+body.dark-mode #side-nav .bx--side-nav__items {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-#side-nav .bx--side-nav__item {
+body.dark-mode #side-nav .bx--side-nav__item {
   margin: 0.5rem 0;
 }
 
-#side-nav .bx--side-nav__link {
+body.dark-mode #side-nav .bx--side-nav__link {
   color: #f5f5f5;
   text-decoration: none;
 }
 
 @media (min-width: 768px) {
-  #side-nav {
+  body.dark-mode #side-nav {
     display: none !important;
   }
 }
@@ -363,6 +355,22 @@ main#main-content > :not(.container-fluid) {
   z-index: 1000;
 }
 
+
+.search-panel {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background: var(--bs-body-bg, #fff);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  z-index: 1050;
+}
+
+.search-snippet {
+  font-size: 0.85rem;
+}
+
 // Tree-style sidebar buttons based on Bootstrap sidebar example
 .btn-toggle {
   display: flex;
@@ -409,3 +417,25 @@ main#main-content > :not(.container-fluid) {
   padding-right: 0.5rem;
 }
 
+
+/* Dark mode overrides */
+body.dark-mode .bg-white,
+body.dark-mode .bg-light {
+  background-color: #1e1e1e !important;
+}
+body.dark-mode .text-dark {
+  color: #f5f5f5 !important;
+}
+body.dark-mode .hero-section {
+  background: #1e1e1e;
+}
+body.dark-mode .bx--dropdown-list,
+body.dark-mode .bx--list-box__menu,
+body.dark-mode #side-nav {
+  background: #161616;
+}
+body.dark-mode .bx--dropdown-item > .bx--dropdown-link,
+body.dark-mode .bx--list-box__menu-item,
+body.dark-mode #side-nav .bx--side-nav__link {
+  color: #f5f5f5;
+}

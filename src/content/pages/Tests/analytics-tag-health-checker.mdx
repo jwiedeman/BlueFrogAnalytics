@@ -1,0 +1,261 @@
+---
+title: Analytics Tag Health Checker
+description: Scan a domain for analytics implementations.
+template: splash
+---
+<div id="analytics-root" class="container-fluid my-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="text-center mb-4">
+        <h1>Scan your website for common analytics tags.</h1>
+      </div>
+      <form id="scan-form" class="row gy-2 gx-3 align-items-end mb-3">
+        <div class="col-md-6">
+          <label for="domain" class="form-label">Enter domain</label>
+          <input type="text" id="domain" name="domain" placeholder="example.com" class="form-control" />
+        </div>
+        <div class="col-md-4">
+          <label for="max-pages" class="form-label">Max pages (up to 250)</label>
+          <input type="number" id="max-pages" name="max-pages" min="1" max="250" value="50" class="form-control" />
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mt-3">Scan</button>
+        </div>
+      </form>
+      <div id="status" class="mb-2"></div>
+      <div id="progress-container" class="progress mb-2">
+        <div id="progress-bar" class="progress-bar" role="progressbar" style="width:0%"></div>
+      </div>
+      <div id="eta" class="mb-3"></div>
+      <div id="filter-container" class="mb-3">
+        <label class="form-label">Analytics columns</label>
+        <div id="column-buttons" class="d-flex flex-wrap gap-2 mb-2"></div>
+        <div class="btn-group" role="group">
+          <button id="select-all" type="button" class="btn btn-secondary btn-sm">All</button>
+          <button id="clear-all" type="button" class="btn btn-outline-secondary btn-sm">Clear</button>
+        </div>
+      </div>
+      <div id="summary" class="summary-panel"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div id="list-wrapper">
+        <ul id="pages-list" class="list-group mb-3"></ul>
+        <nav>
+          <ul id="pagination" class="pagination justify-content-center"></ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="/js/analytics-tag-health-checker.js" defer></script>
+
+<style>{`
+
+#analytics-root {
+  margin: 0;
+  margin-top: 0;
+  max-width: none;
+  padding: 0 1rem;
+}
+#scan-form {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.summary-panel ul {
+  padding-left: 1.5rem;
+}
+.analytics-cell {
+  white-space: normal;
+  word-break: break-word;
+}
+
+
+/* Results styling */
+#list-wrapper {
+  max-height: 70vh;
+  overflow-y: auto;
+  margin: 0;
+}
+.analytics-pill {
+  margin-left: 0.25rem;
+}
+
+
+
+
+
+`}</style>
+
+<div class="container my-5">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      <h2 id="analytics-reference">Analytics Tag Reference</h2>
+
+      <div class="accordion" id="analytics-accordion">
+        <div id="google-analytics-note" class="accordion-item">
+          <h2 class="accordion-header" id="ga4-heading">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#ga4-pane" aria-expanded="false" aria-controls="ga4-pane">
+              Google Analytics 4
+            </button>
+          </h2>
+          <div id="ga4-pane" class="accordion-collapse collapse" aria-labelledby="ga4-heading" data-bs-parent="#analytics-accordion">
+            <div class="accordion-body">
+              GA4 tags send data to your Google Analytics property. The ID shown is your measurement ID.
+            </div>
+          </div>
+        </div>
+
+        <div id="google-tag-manager-note" class="accordion-item">
+          <h2 class="accordion-header" id="gtm-heading">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gtm-pane" aria-expanded="false" aria-controls="gtm-pane">
+              Google Tag Manager
+            </button>
+          </h2>
+          <div id="gtm-pane" class="accordion-collapse collapse" aria-labelledby="gtm-heading" data-bs-parent="#analytics-accordion">
+            <div class="accordion-body">
+              This represents the GTM container embedded on the page. The ID is your container ID.
+            </div>
+          </div>
+        </div>
+
+        <div id="segment-note" class="accordion-item">
+          <h2 class="accordion-header" id="segment-heading">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#segment-pane" aria-expanded="false" aria-controls="segment-pane">
+              Segment
+            </button>
+          </h2>
+          <div id="segment-pane" class="accordion-collapse collapse" aria-labelledby="segment-heading" data-bs-parent="#analytics-accordion">
+            <div class="accordion-body">
+              Analytics that are loaded through Segment. The ID refers to your Segment write key.
+            </div>
+          </div>
+        </div>
+
+        <div id="meta-pixel-note" class="accordion-item">
+          <h2 class="accordion-header" id="meta-pixel-heading">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#meta-pixel-pane" aria-expanded="false" aria-controls="meta-pixel-pane">
+              Meta Pixel
+            </button>
+          </h2>
+          <div id="meta-pixel-pane" class="accordion-collapse collapse" aria-labelledby="meta-pixel-heading" data-bs-parent="#analytics-accordion">
+            <div class="accordion-body">
+              Facebook/Meta Pixel tags. The ID shown is your pixel ID.
+            </div>
+          </div>
+        </div>
+
+        <div id="bing-note" class="accordion-item">
+          <h2 class="accordion-header" id="bing-heading">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bing-pane" aria-expanded="false" aria-controls="bing-pane">
+              Bing
+            </button>
+          </h2>
+          <div id="bing-pane" class="accordion-collapse collapse" aria-labelledby="bing-heading" data-bs-parent="#analytics-accordion">
+            <div class="accordion-body">
+              Microsoft advertising and analytics tag. The ID shown is your tracking ID.
+            </div>
+          </div>
+        </div>
+
+        <div id="adobe-analytics-note" class="accordion-item">
+          <h2 class="accordion-header" id="adobe-heading">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#adobe-pane" aria-expanded="false" aria-controls="adobe-pane">
+              Adobe Analytics
+            </button>
+          </h2>
+          <div id="adobe-pane" class="accordion-collapse collapse" aria-labelledby="adobe-heading" data-bs-parent="#analytics-accordion">
+            <div class="accordion-body">
+              Adobe Analytics implementation. The ID shown is your report suite ID.
+            </div>
+          </div>
+        </div>
+
+        <div id="mixpanel-note" class="accordion-item">
+          <h2 class="accordion-header" id="mixpanel-heading">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mixpanel-pane" aria-expanded="false" aria-controls="mixpanel-pane">
+              Mixpanel
+            </button>
+          </h2>
+          <div id="mixpanel-pane" class="accordion-collapse collapse" aria-labelledby="mixpanel-heading" data-bs-parent="#analytics-accordion">
+            <div class="accordion-body">
+              Mixpanel analytics implementation. The ID shown is your project token.
+            </div>
+          </div>
+        </div>
+
+        <div id="hotjar-note" class="accordion-item">
+          <h2 class="accordion-header" id="hotjar-heading">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#hotjar-pane" aria-expanded="false" aria-controls="hotjar-pane">
+              Hotjar
+            </button>
+          </h2>
+          <div id="hotjar-pane" class="accordion-collapse collapse" aria-labelledby="hotjar-heading" data-bs-parent="#analytics-accordion">
+            <div class="accordion-body">
+              Hotjar analytics and recording script. The ID shown is your site ID.
+            </div>
+          </div>
+        </div>
+
+        <div id="amplitude-note" class="accordion-item">
+          <h2 class="accordion-header" id="amplitude-heading">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#amplitude-pane" aria-expanded="false" aria-controls="amplitude-pane">
+              Amplitude
+            </button>
+          </h2>
+          <div id="amplitude-pane" class="accordion-collapse collapse" aria-labelledby="amplitude-heading" data-bs-parent="#analytics-accordion">
+            <div class="accordion-body">
+              Amplitude analytics implementation. The ID shown is your API key.
+            </div>
+          </div>
+        </div>
+
+        <div id="method-native" class="accordion-item">
+          <h2 class="accordion-header" id="native-heading">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#native-pane" aria-expanded="false" aria-controls="native-pane">
+              Native Implementation
+            </button>
+          </h2>
+          <div id="native-pane" class="accordion-collapse collapse" aria-labelledby="native-heading" data-bs-parent="#analytics-accordion">
+            <div class="accordion-body">
+              The tag is loaded directly on the page without a tag manager.
+            </div>
+          </div>
+        </div>
+
+        <div id="method-gtm" class="accordion-item">
+          <h2 class="accordion-header" id="gtm-method-heading">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#via-gtm-pane" aria-expanded="false" aria-controls="via-gtm-pane">
+              via GTM
+            </button>
+          </h2>
+          <div id="via-gtm-pane" class="accordion-collapse collapse" aria-labelledby="gtm-method-heading" data-bs-parent="#analytics-accordion">
+            <div class="accordion-body">
+              Tags fired through Google Tag Manager.
+            </div>
+          </div>
+        </div>
+
+        <div id="method-segment" class="accordion-item">
+          <h2 class="accordion-header" id="segment-method-heading">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#via-segment-pane" aria-expanded="false" aria-controls="via-segment-pane">
+              via Segment
+            </button>
+          </h2>
+          <div id="via-segment-pane" class="accordion-collapse collapse" aria-labelledby="segment-method-heading" data-bs-parent="#analytics-accordion">
+            <div class="accordion-body">
+              Tags fired through Segment or similar customer data platforms.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

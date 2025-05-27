@@ -1,9 +1,9 @@
 ---
 // Homepage structured with Carbon sections
 import DocLayout from '../components/DocLayout.astro';
-import IndexPage from '../content/docs/index.mdx';
+import IndexPage, { frontmatter as indexFm } from '../content/docs/index.mdx';
 ---
 
-<DocLayout>
+<DocLayout title={indexFm.title} description={indexFm.description}>
   <IndexPage />
 </DocLayout>
