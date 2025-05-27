@@ -28,15 +28,6 @@ docs_structure = {
         "Google-Analytics-4.md", "Adobe-Analytics.md",
         "Matomo.md", "Mixpanel.md", "Plausible.md"
     ],
-    "Implementation-Guides/GA4": [
-        "Setting-Up-GA4.md", "Tracking-Events.md", "Debugging-GA4.md",
-        "GA4-on-WordPress.md", "GA4-on-Shopify.md", "GA4-on-Webflow.md",
-        "GA4-on-Wix.md", "GA4-on-Drupal.md", "GA4-on-Joomla.md"
-    ],
-    "Implementation-Guides/Adobe-Analytics": [
-        "Adobe-Implementation.md", "Data-Layer-Setup.md", "Debugging-Adobe.md",
-        "Adobe-on-WordPress.md", "Adobe-on-Shopify.md", "Adobe-on-Magento.md"
-    ],
     "Web-Tracking-Fundamentals": [
         "How-Tracking-Works.md", "First-Party-vs-Third-Party-Cookies.md",
         "Server-Side-Tracking.md", "Event-Tracking.md",

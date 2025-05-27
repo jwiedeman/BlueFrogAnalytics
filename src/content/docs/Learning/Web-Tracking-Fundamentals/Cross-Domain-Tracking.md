@@ -75,5 +75,4 @@ Cross domain tracking is a **vital technique in digital analytics** that allows 
 
  **Next Steps:**
  **[Learn More About Cross Domain Tracking](#)**  
- **[Explore Implementation Guides for Popular Analytics Platforms](#)**  
  **[Compare Cross Domain Tracking Techniques and Best Practices](#)**
