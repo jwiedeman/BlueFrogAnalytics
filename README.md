@@ -25,3 +25,14 @@ npm run build
 ```
 
 Documentation content lives in `src/content/docs` and static assets live in `public`.
+
+## Profile Service
+
+The optional profile service provides an API for storing user profiles in Cassandra.
+Start it locally with:
+
+```bash
+node server/profileServer.js
+```
+
+Environment variables for the service are defined in `.env.example`.
