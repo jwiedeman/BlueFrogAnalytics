@@ -1,0 +1,24 @@
+---
+title: Image to Next-Gen Format Converter
+description: Convert images to modern formats like WebP.
+template: splash
+---
+
+<div id="convert-root" class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="text-center mb-4">
+        <h1>Image to Next-Gen Format Converter</h1>
+        <p>Upload an image and get an optimized WebP version.</p>
+      </div>
+      <div class="mb-3">
+        <label for="convert-input" class="form-label">Choose Image</label>
+        <input type="file" id="convert-input" accept="image/*" class="form-control" />
+      </div>
+      <button id="convert-button" class="btn btn-primary mb-3">Convert</button>
+      <div id="convert-results"></div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="/js/image-next-gen-converter.js" defer></script>
