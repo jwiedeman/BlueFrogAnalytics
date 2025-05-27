@@ -19,6 +19,9 @@ const pageDesc = post.data.description ?? '';
 
 const { Content } = await post.render();
 
+const words = post.body.split(/\s+/g).length;
+const readingTime = Math.max(1, Math.ceil(words / 200));
+
 const allPosts = (await getCollection('blog')).filter(p => p.data.published);
 allPosts.forEach(applyGitDates);
 const relatedPosts = allPosts
@@ -32,9 +35,9 @@ const relatedPosts = allPosts
     <header class="mb-4 pb-3 border-bottom">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 offset-lg-2 text-center">
+          <div class="col-lg-8 offset-lg-2">
             <nav aria-label="Breadcrumb" class="mb-2">
-              <ol class="breadcrumb justify-content-center">
+              <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/blog">Blog</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{post.data.title}</li>
               </ol>

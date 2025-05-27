@@ -45,6 +45,11 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.75rem;
 }
 
+/* Ensure anchors linked via headings are not hidden behind the fixed nav */
+h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
+  scroll-margin-top: calc(var(--header-height) + 0.5rem);
+}
+
 
 
 

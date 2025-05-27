@@ -34,15 +34,24 @@ function escapeRegExp(str) {
 
 export default function remarkGlossaryLinks() {
   const terms = loadGlossary();
-  const replacements = Object.entries(terms).map(([term, slug]) => [
-    new RegExp(`(?<!\\w)${escapeRegExp(term)}(?!\\w)`, 'gi'),
+  const replacements = [];
 
-    (match) => ({
-      type: 'link',
-      url: `/introduction/terminology-glossary#${slug}`,
-      children: [{type: 'text', value: match}],
-    }),
-  ]);
+  for (const [term, slug] of Object.entries(terms)) {
+    const patterns = new Set([term]);
+    const base = term.replace(/\s*\([^)]*\)/, '').trim();
+    if (base && base !== term) patterns.add(base);
+
+    for (const pat of patterns) {
+      replacements.push([
+        new RegExp(`(?<!\\w)${escapeRegExp(pat)}(?!\\w)`, 'gi'),
+        (match) => ({
+          type: 'link',
+          url: `/introduction/terminology-glossary#${slug}`,
+          children: [{ type: 'text', value: match }],
+        }),
+      ]);
+    }
+  }
   return (tree, file) => {
     if (!file?.path) {
       return;
