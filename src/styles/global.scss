@@ -6,6 +6,9 @@
   --sl-color-primary: #0d6efd;
   --sl-color-accent: #88a5c9;
   --sl-border-radius: 0;
+  --bs-border-radius: 0;
+  --bs-border-radius-sm: 0;
+  --bs-border-radius-lg: 0;
   --bs-primary: #0d6efd;
   --bs-body-bg: #ffffff;
   --bs-body-color: #212529;
@@ -151,7 +154,7 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
 .blog-main .blog-article {
   background: var(--bs-body-bg);
   border: 1px solid #e0e0e0;
-  border-radius: 0.25rem;
+  border-radius: 0;
   padding: 1rem;
 }
 
