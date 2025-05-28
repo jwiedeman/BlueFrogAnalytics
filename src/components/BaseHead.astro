@@ -8,7 +8,9 @@ const { title = 'Blue Frog Analytics', description = '', url } = Astro.props;
 <!-- BaseHead: injects global head tags (Bootstrap CSS, fonts, scripts) -->
 <script is:inline>
   try {
-    if (localStorage.getItem('bfaDarkMode') === 'true') {
+    const darkPref = localStorage.getItem('bfaDarkMode') === 'true';
+    const onDashboard = window.location.pathname.startsWith('/dashboard');
+    if (darkPref && onDashboard) {
       document.documentElement.classList.add('dark-mode');
       document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('dark-mode');
