@@ -58,7 +58,9 @@ export default function remarkGlossaryLinks() {
     const synMatch = term.match(/\(([^)]+)\)/);
     if (synMatch) {
       synMatch[1]
-        .split(/[,/]|\bor\b/i)
+        // Split on slashes or the word "or" but keep comma-separated
+        // phrases intact so common words aren't matched individually.
+        .split(/[\/]|\bor\b/i)
         .map(s => s.trim())
         .filter(Boolean)
         .forEach(s => patterns.add(s));
