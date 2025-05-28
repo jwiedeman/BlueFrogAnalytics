@@ -10,8 +10,6 @@ const { headings, title, description } = Astro.props;
 // Build a nested tree structure from docs content
 const modules = import.meta.glob('../content/docs/**/*.{md,mdx}', { eager: true });
 const docsRaw = import.meta.glob('../content/docs/**/*.{md,mdx}', { eager: true, as: 'raw' });
-const blogInfo = import.meta.glob('../content/blog/**/*.{md,mdx}', { eager: true });
-const blogRaw = import.meta.glob('../content/blog/**/*.{md,mdx}', { eager: true, as: 'raw' });
 function buildTree() {
   const tree = [];
   for (const [filePath, mod] of Object.entries(modules)) {
@@ -74,15 +72,6 @@ for (const [file, mod] of Object.entries(modules)) {
     tags: mod.frontmatter?.tags || [],
     body: docsRaw[file],
     url: '/' + rawKey.toLowerCase() + '/',
-  });
-}
-for (const [file, mod] of Object.entries(blogInfo)) {
-  const slug = file.replace('../content/blog/', '').replace(/\.(md|mdx)$/, '');
-  searchIndex.push({
-    title: mod.frontmatter?.title || '',
-    tags: mod.frontmatter?.tags || [],
-    body: blogRaw[file],
-    url: '/blog/' + slug.toLowerCase() + '/',
   });
 }
 
