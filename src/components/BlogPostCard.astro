@@ -11,7 +11,7 @@ function slugify(str) {
     .replace(/^-+|-+$/g, '');
 }
 ---
-<article class="card blog-card border-0 shadow-sm h-100" data-tags={(post.data.tags || []).join(' ')}>
+<article class="card blog-card border-0 h-100" data-tags={(post.data.tags || []).join(' ')}>
   <div class="card-body">
     <h3 class="card-title h5 fw-semibold">
       <a href={url} class="stretched-link text-decoration-none">{post.data.title}</a>
