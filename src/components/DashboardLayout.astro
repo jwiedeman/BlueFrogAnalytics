@@ -7,16 +7,18 @@ import FirebaseScripts from './FirebaseScripts.astro';
 const { title, description } = Astro.props;
 
 // Navigation for authenticated users inside the dashboard
-const dashNav = [
+const mainNav = [
   { label: 'Dashboard Home', link: '/dashboard' },
-  { label: 'Profile', link: '/dashboard/profile' },
-  { label: 'Settings', link: '/dashboard/settings' },
   { label: 'Domains', link: '/dashboard/domains' },
   { label: 'Performance', link: '/dashboard/performance' },
   { label: 'SEO', link: '/dashboard/seo' },
   { label: 'Accessibility', link: '/dashboard/accessibility' },
   { label: 'QA', link: '/dashboard/qa' },
   { label: 'Specification', link: '/dashboard/specification' },
+];
+const bottomNav = [
+  { label: 'Profile', link: '/dashboard/profile' },
+  { label: 'Settings', link: '/dashboard/settings' },
 ];
 const currentPath =
   Astro.url.pathname === '/'
@@ -35,9 +37,16 @@ function isActive(item) {
     <CustomHeader />
     <div class="container-fluid flex-grow-1">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-dark dashboard-side-nav">
+        <nav class="col-md-2 d-none d-md-block bg-dark dashboard-side-nav d-flex flex-column">
           <ul class="nav flex-column pt-3">
-            {dashNav.map(item => (
+            {mainNav.map(item => (
+              <li class="nav-item" key={item.link}>
+                <a class={`nav-link text-light${isActive(item) ? ' active' : ''}`} href={item.link}>{item.label}</a>
+              </li>
+            ))}
+          </ul>
+          <ul class="nav flex-column mt-auto mb-3">
+            {bottomNav.map(item => (
               <li class="nav-item" key={item.link}>
                 <a class={`nav-link text-light${isActive(item) ? ' active' : ''}`} href={item.link}>{item.label}</a>
               </li>
