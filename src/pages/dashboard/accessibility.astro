@@ -5,9 +5,25 @@ const title = 'Accessibility';
 const description = 'Accessibility audit results.';
 ---
 <DashboardLayout title={title} description={description}>
-  <section class="container py-5 text-center">
-    <h1>Accessibility</h1>
-    <p>Accessibility reports will be displayed here.</p>
+  <section class="container my-4">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="text-center mb-4">
+          <h1>Accessibility Audit</h1>
+          <p>Run Lighthouse accessibility checks on your page.</p>
+        </div>
+        <form id="a11y-form" class="row gy-2 gx-3 align-items-end mb-3">
+          <div class="col-md-8">
+            <label for="a11y-url" class="form-label">Enter URL</label>
+            <input type="url" id="a11y-url" name="url" placeholder="https://example.com" class="form-control" />
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary mt-3">Run Test</button>
+          </div>
+        </form>
+        <pre id="a11y-results" class="bg-dark text-light p-3 rounded"></pre>
+      </div>
+    </div>
   </section>
   <script type="module">
     document.addEventListener('DOMContentLoaded', () => {
@@ -25,4 +41,5 @@ const description = 'Accessibility audit results.';
       }
     });
   </script>
+  <script type="module" src="/js/accessibility-check.js" defer></script>
 </DashboardLayout>
