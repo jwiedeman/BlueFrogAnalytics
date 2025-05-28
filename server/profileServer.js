@@ -4,6 +4,8 @@ import { getAuth } from 'firebase-admin/auth';
 import { Client } from 'cassandra-driver';
 import { createHash } from 'crypto';
 import fs from 'fs';
+import lighthouse from 'lighthouse';
+import { launch } from 'chrome-launcher';
 
 // Basic security headers and rate limiting without extra dependencies
 const securityHeaders = (req, res, next) => {
@@ -114,6 +116,26 @@ app.post('/api/profile', authMiddleware, async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Database error' });
+  }
+});
+
+app.post('/api/performance', authMiddleware, async (req, res) => {
+  const { url } = req.body;
+  if (typeof url !== 'string') {
+    return res.status(400).json({ error: 'Invalid url' });
+  }
+  try {
+    const chrome = await launch({ chromeFlags: ['--headless', '--no-sandbox'] });
+    const { lhr } = await lighthouse(url, {
+      port: chrome.port,
+      output: 'json',
+      onlyCategories: ['performance']
+    });
+    await chrome.kill();
+    res.json(lhr);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Lighthouse error' });
   }
 });
 
