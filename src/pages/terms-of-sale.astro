@@ -1,0 +1,8 @@
+---
+// Renders the Terms of Sale page
+import DocLayout from '../components/DocLayout.astro';
+import TermsSaleContent, { frontmatter as saleFm } from '../content/pages/terms-of-sale.mdx';
+---
+<DocLayout title={saleFm.title} description={saleFm.description}>
+  <TermsSaleContent />
+</DocLayout>
