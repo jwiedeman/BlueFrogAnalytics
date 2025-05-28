@@ -503,12 +503,6 @@ body.dark-mode #side-nav .bx--side-nav__link {
 .dashboard-side-nav .btn-toggle[aria-expanded='true']::after {
   transform: rotate(90deg);
 }
-.dashboard-side-nav .nav-item:hover > .collapse {
-  display: block;
-}
-.dashboard-side-nav .nav-item:hover > .btn-toggle.collapsed::after {
-  transform: rotate(90deg);
-}
 
 
 /* Dark mode overrides */
