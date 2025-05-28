@@ -30,6 +30,7 @@ const { title, description, headings = [] } = Astro.props;
       ) : null}
     </div>
     <CustomFooter />
+    <script src="/js/glossary-popover.js" defer></script>
     <script is:inline>
       function scrollToHash() {
         const { hash } = window.location;

@@ -5,6 +5,7 @@ import remarkParse from 'remark-parse';
 import {visit} from 'unist-util-visit';
 import GithubSlugger from 'github-slugger';
 import {findAndReplace} from 'mdast-util-find-and-replace';
+import {toString} from 'mdast-util-to-string';
 
 const glossaryPath = path.resolve('src/content/docs/Introduction/Terminology-Glossary.md');
 let termMap = {};
@@ -15,15 +16,26 @@ function loadGlossary() {
   const tree = unified().use(remarkParse).parse(content);
   const slugger = new GithubSlugger();
   termMap = {};
-  visit(tree, 'heading', (node) => {
-    if (node.depth === 3) {
-      const text = node.children.map((c) => c.value || '').join('').trim();
+  const children = tree.children;
+  for (let i = 0; i < children.length; i++) {
+    const node = children[i];
+    if (node.type === 'heading' && node.depth === 3) {
+      const text = toString(node).trim();
       if (text) {
         const slug = slugger.slug(text);
-        termMap[text] = slug;
+        let def = '';
+        for (let j = i + 1; j < children.length; j++) {
+          const next = children[j];
+          if (next.type === 'heading' && next.depth === 3) break;
+          if (next.type === 'paragraph') {
+            def = toString(next).trim();
+            break;
+          }
+        }
+        termMap[text] = { slug, def };
       }
     }
-  });
+  }
   termMap.__loaded = true;
   return termMap;
 }
@@ -36,10 +48,21 @@ export default function remarkGlossaryLinks() {
   const terms = loadGlossary();
   const replacements = [];
 
-  for (const [term, slug] of Object.entries(terms)) {
+  for (const [term, info] of Object.entries(terms)) {
+    if (term === '__loaded') continue;
+    const { slug, def } = info;
+    const safeDef = def.replace(/"/g, '&quot;');
     const patterns = new Set([term]);
     const base = term.replace(/\s*\([^)]*\)/, '').trim();
     if (base && base !== term) patterns.add(base);
+    const synMatch = term.match(/\(([^)]+)\)/);
+    if (synMatch) {
+      synMatch[1]
+        .split(/[,/]|\bor\b/i)
+        .map(s => s.trim())
+        .filter(Boolean)
+        .forEach(s => patterns.add(s));
+    }
 
     for (const pat of patterns) {
       replacements.push([
@@ -47,6 +70,13 @@ export default function remarkGlossaryLinks() {
         (match) => ({
           type: 'link',
           url: `/introduction/terminology-glossary#${slug}`,
+          data: {
+            hProperties: {
+              class: 'glossary-term',
+              'data-bs-toggle': 'popover',
+              'data-bs-content': safeDef,
+            },
+          },
           children: [{ type: 'text', value: match }],
         }),
       ]);
