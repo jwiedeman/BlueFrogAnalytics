@@ -5,9 +5,21 @@ const title = 'SEO';
 const description = 'Search engine optimization insights.';
 ---
 <DashboardLayout title={title} description={description}>
-  <section class="container py-5 text-center">
-    <h1>SEO</h1>
-    <p>SEO information coming soon.</p>
+  <section class="container py-5">
+    <div class="text-center mb-4">
+      <h1 class="mb-0">SEO Audit</h1>
+      <p>Run Google Lighthouse SEO diagnostics for a page.</p>
+    </div>
+    <form id="seo-dashboard-form" class="row gy-2 gx-3 align-items-end mb-3 justify-content-center">
+      <div class="col-md-6">
+        <label for="seo-dashboard-url" class="form-label">Enter URL</label>
+        <input id="seo-dashboard-url" type="url" class="form-control" placeholder="https://example.com" required />
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mt-3">Run Audit</button>
+      </div>
+    </form>
+    <div id="seo-dashboard-results"></div>
   </section>
   <script type="module">
     document.addEventListener('DOMContentLoaded', () => {
@@ -25,4 +37,5 @@ const description = 'Search engine optimization insights.';
       }
     });
   </script>
+  <script src="/js/seo-dashboard.js" type="module"></script>
 </DashboardLayout>
