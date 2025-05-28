@@ -1,7 +1,6 @@
 import { z, defineCollection } from 'astro:content';
 import remarkGlossaryLinks from '../plugins/remark-glossary-links.js';
 import remarkMath from 'remark-math';
-import remarkMermaid from 'remark-mermaidjs';
 import rehypeKatex from 'rehype-katex';
 
 export const collections = {
@@ -21,7 +20,7 @@ export const collections = {
   docs: defineCollection({
     type: 'content',
     markdown: {
-      remarkPlugins: [remarkGlossaryLinks, remarkMath, remarkMermaid],
+      remarkPlugins: [remarkGlossaryLinks, remarkMath],
       rehypePlugins: [rehypeKatex],
     }
   })
