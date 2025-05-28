@@ -147,7 +147,7 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
   overflow: hidden;
   min-height: 40vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
