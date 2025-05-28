@@ -86,6 +86,10 @@ export default defineConfig({
       },
     ],
   },
+  markdown: {
+    remarkPlugins: [remarkMath, remarkMermaid, remarkGlossaryLinks],
+    rehypePlugins: [rehypeKatex],
+  },
 
   integrations: [
     // MDX for .md/.mdx with math
