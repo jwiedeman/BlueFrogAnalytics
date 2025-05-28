@@ -10,7 +10,7 @@
   --bs-body-bg: #ffffff;
   --bs-body-color: #212529;
   --header-height: 3.5rem;
-  --page-gap: 10vh;
+  --page-gap: 7vh;
 }
 
 /* Global page body styles */
@@ -92,6 +92,7 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
   top: calc(var(--header-height) + 2rem);
   max-height: calc(100vh - var(--header-height) - 2rem);
   overflow-y: auto;
+  margin-top: var(--page-gap);
 }
 .sidebar-left {
   border-right: 1px solid #e0e0e0;
