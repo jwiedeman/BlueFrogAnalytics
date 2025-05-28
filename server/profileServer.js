@@ -168,27 +168,29 @@ app.get('/api/profile', authMiddleware, async (req, res) => {
   }
 });
 
+
+app.post('/api/audit/accessibility', authMiddleware, async (req, res) => {
+  const { url } = req.body || {};
+
 app.post('/api/seo-audit', authMiddleware, async (req, res) => {
   const { url } = req.body;
+
   if (typeof url !== 'string') {
     return res.status(400).json({ error: 'Invalid URL' });
   }
   try {
-    const { default: lighthouse } = await import('lighthouse');
-    const chromeLauncher = await import('chrome-launcher');
-    const chrome = await chromeLauncher.launch({ chromeFlags: ['--headless'] });
-    const options = {
-      port: chrome.port,
-      output: 'json',
-      logLevel: 'info',
-      onlyCategories: ['seo']
-    };
-    const runnerResult = await lighthouse(url, options);
+
+    const { launch } = await import('chrome-launcher');
+    const lh = (await import('lighthouse')).default;
+    const chrome = await launch({ chromeFlags: ['--headless'] });
+    const options = { port: chrome.port, onlyCategories: ['accessibility'] };
+    const result = await lh(url, options);
     await chrome.kill();
-    res.json(runnerResult.lhr);
+    res.json(result.lhr);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Lighthouse error' });
+    res.status(500).json({ error: 'Audit failed' });
+
   }
 });
 
