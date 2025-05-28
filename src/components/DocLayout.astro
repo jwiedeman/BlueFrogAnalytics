@@ -14,7 +14,7 @@ const mainClass = fluid ? 'container-fluid' : 'container';
   </head>
   <body class="d-flex flex-column min-vh-100">
     <CustomHeader />
-    <main id="main-content" class={`bx--content ${mainClass}`}>
+    <main id="main-content" class={`bx--content ${mainClass} flex-grow-1`}>
       <slot />
     </main>
     <CustomFooter />
