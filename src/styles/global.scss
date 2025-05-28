@@ -363,6 +363,12 @@ body.dark-mode #side-nav .bx--side-nav__link {
   text-decoration: none;
 }
 
+// Ensure glossary links are visibly highlighted
+.docs-main a.glossary-term {
+  color: var(--sl-color-primary);
+  text-decoration: underline;
+}
+
 // Docs page: indicate link on hover/focus
 .docs-main a:hover,
 .docs-main a:focus {
