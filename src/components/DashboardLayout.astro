@@ -31,6 +31,9 @@ const currentPath =
     : Astro.url.pathname.replace(/\/$/, '').toLowerCase();
 function inPath(item) {
   const link = item.link === '/' ? '/' : item.link.replace(/\/$/, '').toLowerCase();
+  if (link === '/dashboard') {
+    return currentPath === '/dashboard';
+  }
   return currentPath === link || currentPath.startsWith(link + '/');
 }
 ---
