@@ -362,7 +362,7 @@ A business model where companies sell directly to consumers.\
 
 C
 
-### CTA
+### Call to Action (CTA)
 
 A prompt that encourages users to take a specific action, such as clicking a button or filling out a form.\
  **Examples:**
@@ -409,7 +409,7 @@ The percentage of customers who stop using a product or service over a given per
 
  Lower churn = Higher customer retention & revenue growth.
 
-### CTR
+### Click-through Rate (CTR)
 
 A metric that measures how often users click on a link or ad after seeing it.\
  **Formula:** `CTR = (Clicks / Impressions) × 100`
@@ -1984,11 +1984,11 @@ The art of arranging fonts, text size, and spacing to improve readability and de
 
 ## U
 
-### UA (User Agent)
+### User Agent (UA)
 A string of text sent by a browser that identifies the device, operating system, and software being used.  
  **Example:** `"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/110.0.0.0 Safari/537.36"`
 
-### UI
+### User Interface (UI)
 The visual and interactive elements of a website, app, or software that users engage with.  
  Good UI improves usability, accessibility, and engagement.
 
@@ -2012,7 +2012,7 @@ The process of evaluating how easy and intuitive a website or app is for users.
 Special tags added to URLs to track marketing campaigns in Google Analytics.  
  **Example:** `?utm_source=facebook&utm_medium=social&utm_campaign=spring_sale`
 
-### UX
+### User Experience (UX)
 The overall experience a user has when interacting with a website, app, or product.  
  Good UX means intuitive navigation, fast load times, and clear content.
 
@@ -2254,7 +2254,7 @@ A modern UX concern where excessive video calls cause mental exhaustion.
 A form of corrupted or glitchy text using special Unicode characters.  
  Often used for horror aesthetics, but can break website layouts if improperly displayed.
 
-### Zebra Stripes (UI/UX)
+### Zebra Stripes (UI,UX)
 A design pattern where alternating rows in a table have different background colors.  
  Improves readability for long lists and data tables.
 

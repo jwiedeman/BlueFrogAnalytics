@@ -57,18 +57,28 @@ export default function remarkGlossaryLinks() {
     if (base && base !== term) patterns.add(base);
     const synMatch = term.match(/\(([^)]+)\)/);
     if (synMatch) {
-      synMatch[1]
-        // Split on slashes or the word "or" but keep comma-separated
-        // phrases intact so common words aren't matched individually.
+      const raw = synMatch[1].trim();
+      // Always include the full text inside the parentheses
+      if (raw) patterns.add(raw);
+      raw
         .split(/[\/]|\bor\b/i)
         .map(s => s.trim())
         .filter(Boolean)
-        .forEach(s => patterns.add(s));
+        .forEach(part => {
+          if (part.includes(',') && !part.includes(' ')) {
+            part.split(',').forEach(p => patterns.add(p.trim()));
+          } else {
+            patterns.add(part);
+          }
+        });
     }
 
     for (const pat of patterns) {
+      const regex = /^[a-z]+$/i.test(pat) && !pat.endsWith('s')
+        ? new RegExp(`(?<!\\w)${escapeRegExp(pat)}(?:'s|s)?(?!\\w)`, 'gi')
+        : new RegExp(`(?<!\\w)${escapeRegExp(pat)}(?!\\w)`, 'gi');
       replacements.push([
-        new RegExp(`(?<!\\w)${escapeRegExp(pat)}(?!\\w)`, 'gi'),
+        regex,
         (match) => ({
           type: 'link',
           url: `/introduction/terminology-glossary#${slug}`,
