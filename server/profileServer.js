@@ -172,6 +172,10 @@ app.get('/api/profile', authMiddleware, async (req, res) => {
 app.post('/api/audit/accessibility', authMiddleware, async (req, res) => {
   const { url } = req.body || {};
 
+
+app.post('/api/audit/accessibility', authMiddleware, async (req, res) => {
+  const { url } = req.body || {};
+
 app.post('/api/seo-audit', authMiddleware, async (req, res) => {
   const { url } = req.body;
 
