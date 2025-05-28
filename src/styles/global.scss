@@ -260,7 +260,7 @@ body.dark-mode .bx--list-box__menu {
 }
 
 // Constrain page sections while allowing full-width hero sections
-main#main-content > :not(.container-fluid) {
+main#main-content > :not(.container-fluid):not(.hero-section) {
   max-width: var(--sl-content-width);
   margin: 0 auto;
   padding-bottom: 1.2rem;
