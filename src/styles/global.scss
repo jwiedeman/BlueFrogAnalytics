@@ -106,6 +106,25 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
 .sidebar-right li[data-depth='4'] { margin-left: 2rem; }
 .sidebar-right li[data-depth='5'] { margin-left: 3rem; }
 .sidebar-right li[data-depth='6'] { margin-left: 4rem; }
+
+/* Blog post layout */
+.blog-post-container {
+  display: grid;
+  grid-template-columns: 1fr 16rem;
+  gap: 2.5rem;
+  max-width: var(--sl-content-width);
+  margin: 1rem auto 0;
+  padding: 1rem 1rem 2rem;
+}
+
+@media (max-width: 767px) {
+  .blog-post-container {
+    grid-template-columns: 1fr;
+  }
+  .blog-post-container .sidebar-right {
+    display: none;
+  }
+}
 // Search input in sidebars
 .sidebar-left input[type="search"] {
   width: 100%;
