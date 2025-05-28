@@ -490,3 +490,11 @@ body.dark-mode .bx--list-box__menu-item,
 body.dark-mode #side-nav .bx--side-nav__link {
   color: #f5f5f5;
 }
+
+/* Dashboard navs should be true black in dark mode */
+body.dark-mode .navbar,
+body.dark-mode #mainNav,
+body.dark-mode .dashboard-side-nav,
+body.dark-mode .dropdown-menu {
+  background-color: #000 !important;
+}
