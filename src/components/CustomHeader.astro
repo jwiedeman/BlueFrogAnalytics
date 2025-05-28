@@ -98,3 +98,24 @@ function isActive(item) {
     --bs-navbar-brand-hover-color: var(--sl-color-primary);
   }
 </style>
+<script is:inline>
+  const saved = localStorage.getItem('bfaLoggedIn');
+  if (saved !== null) {
+    const loggedIn = saved === 'true';
+    const loginBtn = document.getElementById('login-btn');
+    const profileMenu = document.getElementById('profile-menu');
+    const dashNav = document.getElementById('dashboard-nav');
+    if (loginBtn && profileMenu) {
+      if (loggedIn) {
+        loginBtn.classList.add('d-none');
+        profileMenu.classList.remove('d-none');
+      } else {
+        loginBtn.classList.remove('d-none');
+        profileMenu.classList.add('d-none');
+      }
+    }
+    if (dashNav) {
+      dashNav.classList.toggle('d-none', !loggedIn);
+    }
+  }
+</script>
