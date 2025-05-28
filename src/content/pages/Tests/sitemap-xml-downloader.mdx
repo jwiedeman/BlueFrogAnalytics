@@ -26,3 +26,17 @@ template: splash
 </div>
 
 <script type="module" src="/js/sitemap-xml-downloader.js" defer></script>
+
+## Implementation Notes
+
+**Data Points Needed**
+
+- URL of sitemap.xml
+- HTTP status code
+- File size
+
+**Formula**
+
+$$
+\text{Valid} = \begin{cases}1 & \text{status}=200 \\ 0 & \text{otherwise}\end{cases}
+$$

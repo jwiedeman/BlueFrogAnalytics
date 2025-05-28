@@ -26,3 +26,18 @@ template: splash
 </div>
 
 <script type="module" src="/js/performance-check.js" defer></script>
+
+## Implementation Notes
+
+**Data Points Needed**
+
+- Lighthouse metrics: FCP, LCP, Speed Index, TTI, TBT, CLS
+- Weighting for each metric
+
+**Formula**
+
+$$
+\text{Score} = \sum_i w_i s_i
+$$
+
+where $w_i$ are metric weights and $s_i$ the normalized scores.

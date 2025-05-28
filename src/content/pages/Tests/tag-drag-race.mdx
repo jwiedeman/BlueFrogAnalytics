@@ -26,3 +26,17 @@ template: splash
 </div>
 
 <script type="module" src="/js/tag-drag-race.js" defer></script>
+
+## Implementation Notes
+
+**Data Points Needed**
+
+- Network timing for each script
+- Script file size
+- Blocking time impact
+
+**Formula**
+
+$$
+\text{Impact} = \sum_i (\text{load time}_i \times \text{size}_i)
+$$

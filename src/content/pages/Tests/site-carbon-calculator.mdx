@@ -26,3 +26,17 @@ template: splash
 </div>
 
 <script type="module" src="/js/site-carbon-calculator.js" defer></script>
+
+## Implementation Notes
+
+**Data Points Needed**
+
+- Page size in bytes
+- Energy per byte transferred
+- Data center carbon intensity (gCO2/kWh)
+
+**Formula**
+
+$$
+\text{CO2} = \text{page size} \times \text{energy per byte} \times \text{carbon intensity}
+$$
