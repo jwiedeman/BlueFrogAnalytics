@@ -10,8 +10,6 @@
   --bs-body-bg: #ffffff;
   --bs-body-color: #212529;
   --header-height: 3.5rem;
-  /* Extra spacing below the fixed header */
-  --content-gap: 1rem;
 }
 
 /* Global page body styles */
@@ -22,8 +20,8 @@ body {
   line-height: 1.6;
   /* Prevent horizontal scrollbars from full-width sections */
   overflow-x: hidden;
-  /* Offset pages below the fixed header plus extra breathing room */
-  padding-top: calc(var(--header-height) + var(--content-gap));
+  /* Offset pages below the fixed header */
+  padding-top: var(--header-height);
   padding-bottom: 1rem;
 }
 
@@ -49,7 +47,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Ensure anchors linked via headings are not hidden behind the fixed nav */
 h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
-  scroll-margin-top: calc(var(--header-height) + var(--content-gap) + 0.5rem);
+  scroll-margin-top: calc(var(--header-height) + 2rem + 0.5rem);
 }
 
 
@@ -66,7 +64,7 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
   grid-template-columns: 16rem 1fr 16rem;
   gap: 2.5rem;
   max-width: var(--sl-content-width);
-  margin: 1rem auto 0;
+  margin: 2rem auto 0;
   padding: 1rem 1rem 2rem;
 }
 
@@ -82,8 +80,8 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
 .sidebar-left,
 .sidebar-right {
   position: sticky;
-  top: calc(var(--header-height) + var(--content-gap));
-  max-height: calc(100vh - var(--header-height) - var(--content-gap));
+  top: calc(var(--header-height) + 2rem);
+  max-height: calc(100vh - var(--header-height) - 2rem);
   overflow-y: auto;
 }
 .sidebar-left {
@@ -115,7 +113,7 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
   grid-template-columns: 1fr 16rem;
   gap: 2.5rem;
   max-width: var(--sl-content-width);
-  margin: 1rem auto 0;
+  margin: 2rem auto 0;
   padding: 1rem 1rem 2rem;
 }
 
@@ -138,6 +136,11 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
   border: 1px solid #e0e0e0;
   border-radius: 0.25rem;
   padding: 1rem;
+}
+
+/* Dashboard layout */
+.dashboard-container {
+  margin-top: 2rem;
 }
 // Search input in sidebars
 .sidebar-left input[type="search"] {
