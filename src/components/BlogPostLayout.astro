@@ -42,6 +42,24 @@ const { title, description, headings = [] } = Astro.props;
       }
       scrollToHash();
       window.addEventListener('hashchange', scrollToHash);
-    </script>
+        const tocLinks = Array.from(document.querySelectorAll('.sidebar-right a'));
+        if (tocLinks.length) {
+          const headings = tocLinks
+            .map(a => document.getElementById(a.getAttribute('href').slice(1)))
+            .filter(Boolean);
+          const highlight = () => {
+            let active;
+            const offset = window.scrollY + 80;
+            for (let i = 0; i < headings.length; i++) {
+              if (headings[i].offsetTop <= offset) {
+                active = tocLinks[i];
+              }
+            }
+            tocLinks.forEach(link => link.classList.toggle('active', link === active));
+          };
+          window.addEventListener('scroll', highlight);
+          highlight();
+        }
+      </script>
   </body>
 </html>
