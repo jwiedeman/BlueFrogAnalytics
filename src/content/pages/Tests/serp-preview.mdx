@@ -26,3 +26,21 @@ template: splash
 </div>
 
 <script type="module" src="/js/serp-preview.js" defer></script>
+
+## Implementation Notes
+
+**Data Points Needed**
+
+- Title and meta description length
+- Ranking position or prominence
+- Historical CTR curve
+
+**Formula**
+
+CTR can be estimated with a logistic curve:
+
+$$
+\text{CTR} = \frac{1}{1 + e^{-x}}
+$$
+
+where $x$ represents factors like rank and snippet quality.

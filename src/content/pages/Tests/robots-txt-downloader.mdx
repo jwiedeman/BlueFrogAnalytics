@@ -26,3 +26,17 @@ template: splash
 </div>
 
 <script type="module" src="/js/robots-txt-downloader.js" defer></script>
+
+## Implementation Notes
+
+**Data Points Needed**
+
+- URL of robots.txt
+- HTTP status code
+- File size
+
+**Formula**
+
+$$
+\text{Valid} = \begin{cases}1 & \text{status}=200 \\ 0 & \text{otherwise}\end{cases}
+$$

@@ -26,3 +26,18 @@ template: splash
 </div>
 
 <script type="module" src="/js/seo-check.js" defer></script>
+
+## Implementation Notes
+
+**Data Points Needed**
+
+- Lighthouse SEO audit scores
+- Weights for each audit
+
+**Formula**
+
+$$
+\text{SEO Score} = \sum_i w_i a_i
+$$
+
+where $a_i$ is 1 if an audit passes, otherwise 0.

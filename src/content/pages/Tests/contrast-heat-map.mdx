@@ -26,3 +26,19 @@ template: splash
 </div>
 
 <script type="module" src="/js/contrast-heat-map.js" defer></script>
+
+## Implementation Notes
+
+**Data Points Needed**
+
+- Text and background color values
+- Relative luminance for each color
+- WCAG contrast thresholds
+
+**Formula**
+
+$$
+\text{Contrast Ratio} = \frac{L_1 + 0.05}{L_2 + 0.05}
+$$
+
+Where $L_1$ is the lighter luminance and $L_2$ the darker.

@@ -26,3 +26,18 @@ template: splash
 </div>
 
 <script type="module" src="/js/security-headers-black-box.js" defer></script>
+
+## Implementation Notes
+
+**Data Points Needed**
+
+- Response values of common security headers
+- Recommended configurations for comparison
+
+**Formula**
+
+$$
+\text{Score} = \sum_i w_i c_i
+$$
+
+where $c_i$ is 1 when header $i$ matches recommendations.

@@ -26,3 +26,17 @@ template: splash
 </div>
 
 <script type="module" src="/js/image-bloat-buster.js" defer></script>
+
+## Implementation Notes
+
+**Data Points Needed**
+
+- File size and dimensions for each image
+- Target compression level
+- Image count per page
+
+**Formula**
+
+$$
+\text{Savings} = \text{original size} - \text{compressed size}
+$$
