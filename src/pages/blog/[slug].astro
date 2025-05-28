@@ -1,6 +1,6 @@
 ---
 import { getCollection, getEntryBySlug } from 'astro:content';
-import BlogLayout from '../../components/BlogLayout.astro';
+import BlogPostLayout from '../../components/BlogPostLayout.astro';
 import BlogPostCard from '../../components/BlogPostCard.astro';
 import { applyGitDates } from '../../utils/git-dates.js';
 
@@ -25,6 +25,7 @@ const pageTitle = post.data.title;
 const pageDesc = post.data.description ?? '';
 
 const { Content } = await post.render();
+const headings = post.getHeadings?.() ?? [];
 
 const words = post.body.split(/\s+/g).length;
 const readingTime = Math.max(1, Math.ceil(words / 200));
@@ -37,7 +38,7 @@ const relatedPosts = allPosts
   .slice(0, 4);
 
 ---
-<BlogLayout title={pageTitle} description={pageDesc}>
+<BlogPostLayout title={pageTitle} description={pageDesc} headings={headings}>
   <article class="blog-article">
     <header class="mb-4 pb-3 border-bottom">
       <div class="container">
@@ -107,4 +108,4 @@ const relatedPosts = allPosts
       </div>
     </section>
   ) : null}
-</BlogLayout>
+</BlogPostLayout>

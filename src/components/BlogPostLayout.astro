@@ -1,0 +1,47 @@
+---
+import BaseHead from './BaseHead.astro';
+import CustomHeader from './CustomHeader.astro';
+import CustomFooter from './CustomFooter.astro';
+
+const { title, description, headings = [] } = Astro.props;
+---
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <CustomHeader />
+    <div class="blog-post-container container-fluid flex-grow-1">
+      <main id="main-content" class="blog-main">
+        <slot />
+      </main>
+      {headings.length ? (
+        <aside class="sidebar-right">
+          <nav>
+            <ul class="list-unstyled">
+              {headings.map(h => (
+                <li data-depth={h.depth} key={h.slug}>
+                  <a href={`#${h.slug}`}>{h.text}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </aside>
+      ) : null}
+    </div>
+    <CustomFooter />
+    <script is:inline>
+      function scrollToHash() {
+        const { hash } = window.location;
+        if (hash) {
+          const el = document.getElementById(hash.slice(1));
+          if (el) {
+            setTimeout(() => el.scrollIntoView(), 50);
+          }
+        }
+      }
+      scrollToHash();
+      window.addEventListener('hashchange', scrollToHash);
+    </script>
+  </body>
+</html>
