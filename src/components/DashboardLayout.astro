@@ -14,13 +14,22 @@ const mainNav = [
   { label: 'SEO', link: '/dashboard/seo' },
   { label: 'Accessibility', link: '/dashboard/accessibility' },
   { label: 'QA', link: '/dashboard/qa' },
-  { label: 'Specification', link: '/dashboard/specification' },
+  {
+    label: 'Specification',
+    link: '/dashboard/specification',
+    children: [
+      { label: 'Components', link: '/dashboard/specification/components' },
+      { label: 'Events', link: '/dashboard/specification/events' },
+      { label: 'Dimensions', link: '/dashboard/specification/dimensions' },
+      { label: 'Products', link: '/dashboard/specification/products' },
+    ],
+  },
 ];
 const currentPath =
   Astro.url.pathname === '/'
     ? '/'
     : Astro.url.pathname.replace(/\/$/, '').toLowerCase();
-function isActive(item) {
+function inPath(item) {
   const link = item.link === '/' ? '/' : item.link.replace(/\/$/, '').toLowerCase();
   return currentPath === link || currentPath.startsWith(link + '/');
 }
@@ -35,10 +44,37 @@ function isActive(item) {
       <div class="row">
         <nav class="col-md-2 d-none d-md-block bg-dark dashboard-side-nav d-flex flex-column">
           <ul class="nav flex-column pt-3">
-            {mainNav.map(item => (
-              <li class="nav-item" key={item.link}>
-                <a class={`nav-link text-light${isActive(item) ? ' active' : ''}`} href={item.link}>{item.label}</a>
-              </li>
+            {mainNav.map((item, i) => (
+              item.children ? (
+                <li class="nav-item" key={`p-${i}`}>
+                  <button
+                    class={`btn btn-toggle text-start w-100${inPath(item) ? '' : ' collapsed'}`}
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target={`#dash-${i}`}
+                    aria-expanded={inPath(item) ? 'true' : 'false'}
+                  >
+                    {item.label}
+                  </button>
+                  <div class={`collapse${inPath(item) ? ' show' : ''}`} id={`dash-${i}`}>
+                    <ul class="btn-toggle-nav list-unstyled">
+                      {item.children.map((child, j) => (
+                        <li class="nav-item" key={`c-${i}-${j}`}>
+                          <a class={`nav-link text-light${inPath(child) ? ' active' : ''}`} href={child.link}>
+                            {child.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </li>
+              ) : (
+                <li class="nav-item" key={`p-${i}`}>
+                  <a class={`nav-link text-light${inPath(item) ? ' active' : ''}`} href={item.link}>
+                    {item.label}
+                  </a>
+                </li>
+              )
             ))}
           </ul>
           <div class="mt-auto mb-3"></div>
