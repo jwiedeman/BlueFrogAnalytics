@@ -12,7 +12,7 @@ const mainClass = fluid ? 'container-fluid' : 'container';
   <head>
     <BaseHead title={title} description={description} />
   </head>
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <CustomHeader />
     <main id="main-content" class={`bx--content ${mainClass}`}>
       <slot />
