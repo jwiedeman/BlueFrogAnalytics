@@ -85,20 +85,19 @@ export default function remarkGlossaryLinks() {
     }
   }
   return (tree, file) => {
-    if (!file?.path) {
-      return;
-    }
-    const filePath = file.path.split(path.sep).join(path.posix.sep);
+    const filePath = file?.path
+      ? file.path.split(path.sep).join(path.posix.sep)
+      : '';
 
     // Skip main site pages located under content/pages
-    if (filePath.includes(path.posix.join('content', 'pages'))) {
+    if (filePath && filePath.includes(path.posix.join('content', 'pages'))) {
       return;
     }
 
     // Process docs and blog posts only
     const isDoc = filePath.includes(path.posix.join('content', 'docs'));
     const isBlog = filePath.includes(path.posix.join('content', 'blog'));
-    if (!isDoc && !isBlog) {
+    if (filePath && !isDoc && !isBlog) {
       return;
     }
 
