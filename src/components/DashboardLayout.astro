@@ -33,7 +33,7 @@ function isActive(item) {
   </head>
   <body class="d-flex flex-column min-vh-100">
     <CustomHeader />
-    <div class="container-fluid flex-grow-1">
+    <div class="dashboard-container container-fluid flex-grow-1">
       <div class="row">
         <nav class="col-md-2 d-none d-md-block bg-dark dashboard-side-nav">
           <ul class="nav flex-column pt-3">
@@ -55,6 +55,6 @@ function isActive(item) {
 </html>
 <style>
 .dashboard-side-nav {
-  min-height: calc(100vh - var(--header-height) - var(--content-gap));
+  min-height: calc(100vh - var(--header-height));
 }
 </style>
