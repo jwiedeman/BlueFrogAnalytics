@@ -146,5 +146,29 @@ app.get('/api/profile', authMiddleware, async (req, res) => {
   }
 });
 
+app.post('/api/seo-audit', authMiddleware, async (req, res) => {
+  const { url } = req.body;
+  if (typeof url !== 'string') {
+    return res.status(400).json({ error: 'Invalid URL' });
+  }
+  try {
+    const { default: lighthouse } = await import('lighthouse');
+    const chromeLauncher = await import('chrome-launcher');
+    const chrome = await chromeLauncher.launch({ chromeFlags: ['--headless'] });
+    const options = {
+      port: chrome.port,
+      output: 'json',
+      logLevel: 'info',
+      onlyCategories: ['seo']
+    };
+    const runnerResult = await lighthouse(url, options);
+    await chrome.kill();
+    res.json(runnerResult.lhr);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Lighthouse error' });
+  }
+});
+
 const port = process.env.PORT || 3001;
 app.listen(port, () => console.log('Profile server running on port', port));
