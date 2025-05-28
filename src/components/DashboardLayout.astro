@@ -37,7 +37,7 @@ function isActive(item) {
     <CustomHeader />
     <div class="dashboard-container container-fluid flex-grow-1">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-dark dashboard-side-nav d-flex flex-column justify-content-between">
+        <nav class="col-md-2 d-none d-md-block bg-dark dashboard-side-nav d-flex flex-column">
           <ul class="nav flex-column pt-3">
             {mainNav.map(item => (
               <li class="nav-item" key={item.link}>
@@ -45,7 +45,7 @@ function isActive(item) {
               </li>
             ))}
           </ul>
-          <ul class="nav flex-column mb-3">
+          <ul class="nav flex-column mb-3 mt-auto">
             {bottomNav.map(item => (
               <li class="nav-item" key={item.link}>
                 <a class={`nav-link text-light${isActive(item) ? ' active' : ''}`} href={item.link}>{item.label}</a>
