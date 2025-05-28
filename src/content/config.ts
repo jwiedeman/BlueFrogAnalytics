@@ -1,4 +1,8 @@
 import { z, defineCollection } from 'astro:content';
+import remarkGlossaryLinks from '../plugins/remark-glossary-links.js';
+import remarkMath from 'remark-math';
+import remarkMermaid from 'remark-mermaidjs';
+import rehypeKatex from 'rehype-katex';
 
 export const collections = {
   blog: defineCollection({
@@ -13,5 +17,12 @@ export const collections = {
       tags: z.array(z.string()).default([]),
       published: z.boolean().default(true),
     })
+  }),
+  docs: defineCollection({
+    type: 'content',
+    markdown: {
+      remarkPlugins: [remarkGlossaryLinks, remarkMath, remarkMermaid],
+      rehypePlugins: [rehypeKatex],
+    }
   })
 };
