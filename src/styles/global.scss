@@ -370,6 +370,12 @@ body.dark-mode #side-nav .bx--side-nav__link {
   font-weight: 600;
 }
 
+.sidebar-right a.active {
+  color: var(--sl-color-primary);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
 // Subtle animation for service cards
 .service-card {
   transition: transform 0.2s ease-in-out;
