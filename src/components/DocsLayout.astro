@@ -376,6 +376,7 @@ for (const [file, mod] of Object.entries(blogInfo)) {
           const headings = tocLinks
             .map(a => document.getElementById(a.getAttribute('href').slice(1)))
             .filter(Boolean);
+          const sidebar = document.querySelector('.sidebar-right');
           const highlight = () => {
             let active;
             const offset = window.scrollY + 80;
@@ -385,7 +386,7 @@ for (const [file, mod] of Object.entries(blogInfo)) {
               }
             }
             tocLinks.forEach(link => link.classList.toggle('active', link === active));
-            if (active) {
+            if (active && sidebar && sidebar.scrollHeight > sidebar.clientHeight) {
               active.scrollIntoView({ block: 'nearest' });
             }
           };
