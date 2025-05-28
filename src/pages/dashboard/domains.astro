@@ -3,12 +3,76 @@ import DashboardLayout from '../../components/DashboardLayout.astro';
 
 const title = 'Domains';
 const description = 'Manage your monitored domains.';
+const domainList = ['example.com', 'testsite.org'];
 ---
 <DashboardLayout title={title} description={description}>
-  <section class="container py-5 text-center">
-    <h1>Domains</h1>
-    <p>Domain management coming soon.</p>
+  <section class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="mb-0">Domains</h1>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#domain-modal">Add Domain</button>
+    </div>
+    <div class="accordion" id="domainAccordion">
+      {domainList.map((name, i) => (
+        <div class="accordion-item" key={name}>
+          <h2 class="accordion-header" id={`domain-heading-${i}`}>
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target={`#domain-body-${i}`}
+              aria-expanded="false"
+              aria-controls={`domain-body-${i}`}
+            >
+              {name}
+            </button>
+          </h2>
+          <div
+            id={`domain-body-${i}`}
+            class="accordion-collapse collapse"
+            data-bs-parent="#domainAccordion"
+          >
+            <div class="accordion-body">
+              <button class="btn btn-sm btn-secondary me-2">Edit</button>
+              <button class="btn btn-sm btn-danger">Delete</button>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
   </section>
+
+  <div class="modal fade" id="domain-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content bg-dark text-light">
+        <form id="domain-form">
+          <div class="modal-header border-0">
+            <h5 class="modal-title">Add Domain</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="domain-input" class="form-label">Domain</label>
+              <input id="domain-input" type="text" class="form-control" placeholder="example.com" required />
+            </div>
+            <div class="mb-3">
+              <label for="rate-limit" class="form-label">Max Workers Per Second</label>
+              <input id="rate-limit" type="number" class="form-control" min="1" placeholder="1-50+" />
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="consent-check" required />
+              <label class="form-check-label" for="consent-check">
+                I have permission to crawl and test this domain.
+              </label>
+            </div>
+          </div>
+          <div class="modal-footer border-0">
+            <button type="submit" class="btn btn-primary w-100">Add Domain</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <script type="module">
     document.addEventListener('DOMContentLoaded', () => {
       const init = () => {
