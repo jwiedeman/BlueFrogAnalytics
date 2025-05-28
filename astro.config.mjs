@@ -6,7 +6,6 @@ import path from 'path';
 import sitemap from '@astrojs/sitemap';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
-import remarkMermaid from 'remark-mermaidjs'
 import mdx from '@astrojs/mdx';
 import remarkGlossaryLinks from './src/plugins/remark-glossary-links.js';
 // Removed expressive-code integration to simplify dependencies
@@ -87,7 +86,7 @@ export default defineConfig({
     ],
   },
   markdown: {
-    remarkPlugins: [remarkMath, remarkMermaid, remarkGlossaryLinks],
+    remarkPlugins: [remarkMath, remarkGlossaryLinks],
     rehypePlugins: [rehypeKatex],
   },
 
@@ -95,7 +94,7 @@ export default defineConfig({
     // MDX for .md/.mdx with math
     mdx({
       extension: ['.md', '.mdx'],
-      remarkPlugins: [remarkMath, remarkMermaid, remarkGlossaryLinks],
+      remarkPlugins: [remarkMath, remarkGlossaryLinks],
       rehypePlugins: [rehypeKatex],
     }),
     // Sitemap generation
