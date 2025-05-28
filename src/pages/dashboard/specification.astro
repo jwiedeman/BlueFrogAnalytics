@@ -1,0 +1,28 @@
+---
+import DashboardLayout from '../../components/DashboardLayout.astro';
+
+const title = 'Specification';
+const description = 'Project specifications and docs.';
+---
+<DashboardLayout title={title} description={description}>
+  <section class="container py-5 text-center">
+    <h1>Specification</h1>
+    <p>Specifications will be provided here.</p>
+  </section>
+  <script type="module">
+    document.addEventListener('DOMContentLoaded', () => {
+      const init = () => {
+        window.onAuthStateChanged(window.firebaseAuth, user => {
+          if (!user) {
+            window.location.href = '/login';
+          }
+        });
+      };
+      if (window.firebaseAuth) {
+        init();
+      } else {
+        document.addEventListener('firebase-init', init, { once: true });
+      }
+    });
+  </script>
+</DashboardLayout>

@@ -1,0 +1,28 @@
+---
+import DashboardLayout from '../../components/DashboardLayout.astro';
+
+const title = 'Performance';
+const description = 'View performance metrics.';
+---
+<DashboardLayout title={title} description={description}>
+  <section class="container py-5 text-center">
+    <h1>Performance</h1>
+    <p>Performance data will appear here.</p>
+  </section>
+  <script type="module">
+    document.addEventListener('DOMContentLoaded', () => {
+      const init = () => {
+        window.onAuthStateChanged(window.firebaseAuth, user => {
+          if (!user) {
+            window.location.href = '/login';
+          }
+        });
+      };
+      if (window.firebaseAuth) {
+        init();
+      } else {
+        document.addEventListener('firebase-init', init, { once: true });
+      }
+    });
+  </script>
+</DashboardLayout>
