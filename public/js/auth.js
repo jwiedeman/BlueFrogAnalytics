@@ -120,19 +120,29 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
+  const logoutLink = document.getElementById('logout-link');
+  if (logoutLink) {
+    logoutLink.addEventListener('click', async e => {
+      e.preventDefault();
+      window.loggingOut = true;
+      await window.authSignOut();
+      window.location.href = '/';
+    });
+  }
+
   onAuthStateChanged(auth, user => {
     const loginBtn = document.getElementById('login-btn');
-    const dashBtn = document.getElementById('dash-btn');
+    const profileMenu = document.getElementById('profile-menu');
     const dashNav = document.getElementById('dashboard-nav');
     const onDashboard = window.location.pathname.startsWith('/dashboard');
     document.body.classList.toggle('dark-mode', !!user && onDashboard);
-    if (loginBtn && dashBtn) {
+    if (loginBtn && profileMenu) {
       if (user) {
         loginBtn.classList.add('d-none');
-        dashBtn.classList.remove('d-none');
+        profileMenu.classList.remove('d-none');
       } else {
         loginBtn.classList.remove('d-none');
-        dashBtn.classList.add('d-none');
+        profileMenu.classList.add('d-none');
       }
     }
     if (dashNav) {
