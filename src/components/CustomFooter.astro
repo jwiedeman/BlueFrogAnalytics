@@ -3,19 +3,35 @@
 const year = new Date().getFullYear();
 const isDashboard = Astro.url.pathname.startsWith('/dashboard');
 ---
-<footer class={`py-4 mt-5 ${isDashboard ? 'bg-dark text-light' : 'bg-light text-dark'}`}>
-  <div class="container text-center">
-    <p class="copy">© {year} Blue Frog Analytics</p>
-    <nav class="d-flex justify-content-center gap-3 flex-wrap">
-      <a href="/about">About</a>
-      <a href="/privacy-policy">Privacy Policy</a>
-      <a href="/terms-of-service">Terms of Service</a>
-      <a href="/contact">Contact</a>
-    </nav>
-    <!-- Social icons removed -->
+<footer class={`mt-5 py-5 ${isDashboard ? 'bg-dark text-light' : 'bg-light text-dark'}`}>
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-md-4 text-center text-md-start">
+        <h5 class="fw-bold mb-2">Blue Frog Analytics</h5>
+        <p class="copy mb-0">© {year} Blue Frog Analytics. All rights reserved.</p>
+      </div>
+      <div class="col-md-4 text-center">
+        <h5 class="fw-bold mb-2">Navigate</h5>
+        <ul class="list-unstyled mb-0">
+          <li><a class="text-decoration-none" href="/about">About</a></li>
+          <li><a class="text-decoration-none" href="/privacy-policy">Privacy Policy</a></li>
+          <li><a class="text-decoration-none" href="/terms-of-service">Terms of Service</a></li>
+          <li><a class="text-decoration-none" href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 text-center text-md-end">
+        <h5 class="fw-bold mb-2">Get in Touch</h5>
+        <p class="mb-0"><a class="text-decoration-none" href="mailto:info@bluefroganalytics.com">info@bluefroganalytics.com</a></p>
+      </div>
+    </div>
   </div>
 </footer>
 
 <style>
-  .copy { margin: 0; }
+  .copy {
+    margin-bottom: 0.25rem;
+  }
+  footer ul li a {
+    color: inherit;
+  }
 </style>

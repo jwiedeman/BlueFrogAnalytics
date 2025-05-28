@@ -23,7 +23,7 @@ body {
   overflow-x: hidden;
   /* Offset pages below the fixed header */
   padding-top: var(--header-height);
-  padding-bottom: 1rem;
+  padding-bottom: 0;
 }
 
 body.dark-mode {
