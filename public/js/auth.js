@@ -20,8 +20,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  if (darkPref === 'true') {
+  const onDashboard = window.location.pathname.startsWith('/dashboard');
+  if (darkPref === 'true' && onDashboard) {
     document.body.classList.add('dark-mode');
+    document.documentElement.classList.add('dark-mode');
   }
 
   if (!window.firebaseConfig) {
@@ -164,6 +166,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     localStorage.setItem('bfaLoggedIn', user ? 'true' : 'false');
     localStorage.setItem('bfaDarkMode', useDark ? 'true' : 'false');
     document.body.classList.toggle('dark-mode', useDark);
+    document.documentElement.classList.toggle('dark-mode', useDark);
     if (loginBtn && profileMenu) {
       if (user) {
         loginBtn.classList.add('d-none');
