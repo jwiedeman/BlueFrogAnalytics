@@ -40,6 +40,73 @@ function inPath(item) {
   </head>
   <body class="d-flex flex-column min-vh-100">
     <CustomHeader />
+    <div class="d-md-none p-2">
+      <button
+        class="btn btn-primary"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#dashOffcanvas"
+        aria-controls="dashOffcanvas"
+      >
+        Menu
+      </button>
+    </div>
+    <div
+      class="offcanvas offcanvas-start"
+      tabindex="-1"
+      id="dashOffcanvas"
+      aria-labelledby="dashOffcanvasLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="dashOffcanvasLabel">Dashboard Menu</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="dashboard-side-nav offcanvas-body p-0">
+        <ul class="nav flex-column pt-3">
+          {mainNav.map((item, i) => (
+            item.children ? (
+              <li class="nav-item" key={`ocp-${i}`}>
+                <button
+                  class={`btn btn-toggle text-start w-100${inPath(item) ? '' : ' collapsed'}`}
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target={`#ocdash-${i}`}
+                  aria-expanded={inPath(item) ? 'true' : 'false'}
+                >
+                  {item.label}
+                </button>
+                <div class={`collapse${inPath(item) ? ' show' : ''}`} id={`ocdash-${i}`}>
+                  <ul class="btn-toggle-nav list-unstyled">
+                    {item.children.map((child, j) => (
+                      <li class="nav-item" key={`occ-${i}-${j}`}>
+                        <a class={`nav-link text-dark${inPath(child) ? ' active' : ''}`} href={child.link} data-bs-dismiss="offcanvas">
+                          {child.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            ) : (
+              <li class="nav-item" key={`ocp-${i}`}>
+                <a
+                  class={`nav-link text-dark${inPath(item) ? ' active' : ''}`}
+                  href={item.link}
+                  data-bs-dismiss="offcanvas"
+                >
+                  {item.label}
+                </a>
+              </li>
+            )
+          ))}
+        </ul>
+      </div>
+    </div>
     <div class="dashboard-container container-fluid flex-grow-1">
       <div class="row">
         <nav class="col-md-2 d-none d-md-block bg-dark dashboard-side-nav d-flex flex-column">
