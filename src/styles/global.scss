@@ -125,6 +125,18 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
     display: none;
   }
 }
+
+.blog-main {
+  max-width: var(--sl-content-width);
+  margin: 0 auto;
+}
+
+.blog-main .blog-article {
+  background: var(--bs-body-bg);
+  border: 1px solid #e0e0e0;
+  border-radius: 0.25rem;
+  padding: 1rem;
+}
 // Search input in sidebars
 .sidebar-left input[type="search"] {
   width: 100%;

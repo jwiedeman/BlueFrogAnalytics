@@ -24,8 +24,7 @@ applyGitDates(post);
 const pageTitle = post.data.title;
 const pageDesc = post.data.description ?? '';
 
-const { Content } = await post.render();
-const headings = post.getHeadings?.() ?? [];
+const { Content, headings } = await post.render();
 
 const words = post.body.split(/\s+/g).length;
 const readingTime = Math.max(1, Math.ceil(words / 200));
