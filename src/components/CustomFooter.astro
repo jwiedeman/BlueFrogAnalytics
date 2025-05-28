@@ -52,7 +52,10 @@ const isDashboard = Astro.url.pathname.startsWith('/dashboard');
       </div>
     </div>
     <div class="text-center mt-4">
-      <small class="copy">🇺🇸 United States | © {year} Blue Frog Analytics. All rights reserved.</small>
+      <small class="copy">
+        <img src="/us.svg" alt="United States flag" class="flag-icon me-1 align-text-bottom" />
+        United States | © {year} Blue Frog Analytics. All rights reserved.
+      </small>
     </div>
   </div>
 </footer>
@@ -60,6 +63,10 @@ const isDashboard = Astro.url.pathname.startsWith('/dashboard');
 <style>
   .copy {
     margin-bottom: 0.25rem;
+  }
+  .flag-icon {
+    height: 1em;
+    width: auto;
   }
   footer ul li a {
     color: inherit;
