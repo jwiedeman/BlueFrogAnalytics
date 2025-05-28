@@ -12,7 +12,7 @@ This glossary provides definitions for important terms related to Blue Frog Anal
 
 ### A/B Testing
 
-A method of comparing two versions of a webpage, ad, or email to learn which drives better results.\
+A method of comparing two versions of a webpage, ad, or email to learn which drives better results.
 **Common arenas:** CRO, PPC, email. **Typical metrics:** click-through rate (CTR), conversion rate, bounce rate.
 
 ### Abandonment Rate
@@ -25,7 +25,7 @@ The portion of a page visible without scrolling. **SEO/UX tip:** park your prima
 
 ### Accelerated Mobile Pages (AMP)
 
-A Google-backed framework that strips bloaty markup for lightning-fast mobile loads.\
+A Google-backed framework that strips bloaty markup for lightning-fast mobile loads.
 **Pros:** speed, SERP carousel eligibility. **Cons:** design limits, Google cache dependency.
 
 ### Accessibility
@@ -214,7 +214,7 @@ The server-side logic, databases, and infrastructure that power a site or app---
 
 ### Backlink
 
-An external hyperlink pointing to your site.\
+An external hyperlink pointing to your site.
 **Types:** *dofollow* (passes equity) vs. *nofollow* (doesn't). Aim for contextual, high-authority sources; dodge spam networks.
 
 ### Backpropagation
