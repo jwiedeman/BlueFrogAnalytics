@@ -509,3 +509,11 @@ body.dark-mode .dashboard-side-nav,
 body.dark-mode .dropdown-menu {
   background-color: #000 !important;
 }
+
+/* Keep active nav links blue on dashboard */
+body.dark-mode .navbar-dark {
+  --bs-navbar-active-color: var(--sl-color-primary);
+}
+body.dark-mode .dashboard-side-nav .nav-link.active {
+  color: var(--sl-color-primary) !important;
+}
