@@ -1,4 +1,31 @@
 document.addEventListener('DOMContentLoaded', async () => {
+  const saved = localStorage.getItem('bfaLoggedIn');
+  const darkPref = localStorage.getItem('bfaDarkMode');
+  if (saved !== null) {
+    const loggedIn = saved === 'true';
+    const loginBtn = document.getElementById('login-btn');
+    const profileMenu = document.getElementById('profile-menu');
+    const dashNav = document.getElementById('dashboard-nav');
+    if (loginBtn && profileMenu) {
+      if (loggedIn) {
+        loginBtn.classList.add('d-none');
+        profileMenu.classList.remove('d-none');
+      } else {
+        loginBtn.classList.remove('d-none');
+        profileMenu.classList.add('d-none');
+      }
+    }
+    if (dashNav) {
+      dashNav.classList.toggle('d-none', !loggedIn);
+    }
+  }
+
+  const onDashboard = window.location.pathname.startsWith('/dashboard');
+  if (darkPref === 'true' && onDashboard) {
+    document.body.classList.add('dark-mode');
+    document.documentElement.classList.add('dark-mode');
+  }
+
   if (!window.firebaseConfig) {
     console.warn('Firebase config not found');
     return;
@@ -120,19 +147,33 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
+  const logoutLink = document.getElementById('logout-link');
+  if (logoutLink) {
+    logoutLink.addEventListener('click', async e => {
+      e.preventDefault();
+      window.loggingOut = true;
+      await window.authSignOut();
+      window.location.href = '/';
+    });
+  }
+
   onAuthStateChanged(auth, user => {
     const loginBtn = document.getElementById('login-btn');
-    const dashBtn = document.getElementById('dash-btn');
+    const profileMenu = document.getElementById('profile-menu');
     const dashNav = document.getElementById('dashboard-nav');
     const onDashboard = window.location.pathname.startsWith('/dashboard');
-    document.body.classList.toggle('dark-mode', !!user && onDashboard);
-    if (loginBtn && dashBtn) {
+    const useDark = !!user && onDashboard;
+    localStorage.setItem('bfaLoggedIn', user ? 'true' : 'false');
+    localStorage.setItem('bfaDarkMode', useDark ? 'true' : 'false');
+    document.body.classList.toggle('dark-mode', useDark);
+    document.documentElement.classList.toggle('dark-mode', useDark);
+    if (loginBtn && profileMenu) {
       if (user) {
         loginBtn.classList.add('d-none');
-        dashBtn.classList.remove('d-none');
+        profileMenu.classList.remove('d-none');
       } else {
         loginBtn.classList.remove('d-none');
-        dashBtn.classList.add('d-none');
+        profileMenu.classList.add('d-none');
       }
     }
     if (dashNav) {

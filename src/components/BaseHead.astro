@@ -6,6 +6,18 @@ import favicon32 from '../assets/favicon-32x32.png';
 const { title = 'Blue Frog Analytics', description = '', url } = Astro.props;
 ---
 <!-- BaseHead: injects global head tags (Bootstrap CSS, fonts, scripts) -->
+<script is:inline>
+  try {
+    const darkPref = localStorage.getItem('bfaDarkMode') === 'true';
+    const onDashboard = window.location.pathname.startsWith('/dashboard');
+    if (darkPref && onDashboard) {
+      document.documentElement.classList.add('dark-mode');
+      document.addEventListener('DOMContentLoaded', () => {
+        document.body.classList.add('dark-mode');
+      });
+    }
+  } catch (e) {}
+</script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta

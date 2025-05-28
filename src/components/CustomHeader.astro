@@ -58,13 +58,24 @@ function isActive(item) {
       >
         Client Login
       </a>
-      <a
-        id="dash-btn"
-        class={`btn ${isDashboard ? 'btn-outline-light' : 'btn-outline-primary'} ms-lg-2 d-none`}
-        href="/dashboard"
-      >
-        Dashboard
-      </a>
+      <div id="profile-menu" class="dropdown ms-lg-2 d-none">
+        <a
+          class={`btn dropdown-toggle ${isDashboard ? 'btn-outline-light' : 'btn-outline-primary'}`}
+          href="#"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Profile
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="/dashboard/profile">Profile</a></li>
+          <li><a class="dropdown-item" href="/dashboard/settings">Settings</a></li>
+          <li><a class="dropdown-item" href="/dashboard/billing">Billing</a></li>
+          <li><hr class="dropdown-divider" /></li>
+          <li><a id="logout-link" class="dropdown-item" href="#">Logout</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>
@@ -87,3 +98,24 @@ function isActive(item) {
     --bs-navbar-brand-hover-color: var(--sl-color-primary);
   }
 </style>
+<script is:inline>
+  const saved = localStorage.getItem('bfaLoggedIn');
+  if (saved !== null) {
+    const loggedIn = saved === 'true';
+    const loginBtn = document.getElementById('login-btn');
+    const profileMenu = document.getElementById('profile-menu');
+    const dashNav = document.getElementById('dashboard-nav');
+    if (loginBtn && profileMenu) {
+      if (loggedIn) {
+        loginBtn.classList.add('d-none');
+        profileMenu.classList.remove('d-none');
+      } else {
+        loginBtn.classList.remove('d-none');
+        profileMenu.classList.add('d-none');
+      }
+    }
+    if (dashNav) {
+      dashNav.classList.toggle('d-none', !loggedIn);
+    }
+  }
+</script>

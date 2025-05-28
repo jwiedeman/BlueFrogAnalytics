@@ -6,10 +6,14 @@
   --sl-color-primary: #0d6efd;
   --sl-color-accent: #88a5c9;
   --sl-border-radius: 0;
+  --bs-border-radius: 0;
+  --bs-border-radius-sm: 0;
+  --bs-border-radius-lg: 0;
   --bs-primary: #0d6efd;
   --bs-body-bg: #ffffff;
   --bs-body-color: #212529;
   --header-height: 3.5rem;
+  --page-gap: 7vh;
 }
 
 /* Global page body styles */
@@ -22,7 +26,14 @@ body {
   overflow-x: hidden;
   /* Offset pages below the fixed header */
   padding-top: var(--header-height);
-  padding-bottom: 1rem;
+  padding-bottom: 0;
+}
+
+html.dark-mode {
+  --bs-body-bg: #121212;
+  --bs-body-color: #f5f5f5;
+  background: var(--bs-body-bg);
+  color: var(--bs-body-color);
 }
 
 body.dark-mode {
@@ -30,6 +41,14 @@ body.dark-mode {
   --bs-body-color: #f5f5f5;
   background: var(--bs-body-bg);
   color: var(--bs-body-color);
+}
+
+main#main-content {
+  margin-top: var(--page-gap);
+}
+
+.dashboard-container #main-content {
+  margin-top: 1rem;
 }
 
 /* Consistent horizontal rule styling */
@@ -47,7 +66,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Ensure anchors linked via headings are not hidden behind the fixed nav */
 h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
-  scroll-margin-top: calc(var(--header-height) + 0.5rem);
+  scroll-margin-top: calc(var(--header-height) + 2rem + 0.5rem);
 }
 
 
@@ -64,7 +83,7 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
   grid-template-columns: 16rem 1fr 16rem;
   gap: 2.5rem;
   max-width: var(--sl-content-width);
-  margin: 1rem auto 0;
+  margin: 2rem auto 0;
   padding: 1rem 1rem 2rem;
 }
 
@@ -80,9 +99,10 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
 .sidebar-left,
 .sidebar-right {
   position: sticky;
-  top: var(--header-height);
-  max-height: calc(100vh - var(--header-height));
+  top: calc(var(--header-height) + 2rem);
+  max-height: calc(100vh - var(--header-height) - 2rem);
   overflow-y: auto;
+  margin-top: var(--page-gap);
 }
 .sidebar-left {
   border-right: 1px solid #e0e0e0;
@@ -106,6 +126,42 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
 .sidebar-right li[data-depth='4'] { margin-left: 2rem; }
 .sidebar-right li[data-depth='5'] { margin-left: 3rem; }
 .sidebar-right li[data-depth='6'] { margin-left: 4rem; }
+
+/* Blog post layout */
+.blog-post-container {
+  display: grid;
+  grid-template-columns: 1fr 16rem;
+  gap: 2.5rem;
+  max-width: var(--sl-content-width);
+  margin: 2rem auto 0;
+  padding: 1rem 1rem 2rem;
+}
+
+@media (max-width: 767px) {
+  .blog-post-container {
+    grid-template-columns: 1fr;
+  }
+  .blog-post-container .sidebar-right {
+    display: none;
+  }
+}
+
+.blog-main {
+  max-width: var(--sl-content-width);
+  margin: 0 auto;
+}
+
+.blog-main .blog-article {
+  background: var(--bs-body-bg);
+  border: 1px solid #e0e0e0;
+  border-radius: 0;
+  padding: 1rem;
+}
+
+/* Dashboard layout */
+.dashboard-container {
+  margin-top: 0;
+}
 // Search input in sidebars
 .sidebar-left input[type="search"] {
   width: 100%;
@@ -128,7 +184,7 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
   overflow: hidden;
   min-height: 40vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
@@ -229,7 +285,7 @@ body.dark-mode .bx--list-box__menu {
 }
 
 // Constrain page sections while allowing full-width hero sections
-main#main-content > :not(.container-fluid) {
+main#main-content > :not(.container-fluid):not(.hero-section) {
   max-width: var(--sl-content-width);
   margin: 0 auto;
   padding-bottom: 1.2rem;
@@ -339,6 +395,12 @@ body.dark-mode #side-nav .bx--side-nav__link {
   font-weight: 600;
 }
 
+.sidebar-right a.active {
+  color: var(--sl-color-primary);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
 // Subtle animation for service cards
 .service-card {
   transition: transform 0.2s ease-in-out;
@@ -438,4 +500,12 @@ body.dark-mode .bx--dropdown-item > .bx--dropdown-link,
 body.dark-mode .bx--list-box__menu-item,
 body.dark-mode #side-nav .bx--side-nav__link {
   color: #f5f5f5;
+}
+
+/* Dashboard navs should be true black in dark mode */
+body.dark-mode .navbar,
+body.dark-mode #mainNav,
+body.dark-mode .dashboard-side-nav,
+body.dark-mode .dropdown-menu {
+  background-color: #000 !important;
 }

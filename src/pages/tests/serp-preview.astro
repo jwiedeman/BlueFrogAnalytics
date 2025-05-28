@@ -1,0 +1,7 @@
+---
+import DocLayout from '../../components/DocLayout.astro';
+import PageContent, { frontmatter as serpFm } from '../../content/pages/Tests/serp-preview.mdx';
+---
+<DocLayout title={serpFm.title} description={serpFm.description}>
+  <PageContent />
+</DocLayout>

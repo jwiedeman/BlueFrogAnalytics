@@ -1,18 +1,34 @@
 ---
 const { post } = Astro.props;
 const url = `/blog/${post.slug}`;
+const words = post.body.split(/\s+/g).length;
+const readingTime = Math.max(1, Math.ceil(words / 200));
+
+function slugify(str) {
+  return String(str)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
 ---
 <article class="card blog-card border-0 shadow-sm h-100" data-tags={(post.data.tags || []).join(' ')}>
   <div class="card-body">
     <h3 class="card-title h5 fw-semibold">
       <a href={url} class="stretched-link text-decoration-none">{post.data.title}</a>
     </h3>
-    {post.data.pubDate && (
+    {post.data.originalPubDate && (
       <p class="card-subtitle mb-2">
-        <small class="text-muted">{post.data.pubDate.toLocaleDateString()}</small>
+        <small class="text-muted">
+          {post.data.author ? (
+            <>
+              <a href={`/blog/authors/${slugify(post.data.author)}`} class="text-decoration-none">{post.data.author}</a>{' '}•{' '}
+            </>
+          ) : ''}
+          {post.data.originalPubDate.toLocaleDateString()} • {readingTime} min read
+        </small>
       </p>
     )}
-    {post.data.updatedDate && post.data.updatedDate.getTime() !== post.data.pubDate?.getTime() ? (
+    {post.data.updatedDate && post.data.updatedDate.getTime() !== post.data.originalPubDate?.getTime() ? (
       <p class="card-subtitle mb-2">
         <small class="text-muted">Updated {post.data.updatedDate.toLocaleDateString()}</small>
       </p>

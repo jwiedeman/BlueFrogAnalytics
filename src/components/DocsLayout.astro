@@ -2,6 +2,7 @@
 import BaseHead from './BaseHead.astro';
 import CustomHeader from './CustomHeader.astro';
 import CustomFooter from './CustomFooter.astro';
+import FirebaseScripts from './FirebaseScripts.astro';
 
 // Receive headings from page content
 const { headings, title, description } = Astro.props;
@@ -9,8 +10,6 @@ const { headings, title, description } = Astro.props;
 // Build a nested tree structure from docs content
 const modules = import.meta.glob('../content/docs/**/*.{md,mdx}', { eager: true });
 const docsRaw = import.meta.glob('../content/docs/**/*.{md,mdx}', { eager: true, as: 'raw' });
-const blogInfo = import.meta.glob('../content/blog/**/*.{md,mdx}', { eager: true });
-const blogRaw = import.meta.glob('../content/blog/**/*.{md,mdx}', { eager: true, as: 'raw' });
 function buildTree() {
   const tree = [];
   for (const [filePath, mod] of Object.entries(modules)) {
@@ -73,15 +72,6 @@ for (const [file, mod] of Object.entries(modules)) {
     tags: mod.frontmatter?.tags || [],
     body: docsRaw[file],
     url: '/' + rawKey.toLowerCase() + '/',
-  });
-}
-for (const [file, mod] of Object.entries(blogInfo)) {
-  const slug = file.replace('../content/blog/', '').replace(/\.(md|mdx)$/, '');
-  searchIndex.push({
-    title: mod.frontmatter?.title || '',
-    tags: mod.frontmatter?.tags || [],
-    body: blogRaw[file],
-    url: '/blog/' + slug.toLowerCase() + '/',
   });
 }
 
@@ -183,6 +173,7 @@ for (const [file, mod] of Object.entries(blogInfo)) {
       </div>
     </div>
     <CustomFooter />
+    <FirebaseScripts />
     <!-- Docs search logic -->
     <script client:load is:inline define:vars={{ searchIndex }}>
       const onReady = () => {
@@ -367,7 +358,30 @@ for (const [file, mod] of Object.entries(blogInfo)) {
       }
 
       scrollToHash();
-      window.addEventListener('hashchange', scrollToHash);
+        window.addEventListener('hashchange', scrollToHash);
+
+        const tocLinks = Array.from(document.querySelectorAll('.sidebar-right a'));
+        if (tocLinks.length) {
+          const headings = tocLinks
+            .map(a => document.getElementById(a.getAttribute('href').slice(1)))
+            .filter(Boolean);
+          const sidebar = document.querySelector('.sidebar-right');
+          const highlight = () => {
+            let active;
+            const offset = window.scrollY + 80;
+            for (let i = 0; i < headings.length; i++) {
+              if (headings[i].offsetTop <= offset) {
+                active = tocLinks[i];
+              }
+            }
+            tocLinks.forEach(link => link.classList.toggle('active', link === active));
+            if (active && sidebar && sidebar.scrollHeight > sidebar.clientHeight) {
+              active.scrollIntoView({ block: 'nearest' });
+            }
+          };
+          window.addEventListener('scroll', highlight);
+          highlight();
+        }
 
       };
 

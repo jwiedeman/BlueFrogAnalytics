@@ -3,19 +3,65 @@
 const year = new Date().getFullYear();
 const isDashboard = Astro.url.pathname.startsWith('/dashboard');
 ---
-<footer class={`py-4 mt-5 ${isDashboard ? 'bg-dark text-light' : 'bg-light text-dark'}`}>
-  <div class="container text-center">
-    <p class="copy">© {year} Blue Frog Analytics</p>
-    <nav class="d-flex justify-content-center gap-3 flex-wrap">
-      <a href="/about">About</a>
-      <a href="/privacy-policy">Privacy Policy</a>
-      <a href="/terms-of-service">Terms of Service</a>
-      <a href="/contact">Contact</a>
-    </nav>
-    <!-- Social icons removed -->
+<footer class={`mt-5 py-5 ${isDashboard ? 'bg-dark text-light' : 'bg-light text-dark'}`}>
+  <div class="container">
+    <div class="row row-cols-2 row-cols-md-5 gy-4 text-center text-md-start">
+      <div class="col">
+        <h6 class="fw-bold mb-2">Company</h6>
+        <ul class="list-unstyled mb-0">
+          <li><a class="text-decoration-none" href="/about">About Us</a></li>
+          <li><a class="text-decoration-none" href="/services">Services</a></li>
+          <li><a class="text-decoration-none" href="/blog">Blog</a></li>
+          <li><a class="text-decoration-none" href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h6 class="fw-bold mb-2">Resources</h6>
+        <ul class="list-unstyled mb-0">
+          <li><a class="text-decoration-none" href="/membership">Membership</a></li>
+          <li><a class="text-decoration-none" href="/site-feedback">Site Feedback</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h6 class="fw-bold mb-2">Help</h6>
+        <ul class="list-unstyled mb-0">
+          <li><a class="text-decoration-none" href="/discord">Discord</a></li>
+          <li><a class="text-decoration-none" href="/refund-policy">Refund Policy</a></li>
+          <li><a class="text-decoration-none" href="/payment-options">Payment Options</a></li>
+          <li><a class="text-decoration-none" href="/contact">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h6 class="fw-bold mb-2">Promotions</h6>
+        <ul class="list-unstyled mb-0">
+          <li><a class="text-decoration-none" href="/military-veterans">Military / Veterans</a></li>
+          <li><a class="text-decoration-none" href="/birthday">Birthday</a></li>
+          <li><a class="text-decoration-none" href="/educator">Educator</a></li>
+          <li><a class="text-decoration-none" href="/medical-professionals">Medical Professionals</a></li>
+          <li><a class="text-decoration-none" href="/new-business">New Business</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h6 class="fw-bold mb-2">Guides</h6>
+        <ul class="list-unstyled mb-0">
+          <li><a class="text-decoration-none" href="/terms-of-sale">Terms of Sale</a></li>
+          <li><a class="text-decoration-none" href="/terms-of-service">Terms of Use</a></li>
+          <li><a class="text-decoration-none" href="/privacy-policy">Privacy Policy</a></li>
+          <li><a class="text-decoration-none" href="/privacy-choices">Your Privacy Choices</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="text-center mt-4">
+      <small class="copy">🇺🇸 United States | © {year} Blue Frog Analytics. All rights reserved.</small>
+    </div>
   </div>
 </footer>
 
 <style>
-  .copy { margin: 0; }
+  .copy {
+    margin-bottom: 0.25rem;
+  }
+  footer ul li a {
+    color: inherit;
+  }
 </style>

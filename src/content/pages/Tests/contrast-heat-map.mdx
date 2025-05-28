@@ -1,0 +1,28 @@
+---
+title: Accessibility Contrast Heat-Map
+description: Generate a WCAG contrast overlay and screen reader preview.
+template: splash
+---
+
+<div id="contrast-root" class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="text-center mb-4">
+        <h1>Accessibility Contrast Heat-Map</h1>
+        <p>Colour-code contrast issues and preview how a screen reader parses the page.</p>
+      </div>
+      <form id="contrast-form" class="row gy-2 gx-3 align-items-end mb-3">
+        <div class="col-md-8">
+          <label for="contrast-url" class="form-label">Enter URL</label>
+          <input type="url" id="contrast-url" name="url" placeholder="https://example.com" class="form-control" />
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mt-3">Run Test</button>
+        </div>
+      </form>
+      <div id="contrast-results"></div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="/js/contrast-heat-map.js" defer></script>

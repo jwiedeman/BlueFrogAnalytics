@@ -1,8 +1,15 @@
 ---
 import { getCollection, getEntryBySlug } from 'astro:content';
-import BlogLayout from '../../components/BlogLayout.astro';
+import BlogPostLayout from '../../components/BlogPostLayout.astro';
 import BlogPostCard from '../../components/BlogPostCard.astro';
 import { applyGitDates } from '../../utils/git-dates.js';
+
+function slugify(str) {
+  return String(str)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
 
 export async function getStaticPaths() {
   const posts = (await getCollection('blog')).filter(p => p.data.published);
@@ -17,7 +24,7 @@ applyGitDates(post);
 const pageTitle = post.data.title;
 const pageDesc = post.data.description ?? '';
 
-const { Content } = await post.render();
+const { Content, headings } = await post.render();
 
 const words = post.body.split(/\s+/g).length;
 const readingTime = Math.max(1, Math.ceil(words / 200));
@@ -30,7 +37,7 @@ const relatedPosts = allPosts
   .slice(0, 4);
 
 ---
-<BlogLayout title={pageTitle} description={pageDesc}>
+<BlogPostLayout title={pageTitle} description={pageDesc} headings={headings}>
   <article class="blog-article">
     <header class="mb-4 pb-3 border-bottom">
       <div class="container">
@@ -43,10 +50,17 @@ const relatedPosts = allPosts
               </ol>
             </nav>
             <h1 class="display-4">{post.data.title}</h1>
-            {post.data.pubDate && (
-              <p class="text-muted mb-0">{post.data.pubDate.toLocaleDateString()}</p>
+            {post.data.originalPubDate && (
+              <p class="text-muted mb-0">
+                {post.data.author ? (
+                  <>
+                    <a href={`/blog/authors/${slugify(post.data.author)}`} class="text-decoration-none">{post.data.author}</a>{' '}•{' '}
+                  </>
+                ) : ''}
+                {post.data.originalPubDate.toLocaleDateString()} • {readingTime} min read
+              </p>
             )}
-            {post.data.updatedDate && post.data.updatedDate.getTime() !== post.data.pubDate?.getTime() ? (
+            {post.data.updatedDate && post.data.updatedDate.getTime() !== post.data.originalPubDate?.getTime() ? (
               <p class="text-muted">Updated {post.data.updatedDate.toLocaleDateString()}</p>
             ) : null}
           </div>
@@ -93,4 +107,4 @@ const relatedPosts = allPosts
       </div>
     </section>
   ) : null}
-</BlogLayout>
+</BlogPostLayout>

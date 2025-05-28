@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
       input.autocomplete = 'off';
       input.checked = selectedColumns.includes(key);
       const label = document.createElement('label');
-      label.className = 'btn btn-outline-primary btn-sm rounded-pill';
+      label.className = 'btn btn-outline-primary btn-sm';
       label.setAttribute('for', id);
       label.textContent = formatName(key);
       container.appendChild(input);
