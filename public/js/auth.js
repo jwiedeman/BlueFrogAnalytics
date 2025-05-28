@@ -1,4 +1,24 @@
 document.addEventListener('DOMContentLoaded', async () => {
+  const saved = localStorage.getItem('bfaLoggedIn');
+  if (saved !== null) {
+    const loggedIn = saved === 'true';
+    const loginBtn = document.getElementById('login-btn');
+    const profileMenu = document.getElementById('profile-menu');
+    const dashNav = document.getElementById('dashboard-nav');
+    if (loginBtn && profileMenu) {
+      if (loggedIn) {
+        loginBtn.classList.add('d-none');
+        profileMenu.classList.remove('d-none');
+      } else {
+        loginBtn.classList.remove('d-none');
+        profileMenu.classList.add('d-none');
+      }
+    }
+    if (dashNav) {
+      dashNav.classList.toggle('d-none', !loggedIn);
+    }
+  }
+
   if (!window.firebaseConfig) {
     console.warn('Firebase config not found');
     return;
@@ -135,6 +155,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const profileMenu = document.getElementById('profile-menu');
     const dashNav = document.getElementById('dashboard-nav');
     const onDashboard = window.location.pathname.startsWith('/dashboard');
+    localStorage.setItem('bfaLoggedIn', user ? 'true' : 'false');
     document.body.classList.toggle('dark-mode', !!user && onDashboard);
     if (loginBtn && profileMenu) {
       if (user) {
