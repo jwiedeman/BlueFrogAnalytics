@@ -57,6 +57,9 @@ const { title, description, headings = [] } = Astro.props;
               }
             }
             tocLinks.forEach(link => link.classList.toggle('active', link === active));
+            if (active) {
+              active.scrollIntoView({ block: 'nearest' });
+            }
           };
           window.addEventListener('scroll', highlight);
           highlight();
