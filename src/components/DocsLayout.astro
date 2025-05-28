@@ -82,6 +82,17 @@ for (const [file, mod] of Object.entries(modules)) {
   </head>
   <body class="docs-layout d-flex flex-column min-vh-100">
     <CustomHeader isDocs={true} />
+    <div class="d-md-none p-2 text-end">
+      <button
+        class="btn btn-primary"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#docsOffcanvas"
+        aria-controls="docsOffcanvas"
+      >
+        Menu
+      </button>
+    </div>
     <div class="docs-container container-fluid flex-grow-1">
       <aside class="sidebar-left">
         <div class="position-relative mb-3">
@@ -166,6 +177,97 @@ for (const [file, mod] of Object.entries(modules)) {
           </ul>
         </nav>
       </aside>
+    </div>
+    <div
+      class="offcanvas offcanvas-start"
+      tabindex="-1"
+      id="docsOffcanvas"
+      aria-labelledby="docsOffcanvasLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="docsOffcanvasLabel">Docs Menu</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body sidebar-left p-0">
+        <div class="accordion" id="docAccordionMobile">
+          {(() => {
+            function renderNodes(nodes, activeNames, prefix = '') {
+              return nodes.map((node, idx) => {
+                const id = `${prefix}${idx}`;
+                if (node.children?.length) {
+                  const isOpen = activeNames.includes(node.name);
+                  return (
+                    <li class="list-group-item p-0" key={id}>
+                      <button
+                        class={`btn btn-toggle w-100 text-start${isOpen ? '' : ' collapsed'}`}
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target={`#tree-m-${id}`}
+                        aria-expanded={isOpen ? 'true' : 'false'}
+                      >
+                        {node.label}
+                      </button>
+                      <div class={`collapse${isOpen ? ' show' : ''}`} id={`tree-m-${id}`}>
+                        <ul class="btn-toggle-nav list-unstyled">
+                          {renderNodes(node.children, activeNames, `${id}-`)}
+                        </ul>
+                      </div>
+                    </li>
+                  );
+                }
+                const isActive = node.path?.replace(/\/$/, '').toLowerCase() === currentPath;
+                return (
+                  <li class="doc-link-item list-group-item p-0" key={id}>
+                    <a
+                      class={`text-decoration-none d-block ps-4${isActive ? ' doc-active' : ''}`}
+                      href={node.path}
+                      data-bs-dismiss="offcanvas"
+                    >
+                      {node.label}
+                    </a>
+                  </li>
+                );
+              });
+            }
+            const activeNames = breadcrumbNodes.map(n => n.name);
+            return docTree.map((cat, i) => {
+              const activeCat = activeNames[0] === cat.name;
+              return (
+                <div class="accordion-item" key={i}>
+                  <h2 class="accordion-header" id={`m-heading-${i}`}>
+                    <button
+                      class={`accordion-button${activeCat ? '' : ' collapsed'}`}
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target={`#m-acc-${i}`}
+                      aria-expanded={activeCat ? 'true' : 'false'}
+                      aria-controls={`m-acc-${i}`}
+                    >
+                      {cat.label}
+                    </button>
+                  </h2>
+                  <div
+                    id={`m-acc-${i}`}
+                    class={`accordion-collapse collapse${activeCat ? ' show' : ''}`}
+                    data-bs-parent="#docAccordionMobile"
+                  >
+                    <div class="accordion-body p-0">
+                      <ul class="list-group list-group-flush">
+                        {renderNodes(cat.children, activeNames, `${i}-`)}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              );
+            });
+          })()}
+        </div>
+      </div>
     </div>
     <div id="search-panel" class="search-panel d-none">
       <div class="container py-3">
