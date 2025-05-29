@@ -1,1 +1,0 @@
-proceed with migrating the full set of features from the prior project to react please, thank you

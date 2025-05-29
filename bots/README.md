@@ -1,4 +1,3 @@
-# ViperScan
 
 Suite of workers and bots for large scale domain intelligence gathering.
 Each component lives in its own folder and can run independently.
