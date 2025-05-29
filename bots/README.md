@@ -11,6 +11,7 @@ Each component lives in its own folder and can run independently.
 - `WORKER-Enrich_processed_domains` – Python enrichment pipeline with GeoIP and Wappalyzer.
 - `WORKER-DomainStatus` – Go reachability checker.
 - `BOT-Hunter[Rust]` – asynchronous crawler written in Rust.
+- `BOT-Recon_[Py]` – modular reconnaissance harness.
 - `BOT-ripwappalyzer[Js]` – Puppeteer-based tech fingerprinting script.
 - `BOT-wappalyzer[Py]` – Python technology detection using the Wappalyzer library.
 - `BOT-whois-newest-domains[Go]` – pulls newly registered domains from whoisds.com.
