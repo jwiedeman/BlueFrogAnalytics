@@ -19,3 +19,37 @@ package-lock.json
 
 # macOS-specific files
 .DS_Store
+
+
+# Ignore Excel files
+*.xls
+*.xlsx
+*.xlsm
+
+# Ignore log files
+*.log
+
+# Ignore common dependency and build folders
+lib/
+jre/
+output/
+node_modules/
+venv/
+__pycache__/
+dist/
+build/
+*.egg-info/
+
+# Ignore all target directories, even if nested
+**/target/
+
+# Ignore Screaming Frog SEO Spider files
+*.seospider
+unins000.dat
+unins000.exe
+unins000.msg
+ScreamingFrogSEOSpiderCli.l4j.ini
+ScreamingFrogSEOSpiderCli.exe
+ScreamingFrogSEOSpider.l4j.ini
+ScreamingFrogSEOSpider.jar
+ScreamingFrogSEOSpider.exe
