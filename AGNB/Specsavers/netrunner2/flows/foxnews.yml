@@ -1,0 +1,15 @@
+- goto: https://foxnews.com
+
+- screenshot: page1.png
+- assert_request: 'foxnews.com'
+- wait_for_selector: 'body'
+
+- goto: https://foxnews.com/opinion
+- screenshot: page2.png
+- assert_request: 'foxnews.com'
+- wait_for_selector: 'body'
+
+- goto: https://foxnews.com/us
+- screenshot: page3.png
+- assert_request: 'foxnews.com'
+- wait_for_selector: 'body'

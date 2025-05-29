@@ -1,0 +1,2 @@
+cassandra-driver==3.25.0
+gevent==22.10.2

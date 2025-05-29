@@ -1,0 +1,23 @@
+# docker-stack.yml: Sample Docker Swarm stack file for flow-runner
+version: '3.8'
+
+services:
+  flow-runner:
+    image: flow-runner:latest
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    environment:
+      # Path to flow file inside the container (absolute or relative)
+      FLOW: /app/flows/foxnews.yml
+      BROWSER: chromium
+      TIMEOUT: '120000'
+      LOG_LEVEL: info
+      OUTPUT: /app/output
+    volumes:
+      # Bind mount your host directories to these container paths
+      - /absolute/path/to/flows:/app/flows:ro
+      - /absolute/path/to/output:/app/output
+    # Optionally, override command if needed. ENTRYPOINT uses entrypoint.sh by default.

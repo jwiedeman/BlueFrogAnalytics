@@ -1,0 +1,9 @@
+# Ignore git and local files
+.git
+.gitignore
+docker-compose.yml
+.env
+.env.example
+*.md
+vendor/
+bin/

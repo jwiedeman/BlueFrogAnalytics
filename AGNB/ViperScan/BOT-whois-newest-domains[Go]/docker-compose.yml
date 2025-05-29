@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  whois_grabber:
+    image: whois_newest_domains:latest
+    env_file:
+      - .env
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure

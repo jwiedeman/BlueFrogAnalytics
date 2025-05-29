@@ -1,0 +1,64 @@
+Preprompt for Automated Test Runner System
+Overview:
+
+This system is designed to be minimal, modular, and adaptable. The core is main.py, which dynamically discovers and runs test modules located in the tests/ folder. Each test module is a standalone Python file that must expose a callable function named run_test(target). The purpose of each test is to perform a specific check (e.g., sitemap verification, DNS enumeration, SSL certificate validation, etc.) against the provided target and return a string summary of its findings.
+
+How main.py Works:
+
+Dynamic Discovery:
+
+main.py scans the tests/ directory for Python files (files ending with .py).
+
+It automatically adapts to changes—if tests are added or removed, they are included or excluded without requiring changes to main.py.
+
+Test Selection:
+
+Tests can be run individually, as a group, or all at once using command-line flags.
+
+The CLI supports two modes:
+
+Single/Multi-Test Mode: Specify one or more test names (without the .py extension) using the --tests flag.
+
+All Tests Mode: Run every discovered test with the --all flag (or when no specific test is provided).
+
+Test Execution:
+
+For each selected test, main.py uses Python's dynamic module loading (importlib.util) to import the module.
+
+It looks for a run_test(target) function. If present and callable, the function is executed with the provided target.
+
+The output from run_test(target) (or any exception details) is captured as the test’s result.
+
+All results are compiled and written to a local text file (e.g., results.txt).
+
+How to Create a New Test Module:
+
+File Location: Place your new test file in the tests/ folder.
+
+Naming Convention: Use a descriptive name for the file (e.g., test_new_feature.py).
+
+Interface Requirement: The file must contain a function defined as:
+
+python
+Copy
+def run_test(target):
+    """
+    Briefly describe what this test checks.
+    """
+    # Your test logic goes here.
+    return "Your test result summary."
+Return Value: The run_test(target) function should return a string summarizing the test outcome.
+
+Error Handling: Any exceptions in your test should be allowed to propagate; main.py will catch these and log the traceback.
+
+Notes for Assistants:
+
+When assisting with test creation, refer to this structure and pattern.
+
+Ensure consistency in the naming and expected behavior—each test must have a run_test(target) function that accepts a target parameter.
+
+Use the provided stubs as a baseline; enhance or modify them as necessary while keeping the footprint minimal and the design elegant.
+
+If common patterns (e.g., network requests, error handling, concurrency) start repeating, consider suggesting an abstraction (like a utility module) to avoid code duplication.
+
+Goal: With our list of tests, the aim is to build an NSA-level, ultimate scan and recon service that gathers all possible data (e.g., SSL certificate details, DNS records, meta tags, etc.) from each test. Later, the collected data will be post-processed into comprehensive reports, ensuring we capture as much information as possible without engaging in malicious activity.

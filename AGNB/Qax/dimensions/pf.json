@@ -1,0 +1,8 @@
+{
+  "key": "pf",
+  "description": "Platform Flag indicating device or platform.",
+  "operator": "exists",
+  "expected": "1",
+  "pass_msg": "Pass if populated with valid platform indicator.",
+  "fail_msg": "Fail if empty or invalid platform indicator."
+}

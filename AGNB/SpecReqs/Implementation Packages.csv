@@ -1,0 +1,89 @@
+﻿Name,Description,Dependency,Required Events,Required Heartbeat Events,Used by product,Status,Field 8,Evar / Prop Number (from Field 8),Persistence (from Field 8),Description (from Field 8),Context Data Variable (from Field 8),Pages and Screens
+App Lifecycle Events,"This package provides metrics required to track an app's lifecycle events, such as launches, closures, and user engagement over time. Lifecycle data is critical for understanding app usage patterns, retention, and session behavior.
+Adobe allows the attachment of additional data to lifecycle events, which can be collected as a dictionary of values for deeper analysis. 
+
+Ensure compliance with the Globally Required & Conditionally Required Global Dimensions.
+
+iOS Instructions: https://developer.adobe.com/client-sdks/documentation/mobile-core/lifecycle/ios/#collecting-additional-data-with-lifecycle 
+Android Instructions: https://developer.adobe.com/client-sdks/documentation/mobile-core/lifecycle/android/#implementing-global-lifecycle-callbacks:~:text=To%20include%20additional,contains%20context%20data%3A
+
+Note: This is applicable only to iOS, tvOS, Android mobile, Android TV, and Fire TV devices.","Pages / Screens (Minimum Viable),Pages / Screens (Full),Fox X.ID",,,,,,,,,,
+App Backgrounding,"This package supports tracking when an app is sent to the background, enabling accurate measurement of session length and time spent in the app. Adobe’s out-of-the-box lifecycle tracking does not automatically capture app backgrounding events, making this package essential for apps requiring precise session tracking.
+By firing the App Backgrounded event before the app is sent to the background, this package ensures the final hit of a session is recorded accurately.
+Use Case:
+Optimize time-on-app metrics by ensuring proper session closure data is captured.","Pages / Screens (Minimum Viable),Pages / Screens (Full),Fox X.ID",App Backgrounded (event267),,,,,,,,,
+App Installing,"This package tracks app installation events to identify the source of app installs and measure the effectiveness of acquisition campaigns. Adobe’s out-of-the-box lifecycle tracking may not capture installs for all platforms, so this package is critical for platforms requiring explicit installation event tracking.
+Implementation:
+Fire the App Installed event after the app is launched for the first time. This event captures the installation source and acts as the first recorded event of the app.
+Use Case:
+Analyze user behavior and performance based on acquisition sources.","Pages / Screens (Minimum Viable),Pages / Screens (Full),Fox X.ID",,,,,,,,,,
+Fox Profile,"This package provides metrics and dimensions to support tracking user authentication activities, including sign-in, sign-up, and sign-out events.
+Use Case:
+Track user account interactions to measure adoption, usage, and churn within the Fox Profile system.","Pages / Screens (Minimum Viable),Pages / Screens (Full),Fox X.ID","Profile Sign In Completed (Log In Click) (event85),Profile Sign Up Completed (event80),Profile Initiated (event82)",,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox News Comcast Flex",Prod Ready,,,,,,
+Pages / Screens (Full),"This package defines the full set of dimensions and metrics required for comprehensive page or screen tracking. It ensures every page and screen on the site or app is accounted for, using entries from the Pages and Screens Table.
+Guidelines:
+- For pages/screens not covered in the documented table, contact the DSAS team to request updates.
+- No custom events or video tracking are included in this package.
+Use Case:
+Best suited for complete tracking implementations where granular data is required.
+If there is a page or screen that does not fit in any of the documented Page/Screen options, please reach out to the DSAS team to have a new Page/Screen added.",Fox X.ID,"Page View (custom) (event1),External Campaign Response (event29),Internal Campaign Response (event30),Page View",,"Outkick Web,Fox News Web,Fox Business Web",Prod Ready,,,,,,
+Pages / Screens (Minimum Viable),"This package focuses on collecting only the minimum required dimensions and metrics for basic page or screen tracking. It ensures foundational tracking without additional complexities.
+Guidelines:
+- All pages and screens should be tracked using the Pages and Screens Table.
+- Contact the DSAS team for undocumented cases.
+Use Case:
+Ideal for lightweight implementations or MVP launches where limited tracking suffices.
+If there is a page or screen that does not fit in any of the documented Page/Screen options, please reach out to the DSAS team to have a new Page/Screen added.",Fox X.ID,"Page View (custom) (event1),External Campaign Response (event29),Internal Campaign Response (event30),Page View",,,Prod Ready,,,,,,
+Search Interaction,"This package tracks internal search functionality, capturing user behavior from search initiation to result selection. It provides insights into how users navigate content via search and identifies search optimization opportunities.
+Use Case:
+Monitor search performance and user interaction patterns to enhance content discovery.","Pages / Screens (Minimum Viable),Pages / Screens (Full),Fox X.ID","Search Result Selected (event271),Search Action (event270),Search Started (event269)",,"Fox News Web,Fox News iOS,Fox News Android,Fox Business Web,Fox Business iOS,Fox Business Android",Prod Ready,,,,,,
+Social Sharing,"This package tracks user-driven sharing activities across social platforms, email, or other methods. It provides metrics for evaluating content virality and audience engagement.
+Use Case:
+Measure the reach and effectiveness of sharing features on the platform.","Pages / Screens (Minimum Viable),Pages / Screens (Full),Fox X.ID","Social Networking Share (event6),Tweet (event40)",,,Prod Ready,,,,,,
+Navigation Interaction,"This package tracks user interactions with navigation elements, such as menu clicks or slideshow navigation. It helps analyze how users move through the platform.
+Use Case:
+Optimize user flow and navigation structures for better engagement.","Pages / Screens (Minimum Viable),Pages / Screens (Full),Fox X.ID","Slideshow Arrow Swipe (event36),Slideshow Thumbnail Click (event37)",,,,,,,,,
+Content Interaction,"This package tracks user interactions with content items, such as video selections or article clicks. It provides insights into content consumption patterns and user preferences.
+Use Case:
+Evaluate the performance of individual content items and collections.","Pages / Screens (Minimum Viable),Pages / Screens (Full),Fox X.ID","Photo Viewed (event26),Slideshow Arrow Swipe (event36),Slideshow Thumbnail Click (event37),Detail Content Views (event42),Show More Button (event53),Homepage Click (event57),Homepage View (event75)",,,,,,,,,
+Scroll Point Impressions,"This package measures user impressions on elements flagged for scroll point tracking. It captures user engagement with components as they become visible in the viewport.
+Use Case:
+Understand which components users see and interact with as they scroll.","Pages / Screens (Minimum Viable),Pages / Screens (Full),Fox X.ID",Story/Content Impressions (event3),,Fox News Web,Prod Ready,,,,,,
+Third Party Components,"This package tracks interactions with third-party components, such as iframes or widgets, without disrupting host page metrics. It provides insights into external content engagement while preserving site-level analytics.
+Use Case:
+Measure user engagement with embedded third-party content.","Pages / Screens (Minimum Viable),Pages / Screens (Full),Fox X.ID","Third Party PageView (event280),Third Party Interaction (event281)",,Fox News Web,Prod Ready,,,,,,
+Video Heartbeat,"This package supports Adobe Video Heartbeat tracking, providing real-time, granular video engagement metrics. Heartbeat collects data on video playback, stops, starts, and ad performance. For accurate results, the full Heartbeat SDK must be implemented.
+Use Case:
+Measure video performance and user engagement comprehensively.","Pages / Screens (Minimum Viable),Pages / Screens (Full),Fox X.ID",,"trackSessionStart,trackPlay,trackPause,trackComplete,trackSessionEnd,trackEvent(SeekStart),trackEvent(SeekComplete),trackEvent(BufferStart),trackEvent(BufferComplete),trackEvent(adBreakStart),trackEvent(adStart),trackEvent(adPlay),trackEvent(adSkip),trackEvent(adComplete),trackEvent(adBreakComplete)","Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox News Comcast Flex,Fox Business Web,Fox Business iOS,Fox Business Android,Fox Business tvOS,Fox Business Roku,Fox Business Xbox,Fox Business Fire TV,Fox Business Android TV,Fox Business Samsung TV,Fox Business Vizio,Fox Business Chromecast,Outkick Web",Prod Ready,,,,,,
+Video Player States,"This package enhances Video Heartbeat tracking by capturing the state of the video player during playback. Supported states include fullscreen, mute, picture-in-picture (PIP), and closed captioning.
+Dependency:
+Requires the Video Heartbeat package.
+Use Case:
+Understand how playback environments affect user engagement.","Pages / Screens (Minimum Viable),Pages / Screens (Full),Video Heartbeat,Fox X.ID",,,"Fox News iOS,Fox News Android,Fox Business iOS,Fox Business Android",,,,,,,
+Fox X.ID,"This required package tracks the Fox X.ID in Adobe, linking analytics data with other data sources via the X.ID value. This ensures comprehensive cross-platform data integration.
+Guidelines:
+- Implement the user_xid dimension on all pages, screens, events, and Heartbeat methods.
+- Dependent on XF integration (XF Documentation).
+","Pages / Screens (Minimum Viable),Pages / Screens (Full)","Page View (custom) (event1),Story/Content Impressions (event3),Social Networking Share (event6),Photo Viewed (event26),External Campaign Response (event29),Internal Campaign Response (event30),Detail Content Views (event31),Thumbnail Clicks (event35),Slideshow Arrow Swipe (event36),Slideshow Thumbnail Click (event37),Slide View (event38),Tweet (event40),Detail Content Views (event42),Email Share (event51),Email Sign-Up Success (event52),Show More Button (event53),Homepage Click (event57),Homepage View (event75),Notification Impression (event76),Notification Interaction (event77),Notification Close (event78),Profile Sign Up Completed (event80),NatVidEmailGate (event83),NatVidEmailUnlock (event84),Profile Sign In Completed (Log In Click) (event85),Content Gate Impression (event86),Live Blog Subscriber (event90),Banner Impression (event92),Banner Action (event93),App Backgrounded (event267),Search Started (event269),Search Action (event270),Search Result Selected (event271),Third Party PageView (event280),Third Party Interaction (event281),Page View,Profile Initiated (event82)",,"Fox News Web,Outkick Web",Prod Ready,User: XID (v143),143,Never,"Tracks the unique ID (XID) associated with the user. This dimension supports integrations with third-party systems, enabling cross-platform user tracking and engagement analysis.",evar143,
+Email Marketing,"This package tracks user submissions for email marketing components, capturing data on email sign-ups, unlocks, and interactions.
+Use Case:
+Measure the effectiveness of email marketing campaigns and user acquisition strategies.","Pages / Screens (Minimum Viable),Pages / Screens (Full),Fox X.ID","Email Sign-Up Success (event52),Email Share (event51)",,Fox News Web,Prod Ready,,,,,,
+Notification Tracking,"The Notification Tracking package is designed to capture user interactions with notifications across platforms, including web, app, and OTT. This package provides insights into user engagement with notification features, such as viewing pop-ups, subscribing to notifications, and dismissing them. It ensures visibility into the effectiveness of notification strategies, helping optimize communication and engagement.
+Scope:
+- Viewing notification pop-ups or prompts.
+- User sign-ups or subscriptions for notifications.
+- Dismissing or closing notifications.
+Example Events:
+- ""(Web) Notification Pop-up Viewed""
+- ""(Web) Notification Sign-up""
+- ""(Web) Notification Close""
+","Pages / Screens (Minimum Viable),Pages / Screens (Full),Fox X.ID","Notification Impression (event76),Notification Interaction (event77),Notification Close (event78)",,,Prod Ready,,,,,,
+Article Gating,"The Article Gating package tracks user interactions with gated content, such as paywalls, subscription prompts, or email gates. This package helps evaluate how users respond to restricted content access, providing insights into conversion rates, user behavior, and the effectiveness of gating strategies.
+Scope:
+- Viewing gated content prompts (e.g., paywalls or subscription forms).
+- Submitting required information to unlock content (e.g., email, subscription).
+- Navigating away from gated content without interaction.
+Example Event:
+- ""Content Gate Impression""
+
+","Pages / Screens (Minimum Viable),Pages / Screens (Full),Fox X.ID","Content Gate Impression (event86),Profile Sign In Completed (Log In Click) (event85)",,Fox News Web,Prod Ready,,,,,,

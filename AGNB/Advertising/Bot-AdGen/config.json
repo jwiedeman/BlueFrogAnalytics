@@ -1,0 +1,32 @@
+{
+  "llm_output_limits": {
+    "headline": 30,
+    "description": 90,
+    "primary_text": 125,
+    "link_description": 30,
+    "intro_text": 150,
+    "tweet_text": 280
+  },
+  "platform_limits": {
+    "google_search_ad": {
+      "headline_1": 30,
+      "headline_2": 30,
+      "headline_3": 30,
+      "description_1": 90,
+      "description_2": 90
+    },
+    "meta_ad": {
+      "primary_text": 125,
+      "headline": 40,
+      "link_description": 30
+    },
+    "linkedin_ad": {
+      "intro_text": 150,
+      "headline": 70,
+      "description": 100
+    },
+    "twitter_ad": {
+      "tweet_text": 280
+    }
+  }
+}

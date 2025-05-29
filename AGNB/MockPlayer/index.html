@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MockPlayer Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f0f0f0; margin: 0; padding: 0; }
+    .player-container { max-width: 800px; margin: 40px auto; padding: 20px; background: #fff; border: 1px solid #ccc; }
+    .mock-player { width: 100%; height: 360px; background: #000; position: relative; }
+    .mock-player-controls { position: absolute; bottom: 10px; left: 10px; }
+    .mock-player-controls button { margin-right: 5px; }
+    .mock-player-controls input[type=range] { vertical-align: middle; }
+    .mock-player-metrics { background: #222; color: #fff; padding: 10px; margin-top: 10px; font-family: monospace; }
+    .mock-player-metrics div { margin: 4px 0; }
+    .mock-player-status { background: #333; color: #fff; padding: 10px; margin-top: 10px; font-family: monospace; }
+    .mock-player-status div { margin: 4px 0; }
+    /* muted state styling */
+    .mock-player.mock-player-muted { opacity: 0.6; }
+    /* picture-in-picture state styling */
+    .mock-player.mock-player-pip { border: 2px solid #ff0; }
+  </style>
+</head>
+<body>
+  <div class="player-container">
+    <h1>MockPlayer Demo</h1>
+    <div class="mock-player"
+         data-plan-url="contentplan.json"
+         data-settings-url="settings.json"
+         data-analytics-url="analytics.json">
+    </div>
+  </div>
+
+  <!-- include your enhanced player script -->
+  <script src="mock-player.js"></script>
+</body>
+</html>

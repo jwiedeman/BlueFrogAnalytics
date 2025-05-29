@@ -1,0 +1,11 @@
+# Dockerfile
+# Use the official Cassandra image and copy in the seed-node config
+FROM cassandra:latest
+
+# Copy the minimal seed-node config and set ownership
+COPY --chown=cassandra:cassandra cassandra-seed.yaml /etc/cassandra/cassandra.yaml
+
+# Expose the standard Cassandra ports
+EXPOSE 7000 7001 7199 9042
+
+# (no ENTRYPOINT or CMD here — we inherit Cassandra’s defaults)

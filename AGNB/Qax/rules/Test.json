@@ -1,0 +1,20 @@
+{
+  "name": "Test",
+  "domain": "smetrics.foxnews.com",
+  "method": "GET",
+  "path": "",
+  "description": "desc",
+  "pass_msg": "pass test",
+  "fail_msg": "fail test",
+  "conditionOperator": "and",
+  "conditions": [
+    {
+      "extractor": "query.a",
+      "type": "equals",
+      "value": "aaa"
+    }
+  ],
+  "dependencies": [
+    "Page Url.json"
+  ]
+}

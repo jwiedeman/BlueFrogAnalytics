@@ -1,0 +1,28 @@
+{
+  "name": "Adobe Pageview",
+  "domain": "smetrics.foxnews.com",
+  "method": "GET",
+  "path": "/b/ss/*",
+  "description": "",
+  "pass_msg": "Pageview Pass",
+  "fail_msg": "Pageview Fail",
+  "conditionOperator": "or",
+  "conditions": [
+    {
+      "extractor": "header.Sec-Fetch-Dest",
+      "type": "contains",
+      "value": "image"
+    },
+    {
+      "extractor": "header.content-type",
+      "type": "contains",
+      "value": "image"
+    },
+    {
+      "extractor": "header.accept",
+      "type": "contains",
+      "value": "image"
+    }
+  ],
+  "dependencies": []
+}

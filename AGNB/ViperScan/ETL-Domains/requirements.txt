@@ -1,0 +1,3 @@
+gevent
+cassandra-driver[gevent]
+tldextract

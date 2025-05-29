@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  site-classifier:
+    build: .
+    image: site-classifier:latest
+    env_file:
+      - .env
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]

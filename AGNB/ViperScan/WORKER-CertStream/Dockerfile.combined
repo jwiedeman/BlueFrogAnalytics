@@ -1,0 +1,38 @@
+
+## build the seed server
+
+FROM elixir:1.8-alpine AS seed
+WORKDIR /opt/seed
+ENV HOME=/opt/seed MIX_ENV=prod MIX_HOME=/opt/mix HEX_HOME=/opt/hex
+RUN apk add --no-cache git
+
+COPY certstream-server/mix.exs certstream-server/mix.lock ./certstream-server/
+WORKDIR /opt/seed/certstream-server
+RUN mix do deps.get, deps.compile
+COPY certstream-server/config ./config
+COPY certstream-server/lib ./lib
+COPY certstream-server/frontend/dist ./frontend/dist
+RUN mix release
+
+# build the listener
+
+FROM golang:1.23-alpine AS builder
+WORKDIR /app
+COPY go.mod go.sum ./
+RUN apk add --no-cache git
+RUN go mod download
+COPY . .
+RUN CGO_ENABLED=0 GOOS=linux go build -o certstream-etl
+
+
+# final container
+FROM alpine:latest
+RUN apk add --no-cache ca-certificates
+COPY --from=builder /app/certstream-etl /usr/local/bin/
+COPY --from=seed /opt/seed/certstream-server/_build/prod/rel/certstream /opt/certstream
+
+EXPOSE 4000
+
+COPY start.sh /start.sh
+WORKDIR /opt/certstream
+ENTRYPOINT ["/start.sh"]

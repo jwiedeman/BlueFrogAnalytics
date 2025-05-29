@@ -1,0 +1,9 @@
+{
+  "key": "User MID",
+  "description": "The users Adobe Marketing Cloud ID",
+  "extractor": "query.mid",
+  "operator": "exists",
+  "expected": "mid",
+  "pass_msg": "Pass",
+  "fail_msg": "Fail"
+}

@@ -1,0 +1,8 @@
+{
+  "key": "AQB",
+  "description": "Analytics Query Boolean (internal Adobe flag indicating query format/version).",
+  "operator": "exists",
+  "expected": "1",
+  "pass_msg": "Pass if value = 1.",
+  "fail_msg": "Fail if value ≠ 1 or missing."
+}

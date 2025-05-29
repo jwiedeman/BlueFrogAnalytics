@@ -1,0 +1,336 @@
+Test test_basic_response.py: PASS
+Output: Domain Variations Test for 'logicalposition.com' (normalized: 'logicalposition.com'):
+
+============================================================
+Testing Variation: HTTP without www
+Initial URL: http://logicalposition.com
+Redirect Chain:
+ - 301 -> http://www.logicalposition.com/
+ - 301 -> https://www.logicalposition.com/
+Final URL: https://www.logicalposition.com/
+Final Status Code: 200
+
+============================================================
+Testing Variation: HTTPS without www
+Initial URL: https://logicalposition.com
+Redirect Chain:
+ - 301 -> https://www.logicalposition.com/
+Final URL: https://www.logicalposition.com/
+Final Status Code: 200
+
+============================================================
+Testing Variation: HTTP with www
+Initial URL: http://www.logicalposition.com
+Redirect Chain:
+ - 301 -> https://www.logicalposition.com/
+Final URL: https://www.logicalposition.com/
+Final Status Code: 200
+
+============================================================
+Testing Variation: HTTPS with www
+Initial URL: https://www.logicalposition.com
+No redirects encountered.
+Final URL: https://www.logicalposition.com/
+Final Status Code: 200
+
+Test test_certificate_details.py: PASS
+Output: Certificate Details for logicalposition.com:
+Handshake Time: 0.058 seconds
+TLS Version: TLSv1.3
+Cipher Suite: ('TLS_AES_256_GCM_SHA384', 'TLSv1.3', 256)
+ALPN Protocol: None
+NPN Protocol: None
+Session Reused: False
+Compression: None
+Forward Secrecy: No
+
+Issuer: CN=R10,O=Let's Encrypt,C=US
+Subject: CN=logicalposition.com
+Valid From: 2025-02-14 22:26:30
+Valid To: 2025-05-15 22:26:29
+Days Until Expiration: 45
+Serial Number: 270083967619085027273978411030799977295365
+Certificate Version: v3
+Signature Algorithm: sha256WithRSAEncryption
+Public Key: RSAPublicKey, 2048 bits
+SHA256 Fingerprint: 269d4819fbdeaea6a693e48147b183b2598ed4e8e7e1bef0c0e79db2a496a54f
+Subject Alternative Names (SANs):
+ - logicalposition.com
+
+Test test_compare_sitemaps_robots.py: PASS
+Output: Compare Sitemaps & Robots Test for https://logicalposition.com:
+robots.txt not found at https://logicalposition.com/robots.txt (HTTP 403).
+No Disallow directives found in robots.txt.
+No Sitemap directives found in robots.txt.
+Trying default sitemap URL: https://logicalposition.com/sitemap.xml
+Sitemap not found at https://logicalposition.com/sitemap.xml (HTTP 403).
+No sitemap content to parse.
+No discrepancies found between robots.txt and sitemap entries.
+
+Test test_cookie_settings.py: PASS
+Output: Cookie Settings Test for https://logicalposition.com:
+No Set-Cookie headers found.
+
+Test test_directory_enumeration.py: PASS
+Output: Directory Enumeration Test for https://logicalposition.com:
+Directory: /admin - HTTP Status: 403 - Content Snippet: <html> <head><title>403 Forbidden</title></head> <body> <center><h1>403 Forbidden</h1></center> 
+Directory: /login - HTTP Status: 403 - Content Snippet: <html> <head><title>403 Forbidden</title></head> <body> <center><h1>403 Forbidden</h1></center> 
+Directory: /backup - HTTP Status: 403 - Content Snippet: <html> <head><title>403 Forbidden</title></head> <body> <center><h1>403 Forbidden</h1></center> 
+Directory: /test - HTTP Status: 403 - Content Snippet: <html> <head><title>403 Forbidden</title></head> <body> <center><h1>403 Forbidden</h1></center> 
+Directory: /config - HTTP Status: 403 - Content Snippet: <html> <head><title>403 Forbidden</title></head> <body> <center><h1>403 Forbidden</h1></center> 
+Directory: /private - HTTP Status: 403 - Content Snippet: <html> <head><title>403 Forbidden</title></head> <body> <center><h1>403 Forbidden</h1></center> 
+Directory: /data - HTTP Status: 403 - Content Snippet: <html> <head><title>403 Forbidden</title></head> <body> <center><h1>403 Forbidden</h1></center> 
+Directory: /.git - HTTP Status: 403 - Content Snippet: <html> <head><title>403 Forbidden</title></head> <body> <center><h1>403 Forbidden</h1></center> 
+Directory: /uploads - HTTP Status: 403 - Content Snippet: <html> <head><title>403 Forbidden</title></head> <body> <center><h1>403 Forbidden</h1></center> 
+Directory: /secret - HTTP Status: 403 - Content Snippet: <html> <head><title>403 Forbidden</title></head> <body> <center><h1>403 Forbidden</h1></center> 
+
+Test test_dns_enumeration.py: PASS
+Output: DNS Enumeration for logicalposition.com:
+
+A records (1 found):
+ - 35.222.201.142
+
+AAAA records: Not found or error (The DNS response does not contain an answer to the question: logicalposition.com. IN AAAA)
+
+MX records (2 found):
+ - 10 us-smtp-inbound-1.mimecast.com.
+ - 10 us-smtp-inbound-2.mimecast.com.
+
+NS records (2 found):
+ - jim.ns.cloudflare.com.
+ - amy.ns.cloudflare.com.
+
+TXT records (9 found):
+ - "ZOOM_verify_xkm5auGdjWsOJgOC0edF4f"
+ - "atlassian-domain-verification=s10QI1NhAC13wsFIoBSyygQblqLquE9IetqaduMwxtWbv5uR1KIPBSgsRawjI+gk"
+ - "facebook-domain-verification=jq6osxbkag2j7gc5wp5evu8c4x1p5k"
+ - "google-site-verification=3Z3T23lgeXxI8BvD6TYGeasaXIPgMNt3UTM2QWCFsvk"
+ - "google-site-verification=w49XYapu8yyq_24rJ-_tW7l2LD0qYW5Q3f-us8hzJLQ"
+ - "klaviyo-site-verification=NXD9pp"
+ - "ln808dmkvfodgp2tpgqjhccqh8"
+ - "v=spf1 include:us._netblocks.mimecast.com include:spf.protection.outlook.com ip4:52.186.121.110 include:2686234.spf06.hubspotemail.net include:servers.mcsv.net include:mailgun.org include:amazonses.com ~all"
+ - "MS=ms94286276"
+
+DMARC records for _dmarc.logicalposition.com (1 found):
+ - "v=DMARC1; p=quarantine; fo=1; rua=mailto:rua+logicalposition.com@dmarc.barracudanetworks.com; ruf=mailto:ruf+logicalposition.com@dmarc.barracudanetworks.com"
+
+SPF record found: v=spf1 include:us._netblocks.mimecast.com include:spf.protection.outlook.com ip4:52.186.121.110 include:2686234.spf06.hubspotemail.net include:servers.mcsv.net include:mailgun.org include:amazonses.com ~all
+
+Test test_external_resources.py: PASS
+Output: Failed to retrieve webpage. HTTP Status: 403
+
+Test test_http_methods.py: PASS
+Output: HTTP Methods Test for https://logicalposition.com:
+No 'Allow' header found in the response. This might indicate that the server does not support an OPTIONS request, or it is configured to hide allowed methods.
+
+Test test_http_security_headers.py: PASS
+Output: HTTP Security Headers Test for https://logicalposition.com:
+X-Frame-Options: Not Present
+X-Content-Type-Options: Not Present
+Content-Security-Policy: Not Present
+Referrer-Policy: Not Present
+X-XSS-Protection: Not Present
+Strict-Transport-Security: Not Present
+
+Warning: X-Frame-Options header is missing. This may expose the site to clickjacking attacks.
+
+Warning: X-Content-Type-Options header is missing. This may expose the site to MIME sniffing attacks.
+
+Warning: Content-Security-Policy header is missing. Consider implementing CSP to mitigate XSS and data injection attacks.
+
+Warning: Referrer-Policy header is missing. This may result in sensitive information being leaked via the referrer header.
+
+Warning: X-XSS-Protection header is missing. Although deprecated in modern browsers, its absence might be notable.
+
+Warning: Strict-Transport-Security (HSTS) header is missing. This header is important for enforcing secure connections (HTTPS).
+
+Test test_meta_tags.py: PASS
+Output: Failed to retrieve webpage. HTTP Status: 403
+
+Test test_open_ports.py: PASS
+Output: Passive Open Ports Test for logicalposition.com:
+Port 80 (HTTP): OPEN
+Port 443 (HTTPS): OPEN
+Port 8080 (Alternate HTTP): Closed or filtered
+Port 22 (SSH): Closed or filtered
+Port 21 (FTP): Closed or filtered
+
+Test test_passive_subdomains.py: PASS
+Output: Passive Subdomain Gathering for logicalposition.com:
+Total Unique Subdomains Found: 110
+Sample Subdomains:
+adfs.logicalposition.com
+adlab.logicalposition.com
+blog.logicalposition.com
+claude-lakehouse-dev.logicalposition.com
+claude-lakehouse.logicalposition.com
+client.logicalposition.com
+clients.logicalposition.com
+cpanel.datafeeds.logicalposition.com
+cpanel.forms.logicalposition.com
+cpanel.preview.logicalposition.com
+
+Test test_robots_security.py: PASS
+Output: robots.txt at https://logicalposition.com/robots.txt: HTTP 403
+Content not available or not found.
+security.txt at https://logicalposition.com/security.txt: HTTP 403
+Content not available or not found.
+well-known security.txt at https://logicalposition.com/.well-known/security.txt: HTTP 403
+Content not available or not found.
+
+Test test_server_fingerprinting.py: PASS
+Output: URL: https://logicalposition.com
+Response Headers:
+Server: nginx
+Date: Mon, 31 Mar 2025 02:20:37 GMT
+Content-Type: text/html
+Content-Length: 146
+Connection: keep-alive
+Keep-Alive: timeout=20
+Vary: Accept-Encoding
+
+Detected Server/Frameworks: Nginx
+
+Test test_sitemap.py: PASS
+Output: No sitemaps found on the target.
+No sitemap at: https://logicalposition.com/sitemap.xml (Status: 403)
+No sitemap at: https://logicalposition.com/sitemap_index.xml (Status: 403)
+No sitemap at: https://logicalposition.com/sitemap-index.xml (Status: 403)
+No sitemap at: https://logicalposition.com/sitemap_en.xml (Status: 403)
+No sitemap at: https://logicalposition.com/sitemap1.xml (Status: 403)
+
+Test test_waf_detection.py: PASS
+Output: WAF Detection test: Failed to retrieve headers from logicalposition.com using both HTTPS and HTTP.
+Error: HTTP Error 403: Forbidden
+
+Test test_whois.py: PASS
+Output: Primary WHOIS lookup for logicalposition.com using whois.verisign-grs.com:
+
+   Domain Name: LOGICALPOSITION.COM
+   Registry Domain ID: 1562157371_DOMAIN_COM-VRSN
+   Registrar WHOIS Server: whois.godaddy.com
+   Registrar URL: http://www.godaddy.com
+   Updated Date: 2022-09-11T06:09:13Z
+   Creation Date: 2009-07-13T00:15:27Z
+   Registry Expiry Date: 2028-03-26T03:59:59Z
+   Registrar: GoDaddy.com, LLC
+   Registrar IANA ID: 146
+   Registrar Abuse Contact Email: abuse@godaddy.com
+   Registrar Abuse Contact Phone: 480-624-2505
+   Domain Status: clientDeleteProhibited https://icann.org/epp#clientDeleteProhibited
+   Domain Status: clientRenewProhibited https://icann.org/epp#clientRenewProhibited
+   Domain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited
+   Domain Status: clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited
+   Name Server: AMY.NS.CLOUDFLARE.COM
+   Name Server: JIM.NS.CLOUDFLARE.COM
+   DNSSEC: unsigned
+   URL of the ICANN Whois Inaccuracy Complaint Form: https://www.icann.org/wicf/
+>>> Last update of whois database: 2025-03-31T02:20:23Z <<<
+
+For more information on Whois status codes, please visit https://icann.org/epp
+
+NOTICE: The expiration date displayed in this record is the date the
+registrar's sponsorship of the domain name registration in the registry is
+currently set to expire. This date does not necessarily reflect the expiration
+date of the domain name registrant's agreement with the sponsoring
+registrar.  Users may consult the sponsoring registrar's Whois database to
+view the registrar's reported date of expiration for this registration.
+
+TERMS OF USE: You are not authorized to access or query our Whois
+database through the use of electronic processes that are high-volume and
+automated except as reasonably necessary to register domain names or
+modify existing registrations; the Data in VeriSign Global Registry
+Services' ("VeriSign") Whois database is provided by VeriSign for
+information purposes only, and to assist persons in obtaining information
+about or related to a domain name registration record. VeriSign does not
+guarantee its accuracy. By submitting a Whois query, you agree to abide
+by the following terms of use: You agree that you may use this Data only
+for lawful purposes and that under no circumstances will you use this Data
+to: (1) allow, enable, or otherwise support the transmission of mass
+unsolicited, commercial advertising or solicitations via e-mail, telephone,
+or facsimile; or (2) enable high volume, automated, electronic processes
+that apply to VeriSign (or its computer systems). The compilation,
+repackaging, dissemination or other use of this Data is expressly
+prohibited without the prior written consent of VeriSign. You agree not to
+use electronic processes that are automated and high-volume to access or
+query the Whois database except as reasonably necessary to register
+domain names or modify existing registrations. VeriSign reserves the right
+to restrict your access to the Whois database in its sole discretion to ensure
+operational stability.  VeriSign may restrict or terminate your access to the
+Whois database for failure to abide by these terms of use. VeriSign
+reserves the right to modify these terms at any time.
+
+The Registry database contains ONLY .COM, .NET, .EDU domains and
+Registrars.
+
+
+Referral detected. Querying authoritative WHOIS server: whois.godaddy.com
+
+Domain Name: LOGICALPOSITION.COM
+Registry Domain ID: 1562157371_DOMAIN_COM-VRSN
+Registrar WHOIS Server: whois.godaddy.com
+Registrar URL: https://www.godaddy.com
+Updated Date: 2019-03-13T08:51:19Z
+Creation Date: 2009-07-12T19:15:27Z
+Registrar Registration Expiration Date: 2028-03-25T22:59:59Z
+Registrar: GoDaddy.com, LLC
+Registrar IANA ID: 146
+Registrar Abuse Contact Email: abuse@godaddy.com
+Registrar Abuse Contact Phone: +1.4806242505
+Domain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited
+Domain Status: clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited
+Domain Status: clientRenewProhibited https://icann.org/epp#clientRenewProhibited
+Domain Status: clientDeleteProhibited https://icann.org/epp#clientDeleteProhibited
+Registry Registrant ID: Not Available From Registry
+Registrant Name: Registration Private
+Registrant Organization: Domains By Proxy, LLC
+Registrant Street: DomainsByProxy.com
+Registrant Street: 100 S. Mill Ave, Suite 1600
+Registrant City: Tempe
+Registrant State/Province: Arizona
+Registrant Postal Code: 85281
+Registrant Country: US
+Registrant Phone: +1.4806242599
+Registrant Phone Ext:
+Registrant Fax: 
+Registrant Fax Ext:
+Registrant Email: Select Contact Domain Holder link at https://www.godaddy.com/whois/results.aspx?domain=LOGICALPOSITION.COM
+Registry Tech ID: Not Available From Registry
+Tech Name: Registration Private
+Tech Organization: Domains By Proxy, LLC
+Tech Street: DomainsByProxy.com
+Tech Street: 100 S. Mill Ave, Suite 1600
+Tech City: Tempe
+Tech State/Province: Arizona
+Tech Postal Code: 85281
+Tech Country: US
+Tech Phone: +1.4806242599
+Tech Phone Ext:
+Tech Fax: 
+Tech Fax Ext:
+Tech Email: Select Contact Domain Holder link at https://www.godaddy.com/whois/results.aspx?domain=LOGICALPOSITION.COM
+Name Server: AMY.NS.CLOUDFLARE.COM
+Name Server: JIM.NS.CLOUDFLARE.COM
+DNSSEC: unsigned
+URL of the ICANN WHOIS Data Problem Reporting System: http://wdprs.internic.net/
+>>> Last update of WHOIS database: 2025-03-31T02:20:41Z <<<
+For more information on Whois status codes, please visit https://icann.org/epp
+
+TERMS OF USE: The data contained in this registrar's Whois database, while believed by the
+registrar to be reliable, is provided "as is" with no guarantee or warranties regarding its
+accuracy. This information is provided for the sole purpose of assisting you in obtaining
+information about domain name registration records. Any use of this data for any other purpose
+is expressly forbidden without the prior written permission of this registrar. By submitting
+an inquiry, you agree to these terms and limitations of warranty. In particular, you agree not
+to use this data to allow, enable, or otherwise support the dissemination or collection of this
+data, in part or in its entirety, for any purpose, such as transmission by e-mail, telephone,
+postal mail, facsimile or other means of mass unsolicited, commercial advertising or solicitations
+of any kind, including spam. You further agree not to use this data to enable high volume, automated
+or robotic electronic processes designed to collect or compile this data for any purpose, including
+mining this data for your own personal or commercial purposes. Failure to comply with these terms
+may result in termination of access to the Whois database. These terms may be subject to modification
+at any time without notice.
+
+**NOTICE** This WHOIS server is being retired. Please use our RDAP service instead.
+
+

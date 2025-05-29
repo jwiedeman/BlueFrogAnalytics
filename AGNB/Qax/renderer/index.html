@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QATool</title>
+  <!-- Bootstrap CSS for styling -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  <style>
+    /* Truncate long URLs in QA tables with ellipsis */
+    td.call-url, th.call-url-col {
+      width: 250px;
+      max-width: 250px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    /* Truncate other QA columns */
+    td.extractor-col, th.extractor-col,
+    td.value-col, th.value-col,
+    td.expected-col, th.expected-col {
+      width: 150px;
+      max-width: 150px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    /* QA section should expand and layout vertically */
+    #content-qa {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      /* allow QAResults to scroll horizontally without expanding this pane */
+      min-width: 0;
+      min-height: 0;
+    }
+    /* Ensure tables inside QA are fixed-layout by default and truncate long content */
+    #content-qa table {
+      table-layout: fixed;
+      width: 100%;
+      min-width: 0;
+    }
+    /* Allow certain QA tables to auto-size and scroll, e.g., large hit-dimension matrices */
+    #content-qa table.qa-scroll-table {
+      table-layout: auto !important;
+      width: auto !important;
+    }
+    #content-qa table th,
+    #content-qa table td {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    /* Horizontal scroll for filter lists (dimension & rule selectors) */
+    #content-qa .list-group-horizontal {
+      display: flex;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    #content-qa .list-group-horizontal .list-group-item {
+      flex: 0 0 auto;
+    }
+    /* Raw JSON entries wrap and scroll safely */
+    #content-qa pre {
+      white-space: pre-wrap;
+      word-break: break-all;
+      max-width: 100%;
+      overflow-x: auto;
+    }
+    /* Highlight selected dimension with a light blue background */
+    #dimensionsList .list-group-item.active {
+      background-color: #e3f2fd;
+      color: #000;
+    }
+    /* Sidebar navigation tabs styling */
+    #nav { list-style: none; padding: 0; margin: 0; }
+    #nav li { padding: 8px 12px; cursor: pointer; border-radius: 4px; margin-bottom: 4px; }
+    #nav li:hover { background-color: #e0e0e0; }
+    #nav li.active { background-color: #1976d2; color: #fff; }
+    /* Hide Flows tab (we only use Scenarios) */
+    #nav-flows, #content-flows { display: none !important; }
+    /* Allow Active Runs pane to expand with the window */
+    #content-runs {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    #activeWorkersList {
+      flex: 1;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      padding: 5px;
+    }
+    /* Scenarios list table */
+    #scenarioListTable { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    #scenarioListTable th, #scenarioListTable td { border-bottom: 1px solid #ddd; padding: 8px; text-align: left; }
+    #scenarioListTable tr:hover { background: #f1f1f1; cursor: pointer; }
+    #scenarioListTable tr.selected { background: #e0f7fa; }
+    /* Scenario section styling */
+    #content-scenarios {
+      background: #f9f9f9;
+      padding: 16px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+    /* Scenario List & Controls */
+    /* Controls toolbar styling */
+    #scenarioControls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #fff;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-top: 12px;
+      margin-bottom: 16px;
+    }
+    #scenarioControls label {
+      font-weight: 500;
+    }
+    #scenarioControls button,
+    #scenarioControls select {
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: #fff;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+    #scenarioControls button:hover,
+    #scenarioControls select:hover {
+      background: #f0f0f0;
+    }
+    #scenarioControls button#runBtn {
+      margin-left: auto;
+      background: #2196f3;
+      color: #fff;
+      border-color: #1976d2;
+    }
+    #scenarioControls button#runBtn:hover {
+      background: #1976d2;
+    }
+    #scenarioControls button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    /* Scenario Editor Styles */
+    #content-editor { background: #f9f9f9; padding: 16px; border-radius: 4px; margin-bottom: 16px; }
+    .editorRow { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+    .editorRow label { min-width: 60px; font-weight: 500; }
+    .editorRow input, .editorRow select, .editorRow button {
+      padding: 6px 10px; border: 1px solid #ccc; border-radius: 4px; background: #fff;
+    }
+    #stepControlPanel { display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+      background: #fff; padding: 12px; border:1px solid #ccc; border-radius:4px; margin-bottom:16px;
+    }
+    #stepsList { list-style: none; padding: 0; margin-bottom:16px; }
+    #stepsList li { background: #fff; padding: 8px; border:1px solid #ddd; border-radius:4px;
+      display:flex; justify-content: space-between; align-items:center; margin-bottom:8px;
+    }
+    /* Conditional steps styling */
+    #stepsList li.conditional { background: #fff7e6; border-color: #f0ad4e; }
+    /* Base styles */
+    body { font-family: sans-serif; margin: 0; padding: 0; }
+    #container { display: flex; height: 100vh; }
+    #sidebar { width: 200px; background: #f4f4f4; padding: 10px; overflow-y: auto; }
+    #main { flex: 1; padding: 10px; display: flex; flex-direction: column; }
+    #logArea { flex: 1; width: 100%; }
+
+    /* Active Runs list styling */
+    .activeRunItem {
+      position: relative;
+      margin-bottom: 6px;
+      min-height: 32px;
+      border: 1px solid #888;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .activeRunItem .progressBg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 0;
+      height: 100%;
+      background-color: rgba(33,150,243,0.15);
+      z-index: 0;
+      transition: width 0.3s ease;
+    }
+    .activeRunItem .activeContent {
+      position: relative;
+      z-index: 1;
+      padding: 4px 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    #runsTable th, #runsTable td { border-bottom:1px solid #ddd; padding:4px; }
+    #runsTable th { background: #f9f9f9; }
+    #runsTable button { margin-right:4px; }
+    #runsTable tr.group-header td { background: #f0f0f8; cursor: pointer; font-weight: bold; }
+    /* Sidebar header */
+    #sidebar-header { font-size: 1.3em; font-weight: bold; margin-bottom: 15px; text-align: center; color: #333; }
+
+    /* Swarm page form styling */
+    #content-swarms { background: #f9f9f9; padding: 16px; }
+    #swarmBuilderTop, #swarmButtons {
+      display: grid;
+      grid-template-columns: auto auto 1fr auto auto;
+      grid-gap: 8px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    #swarmBuilderTop label,
+    #swarmButtons label {
+      margin: 0;
+      font-weight: 500;
+    }
+    #swarmBuilderTop input[type="number"],
+    #swarmButtons input[type="text"],
+    #swarmBuilderTop select,
+    #swarmButtons button,
+    #swarmBuilderTop button {
+      padding: 6px 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: #fff;
+      font-size: 0.9em;
+    }
+    #swarmButtons button:hover,
+    #swarmBuilderTop button:hover {
+      background: #eaeaea;
+    }
+    /* Worker settings container */
+    .workerSettings {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background: #fff;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .workerSettings strong {
+      display: block;
+      margin-bottom: 12px;
+      font-size: 1.1em;
+    }
+    /* Wrapper for individual setting rows */
+    .workerWrapper {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .workerWrapper label {
+      min-width: 120px;
+      font-weight: 500;
+      margin: 0;
+    }
+    .workerWrapper input,
+    .workerWrapper select {
+      flex: 1;
+      min-width: 150px;
+      padding: 6px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: #fff;
+    }
+    .workerWrapper button {
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: #fff;
+      cursor: pointer;
+    }
+    .workerWrapper button:hover {
+      background: #f0f0f0;
+    }
+
+    /* Navigation styles */
+    #sidebar nav ul { list-style: none; padding: 0; margin: 0; }
+    #sidebar nav ul li {
+      padding: 8px 12px;
+      margin-bottom: 4px;
+      cursor: pointer;
+      border-radius: 4px;
+      color: #333;
+    }
+    #sidebar nav ul li:hover { background: #ddd; }
+    #sidebar nav ul li.active {
+      background: #ccc;
+      font-weight: bold;
+    }
+  /* Uniform button sizing */
+  button {
+    min-width: 80px;
+  }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="sidebar">
+      <div id="sidebar-header">RoadrunnerQA</div>
+      <nav>
+        <ul id="nav">
+          <li id="nav-scenarios" class="active">Scenarios</li>
+          <li id="nav-flows">Flows</li>
+          <li id="nav-rules">Rules</li>
+          <li id="nav-dimensions">Dimensions</li>
+          <li id="nav-runs">Active Runs</li>
+          <li id="nav-past-runs">Past Runs</li>
+          <li id="nav-qa">QA</li>
+          <li id="nav-swarms">Swarms</li>
+          <li id="nav-about">About</li>
+        </ul>
+      </nav>
+    </div>
+    <div id="main">
+      <!-- Scenarios Section -->
+      <div id="content-scenarios" class="content">
+        <h3>Scenarios</h3>
+        <!-- Scenario list -->
+        <table id="scenarioListTable">
+          <thead><tr><th>Scenario</th></tr></thead>
+          <tbody id="scenarioList"></tbody>
+        </table>
+        <div id="scenarioControls">
+          <button id="newScenarioBtn">New Scenario</button>
+          <button id="editScenarioBtn" disabled>Edit</button>
+          <button id="deleteScenarioBtn" disabled>Delete</button>
+          <label for="runSwarmSelect">Swarm:</label>
+          <select id="runSwarmSelect" style="width:200px;"></select>
+          <button id="runBtn" disabled>Run Scenario</button>
+        </div> <!-- close scenarioControls -->
+      </div> <!-- close content-scenarios -->
+      <!-- Flows Section -->
+      <div id="content-flows" class="content" style="display:none;">
+        <h3>Flows</h3>
+        <!-- Flow list -->
+        <table id="flowListTable">
+          <thead><tr><th>Flow</th></tr></thead>
+          <tbody id="flowList"></tbody>
+        </table>
+        <div id="flowControls">
+          <button id="newFlowBtn">New Flow</button>
+          <button id="editFlowBtn" disabled>Edit</button>
+          <button id="deleteFlowBtn" disabled>Delete</button>
+          <button id="runFlowBtn" disabled>Run Flow</button>
+        </div>
+      </div>
+      <!-- Rules Section -->
+      <div id="content-rules" class="content" style="display:none;">
+        <h3>Rules</h3>
+        <div class="d-flex mb-3">
+          <button id="showAddRuleForm" class="btn btn-success mr-2">Add New Rule</button>
+          <button id="editRuleBtn" class="btn btn-primary mr-2" disabled>Edit Rule</button>
+          <button id="reloadRulesList" class="btn btn-secondary">Reload List</button>
+        </div>
+        <div id="rulesList" class="list-group mb-3" style="max-height:500px; overflow:auto;"></div>
+      </div> <!-- close content-rules -->
+      <!-- Rule Editor Section -->
+      <div id="content-rule-editor" class="content" style="display:none;">
+        <h3>Rule Editor</h3>
+        <div class="card card-body mb-3">
+          <div class="form-group">
+            <label for="newRuleName">Name</label>
+            <input type="text" id="newRuleName" class="form-control" placeholder="Rule friendly name" />
+          </div>
+          <div class="form-group">
+            <label for="newRuleDomain">Domain</label>
+            <input type="text" id="newRuleDomain" class="form-control" placeholder="e.g. example.com" />
+          </div>
+          <div class="form-group">
+            <label for="newRuleMethod">Method</label>
+            <select id="newRuleMethod" class="form-control">
+              <option>GET</option><option>POST</option><option>PUT</option><option>DELETE</option><option>PATCH</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="newRulePath">Path (glob)</label>
+            <input type="text" id="newRulePath" class="form-control" placeholder="/api/*" />
+          </div>
+          <div class="form-group">
+            <label>Conditions</label>
+            <div id="conditionsContainer"></div>
+            <button id="addCondition" class="btn btn-sm btn-outline-secondary">Add Condition</button>
+          </div>
+          <div class="form-group">
+            <label for="newRuleCondOp">Combine Conditions</label>
+            <select id="newRuleCondOp" class="form-control">
+              <option value="and">All (AND)</option>
+              <option value="or">Any (OR)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Dependencies</label>
+            <input type="text" id="depSearch" class="form-control mb-2" placeholder="Search dimensions..." />
+            <div id="newRuleDependencies" class="dependency-list" style="max-height:150px; overflow:auto;"></div>
+          </div>
+          <div class="form-group">
+            <label for="newRuleDesc">Description</label>
+            <input type="text" id="newRuleDesc" class="form-control" placeholder="Short description" />
+          </div>
+          <div class="form-group">
+            <label for="newRulePass">Pass Message</label>
+            <textarea id="newRulePass" class="form-control" rows="2"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="newRuleFail">Fail Message</label>
+            <textarea id="newRuleFail" class="form-control" rows="2"></textarea>
+          </div>
+          <button id="saveNewRule" class="btn btn-primary">Save Rule</button>
+          <button id="cancelRuleBtn" class="btn btn-secondary ml-2">Cancel</button>
+        </div>
+      </div> <!-- close content-rule-editor -->
+      <!-- Dimensions Section -->
+      <div id="content-dimensions" class="content" style="display:none;">
+        <h3>Dimensions</h3>
+        <div class="d-flex mb-3">
+          <button id="newDimensionBtn" class="btn btn-success mr-2">Add New Dimension</button>
+          <button id="editDimensionBtn" class="btn btn-primary mr-2" disabled>Edit Dimension</button>
+          <button id="deleteDimensionBtn" class="btn btn-danger mr-2" disabled>Delete Dimension</button>
+          <button id="reloadDimensionsList" class="btn btn-secondary">Reload List</button>
+        </div>
+        <!-- Helper text -->
+        <p class="mb-3 text-muted small">
+          Define reusable condition checks here. Each dimension specifies a condition and expected value. When evaluated, <strong>If pass:</strong> and <strong>If fail:</strong> messages are applied.
+        </p>
+        <!-- Dimensions list -->
+        <div id="dimensionsList" class="list-group mb-3" style="max-height:500px; overflow:auto;"></div>
+      </div>
+      <!-- Runs Section -->
+      <div id="content-runs" class="content" style="display:none;">
+        <h3>Active Runs</h3>
+        <!-- Active Batches and Workers -->
+        <div id="activeWorkersList"></div>
+      </div>
+      <!-- Past Runs Section -->
+      <div id="content-past-runs" class="content" style="display:none;">
+        <h3>Past Scenario Runs</h3>
+        <table id="runsTable" style="width:100%; border-collapse: collapse; margin-top:8px;">
+          <thead>
+            <tr>
+              <th style="border-bottom:1px solid #ccc; text-align:left; padding:4px;">Run Group</th>
+              <th style="border-bottom:1px solid #ccc; text-align:left; padding:4px;">Worker</th>
+              <th style="border-bottom:1px solid #ccc; text-align:left; padding:4px;">HAR</th>
+              <th style="border-bottom:1px solid #ccc; text-align:left; padding:4px;">Screenshots</th>
+              <th style="border-bottom:1px solid #ccc; text-align:left; padding:4px;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="runsList"></tbody>
+        </table>
+      </div>
+      <!-- QA Section -->
+      <div id="content-qa" class="content" style="display:none; flex:1; display:flex; flex-direction:column;">
+        <h3>QA</h3>
+        <p class="text-muted small">Select one or more HAR files below and click "Run QA" to evaluate them against your rules and dimensions.</p>
+        <div class="form-group" style="flex:0 0 auto;">
+          <label for="qaHarSelect">HAR Files</label>
+          <select id="qaHarSelect" class="form-control" multiple style="height:150px;"></select>
+        </div>
+        <button id="runQaBtn" class="btn btn-primary mb-3" style="flex:0 0 auto;">Run QA</button>
+        <div id="qaResults" style="flex:1 1 auto; background:#f9f9f9; border:1px solid #ccc; padding:8px; overflow:auto; min-width: 0;"></div>
+      </div>
+      <!-- Swarms Section -->
+      <div id="content-swarms" class="content" style="display:none;">
+        <h3>Worker Swarms</h3>
+        <!-- Swarm builder controls -->
+        <div id="swarmBuilderTop" style="margin-top:10px; display:flex; align-items:center; gap:8px;">
+          <label for="workerCount"># Workers:</label>
+          <input type="number" id="workerCount" value="1" min="1" style="width:60px;" />
+          <label for="swarmSelect">Preset:</label>
+          <select id="swarmSelect" style="width:200px;"></select>
+          <button id="applySwarmBtn">Load</button>
+        </div>
+        <!-- Per-worker settings -->
+        <div id="workerSettingsContainer" style="margin-top:10px;"></div>
+        <!-- Save/Delete controls -->
+        <div id="swarmButtons" style="margin-top:10px; display:flex; align-items:center; gap:8px;">
+          <label for="swarmNameInput">Name:</label>
+          <input id="swarmNameInput" type="text" placeholder="Swarm name" style="flex:1;" />
+          <button id="newSwarmBtn">Save</button>
+          <button id="deleteSwarmBtn">Delete</button>
+          <button id="resetSwarmBtn">Reset</button>
+        </div>
+      </div>
+      <!-- About Section -->
+      <div id="content-about" class="content" style="display:none;">
+        <h3>About</h3>
+        <p>QATool-JS v0.1.0</p>
+      </div>
+      <!-- Scenario Editor Section -->
+      <div id="content-editor" class="content" style="display:none;">
+        <h3>Scenario Editor</h3>
+        <div class="editorRow">
+          <label for="editorName">Name:</label>
+          <input type="text" id="editorName" />
+        </div>
+        <!-- Step control panel: select action and parameters -->
+        <div id="stepControlPanel">
+          <label for="stepTypeSelect"><strong>Action:</strong></label>
+          <select id="stepTypeSelect" style="margin-left:5px;"></select>
+          <span id="stepParams" style="margin-left:10px;"></span>
+          <button id="addStepBtn" style="margin-left:10px;">Add Step</button>
+        </div>
+        <ul id="stepsList"></ul>
+        <div class="editorRow">
+          <button id="saveScenarioBtn">Save Scenario</button>
+          <button id="cancelEditBtn">Cancel</button>
+        </div>
+        <!-- Dimension form (shown when creating/editing dimensions) -->
+        <div id="dimensionForm" style="display:none; margin-bottom:10px;">
+          <div class="editorRow">
+            <label for="dimDescription">Description:</label>
+            <input type="text" id="dimDescription" class="form-control" />
+          </div>
+          <div class="editorRow">
+            <label for="dimOperator">Operator:</label>
+            <select id="dimOperator" class="form-control">
+              <option value="exists">Exists</option>
+              <option value="equals">Equals</option>
+              <option value="regex">Regex</option>
+              <option value="in">In List</option>
+              <option value="contains">Contains</option>
+              <option value="uuid">UUID</option>
+            </select>
+          </div>
+          <div class="editorRow">
+            <label for="dimExpected">Expected:</label>
+            <input type="text" id="dimExpected" class="form-control" />
+          </div>
+          <div class="editorRow">
+            <label for="dimPassMsg">Pass Message:</label>
+            <textarea id="dimPassMsg" class="form-control" rows="2"></textarea>
+          </div>
+          <div class="editorRow">
+            <label for="dimFailMsg">Fail Message:</label>
+            <textarea id="dimFailMsg" class="form-control" rows="2"></textarea>
+          </div>
+        </div>
+        <!-- Raw editor for rules/dimensions -->
+        <textarea id="editorRaw" style="display:none; width:100%; height:300px; margin-top:10px; box-sizing:border-box; font-family: monospace; font-size: 14px; line-height:1.4;"></textarea>
+      </div>
+      <!-- Log Output (always visible under sections) -->
+      <div id="log-section" style="display: none;">
+        <h3>Run Log</h3>
+        <textarea id="logArea" readonly></textarea>
+        <!-- Rule evaluation results -->
+        <h3 style="margin-top:10px;">Rule Results</h3>
+        <pre id="ruleResultsArea" style="display:none; background:#f9f9f9; border:1px solid #ccc; padding:8px; overflow:auto; max-height:200px;"></pre>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="common.js"></script>
+  <script type="module" src="events.js"></script>
+  <script type="module" src="index.js"></script>
+</body>
+</html>

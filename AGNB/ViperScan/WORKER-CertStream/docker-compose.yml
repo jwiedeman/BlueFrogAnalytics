@@ -1,0 +1,25 @@
+version: '3.8'
+
+networks:
+  certstream-net:
+    driver: bridge
+
+services:
+  seed-server:
+    build:
+      context: ./certstream-server
+    image: certstream-seed:latest
+    networks:
+      - certstream-net
+    restart: always
+
+  certstream-etl:
+    build: .
+    image: certstream-etl:latest
+    env_file:
+      - .env
+    environment:
+      - CERTSTREAM_LOCAL_URL=ws://seed-server:4000/
+    networks:
+      - certstream-net
+    restart: always

@@ -1,0 +1,4 @@
+/.http-mitm-proxy/
+electron-app/.http-mitm-proxy/
+electron-app/src/data/ca/
+cleanup-artifacts.sh

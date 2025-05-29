@@ -1,0 +1,9 @@
+{
+  "key": "Page Url",
+  "description": "The url of a page",
+  "extractor": "query.page_url",
+  "operator": "exists",
+  "expected": "page_url",
+  "pass_msg": "Dimension page_url Pass",
+  "fail_msg": "Dimension page_url Fail"
+}

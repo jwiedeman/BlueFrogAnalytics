@@ -1,0 +1,49 @@
+{
+  
+  "segments": [
+    
+    { "type": "content", "id": "show1-part-1",  "duration": 7 },
+    { "type": "ad",      "id": "ad-break-1",   "duration": 15 },
+    { "type": "content", "id": "show1-part-2",  "duration": 60000 },
+    { "type": "ad",      "id": "ad-break-2",   "duration": 15000 },
+    { "type": "content", "id": "show1-part-3",  "duration": 60000 },
+    { "type": "ad",      "id": "ad-break-3",   "duration": 15000 },
+   
+    { "type": "content", "id": "show1-part-15", "duration": 60000 },
+    { "type": "ad",      "id": "ad-break-15",  "duration": 15000 },
+
+   
+    { "type": "interstitial", "id": "intermission", "duration": 10000 },
+    { "type": "ad",           "id": "ad1",           "duration": 30000 },
+    { "type": "ad",           "id": "ad2",           "duration": 30000 },
+
+    
+    { "type": "content", "id": "show2-part-1",  "duration": 60000 },
+    { "type": "ad",      "id": "ad-break-16",  "duration": 15000 },
+    { "type": "content", "id": "show2-part-2",  "duration": 60000 },
+    { "type": "ad",      "id": "ad-break-17",  "duration": 15000 },
+   
+    { "type": "content", "id": "show2-part-15", "duration": 60000 },
+    { "type": "ad",      "id": "ad-break-30",  "duration": 15000 }
+  ],
+
+  "interactions": [
+    { "time":      0,      "action": "play" },
+    { "time":  300000,     "action": "togglePip" },
+    { "time":  450000,     "action": "toggleFullscreen" },
+    { "time":  600000,     "action": "pause" },
+    { "time":  610000,     "action": "play" },
+    { "time":  700000,     "action": "networkChange",   "args": { "condition": "poor" } },
+    { "time":  705000,     "action": "networkChange",   "args": { "condition": "good" } },
+    { "time":  900000,     "action": "toggleMute" },
+    { "time":  975000,     "action": "toggleMute" },
+    { "time": 1000000,     "action": "seek",           "args": { "time": 990000 } },
+    { "time": 1200000,     "action": "pause" },
+    { "time": 1210000,     "action": "play" },
+    { "time": 1600000,     "action": "rateChange",     "args": { "rate": 1.25 } },
+    { "time": 1650000,     "action": "seek",           "args": { "time": 1700000 } },
+    { "time": 1800000,     "action": "captionToggle",  "args": { "language": "es" } },
+    { "time": 1860000,     "action": "pause" },
+    { "time": 1865000,     "action": "play" }
+  ]
+}

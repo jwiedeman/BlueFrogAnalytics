@@ -1,0 +1,19 @@
+{
+  "name": "webpagetest-crawler",
+  "version": "0.1.0",
+  "description": "Crawl a website, run WebPageTest CLI on each page, and output results.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "bin": {
+    "wpt-crawler": "index.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "yargs": "^17.7.1",
+    "sitemap-generator": "^4.0.0",
+    "csv-writer": "^1.6.0"
+  }
+}

@@ -1,0 +1,492 @@
+﻿Name,Type,Evar / Prop Number,Persistence,Fox Corp Spec Equivalent Dimension Name,Fox Corp Spec Equivalent Dimension Value,Description,Context Data Variable,Value Formula,Example Values,Priority,Category,Legacy Native Adobe Implementation Context Data,Adobe Processing Rules Accepted Context Data,Products,Dev & QA Notes
+Country,Prop,,Hit,,,"Tracks the user's country based on their IP address or geographic metadata. This dimension is useful for analyzing global audience distribution, tailoring content to regional preferences, and optimizing campaigns based on country-specific performance.",,,,,,,,,"QA Notes:
+- Test with IP addresses from multiple countries to verify correct country detection.
+- Validate country assignments for VPN or proxy scenarios.
+- Confirm consistency across sessions for the same user.
+"
+City,Prop,,Hit,,,"Captures the user's city as determined by their IP address or geographic metadata. This dimension supports local market insights, enabling granular reporting for urban-specific campaigns or content strategies.",,,,,,,,,"QA Notes:
+- Test IPs from various cities, including metropolitan and rural locations.
+- Verify accurate city detection for shared or public IPs.
+- Confirm city information matches other geo-dimensions like Country and Region.
+"
+Region,Prop,,Hit,,,"Identifies the user's region or state using geographic metadata. It is often used in conjunction with country and city dimensions to provide a hierarchical view of user locations, enabling region-specific targeting and compliance analysis.",,,,,,,,,"QA Notes:
+- Test region detection for multiple states, provinces, or regions globally.
+- Verify data accuracy when users are in border areas.
+- Validate against external geographic lookup services.
+"
+Link: Nav Item,Prop,,Hit,,,"Tracks which navigation item or link a user interacts with during their session. This dimension is critical for understanding user flows, identifying popular navigation paths, and improving website or app usability.",,,,,,,,,"Dev Notes:
+- Track the specific navigation link clicked by the user. Use descriptive identifiers for link names (e.g., Home, Contact Us).
+- Ensure unique IDs are assigned to navigation elements for clear attribution.
+QA Notes:
+- Test clicks on various navigation items to ensure correct tracking.
+- Verify tracking works across different devices and screen sizes.
+- Validate event triggers and ensure no duplicate data is sent.
+"
+Authentication,Prop,,Hit,,,"Indicates the user's authentication status (e.g., logged in or not). This dimension helps distinguish between anonymous and registered users, allowing for analysis of engagement levels, content preferences, and conversion behaviors by user type.",,,,,,,,,"Dev Notes:
+- Capture authentication state (e.g., logged in or not) at the start of each session.
+- Use a binary value (true/false) for simplicity and consistent processing.
+QA Notes:
+- Verify accurate authentication status when users log in or out mid-session.
+- Test edge cases, such as expired sessions or multiple devices.
+- Ensure data is securely transmitted and compliant with privacy regulations.
+"
+Pages (conversion) (c10)Pages: Content Level 1 (c1),,,,,,,,,,,,,,,
+Page URL (v75)Pages: Content Level 1 (c1),,,,,,,,,,,,,,,
+User: XID (v143)Pages: Content Level 1 (c1),,,,,,,,,,,,,,,
+Tracking Code,Evar,0,WEEK,Tracking Code,0,,v0,,,,,,,,
+Pages: Content Level 1 (v1),Evar,1,Visit,Page: Content Category (v111),111,"Represents the highest-level categorization of content (e.g., Section or Main Topic). This visit-level dimension helps group content into broad categories for strategic analysis, such as identifying which primary sections of the site drive the most engagement or traffic.","page_content_category
+contentlevel1",,"Politics
+Market
+Economy
+Technology
+Sports
+Weather",P0 - Blocker/Critical,Page Attributes,"s.prop1
+s.eVar1",,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio","Dev Notes:
+- Map this dimension to the highest-level content categorization (e.g., News, Sports).
+- Implement logic to dynamically assign the category based on page metadata or URL structure.
+QA Notes:
+- Test content categorization for all primary sections of the site or app.
+- Verify data accuracy when pages span multiple categories.
+- Validate compatibility with dynamically generated pages.
+"
+Pages: Content Level 1 (c1),Prop,1,Hit,Page: Content Category (v111),111,"Similar to Pages: Content Level 1 (v1) but captured at the hit level, allowing detailed analysis of individual interactions within the primary content category. It complements eVars by providing granular insights for each content hit.","page_content_category
+contentlevel1",,"Politics
+Market
+Economy
+Technology
+Sports
+Weather",,,,,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio","Dev Notes:
+- Capture hit-level data for the primary content category of the page.
+- Ensure this dimension aligns with the visit-level Pages: Content Level 1 (v1) for consistency.
+QA Notes:
+- Verify hit-level data is accurately captured for each pageview.
+- Test content categorization for multi-step processes or paginated content.
+- Ensure no discrepancies between v1 and c1.
+"
+Pages: Content Level 2 (v2),Evar,2,Visit,Page: Content Category (v111),111,"Previously used to represent a secondary categorization of content under the primary section (e.g., Subsections like Local News, International News). This visit-level dimension is now considered legacy, as Content Level 1 encompasses this categorization in current implementations.","page_content_category
+contentlevel2",,"Politics
+Market
+Economy
+Technology
+Sports
+Weather",P0 - Blocker/Critical,Page Attributes,,,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio","Dev Notes:
+- Assign a secondary content categorization to this dimension (e.g., Local News, International News).
+- Use metadata or predefined mappings to determine secondary categories dynamically.
+QA Notes:
+- Test secondary categorization for all applicable content levels.
+- Verify data consistency with primary categories (Content Level 1).
+- Ensure legacy support for older content structures using this dimension.
+"
+Pages: Content Level 2 (c2),Prop,2,Hit,Page: Content Category (v111),111,"The hit-level counterpart to Pages: Content Level 2 (v2), used to capture interactions with secondary content categories. This dimension is also legacy, as modern implementations streamline categorization within Content Level 1 or equivalent dimensions.","page_content_category
+contentlevel2",,"Politics
+Market
+Economy
+Technology
+Sports
+Weather",,,,,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Pages: Content Level 3 (v3),Evar,3,Visit,Page: Content Category (v111),111,"Used for detailed content categorization at a granular level (e.g., Specific articles or individual posts). This dimension is considered legacy, as newer implementations handle content granularity differently, often within dynamically generated metadata or other dimensions.","page_content_category
+contentlevel3",,"Politics
+Market
+Economy
+Technology
+Sports
+Weather",P0 - Blocker/Critical,Page Attributes,,,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Pages: Content Level 3 (c3),Prop,3,Hit,Page: Content Category (v111),111,"The hit-level counterpart to Pages: Content Level 3 (v3), capturing fine-grained user interactions with specific content. It is also legacy and has been deprecated in favor of a more simplified and unified approach to content categorization.","page_content_category
+contentlevel3",,"Politics
+Market
+Economy
+Technology
+Sports
+Weather",,,,,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Pages: Content Level 4 (v4),Evar,4,Visit,Page: Content Category (v111),111,"Previously used for the most granular layer of content categorization, often for tracking highly specific subsets within Level 3 categories (e.g., individual sections within an article or micro-content). This visit-level dimension is legacy and has been replaced with more streamlined metadata structures or event-level tracking in modern implementations.","page_content_category
+contentlevel4",,"Politics
+Market
+Economy
+Technology
+Sports
+Weather",P0 - Blocker/Critical,Page Attributes,,,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Pages: Content Level 4 (c4),Prop,4,Hit,Page: Content Category (v111),111,"The hit-level counterpart to Pages: Content Level 4 (v4), capturing user interactions at the most detailed content level. This dimension is also legacy, with its functionality now incorporated into metadata or consolidated dimensions for improved simplicity and maintainability.","page_content_category
+contentlevel4",,"Politics
+Market
+Economy
+Technology
+Sports
+Weather",,,,,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Links: Page Name (v5),Evar,5,Visit,Page: Page Name (v2),2,"Tracks the name of the page where a link interaction occurred, providing a visit-level view of link activity. This dimension is critical for analyzing which pages drive the most outbound link clicks or navigation engagement across sessions.","page_name
+pagename",,"fnc:fox-news.video:on-demand:video:video	
+fnc:politics:subsection:article	
+fnc:media:subsection:article	
+fnc:us:subsection:article	
+fnc:sports:subsection:article	
+fnc:entertainment:subsection:article	",P0 - Blocker/Critical,Page Attributes,,,,
+Links: PageName (c5),Prop,5,Hit,Page: Page Name (v2),2,"The hit-level equivalent of Links: Page Name (v5), offering detailed, granular insights into link interactions at the moment they occur. This dimension supports precise link performance analysis for individual user interactions.","page_name
+pagename",,"fnc:fox-news.video:on-demand:video:video	
+fnc:politics:subsection:article	
+fnc:media:subsection:article	
+fnc:us:subsection:article	
+fnc:sports:subsection:article	
+fnc:entertainment:subsection:article	",,,,,,
+Links: Global Link Name/ID (v6),Evar,6,Visit,Page: Destination URL (v74),74,"Captures the unique name or ID of a link clicked by the user across all pages, allowing for visit-level reporting of global link performance. Useful for evaluating the effectiveness of calls-to-action (CTAs) or consistent navigation elements used across the site.",globallinkname,,"Fox News
+close	
+Email_Registration_Start	
+MyFoxUserRegister (80)	
+Third Party Interaction (281)	
+Third Party Page View (280)	
+fnc:games:daily-crossword-puzzle:page:other	
+Go Back	
+Close Modal	
+fnc:Account:page:other	",P0 - Blocker/Critical,Page Attributes,"s.prop6
+s.eVar6",,,
+Links: Global Link Name/ID (c6),Prop,6,Hit,Page: Destination URL (v74),74,"Tracks the same global link name or ID as Links: Global Link Name/ID (v6) but at the hit level, providing granular data on each link interaction. It complements visit-level data by offering a more detailed analysis of individual link clicks.",globallinknameid,,"Fox News
+close	
+Email_Registration_Start	
+MyFoxUserRegister (80)	
+Third Party Interaction (281)	
+Third Party Page View (280)	
+fnc:games:daily-crossword-puzzle:page:other	
+Go Back	
+Close Modal	
+fnc:Account:page:other	",,,,,,
+Links: PageName | Link Name/ID (v7),Evar,7,Visit,v2+v74,v2+v74,Combines the page name and the link name or ID into a single dimension to provide visit-level insights into which specific links were clicked on which pages. This helps in identifying high-performing link placements and optimizing navigation flows.,pagenamelinknameid,,"fnc:media:subsection:article | Story/Content Impressions (3)	
+fnc:fox-news.video:on-demand:video:video | Watch	
+fnc:live-news:Politics:subsection:other | Story/Content Impressions (3)	
+fnc:fox-news.video:on-demand:video:video | close	
+fnc:fox-news.video:on-demand:video:video | undefined	
+video:5614615980001 | undefined	
+fnc:us:subsection:article | Story/Content Impressions (3)	",P0 - Blocker/Critical,Page Attributes,"s.prop7
+s.eVar7",,,
+Links: PageName | Link Name/ID (c7),Prop,7,Hit,v2+v74,v2+v74,"A concatenation of the page name and the link name or ID, providing hit-level data to identify the page and specific link clicked. This dimension is valuable for attributing click-through traffic, particularly for tracking user journeys and link performance from one page to another.",pagenamelinknameid,,"fnc:media:subsection:article | Story/Content Impressions (3)	
+fnc:fox-news.video:on-demand:video:video | Watch	
+fnc:live-news:Politics:subsection:other | Story/Content Impressions (3)	
+fnc:fox-news.video:on-demand:video:video | close	
+fnc:fox-news.video:on-demand:video:video | undefined	
+video:5614615980001 | undefined	
+fnc:us:subsection:article | Story/Content Impressions (3)	",,,,,,
+In-App Webview (v8),Evar,8,Hit,v2+v74,v2+v74,"Tracks interactions within in-app webviews by concatenating the page name and the link name or ID. This dimension enables analysis of in-app browsing behavior, helping attribute user actions and click-through traffic to specific app content.",n/a - Create a Context Data Variable,,"True
+False",P0 - Blocker/Critical,Page Attributes,"s.prop7
+s.eVar7",,,
+Internal Search Term (v9),Evar,9,Visit,Page: Internal Search Term (v1),1,"Captures the term entered by users in the internal search function. This visit-level dimension is crucial for understanding what users are looking for within the app or website, enabling improvements to search functionality, content discoverability, and user experience.",,,,P0 - Blocker/Critical,Page Attributes,,,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Pages (conversion) (v10),Evar,10,Visit,,,"Tracks the page where a conversion event occurred at the visit level. This dimension provides insights into which pages are driving successful conversions, such as purchases, sign-ups, or other critical user actions, supporting optimization of high-value pages.",pagesconversion,,"fnc:politics:subsection:article	
+fnc:fox-news.video:on-demand:video:video	
+fnc:media:subsection:article	
+Unspecified	
+fnc:election::other	
+fnc:live-news:Politics:subsection:other	",P0 - Blocker/Critical,Page Attributes,,,,
+Pages (conversion) (c10),Prop,10,Visit,,,"Tracks the page where a conversion event occurred at the visit level. This dimension provides insights into which pages are driving successful conversions, such as purchases, sign-ups, or other critical user actions, supporting optimization of high-value pages.",pagesconversion,,"fnc:politics:subsection:article	
+fnc:fox-news.video:on-demand:video:video	
+fnc:media:subsection:article	
+Unspecified	
+fnc:election::other	
+fnc:live-news:Politics:subsection:other	",P0 - Blocker/Critical,Page Attributes,,,,
+Detail Content: ID (v11),Evar,11,Visit,Page: Content ID (v11),11,"Identifies the unique ID of the content being served on the page, allowing visit-level tracking of specific content performance. This dimension is particularly useful for content-rich platforms that need to measure audience engagement with individual articles, videos, or other media.","page_content_id
+contentid",,"1bdc981f680628a207d965ca11eb8cf6faff8c9f6c2917b1c48a9a96bebfe296	
+1af3a8f0919c21c1a65a5f3465a2143113cea626468d4addea8410f8a2719aef	
+b911e9e38d78d41e2e6739912c238b27773a31059548c550b644ebbe6ff2c152	
+b450720c1179b5022555d13fb732446eb4cfde393a84f78074ae7567089a4c6a	
+e2e067ac7b2c391b882e1b13ed3a4d7e84466cc9cb2c4ff86ccba1adc331de86	",P0 - Blocker/Critical,Page Attributes,"s.prop11
+s.eVar11",,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Detail Content: ID (c11),Prop,11,Hit,Page: Content ID (v11),11,"Captures the same content ID as Detail Content: ID (v11) but at the hit level, providing granular data on user interactions with individual pieces of content. This complements the visit-level analysis by enabling detailed reporting on engagement patterns.","page_content_id
+contentid",,"1bdc981f680628a207d965ca11eb8cf6faff8c9f6c2917b1c48a9a96bebfe296	
+1af3a8f0919c21c1a65a5f3465a2143113cea626468d4addea8410f8a2719aef	
+b911e9e38d78d41e2e6739912c238b27773a31059548c550b644ebbe6ff2c152	
+b450720c1179b5022555d13fb732446eb4cfde393a84f78074ae7567089a4c6a	
+e2e067ac7b2c391b882e1b13ed3a4d7e84466cc9cb2c4ff86ccba1adc331de86	",,,,,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Detail Content: Name (v12),Evar,12,Visit,Page: Content Title (v12),12,Records the title of the content being served on the page at the visit level. This dimension is useful for understanding which content titles resonate most with users and contribute to engagement or conversions.,"page_content_title
+contentname",,"Death toll rises from Post-Tropical Cyclone Ian; storm crawls across Carolinas, Virginia",P0 - Blocker/Critical,Page Attributes,"s.prop12
+s.eVar12",,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Detail Content: Name (c12),Prop,12,Hit,Page: Content Title (v12),12,"The hit-level counterpart to Detail Content: Name (v12), capturing content titles for every user interaction. This dimension supports detailed reporting on which specific content pieces drive user engagement at a granular level.","page_content_title
+contentname",,"Death toll rises from Post-Tropical Cyclone Ian; storm crawls across Carolinas, Virginia",,,,,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Detail Content: Type (v13),Evar,13,Visit,Page: Page Type (v15),15,"Measures the type of content being presented to the user, such as ""Article,"" ""Video,"" ""Gallery,"" or ""Podcast."" This visit-level dimension helps categorize content types for analysis of user engagement trends and content performance across different formats.","page_content_type
+contenttype",,"article
+homepage
+video
+category
+section-front",P0 - Blocker/Critical,Page Attributes,"s.prop13
+s.eVar13",,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Detail Content: Type (c13),Prop,13,Hit,,,"Tracks the content type at the hit level, allowing for granular analysis of interactions with specific content formats. This dimension supports deeper insights into how users engage with different types of media on a per-interaction basis.","page_content_type
+contenttype",,"article
+homepage
+video
+category
+section-front",,,,,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Detail Content: Author (v14),Evar,14,Hit,Page: Content Author (v14),14,"Identifies the author of the content being presented to the user. This hit-level dimension helps measure the performance and engagement of content created by specific authors, providing insights into which authors resonate most with the audience.","page_content_author
+contentauthor",,"Ryan Gaydos
+Adam Sabes
+Caroline Thayer",P0 - Blocker/Critical,Page Attributes,"s.prop14
+s.eVar14",,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Detail Content: Author (c14),Prop,14,Hit,Page: Content Author (v14),14,"Captures the author’s name at the hit level, complementing Detail Content: Author (v14) by enabling detailed reporting on individual user interactions with content authored by specific individuals. Useful for author attribution and tracking audience preferences.","page_content_author
+contentauthor",,"Ryan Gaydos
+Adam Sabes
+Caroline Thayer",,,,,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Detail Content: Source (v15),Evar,15,Hit,Page: Content Originator (v114),114,"Tracks the originator or source of the content being viewed, such as a specific publication, syndication partner, or internal team. This hit-level dimension is essential for analyzing the performance of content from different sources and understanding which sources drive the most engagement.","page_content_originator
+contentsource",,"Associated Press
+Fox News
+Reuters",P0 - Blocker/Critical,Page Attributes,"s.prop15
+s.eVar15",,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Detail Content: Source (c15),Prop,15,Hit,,,"Captures the same source information as Detail Content: Source (v15) but at a hit level. This enables granular tracking of individual user interactions with content from various sources, helping refine content sourcing strategies.
+","page_content_originator
+contentsource",,"Associated Press
+Fox News
+Reuters",,,,,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Detail Content: Source (v16),Evar,16,Visit,,,"Captures the source of the content at the visit level, identifying where the content originates, such as third-party publishers, syndication partners, or internal teams. This dimension supports attribution analysis and helps assess the performance of content sourced from different locations.",,,"media	
+us	
+sports	
+entertainment	
+world	
+opinion	
+health	",P0 - Blocker/Critical,Page Attributes,"s.prop15
+s.eVar15",,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Content Container: Name (c16),Prop,16,Hit,,,"Tracks the name of the container or module housing the content (e.g., “Hero Banner,” “Trending Section,” or “Related Articles”). This hit-level dimension provides insights into the performance of specific content placements, helping optimize layout and user interface design.",,,"media	
+us	
+sports	
+entertainment	
+world	
+opinion	
+health	",,,,,,
+Internal Campaign Code (v17),Evar,17,Hit,User: Campaign Internal Tracking Code (v22),22,Identifies internal campaign codes used for tracking and attributing user engagement with promotional efforts. This visit-level dimension is key for analyzing the effectiveness of internal marketing strategies and driving ROI through targeted campaigns.,"campaign_int_tracking_code
+internalcampaigncode",,"fnfirstnl
+fb_fnc
+newslink",P0 - Blocker/Critical,Page Attributes,s.eVar17,,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Distribution Platform (v18),Evar,18,Visit,Page: Content Distributor (v64),64,"Captures the platform through which content is distributed (e.g., “Web,” “Mobile App,” “OTT”). This dimension allows for visit-level analysis of platform-specific engagement trends and informs strategies for optimizing content delivery across platforms.",page_content_distributor,,"owned
+amp
+fbia",P0 - Blocker/Critical,Page Attributes,"s.prop18
+s.eVar18",,,
+Distribution Platform (c18),Prop,18,Hit,,,"Tracks the same platform information as Distribution Platform (v18) but at the hit level. This provides more granular insights into user interactions on different platforms, supporting detailed platform-specific optimization.",page_content_distributor,,"owned
+amp
+fbia",P0 - Blocker/Critical,,,,,
+Language (v19),Evar,19,Visit,Page: Content Langauge (v113),113,"Captures the primary language setting of the content or user interface, such as “English,” “Spanish,” or “French.” This visit-level dimension helps analyze audience preferences and enables localization strategies to improve user experience across diverse language groups.",,,,P0 - Blocker/Critical,Page Attributes,"s.prop18
+s.eVar18",,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Tool Name/ID (v20),Evar,20,Visit,,,"Captures the name or unique identifier of a tool or feature accessed by the user during their visit (e.g., “Calculator,” “Scheduler,” or “Planner”). This visit-level dimension helps measure the popularity and engagement of tools offered on the platform, providing insights into feature adoption.",,,FN Lead Gen subscription	,P0 - Blocker/Critical,Page Attributes,"s.prop18
+s.eVar18",,,
+Tool Name/ID (c20),Prop,20,Hit,,,"Tracks the same tool name or ID as Tool Name/ID (v20) but at the hit level, allowing for detailed analysis of individual interactions with specific tools. This dimension supports optimization of tool design and placement for better user engagement.",,,FN Lead Gen subscription	,,,,,,
+Member Name/ID (v21),Evar,21,Visit,,,"Identifies the unique name or ID of a logged-in member interacting with the platform. This visit-level dimension enables tracking of user-specific engagement, providing insights for personalized experiences, retention analysis, and member behavior trends.",,,"fnc:root:root:channel	
+fnc:root:root:channel|1730589513699	",P0 - Blocker/Critical,Page Attributes,"s.prop18
+s.eVar18",,,
+Member Name/ID (c21),Prop,21,Hit,,,"Captures the same member name or ID as Member Name/ID (v21) but at the hit level, allowing for detailed reporting on specific user actions during their session. This supports granular analysis of member interactions and personalized reporting.",,,,,,,,,
+New vs Repeat Visitor (30 days) (v22),Evar,22,Visit,"Sovled by ""Out of the Box"" Adobe dimensions","Sovled by ""Out of the Box"" Adobe dimensions","Categorizes visitors as “New” or “Repeat” based on their interaction history within the past 30 days. This visit-level dimension is essential for understanding user retention, engagement patterns, and the effectiveness of marketing efforts aimed at attracting new users.",newvsrepeatvisitors,,"Repeat	
+New	
+Unspecified	",P0 - Blocker/Critical,Page Attributes,"s.prop22
+s.eVar22",,,
+New vs. Repeat Visitors (30 days) (c22),Prop,22,Hit,"Sovled by ""Out of the Box"" Adobe dimensions","Sovled by ""Out of the Box"" Adobe dimensions","Tracks the same new vs. repeat visitor classification as New vs. Repeat Visitor (30 days) (v22) but at the hit level. This allows for granular analysis of user interactions segmented by visitor type, supporting detailed engagement reporting.",newvsrepeatvisitors,,,,,,,,
+New Visitors Pages (c23),Prop,23,Hit,,,"Tracks the pages viewed specifically by new visitors during their session. This hit-level dimension is useful for analyzing how new users interact with content, identifying entry points, and optimizing pages to improve first-time user engagement.",,,,,,,,,
+Repeat Visitors Pages (c24),Prop,24,Hit,,,"Captures the pages viewed by repeat visitors. This dimension enables granular analysis of the behavior of returning users, supporting strategies to maintain loyalty and improve engagement through tailored content.",,,,,,,,,
+GeoSegementation (v25),Evar,25,Visit,"Sovled by ""Out of the Box"" Adobe dimensions","Sovled by ""Out of the Box"" Adobe dimensions","Categorizes users into geographic segments based on their IP address or location metadata, such as continent, region, or metropolitan area. This visit-level dimension supports high-level analysis of user behavior across geographic regions, aiding in market-specific strategies.",n/a - Create a Context Data Variable,,"usa:il:chicago	
+usa:ny:new york	
+usa:ga:atlanta	
+usa:tx:houston	
+usa:tx:dallas	",P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+GeoSegmentation (c25),Prop,25,Hit,"Sovled by ""Out of the Box"" Adobe dimensions","Sovled by ""Out of the Box"" Adobe dimensions","Tracks the same geographic segmentation data as GeoSegmentation (v25) but at the hit level. This dimension provides detailed insights into location-specific user interactions, helping to refine localized content and offerings.
+",n/a - Create a Context Data Variable,,"usa:il:chicago	
+usa:ny:new york	
+usa:ga:atlanta	
+usa:tx:houston	
+usa:tx:dallas	",,,,,,
+Visitor Number Per Month (v26),Evar,26,Visit,"Sovled by ""Out of the Box"" Adobe dimensions","Sovled by ""Out of the Box"" Adobe dimensions",Tracks the unique visitor count for the current month. This visit-level dimension helps measure monthly active users (MAU) and assess overall platform growth or engagement trends on a recurring basis.,visitornumberpermonth,,"Unspecified	
+NA	
+P	
+L	
+#{omtr.prop26 || 'NA'}	
+LP	
+PL	",P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Visit Number per Month (c26),Prop,26,Hit,"Sovled by ""Out of the Box"" Adobe dimensions","Sovled by ""Out of the Box"" Adobe dimensions","Captures the cumulative count of visits per user for the current month at the hit level. This dimension enables analysis of visit frequency trends, supporting initiatives to encourage more frequent platform interactions.",visitornumberpermonth,,"Unspecified	
+NA	
+P	
+L	
+#{omtr.prop26 || 'NA'}	
+LP	
+PL	",,,,,,
+Days Since Last Visit (v27),Evar,27,Visit,"Sovled by ""Out of the Box"" Adobe dimensions","Sovled by ""Out of the Box"" Adobe dimensions","Tracks the number of days since the user’s last visit to the platform. This visit-level dimension is essential for recency analysis, enabling segmentation of users based on their return frequency and supporting re-engagement strategies for inactive users.",dayssincelastvisit,,"Less than 1 day	
+Less than 7 days	
+First Visit	
+More than 7 days	
+More than 30 days	",P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Days Since Last Visit (c27),Prop,27,Hit,"Sovled by ""Out of the Box"" Adobe dimensions","Sovled by ""Out of the Box"" Adobe dimensions","Tracks the number of days since the user’s last visit at the hit level. This dimension complements Days Since Last Visit (v27) by providing granular data for detailed interaction analysis, enabling precise segmentation for re-engagement strategies.",dayssincelastvisit,,"Less than 1 day	
+Less than 7 days	
+First Visit	
+More than 7 days	
+More than 30 days	",,,,,,
+Application/Lead Name/ID (c28),Prop,28,Hit,,,"Captures the name or unique identifier of an application or lead at the hit level. This dimension supports detailed tracking of user interactions with application processes or lead forms, aiding in performance analysis and optimization of conversion funnels.",,,,,,,,,
+Share: Name (v29),Evar,29,Visit,,,"Tracks the name of the content being shared (e.g., “Article Title” or “Video Name”) at the visit level. This dimension provides insights into the types of content users are sharing and helps optimize shareable content strategies.",,,network share	,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Share: Name/ID (c29),Prop,29,Hit,,,"Captures the same content name or ID as Share: Name (v29) but at the hit level. This supports a more granular understanding of specific user interactions with shareable content.
+",,,,,,,,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Share: Format (v30),Evar,30,Hit,,,"Tracks the format of the content being shared (e.g., “Image,” “Text,” “Video”). This visit-level dimension enables analysis of which content formats are most shared, helping refine content creation strategies.",n/a - Create a Context Data Variable,,"internal campaign; channel=fnc/root; code=hp1bt1; external_link=0
+
+internal campaign; channel=fnc/root; code=hp1bt1; external_link=0
+
+internal campaign; channel=fnc/root; code=hp1bt3; external_link=0",P0 - Blocker/Critical,Page Attributes,"s.prop30
+s.eVar30",,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Share: Format (c30),Prop,30,Hit,,,Captures the same content format as Share: Format (v30) but at the hit level. This dimension provides detailed insights into sharing behavior across various formats during individual interactions.,n/a - Create a Context Data Variable,,"internal campaign; channel=fnc/root; code=hp1bt1; external_link=0
+
+internal campaign; channel=fnc/root; code=hp1bt1; external_link=0
+
+internal campaign; channel=fnc/root; code=hp1bt3; external_link=0",,,,,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Show: ID (v31),Evar,31,Visit,Page: Content ID (v11),11,Identifies the unique ID of a show or program being viewed at the visit level. This dimension supports analysis of show-specific engagement and helps optimize programming strategies based on audience preferences.,,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Show: ID (c31),Prop,31,Hit,Page: Content ID (v11),11,Captures the same show ID as Show: ID (v31) but at the hit level. This allows for granular reporting on user interactions with specific shows during individual sessions.,,,,,,,,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Show: Name (v32),Evar,32,Visit,Content Name (variable),Out of the box dimension,"Tracks the name of the show or program being viewed at the visit level (e.g., “Morning News,” “Weekly Recap”). This dimension helps measure audience engagement and preferences for specific programming.",show,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Show: Name (c32),Prop,32,Hit,Content Name (variable),Out of the box dimension,"Captures the name of the show or program being viewed at the hit level (e.g., “Morning News,” “Weekly Recap”). This complements Show: Name (v32) by enabling granular tracking of user interactions with specific programs during individual sessions.",show,,,,,,,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Show: Category Tags (v33),Evar,33,Hit,Video: Content Tags (v33),33,rewrite,videocategory,,"on_air,on_air|faulkner_focus,personality,personality|harris_faulkner,primary_politics",P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Show: Category Tags (c33),Prop,33,Hit,Video: Content Tags (v33),33,rewrite,videocategory,,"on_air,on_air|faulkner_focus,personality,personality|harris_faulkner,primary_politics",,,,,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Show: Personality (v34),Evar,34,Visit,,,"Captures the name of the main personality or host featured in the show (e.g., “John Doe,” “Jane Smith”) at the visit level. This dimension helps analyze audience engagement with specific personalities and optimize programming based on viewer preferences.",personality,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Show: Personality (c34),Prop,34,Hit,,,Records the same show personality or host as Show: Personality (v34) but at the hit level. This provides granular data on interactions with content featuring specific hosts or personalities.,personality,,,,,,,"Fox News Web,Fox News iOS,Fox News Android,Fox News tvOS,Fox News Roku,Fox News Xbox,Fox News Fire TV,Fox News Android TV,Fox News Samsung TV,Fox News Vizio,Fox News Chromecast,Fox Business Android,Fox Business tvOS,Fox News Comcast Flex,Fox Business Web,Fox Business Xbox,Fox Business Android TV,Fox Business Samsung TV,Fox Business Fire TV,Fox Business Chromecast,Outkick Web,Fox Business Roku,Fox Business iOS,Fox Business Vizio",
+Show: Format (c35),Prop,35,Hit,,,"Tracks the format of the show being viewed at the hit level (e.g., “Live Broadcast,” “Recorded Episode,” “Highlight Reel”). This dimension supports analysis of user preferences for various show formats and helps optimize content delivery strategies.",,,,,,,,,
+Show: Advertiser Name/ID (c36),Prop,36,Hit,,,"Captures the name or unique identifier of the advertiser associated with a show. This dimension is crucial for analyzing advertising performance, tracking which advertisers are associated with high-engagement content, and ensuring proper attribution.",,,,,,,,,
+Video Player (v37),Evar,37,Visit,,,"Identifies the video player used by the user during their visit (e.g., “HTML5 Player,” “Third-Party Player”). This dimension supports analysis of video player performance, user preferences, and compatibility issues across devices and platforms.",,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Video Player (c37),Prop,37,Hit,,,"Tracks the specific video player used during an interaction at the hit level (e.g., “HTML5 Player,” “Third-Party Player”). This dimension complements Video Player (v37) by providing detailed insights into user interactions with different video players on a per-session basis.",,,,,,,,,
+Embedded Show Host (v38),Evar,38,Visit,,,"Captures the host or personality featured in an embedded show at the visit level. This dimension helps analyze audience engagement with embedded content hosted by specific personalities, supporting optimization of syndication strategies.",,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Embedded Player Host (c38),Prop,38,Hit,,,"Tracks the platform or host for an embedded player (e.g., “YouTube,” “Vimeo”) at the hit level. This dimension provides granular insights into user interactions with embedded content from different platforms, supporting platform-specific analysis.",,,,,,,,,
+Playlist Name (c39),Prop,39,Hit,,,"Captures the name of the playlist being viewed by the user (e.g., “Top 10 Highlights,” “Daily News Roundup”). This dimension is essential for understanding which playlists drive engagement and optimizing playlist curation strategies.",,,,,,,,,
+Alt Pages Report (c40),Prop,40,Hit,,,,altpagesreport,,,,,,,,
+Time Parting: Hour (v41),Evar,41,Visit,,,"Captures the hour of the day when a user interacts with the site or app, recorded at the visit level. This dimension supports time-of-day analysis to optimize content delivery and campaigns based on peak usage times.
+",hour,,,P3 - Minor,Page Attributes,"s.prop25
+s.eVar25",,,
+Time Parting: Hour (c41),Prop,41,Hit,,,Tracks the same hourly interaction data as Time Parting: Hour (v41) but at the hit level. This dimension enables detailed analysis of hourly engagement trends on a per-interaction basis.,hour,,,P3 - Minor,,,,,
+Time Parting: Day (v42),Evar,42,Visit,,,"Identifies the day of the week when a user interacts with the site or app at the visit level. This dimension is useful for understanding weekly engagement patterns, helping plan content releases and campaigns.",,,,P3 - Minor,Page Attributes,"s.prop25
+s.eVar25",,,
+Time Parting: Day (c42),Prop,42,Hit,,,Tracks the same day-of-week data as Time Parting: Day (v42) but at the hit level. This dimension allows for granular analysis of daily engagement trends for specific user actions.,,,,P3 - Minor,,,,,
+Cross Visit Campaigns (v43),Evar,43,Week,,,"Tracks campaigns that span across multiple visits by the same user. This dimension is crucial for understanding long-term campaign performance, especially for campaigns aimed at nurturing users over time to drive conversions or engagement.",,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Cross Visit Channels (v44),Evar,44,Week,,,"Captures the channels through which a user interacted with the site across multiple visits (e.g., “Email,” “Social Media,” “Paid Search”). This dimension helps analyze the cumulative impact of various channels in driving user engagement or conversions over time.",,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Campaign Channel (v45),Evar,45,Week,,,"Identifies the marketing channel associated with a campaign at the visit level (e.g., “Organic Search,” “Display Ads”). This dimension is essential for attributing user actions to specific marketing channels, supporting multi-channel performance analysis.",,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Campaign Channel Name (c45),Prop,45,Hit,,,"Tracks the same marketing channel as Campaign Channel (v45) but at the hit level. This enables granular reporting of individual user interactions with content or actions attributed to specific channels.
+",,,,,,,,,
+Campaign Channel Keywords (v46),Evar,46,Week,,,"Captures the keywords associated with the campaign channel at the visit level (e.g., search terms or keyword groups used in paid or organic search campaigns). This dimension supports keyword performance analysis, helping refine campaign strategies.",,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Campaign Channel Keywords (c46),Prop,46,Hit,,,Tracks the same keyword data as Campaign Channel Keywords (v46) but at the hit level. This dimension provides granular insights into specific interactions associated with campaign-related keywords.,,,,,,,,,
+Campaign Channel Partner (v47),Evar,47,Week,,,"Identifies the partner or third-party entity associated with the campaign channel (e.g., “Google Ads,” “Facebook Ads”) at the visit level. This dimension supports performance analysis of campaigns by partner, aiding in budget allocation and partnership evaluations.",externalcampaigns,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Campaign Channel Partner (c47),Prop,47,Hit,,,"Captures the same partner information as Campaign Channel Partner (v47) but at the hit level. This enables detailed reporting of user interactions driven by specific partners, supporting granular campaign optimization.",externalcampaigns,,,,,,,,
+Campaign Channel Referrer (v48),Evar,48,Week,,,"Captures the referring domain or URL that directed users to the campaign channel at the visit level (e.g., “google.com,” “facebook.com”). This dimension supports detailed attribution analysis, providing insights into the sources driving traffic to specific campaigns.",,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Slideshow: Name/ID (v49),Evar,49,Visit,,,"Tracks the name or unique ID of the slideshow being viewed during the visit. This dimension helps measure engagement with slideshow content, providing insights into which slideshows attract the most users.",,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Slideshow: Name/ID (c49),Prop,49,Hit,,,Captures the same slideshow name or ID as Slideshow: Name/ID (v49) but at the hit level. This supports granular analysis of user interactions with specific slideshows during individual sessions.,,,,,,,,,
+Slideshow: Photo Name/ID (v50),Evar,50,Visit,,,"Tracks the name or unique ID of a photo within a slideshow at the visit level. This dimension provides insights into user preferences for specific images, helping optimize visual content strategies.",,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Video Name (v52),Evar,52,Visit,,,"Captures the name or title of the video being viewed during the visit (e.g., “Top 10 Highlights,” “Daily Recap”). This dimension enables performance analysis of video content, helping identify high-engagement titles.",,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Video Name (c52),Prop,52,Hit,,,Tracks the same video name as Video Name (v52) but at the hit level. This dimension supports detailed reporting on user interactions with individual video content during specific interactions.,,,,,,,,,
+Classifications (v53),Evar,53,Hit,Page: Content Tags (v110),110,Content tags capture all the information about the content of an article defined by the editor in the the CMS during publishing.,"page_content_tags
+category",,"/FOX NEWS/POLITICS
+/FOX NEWS/ENTERTAINMENT/Celebrity News,/FOX NEWS/ENTERTAINMENT",P0 - Blocker/Critical,Page Attributes,"s.prop53
+s.eVar53",,,
+Classifications (c53),Prop,53,Hit,,,Content tags capture all the information about the content of an article defined by the editor in the the CMS during publishing.,"page_content_tags
+category",,"/FOX NEWS/POLITICS
+/FOX NEWS/ENTERTAINMENT/Celebrity News,/FOX NEWS/ENTERTAINMENT",,,,,,
+Publish Date (v54),Evar,54,Visit,Page: Content Original Publish Date (v102),102,"Tracks the publish date of the content being viewed at the visit level. This dimension is essential for analyzing user engagement with new versus older content and supports time-based content performance evaluations.
+","page_content_original_publish_date
+publishdate",,"2022-10-20
+2022-10-19
+2022-10-18",P0 - Blocker/Critical,Page Attributes,"s.prop54
+s.eVar54",,,
+Publish Date (c54),Prop,54,Hit,,,"Captures the same publish date as Publish Date (v54) but at the hit level. This enables granular analysis of user interactions with content based on its publish date, helping to optimize content strategies for different lifecycle stages.","page_content_original_publish_date
+publishdate",,"2022-10-20
+2022-10-19
+2022-10-18",P1 - Major,,,,,
+Media Preview Type (v56),Evar,56,Hit,,,Tracks the type of media preview on a homepage or content tile when the user interacts (clicks).,media_preview_type,,"Muted Video Player 
+Hola Spark Powered Preview
+Gif
+Image
+Full Video Player
+",P1 - Major,App & Site Attributes,,,,"Dev Notes:
+1. Determine Preview Type Logic
+    - For each homepage tile, identify the media preview type (e.g. muted video, Hola Spark preview, GIF, or image).
+    - Use any existing logic or flags in your codebase that already detect the type of tile preview.
+1. Set Data Layer & eVar Value
+    - When the homepage tile is rendered (or when the user clicks), populate the data layer property (e.g., media_preview_type) with the appropriate string value.
+    - Ensure the analytics beacon or event call includes this data layer value and maps it to v56.
+1. Fallback Handling
+    - If there is no preview type or the content is an article (non-video), assign a default value (e.g., ""Image"" if it uses a static thumbnail, or ""None"" if there's truly no preview).
+
+QA Notes:
+1. Test Homepage Tiles
+    - Verify each tile variant (Muted Video Player, Hola Spark Powered Preview, GIF, Image) triggers the correct v56 value in Adobe Analytics.
+    - Use debugging tools (e.g., the Network tab, Adobe Experience Cloud Debugger or Charles proxy) to confirm the data layer and analytics calls set the correct string.
+1. Cross-Device & Cross-Browser Validation
+    - Confirm the logic works consistently across desktop, mobile web, and any app implementations (if relevant).
+1. Edge Cases
+    - Confirm that non-video (article or live blog) tiles correctly set a default or fallback value for v56.
+    - Check that no unexpected values appear in your reporting (e.g., typographical differences like “MutedVideoPlayer” or “Muted video” that break grouping in reports).
+1. Reporting Validation
+    - In your Adobe Analytics environment, verify the dimension is spelled correctly and that you see the expected buckets (i.e., “Muted Video Player,” “Hola Spark Powered Preview,” “Gif,” “Image,” and potentially “None” or “N/A”).
+
+"
+Political Party (c57),Prop,57,Hit,,,"Categorizes content or user preferences based on political party alignment (e.g., “Democrat,” “Republican,” “Independent”). This dimension supports tailored content delivery and audience segmentation for politically-oriented platforms or campaigns.",,,,,,,,,
+AB Test Bucket (v58),Evar,58,Hit,,,"Tracks the A/B test group or variation assigned to the user during their visit. This dimension is vital for analyzing the effectiveness of different test variations, helping improve user experience and conversion rates.",,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Prev Page Max | Initial % Viewed (c58),Prop,58,Hit,,,"Records the maximum percentage of the previous page that was viewed by the user before navigating to the current page. This dimension provides insights into user attention and scrolling behavior, aiding in optimizing content layout and flow.",,,,,,,,,
+Viewport Width x CSS Pixel Height (c59),Prop,59,Hit,,,"Tracks the viewport size in terms of CSS pixel dimensions (e.g., 1024x768). This dimension helps analyze user device configurations and optimize content design for various screen sizes.",,,,,,,,,
+Video Play Type (v60),Evar,60,Visit,,,"Captures the type of video play initiated by the user during their visit (e.g., “Autoplay,” “User-Initiated Play”). This dimension supports analysis of video engagement based on playback behavior, helping refine video strategies.",playtype,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Display Width x Real Pixel Height (c60),Prop,60,Hit,,,"Tracks the physical dimensions of the user’s display in terms of real pixels (e.g., 1920x1080). This dimension provides insights into the resolution of user devices, helping optimize visual content delivery.",playtype,,,,,,,,
+User ID (mid) (v61),Evar,61,Visit,,,"Tracks a unique identifier for the user (e.g., “Marketing ID” or “Member ID”) during their visit. This dimension supports user-level analysis for personalization, retention strategies, and advanced segmentation.",,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Pixel Density (c61),Prop,61,Hit,,,"Captures the pixel density of the user’s display (e.g., “1x,” “2x,” “3x”). This dimension helps analyze device quality and display capabilities, supporting optimization of visual content for high-resolution screens.",,,,,,,,,
+Video Player Name (v62),Evar,62,Visit,,,"Tracks the name of the video player being used (e.g., “YouTube Player,” “Custom HTML5 Player”) during the visit. This dimension supports analysis of player performance, user preferences, and compatibility across devices and platforms.",,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Device Orientation (c62),Prop,62,Hit,,,"Captures the orientation of the user’s device at the time of interaction (e.g., “Portrait,” “Landscape”). This dimension helps analyze user behavior based on screen orientation, particularly for responsive design and mobile content optimization.",,,,,,,,,
+Ad Blocker (c63),Prop,63,Hit,,,Indicates whether the user is utilizing an ad blocker during their session. This dimension is essential for analyzing the impact of ad-blocking on revenue and identifying audiences with restricted ad visibility.,,,,,,,,,
+Page Load Events (c64),Prop,64,Hit,,,"Tracks specific page load events (e.g., “DOM Ready,” “Full Page Load”) at the hit level. This dimension is crucial for performance monitoring, identifying slow-loading pages, and improving user experience through faster load times.",pageloadevents,,,,,,,,
+Experiment Name | Experiment Variation (v65),Evar,65,Visit,Page: Test Name (v65),65,"Captures the name of the experiment and the specific variation the user is exposed to (e.g., “Homepage Redesign | Variation B”). This dimension supports A/B and multivariate testing, providing insights into which designs or content variations perform best.",page_test_name,,"""{""""Sports Strip Fix"""":""""Variation 1"""",""""America Together part 2"""":""""Variation 1"""",""""Credible Outbrain"""":""""Variation 1"""",""""A/A - Flush Test Web - New"""":""""Variation 1"""",""""Shows Landing page Show removal"""":""""Variation 1""""}""	
+
+""{""""Sports Strip Fix"""":""""Variation 1"""",""""America Together part 2"""":""""Variation 1"""",""""Credible Outbrain"""":""""Variation 1"""",""""A/A - Flush Test Web - New"""":""""baseline"""",""""TV Nav Bar Experiment"""":""""baseline"""",""""Shows Landing page Show removal"""":""""Variation 1""""}""	",P0 - Blocker/Critical,Page Attributes,s.eVar65,,,
+Partner Video ID (v66),Evar,66,Hit,Page: Test Name (v65),65,Tracks the unique identifier of a video provided by a third-party partner. This dimension supports analysis of syndicated video performance and partner-specific contributions to user engagement.,v66,,,P0 - Blocker/Critical,Page Attributes,,,,
+Internal Link URL (v74),Evar,74,Hit,Page: URL (v75),75,"Captures the URL of internal links clicked during a visit. This dimension is useful for analyzing navigation patterns and identifying key paths users follow within the site, helping optimize internal linking strategies.","internal_link_url
+",,,P0 - Blocker/Critical,Page Attributes,,,,
+Page URL (v75),Evar,75,Visit,Page: URL (v75),75,"Captures the full URL of the page being viewed during a visit. This dimension is essential for detailed analysis of user navigation patterns, content performance, and session behavior.",page_url,,www.foxnews.com/video/6316166251112,P0 - Blocker/Critical,Page Attributes,"s.prop75
+s.eVar75",,Fox News Web,
+Page URL (c75),Prop,75,Hit,,,,,,,,,,,,
+MyFoxUserRegister (v80),Evar,80,Visit,,,"Tracks the status or occurrence of a user registration event through the MyFox platform. This dimension supports analysis of user acquisition, onboarding trends, and the effectiveness of registration campaigns.
+",,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Registered User (v82),Evar,82,Visit,,,"Indicates whether the user is a registered member of the platform. This dimension is critical for distinguishing between registered and guest users, enabling personalized engagement strategies and retention analysis.",evar82 (currently how this is set),,"TRUE
+FALSE",P1 - Major,Page Attributes,s.eVar82,,,
+Banner Properties (v85),Evar,85,Visit,,,"Tracks attributes of banners displayed to users (e.g., size, placement, content type). This dimension is useful for analyzing the effectiveness of banner designs and placements, optimizing for engagement and conversion.",,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Nation Auto Login T/F (v87),Evar,87,Visit,,,Identifies whether the user was automatically logged in via the Nation feature. This boolean dimension supports analysis of seamless login experiences and their impact on user retention and engagement.,,,"TRUE
+FALSE",P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Logged In Via Magic Link T/F (v89),Evar,89,Visit,,,"Tracks whether the user logged in using a magic link (e.g., a secure, one-click login via email). This dimension provides insights into the adoption and effectiveness of magic link authentication.",,,"TRUE
+FALSE",P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Content Gate Type (v93),Evar,93,Hit,,,"Captures the type of content gate encountered by the user (e.g., “Paywall,” “Registration Wall,” “Free Access”). This dimension helps analyze the impact of content gating strategies on user engagement and subscription conversions.",evar93,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Brandsafe Check Result (v96),Evar,96,Hit,,,"Records the result of a brand safety check for the page or content (e.g., “Safe,” “Unsafe”). This dimension supports compliance and brand safety analysis, ensuring that content aligns with advertiser requirements.",evar96,,"TRUE
+FALSE
+",P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Article Gate: Detail Content ID (v100),Evar,100,Log In Click (event85),,,"Tracks the unique ID of the content associated with an article gate (e.g., content requiring login or subscription). This dimension helps measure the performance of gated content and assess user behavior when encountering restricted access.",evar100,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Article Gate: Detail Content Name (v101),Evar,101,Log In Click (event85),,,"Captures the name or title of the gated content (e.g., article or media) encountered by the user. This dimension helps analyze user interactions with specific gated content and supports optimization of content gating strategies.",evar101,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Article Gate: Page URL (v102),Evar,102,Log In Click (event85),,,Tracks the URL of the page associated with gated content. This dimension supports analysis of user behavior on gated pages and helps identify which pages drive engagement despite restricted access.,evar102,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Article Gate: Content Gate Type (v103),Evar,103,Log In Click (event85),,,"Identifies the type of content gate encountered on the page (e.g., “Paywall,” “Survey Wall,” “Registration Wall”). This dimension provides insights into the effectiveness of different gating types in converting users or driving engagement.",evar103,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Content Gate: Video ID (v104),Evar,104,Log In Click (event85),,,Tracks the unique ID of a video associated with a content gate. This dimension enables analysis of gated video performance and user behavior when access restrictions are applied.,evar104,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Content Gate: Video Name (v105),Evar,105,Log In Click (event85),,,Captures the name or title of the gated video content. This dimension helps measure the impact of gating specific video content on user engagement and completion rates.,evar105,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Profile Flow: Pages: Content Level 1 (v106),Evar,106,Log In Click (event85),,,,evar105,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+Profile Flow: Detail Content: Type (v107),Evar,107,Log In Click (event85),,,,evar105,,,P0 - Blocker/Critical,Page Attributes,"s.prop25
+s.eVar25",,,
+User: Fox Last Known Profile ID (v141),Evar,141,Hit,User: Fox Last Known Profile ID (v142),142,"Tracks the last known Fox profile ID associated with the user during their visit. This dimension supports user tracking for personalization, engagement analysis, and retention strategies.",user_fox_last_known_profile_id,,,P0 - Blocker/Critical,App & Site Attributes,,user_fox_anonymous_profile_id,,
+User: Fox Known Profile ID (v142),Evar,142,Hit,User: Fox Known Profile ID (v42),42,Captures the current Fox profile ID associated with the user. This dimension is critical for identifying logged-in users and analyzing behavior tied to specific user profiles.,user_fox_known_profile_id,,,P0 - Blocker/Critical,App & Site Attributes,,user_fox_known_profile_id,,
+User: XID (v143),Evar,143,Never,User: XID (v43),43,"Tracks the unique ID (XID) associated with the user. This dimension supports integrations with third-party systems, enabling cross-platform user tracking and engagement analysis.",evar143,,"71f49f27-5985-3e91-ac56-a1bfb17a9f789
+72b33fd2-30a6-4b88-b47c-6aef8fbcc517
+1ed51c4d-5f32-4376-a8c5-0ea83cdaf544
+cd71f918-0fc9-4057-8cfa-7b2b6f7de375",P0 - Blocker/Critical,App & Site Attributes,,user_xid,,
+Third Party Payload (v151),Evar,151,Hit,,,"Captures data or metadata passed through third-party integrations (e.g., external ad servers or analytics platforms). This dimension helps analyze the impact of external data payloads on user engagement and site performance.",evar151,,VID=jogo||VCID=crossword||PL=game_landing||AT=new_game_click,,,,,,
+Hit Type (v161),Evar,161,Hit,,,"Identifies the type of hit sent during the interaction (e.g., “Pageview,” “Event,” “Transaction”). This dimension is essential for understanding the structure and intent of user interactions, supporting detailed reporting and debugging.",,,,P0 - Blocker/Critical,App & Site Attributes,,user_xid,,

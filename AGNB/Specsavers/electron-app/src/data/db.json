@@ -1,0 +1,41 @@
+{
+  "whitelist": [
+    "smetrics.adobe.com",
+    "www.google-analytics.com"
+  ],
+  "rules": [
+    {
+      "id": "adobe_event1",
+      "domain": "smetrics.adobe.com",
+      "method": "GET",
+      "path": "/b/ss/*",
+      "conditions": [
+        {
+          "extractor": "query.c.on",
+          "type": "equals",
+          "value": "event1"
+        }
+      ],
+      "children": [
+        "adobe_page_info"
+      ]
+    },
+    {
+      "id": "adobe_page_info",
+      "domain": "smetrics.adobe.com",
+      "method": "GET",
+      "path": "/b/ss/*",
+      "conditions": [
+        {
+          "extractor": "query.pageName",
+          "type": "exists"
+        },
+        {
+          "extractor": "query.pageTitle",
+          "type": "exists"
+        }
+      ],
+      "children": []
+    }
+  ]
+}

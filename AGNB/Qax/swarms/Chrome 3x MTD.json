@@ -1,0 +1,26 @@
+[
+  {
+    "browserType": "chromium",
+    "headless": false,
+    "viewportWidth": 1920,
+    "viewportHeight": 1080,
+    "devicePreset": "Desktop (1920x1080)",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"
+  },
+  {
+    "browserType": "chromium",
+    "headless": false,
+    "viewportWidth": 768,
+    "viewportHeight": 1024,
+    "devicePreset": "Tablet (768x1024)",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"
+  },
+  {
+    "browserType": "chromium",
+    "headless": false,
+    "viewportWidth": 375,
+    "viewportHeight": 667,
+    "devicePreset": "Mobile (375x667)",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"
+  }
+]

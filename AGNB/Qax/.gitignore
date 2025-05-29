@@ -1,0 +1,9 @@
+node_modules/
+.tmp/
+.gocache/
+logs/
+dist/
+*.dmg
+*.exe
+**/yarn-error.log
+**/package-lock.json

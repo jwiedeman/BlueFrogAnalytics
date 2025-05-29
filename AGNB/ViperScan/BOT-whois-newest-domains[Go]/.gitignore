@@ -1,0 +1,8 @@
+# Ignore Rust build artifacts
+/target
+
+# Logs
+*.log
+
+# Ignore output CSV
+all_downloaded_domains.csv

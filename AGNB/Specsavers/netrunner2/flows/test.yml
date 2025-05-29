@@ -1,0 +1,3 @@
+- goto: http://example.com
+- wait_for_selector: 'h1'
+- screenshot: example.png

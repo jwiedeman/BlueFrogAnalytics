@@ -1,0 +1,55 @@
+{
+  "name": "Test Watch Fox Weather Live",
+  "steps": [
+    {
+      "action": "navigate",
+      "parameters": {
+        "url": "https://www.foxweather.com/live"
+      }
+    },
+    {
+      "action": "click",
+      "parameters": {
+        "selector": "#body"
+      }
+    },
+    {
+      "action": "screenshot",
+      "parameters": {}
+    },
+    {
+      "action": "ifSelector",
+      "parameters": {
+        "selector": "#volumeButton > img",
+        "timeout": 5
+      }
+    },
+    {
+      "action": "ifSelector",
+      "parameters": {
+        "selector": "a.overlay-play-button",
+        "timeout": 15
+      }
+    },
+    {
+      "action": "screenshot",
+      "parameters": {}
+    },
+    {
+      "action": "wait",
+      "parameters": {
+        "seconds": 150
+      }
+    },
+    {
+      "action": "reload",
+      "parameters": {}
+    },
+    {
+      "action": "wait",
+      "parameters": {
+        "seconds": 10
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+# Top-level cluster settings
+cluster_name: 'ViperScan Cluster 1'
+# Listen on the container (or host) IP; override with env var CASSANDRA_LISTEN_ADDRESS
+listen_address: auto
+# Bind RPC address for client connections; override with CASSANDRA_RPC_ADDRESS
+rpc_address: 0.0.0.0
+
+# Seed provider configuration (list of seed node IPs)
+seed_provider:
+  - class_name: org.apache.cassandra.locator.SimpleSeedProvider
+    parameters:
+      - seeds: "192.168.1.201,192.168.1.202,192.168.1.203"
+
+# Snitch for topology awareness
+endpoint_snitch: GossipingPropertyFileSnitch

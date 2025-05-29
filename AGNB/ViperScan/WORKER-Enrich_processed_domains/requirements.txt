@@ -1,0 +1,13 @@
+gevent
+certifi
+cassandra-driver
+python-whois
+pytz
+tldextract
+langdetect
+geoip2
+requests
+Wappalyzer
+pycountry
+beautifulsoup4
+lxml

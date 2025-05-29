@@ -1,0 +1,129 @@
+// Backlink Intelligence Database for Cassandra
+// Optimized with compressed integer storage and indexing
+
+Table raw_domains {
+  domain text [primary key] // Unique discovered domain
+  status integer // 0 unvisited, 1 in progress, 2 visited, 3 unreachable, etc.
+  last_checked timestamp
+}
+
+Table refined_domains {
+  domain_id uuid [primary key] // Unique ID after cleaning
+  domain text // Cleaned and verified domain name
+  root_domain text // Parent domain if part of a subdomain
+  last_updated timestamp
+  data text // Key-value store for metadata (e.g., '1:100,2:19,3:450')
+}
+
+Table pages {
+  page_id uuid [primary key] // Unique page ID
+  domain_id uuid [not null] // Associated domain ID
+  url text // Full page URL
+  last_crawled timestamp
+  internal_links text // Serialized list of internal links
+  outbound_links text // Serialized list of outbound domains
+  data text // Key-value store (e.g., '1:500,2:34')
+}
+
+Table domain_backlinks {
+  target_domain_id uuid [primary key] // Domain receiving backlinks
+  referring_domain text [not null] // Domain sending backlinks
+  total_links integer [not null] // Total backlinks from referring domain
+  last_updated timestamp
+  link_change integer // Backlink growth/loss from last crawl
+}
+
+Table page_backlinks {
+  target_page_id uuid [primary key] // Page receiving backlinks
+  referring_page text [not null] // Full URL linking to this page
+  referring_domain text [not null] // Domain sending backlinks
+  links_count integer [not null]
+  last_updated timestamp
+  link_change integer // Backlink growth/loss from last crawl
+}
+
+Table internal_links {
+  internal_link_id uuid [primary key] // Unique internal link ID
+  source_page_id uuid [not null] // Page initiating the internal link
+  target_page_id uuid [not null] // Page receiving the internal link
+  domain_id uuid [not null] // Ensures internal links stay within the same site
+}
+
+Table site_metrics {
+  domain_id uuid [primary key] // Associated domain ID
+  performance_score integer [not null]
+  accessibility_score integer [not null]
+  seo_score integer [not null]
+  last_updated timestamp
+}
+
+Table page_metrics {
+  page_id uuid [primary key] // Associated page ID
+  domain_id uuid [not null] // Domain this page belongs to
+  load_time_ms integer // Time in milliseconds for page load
+  first_contentful_paint integer // FCP metric in ms
+  largest_contentful_paint integer // LCP metric in ms
+  cumulative_layout_shift float // CLS metric
+  total_blocking_time integer // TBT metric in ms
+  speed_index integer // Speed Index metric
+  lighthouse_score integer // Lighthouse performance score
+  last_updated timestamp
+}
+
+Table domain_performance {
+  domain_id uuid [primary key] // Associated domain ID
+  avg_load_time_ms integer // Average load time across pages
+  avg_first_contentful_paint integer // Average FCP score
+  avg_largest_contentful_paint integer // Average LCP score
+  avg_cumulative_layout_shift float // Average CLS score
+  avg_total_blocking_time integer // Average TBT score
+  avg_speed_index integer // Average Speed Index
+  avg_lighthouse_score integer // Average Lighthouse score
+  last_updated timestamp
+}
+
+// Indexes for faster lookups in Cassandra
+Table domain_index {
+  domain_id uuid [primary key]
+  domain text [not null]
+}
+
+Table page_index {
+  page_id uuid [primary key]
+  url text [not null]
+}
+
+Table backlink_index {
+  target_domain_id uuid [primary key]
+  referring_domain text [not null]
+}
+
+Table site_metrics_index {
+  domain_id uuid [primary key]
+  performance_score integer
+  accessibility_score integer
+  seo_score integer
+}
+
+Table performance_index {
+  domain_id uuid [primary key]
+  avg_load_time_ms integer
+  avg_first_contentful_paint integer
+  avg_largest_contentful_paint integer
+  avg_cumulative_layout_shift float
+  avg_total_blocking_time integer
+  avg_speed_index integer
+  avg_lighthouse_score integer
+}
+
+// Relationships for DBML visualization (not enforced in Cassandra)
+Ref: pages.domain_id > refined_domains.domain_id
+Ref: domain_backlinks.target_domain_id > refined_domains.domain_id
+Ref: page_backlinks.target_page_id > pages.page_id
+Ref: internal_links.source_page_id > pages.page_id
+Ref: internal_links.target_page_id > pages.page_id
+Ref: site_metrics.domain_id > refined_domains.domain_id
+Ref: page_metrics.page_id > pages.page_id
+Ref: page_metrics.domain_id > refined_domains.domain_id
+Ref: domain_performance.domain_id > refined_domains.domain_id
+Ref: "raw_domains"."domain" < "refined_domains"."domain"

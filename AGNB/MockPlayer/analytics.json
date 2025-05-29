@@ -1,0 +1,12 @@
+{
+  "track": [
+    "play",
+    "pause",
+    "timeupdate",
+    "segmentstart",
+    "segmentend",
+    "ended",
+    "bufferstart",
+    "bufferend"
+  ]
+}

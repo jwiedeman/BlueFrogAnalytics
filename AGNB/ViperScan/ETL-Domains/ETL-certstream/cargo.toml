@@ -1,0 +1,11 @@
+[package]
+name = "certstreametl"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+cdrs-tokio = "8.1.6"
+cassandra-protocol = "3.2.0"  # Add this line
+tokio = { version = "1.0", features = ["full"] }
+tldextract = "0.6.0"
+futures = "0.3"

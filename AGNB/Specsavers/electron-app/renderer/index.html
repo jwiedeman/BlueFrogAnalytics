@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>QA Proxy Desktop</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  <!-- Custom styles -->
+  <style>
+    .dependency-list { max-height: 200px; overflow: auto; border: 1px solid #ddd; padding: 8px; }
+    .raw-details, .processed-details { padding-left: 1rem; }
+    .hit-pass { background-color: #e6ffed; }
+    .hit-fail { background-color: #ffe6e6; }
+  </style>
+</head>
+<body>
+  <!-- Header Bar -->
+  <nav class="navbar navbar-expand navbar-light bg-light">
+    <button id="toggleProxy" class="btn btn-outline-primary">Start Proxy</button>
+    <button id="toggleRecording" class="btn btn-outline-secondary ml-2">Start Recording</button>
+    <!-- sync/regenerate CA moved to Settings panel -->
+  </nav>
+  <div class="container-fluid">
+    <div class="row">
+      <nav id="sidebar" class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column mt-4">
+            <li class="nav-item">
+              <a class="nav-link active" href="#" data-panel="proxy">Proxy</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-panel="whitelist">Whitelist</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-panel="rules">Events</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-panel="raw">Raw Traffic</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-panel="processed-hits">Processed Hits</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-panel="sessions">Sessions</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-panel="settings">Settings</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-panel="docs">Docs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-panel="dimensions">Dimensions</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <main role="main" class="col-md-10 ml-sm-auto px-4">
+        <div id="panel-proxy">
+          <h1 class="mt-4">Proxy <span id="statusIndicator" class="badge badge-secondary">Loading...</span></h1>
+          <!-- Proxy controls moved to header bar -->
+          <div class="mb-3" style="display:none;">
+            <button id="startBtn" class="btn btn-success">Start Proxy</button>
+            <button id="stopBtn" class="btn btn-danger">Stop Proxy</button>
+          </div>
+        </div>
+        <div id="panel-whitelist" style="display:none;">
+          <h1 class="mt-4">Whitelist</h1>
+          <ul id="whitelist" class="list-group mb-2"></ul>
+          <div class="input-group mb-3">
+            <input type="text" id="newDomain" class="form-control" placeholder="domain.com">
+            <div class="input-group-append">
+              <button id="addDomain" class="btn btn-primary">Add</button>
+            </div>
+          </div>
+        </div>
+        <div id="panel-rules" style="display:none;">
+          <h1 class="mt-4">Events</h1>
+          <button id="showAddRuleForm" class="btn btn-success mb-2">Add New Event</button>
+          <button id="reloadRulesList" class="btn btn-secondary mb-2 ml-2">Reload List</button>
+          <div id="rulesList" class="list-group mb-3"></div>
+          <div id="addRuleForm" class="card card-body mb-3" style="display:none;">
+            <div class="form-group">
+              <label for="newRuleName">Event Name</label>
+              <input type="text" id="newRuleName" class="form-control" placeholder="friendly name">
+            </div>
+            <div class="form-group">
+              <label for="newRuleDomain">Domain</label>
+              <input type="text" id="newRuleDomain" class="form-control" placeholder="example.com">
+            </div>
+            <div class="form-group">
+              <label for="newRuleMethod">Method</label>
+              <select id="newRuleMethod" class="form-control">
+                <option>GET</option>
+                <option>POST</option>
+                <option>PUT</option>
+                <option>DELETE</option>
+                <option>PATCH</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Conditions</label>
+              <div id="conditionsContainer"></div>
+              <button id="addCondition" class="btn btn-sm btn-secondary">Add Condition</button>
+            </div>
+            <div class="form-group">
+              <label for="newRulePath">Path (glob)</label>
+              <input type="text" id="newRulePath" class="form-control" placeholder="/b/ss/*">
+            </div>
+            <div class="form-group">
+              <label>Dependencies</label>
+              <input type="text" id="depSearch" class="form-control mb-2" placeholder="Search dimensions...">
+              <div id="newRuleDependencies" class="dependency-list"></div>
+            </div>
+            <div class="form-group">
+              <label for="newRuleDesc">Description</label>
+              <input type="text" id="newRuleDesc" class="form-control" placeholder="Rule description">
+            </div>
+            <div class="form-group">
+              <label for="newRulePass">Pass Message</label>
+              <textarea id="newRulePass" class="form-control" rows="2" placeholder="Message on pass"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="newRuleFail">Fail Message</label>
+              <textarea id="newRuleFail" class="form-control" rows="2" placeholder="Message on fail"></textarea>
+            </div>
+            <button id="saveNewRule" class="btn btn-primary">Add Event</button>
+            <button id="cancelEditRule" class="btn btn-secondary ml-2" style="display:none;">Cancel</button>
+          </div>
+        </div>
+        <div id="panel-raw" style="display:none;">
+          <h1 class="mt-4">Raw Traffic</h1>
+          <div id="rawAlert" class="alert alert-info mb-2" style="display:none;">
+            No traffic captured yet. Make sure your browser or system is configured to use the HTTP(S) proxy at <strong>127.0.0.1:8080</strong>. See Docs for setup instructions.
+          </div>
+          <button id="reloadFlows" class="btn btn-secondary mb-2">Reload</button>
+          <button id="clearFlows" class="btn btn-warning mb-2 ml-2">Clear</button>
+          <div id="rawHitsList" class="list-group mb-2" style="height:400px; overflow:auto;"></div>
+        </div>
+        <div id="panel-processed-hits" style="display:none;">
+          <h1 class="mt-4">Processed Hits</h1>
+          <div id="processedAlert" class="alert alert-info mb-2" style="display:none;">
+            No processed hits yet. Start the proxy and generate traffic matching rules.
+          </div>
+          <div id="processedHitsList" class="list-group mb-2"></div>
+          <button id="reloadProcessed" class="btn btn-secondary">Reload</button>
+          <button id="clearProcessed" class="btn btn-warning ml-2">Clear</button>
+        </div>
+        <div id="panel-sessions" style="display:none;">
+          <h1 class="mt-4">Sessions</h1>
+          <button id="reloadSessions" class="btn btn-secondary mb-2">Reload Sessions</button>
+          <button id="importSessionBtn" class="btn btn-secondary mb-2 ml-2">Import HAR</button>
+          <input type="file" id="importSessionFile" accept="application/json" style="display:none;" />
+          <ul id="sessionsList" class="list-group mb-3"></ul>
+        </div>
+        <div id="panel-dimensions" style="display:none;">
+          <h1 class="mt-4">Dimensions Dictionary</h1>
+          <button id="reloadDimensions" class="btn btn-secondary mb-2">Reload</button>
+          <button id="addDimensionBtn" class="btn btn-primary mb-2 ml-2">Add Dimension</button>
+          <ul id="dimensionsList" class="list-group mb-3"></ul>
+        </div>
+        <div id="panel-settings" style="display:none;">
+          <h1 class="mt-4">Settings</h1>
+          <button id="syncCA" class="btn btn-outline-info mb-2">Sync CA</button>
+          <button id="regenerateCA" class="btn btn-outline-warning mb-2 ml-2">Regenerate CA</button>
+          <hr>
+          <h2>Database</h2>
+          <button id="exportDbBtn" class="btn btn-outline-primary mb-2">Export DB</button>
+          <button id="importDbBtn" class="btn btn-outline-secondary mb-2 ml-2">Import DB</button>
+          <input type="file" id="importDbFile" accept=".sqlite,.db" style="display:none;" />
+        </div>
+        <div id="panel-docs" style="display:none;">
+          <h1 class="mt-4">Getting Started</h1>
+          <p>Welcome to the QA Proxy desktop app! This tool intercepts HTTP/HTTPS traffic for whitelisted domains, applies QA rules, and visualizes results.</p>
+          <h2>How it works</h2>
+          <ol>
+            <li>The app runs an HTTP(S) proxy on port <strong>8080</strong>.</li>
+            <li>It only intercepts domains on your whitelist.</li>
+            <li>Each request is evaluated against your rule engine.</li>
+            <li>To capture traffic, configure your browser or system proxy settings to use <strong>localhost:8080</strong> for HTTP and HTTPS.</li>
+            <li>Use the UI to manage whitelist, rules, and view raw traffic.</li>
+          </ol>
+          <h2>Usage within the App</h2>
+          <ul>
+            <li><strong>Proxy</strong>: Start/stop the proxy and see its status.</li>
+            <li><strong>Whitelist</strong>: Manage which domains are monitored.</li>
+            <li><strong>Rules</strong>: Create, edit, and apply QA rules to traffic.</li>
+            <li><strong>Raw Traffic</strong>: Inspect all requests flowing through the proxy.</li>
+            <li><strong>Docs</strong>: View this guide at any time.</li>
+          </ul>
+          <h2>Configure System Proxy</h2>
+          <p>For full-system capture, configure your OS to route HTTP and HTTPS traffic through the proxy:</p>
+          <h3>macOS</h3>
+          <ol>
+            <li>Open <strong>System Preferences &gt; Network</strong>.</li>
+            <li>Select your network interface, click <strong>Advanced...</strong>, then the <strong>Proxies</strong> tab.</li>
+            <li>Check <strong>Web Proxy (HTTP)</strong> and <strong>Secure Web Proxy (HTTPS)</strong>.</li>
+            <li>Set <strong>Server</strong> to <code>127.0.0.1</code> and <strong>Port</strong> to <code>8080</code>. Click <strong>OK</strong> and <strong>Apply</strong>.</li>
+          </ol>
+          <h3>Windows</h3>
+          <ol>
+            <li>Open <strong>Settings &gt; Network & Internet &gt; Proxy</strong>.</li>
+            <li>Under <strong>Manual proxy setup</strong>, toggle on <strong>Use a proxy server</strong>.</li>
+            <li>Set <strong>Address</strong> to <code>127.0.0.1</code> and <strong>Port</strong> to <code>8080</code>. Click <strong>Save</strong>.</li>
+          </ol>
+          <p><em>Note:</em> Click <strong>Start Proxy</strong> in the Proxy tab first to generate the CA files before installing the certificate.</p>
+          <h2>Install Root CA Certificate</h2>
+          <p>The proxy generates a root CA under <code>electron-app/src/data/ca/</code>. The certificate is at <code>electron-app/src/data/ca/certs/ca.pem</code>. You must trust this CA to avoid certificate errors.</p>
+          <h3>macOS</h3>
+          <ol>
+            <li>Open <strong>Keychain Access</strong>.</li>
+            <li>Drag <code>electron-app/src/data/ca/certs/ca.pem</code> into "System" keychain.</li>
+            <li>Double-click the imported certificate, expand <strong>Trust</strong>, and set <strong>When using this certificate</strong> to <strong>Always Trust</strong>. Close to save.</li>
+          </ol>
+          <h3>Windows</h3>
+          <ol>
+            <li>Run <strong>mmc.exe</strong>, add the <strong>Certificates</strong> snap-in for <strong>Local Computer</strong>.</li>
+            <li>Under <strong>Trusted Root Certification Authorities</strong>, right-click <strong>Certificates</strong> and choose <strong>Import</strong>.</li>
+            <li>Select <code>electron-app\src\data\ca\certs\ca.pem</code> and complete the wizard.</li>
+          </ol>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script type="module" src="renderer.js"></script>
+</body>
+</html>
