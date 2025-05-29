@@ -13,8 +13,8 @@ RUN npm ci --omit=dev
 # Copy server code
 COPY server ./server
 
-# Expose port for profile server
+# Expose port for API server
 EXPOSE 3001
 
-# Start profile server
-CMD ["node", "server/profileServer.js"]
+# Start API server
+CMD ["node", "server/apiServer.js"]
