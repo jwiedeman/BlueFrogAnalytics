@@ -28,10 +28,10 @@ Documentation content lives in `src/content/docs` and static assets live in `pub
 
 ## Docker
 
-The profile API service can be run in a Docker container. Build the image:
+The website API service can be run in a Docker container. Build the image:
 
 ```bash
-docker build -t profile-service .
+docker build -t website-api .
 ```
 
 Run the container and expose port 3001. Mount your Firebase service account JSON so the server can read it:
@@ -43,7 +43,7 @@ docker run -p 3001:3001 \
   -e CASSANDRA_CONTACT_POINTS=127.0.0.1 \
   -e CASSANDRA_LOCAL_DATA_CENTER=datacenter1 \
   -e CASSANDRA_KEYSPACE=profiles \
-  profile-service
+  website-api
 ```
 
 Provide environment variables for your Firebase service account and Cassandra configuration. The server listens on port `3001`.

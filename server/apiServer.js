@@ -1,3 +1,4 @@
+// Main API server providing profile management and website test endpoints
 import express from 'express';
 import { initializeApp, cert } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
@@ -190,9 +191,6 @@ app.post('/api/audit/accessibility', authMiddleware, async (req, res) => {
 });
 
 
-app.post('/api/audit/accessibility', authMiddleware, async (req, res) => {
-  const { url } = req.body || {};
-
 app.post('/api/seo-audit', authMiddleware, async (req, res) => {
   const { url } = req.body;
 
@@ -216,4 +214,4 @@ app.post('/api/seo-audit', authMiddleware, async (req, res) => {
 });
 
 const port = process.env.PORT || 3001;
-app.listen(port, () => console.log('Profile server running on port', port));
+app.listen(port, () => console.log('API server running on port', port));
