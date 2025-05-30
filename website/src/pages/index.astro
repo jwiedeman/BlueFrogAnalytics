@@ -2,8 +2,43 @@
 // Homepage structured with Carbon sections
 import DocLayout from '../components/DocLayout.astro';
 import IndexPage, { frontmatter as indexFm } from '../content/docs/index.mdx';
+import IndexRaw from '../content/docs/index.mdx?raw';
+import { applyGitDates } from '../utils/git-dates.js';
+
+const entry = { id: 'content/docs/index.mdx', data: { ...indexFm }, body: IndexRaw };
+applyGitDates(entry);
+const words = IndexRaw.split(/\s+/g).length;
+const readingTime = Math.max(1, Math.ceil(words / 200));
 ---
 
 <DocLayout title={indexFm.title} description={indexFm.description}>
-  <IndexPage />
+  <article class="doc-article">
+    <header class="mb-4 pb-3 border-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 offset-lg-2">
+            <h1 class="display-4">{indexFm.title}</h1>
+            {entry.data.originalPubDate && (
+              <p class="text-muted mb-0">
+                {entry.data.originalPubDate.toLocaleDateString()} • {readingTime} min read
+              </p>
+            )}
+            {entry.data.updatedDate && entry.data.updatedDate.getTime() !== entry.data.originalPubDate?.getTime() ? (
+              <p class="text-muted">Updated {entry.data.updatedDate.toLocaleDateString()}</p>
+            ) : null}
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="mb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 offset-lg-2">
+            <IndexPage />
+          </div>
+        </div>
+      </div>
+    </section>
+  </article>
 </DocLayout>
