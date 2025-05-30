@@ -105,11 +105,13 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
   margin-top: var(--page-gap);
 }
 .sidebar-left {
-  border-right: 1px solid #e0e0e0;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
   padding-right: 1rem;
 }
 .sidebar-right {
-  border-left: 1px solid #e0e0e0;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
   padding-left: 1rem;
 }
 // Right sidebar article headings
@@ -490,6 +492,7 @@ body.dark-mode #side-nav .bx--side-nav__link {
 .sidebar-left .btn-toggle,
 .sidebar-left .doc-link-item a {
   padding: 0.25rem 0.5rem;
+  font-size: 0.9rem;
 }
 
 .sidebar-left .doc-link-item a {
