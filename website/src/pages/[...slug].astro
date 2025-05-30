@@ -38,6 +38,7 @@ const readingTime = Math.max(1, Math.ceil(words / 200));
                 ? `${entry.data.originalPubDate.toLocaleDateString()} • `
                 : ''}{readingTime} min read
             </p>
+
             {entry.data.updatedDate && entry.data.updatedDate.getTime() !== entry.data.originalPubDate?.getTime() ? (
               <p class="text-muted">Updated {entry.data.updatedDate.toLocaleDateString()}</p>
             ) : null}
@@ -49,7 +50,9 @@ const readingTime = Math.max(1, Math.ceil(words / 200));
     <section class="mb-5">
       <div class="container">
         <div class="row">
+
           <div class="col-lg-10 offset-lg-1">
+
             <Content />
           </div>
         </div>
