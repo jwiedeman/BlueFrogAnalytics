@@ -1,21 +1,35 @@
 import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import fs from 'fs';
 
 export function getGitDates(filePath) {
   try {
     const gitRoot = execSync('git rev-parse --show-toplevel', { encoding: 'utf8' }).trim();
     const relative = path.relative(gitRoot, filePath).replace(/\\/g, '/');
-    const log = execSync(`git log --follow --format=%aI -- "${relative}"`, { cwd: gitRoot, encoding: 'utf8' })
+    const log = execSync(`git log --follow --format=%aI -- "${relative}"`, {
+      cwd: gitRoot,
+      encoding: 'utf8',
+    })
       .trim()
       .split('\n')
       .filter(Boolean);
-    if (!log.length) return null;
-    return {
-      created: new Date(log[log.length - 1]),
-      modified: new Date(log[0]),
-    };
+    if (log.length) {
+      return {
+        created: new Date(log[log.length - 1]),
+        modified: new Date(log[0]),
+      };
+    }
   } catch (e) {
+    // ignore git failures
+  }
+
+  try {
+    const stats = fs.statSync(filePath);
+    const created = stats.birthtime ?? stats.ctime ?? stats.mtime;
+    const modified = stats.mtime;
+    return { created, modified };
+  } catch {
     return null;
   }
 }
