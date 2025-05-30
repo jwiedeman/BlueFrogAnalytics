@@ -24,6 +24,7 @@ const pageTitle = entry.data.title;
 const pageDesc = entry.data.description ?? '';
 const { Content, headings } = await entry.render();
 const tocHeadings = headings.filter(h => h.depth <= 3);
+const disableIndex = slug.toLowerCase() === 'introduction/terminology-glossary';
 const words = entry.body ? entry.body.split(/\s+/g).length : 0;
 const readingTime = Math.max(1, Math.ceil(words / 200));
 ---
@@ -48,7 +49,7 @@ const readingTime = Math.max(1, Math.ceil(words / 200));
       </div>
   </header>
 
-  {tocHeadings.length ? (
+  {tocHeadings.length && !disableIndex ? (
     <nav class="doc-toc mb-4">
       <div class="container">
         <div class="row">
