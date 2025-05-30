@@ -233,7 +233,6 @@ for (const [file, mod] of Object.entries(modules)) {
                     <a
                       class={`text-decoration-none d-block ps-4${isActive ? ' doc-active' : ''}`}
                       href={node.path}
-                      data-bs-dismiss="offcanvas"
                     >
                       {node.label}
                     </a>
@@ -283,6 +282,7 @@ for (const [file, mod] of Object.entries(modules)) {
     </div>
     <CustomFooter />
     <FirebaseScripts />
+    <script src="/js/offcanvas-nav.js" type="module"></script>
     <script src="/js/glossary-popover.js" defer></script>
     <!-- Docs search logic -->
     <script client:load is:inline define:vars={{ searchIndex }}>
