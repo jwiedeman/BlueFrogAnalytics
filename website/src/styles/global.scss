@@ -497,6 +497,11 @@ body.dark-mode #side-nav .bx--side-nav__link {
   padding-right: 0.5rem;
 }
 
+/* Make ordered list numbers blue for clarity */
+.list-group-numbered > .list-group-item::before {
+  color: var(--sl-color-primary);
+}
+
 /* Consistent spacing for dashboard navigation */
 .dashboard-side-nav .btn-toggle,
 .dashboard-side-nav .nav-link {
