@@ -1,0 +1,16 @@
+{
+  "name": "bluefrog-api",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "start": "node server/apiServer.js",
+    "dev": "node server/apiServer.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "firebase-admin": "^11.10.1",
+    "cassandra-driver": "^4.6.3",
+    "chrome-launcher": "^0.15.0",
+    "lighthouse": "^10.0.0"
+  }
+}

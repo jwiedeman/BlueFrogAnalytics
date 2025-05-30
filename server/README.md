@@ -13,7 +13,8 @@ This directory houses the Express-based API for Blue Frog Analytics. The server 
 Install dependencies and start the server:
 
 ```bash
-node apiServer.js
+npm install
+npm start
 ```
 
 Environment variables:

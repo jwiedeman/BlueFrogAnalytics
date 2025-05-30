@@ -43,7 +43,8 @@ The API server under `server/apiServer.js` exposes endpoints for profile managem
 Run locally:
 
 ```bash
-node server/apiServer.js
+npm install
+npm start
 ```
 
 Or build the Docker image:

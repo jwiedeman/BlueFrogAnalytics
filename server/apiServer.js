@@ -64,6 +64,26 @@ app.use(express.json({ limit: '10kb' }));
 app.use(securityHeaders);
 app.use(rateLimiter);
 
+async function updateTest(uid, name, data) {
+  const result = await cassandraClient.execute(
+    'SELECT tests FROM user_profiles WHERE uid = ?',
+    [uid],
+    { prepare: true }
+  );
+  let tests = {};
+  if (result.rows.length && result.rows[0].tests) {
+    try {
+      tests = JSON.parse(result.rows[0].tests);
+    } catch {}
+  }
+  tests[name] = data;
+  await cassandraClient.execute(
+    'UPDATE user_profiles SET tests = ? WHERE uid = ?',
+    [JSON.stringify(tests), uid],
+    { prepare: true }
+  );
+}
+
 async function authMiddleware(req, res, next) {
   const header = req.headers.authorization || '';
   const token = header.startsWith('Bearer ') ? header.slice(7) : null;
@@ -133,6 +153,7 @@ app.post('/api/performance', authMiddleware, async (req, res) => {
       onlyCategories: ['performance']
     });
     await chrome.kill();
+    await updateTest(req.uid, 'performance', lhr);
     res.json(lhr);
   } catch (err) {
     console.error(err);
@@ -183,6 +204,7 @@ app.post('/api/audit/accessibility', authMiddleware, async (req, res) => {
   const options = { port: chrome.port, onlyCategories: ['accessibility'] };
     const result = await lh(url, options);
     await chrome.kill();
+    await updateTest(req.uid, 'accessibility', result.lhr);
     res.json(result.lhr);
   } catch (err) {
     console.error(err);
@@ -205,6 +227,7 @@ app.post('/api/seo-audit', authMiddleware, async (req, res) => {
     const options = { port: chrome.port, onlyCategories: ['seo'] };
     const result = await lh(url, options);
     await chrome.kill();
+    await updateTest(req.uid, 'seo', result.lhr);
     res.json(result.lhr);
   } catch (err) {
     console.error(err);
