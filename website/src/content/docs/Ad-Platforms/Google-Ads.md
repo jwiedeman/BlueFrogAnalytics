@@ -117,7 +117,7 @@ Google Ads might be the heavyweight champion of digital advertising, but it's no
 So how do they stack up?
 
 | **Feature** | **Google Ads** | **Bing Ads** | **Facebook Ads** | **Amazon Advertising** |
-| ,  | ,  | ,  | ,  | ,  |
+| --- | --- | --- | --- | --- |
 | **Reach & Scale** | Excellent -- billions of daily searches via Google Search, Display, and YouTube | Good -- strong U.S. presence, especially among older demographics | Extensive -- dominates social media with granular audience access | Strong -- targets high-intent shoppers directly on Amazon |
 | **Targeting Capabilities** | Advanced -- includes search intent, audience behavior, demographics, and custom segments | Moderate -- improved but still keyword-heavy | Strong -- unmatched interest and behavioral targeting | Moderate -- mostly product and shopping-related targeting |
 | **Ad Format Variety** | Extensive -- text, display, video, app, shopping, discovery | Moderate -- mainly search and some display | Extensive -- stories, video, carousel, collection, messenger | Focused -- mostly shopping/product ads with some video |

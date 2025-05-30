@@ -183,7 +183,7 @@ Someone searching "wireless earbuds" on Amazon is likely a few clicks away from 
 Here's how the major players stack up against Amazon Advertising:
 
 | Feature | Amazon Advertising | Google Ads | Facebook Ads | The Trade Desk |
-| ,  | ,  | ,  | ,  | ,  |
+| --- | --- | --- | --- | --- |
 | **Data-Driven Targeting** | Exceptional | Very strong | Solid | Also excellent |
 | **Ad Format Variety** | Broad, eCom-focused | Broad & search-led | Social-first | High-end variety |
 | **Retail Integration** | Deep & unique | Light | Minimal | Minimal |
