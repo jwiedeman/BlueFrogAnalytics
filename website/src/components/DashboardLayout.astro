@@ -87,7 +87,7 @@ function inPath(item) {
                   <ul class="btn-toggle-nav list-unstyled">
                     {item.children.map((child, j) => (
                       <li class="nav-item" key={`occ-${i}-${j}`}>
-                        <a class={`nav-link text-dark${inPath(child) ? ' active' : ''}`} href={child.link} data-bs-dismiss="offcanvas">
+                        <a class={`nav-link text-dark${inPath(child) ? ' active' : ''}`} href={child.link}>
                           {child.label}
                         </a>
                       </li>
@@ -100,7 +100,6 @@ function inPath(item) {
                 <a
                   class={`nav-link text-dark${inPath(item) ? ' active' : ''}`}
                   href={item.link}
-                  data-bs-dismiss="offcanvas"
                 >
                   {item.label}
                 </a>
@@ -157,6 +156,7 @@ function inPath(item) {
     <CustomFooter />
     <FirebaseScripts />
     <script src="/js/dashboard-nav-delay.js" type="module"></script>
+    <script src="/js/offcanvas-nav.js" type="module"></script>
   </body>
 </html>
 <style>
