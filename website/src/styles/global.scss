@@ -393,10 +393,10 @@ body.dark-mode #side-nav .bx--side-nav__link {
   text-decoration: underline;
 }
 
-// Docs page sidebars: keep navigation links blue
+// Docs page sidebars: render navigation links in default text color
 .sidebar-left a,
 .sidebar-right a {
-  color: var(--sl-color-primary);
+  color: var(--bs-body-color);
   text-decoration: none;
 }
 
@@ -410,10 +410,10 @@ body.dark-mode #side-nav .bx--side-nav__link {
 
 // Docs sidebar: highlight active article link
 .sidebar-left a.doc-active {
-  color: var(--bs-accordion-active-color);
+  color: var(--sl-color-primary);
   background-color: var(--bs-accordion-active-bg);
-  text-decoration: none;
-  font-weight: normal;
+  text-decoration: underline;
+  font-weight: 600;
 }
 
 .sidebar-right a.active {
