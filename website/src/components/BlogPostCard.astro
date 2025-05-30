@@ -1,7 +1,7 @@
 ---
 const { post } = Astro.props;
 const url = `/blog/${post.slug}`;
-const words = post.body.split(/\s+/g).length;
+const words = post.body ? post.body.split(/\s+/g).length : 0;
 const readingTime = Math.max(1, Math.ceil(words / 200));
 
 function slugify(str) {

@@ -26,7 +26,7 @@ const pageDesc = post.data.description ?? '';
 
 const { Content, headings } = await post.render();
 
-const words = post.body.split(/\s+/g).length;
+const words = post.body ? post.body.split(/\s+/g).length : 0;
 const readingTime = Math.max(1, Math.ceil(words / 200));
 
 const allPosts = (await getCollection('blog')).filter(p => p.data.published);
