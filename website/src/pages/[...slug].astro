@@ -1,6 +1,7 @@
 ---
 export const prerender = true;
 import { getCollection, getEntryBySlug } from 'astro:content';
+import { applyGitDates } from '../utils/git-dates.js';
 let i;
 /**
  * Generate static paths for all documentation pages
@@ -18,9 +19,42 @@ const entry = await getEntryBySlug('docs', slug.toLowerCase());
 if (!entry) {
   throw new Error('404');
 }
+applyGitDates(entry);
+const pageTitle = entry.data.title;
+const pageDesc = entry.data.description ?? '';
 const { Content, headings } = await entry.render();
+const words = entry.body.split(/\s+/g).length;
+const readingTime = Math.max(1, Math.ceil(words / 200));
 ---
-<DocsLayout headings={headings}>
-  <Content />
+<DocsLayout headings={headings} title={pageTitle} description={pageDesc}>
+  <article class="doc-article">
+    <header class="mb-4 pb-3 border-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 offset-lg-1">
+            <h1 class="display-4">{entry.data.title}</h1>
+            <p class="text-muted mb-0">
+              {entry.data.originalPubDate
+                ? `${entry.data.originalPubDate.toLocaleDateString()} • `
+                : ''}{readingTime} min read
+            </p>
+            {entry.data.updatedDate && entry.data.updatedDate.getTime() !== entry.data.originalPubDate?.getTime() ? (
+              <p class="text-muted">Updated {entry.data.updatedDate.toLocaleDateString()}</p>
+            ) : null}
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="mb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 offset-lg-1">
+            <Content />
+          </div>
+        </div>
+      </div>
+    </section>
+  </article>
 </DocsLayout>
 

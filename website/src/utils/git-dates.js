@@ -22,7 +22,9 @@ export function getGitDates(filePath) {
 
 export function applyGitDates(post) {
   try {
-    const filePath = fileURLToPath(new URL(`../${post.id}`, import.meta.url));
+    const filePath = fileURLToPath(
+      new URL(`../${post.id.replace(/^src\//, '')}`, import.meta.url)
+    );
     const dates = getGitDates(filePath);
     if (dates) {
       post.data.pubDate = dates.created;
