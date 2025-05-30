@@ -374,10 +374,10 @@ body.dark-mode #side-nav .bx--side-nav__link {
   }
 }
 
-// Docs page: render article links as normal text (no blue or underline)
+// Docs page: render article links in primary blue for clear affordance
 .docs-main a {
-  color: var(--bs-body-color);
-  text-decoration: none;
+  color: var(--sl-color-primary);
+  text-decoration: underline;
 }
 
 // Ensure glossary links are visibly highlighted
@@ -393,10 +393,10 @@ body.dark-mode #side-nav .bx--side-nav__link {
   text-decoration: underline;
 }
 
-// Docs page sidebars: render sidebar navigation links as normal text
+// Docs page sidebars: keep navigation links blue
 .sidebar-left a,
 .sidebar-right a {
-  color: var(--bs-body-color);
+  color: var(--sl-color-primary);
   text-decoration: none;
 }
 
