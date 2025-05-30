@@ -10,6 +10,7 @@ const { headings, title, description } = Astro.props;
 // Build a nested tree structure from docs content
 const modules = import.meta.glob('../content/docs/**/*.{md,mdx}', { eager: true });
 const docsRaw = import.meta.glob('../content/docs/**/*.{md,mdx}', { eager: true, as: 'raw' });
+const blogModules = import.meta.glob('../content/blog/*.mdx', { eager: true });
 function buildTree() {
   const tree = [];
   for (const [filePath, mod] of Object.entries(modules)) {
@@ -46,6 +47,12 @@ if (introIndex > -1) {
   const [intro] = docTree.splice(introIndex, 1);
   docTree.unshift(intro);
 }
+
+const blogNodes = Object.entries(blogModules).map(([filePath, mod]) => {
+  const slug = filePath.replace('../content/blog/', '').replace(/\.mdx?$/, '');
+  return { name: slug, label: mod.frontmatter?.title || slug.replace(/-/g, ' '), path: `/blog/${slug}/`, children: [] };
+}).sort((a, b) => a.label.localeCompare(b.label));
+docTree.push({ name: 'blog', label: 'Blog', path: null, children: blogNodes });
 
 // Determine breadcrumb based on current path
 const currentPath = Astro.url.pathname.replace(/\/$/, '').toLowerCase();
