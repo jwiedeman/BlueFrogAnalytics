@@ -548,3 +548,8 @@ body.dark-mode .navbar-dark {
 body.dark-mode .dashboard-side-nav .nav-link.active {
   color: var(--sl-color-primary) !important;
 }
+
+.dashboard-footer {
+  margin-top: 0;
+  background-color: #000;
+}
