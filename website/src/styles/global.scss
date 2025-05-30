@@ -127,6 +127,19 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
 .sidebar-right li[data-depth='5'] { margin-left: 3rem; }
 .sidebar-right li[data-depth='6'] { margin-left: 4rem; }
 
+// Top-of-article table of contents
+.doc-toc ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.doc-toc li {
+  margin: 0.25rem 0;
+}
+.doc-toc li[data-depth='2'] { margin-left: 1rem; }
+.doc-toc li[data-depth='3'] { margin-left: 2rem; }
+
 // Docs article container styling
 
 /* Blog post layout */
