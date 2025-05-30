@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BlogLayout from '../../../components/BlogLayout.astro';
 import BlogPostCard from '../../../components/BlogPostCard.astro';
 import { applyGitDates } from '../../../utils/git-dates.js';
+import { authors } from '../../../data/authors.js';
 
 export async function getStaticPaths() {
   function slugify(str) {
@@ -31,13 +32,41 @@ const posts = (await getCollection('blog'))
 
 posts.forEach(applyGitDates);
 
-const authorName = posts[0]?.data.author || author.replace(/-/g, ' ');
+const tags = Array.from(new Set(posts.flatMap(p => p.data.tags || [])));
+const info = authors[author] || { name: posts[0]?.data.author || author.replace(/-/g, ' ') };
+const authorName = info.name;
 const title = `Posts by ${authorName}`;
 const description = `Articles written by ${authorName}.`;
 ---
 <BlogLayout title={title} description={description}>
-  <h1>Posts by {authorName}</h1>
-  {posts.map(post => (
-    <BlogPostCard post={post} />
-  ))}
+  <section class="container mb-4">
+    <h1 class="h2">{info.name}</h1>
+    {info.bio && <p>{info.bio}</p>}
+  </section>
+
+  {tags.length ? (
+    <section class="container mb-4">
+      <div class="tag-filter">
+        {tags.map(t => (
+          <span class="badge bg-secondary text-uppercase me-1" data-tag={t} key={t}>{t}</span>
+        ))}
+      </div>
+    </section>
+  ) : null}
+
+  <section class="container">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="author-posts">
+      {posts.map(post => (
+        <div class="col" key={post.slug}>
+          <BlogPostCard post={post} />
+        </div>
+      ))}
+    </div>
+    <nav id="author-pagination" class="mt-4" aria-label="Author pagination"></nav>
+  </section>
+  <script src="/js/author-posts.js" defer></script>
+  <style>
+    .tag-filter .badge { cursor: pointer; }
+    .tag-filter .badge.active { background: #0b3d91; }
+  </style>
 </BlogLayout>
