@@ -69,6 +69,17 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
   scroll-margin-top: calc(var(--header-height) + 2rem + 0.5rem);
 }
 
+/* Standardize docs heading sizes for visual consistency */
+.doc-article h2 {
+  font-size: 2rem;
+  margin-top: 2rem;
+}
+
+.doc-article h3 {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+}
+
 
 
 
