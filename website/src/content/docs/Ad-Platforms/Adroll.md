@@ -101,7 +101,7 @@ Picking the right ad platform feels a bit like shopping for a new car, you want 
 Let's break down the head-to-head:
 
 | Feature | **AdRoll** | **Criteo** | **The Trade Desk** | **Google Display Network** |
-| ,  | ,  | ,  | ,  | ,  |
+| --- | --- | --- | --- | --- |
 | **Retargeting Efficiency** | Strong | Strong | Moderate | Moderate |
 | **Cross-Channel Capabilities** | Excellent | Limited | Excellent | Moderate |
 | **AI & Optimization** | Advanced | Advanced | Strong | Strong |
