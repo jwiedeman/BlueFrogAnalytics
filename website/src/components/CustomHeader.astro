@@ -35,10 +35,10 @@ function isActive(item) {
   }`
 } aria-label="Main navigation">
   <div class="container-fluid">
-    <a class="navbar-brand site-logo" href="/">
-      <span class="site-logo-prefix">BlueFrog</span><span class="site-logo-analytics">Analytics</span>
+    <a class="navbar-brand site-logo d-flex align-items-center" href="/">
+      <span class="text-primary">BlueFrog</span><span class="fw-bold">Analytics</span>
     </a>
-    <span class="nav-separator mx-2 d-none d-lg-inline">|</span>
+    <span class="mx-2 d-none d-lg-inline text-body-secondary opacity-75">|</span>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -78,25 +78,6 @@ function isActive(item) {
     </div>
   </div>
 </nav>
-<style>
-  .site-logo-prefix {
-    color: var(--sl-color-primary);
-  }
-  .site-logo-analytics {
-    font-weight: 600;
-  }
-  .nav-separator {
-    color: var(--bs-body-color);
-    opacity: 0.65;
-  }
-  .navbar-charcoal {
-    --bs-navbar-color: #36454f;
-    --bs-navbar-hover-color: var(--sl-color-primary);
-    --bs-navbar-active-color: var(--sl-color-primary);
-    --bs-navbar-brand-color: #36454f;
-    --bs-navbar-brand-hover-color: var(--sl-color-primary);
-  }
-</style>
 <script is:inline>
   const saved = localStorage.getItem('bfaLoggedIn');
   if (saved !== null) {

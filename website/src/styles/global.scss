@@ -16,6 +16,15 @@
   --page-gap: 7vh;
 }
 
+/* Custom navbar theme */
+.navbar-charcoal {
+  --bs-navbar-color: #36454f;
+  --bs-navbar-hover-color: var(--sl-color-primary);
+  --bs-navbar-active-color: var(--sl-color-primary);
+  --bs-navbar-brand-color: #36454f;
+  --bs-navbar-brand-hover-color: var(--sl-color-primary);
+}
+
 /* Global page body styles */
 body {
   font-family: var(--sl-font-sans);
@@ -528,6 +537,9 @@ body.dark-mode #side-nav .bx--side-nav__link {
 }
 
 /* Consistent spacing for dashboard navigation */
+.dashboard-side-nav {
+  height: calc(100vh - var(--header-height));
+}
 .dashboard-side-nav .btn-toggle,
 .dashboard-side-nav .nav-link {
   padding: 0.25rem 0.5rem;
