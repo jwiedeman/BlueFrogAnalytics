@@ -109,6 +109,28 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
   border-bottom: 1px solid #e0e0e0;
   padding-right: 1rem;
 }
+.sidebar-left .accordion {
+  border: 0;
+}
+.sidebar-left .accordion-item {
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  border-bottom: 1px solid #e0e0e0;
+  border-radius: 0;
+}
+.sidebar-left .accordion-item:last-child {
+  border-bottom: 0;
+}
+.sidebar-left .accordion-body {
+  border-top: 0;
+}
+.sidebar-left .list-group-item {
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  border-bottom: 1px solid #e0e0e0;
+}
 .sidebar-right {
   border-top: 1px solid #e0e0e0;
   border-bottom: 1px solid #e0e0e0;
