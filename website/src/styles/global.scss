@@ -113,11 +113,7 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
   overflow-y: auto;
   margin-top: var(--page-gap);
 }
-.sidebar-left {
-  border-top: 1px solid #e0e0e0;
-  border-bottom: 1px solid #e0e0e0;
-  padding-right: 1rem;
-}
+
 .sidebar-left .accordion {
   border: 0;
 }
@@ -140,11 +136,7 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
   border-top: 0;
   border-bottom: 1px solid #e0e0e0;
 }
-.sidebar-right {
-  border-top: 1px solid #e0e0e0;
-  border-bottom: 1px solid #e0e0e0;
-  padding-left: 1rem;
-}
+
 // Right sidebar article headings
 .sidebar-right ul {
   list-style: none;
