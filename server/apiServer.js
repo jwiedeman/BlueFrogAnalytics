@@ -7,6 +7,7 @@ import { createHash } from 'crypto';
 import fs from 'fs';
 import lighthouse from 'lighthouse';
 import { launch } from 'chrome-launcher';
+import { createTagHealthRouter } from './tagHealth.js';
 
 // Basic security headers and rate limiting without extra dependencies
 const securityHeaders = (req, res, next) => {
@@ -96,6 +97,8 @@ async function authMiddleware(req, res, next) {
     res.status(401).json({ error: 'Unauthorized' });
   }
 }
+
+app.use('/api/tag-health', authMiddleware, createTagHealthRouter(updateTest));
 
 app.post('/api/profile', authMiddleware, async (req, res) => {
   const {
