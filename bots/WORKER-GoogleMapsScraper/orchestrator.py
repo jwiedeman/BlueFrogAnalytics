@@ -4,6 +4,8 @@ import math
 import random
 from pathlib import Path
 
+from asyncio import Semaphore, Queue
+
 from grid_worker import scrape_city_grid
 
 
@@ -18,34 +20,44 @@ def compute_layout(n: int, screen_w: int, screen_h: int) -> tuple[int, int, int,
     return cols, rows, width, height
 
 
-async def run_term(term: str, args, index: int, cols: int, width: int, height: int):
-    row = index // cols
-    col = index % cols
-    x = col * width
-    y = row * height
-    launch_args = [
-        f"--window-size={width},{height}",
-        f"--window-position={x},{y}",
-    ]
-    await scrape_city_grid(
-        args.city,
-        term,
-        args.steps,
-        args.spacing,
-        args.total,
-        Path(args.database),
-        headless=args.headless,
-        min_delay=args.min_delay,
-        max_delay=args.max_delay,
-        launch_args=launch_args,
-    )
+async def run_term(term: str, args, slots: Queue, sem: Semaphore, width: int, height: int):
+    async with sem:
+        row, col = await slots.get()
+        x = col * width
+        y = row * height
+        launch_args = [
+            f"--window-size={width},{height}",
+            f"--window-position={x},{y}",
+        ]
+        try:
+            await scrape_city_grid(
+                args.city,
+                term,
+                args.steps,
+                args.spacing,
+                args.total,
+                Path(args.database),
+                headless=args.headless,
+                min_delay=args.min_delay,
+                max_delay=args.max_delay,
+                launch_args=launch_args,
+            )
+        finally:
+            slots.put_nowait((row, col))
 
 
 async def main(args):
     terms = [t.strip() for t in args.terms.split(',') if t.strip()]
     random.shuffle(terms)
-    cols, rows, width, height = compute_layout(len(terms), args.screen_width, args.screen_height)
-    tasks = [run_term(term, args, i, cols, width, height) for i, term in enumerate(terms)]
+    concurrency = min(args.concurrency, len(terms))
+    cols, rows, width, height = compute_layout(concurrency, args.screen_width, args.screen_height)
+    slots: Queue = Queue()
+    for i in range(concurrency):
+        row = i // cols
+        col = i % cols
+        slots.put_nowait((row, col))
+    sem = Semaphore(concurrency)
+    tasks = [run_term(term, args, slots, sem, width, height) for term in terms]
     await asyncio.gather(*tasks)
 
 
@@ -63,6 +75,7 @@ if __name__ == "__main__":
     parser.add_argument("--screen-height", type=int, default=1080)
     parser.add_argument("--min-delay", type=float, default=1.0)
     parser.add_argument("--max-delay", type=float, default=3.0)
+    parser.add_argument("--concurrency", type=int, default=4, help="Maximum simultaneous scrapers")
 
     parser.add_argument("--headless", action="store_true", help="Run browsers headless")
     args = parser.parse_args()
