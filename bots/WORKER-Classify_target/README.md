@@ -140,3 +140,12 @@ docker-compose -f docker-compose.gpu.yml up
 ## Why It Works
 
 This tool leverages an LLM to interpret natural language content across a site, enabling taxonomy classification without bespoke heuristics. Parallel crawling ensures efficient data collection, while batch prompting captures context from multiple pages for robust predictions.
+## Docker Swarm
+
+This image can also run as a service in Docker Swarm after being built and pushed to your registry.
+
+```bash
+docker service create --name <service-name> --env-file .env <image>:latest
+```
+
+Alternatively include the service in a stack file and deploy with `docker stack deploy`.

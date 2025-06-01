@@ -140,3 +140,12 @@ Output
 ------
 
 After running, the test runner will compile the results from each test and save them to a local text file named `results.txt`. The file will contain detailed summaries for each test, including redirect chains, error messages, and recon data.
+## Docker Swarm
+
+This image can also run as a service in Docker Swarm after being built and pushed to your registry.
+
+```bash
+docker service create --name <service-name> --env-file .env <image>:latest
+```
+
+Alternatively include the service in a stack file and deploy with `docker stack deploy`.

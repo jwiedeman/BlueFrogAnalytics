@@ -184,3 +184,12 @@ This system **will not work** if:
 
 Use. Break. Patch. Improve.\
 Just don't push this thing live on a Raspberry Pi and wonder why it's on fire.
+## Docker Swarm
+
+This image can also run as a service in Docker Swarm after being built and pushed to your registry.
+
+```bash
+docker service create --name <service-name> --env-file .env <image>:latest
+```
+
+Alternatively include the service in a stack file and deploy with `docker stack deploy`.

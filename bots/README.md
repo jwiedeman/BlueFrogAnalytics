@@ -20,3 +20,13 @@ Each component lives in its own folder and can run independently.
 - `DB[Cfg]` – Docker assets for running Cassandra clusters.
 
 Refer to each subdirectory's README for build and usage instructions.
+
+## Docker Swarm
+
+This image can also run as a service in Docker Swarm after being built and pushed to your registry.
+
+```bash
+docker service create --name <service-name> --env-file .env <image>:latest
+```
+
+Alternatively include the service in a stack file and deploy with `docker stack deploy`.
