@@ -251,12 +251,13 @@ def main():
         contact_points=["192.168.1.201", "192.168.1.202", 
                         "192.168.1.203", "192.168.1.204"],
         execution_profiles={EXEC_PROFILE_DEFAULT: profile},
-        # These are still fine to keep at the Cluster level
-        connect_timeout=60,
-        idle_heartbeat_timeout=60,
+        # Use consistent 120s timeouts for Cassandra operations
+        connect_timeout=120,
+        idle_heartbeat_timeout=120,
         protocol_version=4
     )
     session = cluster.connect("domain_discovery")
+    session.default_timeout = 120
     logging.debug("Connected to Cassandra cluster and keyspace domain_discovery")  # NEW DEBUG
 
     # Prepared statement for updating metrics
