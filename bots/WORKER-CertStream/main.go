@@ -311,7 +311,7 @@ func startInsertWorker(
 			host := u.Hostname()
 			tldSuffix, _ := publicsuffix.PublicSuffix(host)
 			domainName := strings.TrimSuffix(host, "."+tldSuffix)
-			tld := "." + tldSuffix
+			tld := tldSuffix
 
 			// ⬇️  Add the sentinel empty string for site_type
 			b.Query(
