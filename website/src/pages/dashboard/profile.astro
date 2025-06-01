@@ -90,7 +90,7 @@ const description = 'Manage your account details.';
             return;
           }
           const token = await user.getIdToken();
-          const res = await fetch('https://www.api.bluefroganalytics.com/api/profile', {
+          const res = await fetch('https://www.api.bluefroganalytics.com:6001/api/profile', {
             headers: { Authorization: `Bearer ${token}` }
           });
           if (res.ok) {
@@ -112,7 +112,7 @@ const description = 'Manage your account details.';
             const [k, v] = pair.split('=');
             if (k && v) tests[k.trim()] = parseInt(v, 10) || 0;
           });
-          const res = await fetch('https://www.api.bluefroganalytics.com/api/profile', {
+          const res = await fetch('https://www.api.bluefroganalytics.com:6001/api/profile', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

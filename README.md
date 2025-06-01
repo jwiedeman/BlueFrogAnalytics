@@ -51,7 +51,7 @@ Or build the Docker image:
 
 ```bash
 docker build -t profile-service .
-docker run -p 3001:3001 \
+docker run -p 6001:6001 \
   -v /path/to/serviceAccount.json:/app/serviceAccount.json:ro \
   -e FIREBASE_SERVICE_ACCOUNT=/app/serviceAccount.json \
   -e CASSANDRA_CONTACT_POINTS=127.0.0.1 \

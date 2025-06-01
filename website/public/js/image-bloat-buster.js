@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     results.textContent = `Analyzing images on ${url}...`;
     try {
       const token = await window.firebaseAuth.currentUser.getIdToken();
-      const res = await fetch('https://www.api.bluefroganalytics.com/api/tools/image-bloat', {
+      const res = await fetch('https://www.api.bluefroganalytics.com:6001/api/tools/image-bloat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

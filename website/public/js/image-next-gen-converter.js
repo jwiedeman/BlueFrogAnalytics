@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
       reader.onload = async () => {
         try {
           const token = await window.firebaseAuth.currentUser.getIdToken();
-          const res = await fetch('https://www.api.bluefroganalytics.com/api/tools/image-convert', {
+          const res = await fetch('https://www.api.bluefroganalytics.com:6001/api/tools/image-convert', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
