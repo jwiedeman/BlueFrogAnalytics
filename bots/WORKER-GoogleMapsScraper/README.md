@@ -1,7 +1,9 @@
 # Google Maps Scraper Worker
 
 This worker scrapes business listings from Google Maps using Playwright.
-Results are written to a CSV file as each listing is processed.
+Results append to a CSV file so data from multiple runs is preserved.
+Each record is also stored in a local SQLite database (`<csv>.db`) for
+reliability.
 
 ## Usage
 
@@ -17,11 +19,12 @@ Run the worker with a search query, number of results and output CSV path:
 python worker.py "Coffee shops in New York" 100 output/results.csv
 ```
 
-A browser will run headless and the CSV will populate while scraping.
+A browser will run headless and the CSV will populate while scraping. Run the
+script again with the same CSV path to continue building the dataset.
 
 ## City grid scraping
 
-`grid_worker.py` automates searches across a grid of GPS coordinates around a city. It deduplicates results as they are written to the CSV.
+`grid_worker.py` automates searches across a grid of GPS coordinates around a city. It deduplicates results and appends them to the same CSV and SQLite database used by `worker.py`.
 
 ```bash
 python grid_worker.py "Portland, OR" "coffee shops" 1 0.02 50 output/portland.csv
