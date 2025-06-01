@@ -10,6 +10,7 @@ Each component lives in its own folder and can run independently.
 - `WORKER-Whois` – Python WHOIS updater.
 - `WORKER-Enrich_processed_domains` – Python enrichment pipeline with GeoIP and Wappalyzer.
 - `WORKER-DomainStatus` – Go reachability checker.
+- `WORKER-DedupeDomains` – Go utility that normalizes TLDs and removes duplicate records.
 - `BOT-Hunter[Rust]` – asynchronous crawler written in Rust.
 - `BOT-Recon_[Py]` – modular reconnaissance harness.
 - `BOT-ripwappalyzer[Js]` – Puppeteer-based tech fingerprinting script.
