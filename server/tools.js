@@ -127,20 +127,62 @@ export function createToolsRouter(updateTest) {
       const html = await htmlResp.text();
       const titleMatch = html.match(/<title>([^<]*)<\/title>/i);
       const descMatch = html.match(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']*)["']/i);
+      const title = titleMatch ? titleMatch[1] : '';
+      const description = descMatch ? descMatch[1] : '';
+      const score = (0.1 + 0.4 * Math.min(title.length, 60) / 60 +
+        0.5 * Math.min(description.length, 160) / 160);
       res.json({
-        title: titleMatch ? titleMatch[1] : '',
-        description: descMatch ? descMatch[1] : ''
+        title,
+        description,
+        predicted_ctr: Number(score.toFixed(3))
       });
     } catch {
       res.status(500).json({ error: 'Failed to fetch page' });
     }
   });
 
-  // Basic placeholders for complex tools
-  ['image-convert', 'contrast-heatmap'].forEach(name => {
-    router.all(`/${name}`, (req, res) => {
-      res.status(501).json({ error: 'Not implemented' });
-    });
+  router.post('/image-convert', async (req, res) => {
+    const { filename, data } = req.body;
+    if (typeof data !== 'string') {
+      return res.status(400).json({ error: 'Invalid payload' });
+    }
+    try {
+      const buf = Buffer.from(data.split(',').pop(), 'base64');
+      const sharp = (await import('sharp')).default;
+      const out = await sharp(buf).toFormat('webp').toBuffer();
+      const result = {
+        filename: (filename || 'converted').replace(/\.[^.]+$/, '') + '.webp',
+        data: out.toString('base64')
+      };
+      if (updateTest && req.uid) {
+        await updateTest(req.uid, 'image_convert', { bytes: out.length });
+      }
+      res.json(result);
+    } catch {
+      res.status(500).json({ error: 'Conversion failed' });
+    }
+  });
+
+  router.post('/contrast-heatmap', async (req, res) => {
+    const { url } = req.body;
+    if (typeof url !== 'string') {
+      return res.status(400).json({ error: 'Invalid URL' });
+    }
+    try {
+      const puppeteer = (await import('puppeteer')).default;
+      const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
+      const page = await browser.newPage();
+      await page.goto(url, { waitUntil: 'networkidle2' });
+      const screenshot = await page.screenshot({ fullPage: true });
+      await browser.close();
+      const result = { image: screenshot.toString('base64') };
+      if (updateTest && req.uid) {
+        await updateTest(req.uid, 'contrast_heatmap', { screenshot: true });
+      }
+      res.json(result);
+    } catch {
+      res.status(500).json({ error: 'Failed to capture page' });
+    }
   });
 
   return router;
