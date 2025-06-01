@@ -28,7 +28,7 @@ sudo docker rm cassandra-seed1
 sudo docker run -d \
   --name cassandra-seed1 \
   --network host \
-  --cpus="6.5" \
+  --cpus="9" \
   --memory="13.5g" \
   --memory-swap="13.5g" \
   --ulimit nofile=100000:100000 \
@@ -65,7 +65,7 @@ sudo docker rm cassandra-seed2
 sudo docker run -d \
   --name cassandra-seed2 \
   --network host \
-  --cpus="6.5" \
+  --cpus="9" \
   --memory="13.5g" \
   --memory-swap="13.5g" \
   --ulimit nofile=100000:100000 \
