@@ -46,10 +46,13 @@ python orchestrator.py "Portland, OR" \
   --steps 1 \
   --spacing 0.0145 \
   --total 50 \
-  --database data/maps.db
+  --database data/maps.db \
+  --concurrency 4
 ```
 
 The spacing value `0.0145` roughly equals one mile.  Increase `--steps` or the spacing to cover larger radii (for example `--steps 10 --spacing 0.0145` covers about ten miles).  Windows open in non‑headless mode so you can watch progress.
+
+Pass `--concurrency` to limit how many browser instances run at once. The orchestrator automatically tiles visible windows in a grid sized to this concurrency value.
 
 ### Exporting to Excel
 
