@@ -457,15 +457,18 @@ def main():
     args = parser.parse_args()
 
     cluster = Cluster(
-        contact_points=["192.168.1.201", "192.168.1.202", 
+        contact_points=["192.168.1.201", "192.168.1.202",
                         "192.168.1.203", "192.168.1.204"],
         load_balancing_policy=DCAwareRoundRobinPolicy(local_dc='datacenter1'),
         default_retry_policy=RetryPolicy(),
-        protocol_version=4
+        protocol_version=4,
+        connect_timeout=120,
+        idle_heartbeat_timeout=120
     )
     
     try:
         session = cluster.connect("domain_discovery")
+        session.default_timeout = 120
         
         update_query = """
             UPDATE domain_discovery.domains_processed SET

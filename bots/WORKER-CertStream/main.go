@@ -89,8 +89,9 @@ func main() {
 	cluster.Keyspace = "domain_discovery"
 	cluster.Consistency = gocql.Quorum
 	cluster.NumConns = runtime.NumCPU() * 2
-	cluster.Timeout = 50 * time.Second
-	cluster.ConnectTimeout = 20 * time.Second
+	// 120s timeouts for more tolerant operations
+	cluster.Timeout = 120 * time.Second
+	cluster.ConnectTimeout = 120 * time.Second
 	// **Removed explicit HostSelectionPolicy** to avoid sharing panic
 
 	// Connect with retry/backoff

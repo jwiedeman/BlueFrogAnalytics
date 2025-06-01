@@ -88,8 +88,9 @@ def main():
                        "192.168.1.203", "192.168.1.204"],
         load_balancing_policy=DCAwareRoundRobinPolicy(),
         default_retry_policy=RetryPolicy(),
-        connect_timeout=60,
-        idle_heartbeat_timeout=60,
+        # Extend timeouts to handle slow Cassandra responses
+        connect_timeout=120,
+        idle_heartbeat_timeout=120,
         protocol_version=4
     )
     

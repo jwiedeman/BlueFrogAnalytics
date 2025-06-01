@@ -49,8 +49,9 @@ def upsert_domain(session, domain_str, tld_str, subdomains_set):
 
 def main():
     # Connect to Cassandra at 192.168.1.201
-    cluster = Cluster(["192.168.1.201"])
+    cluster = Cluster(["192.168.1.201"], connect_timeout=120, idle_heartbeat_timeout=120)
     session = cluster.connect("domain_discovery")  # keyspace
+    session.default_timeout = 120
     
     # Query all rows from domains
     rows = session.execute("SELECT domain FROM domains")
