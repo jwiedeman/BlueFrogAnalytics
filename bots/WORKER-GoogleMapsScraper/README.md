@@ -1,9 +1,9 @@
 # Google Maps Scraper Worker
 
 This worker scrapes business listings from Google Maps using Playwright.
-Results append to a CSV file so data from multiple runs is preserved.
-Each record is also stored in a local SQLite database (`<csv>.db`) for
-reliability.
+Results are written to a single SQLite database so data from every run
+is stored together. Each record notes the search term and the GPS
+coordinates where it was collected.
 
 ## Usage
 
@@ -13,28 +13,32 @@ Install Python 3.11+ and the dependencies:
 pip install -r requirements.txt
 ```
 
-Run the worker with a search query, number of results and output CSV path:
+Run the worker with a search query, number of results and the path to a
+SQLite database:
 
 ```bash
-python worker.py "Coffee shops in New York" 100 output/results.csv
+python worker.py "Coffee shops in New York" 100 data/maps.db
 ```
 
-A browser will run headless and the CSV will populate while scraping. Run the
-script again with the same CSV path to continue building the dataset.
+Browsers show a window by default. Pass `--headless` to hide it.
 
 ## City grid scraping
 
-`grid_worker.py` automates searches across a grid of GPS coordinates around a city. It deduplicates results and appends them to the same CSV and SQLite database used by `worker.py`.
+`grid_worker.py` automates searches across a grid of GPS coordinates around a
+city. It deduplicates results using business name and address and appends them
+to the same SQLite database used by `worker.py`.
 
 ```bash
-python grid_worker.py "Portland, OR" "coffee shops" 1 0.02 50 output/portland.csv
+python grid_worker.py "Portland, OR" "coffee shops" 1 0.02 50 data/maps.db
 ```
 
-The parameters are: city name, search query, number of grid steps from the center, spacing in degrees between grid points, number of results per grid cell, and output CSV path.  Use `--no-headless` to show the browser and `--min-delay`/`--max-delay` to randomize pauses between grid locations.
+The parameters are: city name, search query, number of grid steps from the center, spacing in degrees between grid points, number of results per grid cell, and database path. Use `--headless` to hide the browser and `--min-delay`/`--max-delay` to randomize pauses between grid locations.
 
 ### Running multiple terms
 
-`orchestrator.py` launches several grid scrapers at once and tiles the windows so they fit on screen.  Provide a comma separated list of search terms and an output directory.
+`orchestrator.py` launches several grid scrapers at once and tiles the windows
+to create a control room style view. Provide a comma separated list of search
+terms and the database path.
 
 ```bash
 python orchestrator.py "Portland, OR" \
@@ -42,7 +46,15 @@ python orchestrator.py "Portland, OR" \
   --steps 1 \
   --spacing 0.0145 \
   --total 50 \
-  --output-dir output/portland
+  --database data/maps.db
 ```
 
 The spacing value `0.0145` roughly equals one mile.  Increase `--steps` or the spacing to cover larger radii (for example `--steps 10 --spacing 0.0145` covers about ten miles).  Windows open in non‑headless mode so you can watch progress.
+
+### Exporting to Excel
+
+Use `export_to_excel.py` to convert the SQLite database to an Excel file:
+
+```bash
+python export_to_excel.py data/maps.db results.xlsx
+```

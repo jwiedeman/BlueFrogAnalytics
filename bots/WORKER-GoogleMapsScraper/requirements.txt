@@ -1,2 +1,4 @@
 playwright>=1.38
 geopy>=2.3
+pandas>=2.0
+openpyxl>=3.1

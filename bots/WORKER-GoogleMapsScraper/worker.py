@@ -1,9 +1,10 @@
 import asyncio
-import csv
+import re
 import sqlite3
 import sys
 from dataclasses import dataclass
 from pathlib import Path
+
 from playwright.async_api import async_playwright
 
 @dataclass
@@ -13,6 +14,9 @@ class Business:
     website: str
     phone_number: str
     reviews_average: float | None
+    query: str
+    latitude: float | None
+    longitude: float | None
 
 
 def init_db(db_path: Path) -> sqlite3.Connection:
@@ -25,7 +29,11 @@ def init_db(db_path: Path) -> sqlite3.Connection:
             address TEXT,
             website TEXT,
             phone TEXT,
-            reviews_average REAL
+            reviews_average REAL,
+            query TEXT,
+            latitude REAL,
+            longitude REAL,
+            UNIQUE(name, address)
         )
         """
     )
@@ -35,19 +43,27 @@ def init_db(db_path: Path) -> sqlite3.Connection:
 
 def save_to_db(conn: sqlite3.Connection, b: Business) -> None:
     conn.execute(
-        "INSERT INTO businesses (name, address, website, phone, reviews_average) VALUES (?, ?, ?, ?, ?)",
-        (b.name, b.address, b.website, b.phone_number, b.reviews_average),
+        """
+        INSERT OR IGNORE INTO businesses (
+            name, address, website, phone, reviews_average, query, latitude, longitude
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+        (
+            b.name,
+            b.address,
+            b.website,
+            b.phone_number,
+            b.reviews_average,
+            b.query,
+            b.latitude,
+            b.longitude,
+        ),
     )
     conn.commit()
 
-async def scrape(query: str, total: int, csv_path: Path):
-    csv_path.parent.mkdir(parents=True, exist_ok=True)
-    db_conn = init_db(csv_path.with_suffix(".db"))
-    csv_exists = csv_path.exists()
-    if not csv_exists:
-        with csv_path.open("w", newline="") as f:
-            writer = csv.writer(f)
-            writer.writerow(["name", "address", "website", "phone", "reviews_average"])
+async def scrape(query: str, total: int, db_path: Path, *, headless: bool = False):
+    db_path.parent.mkdir(parents=True, exist_ok=True)
+    db_conn = init_db(db_path)
 
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
@@ -106,27 +122,35 @@ async def scrape(query: str, total: int, csv_path: Path):
                     except ValueError:
                         reviews_average = None
 
-            with csv_path.open("a", newline="") as f:
-                writer = csv.writer(f)
-                writer.writerow([
+            url = page.url
+            lat = lon = None
+            match = re.search(r"@(-?\d+\.\d+),(-?\d+\.\d+)", url)
+            if match:
+                lat = float(match.group(1))
+                lon = float(match.group(2))
+
+            save_to_db(
+                db_conn,
+                Business(
                     name,
                     address,
                     website,
                     phone,
-                    reviews_average if reviews_average is not None else "",
-                ])
-            save_to_db(
-                db_conn,
-                Business(name, address, website, phone, reviews_average),
+                    reviews_average,
+                    query,
+                    lat,
+                    lon,
+                ),
             )
         await browser.close()
     db_conn.close()
 
 if __name__ == "__main__":
     if len(sys.argv) < 4:
-        print("Usage: python worker.py <query> <total> <output_csv>")
+        print("Usage: python worker.py <query> <total> <database> [--headless]")
         sys.exit(1)
     query = sys.argv[1]
     total = int(sys.argv[2])
-    csv_file = Path(sys.argv[3])
-    asyncio.run(scrape(query, total, csv_file))
+    db_path = Path(sys.argv[3])
+    headless = "--headless" in sys.argv[4:]
+    asyncio.run(scrape(query, total, db_path, headless=headless))
