@@ -9,7 +9,7 @@ import lighthouse from 'lighthouse';
 import { launch } from 'chrome-launcher';
 import { createTagHealthRouter } from './tagHealth.js';
 import { createToolsRouter } from "./tools.js";
-import { spawn } from 'child_process';
+import { spawn, execFile } from 'child_process';
 
 // Basic security headers and rate limiting without extra dependencies
 const securityHeaders = (req, res, next) => {
@@ -67,6 +67,8 @@ app.disable('x-powered-by');
 app.use(express.json({ limit: '10kb' }));
 app.use(securityHeaders);
 app.use(rateLimiter);
+
+let lastMapsDb = null;
 
 async function updateTest(uid, name, data) {
   const result = await cassandraClient.execute(
@@ -262,7 +264,46 @@ app.post('/api/google-maps-scraper', async (req, res) => {
   ]);
   child.on('error', (err) => console.error('scraper error', err));
   child.stderr.on('data', (d) => console.error(d.toString()));
+  lastMapsDb = outputPath;
   res.json({ file: outputPath });
+});
+
+app.get('/api/google-maps-progress', async (req, res) => {
+  const db = req.query.db || lastMapsDb;
+  if (!db) {
+    return res.json({ total: 0, latest: [] });
+  }
+  try {
+    const totalOut = await new Promise((resolve, reject) => {
+      execFile('sqlite3', [db, 'SELECT COUNT(*) FROM businesses;'], (err, out) => {
+        if (err) return reject(err);
+        resolve(out);
+      });
+    });
+    const latestOut = await new Promise((resolve, reject) => {
+      execFile(
+        'sqlite3',
+        [db, "SELECT name, address FROM businesses ORDER BY rowid DESC LIMIT 10;"],
+        (err, out) => {
+          if (err) return reject(err);
+          resolve(out);
+        }
+      );
+    });
+    const total = Number(totalOut.trim() || '0');
+    const latest = latestOut
+      .trim()
+      .split('\n')
+      .filter(Boolean)
+      .map((line) => {
+        const [name, address] = line.split('|');
+        return { name, address };
+      });
+    res.json({ total, latest });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'DB query failed' });
+  }
 });
 
 const port = process.env.PORT || 3001;
