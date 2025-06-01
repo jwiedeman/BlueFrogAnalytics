@@ -297,7 +297,7 @@ func startInsertWorker(session *gocql.Session, domainsChan <-chan []string, tota
 			host := u.Hostname()
 			tldSuffix, _ := publicsuffix.PublicSuffix(host)
 			domainName := strings.TrimSuffix(host, "."+tldSuffix)
-			tld := "." + tldSuffix
+			tld := tldSuffix
 			// Skip invalid or empty domain/TLD
 			if domainName == "" || tldSuffix == "" {
 				continue
@@ -318,7 +318,7 @@ func startInsertWorker(session *gocql.Session, domainsChan <-chan []string, tota
 					host := u.Hostname()
 					tldSuffix, _ := publicsuffix.PublicSuffix(host)
 					domainName := strings.TrimSuffix(host, "."+tldSuffix)
-					tld := "." + tldSuffix
+					tld := tldSuffix
 					if domainName == "" || tldSuffix == "" {
 						log.Printf("    skipping empty domain or TLD from URL '%s': domain='%s', tld='%s'", domainURL, domainName, tld)
 						continue
