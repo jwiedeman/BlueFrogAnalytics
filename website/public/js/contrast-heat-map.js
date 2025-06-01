@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     results.textContent = `Generating contrast heat-map for ${url}...`;
     try {
       const token = await window.firebaseAuth.currentUser.getIdToken();
-      const res = await fetch('https://www.api.bluefroganalytics.com/api/tools/contrast-heatmap', {
+      const res = await fetch('https://www.api.bluefroganalytics.com:6001/api/tools/contrast-heatmap', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
