@@ -6,9 +6,9 @@ description: Learn about the EU Data Governance Act (DGA), its requirements, enf
 # Data Governance Act (DGA) Compliance Guide
 The Data Governance Act (DGA) is an EU regulation designed to facilitate safe, transparent, and fair data-sharing practices. It sets rules for data intermediaries, promotes public sector data reuse, and ensures compliance with EU data protection laws, including GDPR.
 
----
+, 
 
-## 1. Overview
+## Overview
 - Full Name: Data Governance Act (DGA) – Regulation (EU) 2022/868  
 - Short Description: An EU law that governs data-sharing frameworks, facilitates secure data reuse, and enhances data availability for innovation and public interest.  
 - Enforcement Date: June 23, 2022 (Effective September 24, 2023)  
@@ -18,7 +18,7 @@ The Data Governance Act (DGA) is an EU regulation designed to facilitate safe, t
   - Establish frameworks for sharing public sector, private, and personal data under controlled conditions.  
   - Support EU-wide data spaces for industries like healthcare, finance, and mobility.  
 
----
+, 
 
 ## 2. Applicability
 - Countries/Regions Affected: European Union (EU), European Economic Area (EEA), and companies handling EU data.  
@@ -33,7 +33,7 @@ The Data Governance Act (DGA) is an EU regulation designed to facilitate safe, t
   - Transportation & Mobility – Supports cross-border smart mobility solutions.  
   - Public Sector Data – Enables reuse of non-personal government data for innovation.  
 
----
+, 
 
 ## 3. What the Data Governance Act Governs
 - Types of Data Covered:  
@@ -50,7 +50,7 @@ The Data Governance Act (DGA) is an EU regulation designed to facilitate safe, t
 - Data Altruism Framework: Organizations must register as recognized data altruism entities.  
 - Data Transfer Oversight: Cross-border EU data-sharing must follow DGA governance rules.  
 
----
+, 
 
 ## 4. Compliance Requirements
 ### Key Obligations
@@ -67,7 +67,7 @@ The Data Governance Act (DGA) is an EU regulation designed to facilitate safe, t
  Fair & Non-Discriminatory Data Access – Intermediaries must not favor specific parties or restrict fair use.  
  User Control Over Shared Data – Citizens and businesses must have the ability to opt in or out of data-sharing arrangements.  
 
----
+, 
 
 ## 5. Consequences of Non-Compliance
 ### Penalties & Fines
@@ -87,7 +87,7 @@ The Data Governance Act (DGA) is an EU regulation designed to facilitate safe, t
 - Service Restrictions in the EU – Non-compliance may block access to EU data-sharing ecosystems.  
 - Increased Regulatory Scrutiny – Businesses operating in data-sharing markets face ongoing oversight.  
 
----
+, 
 
 ## 6. Why the Data Governance Act Exists
 ### Historical Background
@@ -105,7 +105,7 @@ The Data Governance Act (DGA) is an EU regulation designed to facilitate safe, t
   - Expansion of cross-border data-sharing agreements.  
   - Stronger enforcement against monopolistic data intermediaries.  
 
----
+, 
 
 ## 7. Implementation & Best Practices
 ### How to Become Compliant
@@ -120,19 +120,19 @@ The Data Governance Act (DGA) is an EU regulation designed to facilitate safe, t
  User Feedback & Dispute Resolution Systems – Handle data-sharing disputes fairly.  
  Monitor EU Data Spaces for Updates – Stay informed about evolving DGA regulations.  
 
----
+, 
 
 ## 8. Additional Resources
 ### Official Documentation & Guidelines
 - [ Data Governance Act Full Text](https://eur-lex.europa.eu/eli/reg/2022/868/oj)  
 - [ European Commission DGA Overview](https://digital-strategy.ec.europa.eu/en/policies/data-governance-act)  
 
----
+, 
 
 ## Conclusion
 The Data Governance Act (DGA) is crucial for ethical and secure data-sharing across the EU, supporting innovation while safeguarding privacy and fair access.
 
----
+, 
 
  Next Steps:
  [Register for Data-Sharing Compliance](#)  

@@ -1,21 +1,21 @@
----
+, 
 title: WAI-ARIA Compliance Guide
 description: Learn about WAI-ARIA, its requirements, enforcement, and best practices.
----
+, 
 
 # WAI-ARIA Compliance Guide
 This guide will help you understand, implement, and maintain compliance with WAI-ARIA (Web Accessibility Initiative - Accessible Rich Internet Applications) standards.
 
----
+, 
 
-## 1. Overview
+## Overview
 - Full Name: Web Accessibility Initiative - Accessible Rich Internet Applications (WAI-ARIA)  
 - Short Description: A technical specification developed by W3C to improve the accessibility of dynamic web content and web applications for users with disabilities.  
-- Latest Version: WAI-ARIA 1.2 (December 2021)  
+- Latest Version: WAI-ARIA2 (December 2021)  
 - Governing Body: World Wide Web Consortium (W3C), Web Accessibility Initiative (WAI)  
 - Primary Purpose: Enhance the accessibility of interactive and dynamic web content for people using assistive technologies like screen readers and voice input tools.  
 
----
+, 
 
 ## 2. Applicability
 - Countries/Regions Affected: Global (WAI-ARIA is referenced in laws like ADA, Section 508, EU Web Accessibility Directive, and AODA)  
@@ -29,7 +29,7 @@ This guide will help you understand, implement, and maintain compliance with WAI
   - Healthcare: Ensuring accessibility of online patient portals  
   - Education: Improving accessibility of learning management systems  
 
----
+, 
 
 ## 3. What It Covers
 - Key Accessibility Areas Addressed by WAI-ARIA:  
@@ -39,7 +39,7 @@ This guide will help you understand, implement, and maintain compliance with WAI
   -  Keyboard Navigation & Focus Management – Define `tabindex`, `aria-activedescendant`, and focus handling  
   -  State & Property Attributes – Indicate states like expanded (`aria-expanded`), hidden (`aria-hidden`), or required (`aria-required`)  
 
----
+, 
 
 ## 4. Compliance Requirements
 ### Key Obligations
@@ -56,7 +56,7 @@ This guide will help you understand, implement, and maintain compliance with WAI
  State & Property Handling – Dynamically update `aria-` attributes for interactive elements.  
  Comprehensive Testing & Validation – Use automated tools like Axe, WAVE, and manual testing.  
 
----
+, 
 
 ## 5. Consequences of Non-Compliance
 ### Penalties & Fines
@@ -74,21 +74,21 @@ This guide will help you understand, implement, and maintain compliance with WAI
 - Lost Customers & Engagement *(Poor accessibility drives users away.)*  
 - Costly Remediation Efforts *(Fixing accessibility issues later is more expensive.)*  
 
----
+, 
 
 ## 6. Why WAI-ARIA Exists
 ### Historical Background
-- 2008 – WAI-ARIA 1.0 introduced to improve accessibility of web applications.  
-- 2014 – WAI-ARIA 1.1 released with refinements to existing attributes.  
-- 2021 – WAI-ARIA 1.2 published with minor updates.  
-- Future Plans: WAI-ARIA will evolve with ARIA 1.3 and better integration with WCAG 3.0.  
+- 2008 – WAI-ARIA0 introduced to improve accessibility of web applications.  
+- 2014 – WAI-ARIA1 released with refinements to existing attributes.  
+- 2021 – WAI-ARIA2 published with minor updates.  
+- Future Plans: WAI-ARIA will evolve with ARIA3 and better integration with WCAG 3.0.  
 
 ### Global Influence & Trends
 - Used as a foundation for accessibility standards worldwide.  
 - Increasing enforcement in lawsuits and government audits.  
 - Adoption in modern web frameworks (React, Vue, Angular).  
 
----
+, 
 
 ## 7. Implementation & Best Practices
 ### How to Become Compliant
@@ -103,11 +103,11 @@ This guide will help you understand, implement, and maintain compliance with WAI
 - Employee Training & Awareness *(Train developers and designers.)*  
 - Keep ARIA Usage Up-to-Date *(Follow the latest ARIA best practices.)*  
 
----
+, 
 
 ## 8. Additional Resources
 ### Official Documentation & Guidelines
-- [ WAI-ARIA 1.2 Specification](https://www.w3.org/TR/wai-aria-1.2/)  
+- [ WAI-ARIA2 Specification](https://www.w3.org/TR/wai-aria-1.2/)  
 - [ W3C WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/)  
 - [ Web Accessibility Initiative (WAI)](https://www.w3.org/WAI/standards-guidelines/aria/)  
 
@@ -125,14 +125,14 @@ This guide will help you understand, implement, and maintain compliance with WAI
 - What tools can check WAI-ARIA compliance? *(Lighthouse, Axe, WAVE, manual testing.)*  
 - Does ARIA replace semantic HTML? *(No, it should complement proper HTML.)*  
 
----
+, 
 
 ## 9. Related Regulations
 - WCAG vs. WAI-ARIA: *(ARIA enhances WCAG compliance.)*  
 - ADA & ARIA: *(Used as a standard in accessibility lawsuits.)*  
 - Section 508 & ARIA: *(Mandatory for U.S. federal websites.)*  
 
----
+, 
 
 ## Conclusion
 WAI-ARIA ensures modern web applications remain accessible to users with disabilities. Implementing it correctly enhances usability, reduces legal risk, and improves user experience.
