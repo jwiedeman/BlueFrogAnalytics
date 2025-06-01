@@ -61,3 +61,13 @@ Use `export_to_excel.py` to convert the SQLite database to an Excel file:
 ```bash
 python export_to_excel.py data/maps.db results.xlsx
 ```
+
+## Docker Swarm
+
+This image can also run as a service in Docker Swarm after being built and pushed to your registry.
+
+```bash
+docker service create --name <service-name> --env-file .env <image>:latest
+```
+
+Alternatively include the service in a stack file and deploy with `docker stack deploy`.

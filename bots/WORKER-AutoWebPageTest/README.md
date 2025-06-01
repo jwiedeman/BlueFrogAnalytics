@@ -52,3 +52,12 @@ docker run --rm -v $(pwd)/output:/app/output wpt-crawler --domain example.com --
 
 ## Cassandra Integration
 The `cassandra.js` is a stub. Implement `init` and `send` to integrate with Apache Cassandra.
+## Docker Swarm
+
+This image can also run as a service in Docker Swarm after being built and pushed to your registry.
+
+```bash
+docker service create --name <service-name> --env-file .env <image>:latest
+```
+
+Alternatively include the service in a stack file and deploy with `docker stack deploy`.

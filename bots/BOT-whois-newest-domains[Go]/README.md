@@ -82,3 +82,13 @@ The tool will:
 ## Notes
 - Ensure your network allows outbound HTTPS to `whoisds.com`
 - Adjust the Go code or Dockerfile for custom needs (e.g., proxy settings)
+
+## Docker Swarm
+
+This image can also run as a service in Docker Swarm after being built and pushed to your registry.
+
+```bash
+docker service create --name <service-name> --env-file .env <image>:latest
+```
+
+Alternatively include the service in a stack file and deploy with `docker stack deploy`.
