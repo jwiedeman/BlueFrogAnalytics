@@ -8,6 +8,7 @@ import fs from 'fs';
 import lighthouse from 'lighthouse';
 import { launch } from 'chrome-launcher';
 import { createTagHealthRouter } from './tagHealth.js';
+import { createToolsRouter } from "./tools.js";
 
 // Basic security headers and rate limiting without extra dependencies
 const securityHeaders = (req, res, next) => {
@@ -100,6 +101,7 @@ async function authMiddleware(req, res, next) {
 }
 
 app.use('/api/tag-health', authMiddleware, createTagHealthRouter(updateTest));
+app.use('/api/tools', authMiddleware, createToolsRouter(updateTest));
 
 app.post('/api/profile', authMiddleware, async (req, res) => {
   const {
