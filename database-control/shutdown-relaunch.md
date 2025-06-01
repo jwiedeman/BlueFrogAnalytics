@@ -32,7 +32,7 @@ sudo docker run -d \
   --memory="13.5g" \
   --memory-swap="13.5g" \
   --ulimit nofile=100000:100000 \
-  -e CASSANDRA_CLUSTER_NAME="ViperScan Cluster 1" \
+  -e CASSANDRA_CLUSTER_NAME="Test Cluster" \
   -e CASSANDRA_DC="datacenter1" \
   -e CASSANDRA_RACK="rack1" \
   -e CASSANDRA_SEEDS="192.168.1.201,192.168.1.202,192.168.1.203" \
@@ -69,7 +69,7 @@ sudo docker run -d \
   --memory="13.5g" \
   --memory-swap="13.5g" \
   --ulimit nofile=100000:100000 \
-  -e CASSANDRA_CLUSTER_NAME="ViperScan Cluster 1" \
+  -e CASSANDRA_CLUSTER_NAME="Test Cluster" \
   -e CASSANDRA_DC="datacenter1" \
   -e CASSANDRA_RACK="rack1" \
   -e CASSANDRA_SEEDS="192.168.1.201,192.168.1.202,192.168.1.203" \
@@ -106,7 +106,7 @@ sudo docker run -d \
   --memory="13.5g" \
   --memory-swap="13.5g" \
   --ulimit nofile=100000:100000 \
-  -e CASSANDRA_CLUSTER_NAME="ViperScan Cluster 1" \
+  -e CASSANDRA_CLUSTER_NAME="Test Cluster" \
   -e CASSANDRA_DC="datacenter1" \
   -e CASSANDRA_RACK="rack1" \
   -e CASSANDRA_SEEDS="192.168.1.201,192.168.1.202,192.168.1.203" \
@@ -143,7 +143,7 @@ sudo docker run -d \
   --memory="13.5g" \
   --memory-swap="13.5g" \
   --ulimit nofile=100000:100000 \
-  -e CASSANDRA_CLUSTER_NAME="ViperScan Cluster 1" \
+  -e CASSANDRA_CLUSTER_NAME="Test Cluster" \
   -e CASSANDRA_DC="datacenter1" \
   -e CASSANDRA_RACK="rack1" \
   -e CASSANDRA_SEEDS="192.168.1.201,192.168.1.202,192.168.1.203" \
