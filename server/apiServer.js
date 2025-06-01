@@ -90,7 +90,10 @@ async function updateTest(uid, name, data) {
 
 async function authMiddleware(req, res, next) {
   const header = req.headers.authorization || '';
-  const token = header.startsWith('Bearer ') ? header.slice(7) : null;
+  let token = header.startsWith('Bearer ') ? header.slice(7) : null;
+  if (!token && req.query && req.query.token) {
+    token = req.query.token;
+  }
   if (!token) return res.status(401).json({ error: 'Unauthorized' });
   try {
     const decoded = await firebaseAuth.verifyIdToken(token);

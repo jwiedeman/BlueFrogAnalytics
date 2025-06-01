@@ -1,6 +1,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
-  const API_BASE_URL = 'https://9f5d-24-20-99-62.ngrok-free.app';
+  const API_BASE_URL = '/api/tag-health';
 
   const ANALYTICS_KEYS = [
     'google_analytics',
@@ -263,7 +263,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('pagination').innerHTML = '';
     document.getElementById('summary').innerHTML = '';
 
-    const es = new EventSource(`${API_BASE_URL}/scan-stream?domain=${encodeURIComponent(domain)}&maxPages=${maxPages}`);
+    const token = window.firebaseAuth && window.firebaseAuth.currentUser
+      ? await window.firebaseAuth.currentUser.getIdToken()
+      : '';
+    const es = new EventSource(
+      `${API_BASE_URL}/stream?domain=${encodeURIComponent(domain)}&maxPages=${maxPages}&token=${encodeURIComponent(token)}`
+    );
     let startTime = null;
     es.addEventListener('queue', (e) => {
       const data = JSON.parse(e.data);
