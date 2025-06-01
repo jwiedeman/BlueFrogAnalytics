@@ -68,10 +68,28 @@ func main() {
 	deleteStmt := "DELETE FROM domains_processed WHERE domain=? AND tld=?"
 
 	rows := make(chan map[string]interface{}, 1000)
-	var processed uint64
+	var scanned uint64
+	var deduped uint64
+	var skipped uint64
 	var wg sync.WaitGroup
 	workers := runtime.NumCPU() * 2
 	wg.Add(workers)
+
+	ticker := time.NewTicker(30 * time.Second)
+	done := make(chan struct{})
+	go func() {
+		for {
+			select {
+			case <-ticker.C:
+				s := atomic.LoadUint64(&scanned)
+				d := atomic.LoadUint64(&deduped)
+				sk := atomic.LoadUint64(&skipped)
+				log.Printf("progress - scanned:%d deduped:%d skipped:%d", s, d, sk)
+			case <-done:
+				return
+			}
+		}
+	}()
 
 	for i := 0; i < workers; i++ {
 		go func() {
@@ -82,6 +100,7 @@ func main() {
 				cd := strings.TrimSuffix(strings.TrimSpace(d), ".")
 				ct := strings.TrimPrefix(strings.TrimSuffix(strings.TrimSpace(t), "."), ".")
 				if d == cd && t == ct {
+					atomic.AddUint64(&skipped, 1)
 					continue
 				}
 				vals := make([]interface{}, len(cols))
@@ -102,7 +121,7 @@ func main() {
 				if err := session.Query(deleteStmt, d, t).Exec(); err != nil {
 					log.Printf("delete error %s.%s: %v", d, t, err)
 				}
-				atomic.AddUint64(&processed, 1)
+				atomic.AddUint64(&deduped, 1)
 			}
 		}()
 	}
@@ -115,6 +134,7 @@ func main() {
 		for k, v := range m {
 			row[k] = v
 		}
+		atomic.AddUint64(&scanned, 1)
 		rows <- row
 		m = map[string]interface{}{}
 	}
@@ -123,5 +143,10 @@ func main() {
 	}
 	close(rows)
 	wg.Wait()
-	log.Printf("processed %d rows", processed)
+	ticker.Stop()
+	close(done)
+	s := atomic.LoadUint64(&scanned)
+	d := atomic.LoadUint64(&deduped)
+	sk := atomic.LoadUint64(&skipped)
+	log.Printf("deduplication complete - scanned:%d deduped:%d skipped:%d", s, d, sk)
 }
