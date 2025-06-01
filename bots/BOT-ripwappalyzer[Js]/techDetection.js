@@ -1,7 +1,7 @@
 import puppeteer from 'puppeteer-extra';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 import fs from 'fs'; // File system module for logging
-import { loadTechnologies } from './utils.js';
+import { loadTechnologies, parsePattern } from './utils.js';
 import { analyzeCookies } from './cookies.js';
 import { analyzeHeaders } from './headers.js';
 import { analyzeSSL } from './ssl.js';
@@ -101,31 +101,43 @@ async function scanTechnologies(url) {
         }
 
         if (tech.headers) {
-            for (const [header, regex] of Object.entries(tech.headers)) {
-                try {
-                    if (headers[header] && new RegExp(regex, 'i').test(headers[header])) {
-                        logToFile(`✅ [DEBUG] [${tech.name}] detected via Header: ${header}`);
-                        detected.add(tech.name);
-                    }
-                } catch (error) {
-                    logToFile(`⚠️ [DEBUG] Regex error for ${tech.name} (Header: ${header}): ${error.message}`);
+            for (const [header, pattern] of Object.entries(tech.headers)) {
+                const { regex } = parsePattern(pattern);
+                if (regex && headers[header] && regex.test(headers[header])) {
+                    logToFile(`✅ [DEBUG] [${tech.name}] detected via Header: ${header}`);
+                    detected.add(tech.name);
                 }
             }
         }
 
-        if (tech.scriptSrc && scripts.some(src => new RegExp(tech.scriptSrc, 'i').test(src))) {
-            logToFile(`✅ [DEBUG] [${tech.name}] detected via Script: ${tech.scriptSrc}`);
-            detected.add(tech.name);
+        if (tech.scriptSrc) {
+            const patterns = Array.isArray(tech.scriptSrc) ? tech.scriptSrc : [tech.scriptSrc];
+            for (const pattern of patterns.filter(Boolean)) {
+                const { regex } = parsePattern(pattern);
+                if (regex && scripts.some(src => regex.test(src))) {
+                    logToFile(`✅ [DEBUG] [${tech.name}] detected via Script`);
+                    detected.add(tech.name);
+                    break;
+                }
+            }
         }
 
-        if (tech.js && jsVars.some(varName => new RegExp(tech.js, 'i').test(varName))) {
-            logToFile(`✅ [DEBUG] [${tech.name}] detected via JS Variable: ${tech.js}`);
-            detected.add(tech.name);
+        if (tech.js) {
+            const patterns = Array.isArray(tech.js) ? tech.js : [tech.js];
+            for (const pattern of patterns.filter(Boolean)) {
+                const { regex } = parsePattern(pattern);
+                if (regex && jsVars.some(name => regex.test(name))) {
+                    logToFile(`✅ [DEBUG] [${tech.name}] detected via JS Variable`);
+                    detected.add(tech.name);
+                    break;
+                }
+            }
         }
 
         if (tech.cookies) {
-            for (const [cookieName, regex] of Object.entries(tech.cookies)) {
-                if (cookies.some(cookie => cookie.name === cookieName && new RegExp(regex, 'i').test(cookie.value))) {
+            for (const [cookieName, pattern] of Object.entries(tech.cookies)) {
+                const { regex } = parsePattern(pattern);
+                if (regex && cookies.some(c => c.name === cookieName && regex.test(c.value))) {
                     logToFile(`✅ [DEBUG] [${tech.name}] detected via Cookie: ${cookieName}`);
                     detected.add(tech.name);
                 }
