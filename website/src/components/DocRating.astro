@@ -1,0 +1,82 @@
+---
+const { slug } = Astro.props;
+---
+<section class="doc-rating py-4 border-top">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1 text-center">
+        <p class="mb-1">Rate this page:</p>
+        <div class="rating-stars mb-3">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <i class="bi bi-star fs-3 mx-1" data-value={i + 1}></i>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="rating-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content bg-dark text-light">
+        <div class="modal-header border-0">
+          <h5 class="modal-title">We appreciate the feedback</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Let us know how we can improve and we'll be sure to implement it.</p>
+          <textarea id="rating-text" class="form-control" placeholder="Optional comments..." rows="4"></textarea>
+        </div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-primary w-100" id="rating-submit">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline define:vars={{ docSlug: slug }}>
+    document.addEventListener('DOMContentLoaded', () => {
+      const stars = document.querySelectorAll('.doc-rating .rating-stars i');
+      const modalEl = document.getElementById('rating-modal');
+      const textBox = document.getElementById('rating-text');
+      let rating = 0;
+
+      function highlight(n) {
+        stars.forEach(star => {
+          const val = parseInt(star.dataset.value, 10);
+          if (val <= n) {
+            star.classList.add('bi-star-fill', 'text-warning');
+            star.classList.remove('bi-star');
+          } else {
+            star.classList.add('bi-star');
+            star.classList.remove('bi-star-fill', 'text-warning');
+          }
+        });
+      }
+
+      stars.forEach(star => {
+        star.addEventListener('mouseenter', () => highlight(star.dataset.value));
+        star.addEventListener('click', () => {
+          rating = parseInt(star.dataset.value, 10);
+          highlight(rating);
+          bootstrap.Modal.getOrCreateInstance(modalEl).show();
+        });
+      });
+
+      stars.forEach(star => star.addEventListener('mouseleave', () => highlight(rating)));
+
+      document.getElementById('rating-submit').addEventListener('click', () => {
+        const feedback = textBox.value.trim();
+        if (window.gtag) {
+          window.gtag('event', 'nps_doc_submission', {
+            value: rating,
+            feedback,
+            doc_slug: docSlug
+          });
+        }
+        bootstrap.Modal.getInstance(modalEl).hide();
+        const container = document.querySelector('.doc-rating');
+        container.innerHTML = '<p class="text-center">Thank you for your feedback!</p>';
+      });
+    });
+  </script>
+</section>
