@@ -63,10 +63,10 @@ async function connect() {
 
 
 async function fetchRandomDomain(batchSize = 50) {
-  const query = `SELECT domain, tld, lighthouse_fetch_time, status FROM domains_processed WHERE status = true LIMIT ${batchSize} ALLOW FILTERING`;
+  const query = `SELECT domain, tld, lighthouse_fetch_time, status, updated FROM domains_processed WHERE status = true LIMIT ${batchSize} ALLOW FILTERING`;
   const res = await client.execute(query);
   const candidates = res.rows.filter(
-    r => r.lighthouse_fetch_time === null && r.status === true
+    r => r.lighthouse_fetch_time === null && r.status === true && r.updated
   );
   if (candidates.length === 0) return null;
   const idx = Math.floor(Math.random() * candidates.length);
