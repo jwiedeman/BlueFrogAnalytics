@@ -30,4 +30,19 @@ script again with the same CSV path to continue building the dataset.
 python grid_worker.py "Portland, OR" "coffee shops" 1 0.02 50 output/portland.csv
 ```
 
-The parameters are: city name, search query, number of grid steps from the center, spacing in degrees between grid points, number of results per grid cell, and output CSV path.
+The parameters are: city name, search query, number of grid steps from the center, spacing in degrees between grid points, number of results per grid cell, and output CSV path.  Use `--no-headless` to show the browser and `--min-delay`/`--max-delay` to randomize pauses between grid locations.
+
+### Running multiple terms
+
+`orchestrator.py` launches several grid scrapers at once and tiles the windows so they fit on screen.  Provide a comma separated list of search terms and an output directory.
+
+```bash
+python orchestrator.py "Portland, OR" \
+  --terms "Restaurants,Bars,Hotels,Retail stores,Gas stations,Pharmacies,Automotive,Banks,Healthcare,Professional services,Education,Government offices,Entertainment,Construction,Real estate" \
+  --steps 1 \
+  --spacing 0.0145 \
+  --total 50 \
+  --output-dir output/portland
+```
+
+The spacing value `0.0145` roughly equals one mile.  Increase `--steps` or the spacing to cover larger radii (for example `--steps 10 --spacing 0.0145` covers about ten miles).  Windows open in non‑headless mode so you can watch progress.
