@@ -9,6 +9,7 @@ import lighthouse from 'lighthouse';
 import { launch } from 'chrome-launcher';
 import { createTagHealthRouter } from './tagHealth.js';
 import { createToolsRouter } from "./tools.js";
+import { spawn } from 'child_process';
 
 // Basic security headers and rate limiting without extra dependencies
 const securityHeaders = (req, res, next) => {
@@ -240,6 +241,25 @@ app.post('/api/seo-audit', authMiddleware, async (req, res) => {
     res.status(500).json({ error: 'Audit failed' });
 
   }
+});
+
+// Launch the Google Maps scraper worker
+app.post('/api/google-maps-scraper', async (req, res) => {
+  const { query, total } = req.body;
+  if (typeof query !== 'string' || typeof total !== 'number') {
+    return res.status(400).json({ error: 'Invalid payload' });
+  }
+  const filename = `maps_${Date.now()}.csv`;
+  const outputPath = `output/${filename}`;
+  const child = spawn('python', [
+    'bots/WORKER-GoogleMapsScraper/worker.py',
+    query,
+    String(total),
+    outputPath
+  ]);
+  child.on('error', (err) => console.error('scraper error', err));
+  child.stderr.on('data', (d) => console.error(d.toString()));
+  res.json({ file: outputPath });
 });
 
 const port = process.env.PORT || 3001;
