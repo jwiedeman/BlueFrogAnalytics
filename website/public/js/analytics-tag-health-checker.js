@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
     summaryEl.appendChild(ul);
   }
 
-  document.getElementById('scan-form')?.addEventListener('submit', (event) => {
+  document.getElementById('scan-form')?.addEventListener('submit', async (event) => {
     event.preventDefault();
     const domain = document.getElementById('domain').value.trim();
     const maxPages = parseInt(document.getElementById('max-pages').value, 10) || 50;
