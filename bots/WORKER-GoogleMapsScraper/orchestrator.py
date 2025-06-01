@@ -27,15 +27,14 @@ async def run_term(term: str, args, index: int, cols: int, width: int, height: i
         f"--window-size={width},{height}",
         f"--window-position={x},{y}",
     ]
-    out_csv = Path(args.output_dir) / f"{term.replace(' ', '_')}.csv"
     await scrape_city_grid(
         args.city,
         term,
         args.steps,
         args.spacing,
         args.total,
-        out_csv,
-        headless=False,
+        Path(args.database),
+        headless=args.headless,
         min_delay=args.min_delay,
         max_delay=args.max_delay,
         launch_args=launch_args,
@@ -59,13 +58,14 @@ if __name__ == "__main__":
     parser.add_argument("--steps", type=int, default=1)
     parser.add_argument("--spacing", type=float, default=0.02)
     parser.add_argument("--total", type=int, default=50)
-    parser.add_argument("--output-dir", default="output")
+    parser.add_argument("--database", default="output/results.db")
     parser.add_argument("--screen-width", type=int, default=1920)
     parser.add_argument("--screen-height", type=int, default=1080)
     parser.add_argument("--min-delay", type=float, default=1.0)
     parser.add_argument("--max-delay", type=float, default=3.0)
 
+    parser.add_argument("--headless", action="store_true", help="Run browsers headless")
     args = parser.parse_args()
-    Path(args.output_dir).mkdir(parents=True, exist_ok=True)
-
+    
+    Path(Path(args.database).parent).mkdir(parents=True, exist_ok=True)
     asyncio.run(main(args))

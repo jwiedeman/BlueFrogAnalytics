@@ -1,8 +1,8 @@
 import asyncio
-import csv
+import random
+import re
 import sqlite3
 import sys
-import random
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable, Sequence, Set, Tuple
@@ -18,6 +18,9 @@ class Business:
     website: str
     phone_number: str
     reviews_average: float | None
+    query: str
+    latitude: float | None
+    longitude: float | None
 
 
 def init_db(db_path: Path) -> sqlite3.Connection:
@@ -30,7 +33,11 @@ def init_db(db_path: Path) -> sqlite3.Connection:
             address TEXT,
             website TEXT,
             phone TEXT,
-            reviews_average REAL
+            reviews_average REAL,
+            query TEXT,
+            latitude REAL,
+            longitude REAL,
+            UNIQUE(name, address)
         )
         """
     )
@@ -40,8 +47,21 @@ def init_db(db_path: Path) -> sqlite3.Connection:
 
 def save_to_db(conn: sqlite3.Connection, b: Business) -> None:
     conn.execute(
-        "INSERT INTO businesses (name, address, website, phone, reviews_average) VALUES (?, ?, ?, ?, ?)",
-        (b.name, b.address, b.website, b.phone_number, b.reviews_average),
+        """
+        INSERT OR IGNORE INTO businesses (
+            name, address, website, phone, reviews_average, query, latitude, longitude
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+        (
+            b.name,
+            b.address,
+            b.website,
+            b.phone_number,
+            b.reviews_average,
+            b.query,
+            b.latitude,
+            b.longitude,
+        ),
     )
     conn.commit()
 
@@ -53,8 +73,6 @@ async def scrape_at_location(
     lat: float,
     lon: float,
     seen: Set[Tuple[str, str]],
-    writer,
-    csv_file,
     conn,
 ):
     await page.goto(f"https://www.google.com/maps/@{lat},{lon},17z", timeout=60000)
@@ -116,17 +134,23 @@ async def scrape_at_location(
             continue
         seen.add(key)
 
-        writer.writerow([
-            name,
-            address,
-            website,
-            phone,
-            reviews_average if reviews_average is not None else "",
-        ])
-        csv_file.flush()
+        url = page.url
+        match = re.search(r"@(-?\d+\.\d+),(-?\d+\.\d+)", url)
+        lat_val = float(match.group(1)) if match else lat
+        lon_val = float(match.group(2)) if match else lon
+
         save_to_db(
             conn,
-            Business(name, address, website, phone, reviews_average),
+            Business(
+                name,
+                address,
+                website,
+                phone,
+                reviews_average,
+                query,
+                lat_val,
+                lon_val,
+            ),
         )
 
 
@@ -136,24 +160,16 @@ async def scrape_city_grid(
     steps: int,
     spacing: float,
     total: int,
-    csv_path: Path,
+    db_path: Path,
     *,
-    headless: bool = True,
+    headless: bool = False,
     min_delay: float = 1.0,
     max_delay: float = 3.0,
     launch_args: Sequence[str] | None = None,
 ):
-    csv_path.parent.mkdir(parents=True, exist_ok=True)
-    db_conn = init_db(csv_path.with_suffix(".db"))
-    csv_exists = csv_path.exists()
+    db_path.parent.mkdir(parents=True, exist_ok=True)
+    db_conn = init_db(db_path)
     seen: Set[Tuple[str, str]] = set()
-    if csv_exists:
-        with csv_path.open("r", newline="") as existing:
-            reader = csv.reader(existing)
-            next(reader, None)
-            for row in reader:
-                if row:
-                    seen.add((row[0], row[1]))
     geolocator = Nominatim(user_agent="bluefrog-grid")
     location = geolocator.geocode(city)
     if not location:
@@ -169,22 +185,18 @@ async def scrape_city_grid(
         )
         page = await browser.new_page()
 
-        with csv_path.open("a", newline="") as f:
-            writer = csv.writer(f)
-            if not csv_exists:
-                writer.writerow(["name", "address", "website", "phone", "reviews_average"])
-            coords = [
-                (i, j)
-                for i in range(-steps, steps + 1)
-                for j in range(-steps, steps + 1)
-            ]
-            random.shuffle(coords)
-            for i, j in coords:
-                lat = lat_center + i * spacing
-                lon = lon_center + j * spacing
-                await scrape_at_location(page, query, total, lat, lon, seen, writer, f, db_conn)
-                delay = random.uniform(min_delay, max_delay)
-                await page.wait_for_timeout(int(delay * 1000))
+        coords = [
+            (i, j)
+            for i in range(-steps, steps + 1)
+            for j in range(-steps, steps + 1)
+        ]
+        random.shuffle(coords)
+        for i, j in coords:
+            lat = lat_center + i * spacing
+            lon = lon_center + j * spacing
+            await scrape_at_location(page, query, total, lat, lon, seen, db_conn)
+            delay = random.uniform(min_delay, max_delay)
+            await page.wait_for_timeout(int(delay * 1000))
 
         await browser.close()
     db_conn.close()
@@ -199,8 +211,8 @@ if __name__ == "__main__":
     parser.add_argument("steps", type=int)
     parser.add_argument("spacing_deg", type=float)
     parser.add_argument("per_grid_total", type=int)
-    parser.add_argument("output_csv")
-    parser.add_argument("--no-headless", action="store_true", help="Show browser window")
+    parser.add_argument("database")
+    parser.add_argument("--headless", action="store_true", help="Run browser headless")
     parser.add_argument("--min-delay", type=float, default=1.0, help="Minimum delay between grid steps in seconds")
     parser.add_argument("--max-delay", type=float, default=3.0, help="Maximum delay between grid steps in seconds")
     args = parser.parse_args()
@@ -212,8 +224,8 @@ if __name__ == "__main__":
             args.steps,
             args.spacing_deg,
             args.per_grid_total,
-            Path(args.output_csv),
-            headless=not args.no_headless,
+            Path(args.database),
+            headless=args.headless,
             min_delay=args.min_delay,
             max_delay=args.max_delay,
         )
