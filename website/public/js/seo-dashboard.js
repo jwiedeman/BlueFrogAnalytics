@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const user = window.firebaseAuth.currentUser;
       if (!user) throw new Error('Not authenticated');
       const token = await user.getIdToken();
-      const res = await fetch('/api/seo-audit', {
+      const res = await fetch('https://www.api.bluefroganalytics.com/api/seo-audit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

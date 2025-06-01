@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     results.textContent = `Running performance test for ${url}...`;
     try {
       const token = await window.firebaseAuth.currentUser.getIdToken();
-      const res = await fetch('/api/performance', {
+      const res = await fetch('https://www.api.bluefroganalytics.com/api/performance', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
