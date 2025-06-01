@@ -13,6 +13,7 @@ export async function getStaticPaths() {
     .map(d => ({ params: { slug: d.slug } }));
 }
 import DocsLayout from '../components/DocsLayout.astro';
+import DocRating from '../components/DocRating.astro';
 const slugArray = Astro.params.slug;
 const slug = Array.isArray(slugArray) ? slugArray.join('/') : slugArray;
 const entry = await getEntryBySlug('docs', slug.toLowerCase());
@@ -79,5 +80,6 @@ const readingTime = Math.max(1, Math.ceil(words / 200));
       </div>
     </section>
   </article>
+  <DocRating slug={slug} />
 </DocsLayout>
 

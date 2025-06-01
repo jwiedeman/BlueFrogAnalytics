@@ -602,3 +602,8 @@ body.dark-mode .dashboard-side-nav .nav-link.active {
   margin-top: 0;
   background-color: #000;
 }
+
+.doc-rating .bi-star,
+.doc-rating .bi-star-fill {
+  cursor: pointer;
+}
