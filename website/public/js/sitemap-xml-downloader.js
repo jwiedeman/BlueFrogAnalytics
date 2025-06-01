@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     results.textContent = `Fetching sitemap for ${url}...`;
     try {
       const token = await window.firebaseAuth.currentUser.getIdToken();
-      const res = await fetch(`/api/tools/sitemap-xml?url=${encodeURIComponent(url)}`, {
+      const res = await fetch(`https://www.api.bluefroganalytics.com/api/tools/sitemap-xml?url=${encodeURIComponent(url)}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const text = await res.text();

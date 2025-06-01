@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     results.textContent = `Checking security headers for ${url}...`;
     try {
       const token = await window.firebaseAuth.currentUser.getIdToken();
-      const res = await fetch(`/api/tools/security-headers?url=${encodeURIComponent(url)}`, {
+      const res = await fetch(`https://www.api.bluefroganalytics.com/api/tools/security-headers?url=${encodeURIComponent(url)}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await res.json();
