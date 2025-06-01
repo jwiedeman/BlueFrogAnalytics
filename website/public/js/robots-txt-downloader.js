@@ -1,11 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('robots-form');
   if (!form) return;
-  form.addEventListener('submit', e => {
+  form.addEventListener('submit', async e => {
     e.preventDefault();
     const url = document.getElementById('robots-url').value;
     const results = document.getElementById('robots-results');
     results.textContent = `Fetching robots.txt for ${url}...`;
-    // TODO: fetch robots.txt and enable download
+    try {
+      const token = await window.firebaseAuth.currentUser.getIdToken();
+      const res = await fetch(`/api/tools/robots-txt?url=${encodeURIComponent(url)}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      const text = await res.text();
+      if (!res.ok) {
+        results.textContent = text;
+        return;
+      }
+      results.textContent = text;
+      const link = document.createElement('a');
+      link.href = 'data:text/plain,' + encodeURIComponent(text);
+      link.download = 'robots.txt';
+      link.textContent = 'Download robots.txt';
+      results.appendChild(document.createElement('br'));
+      results.appendChild(link);
+    } catch (err) {
+      console.error(err);
+      results.textContent = 'Error fetching robots.txt.';
+    }
   });
 });
