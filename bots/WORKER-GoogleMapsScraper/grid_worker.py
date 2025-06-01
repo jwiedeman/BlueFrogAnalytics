@@ -1,5 +1,6 @@
 import asyncio
 import csv
+import sqlite3
 import sys
 from dataclasses import dataclass
 from pathlib import Path
@@ -18,6 +19,32 @@ class Business:
     reviews_average: float | None
 
 
+def init_db(db_path: Path) -> sqlite3.Connection:
+    """Create the SQLite database if needed and return a connection."""
+    conn = sqlite3.connect(db_path)
+    conn.execute(
+        """
+        CREATE TABLE IF NOT EXISTS businesses (
+            name TEXT,
+            address TEXT,
+            website TEXT,
+            phone TEXT,
+            reviews_average REAL
+        )
+        """
+    )
+    conn.commit()
+    return conn
+
+
+def save_to_db(conn: sqlite3.Connection, b: Business) -> None:
+    conn.execute(
+        "INSERT INTO businesses (name, address, website, phone, reviews_average) VALUES (?, ?, ?, ?, ?)",
+        (b.name, b.address, b.website, b.phone_number, b.reviews_average),
+    )
+    conn.commit()
+
+
 async def scrape_at_location(
     page,
     query: str,
@@ -26,6 +53,8 @@ async def scrape_at_location(
     lon: float,
     seen: Set[Tuple[str, str]],
     writer,
+    csv_file,
+    conn,
 ):
     await page.goto(f"https://www.google.com/maps/@{lat},{lon},17z", timeout=60000)
     await page.fill("//input[@id='searchboxinput']", query)
@@ -93,10 +122,25 @@ async def scrape_at_location(
             phone,
             reviews_average if reviews_average is not None else "",
         ])
+        csv_file.flush()
+        save_to_db(
+            conn,
+            Business(name, address, website, phone, reviews_average),
+        )
 
 
 async def scrape_city_grid(city: str, query: str, steps: int, spacing: float, total: int, csv_path: Path):
     csv_path.parent.mkdir(parents=True, exist_ok=True)
+    db_conn = init_db(csv_path.with_suffix(".db"))
+    csv_exists = csv_path.exists()
+    seen: Set[Tuple[str, str]] = set()
+    if csv_exists:
+        with csv_path.open("r", newline="") as existing:
+            reader = csv.reader(existing)
+            next(reader, None)
+            for row in reader:
+                if row:
+                    seen.add((row[0], row[1]))
     geolocator = Nominatim(user_agent="bluefrog-grid")
     location = geolocator.geocode(city)
     if not location:
@@ -109,17 +153,18 @@ async def scrape_city_grid(city: str, query: str, steps: int, spacing: float, to
         browser = await p.chromium.launch(headless=True)
         page = await browser.new_page()
 
-        with csv_path.open("w", newline="") as f:
+        with csv_path.open("a", newline="") as f:
             writer = csv.writer(f)
-            writer.writerow(["name", "address", "website", "phone", "reviews_average"])
-            seen: Set[Tuple[str, str]] = set()
+            if not csv_exists:
+                writer.writerow(["name", "address", "website", "phone", "reviews_average"])
             for i in range(-steps, steps + 1):
                 for j in range(-steps, steps + 1):
                     lat = lat_center + i * spacing
                     lon = lon_center + j * spacing
-                    await scrape_at_location(page, query, total, lat, lon, seen, writer)
+                    await scrape_at_location(page, query, total, lat, lon, seen, writer, f, db_conn)
 
         await browser.close()
+    db_conn.close()
 
 
 if __name__ == "__main__":

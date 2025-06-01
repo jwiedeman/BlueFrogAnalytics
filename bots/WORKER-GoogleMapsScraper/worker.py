@@ -1,5 +1,6 @@
 import asyncio
 import csv
+import sqlite3
 import sys
 from dataclasses import dataclass
 from pathlib import Path
@@ -13,8 +14,41 @@ class Business:
     phone_number: str
     reviews_average: float | None
 
+
+def init_db(db_path: Path) -> sqlite3.Connection:
+    """Create the SQLite database if needed and return a connection."""
+    conn = sqlite3.connect(db_path)
+    conn.execute(
+        """
+        CREATE TABLE IF NOT EXISTS businesses (
+            name TEXT,
+            address TEXT,
+            website TEXT,
+            phone TEXT,
+            reviews_average REAL
+        )
+        """
+    )
+    conn.commit()
+    return conn
+
+
+def save_to_db(conn: sqlite3.Connection, b: Business) -> None:
+    conn.execute(
+        "INSERT INTO businesses (name, address, website, phone, reviews_average) VALUES (?, ?, ?, ?, ?)",
+        (b.name, b.address, b.website, b.phone_number, b.reviews_average),
+    )
+    conn.commit()
+
 async def scrape(query: str, total: int, csv_path: Path):
     csv_path.parent.mkdir(parents=True, exist_ok=True)
+    db_conn = init_db(csv_path.with_suffix(".db"))
+    csv_exists = csv_path.exists()
+    if not csv_exists:
+        with csv_path.open("w", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow(["name", "address", "website", "phone", "reviews_average"])
+
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
         page = await browser.new_page()
@@ -38,11 +72,6 @@ async def scrape(query: str, total: int, csv_path: Path):
                 listings = await page.locator("//a[contains(@href, 'https://www.google.com/maps/place')]").all()
                 break
             counted = current
-
-        # Write header and append rows as we go
-        with csv_path.open("w", newline="") as f:
-            writer = csv.writer(f)
-            writer.writerow(["name", "address", "website", "phone", "reviews_average"])
 
         for listing in listings:
             await listing.click()
@@ -86,7 +115,12 @@ async def scrape(query: str, total: int, csv_path: Path):
                     phone,
                     reviews_average if reviews_average is not None else "",
                 ])
+            save_to_db(
+                db_conn,
+                Business(name, address, website, phone, reviews_average),
+            )
         await browser.close()
+    db_conn.close()
 
 if __name__ == "__main__":
     if len(sys.argv) < 4:
