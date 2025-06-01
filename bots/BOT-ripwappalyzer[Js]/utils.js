@@ -57,4 +57,30 @@ function loadTechnologies() {
     return technologies;
 }
 
-export { loadTechnologies };
+/**
+ * Parse a Wappalyzer pattern string.
+ * Splits out regex and attributes like version or confidence.
+ * @param {string} pattern
+ * @returns {{regex: RegExp, attrs: Object, string: string}}
+ */
+function parsePattern(pattern) {
+    const parts = pattern.split(';');
+    const regexSource = parts.shift();
+    const attrs = {};
+    for (const part of parts) {
+        const [key, value] = part.split(':');
+        if (key && value) {
+            attrs[key] = value;
+        }
+    }
+    let regex;
+    try {
+        regex = new RegExp(regexSource, 'i');
+    } catch (err) {
+        console.error(`⚠️ Invalid regex '${regexSource}':`, err.message);
+        regex = /(?!)/; // never matches
+    }
+    return { regex, attrs, string: regexSource };
+}
+
+export { loadTechnologies, parsePattern };
