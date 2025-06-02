@@ -60,3 +60,18 @@ docker run -p 6001:6001 \
 ## Networking
 
 All API routes, including streaming updates for tools like the Tag Health checker, share the single port defined by `PORT`. If `SSL_CERT` and `SSL_KEY` are provided they are used for HTTPS. Otherwise the server generates a temporary self-signed certificate. In production you may terminate TLS in a reverse proxy and forward requests (typically on `443`) to the internal `PORT`. The production site expects the API to be reachable at `https://www.api.bluefroganalytics.com`, so configure your networking accordingly.
+
+### HTTPS with Let's Encrypt
+
+To avoid browser warnings when connecting to the API, run it behind a reverse proxy that handles TLS. A simple option is [Nginx](https://nginx.org/) together with [Certbot](https://certbot.eff.org/) for automatic Let's Encrypt certificates.
+
+1. Install `nginx` and `certbot` on your server.
+2. Copy `nginx-https-example.conf` from this directory to `/etc/nginx/sites-available/api.bluefroganalytics.com` and adjust the domain if needed.
+3. Enable the config and request a certificate:
+
+```bash
+sudo ln -s /etc/nginx/sites-available/api.bluefroganalytics.com /etc/nginx/sites-enabled/
+sudo certbot --nginx -d api.bluefroganalytics.com
+```
+
+The proxy forwards HTTPS traffic on port 443 to the Node.js server on port `6001`. See the example config for reference.
