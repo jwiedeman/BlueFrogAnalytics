@@ -27,12 +27,7 @@ def init_db(dsn: str) -> psycopg2.extensions.connection:
         conn = psycopg2.connect(dsn)
     except psycopg2.OperationalError as exc:
         print(f"Failed to connect to Postgres using DSN '{dsn}': {exc}")
-        print(
-            "Ensure PostgreSQL is running. You can start a local instance with:\n"
-            "  docker run -d --name maps-postgres -p 5432:5432 \\\n" 
-            "    -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=maps postgres:15-alpine"
-        )
-        print("If using Docker, append 'host=localhost password=postgres' to the DSN.")
+        print("Ensure PostgreSQL is running. Execute 'start_postgres.sh' in this folder to launch a local instance that stores data under 'pgdata/'.")
         sys.exit(1)
     with conn.cursor() as cur:
         cur.execute(

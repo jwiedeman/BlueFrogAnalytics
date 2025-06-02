@@ -67,18 +67,17 @@ The second argument controls how many spiral rings to traverse. Use `--headless`
 
 ### Local Postgres setup
 
-`spiral_worker.py` and the other scripts expect a running Postgres instance. If
-you don't have one running locally you can quickly launch a container:
+`spiral_worker.py` and the other scripts expect a running Postgres instance.
+To run one without Docker execute `start_postgres.sh` in this folder. The script
+initialises a database under `pgdata/` on first run and starts the server on
+port `5432`.
 
 ```bash
-docker run -d --name maps-postgres -p 5432:5432 \
-  -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=maps postgres:15-alpine
+./start_postgres.sh
 ```
 
-
-With this container running the default DSN `dbname=maps user=postgres host=localhost password=postgres` will
-
-connect successfully. You can also set a custom connection string via the
+Once the server is running the default DSN `dbname=maps user=postgres host=localhost password=postgres`
+will connect successfully. You can also set a custom connection string via the
 `POSTGRES_DSN` environment variable when invoking the workers.
 
 ### Exporting to Excel
