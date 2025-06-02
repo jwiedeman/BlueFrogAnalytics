@@ -330,6 +330,37 @@ app.post('/api/google-maps-scraper', async (req, res) => {
 const port = process.env.PORT || 6001;
 const certPath = process.env.SSL_CERT;
 const keyPath = process.env.SSL_KEY;
+const leDomain = process.env.LE_DOMAIN || 'api.bluefroganalytics.com';
+
+function obtainLetsEncrypt(domain) {
+  const leDir = path.resolve('./letsencrypt');
+  const certFile = path.join(leDir, 'live', domain, 'fullchain.pem');
+  const keyFile = path.join(leDir, 'live', domain, 'privkey.pem');
+
+  if (fs.existsSync(certFile) && fs.existsSync(keyFile)) {
+    return { cert: fs.readFileSync(certFile), key: fs.readFileSync(keyFile) };
+  }
+
+  console.log('Requesting Let\'s Encrypt certificate for', domain);
+  const result = spawnSync('certbot', [
+    'certonly',
+    '--standalone',
+    '--non-interactive',
+    '--agree-tos',
+    '--register-unsafely-without-email',
+    '--config-dir', leDir,
+    '--work-dir', path.join(leDir, 'work'),
+    '--logs-dir', path.join(leDir, 'logs'),
+    '-d', domain
+  ]);
+
+  if (result.status === 0 && fs.existsSync(certFile) && fs.existsSync(keyFile)) {
+    console.log('Obtained Let\'s Encrypt certificate');
+    return { cert: fs.readFileSync(certFile), key: fs.readFileSync(keyFile) };
+  }
+  console.error('Failed to obtain Let\'s Encrypt certificate');
+  return null;
+}
 
 function generateSelfSigned() {
   try {
@@ -370,11 +401,17 @@ if (certPath && keyPath && fs.existsSync(certPath) && fs.existsSync(keyPath)) {
   keyPem = fs.readFileSync(keyPath);
   certPem = fs.readFileSync(certPath);
 } else {
-  const generated = generateSelfSigned();
-  if (generated) {
-    keyPem = generated.key;
-    certPem = generated.cert;
-    console.log('Generated temporary self-signed TLS certificate');
+  const letsEncrypt = obtainLetsEncrypt(leDomain);
+  if (letsEncrypt) {
+    keyPem = letsEncrypt.key;
+    certPem = letsEncrypt.cert;
+  } else {
+    const generated = generateSelfSigned();
+    if (generated) {
+      keyPem = generated.key;
+      certPem = generated.cert;
+      console.log('Generated temporary self-signed TLS certificate');
+    }
   }
 }
 
