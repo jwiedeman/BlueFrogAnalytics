@@ -3,6 +3,7 @@ import BaseHead from './BaseHead.astro';
 import CustomHeader from './CustomHeader.astro';
 import CustomFooter from './CustomFooter.astro';
 import FirebaseScripts from './FirebaseScripts.astro';
+import ApiConfig from './ApiConfig.astro';
 
 // Receive headings from page content
 const { headings, title, description } = Astro.props;
@@ -282,6 +283,7 @@ for (const [file, mod] of Object.entries(modules)) {
     </div>
     <CustomFooter />
     <FirebaseScripts />
+    <ApiConfig />
     <script src="/js/offcanvas-nav.js" type="module"></script>
     <script src="/js/glossary-popover.js" defer></script>
     <!-- Docs search logic -->

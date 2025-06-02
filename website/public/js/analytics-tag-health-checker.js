@@ -1,6 +1,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
-  const API_BASE_URL = 'https://api.bluefroganalytics.com/api/tag-health';
+  const API_BASE_URL = (window.API_BASE_URL || 'https://api.bluefroganalytics.com') + '/api/tag-health';
 
   const ANALYTICS_KEYS = [
     'google_analytics',

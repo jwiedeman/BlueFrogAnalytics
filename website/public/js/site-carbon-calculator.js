@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const API_BASE = window.API_BASE_URL || 'https://api.bluefroganalytics.com';
   const form = document.getElementById('carbon-form');
   if (!form) return;
   form.addEventListener('submit', async e => {
@@ -8,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     results.textContent = `Calculating carbon footprint for ${url}...`;
     try {
       const token = await window.firebaseAuth.currentUser.getIdToken();
-      const res = await fetch('https://api.bluefroganalytics.com/api/tools/carbon', {
+      const res = await fetch(`${API_BASE}/api/tools/carbon`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
