@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     results.textContent = `Generating SERP preview for ${url}...`;
     try {
       const token = await window.firebaseAuth.currentUser.getIdToken();
-      const res = await fetch(`https://www.api.bluefroganalytics.com:6001/api/tools/serp-preview?url=${encodeURIComponent(url)}`, {
+      const res = await fetch(`https://api.bluefroganalytics.com/api/tools/serp-preview?url=${encodeURIComponent(url)}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await res.json();

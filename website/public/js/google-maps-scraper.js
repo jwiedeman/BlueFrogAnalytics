@@ -7,7 +7,7 @@ form?.addEventListener('submit', async (e) => {
   const query = document.getElementById('gmaps-query').value;
   const total = Number(document.getElementById('gmaps-total').value);
   try {
-    const res = await fetch('https://www.api.bluefroganalytics.com:6001/api/google-maps-scraper', {
+    const res = await fetch('https://api.bluefroganalytics.com/api/google-maps-scraper', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ query, total })
