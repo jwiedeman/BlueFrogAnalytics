@@ -332,11 +332,10 @@ export function createTagHealthRouter(updateTest) {
       MAX_ALLOWED_PAGES,
       isNaN(maxPagesInput) ? DEFAULT_MAX_PAGES : Math.max(1, maxPagesInput)
     );
-    res.writeHead(200, {
-      'Content-Type': 'text/event-stream',
-      'Cache-Control': 'no-cache',
-      Connection: 'keep-alive'
-    });
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('Connection', 'keep-alive');
+    res.status(200);
     res.flushHeaders();
 
     const job = { domain, maxPages, res, running: false };

@@ -267,7 +267,8 @@ document.addEventListener('DOMContentLoaded', () => {
       ? await window.firebaseAuth.currentUser.getIdToken()
       : '';
     const es = new EventSource(
-      `${API_BASE_URL}/stream?domain=${encodeURIComponent(domain)}&maxPages=${maxPages}&token=${encodeURIComponent(token)}`
+      `${API_BASE_URL}/stream?domain=${encodeURIComponent(domain)}&maxPages=${maxPages}&token=${encodeURIComponent(token)}`,
+      { withCredentials: true }
     );
     let startTime = null;
     es.addEventListener('queue', (e) => {
