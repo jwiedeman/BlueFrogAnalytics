@@ -1,9 +1,8 @@
 import asyncio
 import re
-import sqlite3
+import psycopg2
 import sys
 from dataclasses import dataclass
-from pathlib import Path
 from typing import Set, Tuple
 
 from playwright.async_api import async_playwright
@@ -21,10 +20,11 @@ class Business:
     longitude: float | None
 
 
-def init_db(db_path: Path) -> sqlite3.Connection:
-    """Create the SQLite database if needed and return a connection."""
-    conn = sqlite3.connect(db_path)
-    conn.execute(
+def init_db(dsn: str) -> psycopg2.extensions.connection:
+    """Create the Postgres table if needed and return a connection."""
+    conn = psycopg2.connect(dsn)
+    with conn.cursor() as cur:
+        cur.execute(
         """
         CREATE TABLE IF NOT EXISTS businesses (
             name TEXT,
@@ -33,35 +33,37 @@ def init_db(db_path: Path) -> sqlite3.Connection:
             phone TEXT,
             reviews_average REAL,
             query TEXT,
-            latitude REAL,
-            longitude REAL,
+            latitude DOUBLE PRECISION,
+            longitude DOUBLE PRECISION,
             UNIQUE(name, address)
         )
         """
-    )
-    conn.commit()
+        )
+        conn.commit()
     return conn
 
 
-def save_to_db(conn: sqlite3.Connection, b: Business) -> None:
-    conn.execute(
-        """
-        INSERT OR IGNORE INTO businesses (
-            name, address, website, phone, reviews_average, query, latitude, longitude
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-        """,
-        (
-            b.name,
-            b.address,
-            b.website,
-            b.phone_number,
-            b.reviews_average,
-            b.query,
-            b.latitude,
-            b.longitude,
-        ),
-    )
-    conn.commit()
+def save_to_db(conn: psycopg2.extensions.connection, b: Business) -> None:
+    with conn.cursor() as cur:
+        cur.execute(
+            """
+            INSERT INTO businesses (
+                name, address, website, phone, reviews_average, query, latitude, longitude
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (name, address) DO NOTHING
+            """,
+            (
+                b.name,
+                b.address,
+                b.website,
+                b.phone_number,
+                b.reviews_average,
+                b.query,
+                b.latitude,
+                b.longitude,
+            ),
+        )
+        conn.commit()
 
 
 async def collect_current_listings(page, query: str, seen: Set[Tuple[str, str]], conn) -> None:
@@ -133,9 +135,8 @@ async def collect_current_listings(page, query: str, seen: Set[Tuple[str, str]],
         await page.wait_for_timeout(1000)
 
 
-async def scrape_spiral(query: str, steps: int, db_path: Path, *, headless: bool = False):
-    db_path.parent.mkdir(parents=True, exist_ok=True)
-    conn = init_db(db_path)
+async def scrape_spiral(query: str, steps: int, dsn: str, *, headless: bool = False):
+    conn = init_db(dsn)
     seen: Set[Tuple[str, str]] = set()
 
     async with async_playwright() as p:
@@ -175,10 +176,10 @@ async def scrape_spiral(query: str, steps: int, db_path: Path, *, headless: bool
 
 if __name__ == "__main__":
     if len(sys.argv) < 4:
-        print("Usage: python spiral_worker.py <query> <steps> <database> [--headless]")
+        print("Usage: python spiral_worker.py <query> <steps> <dsn> [--headless]")
         sys.exit(1)
     query = sys.argv[1]
     steps = int(sys.argv[2])
-    db = Path(sys.argv[3])
+    dsn = sys.argv[3]
     headless = "--headless" in sys.argv[4:]
-    asyncio.run(scrape_spiral(query, steps, db, headless=headless))
+    asyncio.run(scrape_spiral(query, steps, dsn, headless=headless))

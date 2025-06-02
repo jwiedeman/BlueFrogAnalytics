@@ -1,10 +1,9 @@
 import asyncio
 import random
 import re
-import sqlite3
+import psycopg2
 import sys
 from dataclasses import dataclass
-from pathlib import Path
 from typing import Iterable, Sequence, Set, Tuple
 
 from geopy.geocoders import Nominatim
@@ -23,10 +22,11 @@ class Business:
     longitude: float | None
 
 
-def init_db(db_path: Path) -> sqlite3.Connection:
-    """Create the SQLite database if needed and return a connection."""
-    conn = sqlite3.connect(db_path)
-    conn.execute(
+def init_db(dsn: str) -> psycopg2.extensions.connection:
+    """Create the Postgres table if needed and return a connection."""
+    conn = psycopg2.connect(dsn)
+    with conn.cursor() as cur:
+        cur.execute(
         """
         CREATE TABLE IF NOT EXISTS businesses (
             name TEXT,
@@ -35,35 +35,37 @@ def init_db(db_path: Path) -> sqlite3.Connection:
             phone TEXT,
             reviews_average REAL,
             query TEXT,
-            latitude REAL,
-            longitude REAL,
+            latitude DOUBLE PRECISION,
+            longitude DOUBLE PRECISION,
             UNIQUE(name, address)
         )
         """
-    )
-    conn.commit()
+        )
+        conn.commit()
     return conn
 
 
-def save_to_db(conn: sqlite3.Connection, b: Business) -> None:
-    conn.execute(
-        """
-        INSERT OR IGNORE INTO businesses (
-            name, address, website, phone, reviews_average, query, latitude, longitude
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-        """,
-        (
-            b.name,
-            b.address,
-            b.website,
-            b.phone_number,
-            b.reviews_average,
-            b.query,
-            b.latitude,
-            b.longitude,
-        ),
-    )
-    conn.commit()
+def save_to_db(conn: psycopg2.extensions.connection, b: Business) -> None:
+    with conn.cursor() as cur:
+        cur.execute(
+            """
+            INSERT INTO businesses (
+                name, address, website, phone, reviews_average, query, latitude, longitude
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (name, address) DO NOTHING
+            """,
+            (
+                b.name,
+                b.address,
+                b.website,
+                b.phone_number,
+                b.reviews_average,
+                b.query,
+                b.latitude,
+                b.longitude,
+            ),
+        )
+        conn.commit()
 
 
 async def scrape_at_location(
@@ -160,15 +162,14 @@ async def scrape_city_grid(
     steps: int,
     spacing: float,
     total: int,
-    db_path: Path,
+    dsn: str,
     *,
     headless: bool = False,
     min_delay: float = 15.0,
     max_delay: float = 60.0,
     launch_args: Sequence[str] | None = None,
 ):
-    db_path.parent.mkdir(parents=True, exist_ok=True)
-    db_conn = init_db(db_path)
+    db_conn = init_db(dsn)
     seen: Set[Tuple[str, str]] = set()
     geolocator = Nominatim(user_agent="bluefrog-grid")
     location = geolocator.geocode(city)
@@ -211,7 +212,7 @@ if __name__ == "__main__":
     parser.add_argument("steps", type=int)
     parser.add_argument("spacing_deg", type=float)
     parser.add_argument("per_grid_total", type=int)
-    parser.add_argument("database")
+    parser.add_argument("dsn", help="Postgres DSN")
     parser.add_argument("--headless", action="store_true", help="Run browser headless")
     parser.add_argument("--min-delay", type=float, default=15.0, help="Minimum delay between grid steps in seconds")
     parser.add_argument("--max-delay", type=float, default=60.0, help="Maximum delay between grid steps in seconds")
@@ -224,7 +225,7 @@ if __name__ == "__main__":
             args.steps,
             args.spacing_deg,
             args.per_grid_total,
-            Path(args.database),
+            args.dsn,
             headless=args.headless,
             min_delay=args.min_delay,
             max_delay=args.max_delay,

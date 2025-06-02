@@ -2,7 +2,6 @@ import argparse
 import asyncio
 import math
 import random
-from pathlib import Path
 
 from asyncio import Semaphore, Queue
 
@@ -36,7 +35,7 @@ async def run_term(term: str, args, slots: Queue, sem: Semaphore, width: int, he
                 args.steps,
                 args.spacing,
                 args.total,
-                Path(args.database),
+                args.dsn,
                 headless=args.headless,
                 min_delay=args.min_delay,
                 max_delay=args.max_delay,
@@ -70,7 +69,7 @@ if __name__ == "__main__":
     parser.add_argument("--steps", type=int, default=1)
     parser.add_argument("--spacing", type=float, default=0.02)
     parser.add_argument("--total", type=int, default=50)
-    parser.add_argument("--database", default="output/results.db")
+    parser.add_argument("--dsn", required=True, help="Postgres DSN")
     parser.add_argument("--screen-width", type=int, default=1920)
     parser.add_argument("--screen-height", type=int, default=1080)
     parser.add_argument("--min-delay", type=float, default=1.0)
@@ -80,5 +79,4 @@ if __name__ == "__main__":
     parser.add_argument("--headless", action="store_true", help="Run browsers headless")
     args = parser.parse_args()
     
-    Path(Path(args.database).parent).mkdir(parents=True, exist_ok=True)
     asyncio.run(main(args))
