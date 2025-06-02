@@ -1,0 +1,184 @@
+import asyncio
+import re
+import sqlite3
+import sys
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Set, Tuple
+
+from playwright.async_api import async_playwright
+
+
+@dataclass
+class Business:
+    name: str
+    address: str
+    website: str
+    phone_number: str
+    reviews_average: float | None
+    query: str
+    latitude: float | None
+    longitude: float | None
+
+
+def init_db(db_path: Path) -> sqlite3.Connection:
+    """Create the SQLite database if needed and return a connection."""
+    conn = sqlite3.connect(db_path)
+    conn.execute(
+        """
+        CREATE TABLE IF NOT EXISTS businesses (
+            name TEXT,
+            address TEXT,
+            website TEXT,
+            phone TEXT,
+            reviews_average REAL,
+            query TEXT,
+            latitude REAL,
+            longitude REAL,
+            UNIQUE(name, address)
+        )
+        """
+    )
+    conn.commit()
+    return conn
+
+
+def save_to_db(conn: sqlite3.Connection, b: Business) -> None:
+    conn.execute(
+        """
+        INSERT OR IGNORE INTO businesses (
+            name, address, website, phone, reviews_average, query, latitude, longitude
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+        (
+            b.name,
+            b.address,
+            b.website,
+            b.phone_number,
+            b.reviews_average,
+            b.query,
+            b.latitude,
+            b.longitude,
+        ),
+    )
+    conn.commit()
+
+
+async def collect_current_listings(page, query: str, seen: Set[Tuple[str, str]], conn) -> None:
+    listings = await page.locator("//a[contains(@href, 'https://www.google.com/maps/place')]" ).all()
+    for listing in listings:
+        href = await listing.get_attribute("href")
+        if not href:
+            continue
+        await listing.click()
+        await page.wait_for_timeout(3000)
+
+        name = await page.locator('h1.DUwDvf.lfPIob').inner_text() if await page.locator('h1.DUwDvf.lfPIob').count() else ""
+
+        address = ""
+        if await page.locator('//button[@data-item-id="address"]//div[contains(@class, "fontBodyMedium")]').count():
+            elements = await page.locator('//button[@data-item-id="address"]//div[contains(@class, "fontBodyMedium")]').all()
+            if elements:
+                address = await elements[0].inner_text()
+
+        website = ""
+        if await page.locator('//a[@data-item-id="authority"]//div[contains(@class, "fontBodyMedium")]').count():
+            elements = await page.locator('//a[@data-item-id="authority"]//div[contains(@class, "fontBodyMedium")]').all()
+            if elements:
+                website = await elements[0].inner_text()
+
+        phone = ""
+        if await page.locator('//button[contains(@data-item-id, "phone")]//div[contains(@class, "fontBodyMedium")]').count():
+            elements = await page.locator('//button[contains(@data-item-id, "phone")]//div[contains(@class, "fontBodyMedium")]').all()
+            if elements:
+                phone = await elements[0].inner_text()
+
+        reviews_average = None
+        if await page.locator('//div[@jsaction="pane.reviewChart.moreReviews"]//div[@role="img"]').count():
+            text = await page.locator('//div[@jsaction="pane.reviewChart.moreReviews"]//div[@role="img"]').get_attribute('aria-label')
+            if text:
+                try:
+                    reviews_average = float(text.split()[0].replace(',', '.'))
+                except ValueError:
+                    reviews_average = None
+
+        key = (name, address)
+        if key in seen:
+            await page.go_back()
+            await page.wait_for_timeout(1000)
+            continue
+        seen.add(key)
+
+        url = page.url
+        lat = lon = None
+        match = re.search(r"@(-?\d+\.\d+),(-?\d+\.\d+)", url)
+        if match:
+            lat = float(match.group(1))
+            lon = float(match.group(2))
+
+        save_to_db(
+            conn,
+            Business(
+                name,
+                address,
+                website,
+                phone,
+                reviews_average,
+                query,
+                lat,
+                lon,
+            ),
+        )
+        await page.go_back()
+        await page.wait_for_timeout(1000)
+
+
+async def scrape_spiral(query: str, steps: int, db_path: Path, *, headless: bool = False):
+    db_path.parent.mkdir(parents=True, exist_ok=True)
+    conn = init_db(db_path)
+    seen: Set[Tuple[str, str]] = set()
+
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(headless=headless)
+        page = await browser.new_page()
+        await page.goto("https://www.google.com/maps", timeout=60000)
+        await page.fill("//input[@id='searchboxinput']", query)
+        await page.keyboard.press("Enter")
+        await page.wait_for_timeout(5000)
+
+        try:
+            checkbox = page.get_by_role("checkbox", name="Update results when map moves")
+            if await checkbox.count() and (await checkbox.get_attribute("aria-checked")) != "true":
+                await checkbox.click()
+                await page.wait_for_timeout(1000)
+        except Exception:
+            pass
+
+        await collect_current_listings(page, query, seen, conn)
+
+        arrow_keys = ["ArrowRight", "ArrowUp", "ArrowLeft", "ArrowDown"]
+        step_length = 1
+        direction = 0
+
+        for _ in range(steps):
+            for _ in range(2):
+                for _ in range(step_length):
+                    await page.keyboard.press(arrow_keys[direction])
+                    await page.wait_for_timeout(1500)
+                    await collect_current_listings(page, query, seen, conn)
+                direction = (direction + 1) % 4
+            step_length += 1
+
+        await browser.close()
+    conn.close()
+
+
+if __name__ == "__main__":
+    if len(sys.argv) < 4:
+        print("Usage: python spiral_worker.py <query> <steps> <database> [--headless]")
+        sys.exit(1)
+    query = sys.argv[1]
+    steps = int(sys.argv[2])
+    db = Path(sys.argv[3])
+    headless = "--headless" in sys.argv[4:]
+    asyncio.run(scrape_spiral(query, steps, db, headless=headless))
