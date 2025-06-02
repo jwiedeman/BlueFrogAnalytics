@@ -108,13 +108,13 @@ app.use(securityHeaders);
 app.use(rateLimiter);
 
 // Allow CORS from the main website domains
-const allowedOrigins = [
-  'https://bluefroganalytics.com',
-  'https://www.bluefroganalytics.com'
-];
+
 app.use((req, res, next) => {
   const { origin } = req.headers;
-  if (allowedOrigins.includes(origin)) {
+  if (
+    origin === 'https://bluefroganalytics.com' ||
+    origin === 'https://www.bluefroganalytics.com'
+  ) {
     res.setHeader('Access-Control-Allow-Origin', origin);
   }
   res.setHeader('Vary', 'Origin');
