@@ -35,7 +35,16 @@ const rateLimiter = (req, res, next) => {
   next();
 };
 
-const serviceAccountPath = process.env.FIREBASE_SERVICE_ACCOUNT;
+const serviceAccountPath =
+  process.env.FIREBASE_SERVICE_ACCOUNT ||
+  new URL('./serviceAccount.json', import.meta.url).pathname;
+
+if (!fs.existsSync(serviceAccountPath)) {
+  throw new Error(
+    'Missing Firebase service account credentials. Set FIREBASE_SERVICE_ACCOUNT or place serviceAccount.json in the server directory.'
+  );
+}
+
 const firebaseApp = initializeApp({
   credential: cert(JSON.parse(fs.readFileSync(serviceAccountPath, 'utf8')))
 });

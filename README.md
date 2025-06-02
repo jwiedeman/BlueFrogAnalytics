@@ -38,7 +38,7 @@ Static documentation content resides in `src/content/docs`.
 
 ## API server
 
-The API server under `server/apiServer.js` exposes endpoints for profile management and website audits. It requires a Firebase service account and Cassandra connection details.
+The API server under `server/apiServer.js` exposes endpoints for profile management and website audits. It requires a Firebase service account and Cassandra connection details. If `FIREBASE_SERVICE_ACCOUNT` is not set, the server falls back to `server/serviceAccount.json`.
 
 Run locally:
 
