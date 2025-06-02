@@ -27,7 +27,7 @@ jobs:
         run: npm install
 
       - name: Install Playwright Browsers
-        run: npx playwright install  #  Fixes missing Chromium issue
+        run: PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS=1 npx playwright install chromium
 
       - name: Build Astro Site
         run: |
