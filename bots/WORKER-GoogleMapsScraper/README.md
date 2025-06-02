@@ -1,7 +1,7 @@
 # Google Maps Scraper Worker
 
 This worker scrapes business listings from Google Maps using Playwright.
-Results are written to a single SQLite database so data from every run
+Results are written to a Postgres database so data from every run
 is stored together. Each record notes the search term and the GPS
 coordinates where it was collected.
 
@@ -13,11 +13,10 @@ Install Python 3.11+ and the dependencies:
 pip install -r requirements.txt
 ```
 
-Run the worker with a search query, number of results and the path to a
-SQLite database:
+Run the worker with a search query, number of results and a Postgres DSN:
 
 ```bash
-python worker.py "Coffee shops in New York" 100 data/maps.db
+python worker.py "Coffee shops in New York" 100 "dbname=maps user=postgres"
 ```
 
 Browsers show a window by default. Pass `--headless` to hide it.
@@ -26,19 +25,19 @@ Browsers show a window by default. Pass `--headless` to hide it.
 
 `grid_worker.py` automates searches across a grid of GPS coordinates around a
 city. It deduplicates results using business name and address and appends them
-to the same SQLite database used by `worker.py`.
+to the same Postgres database used by `worker.py`.
 
 ```bash
-python grid_worker.py "Portland, OR" "coffee shops" 1 0.02 50 data/maps.db
+python grid_worker.py "Portland, OR" "coffee shops" 1 0.02 50 "dbname=maps user=postgres"
 ```
 
-The parameters are: city name, search query, number of grid steps from the center, spacing in degrees between grid points, number of results per grid cell, and database path. Use `--headless` to hide the browser and `--min-delay`/`--max-delay` to randomize pauses between grid locations.
+The parameters are: city name, search query, number of grid steps from the center, spacing in degrees between grid points, number of results per grid cell, and database DSN. Use `--headless` to hide the browser and `--min-delay`/`--max-delay` to randomize pauses between grid locations.
 
 ### Running multiple terms
 
 `orchestrator.py` launches several grid scrapers at once and tiles the windows
 to create a control room style view. Provide a comma separated list of search
-terms and the database path.
+terms and the database DSN.
 
 ```bash
 python orchestrator.py "Portland, OR" \
@@ -46,7 +45,7 @@ python orchestrator.py "Portland, OR" \
   --steps 1 \
   --spacing 0.0145 \
   --total 50 \
-  --database data/maps.db \
+  --dsn "dbname=maps user=postgres" \
   --concurrency 4
 ```
 
@@ -59,17 +58,17 @@ Pass `--concurrency` to limit how many browser instances run at once. The orches
 `spiral_worker.py` moves the map around using the arrow keys while the "Update results when map moves" setting is enabled. It collects business details from the sidebar after each pan and expands outward in a spiral pattern.
 
 ```bash
-python spiral_worker.py "coffee shops" 5 data/maps.db
+python spiral_worker.py "coffee shops" 5 "dbname=maps user=postgres"
 ```
 
 The second argument controls how many spiral rings to traverse. Use `--headless` to hide the browser window.
 
 ### Exporting to Excel
 
-Use `export_to_excel.py` to convert the SQLite database to an Excel file:
+Use `export_to_excel.py` to convert the Postgres database to an Excel file:
 
 ```bash
-python export_to_excel.py data/maps.db results.xlsx
+python export_to_excel.py "dbname=maps user=postgres" results.xlsx
 ```
 
 ## Docker Swarm

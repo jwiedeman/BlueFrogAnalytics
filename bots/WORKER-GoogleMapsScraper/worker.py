@@ -1,9 +1,9 @@
 import asyncio
 import re
-import sqlite3
+import os
+import psycopg2
 import sys
 from dataclasses import dataclass
-from pathlib import Path
 
 from playwright.async_api import async_playwright
 
@@ -19,51 +19,53 @@ class Business:
     longitude: float | None
 
 
-def init_db(db_path: Path) -> sqlite3.Connection:
-    """Create the SQLite database if needed and return a connection."""
-    conn = sqlite3.connect(db_path)
-    conn.execute(
-        """
-        CREATE TABLE IF NOT EXISTS businesses (
-            name TEXT,
-            address TEXT,
-            website TEXT,
-            phone TEXT,
-            reviews_average REAL,
-            query TEXT,
-            latitude REAL,
-            longitude REAL,
-            UNIQUE(name, address)
+def init_db(dsn: str) -> psycopg2.extensions.connection:
+    """Create the Postgres database table if needed and return a connection."""
+    conn = psycopg2.connect(dsn)
+    with conn.cursor() as cur:
+        cur.execute(
+            """
+            CREATE TABLE IF NOT EXISTS businesses (
+                name TEXT,
+                address TEXT,
+                website TEXT,
+                phone TEXT,
+                reviews_average REAL,
+                query TEXT,
+                latitude DOUBLE PRECISION,
+                longitude DOUBLE PRECISION,
+                UNIQUE(name, address)
+            )
+            """
         )
-        """
-    )
-    conn.commit()
+        conn.commit()
     return conn
 
 
-def save_to_db(conn: sqlite3.Connection, b: Business) -> None:
-    conn.execute(
-        """
-        INSERT OR IGNORE INTO businesses (
-            name, address, website, phone, reviews_average, query, latitude, longitude
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-        """,
-        (
-            b.name,
-            b.address,
-            b.website,
-            b.phone_number,
-            b.reviews_average,
-            b.query,
-            b.latitude,
-            b.longitude,
-        ),
-    )
-    conn.commit()
+def save_to_db(conn: psycopg2.extensions.connection, b: Business) -> None:
+    with conn.cursor() as cur:
+        cur.execute(
+            """
+            INSERT INTO businesses (
+                name, address, website, phone, reviews_average, query, latitude, longitude
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (name, address) DO NOTHING
+            """,
+            (
+                b.name,
+                b.address,
+                b.website,
+                b.phone_number,
+                b.reviews_average,
+                b.query,
+                b.latitude,
+                b.longitude,
+            ),
+        )
+        conn.commit()
 
-async def scrape(query: str, total: int, db_path: Path, *, headless: bool = False):
-    db_path.parent.mkdir(parents=True, exist_ok=True)
-    db_conn = init_db(db_path)
+async def scrape(query: str, total: int, dsn: str, *, headless: bool = False):
+    db_conn = init_db(dsn)
 
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
@@ -147,10 +149,10 @@ async def scrape(query: str, total: int, db_path: Path, *, headless: bool = Fals
 
 if __name__ == "__main__":
     if len(sys.argv) < 4:
-        print("Usage: python worker.py <query> <total> <database> [--headless]")
+        print("Usage: python worker.py <query> <total> <dsn> [--headless]")
         sys.exit(1)
     query = sys.argv[1]
     total = int(sys.argv[2])
-    db_path = Path(sys.argv[3])
+    dsn = sys.argv[3]
     headless = "--headless" in sys.argv[4:]
-    asyncio.run(scrape(query, total, db_path, headless=headless))
+    asyncio.run(scrape(query, total, dsn, headless=headless))
