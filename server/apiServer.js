@@ -131,6 +131,7 @@ app.use((req, res, next) => {
 });
 
 async function updateTest(uid, name, data) {
+  if (!uid) return;
   const result = await cassandraClient.execute(
     'SELECT tests FROM user_profiles WHERE uid = ?',
     [uid],
@@ -166,8 +167,24 @@ async function authMiddleware(req, res, next) {
   }
 }
 
-app.use('/api/tag-health', authMiddleware, createTagHealthRouter(updateTest));
-app.use('/api/tools', authMiddleware, createToolsRouter(updateTest));
+async function optionalAuthMiddleware(req, res, next) {
+  const header = req.headers.authorization || '';
+  let token = header.startsWith('Bearer ') ? header.slice(7) : null;
+  if (!token && req.query && req.query.token) {
+    token = req.query.token;
+  }
+  if (!token) return next();
+  try {
+    const decoded = await firebaseAuth.verifyIdToken(token);
+    req.uid = createHash('sha256').update(decoded.uid).digest('hex');
+  } catch (err) {
+    console.warn('Invalid token', err.message);
+  }
+  next();
+}
+
+app.use('/api/tag-health', optionalAuthMiddleware, createTagHealthRouter(updateTest));
+app.use('/api/tools', optionalAuthMiddleware, createToolsRouter(updateTest));
 
 app.post('/api/profile', authMiddleware, async (req, res) => {
   const {
