@@ -11,6 +11,8 @@ import { createTagHealthRouter } from './tagHealth.js';
 import { createToolsRouter } from "./tools.js";
 import { spawn } from 'child_process';
 import dotenv from 'dotenv';
+import http from 'http';
+import https from 'https';
 
 // Load environment variables from server/.env if present
 dotenv.config({ path: new URL('./.env', import.meta.url).pathname });
@@ -324,4 +326,30 @@ app.post('/api/google-maps-scraper', async (req, res) => {
 });
 
 const port = process.env.PORT || 6001;
-app.listen(port, () => console.log('API server running on port', port));
+const certPath = process.env.SSL_CERT;
+const keyPath = process.env.SSL_KEY;
+
+let server;
+if (
+  certPath &&
+  keyPath &&
+  fs.existsSync(certPath) &&
+  fs.existsSync(keyPath)
+) {
+  server = https.createServer(
+    {
+      key: fs.readFileSync(keyPath),
+      cert: fs.readFileSync(certPath)
+    },
+    app
+  );
+} else {
+  server = http.createServer(app);
+}
+
+server.listen(port, () => {
+  console.log(
+    `${certPath && keyPath ? 'HTTPS' : 'HTTP'} server running on port`,
+    port
+  );
+});
