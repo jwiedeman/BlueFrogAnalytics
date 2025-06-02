@@ -7,8 +7,13 @@ import express from 'express';
 
 const DEFAULT_MAX_PAGES = 50;
 const MAX_ALLOWED_PAGES = 250;
+const REQUEST_TIMEOUT = 15000;
 const USER_AGENT =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36';
+
+function log(...args) {
+  console.log('[tagHealth]', ...args);
+}
 
 const ANALYTICS_PATTERNS = {
   google_analytics: {
@@ -134,26 +139,31 @@ function serializeAnalytics(data) {
 function directFetch(url) {
   const lib = url.startsWith('https') ? https : http;
   return new Promise((resolve, reject) => {
-    lib
-      .get(url, res => {
-        if (res.statusCode >= 400) {
-          reject(new Error(`Status ${res.statusCode}`));
-          return;
-        }
-        let data = '';
-        res.on('data', chunk => {
-          data += chunk;
-        });
-        res.on('end', () => resolve(data));
-      })
-      .on('error', reject);
+    log('directFetch', url);
+    const req = lib.get(url, { timeout: REQUEST_TIMEOUT }, res => {
+      if (res.statusCode >= 400) {
+        reject(new Error(`Status ${res.statusCode}`));
+        return;
+      }
+      let data = '';
+      res.on('data', chunk => {
+        data += chunk;
+      });
+      res.on('end', () => resolve(data));
+    });
+    req.on('timeout', () => {
+      req.destroy();
+      reject(new Error('Timeout'));
+    });
+    req.on('error', reject);
   });
 }
 
 function fetchRedirectChain(url, chain = [], maxRedirects = 5) {
   const lib = url.startsWith('https') ? https : http;
   return new Promise((resolve, reject) => {
-    const req = lib.get(url, res => {
+    log('redirectCheck', url);
+    const req = lib.get(url, { timeout: REQUEST_TIMEOUT }, res => {
       chain.push({ url, status: res.statusCode });
       if (
         res.statusCode >= 300 &&
@@ -172,6 +182,11 @@ function fetchRedirectChain(url, chain = [], maxRedirects = 5) {
       res.resume();
       resolve({ status: res.statusCode, finalUrl: url, chain });
     });
+    req.on('timeout', () => {
+      req.destroy();
+      chain.push({ url, error: 'Timeout' });
+      reject({ error: 'Timeout', chain });
+    });
     req.on('error', err => {
       chain.push({ url, error: err.message });
       reject({ error: err.message, chain });
@@ -182,11 +197,13 @@ function fetchRedirectChain(url, chain = [], maxRedirects = 5) {
 async function resolveVariants(domain) {
   const results = {};
   const working = [];
+  log('resolveVariants', domain);
   const hosts = [domain, `www.${domain}`];
   for (const host of hosts) {
     let success = false;
     for (const scheme of ['https', 'http']) {
       const url = `${scheme}://${host}`;
+      log('checkVariant', url);
       try {
         const info = await fetchRedirectChain(url);
         results[url] = {
@@ -195,11 +212,13 @@ async function resolveVariants(domain) {
           chain: info.chain
         };
         if (!success && info.status < 400) {
+          log('variantWorking', info.finalUrl);
           working.push(info.finalUrl);
           success = true;
         }
         if (info.status < 400) break;
       } catch (err) {
+        log('variantError', url, err.error || err.message);
         results[url] = { error: err.error || err.message, chain: err.chain };
       }
     }
@@ -208,6 +227,7 @@ async function resolveVariants(domain) {
 }
 
 async function fetchPage(page, url) {
+  log('fetchPage', url);
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 10000 });
     return await page.content();
@@ -224,6 +244,7 @@ async function crawlVariant(page, baseUrl, visited, scannedUrls, found, pageResu
   const baseHost = new URL(baseUrl).host;
   while (queue.length && scannedUrls.length < maxPages) {
     const url = queue.shift();
+    log('crawlPage', url);
     if (visited.has(url)) continue;
     visited.add(url);
     const html = await fetchPage(page, url);
@@ -261,6 +282,7 @@ async function scanVariants(variants, progress = () => {}, maxPages = DEFAULT_MA
   try {
     for (const base of variants) {
       if (scanned.length >= maxPages) break;
+      log('scanVariant', base);
       const html = await fetchPage(page, base);
       if (!html) continue;
       working.push(base);
@@ -304,6 +326,7 @@ export function createTagHealthRouter(updateTest) {
       MAX_ALLOWED_PAGES,
       isNaN(maxPagesInput) ? DEFAULT_MAX_PAGES : Math.max(1, maxPagesInput)
     );
+    log('POST /api/tag-health', domain, maxPages);
     try {
       const { working, variantResults } = await resolveVariants(domain);
       let result = {
@@ -332,6 +355,7 @@ export function createTagHealthRouter(updateTest) {
       MAX_ALLOWED_PAGES,
       isNaN(maxPagesInput) ? DEFAULT_MAX_PAGES : Math.max(1, maxPagesInput)
     );
+    log('STREAM start', domain, maxPages);
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('Connection', 'keep-alive');
@@ -340,6 +364,7 @@ export function createTagHealthRouter(updateTest) {
 
     const job = { domain, maxPages, res, running: false };
     jobQueue.push(job);
+    log('queued', domain);
     broadcastQueue();
     runNext();
 
@@ -351,6 +376,7 @@ export function createTagHealthRouter(updateTest) {
           broadcastQueue();
         }
       }
+      log('stream closed', domain);
     });
   });
 
@@ -358,6 +384,7 @@ export function createTagHealthRouter(updateTest) {
   const jobQueue = [];
 
   function broadcastQueue() {
+    log('queue length', jobQueue.length);
     jobQueue.forEach((job, idx) => {
       try {
         job.res.write(`event: queue\ndata: ${JSON.stringify({ position: idx + 1 })}\n\n`);
@@ -370,6 +397,7 @@ export function createTagHealthRouter(updateTest) {
       const job = jobQueue.shift();
       activeJobs.add(job);
       job.running = true;
+      log('start job', job.domain);
       job.res.write(`event: queue\ndata: ${JSON.stringify({ position: 0 })}\n\n`);
       startJob(job);
     }
@@ -378,6 +406,7 @@ export function createTagHealthRouter(updateTest) {
 
   async function startJob(job) {
     const { domain, maxPages, res } = job;
+    log('job scanning', domain);
     try {
       const { working, variantResults } = await resolveVariants(domain);
       res.write(`data: ${JSON.stringify({ variant_results: variantResults })}\n\n`);
@@ -402,12 +431,14 @@ export function createTagHealthRouter(updateTest) {
       }
       res.write(`data: ${JSON.stringify({ done: true, result })}\n\n`);
       res.end();
+      log('job finished', domain);
     } catch (err) {
       try {
         res.write(`event: error\ndata: ${JSON.stringify({ error: err.toString() })}\n\n`);
       } finally {
         res.end();
       }
+      log('job error', domain, err.toString());
     } finally {
       activeJobs.delete(job);
       runNext();
