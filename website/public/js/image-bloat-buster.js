@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const API_BASE = window.API_BASE_URL || 'https://api.bluefroganalytics.com';
+  const API_BASE = window.API_BASE_URL || 'https://api.bluefroganalytics.com:6001';
   const form = document.getElementById('bloat-form');
   if (!form) return;
   form.addEventListener('submit', async e => {

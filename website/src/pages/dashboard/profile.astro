@@ -53,7 +53,8 @@ const description = 'Manage your account details.';
   </section>
   <script type="module">
     document.addEventListener('DOMContentLoaded', () => {
-      const API_BASE = window.API_BASE_URL || 'https://api.bluefroganalytics.com';
+      const API_BASE =
+        window.API_BASE_URL || 'https://api.bluefroganalytics.com:6001';
       const firstEl = document.getElementById('profile-first-name');
       const lastEl = document.getElementById('profile-last-name');
       const emailEl = document.getElementById('profile-email');

@@ -1,6 +1,6 @@
 const form = document.getElementById('gmaps-form');
 const output = document.getElementById('gmaps-output');
-const API_BASE = window.API_BASE_URL || 'https://api.bluefroganalytics.com';
+const API_BASE = window.API_BASE_URL || 'https://api.bluefroganalytics.com:6001';
 
 form?.addEventListener('submit', async (e) => {
   e.preventDefault();

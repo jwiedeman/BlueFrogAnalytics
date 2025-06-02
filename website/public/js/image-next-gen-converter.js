@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const API_BASE = window.API_BASE_URL || 'https://api.bluefroganalytics.com';
+  const API_BASE = window.API_BASE_URL || 'https://api.bluefroganalytics.com:6001';
   const input = document.getElementById('convert-input');
   const button = document.getElementById('convert-button');
   const results = document.getElementById('convert-results');
