@@ -1,5 +1,5 @@
 import puppeteer from 'puppeteer';
-import cheerio from 'cheerio';
+import { load } from 'cheerio';
 import { URL } from 'url';
 import http from 'http';
 import https from 'https';
@@ -63,7 +63,7 @@ function cleanDomain(domain) {
 }
 
 function findAnalytics(html) {
-  const $ = cheerio.load(html);
+  const $ = load(html);
   const text = $.html();
   const detected = {};
 
@@ -233,7 +233,7 @@ async function crawlVariant(page, baseUrl, visited, scannedUrls, found, pageResu
     const pageData = findAnalytics(html);
     mergeAnalytics(found, pageData);
     pageResults[url] = serializeAnalytics(pageData);
-    const $ = cheerio.load(html);
+    const $ = load(html);
     $('a[href]').each((_, el) => {
       const link = new URL($(el).attr('href'), url).href;
       if (new URL(link).host === baseHost && !visited.has(link) && scannedUrls.length + queue.length < maxPages) {
@@ -269,7 +269,7 @@ async function scanVariants(variants, progress = () => {}, maxPages = DEFAULT_MA
       const baseData = findAnalytics(html);
       mergeAnalytics(found, baseData);
       pageResults[base] = serializeAnalytics(baseData);
-      const $ = cheerio.load(html);
+      const $ = load(html);
       const queue = [];
       $('a[href]').each((_, el) => {
         const link = new URL($(el).attr('href'), base).href;
