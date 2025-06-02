@@ -54,6 +54,16 @@ The spacing value `0.0145` roughly equals one mile.  Increase `--steps` or the s
 
 Pass `--concurrency` to limit how many browser instances run at once. The orchestrator automatically tiles visible windows in a grid sized to this concurrency value.
 
+## Spiral pan mode
+
+`spiral_worker.py` moves the map around using the arrow keys while the "Update results when map moves" setting is enabled. It collects business details from the sidebar after each pan and expands outward in a spiral pattern.
+
+```bash
+python spiral_worker.py "coffee shops" 5 data/maps.db
+```
+
+The second argument controls how many spiral rings to traverse. Use `--headless` to hide the browser window.
+
 ### Exporting to Excel
 
 Use `export_to_excel.py` to convert the SQLite database to an Excel file:
