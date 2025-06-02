@@ -12,6 +12,10 @@ This directory houses the Express-based API for Blue Frog Analytics. The server 
 - `POST /api/tag-health` – start the analytics tag health scanner
 - `GET /api/tag-health/stream` – live scan progress via Server-Sent Events
 
+The `/api/tools/*` and `/api/tag-health` routes accept optional Firebase ID tokens.
+If no token is provided the request still runs but results are not saved to a user
+profile.
+
 ## Requirements
 
 - Node.js 18+
