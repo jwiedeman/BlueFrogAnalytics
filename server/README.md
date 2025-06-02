@@ -35,6 +35,8 @@ Environment variables:
   cluster, default `datacenter1`)
 - `CASSANDRA_KEYSPACE` – keyspace for user profiles
 - `PORT` – port to listen on (default `6001`)
+- `SSL_CERT` – path to TLS certificate (optional)
+- `SSL_KEY` – path to TLS private key (optional)
 
 You can place these variables in a `.env` file inside the `server` directory.
 The server automatically loads this file when starting.
@@ -56,4 +58,4 @@ docker run -p 6001:6001 \
 
 ## Networking
 
-All API routes, including streaming updates for tools like the Tag Health checker, share the single port defined by `PORT`. Set this variable if you need a different internal port. When exposing the service publicly, forward your chosen external port (typically `443` for HTTPS) to the internal `PORT`. The production site expects the API to be reachable at `https://www.api.bluefroganalytics.com`, so configure your reverse proxy or NAT rules accordingly.
+All API routes, including streaming updates for tools like the Tag Health checker, share the single port defined by `PORT`. If `SSL_CERT` and `SSL_KEY` are set the server starts in HTTPS mode on this port. Otherwise terminate TLS in a reverse proxy and forward requests (typically on `443`) to the internal `PORT`. The production site expects the API to be reachable at `https://www.api.bluefroganalytics.com` so configure your networking accordingly.
