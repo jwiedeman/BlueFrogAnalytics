@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     results.textContent = `Running accessibility test for ${url}...`;
     try {
       const token = await window.firebaseAuth.currentUser.getIdToken();
-      const res = await fetch('https://www.api.bluefroganalytics.com:6001/api/audit/accessibility', {
+      const res = await fetch('https://api.bluefroganalytics.com/api/audit/accessibility', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

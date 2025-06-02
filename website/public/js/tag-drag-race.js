@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     results.textContent = `Running Tag Drag Race for ${url}...`;
     try {
       const token = await window.firebaseAuth.currentUser.getIdToken();
-      const res = await fetch('https://www.api.bluefroganalytics.com:6001/api/tools/tag-drag-race', {
+      const res = await fetch('https://api.bluefroganalytics.com/api/tools/tag-drag-race', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
