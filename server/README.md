@@ -36,6 +36,9 @@ Environment variables:
 - `CASSANDRA_KEYSPACE` – keyspace for user profiles
 - `PORT` – port to listen on (default `6001`)
 
+You can place these variables in a `.env` file inside the `server` directory.
+The server automatically loads this file when starting.
+
 ## Docker
 
 Build the image and run it:

@@ -10,6 +10,10 @@ import { launch } from 'chrome-launcher';
 import { createTagHealthRouter } from './tagHealth.js';
 import { createToolsRouter } from "./tools.js";
 import { spawn } from 'child_process';
+import dotenv from 'dotenv';
+
+// Load environment variables from server/.env if present
+dotenv.config({ path: new URL('./.env', import.meta.url).pathname });
 
 // Basic security headers and rate limiting without extra dependencies
 const securityHeaders = (req, res, next) => {
