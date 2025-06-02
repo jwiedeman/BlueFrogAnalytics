@@ -163,8 +163,8 @@ async def scrape_city_grid(
     db_path: Path,
     *,
     headless: bool = False,
-    min_delay: float = 1.0,
-    max_delay: float = 3.0,
+    min_delay: float = 15.0,
+    max_delay: float = 60.0,
     launch_args: Sequence[str] | None = None,
 ):
     db_path.parent.mkdir(parents=True, exist_ok=True)
@@ -213,8 +213,8 @@ if __name__ == "__main__":
     parser.add_argument("per_grid_total", type=int)
     parser.add_argument("database")
     parser.add_argument("--headless", action="store_true", help="Run browser headless")
-    parser.add_argument("--min-delay", type=float, default=1.0, help="Minimum delay between grid steps in seconds")
-    parser.add_argument("--max-delay", type=float, default=3.0, help="Maximum delay between grid steps in seconds")
+    parser.add_argument("--min-delay", type=float, default=15.0, help="Minimum delay between grid steps in seconds")
+    parser.add_argument("--max-delay", type=float, default=60.0, help="Maximum delay between grid steps in seconds")
     args = parser.parse_args()
 
     asyncio.run(
