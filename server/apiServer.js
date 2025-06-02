@@ -78,14 +78,11 @@ await cassandraClient.execute(`
 const app = express();
 app.disable('x-powered-by');
 
-// Allow CORS from the main website domains
-const allowedOrigins = new Set([
-  'https://bluefroganalytics.com',
-  'https://www.bluefroganalytics.com'
-]);
+// Allow CORS from the main website domains and any subdomain
+const allowedOriginPattern = /^https:\/\/(?:[a-z0-9-]+\.)*bluefroganalytics\.com$/i;
 app.use((req, res, next) => {
   const origin = req.headers.origin;
-  if (origin && allowedOrigins.has(origin)) {
+  if (origin && allowedOriginPattern.test(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
     res.setHeader('Access-Control-Allow-Credentials', 'true');
   }
@@ -111,10 +108,7 @@ app.use(rateLimiter);
 
 app.use((req, res, next) => {
   const { origin } = req.headers;
-  if (
-    origin === 'https://bluefroganalytics.com' ||
-    origin === 'https://www.bluefroganalytics.com'
-  ) {
+  if (origin && allowedOriginPattern.test(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
   }
   res.setHeader('Vary', 'Origin');
