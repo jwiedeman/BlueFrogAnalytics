@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const API_BASE = window.API_BASE_URL || 'https://api.bluefroganalytics.com';
   const input = document.getElementById('convert-input');
   const button = document.getElementById('convert-button');
   const results = document.getElementById('convert-results');
@@ -12,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
       reader.onload = async () => {
         try {
           const token = await window.firebaseAuth.currentUser.getIdToken();
-          const res = await fetch('https://api.bluefroganalytics.com/api/tools/image-convert', {
+          const res = await fetch(`${API_BASE}/api/tools/image-convert`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

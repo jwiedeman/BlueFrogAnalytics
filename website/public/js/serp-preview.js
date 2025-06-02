@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const API_BASE = window.API_BASE_URL || 'https://api.bluefroganalytics.com';
   const form = document.getElementById('serp-form');
   if (!form) return;
   form.addEventListener('submit', async e => {
@@ -8,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     results.textContent = `Generating SERP preview for ${url}...`;
     try {
       const token = await window.firebaseAuth.currentUser.getIdToken();
-      const res = await fetch(`https://api.bluefroganalytics.com/api/tools/serp-preview?url=${encodeURIComponent(url)}`, {
+      const res = await fetch(`${API_BASE}/api/tools/serp-preview?url=${encodeURIComponent(url)}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await res.json();

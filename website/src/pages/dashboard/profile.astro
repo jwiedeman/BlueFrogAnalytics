@@ -53,6 +53,7 @@ const description = 'Manage your account details.';
   </section>
   <script type="module">
     document.addEventListener('DOMContentLoaded', () => {
+      const API_BASE = window.API_BASE_URL || 'https://api.bluefroganalytics.com';
       const firstEl = document.getElementById('profile-first-name');
       const lastEl = document.getElementById('profile-last-name');
       const emailEl = document.getElementById('profile-email');
@@ -90,7 +91,7 @@ const description = 'Manage your account details.';
             return;
           }
           const token = await user.getIdToken();
-          const res = await fetch('https://api.bluefroganalytics.com/api/profile', {
+          const res = await fetch(`${API_BASE}/api/profile`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           if (res.ok) {
@@ -112,7 +113,7 @@ const description = 'Manage your account details.';
             const [k, v] = pair.split('=');
             if (k && v) tests[k.trim()] = parseInt(v, 10) || 0;
           });
-          const res = await fetch('https://api.bluefroganalytics.com/api/profile', {
+          const res = await fetch(`${API_BASE}/api/profile`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

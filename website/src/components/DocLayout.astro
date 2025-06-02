@@ -4,6 +4,7 @@ import BaseHead from './BaseHead.astro';
 import CustomHeader from './CustomHeader.astro';
 import CustomFooter from './CustomFooter.astro';
 import FirebaseScripts from './FirebaseScripts.astro';
+import ApiConfig from './ApiConfig.astro';
 
 const { fluid = false, title, description } = Astro.props;
 const mainClass = fluid ? 'container-fluid' : 'container';
@@ -19,6 +20,7 @@ const mainClass = fluid ? 'container-fluid' : 'container';
     </main>
     <CustomFooter />
     <FirebaseScripts />
+    <ApiConfig />
     <script src="/js/glossary-popover.js" defer></script>
     <script type="module" src="/js/mermaid-init.js"></script>
     <script is:inline>

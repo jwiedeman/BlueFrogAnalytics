@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const API_BASE = window.API_BASE_URL || 'https://api.bluefroganalytics.com';
   const form = document.getElementById('seo-dashboard-form');
   if (!form) return;
   form.addEventListener('submit', async e => {
@@ -10,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const user = window.firebaseAuth.currentUser;
       if (!user) throw new Error('Not authenticated');
       const token = await user.getIdToken();
-      const res = await fetch('https://api.bluefroganalytics.com/api/seo-audit', {
+      const res = await fetch(`${API_BASE}/api/seo-audit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
