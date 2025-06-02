@@ -37,7 +37,8 @@ Environment variables:
 - `PORT` – port to listen on (default `6001`)
 - `SSL_CERT` – path to TLS certificate (optional)
 - `SSL_KEY` – path to TLS private key (optional)
-If these are not set, the server automatically generates a temporary self-signed certificate at startup.
+- `LE_DOMAIN` – domain name used for Let's Encrypt and self-signed certificates (default `api.bluefroganalytics.com`)
+If neither `SSL_CERT`/`SSL_KEY` nor an existing Let's Encrypt certificate are available, the server attempts to obtain one for `LE_DOMAIN`. When that fails, a temporary self-signed certificate for the same domain is generated.
 
 You can place these variables in a `.env` file inside the `server` directory.
 The server automatically loads this file when starting.

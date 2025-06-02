@@ -362,7 +362,7 @@ function obtainLetsEncrypt(domain) {
   return null;
 }
 
-function generateSelfSigned() {
+function generateSelfSigned(domain = 'localhost') {
   try {
     const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'bfa-ssl-'));
     const keyFile = path.join(dir, 'key.pem');
@@ -380,7 +380,7 @@ function generateSelfSigned() {
       '-days',
       '365',
       '-subj',
-      '/CN=localhost'
+      `/CN=${domain}`
     ]);
     if (result.status !== 0) {
       console.error(result.stderr.toString());
@@ -406,11 +406,11 @@ if (certPath && keyPath && fs.existsSync(certPath) && fs.existsSync(keyPath)) {
     keyPem = letsEncrypt.key;
     certPem = letsEncrypt.cert;
   } else {
-    const generated = generateSelfSigned();
+    const generated = generateSelfSigned(leDomain);
     if (generated) {
       keyPem = generated.key;
       certPem = generated.cert;
-      console.log('Generated temporary self-signed TLS certificate');
+      console.log(`Generated temporary self-signed TLS certificate for ${leDomain}`);
     }
   }
 }
