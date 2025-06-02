@@ -1,4 +1,5 @@
 import asyncio
+import os
 import re
 import psycopg2
 import sys
@@ -22,7 +23,17 @@ class Business:
 
 def init_db(dsn: str) -> psycopg2.extensions.connection:
     """Create the Postgres table if needed and return a connection."""
-    conn = psycopg2.connect(dsn)
+    try:
+        conn = psycopg2.connect(dsn)
+    except psycopg2.OperationalError as exc:
+        print(f"Failed to connect to Postgres using DSN '{dsn}': {exc}")
+        print(
+            "Ensure PostgreSQL is running. You can start a local instance with:\n"
+            "  docker run -d --name maps-postgres -p 5432:5432 \\\n" 
+            "    -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=maps postgres:15-alpine"
+        )
+        print("If using Docker, append 'host=localhost password=postgres' to the DSN.")
+        sys.exit(1)
     with conn.cursor() as cur:
         cur.execute(
         """
@@ -175,11 +186,19 @@ async def scrape_spiral(query: str, steps: int, dsn: str, *, headless: bool = Fa
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 4:
-        print("Usage: python spiral_worker.py <query> <steps> <dsn> [--headless]")
+    args = [a for a in sys.argv[1:] if a != "--headless"]
+    headless = "--headless" in sys.argv[1:]
+
+    if len(args) < 2:
+        print(
+            "Usage: python spiral_worker.py <query> <steps> [dsn] [--headless]"
+        )
         sys.exit(1)
-    query = sys.argv[1]
-    steps = int(sys.argv[2])
-    dsn = sys.argv[3]
-    headless = "--headless" in sys.argv[4:]
+
+    query = args[0]
+    steps = int(args[1])
+    dsn = args[2] if len(args) >= 3 else os.environ.get(
+        "POSTGRES_DSN", "dbname=maps user=postgres host=localhost password=postgres"
+    )
+
     asyncio.run(scrape_spiral(query, steps, dsn, headless=headless))
