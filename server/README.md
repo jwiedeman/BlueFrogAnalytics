@@ -37,6 +37,7 @@ Environment variables:
 - `PORT` – port to listen on (default `6001`)
 - `SSL_CERT` – path to TLS certificate (optional)
 - `SSL_KEY` – path to TLS private key (optional)
+If these are not set, the server automatically generates a temporary self-signed certificate at startup.
 
 You can place these variables in a `.env` file inside the `server` directory.
 The server automatically loads this file when starting.
@@ -58,4 +59,4 @@ docker run -p 6001:6001 \
 
 ## Networking
 
-All API routes, including streaming updates for tools like the Tag Health checker, share the single port defined by `PORT`. If `SSL_CERT` and `SSL_KEY` are set the server starts in HTTPS mode on this port. Otherwise terminate TLS in a reverse proxy and forward requests (typically on `443`) to the internal `PORT`. The production site expects the API to be reachable at `https://www.api.bluefroganalytics.com` so configure your networking accordingly.
+All API routes, including streaming updates for tools like the Tag Health checker, share the single port defined by `PORT`. If `SSL_CERT` and `SSL_KEY` are provided they are used for HTTPS. Otherwise the server generates a temporary self-signed certificate. In production you may terminate TLS in a reverse proxy and forward requests (typically on `443`) to the internal `PORT`. The production site expects the API to be reachable at `https://www.api.bluefroganalytics.com`, so configure your networking accordingly.

@@ -9,7 +9,9 @@ import lighthouse from 'lighthouse';
 import { launch } from 'chrome-launcher';
 import { createTagHealthRouter } from './tagHealth.js';
 import { createToolsRouter } from "./tools.js";
-import { spawn } from 'child_process';
+import { spawn, spawnSync } from 'child_process';
+import os from 'os';
+import path from 'path';
 import dotenv from 'dotenv';
 import http from 'http';
 import https from 'https';
@@ -329,27 +331,59 @@ const port = process.env.PORT || 6001;
 const certPath = process.env.SSL_CERT;
 const keyPath = process.env.SSL_KEY;
 
+function generateSelfSigned() {
+  try {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'bfa-ssl-'));
+    const keyFile = path.join(dir, 'key.pem');
+    const certFile = path.join(dir, 'cert.pem');
+    const result = spawnSync('openssl', [
+      'req',
+      '-x509',
+      '-newkey',
+      'rsa:2048',
+      '-nodes',
+      '-keyout',
+      keyFile,
+      '-out',
+      certFile,
+      '-days',
+      '365',
+      '-subj',
+      '/CN=localhost'
+    ]);
+    if (result.status !== 0) {
+      console.error(result.stderr.toString());
+      return null;
+    }
+    return { key: fs.readFileSync(keyFile), cert: fs.readFileSync(certFile) };
+  } catch (err) {
+    console.error('Failed to generate self-signed certificate', err);
+    return null;
+  }
+}
+
 let server;
-if (
-  certPath &&
-  keyPath &&
-  fs.existsSync(certPath) &&
-  fs.existsSync(keyPath)
-) {
-  server = https.createServer(
-    {
-      key: fs.readFileSync(keyPath),
-      cert: fs.readFileSync(certPath)
-    },
-    app
-  );
+
+let keyPem;
+let certPem;
+if (certPath && keyPath && fs.existsSync(certPath) && fs.existsSync(keyPath)) {
+  keyPem = fs.readFileSync(keyPath);
+  certPem = fs.readFileSync(certPath);
+} else {
+  const generated = generateSelfSigned();
+  if (generated) {
+    keyPem = generated.key;
+    certPem = generated.cert;
+    console.log('Generated temporary self-signed TLS certificate');
+  }
+}
+
+if (keyPem && certPem) {
+  server = https.createServer({ key: keyPem, cert: certPem }, app);
 } else {
   server = http.createServer(app);
 }
 
 server.listen(port, () => {
-  console.log(
-    `${certPath && keyPath ? 'HTTPS' : 'HTTP'} server running on port`,
-    port
-  );
+  console.log(`${keyPem ? 'HTTPS' : 'HTTP'} server running on port`, port);
 });
