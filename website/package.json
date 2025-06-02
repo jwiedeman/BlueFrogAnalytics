@@ -8,7 +8,7 @@
     "build": "astro build && touch dist/.nojekyll",
     "preview": "astro preview",
     "astro": "astro",
-    "postinstall": "playwright install chromium"
+    "postinstall": "PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS=1 playwright install chromium"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.4.0",
