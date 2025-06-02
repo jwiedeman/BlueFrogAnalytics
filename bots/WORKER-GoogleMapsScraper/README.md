@@ -58,10 +58,25 @@ Pass `--concurrency` to limit how many browser instances run at once. The orches
 `spiral_worker.py` moves the map around using the arrow keys while the "Update results when map moves" setting is enabled. It collects business details from the sidebar after each pan and expands outward in a spiral pattern.
 
 ```bash
+# DSN may be omitted if POSTGRES_DSN is set
 python spiral_worker.py "coffee shops" 5 "dbname=maps user=postgres"
 ```
 
 The second argument controls how many spiral rings to traverse. Use `--headless` to hide the browser window.
+
+### Local Postgres setup
+
+`spiral_worker.py` and the other scripts expect a running Postgres instance. If
+you don't have one running locally you can quickly launch a container:
+
+```bash
+docker run -d --name maps-postgres -p 5432:5432 \
+  -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=maps postgres:15-alpine
+```
+
+With this container running the default DSN `dbname=maps user=postgres` will
+connect successfully. You can also set a custom connection string via the
+`POSTGRES_DSN` environment variable when invoking the workers.
 
 ### Exporting to Excel
 
