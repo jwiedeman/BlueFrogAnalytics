@@ -29,7 +29,7 @@ npm start
 
 Environment variables:
 
-- `FIREBASE_SERVICE_ACCOUNT` – path to your service account JSON
+- `FIREBASE_SERVICE_ACCOUNT` – path to your service account JSON (defaults to `./serviceAccount.json` if not set)
 - `CASSANDRA_CONTACT_POINTS` – comma separated list of hosts (default `127.0.0.1`)
 - `CASSANDRA_LOCAL_DATA_CENTER` – Cassandra data center name
 - `CASSANDRA_KEYSPACE` – keyspace for user profiles
