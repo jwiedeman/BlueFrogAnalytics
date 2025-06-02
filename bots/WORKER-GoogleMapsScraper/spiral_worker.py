@@ -32,6 +32,7 @@ def init_db(dsn: str) -> psycopg2.extensions.connection:
             "  docker run -d --name maps-postgres -p 5432:5432 \\\n" 
             "    -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=maps postgres:15-alpine"
         )
+        print("If using Docker, append 'host=localhost password=postgres' to the DSN.")
         sys.exit(1)
     with conn.cursor() as cur:
         cur.execute(
@@ -197,7 +198,7 @@ if __name__ == "__main__":
     query = args[0]
     steps = int(args[1])
     dsn = args[2] if len(args) >= 3 else os.environ.get(
-        "POSTGRES_DSN", "dbname=maps user=postgres"
+        "POSTGRES_DSN", "dbname=maps user=postgres host=localhost password=postgres"
     )
 
     asyncio.run(scrape_spiral(query, steps, dsn, headless=headless))

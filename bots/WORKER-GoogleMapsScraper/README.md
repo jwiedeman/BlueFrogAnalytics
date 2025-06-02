@@ -16,7 +16,7 @@ pip install -r requirements.txt
 Run the worker with a search query, number of results and a Postgres DSN:
 
 ```bash
-python worker.py "Coffee shops in New York" 100 "dbname=maps user=postgres"
+python worker.py "Coffee shops in New York" 100 "dbname=maps user=postgres host=localhost password=postgres"
 ```
 
 Browsers show a window by default. Pass `--headless` to hide it.
@@ -28,7 +28,7 @@ city. It deduplicates results using business name and address and appends them
 to the same Postgres database used by `worker.py`.
 
 ```bash
-python grid_worker.py "Portland, OR" "coffee shops" 1 0.02 50 "dbname=maps user=postgres"
+python grid_worker.py "Portland, OR" "coffee shops" 1 0.02 50 "dbname=maps user=postgres host=localhost password=postgres"
 ```
 
 The parameters are: city name, search query, number of grid steps from the center, spacing in degrees between grid points, number of results per grid cell, and database DSN. Use `--headless` to hide the browser and `--min-delay`/`--max-delay` to randomize pauses between grid locations.
@@ -45,7 +45,7 @@ python orchestrator.py "Portland, OR" \
   --steps 1 \
   --spacing 0.0145 \
   --total 50 \
-  --dsn "dbname=maps user=postgres" \
+  --dsn "dbname=maps user=postgres host=localhost password=postgres" \
   --concurrency 4
 ```
 
@@ -59,7 +59,8 @@ Pass `--concurrency` to limit how many browser instances run at once. The orches
 
 ```bash
 # DSN may be omitted if POSTGRES_DSN is set
-python spiral_worker.py "coffee shops" 5 "dbname=maps user=postgres"
+python spiral_worker.py "coffee shops" 5 "dbname=maps user=postgres host=localhost password=postgres"
+
 ```
 
 The second argument controls how many spiral rings to traverse. Use `--headless` to hide the browser window.
@@ -74,7 +75,9 @@ docker run -d --name maps-postgres -p 5432:5432 \
   -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=maps postgres:15-alpine
 ```
 
-With this container running the default DSN `dbname=maps user=postgres` will
+
+With this container running the default DSN `dbname=maps user=postgres host=localhost password=postgres` will
+
 connect successfully. You can also set a custom connection string via the
 `POSTGRES_DSN` environment variable when invoking the workers.
 
@@ -83,7 +86,7 @@ connect successfully. You can also set a custom connection string via the
 Use `export_to_excel.py` to convert the Postgres database to an Excel file:
 
 ```bash
-python export_to_excel.py "dbname=maps user=postgres" results.xlsx
+python export_to_excel.py "dbname=maps user=postgres host=localhost password=postgres" results.xlsx
 ```
 
 ## Docker Swarm
