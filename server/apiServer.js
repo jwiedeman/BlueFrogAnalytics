@@ -81,6 +81,31 @@ app.use(express.json({ limit: '10kb' }));
 app.use(securityHeaders);
 app.use(rateLimiter);
 
+// Allow CORS from the main website domains
+const allowedOrigins = [
+  'https://bluefroganalytics.com',
+  'https://www.bluefroganalytics.com'
+];
+app.use((req, res, next) => {
+  const { origin } = req.headers;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  res.setHeader('Vary', 'Origin');
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET,POST,OPTIONS'
+  );
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'Content-Type, Authorization'
+  );
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(204);
+  }
+  next();
+});
+
 async function updateTest(uid, name, data) {
   const result = await cassandraClient.execute(
     'SELECT tests FROM user_profiles WHERE uid = ?',
