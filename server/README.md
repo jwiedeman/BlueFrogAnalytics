@@ -7,7 +7,7 @@ This directory houses the Express-based API for Blue Frog Analytics. The server 
 - `POST /api/profile` – update profile fields
 - `GET /api/billing` – fetch saved billing information
 - `POST /api/billing` – update billing details
-- `POST /api/performance` – run a Lighthouse performance test
+- `POST /api/performance` – run Lighthouse performance tests for mobile and desktop
 - `POST /api/audit/accessibility` – run an accessibility audit
 - `POST /api/seo-audit` – run an SEO audit
 - `POST /api/tools/*` – various utility endpoints (image conversion, carbon calc, etc.)
