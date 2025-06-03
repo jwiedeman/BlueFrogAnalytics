@@ -22,7 +22,15 @@ document.addEventListener('DOMContentLoaded', () => {
         results.textContent = data.error || 'Calculation failed.';
         return;
       }
-      results.textContent = `Bytes: ${data.bytes}\nEstimated gCO2: ${data.co2.toFixed(6)}`;
+      const grams = data.co2;
+      const miles = grams / 404; // ~404g CO2 per mile driven
+      const bulbMinutes = (grams / 27) * 60; // 60W bulb ~27g CO2/hour
+      results.innerHTML =
+        `<p>Bytes transferred: <strong>${data.bytes.toLocaleString()}</strong></p>` +
+        '<p>Emission factor: 0.5 µg CO₂ per byte</p>' +
+        `<p>Estimated CO₂: <strong>${grams.toFixed(6)} g</strong></p>` +
+        `<p>Equivalent to driving <strong>${miles.toFixed(4)} miles</strong> or ` +
+        `powering a 60W bulb for <strong>${bulbMinutes.toFixed(2)} minutes</strong>.</p>`;
     } catch (err) {
       console.error(err);
       results.textContent = 'Error running calculation.';
