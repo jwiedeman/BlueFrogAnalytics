@@ -5,19 +5,116 @@ const title = 'Billing';
 const description = 'Manage your billing information.';
 ---
 <DashboardLayout title={title} description={description}>
-  <section class="container py-5 text-center">
-    <h1>Billing</h1>
-    <p>Billing management coming soon.</p>
+  <section class="container py-5" style="max-width: 600px;">
+    <h1 class="text-center mb-4">Billing</h1>
+    <form id="billing-form">
+      <div class="mb-3">
+        <label for="bill-name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="bill-name" />
+      </div>
+      <div class="mb-3">
+        <label for="bill-address" class="form-label">Address</label>
+        <input type="text" class="form-control" id="bill-address" />
+      </div>
+      <div class="mb-3">
+        <label for="bill-city" class="form-label">City</label>
+        <input type="text" class="form-control" id="bill-city" />
+      </div>
+      <div class="mb-3">
+        <label for="bill-state" class="form-label">State</label>
+        <input type="text" class="form-control" id="bill-state" />
+      </div>
+      <div class="mb-3">
+        <label for="bill-postal" class="form-label">Postal Code</label>
+        <input type="text" class="form-control" id="bill-postal" />
+      </div>
+      <div class="mb-3">
+        <label for="bill-country" class="form-label">Country</label>
+        <input type="text" class="form-control" id="bill-country" />
+      </div>
+      <div class="mb-3">
+        <label for="bill-plan" class="form-label">Plan</label>
+        <input type="text" class="form-control" id="bill-plan" />
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Save Billing</button>
+      <div id="billing-alert" class="alert d-none mt-3" role="alert"></div>
+    </form>
   </section>
   <script type="module">
     document.addEventListener('DOMContentLoaded', () => {
+      const API_BASE =
+        window.API_BASE_URL || 'https://api.bluefroganalytics.com:6001';
+      const nameEl = document.getElementById('bill-name');
+      const addrEl = document.getElementById('bill-address');
+      const cityEl = document.getElementById('bill-city');
+      const stateEl = document.getElementById('bill-state');
+      const postalEl = document.getElementById('bill-postal');
+      const countryEl = document.getElementById('bill-country');
+      const planEl = document.getElementById('bill-plan');
+      const alertEl = document.getElementById('billing-alert');
+      const formEl = document.getElementById('billing-form');
+
+      const showAlert = (msg, type = 'danger') => {
+        alertEl.textContent = msg;
+        alertEl.className = `alert alert-${type} mt-3`;
+        alertEl.classList.remove('d-none');
+      };
+
+      const populate = data => {
+        if (data.name) nameEl.value = data.name;
+        if (data.address) addrEl.value = data.address;
+        if (data.city) cityEl.value = data.city;
+        if (data.state) stateEl.value = data.state;
+        if (data.postal_code) postalEl.value = data.postal_code;
+        if (data.country) countryEl.value = data.country;
+        if (data.plan) planEl.value = data.plan;
+      };
+
       const init = () => {
-        window.onAuthStateChanged(window.firebaseAuth, user => {
+        window.onAuthStateChanged(window.firebaseAuth, async user => {
           if (!user) {
             window.location.href = '/login';
+            return;
           }
+          const token = await user.getIdToken();
+          const res = await fetch(`${API_BASE}/api/billing`, {
+            headers: { Authorization: `Bearer ${token}` }
+          });
+          if (res.ok) {
+            populate(await res.json());
+          }
+
+          formEl.addEventListener('submit', async e => {
+            e.preventDefault();
+            const curr = window.firebaseAuth.currentUser;
+            if (!curr) return;
+            const tok = await curr.getIdToken();
+            const resp = await fetch(`${API_BASE}/api/billing`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${tok}`
+              },
+              body: JSON.stringify({
+                name: nameEl.value,
+                address: addrEl.value,
+                city: cityEl.value,
+                state: stateEl.value,
+                postalCode: postalEl.value,
+                country: countryEl.value,
+                plan: planEl.value
+              })
+            });
+            if (resp.ok) {
+              showAlert('Billing info saved', 'success');
+            } else {
+              const data = await resp.json();
+              showAlert(data.error || 'Error');
+            }
+          });
         });
       };
+
       if (window.firebaseAuth) {
         init();
       } else {

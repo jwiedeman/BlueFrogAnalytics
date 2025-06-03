@@ -5,6 +5,8 @@ This directory houses the Express-based API for Blue Frog Analytics. The server 
 ## Endpoints
 - `GET /api/profile` – retrieve the authenticated user profile
 - `POST /api/profile` – update profile fields
+- `GET /api/billing` – fetch saved billing information
+- `POST /api/billing` – update billing details
 - `POST /api/performance` – run a Lighthouse performance test
 - `POST /api/audit/accessibility` – run an accessibility audit
 - `POST /api/seo-audit` – run an SEO audit
