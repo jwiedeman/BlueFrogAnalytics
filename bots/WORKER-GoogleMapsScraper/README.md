@@ -65,9 +65,14 @@ The second argument controls how many spiral rings to traverse. Use `--headless`
 Ensure the PostgreSQL command line tools (`initdb`, `pg_ctl` and `createdb`)
 are installed and available on your `PATH`. On macOS install them with
 Homebrew (`brew install postgresql`) and on Debian/Ubuntu use
-`sudo apt-get install postgresql`.
-To run Postgres without Docker execute `start_postgres.sh` in this folder. The
-script initialises a database under `pgdata/` on first run and starts the
+`sudo apt-get install postgresql`. If the commands aren't on your `PATH` after
+installing with Homebrew, add `/usr/local/opt/postgresql/bin` (or
+`/opt/homebrew/opt/postgresql/bin` on Apple&nbsp;Silicon) to the `PATH`.
+
+Run `start_postgres.sh` in this folder to initialise and launch the database.
+The script automatically checks the common Homebrew locations above when
+locating the Postgres tools. It creates a data directory under `pgdata/` on the
+first run and starts the
 server on port `5432` (or `$PGPORT` if set).
 
 ```bash
