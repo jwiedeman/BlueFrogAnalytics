@@ -1,0 +1,28 @@
+---
+import DashboardLayout from '../../components/DashboardLayout.astro';
+
+const title = 'Security';
+const description = 'Security features and checks.';
+---
+<DashboardLayout title={title} description={description}>
+  <section class="container py-5 text-center">
+    <h1>Security</h1>
+    <p>Security features will be available soon.</p>
+  </section>
+  <script type="module">
+    document.addEventListener('DOMContentLoaded', () => {
+      const init = () => {
+        window.onAuthStateChanged(window.firebaseAuth, user => {
+          if (!user) {
+            window.location.href = '/login';
+          }
+        });
+      };
+      if (window.firebaseAuth) {
+        init();
+      } else {
+        document.addEventListener('firebase-init', init, { once: true });
+      }
+    });
+  </script>
+</DashboardLayout>
