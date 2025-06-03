@@ -76,7 +76,7 @@ function inPath(item) {
             item.children ? (
               <li class="nav-item" key={`ocp-${i}`}>
                 <button
-                  class={`btn btn-toggle text-start w-100${inPath(item) ? '' : ' collapsed'}`}
+                  class={`btn btn-toggle text-dark text-start w-100${inPath(item) ? '' : ' collapsed'}`}
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target={`#ocdash-${i}`}
@@ -118,7 +118,7 @@ function inPath(item) {
               item.children ? (
                 <li class="nav-item" key={`p-${i}`}>
                   <button
-                    class={`btn btn-toggle text-start w-100${inPath(item) ? '' : ' collapsed'}`}
+                    class={`btn btn-toggle text-light text-start w-100${inPath(item) ? '' : ' collapsed'}`}
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target={`#dash-${i}`}
