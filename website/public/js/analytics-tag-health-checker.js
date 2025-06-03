@@ -151,6 +151,8 @@ document.addEventListener('DOMContentLoaded', () => {
         link.rel = 'noopener';
         li.appendChild(link);
 
+        const tagList = document.createElement('ul');
+        tagList.className = 'page-analytics list-unstyled ms-3 mt-1 mb-0';
         selectedColumns.forEach(key => {
           const entry = analytics[key];
           if (entry) {
@@ -161,13 +163,22 @@ document.addEventListener('DOMContentLoaded', () => {
             const methodSlug = slugify('method-' + method);
             const pillClass = 'analytics-pill badge bg-primary ' + slugify(canonical);
             const methodClass = 'analytics-pill badge bg-secondary method-' + slugify(method);
-            const span = document.createElement('span');
-            span.innerHTML =
-              ` (<a href="#${idSlug}" class="${pillClass}">${ids}</a> via ` +
-              `<a href="#${methodSlug}" class="${methodClass}">${method}</a>)`;
-            li.appendChild(span);
+            let containerText = '';
+            if (method === 'gtm' && analytics.google_tag_manager) {
+              const gtmIds = (analytics.google_tag_manager.ids || []).join(', ');
+              if (gtmIds) containerText = ` | ${gtmIds}`;
+            } else if (method === 'segment' && analytics.segment) {
+              const segIds = (analytics.segment.ids || []).join(', ');
+              if (segIds) containerText = ` | ${segIds}`;
+            }
+            const tagLi = document.createElement('li');
+            tagLi.innerHTML =
+              `${formatName(key)} <a href="#${idSlug}" class="${pillClass}">${ids}</a> via ` +
+              `<a href="#${methodSlug}" class="${methodClass}">${method}</a>${containerText}`;
+            tagList.appendChild(tagLi);
           }
         });
+        if (tagList.childElementCount) li.appendChild(tagList);
 
         listEl.appendChild(li);
       });
@@ -238,14 +249,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const methodSlug = slugify('method-' + method);
         const pillClass = 'analytics-pill badge bg-primary ' + slugify(canonical);
         const methodClass = 'analytics-pill badge bg-secondary method-' + slugify(method);
+        let containerText = '';
+        if (method === 'gtm' && data.found_analytics.google_tag_manager) {
+          const gtmIds = (data.found_analytics.google_tag_manager.ids || []).join(', ');
+          if (gtmIds) containerText = ` | ${gtmIds}`;
+        } else if (method === 'segment' && data.found_analytics.segment) {
+          const segIds = (data.found_analytics.segment.ids || []).join(', ');
+          if (segIds) containerText = ` | ${segIds}`;
+        }
         li.innerHTML =
-          `${formatName(name)} ` +
-          `(<a href="#${idSlug}" class="${pillClass}">${ids}</a> via ` +
-          `<a href="#${methodSlug}" class="${methodClass}">${method}</a>)`;
+          `${formatName(name)} <a href="#${idSlug}" class="${pillClass}">${ids}</a> via ` +
+          `<a href="#${methodSlug}" class="${methodClass}">${method}</a>${containerText}`;
         ul.appendChild(li);
       }
     }
     summaryEl.appendChild(ul);
+
+    attachPillHandlers();
   }
 
   document.getElementById('scan-form')?.addEventListener('submit', async (event) => {
@@ -344,12 +364,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  document.querySelectorAll('a.analytics-pill').forEach(a => {
-    a.addEventListener('click', (e) => {
-      const hash = a.getAttribute('href');
-      openDetailsFromHash(hash);
+  function attachPillHandlers() {
+    document.querySelectorAll('a.analytics-pill').forEach(a => {
+      a.addEventListener('click', () => {
+        const hash = a.getAttribute('href');
+        openDetailsFromHash(hash);
+      });
     });
-  });
+  }
+  attachPillHandlers();
   openDetailsFromHash(location.hash);
   window.addEventListener('hashchange', () => {
     openDetailsFromHash(location.hash);
