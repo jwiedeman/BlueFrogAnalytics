@@ -47,8 +47,11 @@ npm install
 # installs a bundled version of Chrome for Puppeteer
 npm start
 ```
-If you see a "Could not find Chrome" error, run `npx puppeteer browsers install chrome`
-or set `PUPPETEER_EXECUTABLE_PATH` to your Chrome binary.
+If you see a "Could not find Chrome" error, ensure you start the server with the
+same user that ran `npm install`. Running `sudo npm start` looks for Chrome under
+`/root/.cache/puppeteer`. Either run without `sudo` or install Chrome for root
+with `sudo npx puppeteer browsers install chrome`. You can also set
+`PUPPETEER_EXECUTABLE_PATH` to a system Chrome binary.
 
 Or build the Docker image:
 
