@@ -23,7 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
         'x-content-type-options': 'nosniff',
         'x-frame-options': 'SAMEORIGIN',
         'referrer-policy': 'no-referrer-when-downgrade',
-        'permissions-policy': 'Disable unnecessary features'
+        'permissions-policy': 'Disable unnecessary features',
+        'cross-origin-resource-policy': 'same-origin',
+        'cross-origin-opener-policy': 'same-origin',
+        'cross-origin-embedder-policy': 'require-corp',
+        'x-permitted-cross-domain-policies': 'none',
+        'expect-ct': 'max-age=86400, enforce'
       };
       const rows = Object.keys(recommended).map(h => {
         const val = data.headers[h] || '';
