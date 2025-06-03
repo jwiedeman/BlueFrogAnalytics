@@ -326,7 +326,7 @@ app.post('/api/performance', authMiddleware, async (req, res) => {
     res.json(lhr);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Lighthouse error' });
+    res.status(500).json({ error: 'Performance test error' });
   }
 });
 
