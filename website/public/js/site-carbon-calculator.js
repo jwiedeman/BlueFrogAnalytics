@@ -1,3 +1,5 @@
+import { logTestStatus } from './test-status.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   const API_BASE = window.API_BASE_URL || 'https://api.bluefroganalytics.com:6001';
   const form = document.getElementById('carbon-form');
@@ -11,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const results = document.getElementById('carbon-results');
     results.textContent = `Calculating carbon footprint for ${url}...`;
     chartEl.selectAll('*').remove();
+    logTestStatus('site-carbon', 'started');
     try {
       const token = await window.firebaseAuth.currentUser.getIdToken();
       const res = await fetch(`${API_BASE}/api/tools/carbon`, {
@@ -24,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await res.json();
       if (!res.ok) {
         results.textContent = data.error || 'Calculation failed.';
+        logTestStatus('site-carbon', 'failed');
         return;
       }
       const grams = data.co2;
@@ -52,8 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return { name: s.name, mobile, desktop };
       });
       drawChart(dataset);
+      logTestStatus('site-carbon', 'complete');
     } catch (err) {
       console.error(err);
+      logTestStatus('site-carbon', 'error');
       results.textContent = 'Error running calculation.';
     }
   });

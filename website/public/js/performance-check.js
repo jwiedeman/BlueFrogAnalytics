@@ -1,3 +1,5 @@
+import { logTestStatus } from './test-status.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   const API_BASE = window.API_BASE_URL || 'https://api.bluefroganalytics.com:6001';
   const form = document.getElementById('perf-form');
@@ -30,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const url = document.getElementById('perf-url').value;
     const results = document.getElementById('perf-results');
     results.textContent = `Running performance test for ${url}...`;
+    logTestStatus('performance', 'started');
     try {
       const token = await window.firebaseAuth.currentUser.getIdToken();
       const res = await fetch(`${API_BASE}/api/performance`, {
@@ -43,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await res.json();
       if (!res.ok) {
         results.textContent = data.error || 'Performance test failed.';
+        logTestStatus('performance', 'failed');
         return;
       }
       const buildTable = lhr => {
@@ -101,8 +105,10 @@ document.addEventListener('DOMContentLoaded', () => {
       };
       results.innerHTML =
         `<h3>Mobile</h3>${buildTable(data.mobile)}<h3>Desktop</h3>${buildTable(data.desktop)}`;
+      logTestStatus('performance', 'complete');
     } catch (err) {
       console.error(err);
+      logTestStatus('performance', 'error');
       results.textContent = 'Error running performance test.';
     }
   });

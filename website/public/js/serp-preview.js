@@ -1,3 +1,5 @@
+import { logTestStatus } from './test-status.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   const API_BASE = window.API_BASE_URL || 'https://api.bluefroganalytics.com:6001';
   const form = document.getElementById('serp-form');
@@ -7,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const url = document.getElementById('serp-url').value;
     const results = document.getElementById('serp-results');
     results.textContent = `Generating SERP preview for ${url}...`;
+    logTestStatus('serp-preview', 'started');
     try {
       const token = await window.firebaseAuth.currentUser.getIdToken();
       const res = await fetch(
@@ -16,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await res.json();
       if (!res.ok) {
         results.textContent = data.error || 'Request failed.';
+        logTestStatus('serp-preview', 'failed');
         return;
       }
       const titleLen = data.title.length;
@@ -36,8 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
           <li>Title length (${titleLen}/60): ${(titleScore * 100).toFixed(0)}%</li>
           <li>Description length (${descLen}/160): ${(descScore * 100).toFixed(0)}%</li>
         </ul>`;
+      logTestStatus('serp-preview', 'complete');
     } catch (err) {
       console.error(err);
+      logTestStatus('serp-preview', 'error');
       results.textContent = 'Error generating preview.';
     }
   });

@@ -1,3 +1,5 @@
+import { logTestStatus } from './test-status.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   const API_BASE = window.API_BASE_URL || 'https://api.bluefroganalytics.com:6001';
   const form = document.getElementById('robots-form');
@@ -12,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const url = document.getElementById('robots-url').value;
     const results = document.getElementById('robots-results');
     results.textContent = `Fetching robots.txt for ${url}...`;
+    logTestStatus('robots-txt', 'started');
 
     try {
       const token = await window.firebaseAuth.currentUser.getIdToken();
@@ -22,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const text = await res.text();
       if (!res.ok) {
         results.textContent = text;
+        logTestStatus('robots-txt', 'failed');
         return;
       }
 
@@ -37,8 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
       link.className = 'btn btn-sm btn-secondary mt-2';
       link.textContent = 'Download robots.txt';
       results.appendChild(link);
+      logTestStatus('robots-txt', 'complete');
     } catch (err) {
       console.error(err);
+      logTestStatus('robots-txt', 'error');
       results.textContent = 'Error fetching robots.txt.';
     }
   });

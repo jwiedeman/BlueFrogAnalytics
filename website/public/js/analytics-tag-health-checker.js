@@ -1,4 +1,6 @@
 
+import { logTestStatus } from './test-status.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   const API_BASE_URL = (window.API_BASE_URL || 'https://api.bluefroganalytics.com:6001') + '/api/tag-health';
 
@@ -286,6 +288,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const token = window.firebaseAuth && window.firebaseAuth.currentUser
       ? await window.firebaseAuth.currentUser.getIdToken()
       : '';
+    logTestStatus('tag-health', 'started');
     const es = new EventSource(
       `${API_BASE_URL}/stream?domain=${encodeURIComponent(domain)}&maxPages=${maxPages}&token=${encodeURIComponent(token)}`,
       { withCredentials: true }
@@ -309,6 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
         statusEl.textContent = 'Scan complete';
         progressBar.style.width = '100%';
         etaEl.textContent = '';
+        logTestStatus('tag-health', 'complete');
       } else if (typeof data.scanned !== 'undefined') {
         if (!startTime) startTime = Date.now();
         statusEl.textContent = `Scanned ${data.scanned}: ${data.url}`;
@@ -326,6 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
     es.onerror = () => {
       statusEl.textContent = 'Error connecting to server.';
       es.close();
+      logTestStatus('tag-health', 'error');
     };
   });
 

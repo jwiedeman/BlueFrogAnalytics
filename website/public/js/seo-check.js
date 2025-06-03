@@ -1,3 +1,5 @@
+import { logTestStatus } from './test-status.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   const API_BASE = window.API_BASE_URL || 'https://api.bluefroganalytics.com:6001';
   const form = document.getElementById('seo-form');
@@ -7,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const url = document.getElementById('seo-url').value;
     const results = document.getElementById('seo-results');
     results.textContent = `Running SEO test for ${url}...`;
+    logTestStatus('seo', 'started');
     try {
       const token = await window.firebaseAuth.currentUser.getIdToken();
       const res = await fetch(`${API_BASE}/api/seo-audit`, {
@@ -20,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await res.json();
       if (!res.ok) {
         results.textContent = data.error || 'SEO test failed.';
+        logTestStatus('seo', 'failed');
         return;
       }
       const summary = {
@@ -27,8 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
         desktopScore: data.desktop ? Math.round(data.desktop.categories.seo.score * 100) : null
       };
       results.textContent = JSON.stringify(summary, null, 2);
+      logTestStatus('seo', 'complete');
     } catch (err) {
       console.error(err);
+      logTestStatus('seo', 'error');
       results.textContent = 'Error running SEO test.';
     }
   });

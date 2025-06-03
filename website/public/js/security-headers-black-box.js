@@ -1,3 +1,5 @@
+import { logTestStatus } from './test-status.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   const API_BASE = window.API_BASE_URL || 'https://api.bluefroganalytics.com:6001';
   const form = document.getElementById('security-form');
@@ -7,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const url = document.getElementById('security-url').value;
     const results = document.getElementById('security-results');
     results.textContent = `Checking security headers for ${url}...`;
+    logTestStatus('security-headers', 'started');
     try {
       const token = await window.firebaseAuth.currentUser.getIdToken();
       const res = await fetch(`${API_BASE}/api/tools/security-headers?url=${encodeURIComponent(url)}`, {
@@ -15,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await res.json();
       if (!res.ok) {
         results.textContent = data.error || 'Request failed';
+        logTestStatus('security-headers', 'failed');
         return;
       }
       const recommended = {
@@ -37,8 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return `<tr class="${ok ? 'table-success' : 'table-danger'}"><td>${h}</td><td>${val || '-'}</td><td>${status}</td><td>${recommended[h]}</td></tr>`;
       }).join('');
       results.innerHTML = `<table class="table table-sm table-bordered"><thead><tr><th>Header</th><th>Value</th><th></th><th>Recommendation</th></tr></thead><tbody>${rows}</tbody></table>`;
+      logTestStatus('security-headers', 'complete');
     } catch (err) {
       console.error(err);
+      logTestStatus('security-headers', 'error');
       results.textContent = 'Error fetching headers.';
     }
   });
