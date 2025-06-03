@@ -420,14 +420,22 @@ app.post('/api/seo-audit', authMiddleware, async (req, res) => {
     const mobile = await runAudit('mobile');
     const desktop = await runAudit('desktop');
 
-    const result = { mobile, desktop };
-    await updateTest(req.uid, 'seo', result);
-    res.json(result);
+  const result = { mobile, desktop };
+  await updateTest(req.uid, 'seo', result);
+  res.json(result);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Audit failed' });
 
   }
+});
+
+app.post('/api/test-status', optionalAuthMiddleware, (req, res) => {
+  const { name, status } = req.body || {};
+  console.log(
+    `Test status${req.uid ? ` [${req.uid}]` : ''}: ${name} - ${status}`
+  );
+  res.json({ ok: true });
 });
 
 // Launch the Google Maps scraper worker

@@ -1,3 +1,5 @@
+import { logTestStatus } from './test-status.js';
+
 const form = document.getElementById('gmaps-form');
 const output = document.getElementById('gmaps-output');
 const API_BASE = window.API_BASE_URL || 'https://api.bluefroganalytics.com:6001';
@@ -7,6 +9,7 @@ form?.addEventListener('submit', async (e) => {
   output.textContent = 'Starting...';
   const query = document.getElementById('gmaps-query').value;
   const total = Number(document.getElementById('gmaps-total').value);
+  logTestStatus('google-maps-scraper', 'started');
   try {
     const res = await fetch(`${API_BASE}/api/google-maps-scraper`, {
       method: 'POST',
@@ -16,10 +19,13 @@ form?.addEventListener('submit', async (e) => {
     const data = await res.json();
     if (res.ok) {
       output.innerHTML = `<p>Worker started. CSV will be saved to <code>${data.file}</code></p>`;
+      logTestStatus('google-maps-scraper', 'complete');
     } else {
       output.textContent = data.error || 'Failed to start worker';
+      logTestStatus('google-maps-scraper', 'failed');
     }
   } catch (err) {
     output.textContent = err.message;
+    logTestStatus('google-maps-scraper', 'error');
   }
 });

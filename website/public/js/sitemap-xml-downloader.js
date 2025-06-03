@@ -1,3 +1,5 @@
+import { logTestStatus } from './test-status.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   const API_BASE = window.API_BASE_URL || 'https://api.bluefroganalytics.com:6001';
   const form = document.getElementById('sitemap-form');
@@ -8,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mode = document.getElementById('sitemap-mode').value;
     const results = document.getElementById('sitemap-results');
     results.textContent = `Fetching sitemap for ${url}...`;
+    logTestStatus('sitemap', 'started');
     try {
       const token = await window.firebaseAuth.currentUser.getIdToken();
       const res = await fetch(
@@ -18,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const text = await res.text();
         if (!res.ok) {
           results.textContent = text;
+          logTestStatus('sitemap', 'failed');
           return;
         }
         results.textContent = '';
@@ -35,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = await res.json();
         if (!res.ok) {
           results.textContent = data.error || 'Fetch failed';
+          logTestStatus('sitemap', 'failed');
           return;
         }
         results.innerHTML = '';
@@ -52,8 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
           results.appendChild(document.createElement('hr'));
         });
       }
+      logTestStatus('sitemap', 'complete');
     } catch (err) {
       console.error(err);
+      logTestStatus('sitemap', 'error');
       results.textContent = 'Error fetching sitemap.';
     }
   });

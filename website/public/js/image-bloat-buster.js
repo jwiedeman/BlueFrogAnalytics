@@ -1,3 +1,5 @@
+import { logTestStatus } from './test-status.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   const API_BASE = window.API_BASE_URL || 'https://api.bluefroganalytics.com:6001';
   const form = document.getElementById('bloat-form');
@@ -7,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const url = document.getElementById('bloat-url').value;
     const results = document.getElementById('bloat-results');
     results.textContent = `Analyzing images on ${url}...`;
+    logTestStatus('image-bloat', 'started');
     try {
       const token = await window.firebaseAuth.currentUser.getIdToken();
       const res = await fetch(`${API_BASE}/api/tools/image-bloat`, {
@@ -20,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await res.json();
       if (!res.ok) {
         results.textContent = data.error || 'Analysis failed.';
+        logTestStatus('image-bloat', 'failed');
         return;
       }
       const rows = data.images
@@ -30,8 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .join('');
       results.innerHTML = `<table class="table table-sm table-bordered"><thead><tr><th>Image</th><th>Bytes</th><th>Dimensions</th><th></th><th>Action</th></tr></thead><tbody>${rows}</tbody></table>`;
+      logTestStatus('image-bloat', 'complete');
     } catch (err) {
       console.error(err);
+      logTestStatus('image-bloat', 'error');
       results.textContent = 'Error analyzing images.';
     }
   });
@@ -44,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultSpan = btn.nextElementSibling;
     btn.disabled = true;
     resultSpan.textContent = 'Converting...';
+    logTestStatus('image-convert', 'started');
     try {
       const resp = await fetch(src);
       const blob = await resp.blob();
@@ -63,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (!res.ok) {
             resultSpan.textContent = data.error || 'Conversion failed';
             btn.disabled = false;
+            logTestStatus('image-convert', 'failed');
             return;
           }
           const newBytes = Math.round((data.data.length * 3) / 4);
@@ -74,15 +82,18 @@ document.addEventListener('DOMContentLoaded', () => {
           resultSpan.textContent = '';
           resultSpan.appendChild(link);
           btn.disabled = false;
+          logTestStatus('image-convert', 'complete');
         } catch (err) {
           resultSpan.textContent = 'Error uploading image.';
           btn.disabled = false;
+          logTestStatus('image-convert', 'error');
         }
       };
       reader.readAsDataURL(blob);
     } catch (err) {
       resultSpan.textContent = 'Conversion failed';
       btn.disabled = false;
+      logTestStatus('image-convert', 'error');
     }
   });
 });

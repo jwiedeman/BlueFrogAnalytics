@@ -1,3 +1,5 @@
+import { logTestStatus } from './test-status.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   const API_BASE = window.API_BASE_URL || 'https://api.bluefroganalytics.com:6001';
   const form = document.getElementById('drag-form');
@@ -13,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     slowestEl.innerHTML = '';
     largestEl.innerHTML = '';
     chartEl.selectAll('*').remove();
+    logTestStatus('tag-drag-race', 'started');
     try {
       const token = await window.firebaseAuth.currentUser.getIdToken();
       const res = await fetch(`${API_BASE}/api/tools/tag-drag-race`, {
@@ -26,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await res.json();
       if (!res.ok) {
         results.textContent = data.error || 'Request failed.';
+        logTestStatus('tag-drag-race', 'failed');
         return;
       }
       results.textContent = '';
@@ -81,8 +85,10 @@ document.addEventListener('DOMContentLoaded', () => {
         .map(s => `<tr><td>${s.src}</td><td>${s.bytes}<\/td><\/tr>`)
         .join('');
       largestEl.innerHTML = `<table class="table table-sm table-bordered"><thead><tr><th>Script<\/th><th>Bytes<\/th><\/tr><\/thead><tbody>${largeRows}<\/tbody><\/table>`;
+      logTestStatus('tag-drag-race', 'complete');
     } catch (err) {
       console.error(err);
+      logTestStatus('tag-drag-race', 'error');
       results.textContent = 'Error running analysis.';
     }
   });

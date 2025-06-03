@@ -1,3 +1,5 @@
+import { logTestStatus } from './test-status.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   const API_BASE = window.API_BASE_URL || 'https://api.bluefroganalytics.com:6001';
   const input = document.getElementById('convert-input');
@@ -8,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const file = input.files[0];
     if (!file) return;
     results.textContent = `Converting ${file.name} to WebP...`;
+    logTestStatus('image-convert', 'started');
     try {
       const reader = new FileReader();
       reader.onload = async () => {
@@ -24,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const data = await res.json();
           if (!res.ok) {
             results.textContent = data.error || 'Conversion failed';
+            logTestStatus('image-convert', 'failed');
             return;
           }
           const link = document.createElement('a');
@@ -32,13 +36,16 @@ document.addEventListener('DOMContentLoaded', () => {
           link.textContent = 'Download converted image';
           results.textContent = '';
           results.appendChild(link);
+          logTestStatus('image-convert', 'complete');
         } catch (err) {
           results.textContent = 'Error uploading image.';
+          logTestStatus('image-convert', 'error');
         }
       };
       reader.readAsDataURL(file);
     } catch (err) {
       results.textContent = 'Conversion failed.';
+      logTestStatus('image-convert', 'error');
     }
   });
 });
