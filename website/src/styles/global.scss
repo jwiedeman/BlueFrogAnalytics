@@ -607,3 +607,22 @@ body.dark-mode .dashboard-side-nav .nav-link.active {
 .doc-rating .bi-star-fill {
   cursor: pointer;
 }
+
+/* SERP preview styling */
+.serp-preview .serp-title {
+  color: #1a0dab;
+  font-size: 1.125rem;
+}
+
+.serp-preview .serp-url {
+  color: #006621;
+  font-size: 0.875rem;
+}
+
+.serp-preview .serp-description {
+  font-size: 0.875rem;
+}
+
+body.dark-mode .serp-url {
+  color: #8ab4f8;
+}
