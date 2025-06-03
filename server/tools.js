@@ -1,7 +1,40 @@
 import express from 'express';
+import cheerio from 'cheerio';
 
 export function createToolsRouter(updateTest) {
   const router = express.Router();
+
+  async function collectSitemaps(url) {
+    const resp = await fetch(url);
+    if (!resp.ok) throw new Error('fetch failed');
+    const xml = await resp.text();
+    const list = [{ loc: url, xml }];
+    const $ = cheerio.load(xml, { xmlMode: true });
+    const locs = $('sitemapindex > sitemap > loc')
+      .map((i, el) => $(el).text().trim())
+      .get();
+    for (const loc of locs) {
+      const child = await collectSitemaps(loc);
+      list.push(...child);
+    }
+    return list;
+  }
+
+  function combineSitemaps(list) {
+    const urls = [];
+    for (const { xml } of list) {
+      const $ = cheerio.load(xml, { xmlMode: true });
+      $('urlset > url').each((i, el) => {
+        urls.push($.xml(el));
+      });
+    }
+    return (
+      '<?xml version="1.0" encoding="UTF-8"?>\n' +
+      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+      urls.join('\n') +
+      '\n</urlset>'
+    );
+  }
 
   router.get('/robots-txt', async (req, res) => {
     const { url } = req.query;
@@ -19,15 +52,15 @@ export function createToolsRouter(updateTest) {
   });
 
   router.get('/sitemap-xml', async (req, res) => {
-    const { url } = req.query;
+    const { url, mode } = req.query;
     try {
       const u = new URL(url);
-      const resp = await fetch(`${u.origin}/sitemap.xml`);
-      if (!resp.ok) {
-        return res.status(400).json({ error: 'Failed to fetch sitemap.xml' });
+      const sitemaps = await collectSitemaps(u.href);
+      if (mode === 'combined') {
+        const xml = combineSitemaps(sitemaps);
+        return res.type('application/xml').send(xml);
       }
-      const text = await resp.text();
-      res.type('application/xml').send(text);
+      res.json({ sitemaps });
     } catch {
       res.status(400).json({ error: 'Invalid URL' });
     }

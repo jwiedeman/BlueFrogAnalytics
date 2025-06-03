@@ -12,9 +12,16 @@ template: splash
         <p>Fetch and validate a site's sitemap.xml file.</p>
       </div>
       <form id="sitemap-form" class="row gy-2 gx-3 align-items-end mb-3">
-        <div class="col-md-8">
+        <div class="col-md-7">
           <label for="sitemap-url" class="form-label">Enter URL</label>
           <input type="url" id="sitemap-url" name="url" placeholder="https://example.com" class="form-control" />
+        </div>
+        <div class="col-md-3">
+          <label for="sitemap-mode" class="form-label">Download</label>
+          <select id="sitemap-mode" class="form-select">
+            <option value="combined">Unified</option>
+            <option value="original">Original</option>
+          </select>
         </div>
         <div class="col-auto">
           <button type="submit" class="btn btn-primary mt-3">Run Test</button>
@@ -34,6 +41,7 @@ template: splash
 - URL of sitemap.xml
 - HTTP status code
 - File size
+- Support for nested sitemap indexes
 
 **Formula**
 
