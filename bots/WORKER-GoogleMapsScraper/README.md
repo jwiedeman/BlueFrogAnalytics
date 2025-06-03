@@ -53,11 +53,21 @@ Pass `--concurrency` to limit how many browser instances run at once. The orches
 
 ```bash
 # DSN may be omitted if POSTGRES_DSN is set
-python spiral_worker.py "coffee shops" 5
-
+python spiral_worker.py "coffee shops in Portland, OR" 5
 ```
 
-The second argument controls how many spiral rings to traverse. Use `--headless` to hide the browser window.
+The first argument is the search query. Include the location in this string or manually pan the map before starting. The second argument controls how many spiral rings to traverse.
+
+Additional options:
+
+- `dsn` – Postgres connection string (defaults to `$POSTGRES_DSN`)
+- `--headless` – run the browser without showing a window
+
+Example with an explicit DSN and headless mode:
+
+```bash
+python spiral_worker.py "pizza restaurants in Seattle" 10 "dbname=maps user=postgres" --headless
+```
 
 ### Local Postgres setup
 
