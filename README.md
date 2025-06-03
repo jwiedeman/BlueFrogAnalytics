@@ -44,8 +44,11 @@ Run locally:
 
 ```bash
 npm install
+# installs a bundled version of Chrome for Puppeteer
 npm start
 ```
+If you see a "Could not find Chrome" error, run `npx puppeteer browsers install chrome`
+or set `PUPPETEER_EXECUTABLE_PATH` to your Chrome binary.
 
 Or build the Docker image:
 
