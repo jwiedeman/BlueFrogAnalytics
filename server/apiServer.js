@@ -397,15 +397,32 @@ app.post('/api/seo-audit', authMiddleware, async (req, res) => {
     return res.status(400).json({ error: 'Invalid URL' });
   }
   try {
-
     const { launch } = await import('chrome-launcher');
     const lh = (await import('lighthouse')).default;
-    const chrome = await launch({ chromeFlags: ['--headless'] });
-    const options = { port: chrome.port, onlyCategories: ['seo'] };
-    const result = await lh(url, options);
-    await chrome.kill();
-    await updateTest(req.uid, 'seo', result.lhr);
-    res.json(result.lhr);
+
+    async function runAudit(formFactor) {
+      const chrome = await launch({ chromeFlags: ['--headless'] });
+      try {
+        const options = {
+          port: chrome.port,
+          onlyCategories: ['seo'],
+          emulatedFormFactor: formFactor
+        };
+        const result = await lh(url, options);
+        await chrome.kill();
+        return result.lhr;
+      } catch (err) {
+        await chrome.kill();
+        throw err;
+      }
+    }
+
+    const mobile = await runAudit('mobile');
+    const desktop = await runAudit('desktop');
+
+    const result = { mobile, desktop };
+    await updateTest(req.uid, 'seo', result);
+    res.json(result);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Audit failed' });
