@@ -30,6 +30,28 @@ template: splash
 Results display a table showing each header's value along with a pass/fail
 status and guidance for improvement.
 
+## Headers Tested
+
+- **Content-Security-Policy** – Mitigates XSS and injection attacks by
+  restricting the sources a page can load.
+- **Strict-Transport-Security** – Forces HTTPS for a period of time and is
+  important for any site served over TLS.
+- **X-Content-Type-Options** – Prevents MIME sniffing; always recommended.
+- **X-Frame-Options** – Stops clickjacking by controlling framing behavior.
+- **Referrer-Policy** – Limits referrer information. Recommended but optional
+  based on analytics needs.
+- **Permissions-Policy** – Disables unused browser features such as geolocation
+  or camera access.
+- **Cross-Origin-Resource-Policy** – Restricts which origins can load your
+  resources to prevent data leaks.
+- **Cross-Origin-Opener-Policy** – Isolates your site from cross-origin side
+  effects. Required for some advanced APIs.
+- **Cross-Origin-Embedder-Policy** – Works with COOP to enforce secure
+  embedding; only needed for complex apps.
+- **X-Permitted-Cross-Domain-Policies** – Blocks Adobe products from loading
+  cross-domain data. Mostly legacy.
+- **Expect-CT** – Enables reporting for certificate transparency violations.
+
 ## Implementation Notes
 
 **Data Points Needed**
