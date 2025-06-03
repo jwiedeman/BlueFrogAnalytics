@@ -2,54 +2,30 @@
 import DashboardLayout from '../../components/DashboardLayout.astro';
 
 const title = 'Profile';
-const description = 'Manage your account details.';
+const description = 'View your account details.';
 ---
 <DashboardLayout title={title} description={description}>
   <section class="container py-5" style="max-width: 600px;">
     <h1 class="text-center mb-4">Profile</h1>
-    <form id="profile-form">
-      <div class="mb-3">
-        <label for="profile-first-name" class="form-label">First Name</label>
-        <input type="text" class="form-control" id="profile-first-name" />
-      </div>
-      <div class="mb-3">
-        <label for="profile-last-name" class="form-label">Last Name</label>
-        <input type="text" class="form-control" id="profile-last-name" />
-      </div>
-      <div class="mb-3">
-        <label for="profile-email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="profile-email" />
-      </div>
-      <div class="mb-3">
-        <label for="profile-phone" class="form-label">Phone</label>
-        <input type="text" class="form-control" id="profile-phone" />
-      </div>
-      <div class="mb-3">
-        <label for="profile-payment" class="form-label">Payment Preference</label>
-        <input type="text" class="form-control" id="profile-payment" />
-      </div>
-      <div class="mb-3">
-        <label for="profile-domains" class="form-label">Domains to Monitor</label>
-        <textarea
-          class="form-control"
-          id="profile-domains"
-          rows="2"
-          placeholder="example.com, test.com"
-        ></textarea>
-      </div>
-      <div class="mb-3">
-        <label for="profile-tests" class="form-label">Tests & Frequency</label>
-        <textarea
-          class="form-control"
-          id="profile-tests"
-          rows="2"
-          placeholder="accessibility=7, seo=30"
-        ></textarea>
-        <div class="form-text">Use comma separated <code>test=days</code></div>
-      </div>
-      <button type="submit" class="btn btn-primary w-100">Save Profile</button>
-      <div id="profile-alert" class="alert d-none mt-3" role="alert"></div>
-    </form>
+    <dl class="row">
+      <dt class="col-sm-4">First Name</dt>
+      <dd class="col-sm-8" id="profile-first-name"></dd>
+      <dt class="col-sm-4">Last Name</dt>
+      <dd class="col-sm-8" id="profile-last-name"></dd>
+      <dt class="col-sm-4">Email</dt>
+      <dd class="col-sm-8" id="profile-email"></dd>
+      <dt class="col-sm-4">Phone</dt>
+      <dd class="col-sm-8" id="profile-phone"></dd>
+      <dt class="col-sm-4">Payment Preference</dt>
+      <dd class="col-sm-8" id="profile-payment"></dd>
+      <dt class="col-sm-4">Domains</dt>
+      <dd class="col-sm-8" id="profile-domains"></dd>
+      <dt class="col-sm-4">Tests</dt>
+      <dd class="col-sm-8" id="profile-tests"></dd>
+    </dl>
+    <div class="text-center mt-4">
+      <a href="/dashboard/settings" class="btn btn-primary">Edit Profile</a>
+    </div>
   </section>
   <script type="module">
     document.addEventListener('DOMContentLoaded', () => {
@@ -62,24 +38,16 @@ const description = 'Manage your account details.';
       const payEl = document.getElementById('profile-payment');
       const domEl = document.getElementById('profile-domains');
       const testsEl = document.getElementById('profile-tests');
-      const alertEl = document.getElementById('profile-alert');
-      const formEl = document.getElementById('profile-form');
-
-      const showAlert = (msg, type = 'danger') => {
-        alertEl.textContent = msg;
-        alertEl.className = `alert alert-${type} mt-3`;
-        alertEl.classList.remove('d-none');
-      };
 
       const populate = data => {
-        if (data.first_name) firstEl.value = data.first_name;
-        if (data.last_name) lastEl.value = data.last_name;
-        if (data.email) emailEl.value = data.email;
-        if (data.phone) phoneEl.value = data.phone;
-        if (data.payment_preference) payEl.value = data.payment_preference;
-        if (Array.isArray(data.domains)) domEl.value = data.domains.join(', ');
+        if (data.first_name) firstEl.textContent = data.first_name;
+        if (data.last_name) lastEl.textContent = data.last_name;
+        if (data.email) emailEl.textContent = data.email;
+        if (data.phone) phoneEl.textContent = data.phone;
+        if (data.payment_preference) payEl.textContent = data.payment_preference;
+        if (Array.isArray(data.domains)) domEl.textContent = data.domains.join(', ');
         if (data.tests) {
-          testsEl.value = Object.entries(data.tests)
+          testsEl.textContent = Object.entries(data.tests)
             .map(([k, v]) => `${k}=${v}`)
             .join(', ');
         }
@@ -97,44 +65,6 @@ const description = 'Manage your account details.';
           });
           if (res.ok) {
             populate(await res.json());
-          }
-        });
-
-        formEl.addEventListener('submit', async e => {
-          e.preventDefault();
-          const user = window.firebaseAuth.currentUser;
-          if (!user) return;
-          const token = await user.getIdToken();
-          const domains = domEl.value
-            .split(',')
-            .map(d => d.trim())
-            .filter(Boolean);
-          const tests = {};
-          testsEl.value.split(',').forEach(pair => {
-            const [k, v] = pair.split('=');
-            if (k && v) tests[k.trim()] = parseInt(v, 10) || 0;
-          });
-          const res = await fetch(`${API_BASE}/api/profile`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${token}`
-            },
-            body: JSON.stringify({
-              firstName: firstEl.value,
-              lastName: lastEl.value,
-              email: emailEl.value,
-              phone: phoneEl.value,
-              paymentPreference: payEl.value,
-              domains,
-              tests
-            })
-          });
-          if (res.ok) {
-            showAlert('Profile saved', 'success');
-          } else {
-            const data = await res.json();
-            showAlert(data.error || 'Error');
           }
         });
       };
