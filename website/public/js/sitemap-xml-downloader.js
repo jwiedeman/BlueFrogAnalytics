@@ -17,7 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
         results.textContent = text;
         return;
       }
-      results.textContent = text;
+      results.textContent = '';
+      const pre = document.createElement('pre');
+      pre.className = 'bg-body-tertiary p-3 rounded';
+      pre.textContent = text;
+      results.appendChild(pre);
       const link = document.createElement('a');
       link.href = 'data:application/xml,' + encodeURIComponent(text);
       link.download = 'sitemap.xml';
