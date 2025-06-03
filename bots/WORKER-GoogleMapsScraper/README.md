@@ -62,9 +62,13 @@ The second argument controls how many spiral rings to traverse. Use `--headless`
 ### Local Postgres setup
 
 `spiral_worker.py` and the other scripts expect a running Postgres instance.
-To run one without Docker execute `start_postgres.sh` in this folder. The script
-initialises a database under `pgdata/` on first run and starts the server on
-port `5432` (or `$PGPORT` if set).
+Ensure the PostgreSQL command line tools (`initdb`, `pg_ctl` and `createdb`)
+are installed and available on your `PATH`. On macOS install them with
+Homebrew (`brew install postgresql`) and on Debian/Ubuntu use
+`sudo apt-get install postgresql`.
+To run Postgres without Docker execute `start_postgres.sh` in this folder. The
+script initialises a database under `pgdata/` on first run and starts the
+server on port `5432` (or `$PGPORT` if set).
 
 ```bash
 ./start_postgres.sh

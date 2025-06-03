@@ -6,6 +6,14 @@ LOGFILE="$PGDATA/postgres.log"
 PGPORT=${PGPORT:-5432}
 mkdir -p "$PGDATA"
 
+# Ensure Postgres command line tools are installed
+for cmd in initdb pg_ctl createdb; do
+  if ! command -v "$cmd" >/dev/null 2>&1; then
+    echo "Error: '$cmd' not found. Please install PostgreSQL and ensure it's on your PATH." >&2
+    exit 1
+  fi
+done
+
 if [ ! -f "$PGDATA/PG_VERSION" ]; then
   echo "Initializing database at $PGDATA"
   PWFILE="$PGDATA/pwfile"
