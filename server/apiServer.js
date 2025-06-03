@@ -89,6 +89,19 @@ await cassandraClient.execute(`
   )
 `);
 
+await cassandraClient.execute(`
+  CREATE TABLE IF NOT EXISTS billing_info (
+    uid text PRIMARY KEY,
+    name text,
+    address text,
+    city text,
+    state text,
+    postal_code text,
+    country text,
+    plan text
+  )
+`);
+
 const app = express();
 app.disable('x-powered-by');
 
@@ -233,6 +246,63 @@ app.post('/api/profile', authMiddleware, async (req, res) => {
       { prepare: true }
     );
     res.json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Database error' });
+  }
+});
+
+app.post('/api/billing', authMiddleware, async (req, res) => {
+  const {
+    name,
+    address,
+    city,
+    state,
+    postalCode,
+    country,
+    plan
+  } = req.body;
+  if (
+    typeof name !== 'string' ||
+    typeof address !== 'string' ||
+    typeof city !== 'string' ||
+    typeof state !== 'string' ||
+    typeof postalCode !== 'string' ||
+    typeof country !== 'string' ||
+    typeof plan !== 'string'
+  ) {
+    return res.status(400).json({ error: 'Invalid payload' });
+  }
+  try {
+    await cassandraClient.execute(
+      'INSERT INTO billing_info (uid, name, address, city, state, postal_code, country, plan) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+      [
+        req.uid,
+        name,
+        address,
+        city,
+        state,
+        postalCode,
+        country,
+        plan
+      ],
+      { prepare: true }
+    );
+    res.json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Database error' });
+  }
+});
+
+app.get('/api/billing', authMiddleware, async (req, res) => {
+  try {
+    const result = await cassandraClient.execute(
+      'SELECT * FROM billing_info WHERE uid = ?',
+      [req.uid],
+      { prepare: true }
+    );
+    res.json(result.rows[0] || {});
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Database error' });
