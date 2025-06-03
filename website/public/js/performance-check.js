@@ -2,6 +2,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const API_BASE = window.API_BASE_URL || 'https://api.bluefroganalytics.com:6001';
   const form = document.getElementById('perf-form');
   if (!form) return;
+
+  const thresholds = {
+    score: { good: 90, ok: 50 },
+    fcp: { good: 1800, ok: 3000 },
+    speed: { good: 3400, ok: 5800 },
+    lcp: { good: 2500, ok: 4000 },
+    tti: { good: 3800, ok: 7300 },
+    tbt: { good: 200, ok: 600 },
+    cls: { good: 0.1, ok: 0.25 }
+  };
+
+  const getRating = (type, value, higherIsBetter = false) => {
+    const { good, ok } = thresholds[type];
+    if (higherIsBetter) {
+      if (value >= good) return 'text-success';
+      if (value >= ok) return 'text-warning';
+      return 'text-danger';
+    }
+    if (value <= good) return 'text-success';
+    if (value <= ok) return 'text-warning';
+    return 'text-danger';
+  };
+
   form.addEventListener('submit', async e => {
     e.preventDefault();
     const url = document.getElementById('perf-url').value;
@@ -22,19 +45,56 @@ document.addEventListener('DOMContentLoaded', () => {
         results.textContent = data.error || 'Performance test failed.';
         return;
       }
-      const buildTable = (lhr) => {
+      const buildTable = lhr => {
+        const isDark = document.documentElement.classList.contains('dark-mode');
         const metrics = [
-          ['Performance Score', Math.round((lhr.categories.performance.score || 0) * 100)],
-          ['First Contentful Paint', lhr.audits['first-contentful-paint'].displayValue],
-          ['Speed Index', lhr.audits['speed-index'].displayValue],
-          ['Largest Contentful Paint', lhr.audits['largest-contentful-paint'].displayValue],
-          ['Time To Interactive', lhr.audits.interactive.displayValue],
-          ['Total Blocking Time', lhr.audits['total-blocking-time'].displayValue],
-          ['Cumulative Layout Shift', lhr.audits['cumulative-layout-shift'].displayValue]
+          {
+            label: 'Performance Score',
+            value: Math.round((lhr.categories.performance.score || 0) * 100),
+            type: 'score',
+            numeric: Math.round((lhr.categories.performance.score || 0) * 100)
+          },
+          {
+            label: 'First Contentful Paint',
+            value: lhr.audits['first-contentful-paint'].displayValue,
+            type: 'fcp',
+            numeric: lhr.audits['first-contentful-paint'].numericValue
+          },
+          {
+            label: 'Speed Index',
+            value: lhr.audits['speed-index'].displayValue,
+            type: 'speed',
+            numeric: lhr.audits['speed-index'].numericValue
+          },
+          {
+            label: 'Largest Contentful Paint',
+            value: lhr.audits['largest-contentful-paint'].displayValue,
+            type: 'lcp',
+            numeric: lhr.audits['largest-contentful-paint'].numericValue
+          },
+          {
+            label: 'Time To Interactive',
+            value: lhr.audits.interactive.displayValue,
+            type: 'tti',
+            numeric: lhr.audits.interactive.numericValue
+          },
+          {
+            label: 'Total Blocking Time',
+            value: lhr.audits['total-blocking-time'].displayValue,
+            type: 'tbt',
+            numeric: lhr.audits['total-blocking-time'].numericValue
+          },
+          {
+            label: 'Cumulative Layout Shift',
+            value: lhr.audits['cumulative-layout-shift'].displayValue,
+            type: 'cls',
+            numeric: lhr.audits['cumulative-layout-shift'].numericValue
+          }
         ];
-        let html = '<table class="table table-dark table-striped"><tbody>';
-        for (const [label, value] of metrics) {
-          html += `<tr><th>${label}</th><td>${value}</td></tr>`;
+        let html = `<table class="table table-striped${isDark ? ' table-dark' : ''}"><tbody>`;
+        for (const m of metrics) {
+          const cls = getRating(m.type, m.numeric, m.type === 'score');
+          html += `<tr><th>${m.label}</th><td class="${cls}">${m.value}</td></tr>`;
         }
         html += '</tbody></table>';
         return html;
