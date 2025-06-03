@@ -29,18 +29,17 @@ template: splash
 
 ## Implementation Notes
 
-**Data Points Needed**
+**Data Points Used**
 
-- Title and meta description length
-- Ranking position or prominence
-- Historical CTR curve
+- Title length (max 60 characters)
+- Meta description length (max 160 characters)
 
 **Formula**
 
-CTR can be estimated with a logistic curve:
+CTR is estimated with a simple weighted model:
 
 $$
-\text{CTR} = \frac{1}{1 + e^{-x}}
+\text{CTR} = 0.1 + 0.4 \times \frac{\min(\text{title\_len}, 60)}{60} + 0.5 \times \frac{\min(\text{desc\_len}, 160)}{160}
 $$
 
-where $x$ represents factors like rank and snippet quality.
+The on-page preview explains each contribution to this score.
