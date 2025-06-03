@@ -69,3 +69,9 @@ All API routes, including streaming updates for tools like the Tag Health checke
 ### HTTPS with Let's Encrypt
 
 To avoid browser warnings when connecting to the API you can still run it behind a reverse proxy such as [Nginx](https://nginx.org/). The included `nginx-https-example.conf` shows a simple setup that forwards HTTPS traffic on port 443 to the Node.js server on port `6001`. If you prefer Nginx to manage the certificate instead of the Node server, copy the file to `/etc/nginx/sites-available/` and request a certificate with `certbot --nginx -d <your-domain>`.
+
+## Development notes
+- The server loads environment variables from a `.env` file if present. Restart
+  the process whenever you change these values.
+- Set `CHROME_PATH` if you want to use a system Chrome instead of Puppeteer's
+  bundled version.

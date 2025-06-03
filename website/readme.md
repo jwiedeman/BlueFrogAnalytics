@@ -55,3 +55,9 @@ update dates. During build, the `applyGitDates` utility reads the git history to
 populate `pubDate`, `originalPubDate`, and `updatedDate`. The earliest commit
 for a file becomes the publish date and the most recent commit becomes the last
 updated date.
+
+## Development notes
+- After `npm install` a Chromium browser is downloaded for Playwright based
+  tests. This requires around 120 MB of additional disk space.
+- Set `PUBLIC_API_URL` in `.env` to point the site at your running API server
+  when working locally.
