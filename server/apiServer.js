@@ -15,9 +15,19 @@ import path from 'path';
 import dotenv from 'dotenv';
 import http from 'http';
 import https from 'https';
+import puppeteer from 'puppeteer';
 
 // Load environment variables from server/.env if present
 dotenv.config({ path: new URL('./.env', import.meta.url).pathname });
+
+// Automatically set CHROME_PATH from Puppeteer's bundled Chrome if not provided
+if (!process.env.CHROME_PATH) {
+  try {
+    process.env.CHROME_PATH = puppeteer.executablePath();
+  } catch (err) {
+    console.warn('Unable to determine Chrome executable path:', err?.message || err);
+  }
+}
 
 // Basic security headers and rate limiting without extra dependencies
 const securityHeaders = (req, res, next) => {
