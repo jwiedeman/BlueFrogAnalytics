@@ -170,7 +170,7 @@ export function createToolsRouter(updateTest) {
     }
     try {
       const puppeteer = (await import('puppeteer')).default;
-      const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
+      const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
       const page = await browser.newPage();
       await page.goto(url, { waitUntil: 'networkidle2' });
       const screenshot = await page.screenshot({ fullPage: true });
