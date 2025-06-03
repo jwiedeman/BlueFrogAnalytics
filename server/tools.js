@@ -1,5 +1,5 @@
 import express from 'express';
-import cheerio from 'cheerio';
+import { load } from 'cheerio';
 
 export function createToolsRouter(updateTest) {
   const router = express.Router();
@@ -9,7 +9,7 @@ export function createToolsRouter(updateTest) {
     if (!resp.ok) throw new Error('fetch failed');
     const xml = await resp.text();
     const list = [{ loc: url, xml }];
-    const $ = cheerio.load(xml, { xmlMode: true });
+    const $ = load(xml, { xmlMode: true });
     const locs = $('sitemapindex > sitemap > loc')
       .map((i, el) => $(el).text().trim())
       .get();
@@ -23,7 +23,7 @@ export function createToolsRouter(updateTest) {
   function combineSitemaps(list) {
     const urls = [];
     for (const { xml } of list) {
-      const $ = cheerio.load(xml, { xmlMode: true });
+      const $ = load(xml, { xmlMode: true });
       $('urlset > url').each((i, el) => {
         urls.push($.xml(el));
       });
