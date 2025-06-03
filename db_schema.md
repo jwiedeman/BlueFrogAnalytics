@@ -10,7 +10,8 @@ Temporary table populated from certificate transparency logs before domains are 
 - `domain` text PRIMARY KEY
 
 ### `domains_processed`
-Stores the canonical domain record with enrichment and classification fields.
+Stores the canonical domain record with enrichment, classification and
+Lighthouse performance fields.
 
 Core identifiers:
 - `domain` text
@@ -59,11 +60,39 @@ Categorisation and content flags:
 - `emails` list<text>
 - `sitemap_page_count` int
 
+Lighthouse metrics:
+- `desktop_accessibility_score` int
+- `mobile_accessibility_score` int
+- `desktop_best_practices_score` int
+- `mobile_best_practices_score` int
+- `desktop_performance_score` int
+- `mobile_performance_score` int
+- `desktop_seo_score` int
+- `mobile_seo_score` int
+- `desktop_first_contentful_paint` float
+- `mobile_first_contentful_paint` float
+- `desktop_largest_contentful_paint` float
+- `mobile_largest_contentful_paint` float
+- `desktop_interactive` float
+- `mobile_interactive` float
+- `desktop_speed_index` float
+- `mobile_speed_index` float
+- `desktop_total_blocking_time` float
+- `mobile_total_blocking_time` float
+- `desktop_cumulative_layout_shift` float
+- `mobile_cumulative_layout_shift` float
+- `desktop_timing_total` float
+- `mobile_timing_total` float
+- `lighthouse_version` text
+- `lighthouse_fetch_time` timestamp
+- `lighthouse_url` text
+
 Subdomains:
 - `raw_subdomains` set<text>
 
 ### `domain_page_metrics`
-Performance metrics per URL gathered from Lighthouse audits.
+Planned table for storing per-URL Lighthouse metrics. Current workers
+write these values directly to `domains_processed`.
 
 - `domain` text
 - `url` text
@@ -142,8 +171,8 @@ Stores profile details and saved test results.
 - `email` text
 - `phone` text
 - `payment_preference` text
-- `domains` list<text>
-- `tests` map<text, text>
+- `domains` text   *(JSON encoded list)*
+- `tests` text   *(JSON encoded map)*
 
 ### `billing_info`
 Billing address and subscription data.
@@ -190,6 +219,17 @@ Columns planned for future tools and scrapers:
 - Contrast heatmap metadata (image dimensions, timestamp)
 - Carbon audit details for entire sites (totals across pages)
 - Google Maps business scraping output stored in the `businesses` table listed above
+
+## Current vs Planned Schema State
+
+The tables above reflect the **current** layout used by the running
+workers and API server. Planned adjustments include:
+
+- Moving Lighthouse metrics out of `domains_processed` and into
+  the dedicated `domain_page_metrics` table for per‑URL tracking.
+- Converting `user_profiles.domains` and `user_profiles.tests` from
+  JSON encoded text columns to native Cassandra collection types.
+- Adding the additional columns listed in the previous section.
 
 ---
 Update this file whenever new tables or fields are introduced so all bots and services remain compatible.
