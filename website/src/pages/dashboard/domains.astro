@@ -11,7 +11,7 @@ const domainList = [];
       <h1 class="mb-0">Domains</h1>
       <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#domain-modal">Add Domain</button>
     </div>
-    <div class="accordion" id="domainAccordion"></div>
+    <div id="domainList"></div>
   </section>
 
   <div class="modal fade" id="domain-modal" tabindex="-1" aria-hidden="true">
@@ -30,6 +30,14 @@ const domainList = [];
             <div class="mb-3">
               <label for="rate-limit" class="form-label">Max Workers Per Second</label>
               <input id="rate-limit" type="number" class="form-control" min="1" placeholder="1-50+" />
+            </div>
+            <div class="mb-3">
+              <label for="frequency-select" class="form-label">Refresh Frequency</label>
+              <select id="frequency-select" class="form-select">
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+              </select>
             </div>
             <div class="form-check">
               <input class="form-check-input" type="checkbox" id="consent-check" required />
@@ -50,35 +58,37 @@ const domainList = [];
     document.addEventListener('DOMContentLoaded', () => {
       const API_BASE =
         window.API_BASE_URL || 'https://api.bluefroganalytics.com:6001';
-      const accEl = document.getElementById('domainAccordion');
+      const listEl = document.getElementById('domainList');
       const formEl = document.getElementById('domain-form');
       const inputEl = document.getElementById('domain-input');
+      const freqInput = document.getElementById('frequency-select');
       const consentEl = document.getElementById('consent-check');
       const modalEl = document.getElementById('domain-modal');
       let profile = null;
       let domains = [];
       const render = () => {
-        accEl.innerHTML = '';
+        listEl.innerHTML = '';
         if (!domains.length) {
-          accEl.innerHTML = '<p>No domains added.</p>';
+          listEl.innerHTML = '<p>No domains added.</p>';
           return;
         }
-        domains.forEach((name, i) => {
+        domains.forEach((dom, i) => {
           const item = document.createElement('div');
-          item.className = 'accordion-item';
+          item.className = 'card mb-3';
           item.innerHTML = `
-            <h2 class="accordion-header" id="domain-heading-${i}">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#domain-body-${i}" aria-expanded="false" aria-controls="domain-body-${i}">
-                ${name}
-              </button>
-            </h2>
-            <div id="domain-body-${i}" class="accordion-collapse collapse" data-bs-parent="#domainAccordion">
-              <div class="accordion-body">
-                <button class="btn btn-sm btn-secondary me-2" data-action="edit" data-index="${i}">Edit</button>
+            <div class="card-body d-flex justify-content-between align-items-center">
+              <span>${dom.name}</span>
+              <div class="d-flex align-items-center">
+                <select class="form-select form-select-sm me-2 frequency-select" data-index="${i}">
+                  <option value="daily">Daily</option>
+                  <option value="weekly">Weekly</option>
+                  <option value="monthly">Monthly</option>
+                </select>
                 <button class="btn btn-sm btn-danger" data-action="delete" data-index="${i}">Delete</button>
               </div>
             </div>`;
-          accEl.appendChild(item);
+          item.querySelector('.frequency-select').value = dom.frequency || 'daily';
+          listEl.appendChild(item);
         });
       };
 
@@ -115,7 +125,11 @@ const domainList = [];
           });
           if (res.ok) {
             profile = await res.json();
-            domains = Array.isArray(profile.domains) ? profile.domains : [];
+            domains = Array.isArray(profile.domains)
+              ? profile.domains.map(d =>
+                  typeof d === 'string' ? { name: d, frequency: 'daily' } : d
+                )
+              : [];
             render();
           }
 
@@ -123,8 +137,9 @@ const domainList = [];
           formEl.addEventListener('submit', async e => {
             e.preventDefault();
             const name = inputEl.value.trim();
+            const freq = freqInput.value;
             if (!name || !consentEl.checked) return;
-            domains.push(name);
+            domains.push({ name, frequency: freq });
             await save(user);
             inputEl.value = '';
             consentEl.checked = false;
@@ -132,12 +147,22 @@ const domainList = [];
             render();
           });
 
-          accEl.addEventListener('click', async e => {
+          listEl.addEventListener('click', async e => {
             const idx = e.target.dataset.index;
             if (e.target.dataset.action === 'delete' && idx !== undefined) {
               domains.splice(parseInt(idx, 10), 1);
               await save(user);
               render();
+            }
+          });
+
+          listEl.addEventListener('change', async e => {
+            if (e.target.classList.contains('frequency-select')) {
+              const idx = e.target.dataset.index;
+              if (idx !== undefined) {
+                domains[parseInt(idx, 10)].frequency = e.target.value;
+                await save(user);
+              }
             }
           });
         });
