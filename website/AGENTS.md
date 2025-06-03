@@ -64,3 +64,9 @@ The Express server at `server/apiServer.js` exposes endpoints for user profile m
 ## Bots & Workers
 The `bots/` directory holds standalone services for domain reconnaissance, enrichment and classification. Each subfolder contains its own README with build steps.
 
+## Upcoming Work
+- Integrate Firebase Authentication with the Astro pages.
+- Require login for any `/dashboard` routes.
+- Add a dark theme that activates once the user is signed in.
+- Implement full text search across the documentation using a build time index.
+
