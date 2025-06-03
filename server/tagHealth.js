@@ -61,10 +61,34 @@ const ANALYTICS_PATTERNS = {
 };
 
 function cleanDomain(domain) {
+  domain = (domain || '').trim();
   if (!domain) return '';
-  const parsed = new URL(domain.includes('://') ? domain : `http://${domain}`);
-  let host = parsed.hostname.replace(/^www\./, '');
-  return host.replace(/\/$/, '');
+
+  const tryParse = d => {
+    try {
+      const parsed = new URL(d.includes('://') ? d : `http://${d}`);
+      let host = parsed.hostname.replace(/^www\./, '');
+      host = host.replace(/^https?/, '');
+      return host.replace(/\/$/, '');
+    } catch {
+      return null;
+    }
+  };
+
+  let host = tryParse(domain);
+  if (host) return host;
+
+  const variants = [
+    domain.replace(/^https?:/i, ''),
+    domain.replace(/^https?/i, ''),
+    domain.replace(/^www\./i, '')
+  ];
+  for (const v of variants) {
+    host = tryParse(v);
+    if (host) return host;
+  }
+
+  return '';
 }
 
 function findAnalytics(html) {
@@ -321,6 +345,11 @@ export function createTagHealthRouter(updateTest) {
 
   router.post('/', async (req, res) => {
     const domain = cleanDomain(req.body.domain || '');
+    if (!domain) {
+      return res.status(400).json({
+        error: 'Invalid domain. Please enter a domain like example.com'
+      });
+    }
     const maxPagesInput = parseInt(req.body.maxPages, 10);
     const maxPages = Math.min(
       MAX_ALLOWED_PAGES,
@@ -350,6 +379,12 @@ export function createTagHealthRouter(updateTest) {
 
   router.get('/stream', (req, res) => {
     const domain = cleanDomain(req.query.domain || '');
+    if (!domain) {
+      res.status(400).json({
+        error: 'Invalid domain. Please enter a domain like example.com'
+      });
+      return;
+    }
     const maxPagesInput = parseInt(req.query.maxPages, 10);
     const maxPages = Math.min(
       MAX_ALLOWED_PAGES,
