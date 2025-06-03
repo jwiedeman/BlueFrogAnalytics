@@ -1,71 +1,11 @@
 import asyncio
 import random
 import re
-import psycopg2
-import sys
-from dataclasses import dataclass
-from typing import Iterable, Sequence, Set, Tuple
+from typing import Sequence, Set, Tuple
 
 from geopy.geocoders import Nominatim
 from playwright.async_api import async_playwright
-
-
-@dataclass
-class Business:
-    name: str
-    address: str
-    website: str
-    phone_number: str
-    reviews_average: float | None
-    query: str
-    latitude: float | None
-    longitude: float | None
-
-
-def init_db(dsn: str) -> psycopg2.extensions.connection:
-    """Create the Postgres table if needed and return a connection."""
-    conn = psycopg2.connect(dsn)
-    with conn.cursor() as cur:
-        cur.execute(
-        """
-        CREATE TABLE IF NOT EXISTS businesses (
-            name TEXT,
-            address TEXT,
-            website TEXT,
-            phone TEXT,
-            reviews_average REAL,
-            query TEXT,
-            latitude DOUBLE PRECISION,
-            longitude DOUBLE PRECISION,
-            UNIQUE(name, address)
-        )
-        """
-        )
-        conn.commit()
-    return conn
-
-
-def save_to_db(conn: psycopg2.extensions.connection, b: Business) -> None:
-    with conn.cursor() as cur:
-        cur.execute(
-            """
-            INSERT INTO businesses (
-                name, address, website, phone, reviews_average, query, latitude, longitude
-            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-            ON CONFLICT (name, address) DO NOTHING
-            """,
-            (
-                b.name,
-                b.address,
-                b.website,
-                b.phone_number,
-                b.reviews_average,
-                b.query,
-                b.latitude,
-                b.longitude,
-            ),
-        )
-        conn.commit()
+from db import init_db, save_business, get_dsn
 
 
 async def scrape_at_location(
@@ -141,9 +81,9 @@ async def scrape_at_location(
         lat_val = float(match.group(1)) if match else lat
         lon_val = float(match.group(2)) if match else lon
 
-        save_to_db(
+        save_business(
             conn,
-            Business(
+            (
                 name,
                 address,
                 website,
@@ -162,14 +102,14 @@ async def scrape_city_grid(
     steps: int,
     spacing: float,
     total: int,
-    dsn: str,
+    dsn: str | None,
     *,
     headless: bool = False,
     min_delay: float = 15.0,
     max_delay: float = 60.0,
     launch_args: Sequence[str] | None = None,
 ):
-    db_conn = init_db(dsn)
+    db_conn = init_db(get_dsn(dsn))
     seen: Set[Tuple[str, str]] = set()
     geolocator = Nominatim(user_agent="bluefrog-grid")
     location = geolocator.geocode(city)
@@ -212,7 +152,7 @@ if __name__ == "__main__":
     parser.add_argument("steps", type=int)
     parser.add_argument("spacing_deg", type=float)
     parser.add_argument("per_grid_total", type=int)
-    parser.add_argument("dsn", help="Postgres DSN")
+    parser.add_argument("dsn", nargs="?", help="Postgres DSN")
     parser.add_argument("--headless", action="store_true", help="Run browser headless")
     parser.add_argument("--min-delay", type=float, default=15.0, help="Minimum delay between grid steps in seconds")
     parser.add_argument("--max-delay", type=float, default=60.0, help="Maximum delay between grid steps in seconds")

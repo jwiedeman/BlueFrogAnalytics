@@ -1,75 +1,17 @@
 import asyncio
-import os
 import re
-import psycopg2
 import sys
-from dataclasses import dataclass
 from typing import Set, Tuple
+
+from db import init_db, save_business, get_dsn
 
 from playwright.async_api import async_playwright
 
 
-@dataclass
-class Business:
-    name: str
-    address: str
-    website: str
-    phone_number: str
-    reviews_average: float | None
-    query: str
-    latitude: float | None
-    longitude: float | None
 
 
-def init_db(dsn: str) -> psycopg2.extensions.connection:
-    """Create the Postgres table if needed and return a connection."""
-    try:
-        conn = psycopg2.connect(dsn)
-    except psycopg2.OperationalError as exc:
-        print(f"Failed to connect to Postgres using DSN '{dsn}': {exc}")
-        print("Ensure PostgreSQL is running. Execute 'start_postgres.sh' in this folder to launch a local instance that stores data under 'pgdata/'.")
-        sys.exit(1)
-    with conn.cursor() as cur:
-        cur.execute(
-        """
-        CREATE TABLE IF NOT EXISTS businesses (
-            name TEXT,
-            address TEXT,
-            website TEXT,
-            phone TEXT,
-            reviews_average REAL,
-            query TEXT,
-            latitude DOUBLE PRECISION,
-            longitude DOUBLE PRECISION,
-            UNIQUE(name, address)
-        )
-        """
-        )
-        conn.commit()
-    return conn
 
 
-def save_to_db(conn: psycopg2.extensions.connection, b: Business) -> None:
-    with conn.cursor() as cur:
-        cur.execute(
-            """
-            INSERT INTO businesses (
-                name, address, website, phone, reviews_average, query, latitude, longitude
-            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-            ON CONFLICT (name, address) DO NOTHING
-            """,
-            (
-                b.name,
-                b.address,
-                b.website,
-                b.phone_number,
-                b.reviews_average,
-                b.query,
-                b.latitude,
-                b.longitude,
-            ),
-        )
-        conn.commit()
 
 
 async def collect_current_listings(page, query: str, seen: Set[Tuple[str, str]], conn) -> None:
@@ -124,9 +66,9 @@ async def collect_current_listings(page, query: str, seen: Set[Tuple[str, str]],
             lat = float(match.group(1))
             lon = float(match.group(2))
 
-        save_to_db(
+        save_business(
             conn,
-            Business(
+            (
                 name,
                 address,
                 website,
@@ -141,8 +83,8 @@ async def collect_current_listings(page, query: str, seen: Set[Tuple[str, str]],
         await page.wait_for_timeout(1000)
 
 
-async def scrape_spiral(query: str, steps: int, dsn: str, *, headless: bool = False):
-    conn = init_db(dsn)
+async def scrape_spiral(query: str, steps: int, dsn: str | None, *, headless: bool = False):
+    conn = init_db(get_dsn(dsn))
     seen: Set[Tuple[str, str]] = set()
 
     async with async_playwright() as p:
@@ -192,8 +134,6 @@ if __name__ == "__main__":
 
     query = args[0]
     steps = int(args[1])
-    dsn = args[2] if len(args) >= 3 else os.environ.get(
-        "POSTGRES_DSN", "dbname=maps user=postgres host=localhost password=postgres"
-    )
+    dsn = get_dsn(args[2] if len(args) >= 3 else None)
 
     asyncio.run(scrape_spiral(query, steps, dsn, headless=headless))
