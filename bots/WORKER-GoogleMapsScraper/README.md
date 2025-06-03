@@ -13,31 +13,26 @@ Install Python 3.11+ and the dependencies:
 pip install -r requirements.txt
 ```
 
-Run the worker with a search query, number of results and a Postgres DSN:
-
-```bash
-python worker.py "Coffee shops in New York" 100 "dbname=maps user=postgres host=localhost password=postgres"
-```
-
-Browsers show a window by default. Pass `--headless` to hide it.
+The scraper writes to a local Postgres database. Set the connection string with the
+`POSTGRES_DSN` environment variable or pass it on the command line.
 
 ## City grid scraping
 
 `grid_worker.py` automates searches across a grid of GPS coordinates around a
 city. It deduplicates results using business name and address and appends them
-to the same Postgres database used by `worker.py`.
+to your Postgres database.
 
 ```bash
-python grid_worker.py "Portland, OR" "coffee shops" 1 0.02 50 "dbname=maps user=postgres host=localhost password=postgres"
+python grid_worker.py "Portland, OR" "coffee shops" 1 0.02 50
 ```
 
-The parameters are: city name, search query, number of grid steps from the center, spacing in degrees between grid points, number of results per grid cell, and database DSN. Use `--headless` to hide the browser and `--min-delay`/`--max-delay` to randomize pauses between grid locations.
+The parameters are: city name, search query, number of grid steps from the center, spacing in degrees between grid points, number of results per grid cell, and an optional database DSN. Use `--headless` to hide the browser and `--min-delay`/`--max-delay` to randomize pauses between grid locations.
 
 ### Running multiple terms
 
 `orchestrator.py` launches several grid scrapers at once and tiles the windows
 to create a control room style view. Provide a comma separated list of search
-terms and the database DSN.
+terms.
 
 ```bash
 python orchestrator.py "Portland, OR" \
@@ -45,7 +40,6 @@ python orchestrator.py "Portland, OR" \
   --steps 1 \
   --spacing 0.0145 \
   --total 50 \
-  --dsn "dbname=maps user=postgres host=localhost password=postgres" \
   --concurrency 4
 ```
 
@@ -59,7 +53,7 @@ Pass `--concurrency` to limit how many browser instances run at once. The orches
 
 ```bash
 # DSN may be omitted if POSTGRES_DSN is set
-python spiral_worker.py "coffee shops" 5 "dbname=maps user=postgres host=localhost password=postgres"
+python spiral_worker.py "coffee shops" 5
 
 ```
 
@@ -70,7 +64,7 @@ The second argument controls how many spiral rings to traverse. Use `--headless`
 `spiral_worker.py` and the other scripts expect a running Postgres instance.
 To run one without Docker execute `start_postgres.sh` in this folder. The script
 initialises a database under `pgdata/` on first run and starts the server on
-port `5432`.
+port `5432` (or `$PGPORT` if set).
 
 ```bash
 ./start_postgres.sh

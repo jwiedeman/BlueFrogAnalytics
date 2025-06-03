@@ -6,6 +6,7 @@ import random
 from asyncio import Semaphore, Queue
 
 from grid_worker import scrape_city_grid
+from db import get_dsn
 
 
 
@@ -35,7 +36,7 @@ async def run_term(term: str, args, slots: Queue, sem: Semaphore, width: int, he
                 args.steps,
                 args.spacing,
                 args.total,
-                args.dsn,
+                get_dsn(args.dsn),
                 headless=args.headless,
                 min_delay=args.min_delay,
                 max_delay=args.max_delay,
@@ -46,6 +47,7 @@ async def run_term(term: str, args, slots: Queue, sem: Semaphore, width: int, he
 
 
 async def main(args):
+    args.dsn = get_dsn(args.dsn)
     terms = [t.strip() for t in args.terms.split(',') if t.strip()]
     random.shuffle(terms)
     concurrency = min(args.concurrency, len(terms))
@@ -69,7 +71,7 @@ if __name__ == "__main__":
     parser.add_argument("--steps", type=int, default=1)
     parser.add_argument("--spacing", type=float, default=0.02)
     parser.add_argument("--total", type=int, default=50)
-    parser.add_argument("--dsn", required=True, help="Postgres DSN")
+    parser.add_argument("--dsn", help="Postgres DSN")
     parser.add_argument("--screen-width", type=int, default=1920)
     parser.add_argument("--screen-height", type=int, default=1080)
     parser.add_argument("--min-delay", type=float, default=1.0)
