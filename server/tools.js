@@ -76,13 +76,38 @@ export function createToolsRouter(updateTest) {
     try {
       const htmlResp = await fetch(url);
       const html = await htmlResp.text();
-      const imgSrcs = Array.from(html.matchAll(/<img[^>]+src=["']([^"']+)["']/gi)).map(m => m[1]);
+      const imgTags = Array.from(html.matchAll(/<img[^>]*>/gi));
       const results = [];
-      for (const src of imgSrcs) {
+      for (const match of imgTags) {
+        const tag = match[0];
+        const srcMatch = tag.match(/src=["']([^"']+)["']/i);
+        if (!srcMatch) continue;
+        const src = srcMatch[1];
+        let width = Number((tag.match(/width=["'](\d+)["']/i) || [])[1]);
+        let height = Number((tag.match(/height=["'](\d+)["']/i) || [])[1]);
         try {
           const resp = await fetch(new URL(src, url));
-          const buf = await resp.arrayBuffer();
-          results.push({ src: new URL(src, url).href, bytes: buf.byteLength });
+          const buf = Buffer.from(await resp.arrayBuffer());
+          if (!width || !height) {
+            try {
+              const sharp = (await import('sharp')).default;
+              const meta = await sharp(buf).metadata();
+              width = width || meta.width;
+              height = height || meta.height;
+            } catch {}
+          }
+          const area = width && height ? width * height : 0;
+          const bytes = buf.byteLength;
+          const bpp = area ? bytes / area : null;
+          const heavy = bpp ? bpp > 1 : bytes > 500000;
+          results.push({
+            src: new URL(src, url).href,
+            bytes,
+            width,
+            height,
+            bpp,
+            heavy
+          });
         } catch {}
       }
       results.sort((a, b) => b.bytes - a.bytes);
