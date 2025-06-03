@@ -152,13 +152,40 @@ Flexible storage for results of additional tools (image conversion, heatmaps, et
 - `scan_date` timestamp
 - `tool_name` text
 - `data` map<text, text>
+### `businesses`
+Google Maps business listings collected by the `WORKER-GoogleMapsScraper` bot.
+
+- `name` text
+- `address` text
+- `website` text
+- `phone` text
+- `reviews_average` float
+- `query` text
+- `latitude` float
+- `longitude` float
+- PRIMARY KEY (`name`, `address`)
 
 Bots interacting with these tables include:
-- `ETL-Domains` for ingesting CertStream data
-- `DomainStatus` for reachability checks
-- `AutoLighthouse` for Lighthouse scoring
-- `rightsem-final` for technology classification
-- `Enrich_processed_domains` for content analysis
+- `WORKER-CertStream` – ingesting CertStream feeds
+- `WORKER-AutoLighthouse` – running Lighthouse scoring
+- `WORKER-AutoWebPageTest` – running WebPageTest scans
+- `WORKER-Classify_target` – domain classifier via Ollama
+- `WORKER-Whois` – WHOIS updater
+- `WORKER-Enrich_processed_domains` – GeoIP and Wappalyzer enrichment
+- `WORKER-DomainStatus` – reachability checks
+- `WORKER-DedupeDomains` – deduplication helper
+- `WORKER-GoogleMapsScraper` – local business gathering
+- `WORKER-rightsem-final` – email validation
+- `BOT-Hunter[Rust]` – asynchronous crawler
+- `BOT-Recon_[Py]` – reconnaissance harness
+- `BOT-ripwappalyzer[Js]` – tech fingerprinting via Puppeteer
+- `BOT-wappalyzer[Py]` – Python Wappalyzer detection
+- `BOT-whois-newest-domains[Go]` – new domain discovery
+- `BOT-Google-Maps` – manual Google Maps scraping
+- `ETL-Domains` – ingestion scripts
+
+
+
 ## Cassandra: `profiles` keyspace
 Used by the Express API server for user data.
 
@@ -186,8 +213,8 @@ Billing address and subscription data.
 - `country` text
 - `plan` text
 
-## PostgreSQL: maps database
-The Google Maps Scraper worker writes business listings to a local Postgres table created on startup:
+## PostgreSQL: maps database (deprecated)
+Earlier versions wrote Google Maps business listings to a local Postgres table. The worker now persists these rows to the Cassandra `businesses` table instead. The original columns were:
 
 - `name` TEXT
 - `address` TEXT
@@ -199,12 +226,14 @@ The Google Maps Scraper worker writes business listings to a local Postgres tabl
 - `longitude` DOUBLE PRECISION
 - `UNIQUE(name, address)`
 
-## SQLite: `qa_proxy.sqlite3`
-The Specsavers sandbox app persists data to a small local SQLite database with the following tables:
+
+## SQLite: `qa_proxy.sqlite3` (deprecated)
+The Specsavers sandbox app stored QA proxy data in a local SQLite file. These tables will be migrated to a dedicated `qa_proxy` keyspace in Cassandra:
 
 - `config(key TEXT PRIMARY KEY, value TEXT)`
 - `sessions(id TEXT PRIMARY KEY, timestamp TEXT, flows TEXT, processed TEXT)`
 - `dimensions(key TEXT PRIMARY KEY, description TEXT, operator TEXT, expected TEXT, pass_msg TEXT, fail_msg TEXT)`
+
 
 ## Query Patterns & Cassandra Optimization
 Read heavy queries should partition on `domain` with recent scans ordered by `scan_date`. Wide rows allow efficient writes while keeping the newest metrics clustered together.
@@ -217,8 +246,7 @@ Columns planned for future tools and scrapers:
 - WebPageTest results per URL (load time, speed index, TTFB, etc.)
 - Screenshot locations for image conversion utilities
 - Contrast heatmap metadata (image dimensions, timestamp)
-- Carbon audit details for entire sites (totals across pages)
-- Google Maps business scraping output stored in the `businesses` table listed above
+- Google Maps business scraping output stored in the `businesses` table within the `domain_discovery` keyspace
 
 ## Current vs Planned Schema State
 
