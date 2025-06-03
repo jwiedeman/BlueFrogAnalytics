@@ -22,7 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
         results.textContent = data.error || 'SEO test failed.';
         return;
       }
-      results.textContent = JSON.stringify(data, null, 2);
+      const summary = {
+        mobileScore: data.mobile ? Math.round(data.mobile.categories.seo.score * 100) : null,
+        desktopScore: data.desktop ? Math.round(data.desktop.categories.seo.score * 100) : null
+      };
+      results.textContent = JSON.stringify(summary, null, 2);
     } catch (err) {
       console.error(err);
       results.textContent = 'Error running SEO test.';

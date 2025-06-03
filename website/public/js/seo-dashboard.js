@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const user = window.firebaseAuth.currentUser;
       if (!user) throw new Error('Not authenticated');
       const token = await user.getIdToken();
-      const res = await fetch(`${API_BASE}/api/seo-audit`, {
+    const res = await fetch(`${API_BASE}/api/seo-audit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -21,16 +21,24 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Audit failed');
-      let html = `<h2>SEO Score: ${Math.round(data.categories.seo.score * 100)}</h2>`;
-      html += '<ul class="list-group">';
-      data.categories.seo.auditRefs.forEach(ref => {
-        const audit = data.audits[ref.id];
-        if (!audit) return;
-        const score = audit.score === null ? 'N/A' : Math.round(audit.score * 100);
-        const badge = audit.score === 1 ? 'success' : audit.score === 0 ? 'danger' : 'secondary';
-        html += `<li class="list-group-item d-flex justify-content-between align-items-center">${audit.title}<span class="badge bg-${badge}">${score}</span></li>`;
-      });
-      html += '</ul>';
+
+      const render = (lhr, label) => {
+        let html = `<h2>${label} Score: ${Math.round(lhr.categories.seo.score * 100)}</h2>`;
+        html += '<ul class="list-group mb-3">';
+        lhr.categories.seo.auditRefs.forEach(ref => {
+          const audit = lhr.audits[ref.id];
+          if (!audit) return;
+          const score = audit.score === null ? 'N/A' : Math.round(audit.score * 100);
+          const badge = audit.score === 1 ? 'success' : audit.score === 0 ? 'danger' : 'secondary';
+          html += `<li class="list-group-item d-flex justify-content-between align-items-center">${audit.title}<span class="badge bg-${badge}">${score}</span></li>`;
+        });
+        html += '</ul>';
+        return html;
+      };
+
+      let html = '';
+      if (data.mobile) html += render(data.mobile, 'Mobile');
+      if (data.desktop) html += render(data.desktop, 'Desktop');
       results.innerHTML = html;
     } catch (err) {
       results.textContent = err.message;
