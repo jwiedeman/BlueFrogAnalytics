@@ -7,6 +7,7 @@ import { createHash } from 'crypto';
 import fs from 'fs';
 import lighthouse from 'lighthouse';
 import { launch } from 'chrome-launcher';
+import desktopConfig from 'lighthouse/core/config/desktop-config.js';
 import { createTagHealthRouter } from './tagHealth.js';
 import { createToolsRouter } from "./tools.js";
 import { spawn, spawnSync } from 'child_process';
@@ -316,14 +317,21 @@ app.post('/api/performance', authMiddleware, async (req, res) => {
   }
   try {
     const chrome = await launch({ chromeFlags: ['--headless', '--no-sandbox'] });
-    const { lhr } = await lighthouse(url, {
+
+    const options = {
       port: chrome.port,
       output: 'json',
       onlyCategories: ['performance']
-    });
+    };
+
+    const { lhr: mobile } = await lighthouse(url, options);
+    const { lhr: desktop } = await lighthouse(url, options, desktopConfig);
+
     await chrome.kill();
-    await updateTest(req.uid, 'performance', lhr);
-    res.json(lhr);
+
+    const result = { mobile, desktop };
+    await updateTest(req.uid, 'performance', result);
+    res.json(result);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Performance test error' });

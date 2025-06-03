@@ -22,21 +22,25 @@ document.addEventListener('DOMContentLoaded', () => {
         results.textContent = data.error || 'Performance test failed.';
         return;
       }
-      const metrics = [
-        ['Performance Score', Math.round((data.categories.performance.score || 0) * 100)],
-        ['First Contentful Paint', data.audits['first-contentful-paint'].displayValue],
-        ['Speed Index', data.audits['speed-index'].displayValue],
-        ['Largest Contentful Paint', data.audits['largest-contentful-paint'].displayValue],
-        ['Time To Interactive', data.audits.interactive.displayValue],
-        ['Total Blocking Time', data.audits['total-blocking-time'].displayValue],
-        ['Cumulative Layout Shift', data.audits['cumulative-layout-shift'].displayValue]
-      ];
-      let html = '<table class="table table-dark table-striped"><tbody>';
-      for (const [label, value] of metrics) {
-        html += `<tr><th>${label}</th><td>${value}</td></tr>`;
-      }
-      html += '</tbody></table>';
-      results.innerHTML = html;
+      const buildTable = (lhr) => {
+        const metrics = [
+          ['Performance Score', Math.round((lhr.categories.performance.score || 0) * 100)],
+          ['First Contentful Paint', lhr.audits['first-contentful-paint'].displayValue],
+          ['Speed Index', lhr.audits['speed-index'].displayValue],
+          ['Largest Contentful Paint', lhr.audits['largest-contentful-paint'].displayValue],
+          ['Time To Interactive', lhr.audits.interactive.displayValue],
+          ['Total Blocking Time', lhr.audits['total-blocking-time'].displayValue],
+          ['Cumulative Layout Shift', lhr.audits['cumulative-layout-shift'].displayValue]
+        ];
+        let html = '<table class="table table-dark table-striped"><tbody>';
+        for (const [label, value] of metrics) {
+          html += `<tr><th>${label}</th><td>${value}</td></tr>`;
+        }
+        html += '</tbody></table>';
+        return html;
+      };
+      results.innerHTML =
+        `<h3>Mobile</h3>${buildTable(data.mobile)}<h3>Desktop</h3>${buildTable(data.desktop)}`;
     } catch (err) {
       console.error(err);
       results.textContent = 'Error running performance test.';

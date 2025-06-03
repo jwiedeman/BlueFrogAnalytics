@@ -21,10 +21,23 @@ const description = 'View performance metrics.';
         </div>
       </form>
       <div id="perf-alert" class="alert d-none" role="alert"></div>
-      <div id="perf-results" class="table-responsive d-none">
-        <table class="table table-dark table-striped">
-          <tbody id="perf-body"></tbody>
-        </table>
+      <div id="perf-results" class="row d-none">
+        <div class="col-12 col-lg-6 mb-4">
+          <h3>Mobile</h3>
+          <div class="table-responsive">
+            <table class="table table-dark table-striped">
+              <tbody id="perf-body-mobile"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 mb-4">
+          <h3>Desktop</h3>
+          <div class="table-responsive">
+            <table class="table table-dark table-striped">
+              <tbody id="perf-body-desktop"></tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </section>
   <script type="module">
@@ -35,7 +48,8 @@ const description = 'View performance metrics.';
       const urlEl = document.getElementById('perf-url');
       const alertEl = document.getElementById('perf-alert');
       const resultsEl = document.getElementById('perf-results');
-      const bodyEl = document.getElementById('perf-body');
+      const bodyMobile = document.getElementById('perf-body-mobile');
+      const bodyDesktop = document.getElementById('perf-body-desktop');
 
       const showAlert = (msg, type = 'danger') => {
         alertEl.textContent = msg;
@@ -43,22 +57,27 @@ const description = 'View performance metrics.';
         alertEl.classList.remove('d-none');
       };
 
-      const renderResults = data => {
-        bodyEl.innerHTML = '';
+      const buildRows = (lhr, el) => {
+        el.innerHTML = '';
         const metrics = [
-          ['Performance Score', Math.round((data.categories.performance.score || 0) * 100)],
-          ['First Contentful Paint', data.audits['first-contentful-paint'].displayValue],
-          ['Speed Index', data.audits['speed-index'].displayValue],
-          ['Largest Contentful Paint', data.audits['largest-contentful-paint'].displayValue],
-          ['Time To Interactive', data.audits.interactive.displayValue],
-          ['Total Blocking Time', data.audits['total-blocking-time'].displayValue],
-          ['Cumulative Layout Shift', data.audits['cumulative-layout-shift'].displayValue]
+          ['Performance Score', Math.round((lhr.categories.performance.score || 0) * 100)],
+          ['First Contentful Paint', lhr.audits['first-contentful-paint'].displayValue],
+          ['Speed Index', lhr.audits['speed-index'].displayValue],
+          ['Largest Contentful Paint', lhr.audits['largest-contentful-paint'].displayValue],
+          ['Time To Interactive', lhr.audits.interactive.displayValue],
+          ['Total Blocking Time', lhr.audits['total-blocking-time'].displayValue],
+          ['Cumulative Layout Shift', lhr.audits['cumulative-layout-shift'].displayValue]
         ];
         for (const [label, value] of metrics) {
           const tr = document.createElement('tr');
           tr.innerHTML = `<th>${label}</th><td>${value}</td>`;
-          bodyEl.appendChild(tr);
+          el.appendChild(tr);
         }
+      };
+
+      const renderResults = data => {
+        buildRows(data.mobile, bodyMobile);
+        buildRows(data.desktop, bodyDesktop);
         resultsEl.classList.remove('d-none');
       };
 
