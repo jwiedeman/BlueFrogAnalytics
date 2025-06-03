@@ -10,24 +10,126 @@ Temporary table populated from certificate transparency logs before domains are 
 - `domain` text PRIMARY KEY
 
 ### `domains_processed`
-Main table for normalized domains and enrichment data.
+Stores the canonical domain record with enrichment and classification fields.
 
-Initial columns include:
+Core identifiers:
 - `domain` text
 - `tld` text
-- `raw_subdomains` set<text>
-- `status` boolean
+
+Geo and network data:
+- `registered` timestamp
+- `registrar` text
 - `updated` timestamp
+- `status` text
+- `as_name` text
+- `as_number` int
+- `isp` text
+- `org` text
+- `city` text
+- `region` text
+- `region_name` text
+- `country` text
+- `country_code` text
+- `continent` text
+- `continent_code` text
+- `lat` float
+- `lon` float
+- `languages` list<text>
+- `phone` text
+- `time_zone` text
 
-Additional fields are added over time. See `bots/WORKER-Enrich_processed_domains/schema_updates.cql` for the latest columns such as `title`, `description`, `more_than_5_internal_links`, `contains_gtm_or_ga`, `emails`, `wordpress_version`, `server_type`, `server_version`, `wpjson_size_bytes`, `wpjson_contains_cart`, `linkedin_url`, `has_about_page`, `has_services_page`, `has_cart_or_product`, `sitemap_page_count` and Lighthouse metrics for both desktop and mobile audits.
+SSL and technology:
+- `ssl_issuer` text
+- `tech_detect` list<text>
 
-Bots interacting with this table include:
+Categorisation and content flags:
+- `site_type` text
+- `site_category` text
+- `site_type_tags` list<text>
+- `title` text
+- `description` text
+- `linkedin_url` text
+- `has_about_page` boolean
+- `has_services_page` boolean
+- `has_cart_or_product` boolean
+- `contains_gtm_or_ga` boolean
+- `wordpress_version` text
+- `server_type` text
+- `server_version` text
+- `emails` list<text>
+- `sitemap_page_count` int
+
+Subdomains:
+- `raw_subdomains` set<text>
+
+### `domain_page_metrics`
+Performance metrics per URL gathered from Lighthouse audits.
+
+- `domain` text
+- `url` text
+- `scan_date` timestamp
+- `desktop_accessibility_score` int
+- `mobile_accessibility_score` int
+- `desktop_best_practices_score` int
+- `mobile_best_practices_score` int
+- `desktop_performance_score` int
+- `mobile_performance_score` int
+- `desktop_seo_score` int
+- `mobile_seo_score` int
+- `desktop_first_contentful_paint` float
+- `mobile_first_contentful_paint` float
+- `desktop_largest_contentful_paint` float
+- `mobile_largest_contentful_paint` float
+- `desktop_interactive` float
+- `mobile_interactive` float
+- `desktop_speed_index` float
+- `mobile_speed_index` float
+- `desktop_total_blocking_time` float
+- `mobile_total_blocking_time` float
+- `desktop_cumulative_layout_shift` float
+- `mobile_cumulative_layout_shift` float
+- `desktop_timing_total` float
+- `mobile_timing_total` float
+- `lighthouse_version` text
+- `lighthouse_fetch_time` timestamp
+- `lighthouse_url` text
+
+### `analytics_tag_health`
+Detailed analytics and tag compliance results.
+
+- `domain` text
+- `scan_date` timestamp
+- `working_variants` list<text>
+- `scanned_urls` list<text>
+- `found_analytics` map<text, text>
+- `page_results` map<text, text>
+- `variant_results` map<text, text>
+- `compliance_status` text
+
+### `carbon_audits`
+Estimated carbon footprint of individual URLs.
+
+- `domain` text
+- `url` text
+- `scan_date` timestamp
+- `bytes` int
+- `co2` float
+
+### `misc_tool_results`
+Flexible storage for results of additional tools (image conversion, heatmaps, etc.).
+
+- `domain` text
+- `url` text
+- `scan_date` timestamp
+- `tool_name` text
+- `data` map<text, text>
+
+Bots interacting with these tables include:
 - `ETL-Domains` for ingesting CertStream data
 - `DomainStatus` for reachability checks
 - `AutoLighthouse` for Lighthouse scoring
 - `rightsem-final` for technology classification
 - `Enrich_processed_domains` for content analysis
-
 ## Cassandra: `profiles` keyspace
 Used by the Express API server for user data.
 
@@ -40,8 +142,8 @@ Stores profile details and saved test results.
 - `email` text
 - `phone` text
 - `payment_preference` text
-- `domains` text
-- `tests` text
+- `domains` list<text>
+- `tests` map<text, text>
 
 ### `billing_info`
 Billing address and subscription data.
@@ -74,6 +176,20 @@ The Specsavers sandbox app persists data to a small local SQLite database with t
 - `config(key TEXT PRIMARY KEY, value TEXT)`
 - `sessions(id TEXT PRIMARY KEY, timestamp TEXT, flows TEXT, processed TEXT)`
 - `dimensions(key TEXT PRIMARY KEY, description TEXT, operator TEXT, expected TEXT, pass_msg TEXT, fail_msg TEXT)`
+
+## Query Patterns & Cassandra Optimization
+Read heavy queries should partition on `domain` with recent scans ordered by `scan_date`. Wide rows allow efficient writes while keeping the newest metrics clustered together.
+
+JSON blobs are avoided where possible—structured columns make frequent metrics easier to query and update.
+
+## To Add
+Columns planned for future tools and scrapers:
+
+- WebPageTest results per URL (load time, speed index, TTFB, etc.)
+- Screenshot locations for image conversion utilities
+- Contrast heatmap metadata (image dimensions, timestamp)
+- Carbon audit details for entire sites (totals across pages)
+- Google Maps business scraping output stored in the `businesses` table listed above
 
 ---
 Update this file whenever new tables or fields are introduced so all bots and services remain compatible.
