@@ -377,7 +377,7 @@ app.post('/api/audit/accessibility', authMiddleware, async (req, res) => {
   try {
     const { launch } = await import('chrome-launcher');
     const lh = (await import('lighthouse')).default;
-    const chrome = await launch({ chromeFlags: ['--headless'] });
+    const chrome = await launch({ chromeFlags: ['--headless', '--no-sandbox'] });
   const options = { port: chrome.port, onlyCategories: ['accessibility'] };
     const result = await lh(url, options);
     await chrome.kill();
@@ -401,7 +401,7 @@ app.post('/api/seo-audit', authMiddleware, async (req, res) => {
     const lh = (await import('lighthouse')).default;
 
     async function runAudit(formFactor) {
-      const chrome = await launch({ chromeFlags: ['--headless'] });
+      const chrome = await launch({ chromeFlags: ['--headless', '--no-sandbox'] });
       try {
         const options = {
           port: chrome.port,
