@@ -21,10 +21,12 @@ template: splash
         </div>
       </form>
       <div id="carbon-results"></div>
+      <svg id="carbon-chart" width="600" height="300" class="w-100" preserveAspectRatio="xMidYMid meet"></svg>
     </div>
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/d3@7" defer></script>
 <script type="module" src="/js/site-carbon-calculator.js" defer></script>
 
 ## Implementation Notes
@@ -47,3 +49,18 @@ $$
 The results show the calculated grams of CO₂ and an everyday comparison –
 equivalent miles driven (using ~404 g/mile) or minutes a 60&nbsp;W bulb could run
 (~27 g/hour).
+
+### Session Calculation
+
+For a single URL test we measure the carbon per page. Session totals simply
+multiply that value by the number of pages and add estimated device usage.
+
+$$
+\text{Session CO2} = \text{Pages} \times \text{CO2 per Page}
+$$
+
+Device emissions use a global average of **417 g/kWh**.
+
+$$
+\text{Device CO2} = \text{Power (W)} \times \text{Hours} \times 0.417
+$$
