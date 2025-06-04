@@ -26,6 +26,11 @@ suite. The helper exposes a `get_wappalyzer()` function which returns a
 `load_full_wappalyzer_data()` function returns the raw groups, categories and
 technologies dictionaries for custom analysis.
 
+The repository now includes the full technology set from Wappalyzer. Run
+`scripts/compile_technologies.py` to rebuild `data/technologies.json` from the
+JSON files in `../BOT-wappalyzer[Py]/src/technologies`. The precompiled file
+contains over 5,000 technology definitions.
+
 All existing tests from `BOT-Recon_[Py]` are discovered automatically, allowing
 the full reconnaissance suite to run alongside the Wappalyzer fingerprinting.
 
