@@ -180,7 +180,7 @@ Bots interacting with these tables include:
 - `BOT-Recon_[Py]` – reconnaissance harness
 - `BOT-ripwappalyzer[Js]` – tech fingerprinting via Puppeteer
 - `BOT-wappalyzer[Py]` – Python Wappalyzer detection
-- `BOT-whois-newest-domains[Go]` – new domain discovery
+- `WORKER-WhoisNewestDomains` – new domain discovery
 - `BOT-Google-Maps` – manual Google Maps scraping
 - `ETL-Domains` – ingestion scripts
 

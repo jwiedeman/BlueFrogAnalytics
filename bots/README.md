@@ -15,7 +15,7 @@ Each component lives in its own folder and can run independently.
 - `BOT-Recon_[Py]` – modular reconnaissance harness.
 - `BOT-ripwappalyzer[Js]` – Puppeteer-based tech fingerprinting script.
 - `BOT-wappalyzer[Py]` – Python technology detection using the Wappalyzer library.
-- `BOT-whois-newest-domains[Go]` – pulls newly registered domains from whoisds.com.
+- `WORKER-WhoisNewestDomains` – Go worker that grabs newly registered domains from whoisds.com.
 - `ETL-Domains` – helper scripts for data ingestion and enrichment.
 - `DB[Cfg]` – Docker assets for running Cassandra clusters.
 
