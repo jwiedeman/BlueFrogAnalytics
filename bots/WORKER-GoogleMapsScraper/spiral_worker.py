@@ -1,9 +1,10 @@
+import os
 import asyncio
 import re
 import sys
 from typing import Set, Tuple
 
-from db import init_db, save_business, get_dsn
+from db import init_db, save_business, get_dsn, close_db
 
 from playwright.async_api import async_playwright
 
@@ -119,21 +120,32 @@ async def scrape_spiral(query: str, steps: int, dsn: str | None, *, headless: bo
             step_length += 1
 
         await browser.close()
-    conn.close()
+    close_db(conn)
 
 
 if __name__ == "__main__":
-    args = [a for a in sys.argv[1:] if a != "--headless"]
-    headless = "--headless" in sys.argv[1:]
+    import argparse
 
-    if len(args) < 2:
-        print(
-            "Usage: python spiral_worker.py <query> <steps> [dsn] [--headless]"
+    parser = argparse.ArgumentParser(description="Scrape Google Maps in a spiral")
+    parser.add_argument("query")
+    parser.add_argument("steps", type=int)
+    parser.add_argument("dsn", nargs="?", help="Postgres DSN")
+    parser.add_argument("--headless", action="store_true", help="Run browser headless")
+    parser.add_argument(
+        "--store",
+        choices=["postgres", "cassandra", "sqlite", "csv"],
+        help="Storage backend",
+    )
+    args = parser.parse_args()
+
+    if args.store:
+        os.environ["MAPS_STORAGE"] = args.store
+
+    asyncio.run(
+        scrape_spiral(
+            args.query,
+            args.steps,
+            get_dsn(args.dsn),
+            headless=args.headless,
         )
-        sys.exit(1)
-
-    query = args[0]
-    steps = int(args[1])
-    dsn = get_dsn(args[2] if len(args) >= 3 else None)
-
-    asyncio.run(scrape_spiral(query, steps, dsn, headless=headless))
+    )

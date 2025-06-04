@@ -7,6 +7,7 @@ from asyncio import Semaphore, Queue
 
 from grid_worker import scrape_city_grid
 from db import get_dsn
+import os
 
 
 
@@ -77,8 +78,12 @@ if __name__ == "__main__":
     parser.add_argument("--min-delay", type=float, default=1.0)
     parser.add_argument("--max-delay", type=float, default=3.0)
     parser.add_argument("--concurrency", type=int, default=4, help="Maximum simultaneous scrapers")
+    parser.add_argument("--store", choices=["postgres", "cassandra", "sqlite", "csv"], help="Storage backend")
 
     parser.add_argument("--headless", action="store_true", help="Run browsers headless")
     args = parser.parse_args()
-    
+
+    if args.store:
+        os.environ["MAPS_STORAGE"] = args.store
+
     asyncio.run(main(args))

@@ -1,3 +1,4 @@
+import os
 import asyncio
 import random
 import re
@@ -5,7 +6,7 @@ from typing import Sequence, Set, Tuple
 
 from geopy.geocoders import Nominatim
 from playwright.async_api import async_playwright
-from db import init_db, save_business, get_dsn
+from db import init_db, save_business, get_dsn, close_db
 
 
 async def scrape_at_location(
@@ -140,7 +141,7 @@ async def scrape_city_grid(
             await page.wait_for_timeout(int(delay * 1000))
 
         await browser.close()
-    db_conn.close()
+    close_db(db_conn)
 
 
 if __name__ == "__main__":
@@ -156,7 +157,11 @@ if __name__ == "__main__":
     parser.add_argument("--headless", action="store_true", help="Run browser headless")
     parser.add_argument("--min-delay", type=float, default=15.0, help="Minimum delay between grid steps in seconds")
     parser.add_argument("--max-delay", type=float, default=60.0, help="Maximum delay between grid steps in seconds")
+    parser.add_argument("--store", choices=["postgres", "cassandra", "sqlite", "csv"], help="Storage backend")
     args = parser.parse_args()
+
+    if args.store:
+        os.environ["MAPS_STORAGE"] = args.store
 
     asyncio.run(
         scrape_city_grid(

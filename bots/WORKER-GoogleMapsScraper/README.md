@@ -1,8 +1,8 @@
 # Google Maps Scraper Worker
 
 This worker scrapes business listings from Google Maps using Playwright.
-Results are written to a Postgres database so data from every run
-is stored together. Each record notes the search term and the GPS
+Results can be written to Postgres, Cassandra, a local SQLite file or a
+CSV depending on the configured storage backend. Each record notes the search term and the GPS
 coordinates where it was collected.
 
 ## Usage
@@ -13,14 +13,17 @@ Install Python 3.11+ and the dependencies:
 pip install -r requirements.txt
 ```
 
-The scraper writes to a local Postgres database. Set the connection string with the
-`POSTGRES_DSN` environment variable or pass it on the command line.
+Copy `.env.example` to `.env` and modify values as needed for your environment.
+
+The scraper defaults to a local SQLite database. Choose between `postgres`, `cassandra`, `sqlite` or `csv`
+using the `MAPS_STORAGE` environment variable or the `--store` option. When using Postgres
+set the connection string with the `POSTGRES_DSN` environment variable.
 
 ## City grid scraping
 
 `grid_worker.py` automates searches across a grid of GPS coordinates around a
 city. It deduplicates results using business name and address and appends them
-to your Postgres database.
+to the configured database or CSV file.
 
 ```bash
 python grid_worker.py "Portland, OR" "coffee shops" 1 0.02 50
@@ -62,6 +65,7 @@ Additional options:
 
 - `dsn` – Postgres connection string (defaults to `$POSTGRES_DSN`)
 - `--headless` – run the browser without showing a window
+- `--store` – override storage backend for this run
 
 Example with an explicit DSN and headless mode:
 
@@ -95,7 +99,7 @@ will connect successfully. You can also set a custom connection string via the
 
 ### Exporting to Excel
 
-Use `export_to_excel.py` to convert the Postgres database to an Excel file:
+`export_to_excel.py` can convert a Postgres database to an Excel file:
 
 ```bash
 python export_to_excel.py "dbname=maps user=postgres host=localhost password=postgres" results.xlsx
