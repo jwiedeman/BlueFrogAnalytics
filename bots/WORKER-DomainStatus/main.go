@@ -43,9 +43,9 @@ var (
 	// Cassandra configuration - optimized for batch operations
 	cassandraHosts    = getEnv("CASSANDRA_HOSTS", "192.168.1.201,192.168.1.202,192.168.1.203,192.168.1.204")
 	cassandraKeyspace = getEnv("CASSANDRA_KEYSPACE", "domain_discovery")
-	// Global policy: allow up to 120s for Cassandra operations
-	cassandraTimeout        = 120 * time.Second
-	cassandraConnectTimeout = 120 * time.Second
+       // Global policy: allow up to 10 minutes for Cassandra operations
+       cassandraTimeout        = 600 * time.Second
+       cassandraConnectTimeout = 600 * time.Second
 
 	concurrency    int64 = int64(getEnvInt("CONCURRENCY", runtime.NumCPU()*50))
 	maxConcurrency       = getEnvInt("MAX_CONCURRENCY", runtime.NumCPU()*200)

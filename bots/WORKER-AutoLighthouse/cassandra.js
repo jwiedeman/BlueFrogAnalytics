@@ -49,7 +49,7 @@ async function connect() {
   const { ExecutionProfile, types } = cassandra;
   const profile = new ExecutionProfile('default', {
     consistency: types.consistencies.localQuorum,
-    readTimeout: 120000,
+    readTimeout: 600000,
     retry: { retries: 5 }
   });
 

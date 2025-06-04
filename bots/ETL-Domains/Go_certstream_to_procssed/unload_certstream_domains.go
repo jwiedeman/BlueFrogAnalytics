@@ -126,10 +126,10 @@ func main() {
 	cluster.DisableInitialHostLookup = false // skip gossip-port lookups
 	cluster.ProtoVersion = 4                 // protocol v4 for modern Cassandra
 	cluster.Port = 9042                      // native transport
-	// Use generous timeouts to accommodate slow Cassandra responses
-	cluster.ConnectTimeout = 120 * time.Second // dial + auth
-	cluster.Timeout = 120 * time.Second        // default per-query timeout
-	cluster.WriteTimeout = 120 * time.Second   // for batch/insert/write calls
+       // Use generous 10 minute timeouts to accommodate slow Cassandra responses
+       cluster.ConnectTimeout = 600 * time.Second // dial + auth
+       cluster.Timeout = 600 * time.Second        // default per-query timeout
+       cluster.WriteTimeout = 600 * time.Second   // for batch/insert/write calls
 	cluster.Keyspace = "domain_discovery"
 	cluster.Consistency = gocql.One // fast, single-node reads
 	cluster.NumConns = 1            // more connections per host

@@ -89,8 +89,8 @@ def main():
         load_balancing_policy=DCAwareRoundRobinPolicy(),
         default_retry_policy=RetryPolicy(),
         # Extend timeouts to handle slow Cassandra responses
-        connect_timeout=120,
-        idle_heartbeat_timeout=120,
+        connect_timeout=600,
+        idle_heartbeat_timeout=600,
         protocol_version=4
     )
     

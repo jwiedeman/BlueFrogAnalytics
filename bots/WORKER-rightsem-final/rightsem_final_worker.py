@@ -139,8 +139,8 @@ def validate_emails_from_cassandra():
         load_balancing_policy=DCAwareRoundRobinPolicy(local_dc='datacenter1'),
         default_retry_policy=RetryPolicy(),
         protocol_version=4,
-        connect_timeout=120,
-        idle_heartbeat_timeout=120
+        connect_timeout=600,
+        idle_heartbeat_timeout=600
     )
     header_written = False
     results = []
