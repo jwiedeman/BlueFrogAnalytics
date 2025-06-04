@@ -844,6 +844,38 @@ app.get('/api/domain-info', authMiddleware, async (req, res) => {
   }
 });
 
+app.get('/api/domain-pages', authMiddleware, async (req, res) => {
+  let { domain } = req.query;
+  if (typeof domain !== 'string') {
+    return res.status(400).json({ error: 'Invalid domain' });
+  }
+  const parts = parseDomainParts(domain);
+  if (!parts) {
+    return res.status(400).json({ error: 'Invalid domain' });
+  }
+  try {
+    const result = await cassandraClient.execute(
+      'SELECT * FROM domain_discovery.domain_page_metrics WHERE domain=?',
+      [parts.domain],
+      { prepare: true }
+    );
+    const map = new Map();
+    for (const row of result.rows) {
+      const current = map.get(row.url);
+      if (!current || row.scan_date > current.scan_date) {
+        map.set(row.url, row);
+      }
+    }
+    const pages = Array.from(map.values()).sort((a, b) =>
+      a.url.localeCompare(b.url)
+    );
+    res.json(pages);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Database error' });
+  }
+});
+
 
 app.post('/api/audit/accessibility', authMiddleware, async (req, res) => {
   const { url } = req.body;
