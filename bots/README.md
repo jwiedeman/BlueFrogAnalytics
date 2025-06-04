@@ -7,7 +7,6 @@ Each component lives in its own folder and can run independently.
 - `WORKER-AutoLighthouse` – Node.js Lighthouse auditor.
 - `WORKER-AutoWebPageTest` – Node.js crawler using WebPageTest.
 - `WORKER-Classify_target` – Go classifier powered by Ollama.
-- `WORKER-Whois` – Python WHOIS updater.
 - `WORKER-Enrich_processed_domains` – Python enrichment pipeline with GeoIP and Wappalyzer.
 - `WORKER-DomainStatus` – Go reachability checker.
 - `WORKER-DedupeDomains` – Go utility that normalizes TLDs and removes duplicate records.
@@ -15,8 +14,7 @@ Each component lives in its own folder and can run independently.
 - `BOT-Recon_[Py]` – modular reconnaissance harness.
 - `BOT-ripwappalyzer[Js]` – Puppeteer-based tech fingerprinting script.
 - `BOT-wappalyzer[Py]` – Python technology detection using the Wappalyzer library.
-- `WORKER-WhoisNewestDomains` – Go worker that grabs newly registered domains from whoisds.com.
-- `run-whois-suite.sh` – Shell script that runs the newest-domain grabber and WHOIS updater every 12 hours.
+- `WORKER-WhoisSuite` – Python worker combining newest-domain scraping and WHOIS updates.
 - `ETL-Domains` – helper scripts for data ingestion and enrichment.
 - `DB[Cfg]` – Docker assets for running Cassandra clusters.
 
