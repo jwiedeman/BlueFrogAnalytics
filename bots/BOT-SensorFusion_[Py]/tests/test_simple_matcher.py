@@ -25,7 +25,8 @@ def run_test(target):
             lines = [f"URL used: {url}"]
             for name, data in results.items():
                 cats = ", ".join(data.get("categories", [])) or "-"
-                lines.append(f"{name} [{cats}]")
+                vers = ", ".join(data.get("versions", [])) or "-"
+                lines.append(f"{name}: {vers} [{cats}]")
             return "\n".join(lines)
     return str(results) if results else "No technologies detected"
 
