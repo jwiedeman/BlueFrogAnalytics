@@ -15,13 +15,15 @@ USER_AGENT = (
 )
 
 
-def _compile_list(value: Any) -> List[re.Pattern]:
-    """Return a list of compiled regex patterns from a value."""
+def _compile_patterns(value: Any) -> List[Dict[str, Any]]:
+    """Return a list of prepared pattern dictionaries from a value."""
     if isinstance(value, list):
-        return [re.compile(v, re.I) for v in value]
-    if value:
-        return [re.compile(value, re.I)]
-    return []
+        patterns = value
+    elif value:
+        patterns = [value]
+    else:
+        return []
+    return [_prepare_pattern(p) for p in patterns]
 
 
 def _prepare_pattern(pattern: str) -> Dict[str, Any]:
@@ -66,13 +68,19 @@ def detect(url: str) -> Dict[str, Any]:
     hostname = parsed.hostname or parsed.path.split("/")[0]
 
     detected: Dict[str, Dict[str, Any]] = {}
+    confidence_totals: Dict[str, int] = {}
 
-    def matches(tech: Dict[str, Any]) -> str | None:
+    def matches(name: str, tech: Dict[str, Any]) -> tuple[str, int]:
+        version = ""
+        conf = 0
+
         # URL patterns
-        for pattern in _compile_list(tech.get("url")):
-            m = pattern.search(url)
+        for pat in _compile_patterns(tech.get("url")):
+            m = pat["regex"].search(url)
             if m:
-                return _extract_version({}, m)
+                conf += int(pat.get("confidence", "100"))
+                if not version:
+                    version = _extract_version(pat, m)
 
         for name, pat in tech.get("headers", {}).items():
             header_val = headers.get(name.lower())
@@ -80,17 +88,22 @@ def detect(url: str) -> Dict[str, Any]:
                 attr = _prepare_pattern(pat)
                 m = attr["regex"].search(header_val)
                 if m:
-                    return _extract_version(attr, m)
+                    conf += int(attr.get("confidence", "100"))
+                    if not version:
+                        version = _extract_version(attr, m)
 
         for name, pat in tech.get("cookies", {}).items():
             cookie_val = cookies.get(name.lower())
             if cookie_val is not None:
                 if not pat:
-                    return ""
+                    conf += 100
+                    continue
                 attr = _prepare_pattern(pat)
                 m = attr["regex"].search(cookie_val)
                 if m:
-                    return _extract_version(attr, m)
+                    conf += int(attr.get("confidence", "100"))
+                    if not version:
+                        version = _extract_version(attr, m)
 
         for name, pat in tech.get("meta", {}).items():
             meta_val = meta.get(name.lower())
@@ -98,28 +111,35 @@ def detect(url: str) -> Dict[str, Any]:
                 attr = _prepare_pattern(pat)
                 m = attr["regex"].search(meta_val)
                 if m:
-                    return _extract_version(attr, m)
+                    conf += int(attr.get("confidence", "100"))
+                    if not version:
+                        version = _extract_version(attr, m)
 
-        for pattern in _compile_list(tech.get("scripts")):
-            comp = _prepare_pattern(pattern.pattern if isinstance(pattern, re.Pattern) else pattern)
+        for pat in _compile_patterns(tech.get("scripts")):
             for src in scripts:
-                m = comp["regex"].search(src)
+                m = pat["regex"].search(src)
                 if m:
-                    return _extract_version(comp, m)
+                    conf += int(pat.get("confidence", "100"))
+                    if not version:
+                        version = _extract_version(pat, m)
 
         js_text = "\n".join(inline_scripts)
         for name, pat in tech.get("js", {}).items():
             attr = _prepare_pattern(pat)
             m = attr["regex"].search(js_text)
             if m:
-                return _extract_version(attr, m)
+                conf += int(attr.get("confidence", "100"))
+                if not version:
+                    version = _extract_version(attr, m)
 
         dom = tech.get("dom")
         if dom:
             if isinstance(dom, list):
                 for selector in dom:
                     if soup.select_one(selector):
-                        return ""
+                        conf += 100
+                        version = version or ""
+                        break
             elif isinstance(dom, dict):
                 for selector, cond in dom.items():
                     elements = soup.select(selector)
@@ -127,7 +147,8 @@ def detect(url: str) -> Dict[str, Any]:
                         continue
                     if isinstance(cond, dict):
                         if "exists" in cond:
-                            return ""
+                            conf += 100
+                            break
                         attrs = cond.get("attributes", {})
                         for el in elements:
                             matched = True
@@ -136,24 +157,28 @@ def detect(url: str) -> Dict[str, Any]:
                                 if aval is None:
                                     matched = False
                                     break
-                                if pattern:
-                                    if not re.search(pattern, aval, re.I):
-                                        matched = False
-                                        break
+                                if pattern and not re.search(pattern, aval, re.I):
+                                    matched = False
+                                    break
                             if matched:
-                                return ""
+                                conf += 100
+                                break
                     else:
                         attr = _prepare_pattern(str(cond))
                         for el in elements:
                             m = attr["regex"].search(el.text)
                             if m:
-                                return _extract_version(attr, m)
+                                conf += int(attr.get("confidence", "100"))
+                                if not version:
+                                    version = _extract_version(attr, m)
+                                break
 
-        for pattern in _compile_list(tech.get("html")):
-            attr = _prepare_pattern(pattern.pattern if isinstance(pattern, re.Pattern) else pattern)
-            m = attr["regex"].search(html)
+        for pat in _compile_patterns(tech.get("html")):
+            m = pat["regex"].search(html)
             if m:
-                return _extract_version(attr, m)
+                conf += int(pat.get("confidence", "100"))
+                if not version:
+                    version = _extract_version(pat, m)
 
         for rtype, patterns in tech.get("dns", {}).items():
             if not isinstance(patterns, list):
@@ -163,22 +188,26 @@ def detect(url: str) -> Dict[str, Any]:
                 records = [a.to_text() for a in answers]
             except Exception:
                 continue
-            for pat in patterns:
-                attr = _prepare_pattern(pat)
+            for pat_str in patterns:
+                pat = _prepare_pattern(pat_str)
                 for rec in records:
-                    m = attr["regex"].search(rec)
+                    m = pat["regex"].search(rec)
                     if m:
-                        return _extract_version(attr, m)
+                        conf += int(pat.get("confidence", "100"))
+                        if not version:
+                            version = _extract_version(pat, m)
 
-        return None
+        return version, conf
 
     matched = set()
     for tech_name, tech in technologies.items():
-        version = matches(tech)
-        if version is not None:
+        version, conf = matches(tech_name, tech)
+        if version or conf:
             matched.add(tech_name)
             if version:
                 detected[tech_name] = {"versions": [version]}
+            if conf:
+                confidence_totals[tech_name] = conf
 
     # include implied technologies
     queue = list(matched)
@@ -204,6 +233,8 @@ def detect(url: str) -> Dict[str, Any]:
     for tech_name in matched:
         tech = technologies.get(tech_name, {})
         entry = detected.get(tech_name, {})
+        if tech_name in confidence_totals:
+            entry["confidence"] = confidence_totals[tech_name]
         cat_names = []
         grp_names = []
         for c in tech.get("cats", []):
