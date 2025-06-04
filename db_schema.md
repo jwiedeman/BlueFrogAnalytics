@@ -236,6 +236,19 @@ Google Maps business listings collected by the `WORKER-GoogleMapsScraper` bot.
 - `longitude` float
 - PRIMARY KEY (`name`, `address`)
 
+### `tracking_specs`
+Reference table for analytics events and dimensions. Used by the dashboard to
+provide a data dictionary and future rule engine.
+
+- `category` text *(event, dimension, etc.)*
+- `tool` text *(google_analytics, adobe_analytics, etc.)*
+- `name` text
+- `rule` text *(pattern used to detect the item)*
+- `example` text
+- `description` text
+- `updated_at` timestamp
+- PRIMARY KEY ((`category`, `tool`), `name`)
+
 ### `dns_records` *(planned)*
 Proposed table for storing DNS enumeration output. Each record is stored separately to avoid overly large rows.
 
@@ -290,6 +303,7 @@ The table below summarizes where each bot or worker stores its results. Unless s
 | WORKER-Enrich_processed_domains | domain_discovery | domains_processed | as_name, as_number, city, continent, continent_code, country, country_code, isp, languages, lat, lon, org, phone, region, region_name, registered, registrar, ssl_issuer, tech_detect, time_zone, title, description, linkedin_url, has_about_page, has_services_page, has_cart_or_product, contains_gtm_or_ga, wordpress_version, server_type, server_version, emails, sitemap_page_count, updated | Adds GeoIP, SSL and tech data. |
 | WORKER-GoogleMapsScraper | maps or Postgres/SQLite/CSV | businesses | name, address, website, phone, reviews_average, query, latitude, longitude | Writes business listings. |
 | WORKER-MiscToolResults | domain_discovery | misc_tool_results | domain, url, tool_name, scan_date, data | Arbitrary tool output keyed by domain. |
+| WORKER-SpecDemo | domain_discovery | tracking_specs | category, tool, name, rule, example, description, updated_at | Seeds demo specification rows. |
 | WORKER-WhoisSuite | domain_discovery | domains_processed | domain, tld, registered, registrar, updated | Fetches newly registered domains and updates WHOIS info. |
 | WORKER-rightsem-final | (local file) | validated_emails.csv | Domain, Email, Format Valid, MX Record Found, MX Host, MX IP, Country, SMTP Valid, SMTP Reason | Saves validated email results to CSV. |
 

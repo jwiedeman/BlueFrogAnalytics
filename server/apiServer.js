@@ -10,6 +10,7 @@ import { launch } from 'chrome-launcher';
 import desktopConfig from 'lighthouse/core/config/desktop-config.js';
 import { createTagHealthRouter } from './tagHealth.js';
 import { createToolsRouter } from "./tools.js";
+import { createSpecRouter } from './specifications.js';
 import { spawn, spawnSync } from 'child_process';
 import os from 'os';
 import path from 'path';
@@ -196,6 +197,19 @@ async function initCassandra() {
     )
   `);
 
+  await client.execute(`
+    CREATE TABLE IF NOT EXISTS domain_discovery.tracking_specs (
+      category text,
+      tool text,
+      name text,
+      rule text,
+      example text,
+      description text,
+      updated_at timestamp,
+      PRIMARY KEY ((category, tool), name)
+    )
+  `);
+
   await ensureColumns(client, 'domain_discovery', 'domains_processed', {
     registered: 'timestamp',
     registrar: 'text',
@@ -323,7 +337,64 @@ async function initCassandra() {
     data: 'map<text, text>'
   });
 
+  await ensureColumns(client, 'domain_discovery', 'tracking_specs', {
+    rule: 'text',
+    example: 'text',
+    description: 'text',
+    updated_at: 'timestamp'
+  });
+
   return client;
+}
+
+async function loadDemoSpecs(client) {
+  const countResult = await client.execute(
+    'SELECT COUNT(*) FROM domain_discovery.tracking_specs'
+  );
+  const count = countResult.rows[0]['count'];
+  const total = typeof count?.toNumber === 'function' ? count.toNumber() : count;
+  if (total > 0) return;
+  const demo = [
+    {
+      category: 'event',
+      tool: 'google_analytics',
+      name: 'page_view',
+      rule: 'request_url CONTAINS "collect" AND param t=pageview',
+      example: 'https://www.google-analytics.com/collect?v=1&t=pageview',
+      description: 'Google Analytics page view beacon'
+    },
+    {
+      category: 'event',
+      tool: 'adobe_analytics',
+      name: 'page_view',
+      rule: 'request_url CONTAINS "/b/ss/" AND param pe=v',
+      example: 'https://example.omtrdc.net/b/ss/account/1/JS-1.0/s?pageName=home',
+      description: 'Adobe Analytics page view call'
+    },
+    {
+      category: 'dimension',
+      tool: 'google_analytics',
+      name: 'client_id',
+      rule: 'cookie "_ga"',
+      example: 'GA1.2.1234567890.1234567890',
+      description: 'Unique GA client identifier'
+    }
+  ];
+  for (const row of demo) {
+    await client.execute(
+      'INSERT INTO domain_discovery.tracking_specs (category, tool, name, rule, example, description, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      [
+        row.category,
+        row.tool,
+        row.name,
+        row.rule,
+        row.example,
+        row.description,
+        new Date()
+      ],
+      { prepare: true }
+    );
+  }
 }
 
 const serviceAccountPath =
@@ -342,6 +413,7 @@ const firebaseApp = initializeApp({
 const firebaseAuth = getAuth(firebaseApp);
 
 const cassandraClient = await initCassandra();
+await loadDemoSpecs(cassandraClient);
 
 const app = express();
 app.disable('x-powered-by');
@@ -613,6 +685,11 @@ app.use(
   '/api/tools',
   optionalAuthMiddleware,
   createToolsRouter(updateTest, updateDomainRegistry, saveToolResult, saveCarbonAudit)
+);
+app.use(
+  '/api/specs',
+  optionalAuthMiddleware,
+  createSpecRouter(cassandraClient)
 );
 
 app.post('/api/profile', authMiddleware, async (req, res) => {
