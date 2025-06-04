@@ -10,6 +10,7 @@ This directory houses the Express-based API for Blue Frog Analytics. The server 
 - `POST /api/performance` – run Lighthouse performance tests for mobile and desktop
 - `POST /api/audit/accessibility` – run an accessibility audit
 - `POST /api/seo-audit` – run Lighthouse SEO audits for mobile and desktop
+- `GET /api/domain-info` – fetch metrics for a domain from Cassandra
 - `POST /api/tools/*` – various utility endpoints (image conversion, carbon calc, etc.)
 - `POST /api/tag-health` – start the analytics tag health scanner
 - `GET /api/tag-health/stream` – live scan progress via Server-Sent Events
