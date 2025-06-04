@@ -2,7 +2,6 @@ import os
 import json
 from typing import Any, Dict
 
-import wappalyzer_matcher
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -44,6 +43,10 @@ class FastDetector:
 
     def analyze_with_versions_and_categories(self, url: str) -> Dict[str, Any]:
         """Detect technologies on ``url`` using the custom matcher."""
+        # Import here to avoid a circular dependency when this module is
+        # imported by ``wappalyzer_matcher``.
+        import wappalyzer_matcher
+
         return wappalyzer_matcher.detect(url)
 
 
