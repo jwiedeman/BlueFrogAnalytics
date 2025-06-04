@@ -2,7 +2,6 @@ gevent
 certifi
 cassandra-driver
 python-whois
-pytz
 tldextract
 langdetect
 geoip2
@@ -11,5 +10,3 @@ Wappalyzer
 pycountry
 beautifulsoup4
 lxml
-ipwhois
-dnspython
