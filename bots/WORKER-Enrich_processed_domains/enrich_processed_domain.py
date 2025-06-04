@@ -23,6 +23,11 @@ from datetime import datetime
 from collections import defaultdict
 import geoip2.database
 import requests
+import csv
+import dns.resolver
+import smtplib
+from ipwhois import IPWhois
+from threading import Lock
 from cassandra.cluster import Cluster
 from bs4 import BeautifulSoup
 import xml.etree.ElementTree as ET
@@ -41,6 +46,10 @@ warnings.filterwarnings("ignore", category=UserWarning, module="Wappalyzer")
 GEOIP_CITY_DB = 'GeoLite2-City.mmdb'
 GEOIP_ASN_DB = 'GeoLite2-ASN.mmdb'
 CONCURRENCY = 50
+OUTPUT_FILE = "validated_emails.csv"
+SMTP_FROM = "verify@example.com"
+write_lock = Lock()
+header_written = False
 
 def safe_execute(session, query, params):
     delay = 5
@@ -51,6 +60,105 @@ def safe_execute(session, query, params):
             print(f"Error ({type(e).__name__}): {e}. Retrying in {delay}s...")
             time.sleep(delay)
             delay = min(delay * 2, 60)
+
+
+# --- Email validation helpers (RightSEM) ---
+email_pattern = re.compile(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
+
+def is_email_format_valid(email):
+    return email_pattern.match(email) is not None
+
+def get_mx_hosts(domain):
+    try:
+        answers = dns.resolver.resolve(domain, 'MX')
+        return sorted([r.exchange.to_text() for r in answers])
+    except Exception:
+        return []
+
+def get_domain_metadata(mx_host):
+    try:
+        ip = socket.gethostbyname(mx_host)
+        whois = IPWhois(ip)
+        details = whois.lookup_rdap(depth=1)
+        country = details.get('network', {}).get('country', 'Unknown')
+        return ip, country
+    except Exception:
+        return None, "Unknown"
+
+def smtp_verify_email(email, from_address=SMTP_FROM):
+    domain = email.split('@')[1]
+    mx_hosts = get_mx_hosts(domain)
+    if not mx_hosts:
+        return False, "No MX record"
+
+    for mx in mx_hosts:
+        try:
+            server = smtplib.SMTP(timeout=10)
+            server.connect(mx)
+            server.helo("example.com")
+            server.mail(from_address)
+            code, _ = server.rcpt(email)
+            server.quit()
+            if code == 250:
+                return True, "Accepted"
+            elif code == 550:
+                return False, "Rejected"
+            else:
+                return False, f"Other ({code})"
+        except Exception as e:
+            return False, f"SMTP error: {e}"
+    return False, "All MX attempts failed"
+
+def validate_email(email):
+    result = {
+        "Email": email,
+        "Format Valid": "No",
+        "MX Record Found": "No",
+        "MX Host": "",
+        "MX IP": "",
+        "Country": "",
+        "SMTP Valid": "No",
+        "SMTP Reason": "Not attempted",
+    }
+
+    if not is_email_format_valid(email):
+        return result
+
+    result["Format Valid"] = "Yes"
+    domain = email.split('@')[1]
+    mx_hosts = get_mx_hosts(domain)
+
+    if not mx_hosts:
+        result["SMTP Reason"] = "No MX record"
+        return result
+
+    result["MX Record Found"] = "Yes"
+    result["MX Host"] = mx_hosts[0]
+
+    ip, country = get_domain_metadata(mx_hosts[0])
+    if ip:
+        result["MX IP"] = ip
+        result["Country"] = country
+
+    smtp_ok, smtp_reason = smtp_verify_email(email)
+    result["SMTP Valid"] = "Yes" if smtp_ok else "No"
+    result["SMTP Reason"] = smtp_reason
+
+    return result
+
+def write_validation_rows(rows):
+    global header_written
+    with write_lock:
+        with open(OUTPUT_FILE, 'a', newline='', encoding='utf-8') as csvfile:
+            fieldnames = [
+                "Domain", "Email", "Format Valid", "MX Record Found", "MX Host",
+                "MX IP", "Country", "SMTP Valid", "SMTP Reason"
+            ]
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            if not header_written:
+                writer.writeheader()
+                header_written = True
+            writer.writerows(rows)
 
 
 def analyze_tech(target):
@@ -419,6 +527,17 @@ def process_domain(session, update_stmt, domain, tld):
     
     try:
         analysis = analyze_target(full_domain)
+        tech_txt = json.dumps(analysis.get('tech_detect', {})).lower()
+        if 'wordpress' in tech_txt or analysis.get('wordpress_version'):
+            emails = analysis.get('emails', [])
+            if emails:
+                results = []
+                for email in emails:
+                    res = validate_email(email)
+                    res['Domain'] = full_domain
+                    results.append(res)
+                if results:
+                    write_validation_rows(results)
         # Even if analysis data is partial, proceed to update the record.
         params = (
             str(analysis.get('asname', '')),
