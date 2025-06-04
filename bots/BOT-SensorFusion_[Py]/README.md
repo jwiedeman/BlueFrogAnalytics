@@ -61,3 +61,47 @@ Versions, categories and high‑level groups are exposed for each detected
 technology along with an aggregate confidence score calculated from the
 matched patterns.
 
+## Output Columns
+
+When the suite is executed the bot saves a `results.txt` file. Each test writes
+structured information that can be turned into columns for later analysis. The
+combined output currently includes:
+
+- **URL used** – address that produced the result (most tests report this).
+- **Detected technologies** – name, version, categories and groups from the
+  Wappalyzer matcher.
+- **Groups loaded**, **Categories loaded** and **Technologies loaded** – counts
+  from `test_wappalyzer_dataset.py`.
+- **Wappalyzer servers**, **Server fingerprinting** and **Overlap** – server
+  comparison from `test_crosscheck_server.py`.
+- **HTTP variation**, **Initial URL**, **Redirect chain**, **Final URL** and
+  **Final status code** from the basic response test.
+- **Allowed methods** from the HTTP methods test.
+- **Directory path**, **HTTP status** and a short **content snippet** produced by
+  directory enumeration.
+- **Open port status** for ports 80, 443, 8080, 22 and 21.
+- **X-Frame-Options**, **X-Content-Type-Options**, **Content-Security-Policy**,
+  **Referrer-Policy**, **X-XSS-Protection** and **Strict-Transport-Security**
+  header values from the HTTP security headers test.
+- **Set-Cookie presence** from the cookie settings test.
+- **Meta tag totals** along with detected Open Graph, Twitter and standard meta
+  tags.
+- **robots.txt**, **security.txt** and **.well-known/security.txt** retrieval
+  results plus any sitemap URLs found.
+- **Sitemap URLs** and cross-reference details from the sitemap comparison test.
+- **External resource list** from the external resources test.
+- **Server response headers** and any detected web application firewall (WAF)
+  names.
+- **Certificate details** including handshake time, TLS version, cipher suite,
+  ALPN/NPN protocols, session reuse, compression, forward secrecy, issuer,
+  subject, validity dates, days until expiration, serial number, certificate
+  version, signature algorithm, public key info, SHA256 fingerprint and subject
+  alternative names.
+- **WHOIS record fields** from the whois test (domain name, registrar, dates,
+  name servers, DNSSEC, etc.).
+- **DNS records** (A, AAAA, MX, NS, TXT, DMARC and SPF) from DNS enumeration.
+- **Passive subdomain count** and sample list from the subdomain gathering test.
+
+Refer to `results.txt` in this directory for a complete example of the raw
+output that contains these columns.
+
