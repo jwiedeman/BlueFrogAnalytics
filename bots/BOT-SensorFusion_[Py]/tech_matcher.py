@@ -2,7 +2,7 @@ import re
 from typing import Any, Dict, List
 
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, FeatureNotFound
 
 from tech_data import load_full_tech_data
 import dns.resolver
@@ -41,7 +41,10 @@ def _prepare_pattern(pattern: str) -> Dict[str, Any]:
     """Parse a technology pattern string into regex and attributes."""
     attrs: Dict[str, Any] = {}
     parts = pattern.split(";")
-    attrs["regex"] = re.compile(parts[0], re.I)
+    try:
+        attrs["regex"] = re.compile(parts[0], re.I)
+    except re.error:
+        attrs["regex"] = re.compile(re.escape(parts[0]))
     for part in parts[1:]:
         if ":" in part:
             key, val = part.split(":", 1)
@@ -70,7 +73,10 @@ def detect(url: str) -> Dict[str, Any]:
         return {"error": f"Request failed: {exc}"}
 
     html = resp.text
-    soup = BeautifulSoup(html, "lxml")
+    try:
+        soup = BeautifulSoup(html, "lxml")
+    except FeatureNotFound:
+        soup = BeautifulSoup(html, "html.parser")
     scripts = [s.get("src", "") for s in soup.find_all("script", src=True)]
     inline_scripts = [s.get_text() for s in soup.find_all("script") if not s.get("src")]
     meta = {m.get("name", "").lower(): m.get("content", "") for m in soup.find_all("meta", attrs={"name": True, "content": True})}
@@ -148,13 +154,20 @@ def detect(url: str) -> Dict[str, Any]:
         if dom:
             if isinstance(dom, list):
                 for selector in dom:
-                    if soup.select_one(selector):
+                    try:
+                        matched_el = soup.select_one(selector)
+                    except Exception:
+                        matched_el = None
+                    if matched_el:
                         conf += 100
                         version = version or ""
                         break
             elif isinstance(dom, dict):
                 for selector, cond in dom.items():
-                    elements = soup.select(selector)
+                    try:
+                        elements = soup.select(selector)
+                    except Exception:
+                        elements = []
                     if not elements:
                         continue
                     if isinstance(cond, dict):
