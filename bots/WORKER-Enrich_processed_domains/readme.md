@@ -1,195 +1,85 @@
-🌐 Domain Enrichment Processor
-------------------------------
+# Domain Enrichment Processor
 
-> Real-time web domain analysis for SSL, geo, language, registrar, ASN, and stack tech --- **faster than your DNS can blink.**
+This worker enriches rows in the `domains_processed` table with
+network, geolocation and website metadata.  It resolves each domain,
+runs several scanners and then updates Cassandra with the results.
 
-* * * * *
+## What it does
+- GeoIP lookups for city, region, country and timezone
+- ASN and ISP identification
+- SSL certificate issuer extraction
+- Homepage analysis (title, description, contact details)
+- Basic content scraping for phone numbers and emails
+- Technology detection using a local Wappalyzer build
+- Sitemap size counting
 
-### 🧠 What This Is
+Only domains marked `user_managed = true` are processed.  If a site is
+unreachable its `status` field is set to `false`.
 
-This is a **concurrent domain enrichment tool** written in Python, built to run efficiently against a Cassandra-backed data store. It resolves and analyzes domains pulled from a `domains_processed` table and updates them with:
+## Required files
+- `GeoLite2-City.mmdb`
+- `GeoLite2-ASN.mmdb`
+- Local patched copy of `Wappalyzer` inside this directory
 
--   ✅ GeoIP (City, Country, Lat/Lon, Timezone, etc.)
-
--   ✅ ASN & ISP info
-
-
--   ✅ SSL certificate org & issuer
-
--   ✅ Website content characteristics (languages, phone numbers, zipcodes)
-
--   ✅ Tech stack detection via Wappalyzer (offline mode)
-
-It is **Dockerized**, highly configurable, and engineered for **fast enrichment in bulk.**
-
-* * * * *
-
-### 🧩 Requirements
-
-This script **requires** the following local files to function correctly:
-
--   `GeoLite2-City.mmdb`
-
--   `GeoLite2-ASN.mmdb`
-
--   A **patched** or forked version of `Wappalyzer` installed locally in the container (with offline support + timeout tweaks)
-
-* * * * *
-
-### 🗂 Directory Structure
-
-bash
-
-CopyEdit
-
-`enrich-processor/
-├── enrich_processed_domain.py
-├── Dockerfile
-├── requirements.txt
-├── GeoLite2-City.mmdb
-├── GeoLite2-ASN.mmdb
-└── wappalyzer/           # Custom module fork or patch goes here`
-
-* * * * *
-
-### 🐳 Dockerfile (Recap)
-
-This project uses the following `Dockerfile` (already provided):
-
-dockerfile
-
-CopyEdit
-
-`FROM python:3.11-slim
-
-WORKDIR /app
-
-RUN apt-get update && apt-get install -y --no-install-recommends\
-    build-essential\
-    libmaxminddb0\
-    && rm -rf /var/lib/apt/lists/*
-
-COPY . /app
-
-RUN pip install --no-cache-dir -r requirements.txt
-
-CMD ["python", "enrich_processed_domain.py"]`
-
-* * * * *
-
-### 🧾 requirements.txt
-
-text
-
-CopyEdit
-
-`gevent
-certifi
-cassandra-driver
-python-whois
-pytz
-tldextract
-langdetect
-geoip2
-requests
-pycountry
-Wappalyzer @ file:///app/wappalyzer  # Local patched version`
-
-Make sure your custom Wappalyzer fork is installed **locally from the directory**, not PyPI.
-
-* * * * *
-
-### Local Setup
-
-Install Python 3.11 and the required packages:
-
+## Running locally
 ```bash
 pip install -r requirements.txt
 python enrich_processed_domain.py --status-true-only
 ```
 
-Edit `enrich_processed_domain.py` if your Cassandra nodes differ from the defaults.
-
-* * * * *
-
-### 🚀 Build & Run
-
-#### 1\. **Build the container**
-
-bash
-
-CopyEdit
-
-`docker build -t domain-enricher .`
-
-#### 2\. **Run with local volume (to access mmdb files and local wappalyzer)**
-
-bash
-
-CopyEdit
-
-`docker run --rm\
-  -v $(pwd):/app\
-  --network=host\
-  domain-enricher`
-
-> Note: `--network=host` is required to access your Cassandra cluster running on the host (e.g. `192.168.1.201`).
-
-* * * * *
-
-### ⚠️ Critical Dependencies
-
-This system **will not work** if:
-
--   ✅ The `.mmdb` files are missing
-
--   ✅ The Wappalyzer package is not your **custom local patched version**
-
--   ❌ Wappalyzer times out or fails to parse local content due to known PyPI bugs
-
--   ❌ Cassandra is unreachable on the listed IPs
-
-* * * * *
-
-### 🔒 Tips for Smooth Ops
-
--   Mount your data directory properly if running from a CI/CD pipeline.
-
--   Consider setting a `--max-concurrency` flag in the future for dynamic tuning.
-
--   Logs are output to stdout --- pipe them to a log file if needed.
-
-* * * * *
-
-### 🤖 TARS Says:
-
-> "You're trying to run 50 concurrent SSL scans and Geo lookups... in Docker... on slim Python...\
-> You're either brilliant... or about to melt your NIC. Either way, I approve."
-
-* * * * *
-
-### 📈 What's Next?
-
--   Add `dotenv` support for IPs, DC names, and DB names
-
--   Output to optional JSON or CSV for quick analysis
-
--   Support fallback if any MMDB isn't present
-
--   Add dashboard for batch progress
-
-* * * * *
-
-### 🪐 License
-
-Use. Break. Patch. Improve.\
-Just don't push this thing live on a Raspberry Pi and wonder why it's on fire.
-## Docker Swarm
-
-This image can also run as a service in Docker Swarm after being built and pushed to your registry.
-
+## Docker
 ```bash
-docker service create --name <service-name> --env-file .env <image>:latest
+docker build -t domain-enricher .
+docker run --rm \
+  -v $(pwd):/app \
+  --network=host \
+  domain-enricher
 ```
 
-Alternatively include the service in a stack file and deploy with `docker stack deploy`.
+`--network=host` is required so the container can reach your Cassandra
+cluster.
+
+## Output columns
+The worker updates the following columns in
+`domain_discovery.domains_processed`:
+
+| Column               | Description                                    |
+|----------------------|------------------------------------------------|
+| `status`             | `true` if the domain responded to HTTP/HTTPS   |
+| `updated`            | Timestamp when the row was last touched        |
+| `as_name`            | Autonomous system organization                 |
+| `as_number`          | ASN in the form `AS12345`                      |
+| `city`               | City from GeoIP                                |
+| `continent`          | Continent name from GeoIP                      |
+| `continent_code`     | Continent code (e.g. `NA`)                     |
+| `country`            | Country name                                   |
+| `country_code`       | ISO country code                               |
+| `isp`                | ISP name from ASN database                     |
+| `languages`          | Detected languages from page content           |
+| `lat`                | Latitude                                       |
+| `lon`                | Longitude                                      |
+| `org`                | Organization name from ASN data                |
+| `phone`              | List of phone numbers scraped from the site    |
+| `region`             | Region/State code                              |
+| `region_name`        | Region/State name                              |
+| `registered`         | Domain creation date (from WHOIS)              |
+| `registrar`          | Registrar name (from WHOIS)                    |
+| `ssl_issuer`         | SSL certificate issuer                         |
+| `tech_detect`        | JSON object of technologies from Wappalyzer    |
+| `time_zone`          | Timezone from GeoIP                            |
+| `title`              | Homepage `<title>` text                        |
+| `description`        | Meta description                               |
+| `linkedin_url`       | First LinkedIn link on the homepage            |
+| `has_about_page`     | Whether an "About" page link was seen          |
+| `has_services_page`  | Whether a "Services" page link was seen        |
+| `has_cart_or_product`| Whether e‑commerce keywords were detected      |
+| `contains_gtm_or_ga` | Presence of Google Tag Manager or Analytics    |
+| `wordpress_version`  | WordPress version if detected                  |
+| `server_type`        | HTTP server type (e.g. `nginx`)                |
+| `server_version`     | Server version number                          |
+| `emails`             | List of emails found                           |
+| `sitemap_page_count` | Total pages listed across sitemaps             |
+| `last_enriched`      | Timestamp when enrichment finished             |
+
+Additional information such as WordPress asset versions and
+`X-Powered-By` headers is gathered but not currently stored.
