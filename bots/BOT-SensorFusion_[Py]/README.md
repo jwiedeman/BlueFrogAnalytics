@@ -41,7 +41,7 @@ the returned `Wappalyzer` engine.
 
 `test_simple_matcher.py` demonstrates the bundled matcher in
 `wappalyzer_matcher.py`. It now mirrors Wappalyzer's logic for URL,
-header, HTML, script and meta pattern checks and resolves implied
+header, HTML, script, cookie and meta pattern checks and resolves implied
 technologies. Versions and categories are exposed for each detected
 technology.
 
