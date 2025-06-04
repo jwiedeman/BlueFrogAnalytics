@@ -217,9 +217,9 @@ func createCassandraSession(hostsCSV, keyspace string) (*gocql.Session, error) {
 	cluster := gocql.NewCluster(hosts...)
 	cluster.Keyspace = keyspace
 	cluster.Consistency = gocql.One
-	// Global Cassandra timeouts
-	cluster.ConnectTimeout = 120 * time.Second
-	cluster.Timeout = 120 * time.Second
+       // Global Cassandra timeouts
+       cluster.ConnectTimeout = 600 * time.Second
+       cluster.Timeout = 600 * time.Second
 	cluster.Port = 9042
 	cluster.Dialer = &portEnforcerDialer{}
 	cluster.DisableInitialHostLookup = true

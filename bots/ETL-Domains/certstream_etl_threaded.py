@@ -308,7 +308,7 @@ def worker_task_minimal(task_queue, cluster, keyspace, throttle_mgr, stats):
     """
     try:
         session = cluster.connect(keyspace)
-        session.default_timeout = 120
+        session.default_timeout = 600
         stmts = prepare_statements_minimal(session)
         
         logger.info("Worker thread started (minimal)")
@@ -398,10 +398,10 @@ def main():
         load_balancing_policy=DCAwareRoundRobinPolicy(),
         default_retry_policy=DowngradingConsistencyRetryPolicy(),
         # Use extended timeouts to avoid premature failures
-        connect_timeout=120,
-        control_connection_timeout=120,
+        connect_timeout=600,
+        control_connection_timeout=600,
         idle_heartbeat_interval=30,
-        idle_heartbeat_timeout=120,
+        idle_heartbeat_timeout=600,
         protocol_version=4,
         compression=True
     )

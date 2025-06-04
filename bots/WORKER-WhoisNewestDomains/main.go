@@ -47,9 +47,9 @@ func main() {
 	cluster.Keyspace = keyspace
 	cluster.Consistency = gocql.Quorum
 	cluster.NumConns = runtime.NumCPU()
-	// Use 120s timeouts for Cassandra operations
-	cluster.Timeout = 120 * time.Second
-	cluster.ConnectTimeout = 120 * time.Second
+       // Use 10 minute timeouts for Cassandra operations
+       cluster.Timeout = 600 * time.Second
+       cluster.ConnectTimeout = 600 * time.Second
 
 	var session *gocql.Session
 	var err error

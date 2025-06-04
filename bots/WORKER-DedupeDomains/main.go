@@ -48,8 +48,8 @@ func main() {
 
 	cluster := gocql.NewCluster(hosts...)
 	cluster.Keyspace = keyspace
-	cluster.Timeout = 120 * time.Second
-	cluster.ConnectTimeout = 120 * time.Second
+       cluster.Timeout = 600 * time.Second
+       cluster.ConnectTimeout = 600 * time.Second
 	cluster.Consistency = gocql.Quorum
 	cluster.NumConns = runtime.NumCPU() * 2
 
