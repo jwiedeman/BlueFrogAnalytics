@@ -28,9 +28,10 @@ async def run_city(city: str, terms: list[str], args, slots: Queue, sem: Semapho
         ]
         try:
             for term in terms:
+                search = f"{city} {term}".strip()
                 await scrape_city_grid(
                     city,
-                    term,
+                    search,
                     args.steps,
                     args.spacing_deg,
                     args.per_grid_total,
