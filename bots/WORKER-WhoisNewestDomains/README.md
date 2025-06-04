@@ -1,4 +1,4 @@
-# newestwhois
+# Whois Newest Domains Worker
 
 A Go based worker that scrapes newly registered domains from whoisds.com and inserts them into the Cassandra cluster used by the other Whois workers. It can also export all domains to CSV.
 
@@ -29,45 +29,45 @@ CASSANDRA_KEYSPACE=domain_discovery
 ### Locally
 ```bash
 git clone <repo_url>
-cd newestwhois
-go build -o newestwhois
+cd WORKER-WhoisNewestDomains
+go build -o whois_grabber
 ```
 
 ### Docker
 ```bash
 # Build the Docker image
-docker build -t newestwhois .
+docker build -t whois-newest-worker .
 
 # Run the container (scheduled mode)
 docker run --rm \
   -e CASSANDRA_URL=192.168.1.201:9042 \
   -e CASSANDRA_KEYSPACE=domain_discovery \
-  newestwhois
+  whois-newest-worker
 
 # CSV only mode
 docker run --rm \
   -v "$(pwd):/app" \
   -e CASSANDRA_URL=192.168.1.201:9042 \
   -e CASSANDRA_KEYSPACE=domain_discovery \
-  newestwhois --csv
+  whois-newest-worker --csv
 ```
 
-When run via Docker, the container uses a simple cron setup to execute the grabber at midnight and noon each day. At other times it remains idle.
+When run in Docker, the image simply executes the grabber once and then exits. Schedule the container with your preferred tool (e.g. `cron` or a Kubernetes `CronJob`) to run daily.
 
 ## Usage
 Run the binary directly or via Docker. By default, it inserts into Cassandra. Pass `--csv` to export CSV only.
 ```bash
 # Local DB mode
-./target/release/newestwhois
+./whois_grabber
 
 # Local CSV mode
-./target/release/newestwhois --csv
+./whois_grabber --csv
 
 # Docker DB mode
-docker run --rm -e CASSANDRA_URL=192.168.1.201:9042 -e CASSANDRA_KEYSPACE=domain_discovery newestwhois
+docker run --rm -e CASSANDRA_URL=192.168.1.201:9042 -e CASSANDRA_KEYSPACE=domain_discovery whois-newest-worker
 
 # Docker CSV mode (mount for file output)
-docker run --rm -v "$(pwd):/app" -e CASSANDRA_URL=192.168.1.201:9042 -e CASSANDRA_KEYSPACE=domain_discovery newestwhois --csv
+docker run --rm -v "$(pwd):/app" -e CASSANDRA_URL=192.168.1.201:9042 -e CASSANDRA_KEYSPACE=domain_discovery whois-newest-worker --csv
 ```
 
 The tool will:
