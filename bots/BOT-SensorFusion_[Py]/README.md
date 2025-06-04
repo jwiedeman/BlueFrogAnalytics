@@ -15,6 +15,11 @@ The new test `test_wappalyzer_integration.py` relies on the bundled Wappalyzer
 library located in `../BOT-wappalyzer[Py]/`. It attempts multiple HTTP/HTTPS
 variants of the target until technology fingerprints are found.
 
+To expose Wappalyzer's technology database to the rest of the tests a helper
+module `wappalyzer_data.py` loads the `technologies.json` file. This ensures the
+same categories and matching rules used by Wappalyzer are available within the
+Sensor Fusion test suite.
+
 All existing tests from `BOT-Recon_[Py]` are discovered automatically, allowing
 the full reconnaissance suite to run alongside the Wappalyzer fingerprinting.
 
@@ -24,3 +29,7 @@ A second test `test_crosscheck_server.py` compares the server detection output f
 `BOT-Recon_[Py]`'s `test_server_fingerprinting.py` with Wappalyzer results. It
 reports any overlap between the two techniques to help validate fingerprinting
 accuracy.
+
+The third test `test_wappalyzer_categories.py` lists detected technologies along
+with their versions and categories for quick reference.
+
