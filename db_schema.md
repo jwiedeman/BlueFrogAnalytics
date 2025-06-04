@@ -86,6 +86,12 @@ Lighthouse metrics:
 - `lighthouse_version` text
 - `lighthouse_fetch_time` timestamp
 - `lighthouse_url` text
+- `desktop_performance_suggestions` text
+- `mobile_performance_suggestions` text
+- `desktop_accessibility_suggestions` text
+- `mobile_accessibility_suggestions` text
+- `desktop_seo_suggestions` text
+- `mobile_seo_suggestions` text
 
 Subdomains:
 - `raw_subdomains` set<text>
@@ -122,6 +128,12 @@ write these values directly to `domains_processed`.
 - `lighthouse_version` text
 - `lighthouse_fetch_time` timestamp
 - `lighthouse_url` text
+- `desktop_performance_suggestions` text
+- `mobile_performance_suggestions` text
+- `desktop_accessibility_suggestions` text
+- `mobile_accessibility_suggestions` text
+- `desktop_seo_suggestions` text
+- `mobile_seo_suggestions` text
 
 ### `analytics_tag_health`
 Detailed analytics and tag compliance results.

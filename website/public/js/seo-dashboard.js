@@ -43,8 +43,16 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       let html = '';
-      if (data.mobile) html += render(data.mobile, 'Mobile');
-      if (data.desktop) html += render(data.desktop, 'Desktop');
+      if (data.mobile) {
+        html += render(data.mobile, 'Mobile');
+        if (data.mobileSuggestions)
+          html += `<p><strong>Fixes:</strong> ${data.mobileSuggestions.seo || ''}</p>`;
+      }
+      if (data.desktop) {
+        html += render(data.desktop, 'Desktop');
+        if (data.desktopSuggestions)
+          html += `<p><strong>Fixes:</strong> ${data.desktopSuggestions.seo || ''}</p>`;
+      }
       results.innerHTML = html;
       logTestStatus('seo-audit', 'complete');
     } catch (err) {
