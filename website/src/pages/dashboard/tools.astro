@@ -1,0 +1,64 @@
+---
+import DashboardLayout from '../../components/DashboardLayout.astro';
+
+const title = 'Tools';
+const description = 'Manage tool options.';
+---
+<DashboardLayout title={title} description={description}>
+  <section class="container py-5" style="max-width: 600px;">
+    <h1 class="text-center mb-4">Tool Options</h1>
+    <form id="tools-form">
+      <div class="form-check mb-2">
+        <input class="form-check-input" type="checkbox" id="opt-carbon" />
+        <label class="form-check-label" for="opt-carbon">Carbon Calculator</label>
+      </div>
+      <div class="form-check mb-2">
+        <input class="form-check-input" type="checkbox" id="opt-imageBloat" />
+        <label class="form-check-label" for="opt-imageBloat">Image Bloat</label>
+      </div>
+      <div class="form-check mb-2">
+        <input class="form-check-input" type="checkbox" id="opt-tagDragRace" />
+        <label class="form-check-label" for="opt-tagDragRace">Tag Drag Race</label>
+      </div>
+      <div class="form-check mb-2">
+        <input class="form-check-input" type="checkbox" id="opt-serpPreview" />
+        <label class="form-check-label" for="opt-serpPreview">SERP Preview</label>
+      </div>
+      <div class="form-check mb-4">
+        <input class="form-check-input" type="checkbox" id="opt-contrastHeatmap" />
+        <label class="form-check-label" for="opt-contrastHeatmap">Contrast Heatmap</label>
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Save Options</button>
+      <div id="tools-alert" class="alert d-none mt-3" role="alert"></div>
+    </form>
+  </section>
+  <script type="module">
+    document.addEventListener('DOMContentLoaded', () => {
+      const formEl = document.getElementById('tools-form');
+      const alertEl = document.getElementById('tools-alert');
+      const fields = ['carbon', 'imageBloat', 'tagDragRace', 'serpPreview', 'contrastHeatmap'];
+      const load = () => {
+        try {
+          const opts = JSON.parse(localStorage.getItem('toolOptions') || '{}');
+          fields.forEach(n => {
+            const el = document.getElementById(`opt-${n}`);
+            if (el) el.checked = !!opts[n];
+          });
+        } catch {}
+      };
+      load();
+      formEl.addEventListener('submit', e => {
+        e.preventDefault();
+        const opts = {};
+        fields.forEach(n => {
+          const el = document.getElementById(`opt-${n}`);
+          opts[n] = !!el?.checked;
+        });
+        localStorage.setItem('toolOptions', JSON.stringify(opts));
+        alertEl.textContent = 'Options saved';
+        alertEl.className = 'alert alert-success mt-3';
+        alertEl.classList.remove('d-none');
+      });
+    });
+  </script>
+</DashboardLayout>
