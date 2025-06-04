@@ -22,8 +22,7 @@ const csp =
 <script is:inline>
   try {
     const darkPref = localStorage.getItem('bfaDarkMode') === 'true';
-    const onDashboard = window.location.pathname.startsWith('/dashboard');
-    if (darkPref && onDashboard) {
+    if (darkPref) {
       document.documentElement.classList.add('dark-mode');
       document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('dark-mode');

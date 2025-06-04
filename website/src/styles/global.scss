@@ -29,6 +29,14 @@ html {
   --bs-navbar-brand-hover-color: var(--sl-color-primary);
 }
 
+/* Smooth transitions for navigation elements */
+.navbar,
+.dropdown-menu,
+footer,
+.dashboard-side-nav {
+  transition: background-color 1s, color 1s;
+}
+
 /* Global page body styles */
 body {
   font-family: var(--sl-font-sans);
