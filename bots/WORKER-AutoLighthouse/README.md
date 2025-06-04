@@ -54,7 +54,7 @@ node index.js db --workers 10 --interval 10
 Database connection settings are defined in `cassandra.js`.
 
 Only domains with `status = true`, a recorded `updated` timestamp (meaning the
-`DomainStatus` worker recently confirmed the site is reachable), and missing
+enrichment worker recently confirmed the site is reachable), and missing
 Lighthouse data are pulled from Cassandra when running the `db` command.
 
 

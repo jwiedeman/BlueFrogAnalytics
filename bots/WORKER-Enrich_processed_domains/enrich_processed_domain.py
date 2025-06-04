@@ -10,6 +10,8 @@ from cassandra.io import geventreactor
 cassandra.connection.Connection = geventreactor.GeventConnection
 
 from gevent.pool import Pool
+import gevent
+import random
 import socket
 import ssl
 import re
@@ -41,6 +43,36 @@ warnings.filterwarnings("ignore", category=UserWarning, module="Wappalyzer")
 GEOIP_CITY_DB = 'GeoLite2-City.mmdb'
 GEOIP_ASN_DB = 'GeoLite2-ASN.mmdb'
 CONCURRENCY = 50
+HEAD_TIMEOUT = 5
+
+USER_AGENTS = [
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (iPhone; CPU iPhone OS 15_2 like Mac OS X) AppleWebKit/537.36 (KHTML, like Gecko) Version/15.2 Mobile/15E148 Safari/537.36",
+]
+
+def random_user_agent():
+    return random.choice(USER_AGENTS)
+
+def check_url(url):
+    try:
+        resp = requests.head(url, timeout=HEAD_TIMEOUT, allow_redirects=False,
+                             headers={"User-Agent": random_user_agent(), "Accept": "*/*"})
+        return 200 <= resp.status_code < 500
+    except Exception:
+        return False
+
+def is_domain_up(domain):
+    variants = [
+        f"https://{domain}",
+        f"https://www.{domain}",
+        f"http://{domain}",
+        f"http://www.{domain}",
+    ]
+    jobs = [gevent.spawn(check_url, u) for u in variants]
+    gevent.joinall(jobs, timeout=HEAD_TIMEOUT + 1)
+    return any(job.value for job in jobs)
 
 def safe_execute(session, query, params):
     delay = 5
@@ -410,19 +442,25 @@ def analyze_target(target):
     
     return {k: v for k, v in result.items() if v not in [None, '', {}, []]}
 
-def process_domain(session, update_stmt, domain, tld):
+def process_domain(session, update_stmt, down_stmt, domain, tld):
     # Clean up domain and tld to avoid duplicate dots or leading/trailing dots
     domain_clean = domain.strip().strip('.')
     tld_clean = tld.strip().strip('.')
     full_domain = f"{domain_clean}.{tld_clean}"
     print(f"Processing {full_domain}")
-    
+
+    now_str = datetime.utcnow().isoformat()
+
     try:
+        if not is_domain_up(full_domain):
+            safe_execute(session, down_stmt, (False, now_str, domain, tld))
+            print(f"{full_domain} is down")
+            return
+
         analysis = analyze_target(full_domain)
-        tech_txt = json.dumps(analysis.get('tech_detect', {})).lower()
-        # Emails are stored directly; validation removed
-        # Even if analysis data is partial, proceed to update the record.
         params = (
+            True,
+            now_str,
             str(analysis.get('asname', '')),
             str(analysis.get('as', '')),
             str(analysis.get('city', '')),
@@ -455,8 +493,7 @@ def process_domain(session, update_stmt, domain, tld):
             str(analysis.get('server_version', '')),
             json.dumps(analysis.get('emails', [])),
             int(analysis.get('sitemap_page_count', 0)),
-            str(analysis.get('updated', '')),
-            datetime.utcnow().isoformat(),
+            now_str,
             domain,
             tld
         )
@@ -491,6 +528,8 @@ def main():
         
         update_query = """
             UPDATE domain_discovery.domains_processed SET
+                status = ?,
+                updated = ?,
                 as_name = ?,
                 as_number = ?,
                 city = ?,
@@ -523,11 +562,13 @@ def main():
                 server_version = ?,
                 emails = ?,
                 sitemap_page_count = ?,
-                updated = ?,
                 last_enriched = ?
             WHERE domain = ? AND tld = ?
         """
         update_stmt = session.prepare(update_query)
+        down_stmt = session.prepare(
+            "UPDATE domain_discovery.domains_processed SET status=?, updated=? WHERE domain=? AND tld=?"
+        )
         
         pool = Pool(CONCURRENCY)
         rows_query = (
@@ -540,7 +581,7 @@ def main():
             rh = row.refresh_hours or 168
             last = row.last_enriched
             if not last or (now - last).total_seconds() > rh * 3600:
-                pool.spawn(process_domain, session, update_stmt, row.domain, row.tld)
+                pool.spawn(process_domain, session, update_stmt, down_stmt, row.domain, row.tld)
                 time.sleep(0.1)
 
         pool.join()
