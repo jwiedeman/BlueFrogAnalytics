@@ -638,3 +638,10 @@ body.dark-mode .dashboard-side-nav .nav-link.active {
 body.dark-mode .serp-url {
   color: #8ab4f8;
 }
+
+/* Maintain header layout when auth state switches */
+#login-btn,
+#profile-menu > a {
+  min-width: 110px;
+  text-align: center;
+}
