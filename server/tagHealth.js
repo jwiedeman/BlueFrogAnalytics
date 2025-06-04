@@ -340,7 +340,7 @@ async function scanVariants(variants, progress = () => {}, maxPages = DEFAULT_MA
   }
 }
 
-export function createTagHealthRouter(updateTest, updateDomainRegistry) {
+export function createTagHealthRouter(updateTest, updateDomainRegistry, saveTagHealthResult) {
   const router = express.Router();
 
   router.post('/', async (req, res) => {
@@ -374,6 +374,9 @@ export function createTagHealthRouter(updateTest, updateDomainRegistry) {
       const hasGa = !!(result.found_analytics.google_analytics || result.found_analytics.google_tag_manager);
       if (typeof updateDomainRegistry === 'function') {
         await updateDomainRegistry(domain, { contains_gtm_or_ga: hasGa });
+      }
+      if (saveTagHealthResult) {
+        await saveTagHealthResult(domain, result);
       }
       res.json(result);
     } catch (err) {
@@ -471,6 +474,9 @@ export function createTagHealthRouter(updateTest, updateDomainRegistry) {
       const hasGa = !!(result.found_analytics.google_analytics || result.found_analytics.google_tag_manager);
       if (typeof updateDomainRegistry === 'function') {
         await updateDomainRegistry(domain, { contains_gtm_or_ga: hasGa });
+      }
+      if (saveTagHealthResult) {
+        await saveTagHealthResult(domain, result);
       }
       res.write(`data: ${JSON.stringify({ done: true, result })}\n\n`);
       res.end();
