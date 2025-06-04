@@ -849,6 +849,7 @@ app.get('/api/domain-pages', authMiddleware, async (req, res) => {
   if (typeof domain !== 'string') {
     return res.status(400).json({ error: 'Invalid domain' });
   }
+
   const parts = parseDomainParts(domain);
   if (!parts) {
     return res.status(400).json({ error: 'Invalid domain' });
