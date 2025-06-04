@@ -33,6 +33,7 @@ const description = 'Your personal Blue Frog Analytics dashboard.';
       const emailEl = document.getElementById('user-email');
       const bodyEl = document.getElementById('domain-body');
       let domains = [];
+      const dataMap = {};
 
       const render = () => {
         bodyEl.innerHTML = '';
@@ -42,12 +43,22 @@ const description = 'Your personal Blue Frog Analytics dashboard.';
           return;
         }
         domains.forEach(name => {
+          const info = dataMap[name] || {};
+          const seo = info.desktop_seo_score || info.mobile_seo_score;
+          const perf = info.desktop_performance_score || info.mobile_performance_score;
+          const analytics = info.contains_gtm_or_ga ? 'Yes' : info.contains_gtm_or_ga === false ? 'No' : '--';
+          const badge = score => {
+            if (typeof score !== 'number') return 'bg-secondary';
+            if (score >= 90) return 'bg-success';
+            if (score >= 50) return 'bg-warning';
+            return 'bg-danger';
+          };
           const row = document.createElement('tr');
           row.innerHTML = `
             <td>${name}</td>
-            <td><span class="badge bg-secondary">--</span></td>
-            <td><span class="badge bg-secondary">--</span></td>
-            <td><span class="badge bg-secondary">--</span></td>`;
+            <td><span class="badge ${badge(seo)}">${seo ?? '--'}</span></td>
+            <td><span class="badge ${badge(perf)}">${perf ?? '--'}</span></td>
+            <td><span class="badge bg-secondary">${analytics}</span></td>`;
           bodyEl.appendChild(row);
         });
       };
@@ -67,6 +78,17 @@ const description = 'Your personal Blue Frog Analytics dashboard.';
             if (res.ok) {
               const profile = await res.json();
               domains = Array.isArray(profile.domains) ? profile.domains : [];
+              for (const d of domains) {
+                try {
+                  const r = await fetch(
+                    `${API_BASE}/api/domain-info?domain=${encodeURIComponent(d)}`,
+                    { headers: { Authorization: `Bearer ${token}` } }
+                  );
+                  if (r.ok) {
+                    dataMap[d] = await r.json();
+                  }
+                } catch {}
+              }
               render();
             } else {
               render();
