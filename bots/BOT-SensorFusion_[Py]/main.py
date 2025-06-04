@@ -117,9 +117,20 @@ def run_fingerprint(target):
         variants = [target]
 
     detector = get_detector()
+    excluded = {
+        "CMS",
+        "Authentication",
+        "Payment processors",
+        "Buy now pay later",
+        "Advertising",
+        "Live chat",
+        "Message boards",
+    }
     for url in variants:
         try:
-            results = detector.analyze_with_versions_and_categories(url)
+            results = detector.analyze_with_versions_and_categories(
+                url, min_confidence=150, exclude_categories=excluded
+            )
             if results:
                 lines = [f"URL used: {url}"]
                 for name, data in results.items():

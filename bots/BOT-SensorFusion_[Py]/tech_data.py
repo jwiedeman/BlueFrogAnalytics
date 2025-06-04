@@ -1,6 +1,6 @@
 import os
 import json
-from typing import Any, Dict
+from typing import Any, Dict, Optional, Set
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -41,13 +41,23 @@ def load_full_tech_data():
 class FastDetector:
     """Simple wrapper providing a lightweight detection interface."""
 
-    def analyze_with_versions_and_categories(self, url: str) -> Dict[str, Any]:
-        """Detect technologies on ``url`` using the custom matcher."""
+    def analyze_with_versions_and_categories(self, url: str, *, min_confidence: int = 0, exclude_categories: Optional[Set[str]] = None) -> Dict[str, Any]:
+        """Detect technologies on ``url`` using the custom matcher.
+
+        Parameters
+        ----------
+        url : str
+            Target URL to analyze.
+        min_confidence : int, optional
+            Minimum aggregate confidence required for a technology to be returned.
+        exclude_categories : set[str] | None, optional
+            Category names to filter out from the final results.
+        """
         # Import here to avoid a circular dependency when this module is
         # imported by ``tech_matcher``.
         import tech_matcher
 
-        return tech_matcher.detect(url)
+        return tech_matcher.detect(url, min_confidence=min_confidence, exclude_categories=exclude_categories)
 
 
 def get_detector() -> FastDetector:
