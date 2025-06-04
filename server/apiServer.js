@@ -390,6 +390,42 @@ async function updateTest(uid, name, data) {
   );
 }
 
+function parseDomainParts(input) {
+  try {
+    const url = new URL(input.includes('://') ? input : `http://${input}`);
+    const host = url.hostname.replace(/^www\./i, '').toLowerCase();
+    const parts = host.split('.');
+    if (parts.length < 2) return null;
+    const tld = parts.pop();
+    const domain = parts.pop();
+    return { domain, tld };
+  } catch {
+    return null;
+  }
+}
+
+async function updateDomainRegistry(url, columns) {
+  const parts = parseDomainParts(url);
+  if (!parts) return;
+  const { domain, tld } = parts;
+  const check = await cassandraClient.execute(
+    'SELECT domain FROM domain_discovery.domains_processed WHERE domain=? AND tld=?',
+    [domain, tld],
+    { prepare: true }
+  );
+  if (!check.rowLength) return;
+  const keys = Object.keys(columns);
+  if (!keys.length) return;
+  const setClause = keys.map(k => `${k}=?`).join(', ');
+  const values = keys.map(k => columns[k]);
+  values.push(domain, tld);
+  await cassandraClient.execute(
+    `UPDATE domain_discovery.domains_processed SET ${setClause} WHERE domain=? AND tld=?`,
+    values,
+    { prepare: true }
+  );
+}
+
 async function authMiddleware(req, res, next) {
   const header = req.headers.authorization || '';
   let token = header.startsWith('Bearer ') ? header.slice(7) : null;
@@ -422,7 +458,7 @@ async function optionalAuthMiddleware(req, res, next) {
   next();
 }
 
-app.use('/api/tag-health', optionalAuthMiddleware, createTagHealthRouter(updateTest));
+app.use('/api/tag-health', optionalAuthMiddleware, createTagHealthRouter(updateTest, updateDomainRegistry));
 app.use('/api/tools', optionalAuthMiddleware, createToolsRouter(updateTest));
 
 app.post('/api/profile', authMiddleware, async (req, res) => {
@@ -546,6 +582,29 @@ app.post('/api/performance', authMiddleware, async (req, res) => {
 
     const result = { mobile, desktop };
     await updateTest(req.uid, 'performance', result);
+    const metrics = {};
+    const extract = (lhr, prefix) => {
+      if (!lhr) return;
+      const c = lhr.categories || {};
+      const a = lhr.audits || {};
+      metrics[`${prefix}_performance_score`] = Math.round((c.performance?.score || 0) * 100);
+      metrics[`${prefix}_accessibility_score`] = Math.round((c.accessibility?.score || 0) * 100);
+      metrics[`${prefix}_best_practices_score`] = Math.round((c['best-practices']?.score || 0) * 100);
+      metrics[`${prefix}_seo_score`] = Math.round((c.seo?.score || 0) * 100);
+      metrics[`${prefix}_first_contentful_paint`] = a['first-contentful-paint']?.numericValue || null;
+      metrics[`${prefix}_largest_contentful_paint`] = a['largest-contentful-paint']?.numericValue || null;
+      metrics[`${prefix}_interactive`] = a.interactive?.numericValue || null;
+      metrics[`${prefix}_speed_index`] = a['speed-index']?.numericValue || null;
+      metrics[`${prefix}_total_blocking_time`] = a['total-blocking-time']?.numericValue || null;
+      metrics[`${prefix}_cumulative_layout_shift`] = a['cumulative-layout-shift']?.numericValue || null;
+      metrics[`${prefix}_timing_total`] = lhr.timing?.total || null;
+    };
+    extract(desktop, 'desktop');
+    extract(mobile, 'mobile');
+    metrics.lighthouse_version = desktop.lighthouseVersion || mobile.lighthouseVersion;
+    metrics.lighthouse_fetch_time = new Date(desktop.fetchTime || mobile.fetchTime || Date.now());
+    metrics.lighthouse_url = url;
+    await updateDomainRegistry(url, metrics);
     res.json(result);
   } catch (err) {
     console.error(err);
@@ -597,6 +656,13 @@ app.post('/api/audit/accessibility', authMiddleware, async (req, res) => {
     const result = await lh(url, options);
     await chrome.kill();
     await updateTest(req.uid, 'accessibility', result.lhr);
+    const score = Math.round((result.lhr.categories?.accessibility?.score || 0) * 100);
+    await updateDomainRegistry(url, {
+      mobile_accessibility_score: score,
+      lighthouse_version: result.lhr.lighthouseVersion,
+      lighthouse_fetch_time: new Date(result.lhr.fetchTime || Date.now()),
+      lighthouse_url: url
+    });
     res.json(result.lhr);
   } catch (err) {
     console.error(err);
@@ -637,6 +703,14 @@ app.post('/api/seo-audit', authMiddleware, async (req, res) => {
 
   const result = { mobile, desktop };
   await updateTest(req.uid, 'seo', result);
+  const metrics = {
+    mobile_seo_score: Math.round((mobile.categories?.seo?.score || 0) * 100),
+    desktop_seo_score: Math.round((desktop.categories?.seo?.score || 0) * 100),
+    lighthouse_version: desktop.lighthouseVersion || mobile.lighthouseVersion,
+    lighthouse_fetch_time: new Date(desktop.fetchTime || mobile.fetchTime || Date.now()),
+    lighthouse_url: url
+  };
+  await updateDomainRegistry(url, metrics);
   res.json(result);
   } catch (err) {
     console.error(err);
