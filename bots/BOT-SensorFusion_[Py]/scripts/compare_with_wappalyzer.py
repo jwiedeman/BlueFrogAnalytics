@@ -22,13 +22,18 @@ else:
 
 def main() -> None:
     if len(sys.argv) < 2:
-        print("Usage: python compare_with_wappalyzer.py <url>")
+        print("Usage: python compare_with_wappalyzer.py <url> [confidence]")
         return
 
     url = sys.argv[1]
+    try:
+        min_conf = int(sys.argv[2])
+    except (IndexError, ValueError):
+        min_conf = 150
+
     detector = get_detector()
     custom = detector.analyze_with_versions_and_categories(
-        url, min_confidence=150
+        url, min_confidence=min_conf
     )
 
     custom_set = set(custom.keys())
