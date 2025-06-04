@@ -39,3 +39,8 @@ The new test `test_wappalyzer_dataset.py` demonstrates loading the raw
 categories and technologies using `wappalyzer_data` and runs detection through
 the returned `Wappalyzer` engine.
 
+`test_simple_matcher.py` shows a lightweight re-implementation of the
+matching logic using the same technology dataset. This helper parses the
+Wappalyzer JSON rules directly and performs basic header and HTML checks
+without relying on the original Wappalyzer library.
+
