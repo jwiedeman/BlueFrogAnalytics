@@ -5,10 +5,18 @@ and a lightweight technology fingerprinting engine inspired by Wappalyzer. It
 reuses the dynamic test loading system from `BOT-Recon_[Py]` and adds a new test
 which runs the custom detector against a target domain.
 
-Run `main.py` with the same flags as the Recon bot:
+Run `main.py` with the same flags as the Recon bot. Additional options allow
+invoking the Wappalyzer fingerprinting engine directly:
 
 ```bash
 python main.py --target example.com --all --verbose
+# run full suite
+
+# Run only the fingerprinting engine
+python main.py --target example.com --fingerprint-only
+
+# Fingerprint first then run selected tests
+python main.py --target example.com --fingerprint --tests test_ssl test_whois
 ```
 
 The new test `test_wappalyzer_integration.py` attempts multiple HTTP/HTTPS
