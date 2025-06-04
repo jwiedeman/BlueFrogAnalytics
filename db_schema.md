@@ -164,7 +164,7 @@ write these values directly to `domains_processed`.
 - `desktop_seo_suggestions` text
 - `mobile_seo_suggestions` text
 
-#### Columns updated by `WORKER-AutoLighthouse`
+#### Columns updated by `BACKEND-AutoLighthouse`
 
 The Lighthouse worker runs audits in both desktop and mobile modes. Each metric is
 stored in `domains_processed` as a pair of columns. The following table maps those
@@ -224,7 +224,7 @@ Flexible storage for results of additional tools (image conversion, heatmaps, et
 - `tool_name` text
 - `data` map<text, text>
 ### `businesses`
-Google Maps business listings collected by the `WORKER-GoogleMapsScraper` bot.
+Google Maps business listings collected by the `BACKEND-GoogleMapsScraper` bot.
 
 - `name` text
 - `address` text
@@ -259,19 +259,19 @@ Proposed table for storing DNS enumeration output. Each record is stored separat
 - PRIMARY KEY ((`domain`, `record_type`), `record_value`, `scan_date`)
 
 Bots interacting with these tables include:
-- `WORKER-CertStream` – ingesting CertStream feeds
-- `WORKER-AutoLighthouse` – running Lighthouse scoring (columns below)
-- `WORKER-AutoWebPageTest` – running WebPageTest scans
-- `WORKER-AnalyticsTagHealth` – analytics tag checks
-- `WORKER-CarbonAuditor` – carbon footprint audits
-- `WORKER-Classify_target` – domain classifier via Ollama
-- `WORKER-WhoisSuite` – new domain discovery and WHOIS updater
-- `WORKER-Enrich_processed_domains` – GeoIP and Wappalyzer enrichment
-- `WORKER-DomainStatus` – reachability checks
-- `WORKER-DedupeDomains` – deduplication helper
-- `WORKER-MiscToolResults` – generic results import
-- `WORKER-GoogleMapsScraper` – local business gathering
-- `WORKER-rightsem-final` – email validation
+- `BACKEND-CertStream` – ingesting CertStream feeds
+- `BACKEND-AutoLighthouse` – running Lighthouse scoring (columns below)
+- `BACKEND-AutoWebPageTest` – running WebPageTest scans
+- `BACKEND-AnalyticsTagHealth` – analytics tag checks
+- `BACKEND-CarbonAuditor` – carbon footprint audits
+- `BACKEND-Classify_target` – domain classifier via Ollama
+- `BACKEND-WhoisSuite` – new domain discovery and WHOIS updater
+- `BACKEND-Enrich_processed_domains` – GeoIP and Wappalyzer enrichment
+- `BACKEND-DomainStatus` – reachability checks
+- `BACKEND-DedupeDomains` – deduplication helper
+- `BACKEND-MiscToolResults` – generic results import
+- `BACKEND-GoogleMapsScraper` – local business gathering
+- `BACKEND-rightsem-final` – email validation
 - `BOT-Hunter[Rust]` – asynchronous crawler
 - `BOT-Recon_[Py]` – reconnaissance harness
 - `BOT-ripwappalyzer[Js]` – tech fingerprinting via Puppeteer
@@ -292,20 +292,20 @@ The table below summarizes where each bot or worker stores its results. Unless s
 | BOT-ripwappalyzer[Js] | (local file) | scan_log.txt | n/a | Puppeteer‑based tech fingerprint log. |
 | BOT-wappalyzer[Py] | Postgres | domains | techdetect | Updates technology data in Postgres. |
 | ETL-Domains | domain_discovery | domains_processed | domain, tld, subdomains, raw_subdomains, [various enrichment fields] | Scripts migrating CertStream and enrichment data. |
-| WORKER-AnalyticsTagHealth | domain_discovery | analytics_tag_health | domain, scan_date, working_variants, scanned_urls, found_analytics, page_results, variant_results, compliance_status | Tracks Google tag presence. |
-| WORKER-AutoLighthouse | domain_discovery | domains_processed | see section below | Updates Lighthouse metrics. |
-| WORKER-AutoWebPageTest | (file/JSON) | output directory | JSON results | Cassandra integration stub only. |
-| WORKER-CarbonAuditor | domain_discovery | carbon_audits | domain, url, scan_date, bytes, co2 | Stores bytes and CO₂ estimates. |
-| WORKER-CertStream | domain_discovery | domains_processed | domain, tld, site_type | Inserts domains from CertStream. |
-| WORKER-Classify_target | domain_discovery | domains_processed | site_type, site_category, site_type_tags | Adds site type and category. |
-| WORKER-DedupeDomains | domain_discovery | domains_processed | all columns in existing row | Normalizes TLDs and removes duplicates. |
-| WORKER-DomainStatus | domain_discovery | domains_processed | status, updated | Records reachability and timestamps. |
-| WORKER-Enrich_processed_domains | domain_discovery | domains_processed | as_name, as_number, city, continent, continent_code, country, country_code, isp, languages, lat, lon, org, phone, region, region_name, registered, registrar, ssl_issuer, tech_detect, time_zone, title, description, linkedin_url, has_about_page, has_services_page, has_cart_or_product, contains_gtm_or_ga, wordpress_version, server_type, server_version, emails, sitemap_page_count, updated | Adds GeoIP, SSL and tech data. |
-| WORKER-GoogleMapsScraper | maps or Postgres/SQLite/CSV | businesses | name, address, website, phone, reviews_average, query, latitude, longitude | Writes business listings. |
-| WORKER-MiscToolResults | domain_discovery | misc_tool_results | domain, url, tool_name, scan_date, data | Arbitrary tool output keyed by domain. |
-| WORKER-SpecDemo | domain_discovery | tracking_specs | category, tool, name, rule, example, description, updated_at | Seeds demo specification rows. |
-| WORKER-WhoisSuite | domain_discovery | domains_processed | domain, tld, registered, registrar, updated | Fetches newly registered domains and updates WHOIS info. |
-| WORKER-rightsem-final | (local file) | validated_emails.csv | Domain, Email, Format Valid, MX Record Found, MX Host, MX IP, Country, SMTP Valid, SMTP Reason | Saves validated email results to CSV. |
+| BACKEND-AnalyticsTagHealth | domain_discovery | analytics_tag_health | domain, scan_date, working_variants, scanned_urls, found_analytics, page_results, variant_results, compliance_status | Tracks Google tag presence. |
+| BACKEND-AutoLighthouse | domain_discovery | domains_processed | see section below | Updates Lighthouse metrics. |
+| BACKEND-AutoWebPageTest | (file/JSON) | output directory | JSON results | Cassandra integration stub only. |
+| BACKEND-CarbonAuditor | domain_discovery | carbon_audits | domain, url, scan_date, bytes, co2 | Stores bytes and CO₂ estimates. |
+| BACKEND-CertStream | domain_discovery | domains_processed | domain, tld, site_type | Inserts domains from CertStream. |
+| BACKEND-Classify_target | domain_discovery | domains_processed | site_type, site_category, site_type_tags | Adds site type and category. |
+| BACKEND-DedupeDomains | domain_discovery | domains_processed | all columns in existing row | Normalizes TLDs and removes duplicates. |
+| BACKEND-DomainStatus | domain_discovery | domains_processed | status, updated | Records reachability and timestamps. |
+| BACKEND-Enrich_processed_domains | domain_discovery | domains_processed | as_name, as_number, city, continent, continent_code, country, country_code, isp, languages, lat, lon, org, phone, region, region_name, registered, registrar, ssl_issuer, tech_detect, time_zone, title, description, linkedin_url, has_about_page, has_services_page, has_cart_or_product, contains_gtm_or_ga, wordpress_version, server_type, server_version, emails, sitemap_page_count, updated | Adds GeoIP, SSL and tech data. |
+| BACKEND-GoogleMapsScraper | maps or Postgres/SQLite/CSV | businesses | name, address, website, phone, reviews_average, query, latitude, longitude | Writes business listings. |
+| BACKEND-MiscToolResults | domain_discovery | misc_tool_results | domain, url, tool_name, scan_date, data | Arbitrary tool output keyed by domain. |
+| BACKEND-SpecDemo | domain_discovery | tracking_specs | category, tool, name, rule, example, description, updated_at | Seeds demo specification rows. |
+| BACKEND-WhoisSuite | domain_discovery | domains_processed | domain, tld, registered, registrar, updated | Fetches newly registered domains and updates WHOIS info. |
+| BACKEND-rightsem-final | (local file) | validated_emails.csv | Domain, Email, Format Valid, MX Record Found, MX Host, MX IP, Country, SMTP Valid, SMTP Reason | Saves validated email results to CSV. |
 
 
 

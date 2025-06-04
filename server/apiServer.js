@@ -1150,7 +1150,7 @@ app.post('/api/google-maps-scraper', async (req, res) => {
   const filename = `maps_${Date.now()}.csv`;
   const outputPath = `output/${filename}`;
   const child = spawn('python', [
-    'bots/WORKER-GoogleMapsScraper/worker.py',
+    'bots/BACKEND-GoogleMapsScraper/worker.py',
     query,
     String(total),
     outputPath

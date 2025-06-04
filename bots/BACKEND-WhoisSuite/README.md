@@ -1,6 +1,6 @@
 # Whois Suite Worker
 
-This Python worker replaces the previous `WORKER-Whois` and `WORKER-WhoisNewestDomains` components.
+This Python worker replaces the previous `BACKEND-Whois` and `BACKEND-WhoisNewestDomains` components.
 It downloads newly registered domain lists from whoisds.com, inserts them into
 Cassandra, performs WHOIS lookups for domains missing metadata, and then sleeps
 for a configurable period (default 12 hours).

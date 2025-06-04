@@ -63,9 +63,9 @@ docker run -p 6001:6001 \
   profile-service
 ```
 
-## Bots
+## Bots and Backend Workers
 
-The `bots` directory contains several workers written in Go, Rust, Python and Node. See each subfolder's README for build instructions and usage.
+The `bots` directory contains several backend workers (prefixed `BACKEND-`) along with other bots written in Go, Rust, Python and Node. See each subfolder's README for build instructions and usage.
 
 ## Cassandra cluster
 
