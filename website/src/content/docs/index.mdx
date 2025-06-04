@@ -4,164 +4,72 @@ description: Advanced website auditing, SEO optimization, and compliance monitor
 template: splash
 ---
 
-
-
-{/* Hero Section */}
-<section className="hero-section landing-hero bg-white">
+<!-- Hero Section -->
+<section className="py-5 bg-light text-center">
   <div className="container">
+    <h1 className="display-4 fw-bold">Every Second Counts—Dominate Your Market</h1>
+    <p className="lead">Eliminate anxiety with instant clarity. Discover your hidden risks and actionable opportunities now.</p>
+    <a className="btn btn-lg btn-primary mt-3" href="/introduction/how-blue-frog-analytics-works">Get Your Free Diagnostic Scan</a>
+    <p className="text-muted small mt-2">No credit card required. Cancel anytime.</p>
+  </div>
+</section>
+
+<!-- Benefits Overview -->
+<section className="py-5">
+  <div className="container text-center">
     <div className="row">
-      <div className="col-lg-8 offset-lg-2 hero-content">
-      <h1 className="display-4">Comprehensive website audits made simple.</h1>
-      <p className="lead">
-        Blue Frog Analytics pinpoints SEO issues, tracking errors and compliance gaps—all from one intuitive dashboard.
-      </p>
-      <div className="d-flex gap-3">
-        <a href="/introduction/how-blue-frog-analytics-works" className="btn btn-primary">Start Free Scan</a>
-        <a href="/introduction/use-cases" className="btn btn-outline-primary">See Features</a>
+      <div className="col-md-4">
+        <h3>Instant Clarity</h3>
+        <p>See what's working and what's holding you back immediately.</p>
       </div>
+      <div className="col-md-4">
+        <h3>Competitive Edge</h3>
+        <p>Stay ahead of competitors who are already optimizing their strategies.</p>
+      </div>
+      <div className="col-md-4">
+        <h3>Continuous Growth</h3>
+        <p>Clear insights for sustained digital success.</p>
       </div>
     </div>
   </div>
 </section>
 
-
-{/* Mission Overview */}
-<section className="container py-5 bg-light">
-  <div className="row text-center mb-4">
-    <div className="col-lg-12">
-      <h2 className="h2">Mission Overview</h2>
-    </div>
-    <div className="col-lg-8 offset-lg-2">
-      <p>
-        Blue Frog Analytics is an <strong>intelligent auditing platform</strong> built for accuracy. Quickly uncover tracking errors, SEO gaps and compliance issues before they hurt your business.
-      </p>
-    </div>
-  </div>
-
-  <div className="row text-center gy-4">
-    {[
-      ['Tracking Validation', 'Ensure accurate GA, Meta and Bing integrations.'],
-      ['SEO Enhancements', 'Optimize Core Web Vitals, metadata and structured data.'],
-      ['Performance Insights', 'Identify bottlenecks & improve page speeds.'],
-      ['Compliance Checks', 'Stay compliant with GDPR, CPRA and WCAG.']
-    ].map(([title, desc]) => (
-      <div key={title} className="col-lg-3 col-md-4 col-sm-6">
-        <div className="card h-100 border-0">
-          <div className="card-body">
-            <h4 className="h5">{title}</h4>
-            <p className="mb-0">{desc}</p>
-          </div>
-        </div>
+<!-- How It Works -->
+<section className="py-5 bg-light">
+  <div className="container">
+    <h2 className="text-center">How It Works</h2>
+    <div className="row mt-4">
+      <div className="col-md-4">
+        <h5>1. Sign Up Quickly</h5>
+        <p>Immediate access, no lengthy forms.</p>
       </div>
-    ))}
-  </div>
-  <div className="text-center mt-4">
-    <a href="/introduction/how-blue-frog-analytics-works" className="btn btn-outline-primary">Start Your Scan</a>
-  </div>
-</section>
-
-{/* Launch Sequence */}
-<section className="container py-5 bg-light">
-  <div className="row text-center mb-4">
-    <div className="col-12">
-      <h2 className="h2">Launch Sequence</h2>
-    </div>
-  </div>
-
-  <div className="row justify-content-center">
-    <div className="col-lg-8">
-      <ol className="list-group list-group-numbered">
-        <li className="list-group-item">
-          CertStream Intake
-          <p className="mb-0">New domains flow in from certificate logs and lists into Cassandra.</p>
-        </li>
-        <li className="list-group-item">
-          Reachability &amp; Classification
-          <p className="mb-0">Workers validate each site, pull WHOIS and label them with Ollama.</p>
-        </li>
-        <li className="list-group-item">
-          Enrichment
-          <p className="mb-0">GeoIP, ASN and Wappalyzer add location, registrar and tech stack data.</p>
-        </li>
-        <li className="list-group-item">
-          Automated Audits
-          <p className="mb-0">Lighthouse and WebPageTest run SEO and performance checks.</p>
-        </li>
-        <li className="list-group-item">
-          Reporting &amp; Monitoring
-          <p className="mb-0">Dashboards surface issues and track improvements over time.</p>
-        </li>
-      </ol>
-    </div>
-  </div>
-  <div className="text-center mt-4">
-    <a href="/introduction/how-blue-frog-analytics-works" className="btn btn-primary">Run a Free Scan</a>
-  </div>
-</section>
-
-{/* Why Choose Blue Frog */}
-<section className="container py-5 bg-white">
-  <div className="row text-center mb-4">
-    <div className="col-12">
-      <h2 className="h2">Why Choose Blue Frog Analytics?</h2>
-    </div>
-  </div>
-  <div className="row text-center gy-4">
-    {[
-      ['Data Accuracy', 'No lost pixels or tags.'],
-      ['Performance Optimization', 'AI suggestions for speed.'],
-      ['SEO & Compliance', 'Reveal compliance gaps.'],
-      ['Custom Reporting', 'Seamless integrations.']
-    ].map(([title, desc]) => (
-      <div key={title} className="col-lg-3 col-md-4 col-sm-6">
-        <div className="card h-100 border-0">
-          <div className="card-body">
-            <h4 className="h5">{title}</h4>
-            <p className="mb-0">{desc}</p>
-          </div>
-        </div>
+      <div className="col-md-4">
+        <h5>2. Instant Diagnostic</h5>
+        <p>Get real-time visibility of your site's analytics and compliance.</p>
       </div>
-    ))}
-  </div>
-</section>
-
-{/* Use Cases */}
-<section className="container py-5 bg-light">
-  <div className="row text-center mb-4">
-    <div className="col-12">
-      <h2 className="h2">Use Cases &amp; Workflows</h2>
-      <p>See how different teams leverage Blue Frog Analytics.</p>
-    </div>
-  </div>
-  <div className="row text-center gy-4">
-    {[
-      ['Developers', 'Debugging & optimization.'],
-      ['Marketers', 'Conversions & SEO.'],
-      ['Compliance', 'GDPR, CPRA, WCAG audits.']
-    ].map(([title, desc]) => (
-      <div key={title} className="col-lg-4 col-md-4 col-sm-6">
-        <div className="card h-100 border-0">
-          <div className="card-body">
-            <h4 className="h5">{title}</h4>
-            <p className="mb-0">{desc}</p>
-          </div>
-        </div>
+      <div className="col-md-4">
+        <h5>3. Take Clear Action</h5>
+        <p>Step-by-step guidance tailored to your results.</p>
       </div>
-    ))}
-  </div>
-  <div className="text-center mt-4">
-    <a href="/introduction/how-blue-frog-analytics-works" className="btn btn-outline-primary">Start Your Scan</a>
+    </div>
   </div>
 </section>
 
-{/* Call to Action */}
-<section className="container py-5 bg-white text-center">
-  <div className="row justify-content-center">
-    <div className="col-lg-8">
-      <h2 className="h2">Ready to discover what's holding your site back?</h2>
-      <p>Run a complimentary scan and see exactly where to improve.</p>
-      <a href="/introduction/how-blue-frog-analytics-works" className="btn btn-primary">Start Free Scan</a>
-    </div>
+<!-- Social Proof & Authority -->
+<section className="py-5 text-center">
+  <div className="container">
+    <h2>Trusted by Market Leaders</h2>
+    <p className="text-muted">"Transformed our strategy overnight—indispensable." - MarketWatch</p>
+  </div>
+</section>
+
+<!-- Pricing Transparency -->
+<section className="py-5 bg-light">
+  <div className="container text-center">
+    <h2>Simple, Transparent Pricing</h2>
+    <p>Two weeks completely free. Then just $100/month for unlimited insights.</p>
+    <a className="btn btn-primary btn-lg" href="/pricing">Start Your Free Trial Now</a>
+    <p className="text-muted small mt-2">No hidden fees. Cancel anytime.</p>
   </div>
 </section>
 
