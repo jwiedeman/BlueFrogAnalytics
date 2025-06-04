@@ -113,7 +113,7 @@ def init_db(dsn: str | None, *, storage: str | None = None):
 
 
 def save_business(conn, values: tuple, *, storage: str | None = None) -> None:
-    """Insert a business row using the active backend."""
+    """Insert or update a business row using the active backend."""
     storage = get_storage(storage)
     if storage == "cassandra":
         conn.execute(
@@ -128,9 +128,16 @@ def save_business(conn, values: tuple, *, storage: str | None = None) -> None:
         cur = conn.cursor()
         cur.execute(
             """
-            INSERT OR IGNORE INTO businesses (
+            INSERT INTO businesses (
                 name, address, website, phone, reviews_average, query, latitude, longitude
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT(name, address) DO UPDATE SET
+                website=excluded.website,
+                phone=excluded.phone,
+                reviews_average=excluded.reviews_average,
+                query=excluded.query,
+                latitude=excluded.latitude,
+                longitude=excluded.longitude
             """,
             values,
         )
@@ -147,7 +154,13 @@ def save_business(conn, values: tuple, *, storage: str | None = None) -> None:
                 INSERT INTO businesses (
                     name, address, website, phone, reviews_average, query, latitude, longitude
                 ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-                ON CONFLICT (name, address) DO NOTHING
+                ON CONFLICT (name, address) DO UPDATE SET
+                    website=EXCLUDED.website,
+                    phone=EXCLUDED.phone,
+                    reviews_average=EXCLUDED.reviews_average,
+                    query=EXCLUDED.query,
+                    latitude=EXCLUDED.latitude,
+                    longitude=EXCLUDED.longitude
                 """,
                 values,
             )
