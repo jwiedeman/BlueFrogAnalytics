@@ -4,6 +4,28 @@ This document outlines the primary data stores used across the Blue Frog Analyti
 
 ## Cassandra: `domain_discovery` keyspace
 
+### `domains`
+Domain queue used by the Hunter crawler to track discovered sites.
+
+- `domain` text PRIMARY KEY
+- `status` int *(0 new, 1 processed, 2 in progress, 3 unreachable)*
+- `created_at` timestamp
+- `last_attempted` timestamp
+- `variation_success_json` text
+
+### `domain_variations`
+Stores the result of each HTTP variation attempted for a domain.
+
+- `domain` text
+- `variation` text
+- `success` boolean
+- `status_code` int
+- `final_url` text
+- `redirect_count` int
+- `attempted_at` timestamp
+- PRIMARY KEY (`domain`, `variation`, `attempted_at`)
+
+
 ### `certstream_domains`
 Temporary table populated from certificate transparency logs before domains are parsed.
 
