@@ -9,6 +9,13 @@ from db import init_db, save_business, get_dsn, close_db
 from playwright.async_api import async_playwright
 
 
+async def zoom_all_the_way_in(page, times: int = 15) -> None:
+    """Fully zoom in on the map using keyboard shortcuts."""
+    for _ in range(times):
+        await page.keyboard.press("=")
+        await page.wait_for_timeout(500)
+
+
 
 
 
@@ -16,53 +23,24 @@ from playwright.async_api import async_playwright
 
 
 async def collect_current_listings(page, query: str, seen: Set[Tuple[str, str]], conn) -> None:
-    listings = await page.locator("//a[contains(@href, 'https://www.google.com/maps/place')]" ).all()
+    listings = await page.locator("//a[contains(@href, 'https://www.google.com/maps/place')]").all()
     for listing in listings:
         href = await listing.get_attribute("href")
         if not href:
             continue
-        await listing.click()
-        await page.wait_for_timeout(3000)
-
-        name = await page.locator('h1.DUwDvf.lfPIob').inner_text() if await page.locator('h1.DUwDvf.lfPIob').count() else ""
-
-        address = ""
-        if await page.locator('//button[@data-item-id="address"]//div[contains(@class, "fontBodyMedium")]').count():
-            elements = await page.locator('//button[@data-item-id="address"]//div[contains(@class, "fontBodyMedium")]').all()
-            if elements:
-                address = await elements[0].inner_text()
-
-        website = ""
-        if await page.locator('//a[@data-item-id="authority"]//div[contains(@class, "fontBodyMedium")]').count():
-            elements = await page.locator('//a[@data-item-id="authority"]//div[contains(@class, "fontBodyMedium")]').all()
-            if elements:
-                website = await elements[0].inner_text()
-
-        phone = ""
-        if await page.locator('//button[contains(@data-item-id, "phone")]//div[contains(@class, "fontBodyMedium")]').count():
-            elements = await page.locator('//button[contains(@data-item-id, "phone")]//div[contains(@class, "fontBodyMedium")]').all()
-            if elements:
-                phone = await elements[0].inner_text()
-
-        reviews_average = None
-        if await page.locator('//div[@jsaction="pane.reviewChart.moreReviews"]//div[@role="img"]').count():
-            text = await page.locator('//div[@jsaction="pane.reviewChart.moreReviews"]//div[@role="img"]').get_attribute('aria-label')
-            if text:
-                try:
-                    reviews_average = float(text.split()[0].replace(',', '.'))
-                except ValueError:
-                    reviews_average = None
-
+        text = await listing.inner_text()
+        lines = [l.strip() for l in text.splitlines() if l.strip()]
+        if not lines:
+            continue
+        name = lines[0]
+        address = lines[1] if len(lines) > 1 else ""
         key = (name, address)
         if key in seen:
-            await page.go_back()
-            await page.wait_for_timeout(1000)
             continue
         seen.add(key)
 
-        url = page.url
         lat = lon = None
-        match = re.search(r"@(-?\d+\.\d+),(-?\d+\.\d+)", url)
+        match = re.search(r"@(-?\d+\.\d+),(-?\d+\.\d+)", href)
         if match:
             lat = float(match.group(1))
             lon = float(match.group(2))
@@ -72,16 +50,14 @@ async def collect_current_listings(page, query: str, seen: Set[Tuple[str, str]],
             (
                 name,
                 address,
-                website,
-                phone,
-                reviews_average,
+                "",
+                "",
+                None,
                 query,
                 lat,
                 lon,
             ),
         )
-        await page.go_back()
-        await page.wait_for_timeout(1000)
 
 
 async def scrape_spiral(query: str, steps: int, dsn: str | None, *, headless: bool = False):
@@ -95,6 +71,8 @@ async def scrape_spiral(query: str, steps: int, dsn: str | None, *, headless: bo
         await page.fill("//input[@id='searchboxinput']", query)
         await page.keyboard.press("Enter")
         await page.wait_for_timeout(5000)
+
+        await zoom_all_the_way_in(page)
 
         try:
             checkbox = page.get_by_role("checkbox", name="Update results when map moves")
