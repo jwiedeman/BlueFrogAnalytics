@@ -400,7 +400,11 @@ def analyze_target(target):
     result.update(get_asn_info(ip))
     result.update(analyze_ssl(target))
     result.update(analyze_content(target))
-    
+
+    homepage = analyze_homepage(target)
+    result.update(homepage)
+    result['sitemap_page_count'] = count_sitemap_pages(target)
+
     tech_data = analyze_tech(target)
     result['tech_detect'] = tech_data if tech_data else {'status': 'failed'}
     
@@ -417,29 +421,41 @@ def process_domain(session, update_stmt, domain, tld):
         analysis = analyze_target(full_domain)
         # Even if analysis data is partial, proceed to update the record.
         params = (
-            str(analysis.get('asname', '')),              # as_name (text)
-            str(analysis.get('as', '')),                  # as_number (text)
-            str(analysis.get('city', '')),                # city (text)
-            str(analysis.get('continent', '')),           # continent (text)
-            str(analysis.get('continentCode', '')),       # continent_code (text)
-            str(analysis.get('country', '')),             # country (text)
-            str(analysis.get('countryCode', '')),         # country_code (text)
-            str(analysis.get('isp', '')),                 # isp (text)
-            json.dumps(analysis.get('languages', {})),      # languages (text)
-            float(analysis.get('lat', 0.0)),              # lat (decimal)
-            float(analysis.get('lon', 0.0)),              # lon (decimal)
-            str(analysis.get('org', '')),                 # org (text)
-            json.dumps(analysis.get('phone', [])),        # phone (text)
-            str(analysis.get('region', '')),              # region (text)
-            str(analysis.get('regionName', '')),          # region_name (text)
-            str(analysis.get('registered', '')),          # registered (text)
-            str(analysis.get('registrar', '')),           # registrar (text)
-            str(analysis.get('ssl_issuer', '')),          # ssl_issuer (text)
-            json.dumps(analysis.get('tech_detect', {})),  # tech_detect (text)
-            str(analysis.get('timezone', '')),            # time_zone (text)
-            str(analysis.get('updated', '')),             # updated (text)
-            domain,                                       # WHERE domain (text)
-            tld                                           # WHERE tld (text)
+            str(analysis.get('asname', '')),
+            str(analysis.get('as', '')),
+            str(analysis.get('city', '')),
+            str(analysis.get('continent', '')),
+            str(analysis.get('continentCode', '')),
+            str(analysis.get('country', '')),
+            str(analysis.get('countryCode', '')),
+            str(analysis.get('isp', '')),
+            json.dumps(analysis.get('languages', {})),
+            float(analysis.get('lat', 0.0)),
+            float(analysis.get('lon', 0.0)),
+            str(analysis.get('org', '')),
+            json.dumps(analysis.get('phone', [])),
+            str(analysis.get('region', '')),
+            str(analysis.get('regionName', '')),
+            str(analysis.get('registered', '')),
+            str(analysis.get('registrar', '')),
+            str(analysis.get('ssl_issuer', '')),
+            json.dumps(analysis.get('tech_detect', {})),
+            str(analysis.get('timezone', '')),
+            str(analysis.get('title', '')),
+            str(analysis.get('description', '')),
+            str(analysis.get('linkedin_url', '')),
+            bool(analysis.get('has_about_page', False)),
+            bool(analysis.get('has_services_page', False)),
+            bool(analysis.get('has_cart_or_product', False)),
+            bool(analysis.get('contains_gtm_or_ga', False)),
+            str(analysis.get('wordpress_version', '')),
+            str(analysis.get('server_type', '')),
+            str(analysis.get('server_version', '')),
+            json.dumps(analysis.get('emails', [])),
+            int(analysis.get('sitemap_page_count', 0)),
+            str(analysis.get('updated', '')),
+            domain,
+            tld
         )
         
         safe_execute(session, update_stmt, params)
@@ -492,6 +508,18 @@ def main():
                 ssl_issuer = ?,
                 tech_detect = ?,
                 time_zone = ?,
+                title = ?,
+                description = ?,
+                linkedin_url = ?,
+                has_about_page = ?,
+                has_services_page = ?,
+                has_cart_or_product = ?,
+                contains_gtm_or_ga = ?,
+                wordpress_version = ?,
+                server_type = ?,
+                server_version = ?,
+                emails = ?,
+                sitemap_page_count = ?,
                 updated = ?
             WHERE domain = ? AND tld = ?
         """
