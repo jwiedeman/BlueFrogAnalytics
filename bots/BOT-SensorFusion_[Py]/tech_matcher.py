@@ -29,17 +29,20 @@ USER_AGENT = (
 def _compile_patterns(value: Any) -> List[Dict[str, Any]]:
     """Return a list of prepared pattern dictionaries from a value."""
     if isinstance(value, list):
-        patterns = value
+        patterns = [p for p in value if p]
     elif value:
         patterns = [value]
     else:
         return []
-    return [_prepare_pattern(p) for p in patterns]
+    return [_prepare_pattern(p) for p in patterns if p]
 
 
 def _prepare_pattern(pattern: str) -> Dict[str, Any]:
     """Parse a technology pattern string into regex and attributes."""
     attrs: Dict[str, Any] = {}
+    if not pattern:
+        attrs["regex"] = None
+        return attrs
     parts = pattern.split(";")
     try:
         attrs["regex"] = re.compile(parts[0], re.I)
@@ -104,11 +107,13 @@ def detect(url: str) -> Dict[str, Any]:
             header_val = headers.get(name.lower())
             if header_val:
                 attr = _prepare_pattern(pat)
-                m = attr["regex"].search(header_val)
-                if m:
-                    conf += int(attr.get("confidence", "100"))
-                    if not version:
-                        version = _extract_version(attr, m)
+                regex = attr.get("regex")
+                if regex is not None:
+                    m = regex.search(header_val)
+                    if m:
+                        conf += int(attr.get("confidence", "100"))
+                        if not version:
+                            version = _extract_version(attr, m)
 
         for name, pat in tech.get("cookies", {}).items():
             cookie_val = cookies.get(name.lower())
@@ -117,38 +122,48 @@ def detect(url: str) -> Dict[str, Any]:
                     conf += 100
                     continue
                 attr = _prepare_pattern(pat)
-                m = attr["regex"].search(cookie_val)
-                if m:
-                    conf += int(attr.get("confidence", "100"))
-                    if not version:
-                        version = _extract_version(attr, m)
+                regex = attr.get("regex")
+                if regex is not None:
+                    m = regex.search(cookie_val)
+                    if m:
+                        conf += int(attr.get("confidence", "100"))
+                        if not version:
+                            version = _extract_version(attr, m)
 
         for name, pat in tech.get("meta", {}).items():
             meta_val = meta.get(name.lower())
             if meta_val:
                 attr = _prepare_pattern(pat)
-                m = attr["regex"].search(meta_val)
+                regex = attr.get("regex")
+                if regex is not None:
+                    m = regex.search(meta_val)
+                    if m:
+                        conf += int(attr.get("confidence", "100"))
+                        if not version:
+                            version = _extract_version(attr, m)
+
+        for pat in _compile_patterns(tech.get("scripts") or tech.get("scriptSrc")):
+            for src in scripts:
+                regex = pat.get("regex")
+                if regex is not None:
+                    m = regex.search(src)
+                    if m:
+                        conf += int(pat.get("confidence", "100"))
+                        if not version:
+                            version = _extract_version(pat, m)
+
+        js_text = "\n".join(inline_scripts)
+        for name, pat in tech.get("js", {}).items():
+            if not pat:
+                continue
+            attr = _prepare_pattern(pat)
+            regex = attr.get("regex")
+            if regex is not None:
+                m = regex.search(js_text)
                 if m:
                     conf += int(attr.get("confidence", "100"))
                     if not version:
                         version = _extract_version(attr, m)
-
-        for pat in _compile_patterns(tech.get("scripts")):
-            for src in scripts:
-                m = pat["regex"].search(src)
-                if m:
-                    conf += int(pat.get("confidence", "100"))
-                    if not version:
-                        version = _extract_version(pat, m)
-
-        js_text = "\n".join(inline_scripts)
-        for name, pat in tech.get("js", {}).items():
-            attr = _prepare_pattern(pat)
-            m = attr["regex"].search(js_text)
-            if m:
-                conf += int(attr.get("confidence", "100"))
-                if not version:
-                    version = _extract_version(attr, m)
 
         dom = tech.get("dom")
         if dom:
@@ -190,8 +205,11 @@ def detect(url: str) -> Dict[str, Any]:
                                 break
                     else:
                         attr = _prepare_pattern(str(cond))
+                        regex = attr.get("regex")
+                        if regex is None:
+                            continue
                         for el in elements:
-                            m = attr["regex"].search(el.text)
+                            m = regex.search(el.text)
                             if m:
                                 conf += int(attr.get("confidence", "100"))
                                 if not version:
@@ -199,11 +217,13 @@ def detect(url: str) -> Dict[str, Any]:
                                 break
 
         for pat in _compile_patterns(tech.get("html")):
-            m = pat["regex"].search(html)
-            if m:
-                conf += int(pat.get("confidence", "100"))
-                if not version:
-                    version = _extract_version(pat, m)
+            regex = pat.get("regex")
+            if regex is not None:
+                m = regex.search(html)
+                if m:
+                    conf += int(pat.get("confidence", "100"))
+                    if not version:
+                        version = _extract_version(pat, m)
 
         for rtype, patterns in tech.get("dns", {}).items():
             if not isinstance(patterns, list):
@@ -216,11 +236,13 @@ def detect(url: str) -> Dict[str, Any]:
             for pat_str in patterns:
                 pat = _prepare_pattern(pat_str)
                 for rec in records:
-                    m = pat["regex"].search(rec)
-                    if m:
-                        conf += int(pat.get("confidence", "100"))
-                        if not version:
-                            version = _extract_version(pat, m)
+                    regex = pat.get("regex")
+                    if regex is not None:
+                        m = regex.search(rec)
+                        if m:
+                            conf += int(pat.get("confidence", "100"))
+                            if not version:
+                                version = _extract_version(pat, m)
 
         return version, conf
 
