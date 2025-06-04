@@ -11,7 +11,7 @@ The table below summarizes where each bot or worker stores its results. Unless s
 | BOT-ripwappalyzer[Js] | (local file) | scan_log.txt | n/a | Puppeteer‑based tech fingerprint log. |
 | BOT-wappalyzer[Py] | Postgres | domains | techdetect | Updates technology data in Postgres. |
 | ETL-Domains | domain_discovery | domains_processed | domain, tld, subdomains, raw_subdomains, [various enrichment fields] | Scripts migrating CertStream and enrichment data. |
-| WORKER-AnalyticsTagHealth | domain_discovery | analytics_tag_health | domain, scan_date, working_variants, scanned_urls, found_analytics, page_results, variant_results, compliance_status | Tracks Google tag presence. |
+| BACKEND-AnalyticsTagHealth | domain_discovery | analytics_tag_health | domain, scan_date, working_variants, scanned_urls, found_analytics, page_results, variant_results, compliance_status | Tracks Google tag presence. |
 | WORKER-AutoLighthouse | domain_discovery | domains_processed | desktop_* and mobile_* performance columns, suggestions, lighthouse_version, lighthouse_fetch_time, lighthouse_url | Updates Lighthouse metrics. |
 | WORKER-AutoWebPageTest | (file/JSON) | output directory | JSON results | Cassandra integration stub only. |
 | WORKER-CarbonAuditor | domain_discovery | carbon_audits | domain, url, scan_date, bytes, co2 | Stores bytes and CO₂ estimates. |

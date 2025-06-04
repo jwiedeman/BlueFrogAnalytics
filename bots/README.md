@@ -2,6 +2,9 @@
 Suite of workers and bots for large scale domain intelligence gathering.
 Each component lives in its own folder and can run independently.
 
+Items prefixed with `BACKEND-` are helper scripts invoked by the main API or
+website tools rather than standalone workers.
+
 ## Components
 - `WORKER-CertStream` – Go service ingesting CertStream feeds.
 - `WORKER-AutoLighthouse` – Node.js Lighthouse auditor.
@@ -10,6 +13,7 @@ Each component lives in its own folder and can run independently.
 - `WORKER-Enrich_processed_domains` – Python enrichment pipeline with GeoIP and Wappalyzer.
 - `WORKER-DomainStatus` – Go reachability checker.
 - `WORKER-DedupeDomains` – Go utility that normalizes TLDs and removes duplicate records.
+- `BACKEND-AnalyticsTagHealth` – scans domains for analytics tags used by the free tools.
 - `BOT-Hunter[Rust]` – asynchronous crawler written in Rust.
 - `BOT-Recon_[Py]` – modular reconnaissance harness.
 - `BOT-ripwappalyzer[Js]` – Puppeteer-based tech fingerprinting script.
