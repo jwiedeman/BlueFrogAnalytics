@@ -3,6 +3,32 @@ const cassandraClient = require('./cassandra');
 const { runLighthouse } = require('./lighthouseRunner');
 const { launch } = require('chrome-launcher');
 
+function gatherPerformanceSuggestions(lhr) {
+  const audits = Object.values(lhr.audits || {}).filter(
+    a => a.details && a.details.type === 'opportunity'
+  );
+  return audits
+    .map(a => ({
+      title: a.title,
+      savings: a.details.overallSavingsMs || a.details.overallSavingsBytes || 0,
+      displayValue: a.displayValue
+    }))
+    .sort((a, b) => b.savings - a.savings)
+    .slice(0, 5)
+    .map(a => `${a.title}${a.displayValue ? ` (${a.displayValue})` : ''}`)
+    .join('; ');
+}
+
+function gatherCategorySuggestions(lhr, id) {
+  const cat = lhr.categories?.[id];
+  if (!cat || !Array.isArray(cat.auditRefs)) return '';
+  return cat.auditRefs
+    .map(ref => lhr.audits?.[ref.id])
+    .filter(a => a && typeof a.score === 'number' && a.score < 1)
+    .map(a => a.title)
+    .join('; ');
+}
+
 function withTimeout(promise, ms) {
   let timer;
   const timeout = new Promise((_, reject) => {
@@ -65,7 +91,10 @@ async function start(workerId, intervalMs) {
           timing_total: Math.round(report.timing?.total || 0),
           lighthouse_version: report.lighthouseVersion || '',
           lighthouse_fetch_time: report.fetchTime || '',
-          url: report.finalDisplayedUrl || ''
+          url: report.finalDisplayedUrl || '',
+          performance_suggestions: gatherPerformanceSuggestions(report),
+          accessibility_suggestions: gatherCategorySuggestions(report, 'accessibility'),
+          seo_suggestions: gatherCategorySuggestions(report, 'seo')
         };
       };
 

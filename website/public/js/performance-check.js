@@ -103,8 +103,19 @@ document.addEventListener('DOMContentLoaded', () => {
         html += '</tbody></table>';
         return html;
       };
-      results.innerHTML =
-        `<h3>Mobile</h3>${buildTable(data.mobile)}<h3>Desktop</h3>${buildTable(data.desktop)}`;
+      let html = `<h3>Mobile</h3>${buildTable(data.mobile)}`;
+      if (data.mobileSuggestions) {
+        html += `<p class="mt-2"><strong>Top Fixes:</strong> ${
+          data.mobileSuggestions.performance || ''
+        }</p>`;
+      }
+      html += `<h3>Desktop</h3>${buildTable(data.desktop)}`;
+      if (data.desktopSuggestions) {
+        html += `<p class="mt-2"><strong>Top Fixes:</strong> ${
+          data.desktopSuggestions.performance || ''
+        }</p>`;
+      }
+      results.innerHTML = html;
       logTestStatus('performance', 'complete');
     } catch (err) {
       console.error(err);

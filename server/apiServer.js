@@ -249,7 +249,13 @@ async function initCassandra() {
     lighthouse_version: 'text',
     lighthouse_fetch_time: 'timestamp',
     lighthouse_url: 'text',
-    raw_subdomains: 'set<text>'
+    raw_subdomains: 'set<text>',
+    desktop_performance_suggestions: 'text',
+    mobile_performance_suggestions: 'text',
+    desktop_accessibility_suggestions: 'text',
+    mobile_accessibility_suggestions: 'text',
+    desktop_seo_suggestions: 'text',
+    mobile_seo_suggestions: 'text'
   });
 
   await ensureColumns(client, 'domain_discovery', 'domain_page_metrics', {
@@ -277,7 +283,13 @@ async function initCassandra() {
     mobile_timing_total: 'float',
     lighthouse_version: 'text',
     lighthouse_fetch_time: 'timestamp',
-    lighthouse_url: 'text'
+    lighthouse_url: 'text',
+    desktop_performance_suggestions: 'text',
+    mobile_performance_suggestions: 'text',
+    desktop_accessibility_suggestions: 'text',
+    mobile_accessibility_suggestions: 'text',
+    desktop_seo_suggestions: 'text',
+    mobile_seo_suggestions: 'text'
   });
 
   await ensureColumns(client, 'domain_discovery', 'analytics_tag_health', {
@@ -402,6 +414,32 @@ function parseDomainParts(input) {
   } catch {
     return null;
   }
+}
+
+function gatherPerformanceSuggestions(lhr) {
+  const audits = Object.values(lhr.audits || {}).filter(
+    a => a.details && a.details.type === 'opportunity'
+  );
+  return audits
+    .map(a => ({
+      title: a.title,
+      savings: a.details.overallSavingsMs || a.details.overallSavingsBytes || 0,
+      displayValue: a.displayValue
+    }))
+    .sort((a, b) => b.savings - a.savings)
+    .slice(0, 5)
+    .map(a => `${a.title}${a.displayValue ? ` (${a.displayValue})` : ''}`)
+    .join('; ');
+}
+
+function gatherCategorySuggestions(lhr, id) {
+  const cat = lhr.categories?.[id];
+  if (!cat || !Array.isArray(cat.auditRefs)) return '';
+  return cat.auditRefs
+    .map(ref => lhr.audits?.[ref.id])
+    .filter(a => a && typeof a.score === 'number' && a.score < 1)
+    .map(a => a.title)
+    .join('; ');
 }
 
 async function updateDomainRegistry(url, columns) {
@@ -608,6 +646,27 @@ app.post('/api/profile', authMiddleware, async (req, res) => {
   }
 });
 
+app.get('/api/page-metrics', optionalAuthMiddleware, async (req, res) => {
+  const { url } = req.query;
+  if (typeof url !== 'string') {
+    return res.status(400).json({ error: 'Invalid url' });
+  }
+  try {
+    const parts = parseDomainParts(url);
+    if (!parts) return res.status(400).json({ error: 'Invalid url' });
+    const { domain } = parts;
+    const result = await cassandraClient.execute(
+      'SELECT * FROM domain_discovery.domain_page_metrics WHERE domain=? AND url=? ORDER BY scan_date DESC LIMIT 1',
+      [domain, url],
+      { prepare: true }
+    );
+    res.json(result.rows[0] || {});
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Database error' });
+  }
+});
+
 app.post('/api/billing', authMiddleware, async (req, res) => {
   const {
     name,
@@ -702,6 +761,9 @@ app.post('/api/performance', authMiddleware, async (req, res) => {
       metrics[`${prefix}_total_blocking_time`] = a['total-blocking-time']?.numericValue || null;
       metrics[`${prefix}_cumulative_layout_shift`] = a['cumulative-layout-shift']?.numericValue || null;
       metrics[`${prefix}_timing_total`] = lhr.timing?.total || null;
+      metrics[`${prefix}_performance_suggestions`] = gatherPerformanceSuggestions(lhr);
+      metrics[`${prefix}_accessibility_suggestions`] = gatherCategorySuggestions(lhr, 'accessibility');
+      metrics[`${prefix}_seo_suggestions`] = gatherCategorySuggestions(lhr, 'seo');
     };
     extract(desktop, 'desktop');
     extract(mobile, 'mobile');
@@ -710,6 +772,16 @@ app.post('/api/performance', authMiddleware, async (req, res) => {
     metrics.lighthouse_url = url;
     await updateDomainRegistry(url, metrics);
     await savePageMetrics(url, metrics);
+    result.desktopSuggestions = {
+      performance: metrics.desktop_performance_suggestions,
+      accessibility: metrics.desktop_accessibility_suggestions,
+      seo: metrics.desktop_seo_suggestions
+    };
+    result.mobileSuggestions = {
+      performance: metrics.mobile_performance_suggestions,
+      accessibility: metrics.mobile_accessibility_suggestions,
+      seo: metrics.mobile_seo_suggestions
+    };
     res.json(result);
   } catch (err) {
     console.error(err);
@@ -819,10 +891,14 @@ app.post('/api/seo-audit', authMiddleware, async (req, res) => {
     desktop_seo_score: Math.round((desktop.categories?.seo?.score || 0) * 100),
     lighthouse_version: desktop.lighthouseVersion || mobile.lighthouseVersion,
     lighthouse_fetch_time: new Date(desktop.fetchTime || mobile.fetchTime || Date.now()),
-    lighthouse_url: url
+    lighthouse_url: url,
+    mobile_seo_suggestions: gatherCategorySuggestions(mobile, 'seo'),
+    desktop_seo_suggestions: gatherCategorySuggestions(desktop, 'seo')
   };
   await updateDomainRegistry(url, metrics);
   await savePageMetrics(url, metrics);
+  result.desktopSuggestions = { seo: metrics.desktop_seo_suggestions };
+  result.mobileSuggestions = { seo: metrics.mobile_seo_suggestions };
   res.json(result);
   } catch (err) {
     console.error(err);
