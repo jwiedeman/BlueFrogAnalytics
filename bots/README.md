@@ -16,6 +16,7 @@ Each component lives in its own folder and can run independently.
 - `BOT-ripwappalyzer[Js]` – Puppeteer-based tech fingerprinting script.
 - `BOT-wappalyzer[Py]` – Python technology detection using the Wappalyzer library.
 - `WORKER-WhoisNewestDomains` – Go worker that grabs newly registered domains from whoisds.com.
+- `run-whois-suite.sh` – Shell script that runs the newest-domain grabber and WHOIS updater every 12 hours.
 - `ETL-Domains` – helper scripts for data ingestion and enrichment.
 - `DB[Cfg]` – Docker assets for running Cassandra clusters.
 
