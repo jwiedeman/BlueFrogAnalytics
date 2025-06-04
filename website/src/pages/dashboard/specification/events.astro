@@ -6,7 +6,10 @@ const description = 'Event reference details.';
 ---
 <DashboardLayout title={title} description={description}>
   <section class="container py-5">
-    <h1 class="text-center mb-4">Events</h1>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="mb-0">Events</h1>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#event-modal">Add Event</button>
+    </div>
     <div class="table-responsive">
       <table class="table table-dark table-striped align-middle" id="events-table">
         <thead>
@@ -22,6 +25,43 @@ const description = 'Event reference details.';
       </table>
     </div>
   </section>
+  <div class="modal fade" id="event-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content bg-dark text-light">
+        <form id="event-form">
+          <div class="modal-header border-0">
+            <h5 class="modal-title">Add Event</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="event-tool" class="form-label">Tool</label>
+              <input id="event-tool" type="text" class="form-control" placeholder="google_analytics" required />
+            </div>
+            <div class="mb-3">
+              <label for="event-name" class="form-label">Name</label>
+              <input id="event-name" type="text" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label for="event-desc" class="form-label">Description</label>
+              <input id="event-desc" type="text" class="form-control" />
+            </div>
+            <div class="mb-3">
+              <label for="event-rule" class="form-label">Rule</label>
+              <input id="event-rule" type="text" class="form-control" />
+            </div>
+            <div class="mb-3">
+              <label for="event-example" class="form-label">Example</label>
+              <input id="event-example" type="text" class="form-control" />
+            </div>
+          </div>
+          <div class="modal-footer border-0">
+            <button type="submit" class="btn btn-primary w-100">Save Event</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
   <script type="module">
     document.addEventListener('DOMContentLoaded', () => {
       const loadData = async () => {
@@ -38,11 +78,45 @@ const description = 'Event reference details.';
         } catch {}
       };
       const init = () => {
-        window.onAuthStateChanged(window.firebaseAuth, user => {
+        window.onAuthStateChanged(window.firebaseAuth, async user => {
           if (!user) {
             window.location.href = '/login';
           } else {
             loadData();
+            const formEl = document.getElementById('event-form');
+            const modalEl = document.getElementById('event-modal');
+            const toolEl = document.getElementById('event-tool');
+            const nameEl = document.getElementById('event-name');
+            const descEl = document.getElementById('event-desc');
+            const ruleEl = document.getElementById('event-rule');
+            const exEl = document.getElementById('event-example');
+            const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+            formEl.addEventListener('submit', async e => {
+              e.preventDefault();
+              const token = await user.getIdToken();
+              await fetch('/api/specs', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                  category: 'event',
+                  tool: toolEl.value.trim(),
+                  name: nameEl.value.trim(),
+                  description: descEl.value.trim(),
+                  rule: ruleEl.value.trim(),
+                  example: exEl.value.trim()
+                })
+              });
+              toolEl.value = '';
+              nameEl.value = '';
+              descEl.value = '';
+              ruleEl.value = '';
+              exEl.value = '';
+              modal.hide();
+              loadData();
+            });
           }
         });
       };
