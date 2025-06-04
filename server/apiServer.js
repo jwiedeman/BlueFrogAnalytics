@@ -849,28 +849,33 @@ app.get('/api/domain-pages', authMiddleware, async (req, res) => {
   if (typeof domain !== 'string') {
     return res.status(400).json({ error: 'Invalid domain' });
   }
-
-  const parts = parseDomainParts(domain);
-  if (!parts) {
+  domain = domain.toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '');
+  const host = domain.split('/')[0];
+  const parts = host.split('.');
+  if (parts.length < 2) {
     return res.status(400).json({ error: 'Invalid domain' });
   }
+  const tld = parts.pop();
+  const name = parts.join('.');
   try {
     const result = await cassandraClient.execute(
-      'SELECT * FROM domain_discovery.domain_page_metrics WHERE domain=?',
-      [parts.domain],
+      'SELECT url, desktop_seo_score, mobile_seo_score, scan_date FROM domain_discovery.domain_page_metrics WHERE domain=?',
+      [name],
       { prepare: true }
     );
     const map = new Map();
-    for (const row of result.rows) {
-      const current = map.get(row.url);
-      if (!current || row.scan_date > current.scan_date) {
-        map.set(row.url, row);
+    result.rows.forEach(r => {
+      const prev = map.get(r.url);
+      if (!prev || r.scan_date > prev.scan_date) {
+        map.set(r.url, {
+          url: r.url,
+          desktop_seo_score: r.desktop_seo_score,
+          mobile_seo_score: r.mobile_seo_score,
+          scan_date: r.scan_date
+        });
       }
-    }
-    const pages = Array.from(map.values()).sort((a, b) =>
-      a.url.localeCompare(b.url)
-    );
-    res.json(pages);
+    });
+    res.json(Array.from(map.values()));
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Database error' });
