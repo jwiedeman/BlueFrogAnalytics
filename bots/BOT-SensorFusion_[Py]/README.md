@@ -32,9 +32,10 @@ returns the raw groups, categories and technologies dictionaries for custom
 analysis.
 
 The repository includes the full technology set compiled from the original
-open-source data. Run `scripts/compile_tech_data.py` to rebuild
-`data/technologies.json` from the JSON files in the `src/technologies` directory.
-The precompiled file contains over 5,000 technology definitions.
+open-source Wappalyzer data. The raw detection files live locally under
+`src/technologies`, making this bot self-contained. Run
+`scripts/compile_tech_data.py` to rebuild `data/technologies.json`. The
+precompiled file contains over 5,000 technology definitions.
 
 All existing tests from `BOT-Recon_[Py]` are discovered automatically, allowing
 the full reconnaissance suite to run alongside the fingerprinting engine.
