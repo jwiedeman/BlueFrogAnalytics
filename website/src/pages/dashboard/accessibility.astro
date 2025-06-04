@@ -12,6 +12,12 @@ const description = 'Accessibility audit results.';
           <h1>Accessibility Audit</h1>
           <p>Run Lighthouse accessibility checks on your page.</p>
         </div>
+        <div class="mb-3">
+          <label for="domain-select" class="form-label">Select Domain</label>
+          <select id="domain-select" class="form-select"></select>
+        </div>
+        <div id="domain-results" class="mb-4"></div>
+        <div id="page-results" class="mb-4"></div>
         <form id="a11y-form" class="row gy-2 gx-3 align-items-end mb-3">
           <div class="col-md-8">
             <label for="a11y-url" class="form-label">Enter URL</label>
@@ -41,5 +47,6 @@ const description = 'Accessibility audit results.';
       }
     });
   </script>
+  <script type="module" src="/js/a11y-dashboard.js" defer></script>
   <script type="module" src="/js/accessibility-check.js" defer></script>
 </DashboardLayout>
