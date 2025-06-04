@@ -5,6 +5,8 @@ import requests
 from bs4 import BeautifulSoup
 
 from wappalyzer_data import load_full_wappalyzer_data
+import dns.resolver
+from urllib.parse import urlparse
 
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -56,9 +58,12 @@ def detect(url: str) -> Dict[str, Any]:
     html = resp.text
     soup = BeautifulSoup(html, "lxml")
     scripts = [s.get("src", "") for s in soup.find_all("script", src=True)]
+    inline_scripts = [s.get_text() for s in soup.find_all("script") if not s.get("src")]
     meta = {m.get("name", "").lower(): m.get("content", "") for m in soup.find_all("meta", attrs={"name": True, "content": True})}
     headers = {k.lower(): v for k, v in resp.headers.items()}
     cookies = {c.name.lower(): c.value for c in resp.cookies}
+    parsed = urlparse(url)
+    hostname = parsed.hostname or parsed.path.split("/")[0]
 
     detected: Dict[str, Dict[str, Any]] = {}
 
@@ -102,11 +107,68 @@ def detect(url: str) -> Dict[str, Any]:
                 if m:
                     return _extract_version(comp, m)
 
+        js_text = "\n".join(inline_scripts)
+        for name, pat in tech.get("js", {}).items():
+            attr = _prepare_pattern(pat)
+            m = attr["regex"].search(js_text)
+            if m:
+                return _extract_version(attr, m)
+
+        dom = tech.get("dom")
+        if dom:
+            if isinstance(dom, list):
+                for selector in dom:
+                    if soup.select_one(selector):
+                        return ""
+            elif isinstance(dom, dict):
+                for selector, cond in dom.items():
+                    elements = soup.select(selector)
+                    if not elements:
+                        continue
+                    if isinstance(cond, dict):
+                        if "exists" in cond:
+                            return ""
+                        attrs = cond.get("attributes", {})
+                        for el in elements:
+                            matched = True
+                            for aname, pattern in attrs.items():
+                                aval = el.get(aname)
+                                if aval is None:
+                                    matched = False
+                                    break
+                                if pattern:
+                                    if not re.search(pattern, aval, re.I):
+                                        matched = False
+                                        break
+                            if matched:
+                                return ""
+                    else:
+                        attr = _prepare_pattern(str(cond))
+                        for el in elements:
+                            m = attr["regex"].search(el.text)
+                            if m:
+                                return _extract_version(attr, m)
+
         for pattern in _compile_list(tech.get("html")):
             attr = _prepare_pattern(pattern.pattern if isinstance(pattern, re.Pattern) else pattern)
             m = attr["regex"].search(html)
             if m:
                 return _extract_version(attr, m)
+
+        for rtype, patterns in tech.get("dns", {}).items():
+            if not isinstance(patterns, list):
+                patterns = [patterns]
+            try:
+                answers = dns.resolver.resolve(hostname, rtype, lifetime=3)
+                records = [a.to_text() for a in answers]
+            except Exception:
+                continue
+            for pat in patterns:
+                attr = _prepare_pattern(pat)
+                for rec in records:
+                    m = attr["regex"].search(rec)
+                    if m:
+                        return _extract_version(attr, m)
 
         return None
 
