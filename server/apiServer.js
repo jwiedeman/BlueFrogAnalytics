@@ -54,6 +54,253 @@ const rateLimiter = (req, res, next) => {
   next();
 };
 
+async function ensureKeyspace(client, name) {
+  await client.execute(
+    `CREATE KEYSPACE IF NOT EXISTS ${name} WITH replication = {'class':'SimpleStrategy','replication_factor':1}`
+  );
+}
+
+async function columnExists(client, keyspace, table, column) {
+  const result = await client.execute(
+    'SELECT column_name FROM system_schema.columns WHERE keyspace_name=? AND table_name=? AND column_name=?',
+    [keyspace, table, column],
+    { prepare: true }
+  );
+  return result.rowLength > 0;
+}
+
+async function ensureColumns(client, keyspace, table, defs) {
+  for (const [name, type] of Object.entries(defs)) {
+    if (!(await columnExists(client, keyspace, table, name))) {
+      await client.execute(`ALTER TABLE ${keyspace}.${table} ADD ${name} ${type}`);
+    }
+  }
+}
+
+async function initCassandra() {
+  const contactPoints = (process.env.CASSANDRA_CONTACT_POINTS || '127.0.0.1').split(',');
+  const localDataCenter = process.env.CASSANDRA_LOCAL_DATA_CENTER || 'datacenter1';
+  const keyspace = process.env.CASSANDRA_KEYSPACE || 'profiles';
+
+  const admin = new Client({ contactPoints, localDataCenter });
+  await admin.connect();
+  await ensureKeyspace(admin, 'profiles');
+  await ensureKeyspace(admin, 'domain_discovery');
+  await admin.shutdown();
+
+  const client = new Client({
+    contactPoints,
+    localDataCenter,
+    keyspace,
+    socketOptions: { readTimeout: 120000 }
+  });
+  await client.connect();
+
+  await client.execute(`
+    CREATE TABLE IF NOT EXISTS user_profiles (
+      uid text PRIMARY KEY,
+      first_name text,
+      last_name text,
+      email text,
+      phone text,
+      payment_preference text,
+      domains text,
+      tests text
+    )
+  `);
+
+  await client.execute(`
+    CREATE TABLE IF NOT EXISTS billing_info (
+      uid text PRIMARY KEY,
+      name text,
+      address text,
+      city text,
+      state text,
+      postal_code text,
+      country text,
+      plan text
+    )
+  `);
+
+  await client.execute(`
+    CREATE TABLE IF NOT EXISTS domain_discovery.certstream_domains (
+      domain text PRIMARY KEY
+    )
+  `);
+
+  await client.execute(`
+    CREATE TABLE IF NOT EXISTS domain_discovery.domains_processed (
+      domain text,
+      tld text,
+      PRIMARY KEY (domain, tld)
+    )
+  `);
+
+  await client.execute(`
+    CREATE TABLE IF NOT EXISTS domain_discovery.domain_page_metrics (
+      domain text,
+      url text,
+      scan_date timestamp,
+      PRIMARY KEY (domain, url, scan_date)
+    )
+  `);
+
+  await client.execute(`
+    CREATE TABLE IF NOT EXISTS domain_discovery.analytics_tag_health (
+      domain text,
+      scan_date timestamp,
+      PRIMARY KEY (domain, scan_date)
+    )
+  `);
+
+  await client.execute(`
+    CREATE TABLE IF NOT EXISTS domain_discovery.carbon_audits (
+      domain text,
+      url text,
+      scan_date timestamp,
+      PRIMARY KEY (domain, url, scan_date)
+    )
+  `);
+
+  await client.execute(`
+    CREATE TABLE IF NOT EXISTS domain_discovery.misc_tool_results (
+      domain text,
+      url text,
+      tool_name text,
+      scan_date timestamp,
+      PRIMARY KEY (domain, url, tool_name, scan_date)
+    )
+  `);
+
+  await client.execute(`
+    CREATE TABLE IF NOT EXISTS domain_discovery.businesses (
+      name text,
+      address text,
+      website text,
+      phone text,
+      reviews_average float,
+      query text,
+      latitude float,
+      longitude float,
+      PRIMARY KEY (name, address)
+    )
+  `);
+
+  await ensureColumns(client, 'domain_discovery', 'domains_processed', {
+    registered: 'timestamp',
+    registrar: 'text',
+    updated: 'timestamp',
+    status: 'text',
+    as_name: 'text',
+    as_number: 'int',
+    isp: 'text',
+    org: 'text',
+    city: 'text',
+    region: 'text',
+    region_name: 'text',
+    country: 'text',
+    country_code: 'text',
+    continent: 'text',
+    continent_code: 'text',
+    lat: 'float',
+    lon: 'float',
+    languages: 'list<text>',
+    phone: 'text',
+    time_zone: 'text',
+    ssl_issuer: 'text',
+    tech_detect: 'list<text>',
+    site_type: 'text',
+    site_category: 'text',
+    site_type_tags: 'list<text>',
+    title: 'text',
+    description: 'text',
+    linkedin_url: 'text',
+    has_about_page: 'boolean',
+    has_services_page: 'boolean',
+    has_cart_or_product: 'boolean',
+    contains_gtm_or_ga: 'boolean',
+    wordpress_version: 'text',
+    server_type: 'text',
+    server_version: 'text',
+    emails: 'list<text>',
+    sitemap_page_count: 'int',
+    desktop_accessibility_score: 'int',
+    mobile_accessibility_score: 'int',
+    desktop_best_practices_score: 'int',
+    mobile_best_practices_score: 'int',
+    desktop_performance_score: 'int',
+    mobile_performance_score: 'int',
+    desktop_seo_score: 'int',
+    mobile_seo_score: 'int',
+    desktop_first_contentful_paint: 'float',
+    mobile_first_contentful_paint: 'float',
+    desktop_largest_contentful_paint: 'float',
+    mobile_largest_contentful_paint: 'float',
+    desktop_interactive: 'float',
+    mobile_interactive: 'float',
+    desktop_speed_index: 'float',
+    mobile_speed_index: 'float',
+    desktop_total_blocking_time: 'float',
+    mobile_total_blocking_time: 'float',
+    desktop_cumulative_layout_shift: 'float',
+    mobile_cumulative_layout_shift: 'float',
+    desktop_timing_total: 'float',
+    mobile_timing_total: 'float',
+    lighthouse_version: 'text',
+    lighthouse_fetch_time: 'timestamp',
+    lighthouse_url: 'text',
+    raw_subdomains: 'set<text>'
+  });
+
+  await ensureColumns(client, 'domain_discovery', 'domain_page_metrics', {
+    desktop_accessibility_score: 'int',
+    mobile_accessibility_score: 'int',
+    desktop_best_practices_score: 'int',
+    mobile_best_practices_score: 'int',
+    desktop_performance_score: 'int',
+    mobile_performance_score: 'int',
+    desktop_seo_score: 'int',
+    mobile_seo_score: 'int',
+    desktop_first_contentful_paint: 'float',
+    mobile_first_contentful_paint: 'float',
+    desktop_largest_contentful_paint: 'float',
+    mobile_largest_contentful_paint: 'float',
+    desktop_interactive: 'float',
+    mobile_interactive: 'float',
+    desktop_speed_index: 'float',
+    mobile_speed_index: 'float',
+    desktop_total_blocking_time: 'float',
+    mobile_total_blocking_time: 'float',
+    desktop_cumulative_layout_shift: 'float',
+    mobile_cumulative_layout_shift: 'float',
+    desktop_timing_total: 'float',
+    mobile_timing_total: 'float',
+    lighthouse_version: 'text',
+    lighthouse_fetch_time: 'timestamp',
+    lighthouse_url: 'text'
+  });
+
+  await ensureColumns(client, 'domain_discovery', 'analytics_tag_health', {
+    working_variants: 'list<text>',
+    scanned_urls: 'list<text>',
+    found_analytics: 'map<text, text>',
+    page_results: 'map<text, text>',
+    variant_results: 'map<text, text>',
+    compliance_status: 'text'
+  });
+
+  await ensureColumns(client, 'domain_discovery', 'carbon_audits', {
+    bytes: 'int',
+    co2: 'float'
+  });
+
+  await ensureColumns(client, 'domain_discovery', 'misc_tool_results', {
+    data: 'map<text, text>'
+  });
+
+  return client;
+}
+
 const serviceAccountPath =
   process.env.FIREBASE_SERVICE_ACCOUNT ||
   new URL('./serviceAccount.json', import.meta.url).pathname;
@@ -69,39 +316,7 @@ const firebaseApp = initializeApp({
 });
 const firebaseAuth = getAuth(firebaseApp);
 
-const cassandraClient = new Client({
-  contactPoints: (process.env.CASSANDRA_CONTACT_POINTS || '127.0.0.1').split(','),
-  localDataCenter: process.env.CASSANDRA_LOCAL_DATA_CENTER || 'datacenter1',
-  keyspace: process.env.CASSANDRA_KEYSPACE || 'profiles',
-  socketOptions: { readTimeout: 120000 }
-});
-
-await cassandraClient.connect();
-await cassandraClient.execute(`
-  CREATE TABLE IF NOT EXISTS user_profiles (
-    uid text PRIMARY KEY,
-    first_name text,
-    last_name text,
-    email text,
-    phone text,
-    payment_preference text,
-    domains text,
-    tests text
-  )
-`);
-
-await cassandraClient.execute(`
-  CREATE TABLE IF NOT EXISTS billing_info (
-    uid text PRIMARY KEY,
-    name text,
-    address text,
-    city text,
-    state text,
-    postal_code text,
-    country text,
-    plan text
-  )
-`);
+const cassandraClient = await initCassandra();
 
 const app = express();
 app.disable('x-powered-by');
