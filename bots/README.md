@@ -11,7 +11,6 @@ website tools rather than standalone workers.
 - `WORKER-AutoWebPageTest` – Node.js crawler using WebPageTest.
 - `WORKER-Classify_target` – Go classifier powered by Ollama.
 - `WORKER-Enrich_processed_domains` – Python enrichment pipeline with GeoIP and Wappalyzer.
-- `WORKER-DomainStatus` – Go reachability checker.
 - `WORKER-DedupeDomains` – Go utility that normalizes TLDs and removes duplicate records.
 - `BACKEND-AnalyticsTagHealth` – scans domains for analytics tags used by the free tools.
 - `BOT-Hunter[Rust]` – asynchronous crawler written in Rust.
