@@ -1,6 +1,6 @@
 # Bot and Worker Output Schema
 
-The table below lists each bot/worker and the storage location it writes to. Keyspaces are Cassandra unless otherwise noted.
+The table below summarizes where each bot or worker stores its results. Unless stated otherwise the storage backend is the Cassandra `domain_discovery` keyspace.
 
 | Bot/Worker | Keyspace | Table/File | Notes |
 |------------|----------|-----------|-------|
