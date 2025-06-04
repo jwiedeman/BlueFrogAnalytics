@@ -2,11 +2,15 @@ import os
 import asyncio
 import random
 import re
+import logging
 from typing import Sequence, Set, Tuple
 
 from geopy.geocoders import Nominatim
 from playwright.async_api import async_playwright
 from db import init_db, save_business, get_dsn, close_db
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
+logger = logging.getLogger(__name__)
 
 
 async def scrape_at_location(
@@ -53,52 +57,56 @@ async def scrape_at_location(
                 lat_val = float(match.group(1))
                 lon_val = float(match.group(2))
 
-        if key not in seen:
-            seen.add(key)
-            save_business(
-                conn,
-                (
-                    name,
-                    address,
-                    "",
-                    "",
-                    None,
-                    query,
-                    lat_val,
-                    lon_val,
-                ),
-            )
+        if key in seen:
+            logger.info("Already saved: %s | %s", name, address)
+            continue
 
-            await listing.click()
-            await page.wait_for_timeout(3000)
+        seen.add(key)
+        logger.info("Saving new listing: %s | %s", name, address)
+        save_business(
+            conn,
+            (
+                name,
+                address,
+                "",
+                "",
+                None,
+                query,
+                lat_val,
+                lon_val,
+            ),
+        )
 
-            name = await page.locator('h1.DUwDvf.lfPIob').inner_text() if await page.locator('h1.DUwDvf.lfPIob').count() else name
+        await listing.click()
+        await page.wait_for_timeout(3000)
 
-            if await page.locator('//button[@data-item-id="address"]//div[contains(@class, "fontBodyMedium")]').count():
-                elements = await page.locator('//button[@data-item-id="address"]//div[contains(@class, "fontBodyMedium")]').all()
-                if elements:
-                    address = await elements[0].inner_text()
+        name = await page.locator('h1.DUwDvf.lfPIob').inner_text() if await page.locator('h1.DUwDvf.lfPIob').count() else name
 
-            website = ""
-            if await page.locator('//a[@data-item-id="authority"]//div[contains(@class, "fontBodyMedium")]').count():
-                elements = await page.locator('//a[@data-item-id="authority"]//div[contains(@class, "fontBodyMedium")]').all()
-                if elements:
-                    website = await elements[0].inner_text()
+        if await page.locator('//button[@data-item-id="address"]//div[contains(@class, "fontBodyMedium")]').count():
+            elements = await page.locator('//button[@data-item-id="address"]//div[contains(@class, "fontBodyMedium")]').all()
+            if elements:
+                address = await elements[0].inner_text()
 
-            phone = ""
-            if await page.locator('//button[contains(@data-item-id, "phone")]//div[contains(@class, "fontBodyMedium")]').count():
-                elements = await page.locator('//button[contains(@data-item-id, "phone")]//div[contains(@class, "fontBodyMedium")]').all()
-                if elements:
-                    phone = await elements[0].inner_text()
+        website = ""
+        if await page.locator('//a[@data-item-id="authority"]//div[contains(@class, "fontBodyMedium")]').count():
+            elements = await page.locator('//a[@data-item-id="authority"]//div[contains(@class, "fontBodyMedium")]').all()
+            if elements:
+                website = await elements[0].inner_text()
 
-            reviews_average = None
-            if await page.locator('//div[@jsaction="pane.reviewChart.moreReviews"]//div[@role="img"]').count():
-                text = await page.locator('//div[@jsaction="pane.reviewChart.moreReviews"]//div[@role="img"]').get_attribute('aria-label')
-                if text:
-                    try:
-                        reviews_average = float(text.split()[0].replace(',', '.'))
-                    except ValueError:
-                        reviews_average = None
+        phone = ""
+        if await page.locator('//button[contains(@data-item-id, "phone")]//div[contains(@class, "fontBodyMedium")]').count():
+            elements = await page.locator('//button[contains(@data-item-id, "phone")]//div[contains(@class, "fontBodyMedium")]').all()
+            if elements:
+                phone = await elements[0].inner_text()
+
+        reviews_average = None
+        if await page.locator('//div[@jsaction="pane.reviewChart.moreReviews"]//div[@role="img"]').count():
+            text = await page.locator('//div[@jsaction="pane.reviewChart.moreReviews"]//div[@role="img"]').get_attribute('aria-label')
+            if text:
+                try:
+                    reviews_average = float(text.split()[0].replace(',', '.'))
+                except ValueError:
+                    reviews_average = None
 
             url = page.url
             match = re.search(r"@(-?\d+\.\d+),(-?\d+\.\d+)", url)

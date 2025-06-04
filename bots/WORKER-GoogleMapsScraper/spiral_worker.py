@@ -2,9 +2,13 @@ import os
 import asyncio
 import re
 import sys
+import logging
 from typing import Set, Tuple
 
 from db import init_db, save_business, get_dsn, close_db
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
+logger = logging.getLogger(__name__)
 
 from playwright.async_api import async_playwright
 
@@ -38,8 +42,10 @@ async def collect_current_listings(page, query: str, seen: Set[Tuple[str, str]],
         address = lines[1] if len(lines) > 1 else ""
         key = (name, address)
         if key in seen:
+            logger.info("Already saved: %s | %s", name, address)
             continue
         seen.add(key)
+        logger.info("Saving new listing: %s | %s", name, address)
         new_entries.append(key)
 
         lat = lon = None
