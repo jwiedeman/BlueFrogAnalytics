@@ -6,20 +6,20 @@ const description = 'Manage your monitored domains.';
 const domainList = [];
 ---
 <DashboardLayout title={title} description={description}>
-  <section class="container py-5">
+  <section class="container py-5 text-light">
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h1 class="mb-0">Domains</h1>
       <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#domain-modal">Add Domain</button>
     </div>
-    <p class="text-muted small mb-4">
-      Frequency controls how often we crawl your domain. Deleting only removes the domain from your dashboard; we continue monitoring it for overall insights.
+    <p class="small mb-4">
+      <strong>Refresh Frequency</strong> controls how often we crawl your domain. Removing a domain only hides it from your dashboard; monitoring continues for overall insights.
     </p>
     <div class="d-none d-md-flex fw-bold border-bottom pb-2 mb-3">
-      <div class="col">Domain</div>
+      <div class="col domain-name">Domain</div>
       <div class="col-auto">Frequency</div>
       <div class="col-auto">Actions</div>
     </div>
-    <div id="domainList" class="domain-list"></div>
+    <ol id="domainList" class="domain-list list-group list-group-numbered"></ol>
   </section>
 
   <div class="modal fade" id="domain-modal" tabindex="-1" aria-hidden="true">
@@ -77,23 +77,22 @@ const domainList = [];
       const render = () => {
         listEl.innerHTML = '';
         if (!domains.length) {
-          listEl.innerHTML = '<p>No domains added.</p>';
+          listEl.innerHTML = '<p class="text-light">No domains added.</p>';
           return;
         }
         domains.forEach((dom, i) => {
-          const item = document.createElement('div');
-          item.className = 'row align-items-center pb-2 mb-3 border-bottom domain-row';
+          const item = document.createElement('li');
+          item.className =
+            'list-group-item bg-dark text-light domain-row';
           item.innerHTML = `
-            <div class="col domain-name">${dom.name}</div>
-            <div class="col-auto">
-              <select class="form-select form-select-sm me-2 frequency-select" data-index="${i}">
+            <div class="d-flex flex-column flex-md-row align-items-md-center gap-2">
+              <span class="flex-grow-1 domain-name">${dom.name}</span>
+              <select class="form-select form-select-sm me-md-2 frequency-select" data-index="${i}">
                 <option value="daily">Daily</option>
                 <option value="weekly">Weekly</option>
                 <option value="monthly">Monthly</option>
               </select>
-            </div>
-            <div class="col-auto">
-              <button class="btn btn-sm btn-danger" data-action="delete" data-index="${i}">Delete</button>
+              <button class="btn btn-sm btn-danger ms-md-2" data-action="delete" data-index="${i}">Delete</button>
             </div>`;
           item.querySelector('.frequency-select').value = dom.frequency || 'daily';
           listEl.appendChild(item);
