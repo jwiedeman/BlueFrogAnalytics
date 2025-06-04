@@ -5,10 +5,10 @@ CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.join(CURRENT_DIR, '..')
 sys.path.insert(0, BASE_DIR)
 
-import wappalyzer_data
+import tech_data
 
-detector = wappalyzer_data.get_detector()
-groups, categories, _ = wappalyzer_data.load_full_wappalyzer_data()
+detector = tech_data.get_detector()
+groups, categories, _ = tech_data.load_full_tech_data()
 
 
 def run_test(target):

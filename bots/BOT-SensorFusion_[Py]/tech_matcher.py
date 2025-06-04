@@ -4,7 +4,7 @@ from typing import Any, Dict, List
 import requests
 from bs4 import BeautifulSoup
 
-from wappalyzer_data import load_full_wappalyzer_data
+from tech_data import load_full_tech_data
 import dns.resolver
 from urllib.parse import urlparse
 
@@ -17,7 +17,7 @@ def _load_data() -> None:
     """Load technology data once and cache it globally."""
     global _GROUPS, _CATEGORIES, _TECHNOLOGIES
     if _TECHNOLOGIES is None:
-        _GROUPS, _CATEGORIES, _TECHNOLOGIES = load_full_wappalyzer_data()
+        _GROUPS, _CATEGORIES, _TECHNOLOGIES = load_full_tech_data()
 
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -38,7 +38,7 @@ def _compile_patterns(value: Any) -> List[Dict[str, Any]]:
 
 
 def _prepare_pattern(pattern: str) -> Dict[str, Any]:
-    """Parse a Wappalyzer pattern string into regex and attributes."""
+    """Parse a technology pattern string into regex and attributes."""
     attrs: Dict[str, Any] = {}
     parts = pattern.split(";")
     attrs["regex"] = re.compile(parts[0], re.I)
@@ -60,7 +60,7 @@ def _extract_version(attr: Dict[str, Any], match: re.Match) -> str:
 
 
 def detect(url: str) -> Dict[str, Any]:
-    """Basic matcher using Wappalyzer patterns without the Wappalyzer library."""
+    """Basic matcher using the bundled patterns without the external library."""
     _load_data()
     groups, categories, technologies = _GROUPS, _CATEGORIES, _TECHNOLOGIES
 
