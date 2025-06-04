@@ -162,6 +162,36 @@ write these values directly to `domains_processed`.
 - `desktop_seo_suggestions` text
 - `mobile_seo_suggestions` text
 
+#### Columns updated by `WORKER-AutoLighthouse`
+
+The Lighthouse worker runs audits in both desktop and mobile modes. Each metric is
+stored in `domains_processed` as a pair of columns. The following table maps those
+pairs:
+
+| Desktop column | Mobile column | Description |
+| -------------- | ------------ | ----------- |
+| `desktop_performance_score` | `mobile_performance_score` | Performance category score |
+| `desktop_accessibility_score` | `mobile_accessibility_score` | Accessibility category score |
+| `desktop_best_practices_score` | `mobile_best_practices_score` | Best Practices score |
+| `desktop_seo_score` | `mobile_seo_score` | SEO score |
+| `desktop_first_contentful_paint` | `mobile_first_contentful_paint` | First Contentful Paint (ms) |
+| `desktop_largest_contentful_paint` | `mobile_largest_contentful_paint` | Largest Contentful Paint (ms) |
+| `desktop_interactive` | `mobile_interactive` | Time to Interactive (ms) |
+| `desktop_speed_index` | `mobile_speed_index` | Speed Index (ms) |
+| `desktop_total_blocking_time` | `mobile_total_blocking_time` | Total Blocking Time (ms) |
+| `desktop_cumulative_layout_shift` | `mobile_cumulative_layout_shift` | Cumulative Layout Shift |
+| `desktop_timing_total` | `mobile_timing_total` | Total Lighthouse timing (ms) |
+| `desktop_performance_suggestions` | `mobile_performance_suggestions` | Top performance opportunities |
+| `desktop_accessibility_suggestions` | `mobile_accessibility_suggestions` | Failing accessibility audits |
+| `desktop_seo_suggestions` | `mobile_seo_suggestions` | Failing SEO audits |
+| `lighthouse_version` | – | Lighthouse version used |
+| `lighthouse_fetch_time` | – | Timestamp of the scan |
+| `lighthouse_url` | – | Final audited URL |
+
+The CLI `run` command outputs a smaller CSV/JSON format with these columns:
+
+`url`, `performance`, `accessibility`, `best-practices`, `seo`, `pwa`, `firstContentfulPaint`, `performanceSuggestions`, `accessibilitySuggestions`, `seoSuggestions`.
+
 ### `analytics_tag_health`
 Detailed analytics and tag compliance results.
 
@@ -215,7 +245,7 @@ Proposed table for storing DNS enumeration output. Each record is stored separat
 
 Bots interacting with these tables include:
 - `WORKER-CertStream` – ingesting CertStream feeds
-- `WORKER-AutoLighthouse` – running Lighthouse scoring
+- `WORKER-AutoLighthouse` – running Lighthouse scoring (columns below)
 - `WORKER-AutoWebPageTest` – running WebPageTest scans
 - `WORKER-AnalyticsTagHealth` – analytics tag checks
 - `WORKER-CarbonAuditor` – carbon footprint audits
@@ -249,7 +279,7 @@ The table below summarizes where each bot or worker stores its results. Unless s
 | BOT-wappalyzer[Py] | Postgres | domains | techdetect | Updates technology data in Postgres. |
 | ETL-Domains | domain_discovery | domains_processed | domain, tld, subdomains, raw_subdomains, [various enrichment fields] | Scripts migrating CertStream and enrichment data. |
 | WORKER-AnalyticsTagHealth | domain_discovery | analytics_tag_health | domain, scan_date, working_variants, scanned_urls, found_analytics, page_results, variant_results, compliance_status | Tracks Google tag presence. |
-| WORKER-AutoLighthouse | domain_discovery | domains_processed | desktop_* and mobile_* performance columns, suggestions, lighthouse_version, lighthouse_fetch_time, lighthouse_url | Updates Lighthouse metrics. |
+| WORKER-AutoLighthouse | domain_discovery | domains_processed | see section below | Updates Lighthouse metrics. |
 | WORKER-AutoWebPageTest | (file/JSON) | output directory | JSON results | Cassandra integration stub only. |
 | WORKER-CarbonAuditor | domain_discovery | carbon_audits | domain, url, scan_date, bytes, co2 | Stores bytes and CO₂ estimates. |
 | WORKER-CertStream | domain_discovery | domains_processed | domain, tld, site_type | Inserts domains from CertStream. |
