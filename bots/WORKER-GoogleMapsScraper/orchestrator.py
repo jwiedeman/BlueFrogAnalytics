@@ -47,6 +47,12 @@ async def run_term(term: str, args, slots: Queue, sem: Semaphore, width: int, he
             slots.put_nowait((row, col))
 
 
+async def run_term_with_delay(term: str, args, slots: Queue, sem: Semaphore, width: int, height: int, delay: float):
+    if delay > 0:
+        await asyncio.sleep(delay)
+    await run_term(term, args, slots, sem, width, height)
+
+
 async def main(args):
     args.dsn = get_dsn(args.dsn)
     terms = [t.strip() for t in args.terms.split(',') if t.strip()]
@@ -59,7 +65,18 @@ async def main(args):
         col = i % cols
         slots.put_nowait((row, col))
     sem = Semaphore(concurrency)
-    tasks = [run_term(term, args, slots, sem, width, height) for term in terms]
+    tasks = [
+        run_term_with_delay(
+            term,
+            args,
+            slots,
+            sem,
+            width,
+            height,
+            i * args.launch_stagger,
+        )
+        for i, term in enumerate(terms)
+    ]
     await asyncio.gather(*tasks)
 
 
@@ -79,8 +96,13 @@ if __name__ == "__main__":
     parser.add_argument("--max-delay", type=float, default=3.0)
     parser.add_argument("--concurrency", type=int, default=4, help="Maximum simultaneous scrapers")
     parser.add_argument("--store", choices=["postgres", "cassandra", "sqlite", "csv"], help="Storage backend")
-
     parser.add_argument("--headless", action="store_true", help="Run browsers headless")
+    parser.add_argument(
+        "--launch-stagger",
+        type=float,
+        default=0.0,
+        help="Seconds between launching each scraper window",
+    )
     args = parser.parse_args()
 
     if args.store:
