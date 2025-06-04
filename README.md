@@ -65,7 +65,7 @@ docker run -p 6001:6001 \
 
 ## Bots
 
-The `bots` directory contains several workers written in Go, Rust, Python and Node. See each subfolder's README for build instructions and usage.
+The `bots` directory contains several workers written in Go, Rust, Python and Node. See each subfolder's README for build instructions and usage. Items prefixed with `BACKEND-` are utility scripts used by the API or the website's free tools rather than autonomous workers.
 
 ## Cassandra cluster
 

@@ -258,11 +258,11 @@ Proposed table for storing DNS enumeration output. Each record is stored separat
 - `scan_date` timestamp
 - PRIMARY KEY ((`domain`, `record_type`), `record_value`, `scan_date`)
 
-Bots interacting with these tables include:
+- Bots interacting with these tables include:
 - `WORKER-CertStream` – ingesting CertStream feeds
 - `WORKER-AutoLighthouse` – running Lighthouse scoring (columns below)
 - `WORKER-AutoWebPageTest` – running WebPageTest scans
-- `WORKER-AnalyticsTagHealth` – analytics tag checks
+- `BACKEND-AnalyticsTagHealth` – analytics tag checks
 - `WORKER-CarbonAuditor` – carbon footprint audits
 - `WORKER-Classify_target` – domain classifier via Ollama
 - `WORKER-WhoisSuite` – new domain discovery and WHOIS updater
@@ -292,7 +292,7 @@ The table below summarizes where each bot or worker stores its results. Unless s
 | BOT-ripwappalyzer[Js] | (local file) | scan_log.txt | n/a | Puppeteer‑based tech fingerprint log. |
 | BOT-wappalyzer[Py] | Postgres | domains | techdetect | Updates technology data in Postgres. |
 | ETL-Domains | domain_discovery | domains_processed | domain, tld, subdomains, raw_subdomains, [various enrichment fields] | Scripts migrating CertStream and enrichment data. |
-| WORKER-AnalyticsTagHealth | domain_discovery | analytics_tag_health | domain, scan_date, working_variants, scanned_urls, found_analytics, page_results, variant_results, compliance_status | Tracks Google tag presence. |
+| BACKEND-AnalyticsTagHealth | domain_discovery | analytics_tag_health | domain, scan_date, working_variants, scanned_urls, found_analytics, page_results, variant_results, compliance_status | Tracks Google tag presence. |
 | WORKER-AutoLighthouse | domain_discovery | domains_processed | see section below | Updates Lighthouse metrics. |
 | WORKER-AutoWebPageTest | (file/JSON) | output directory | JSON results | Cassandra integration stub only. |
 | WORKER-CarbonAuditor | domain_discovery | carbon_audits | domain, url, scan_date, bytes, co2 | Stores bytes and CO₂ estimates. |
