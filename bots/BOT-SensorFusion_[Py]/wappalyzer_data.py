@@ -2,22 +2,33 @@ import os
 import json
 import sys
 
-# Path to Wappalyzer technologies database bundled in BOT-wappalyzer[Py]
+# Paths to the technology database. We store a copy under `data/` but
+# fall back to the original `BOT-wappalyzer[Py]` project if needed.
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-WAPPALYZER_DIR = os.path.join(BASE_DIR, '..', 'BOT-wappalyzer[Py]')
-LIB_PATH = os.path.join(WAPPALYZER_DIR)
-sys.path.insert(0, LIB_PATH)
 
-TECHNOLOGIES_PATH = os.path.join(
-    WAPPALYZER_DIR,
-    'Wappalyzer',
-    'data',
-    'technologies.json',
-)
+# First look for local copies of the JSON data
+DATA_DIR = os.path.join(BASE_DIR, 'data')
+TECHNOLOGIES_PATH = os.path.join(DATA_DIR, 'technologies.json')
+CATEGORIES_PATH = os.path.join(DATA_DIR, 'categories.json')
+GROUPS_PATH = os.path.join(DATA_DIR, 'groups.json')
 
-# Raw data paths from the Wappalyzer repository
-CATEGORIES_PATH = os.path.join(WAPPALYZER_DIR, 'src', 'categories.json')
-GROUPS_PATH = os.path.join(WAPPALYZER_DIR, 'src', 'groups.json')
+if not os.path.exists(TECHNOLOGIES_PATH):
+    WAPPALYZER_DIR = os.path.join(BASE_DIR, '..', 'BOT-wappalyzer[Py]')
+    LIB_PATH = os.path.join(WAPPALYZER_DIR)
+    sys.path.insert(0, LIB_PATH)
+    TECHNOLOGIES_PATH = os.path.join(
+        WAPPALYZER_DIR,
+        'Wappalyzer',
+        'data',
+        'technologies.json',
+    )
+    CATEGORIES_PATH = os.path.join(WAPPALYZER_DIR, 'src', 'categories.json')
+    GROUPS_PATH = os.path.join(WAPPALYZER_DIR, 'src', 'groups.json')
+else:
+    # When using the local copy, the Wappalyzer library still needs to be
+    # available on the path so import it from BOT-wappalyzer[Py].
+    WAPPALYZER_DIR = os.path.join(BASE_DIR, '..', 'BOT-wappalyzer[Py]')
+    sys.path.insert(0, os.path.join(WAPPALYZER_DIR))
 
 
 def load_wappalyzer_data():

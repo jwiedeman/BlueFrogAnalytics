@@ -16,12 +16,15 @@ library located in `../BOT-wappalyzer[Py]/`. It attempts multiple HTTP/HTTPS
 variants of the target until technology fingerprints are found.
 
 To expose Wappalyzer's technology database to the rest of the tests a helper
-module `wappalyzer_data.py` loads the `technologies.json` file. This ensures the
-same categories and matching rules used by Wappalyzer are available within the
-Sensor Fusion test suite. The helper now also exposes a `get_wappalyzer()`
-function which returns a `Wappalyzer` instance pre-configured with the bundled
-dataset. A new convenience `load_full_wappalyzer_data()` function returns the
-raw groups, categories and technologies dictionaries for custom analysis.
+module `wappalyzer_data.py` loads the `technologies.json` file. A local copy of
+`technologies.json`, `categories.json` and `groups.json` is stored under the
+`data/` directory in this bot. If these files are absent it falls back to the
+original copies from `../BOT-wappalyzer[Py]/`. This ensures the same categories
+and matching rules used by Wappalyzer are available within the Sensor Fusion test
+suite. The helper exposes a `get_wappalyzer()` function which returns a
+`Wappalyzer` instance pre-configured with the bundled dataset. A convenience
+`load_full_wappalyzer_data()` function returns the raw groups, categories and
+technologies dictionaries for custom analysis.
 
 All existing tests from `BOT-Recon_[Py]` are discovered automatically, allowing
 the full reconnaissance suite to run alongside the Wappalyzer fingerprinting.
