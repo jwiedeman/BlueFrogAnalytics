@@ -844,6 +844,39 @@ app.get('/api/domain-info', authMiddleware, async (req, res) => {
   }
 });
 
+app.get('/api/domain-pages', authMiddleware, async (req, res) => {
+  let { domain } = req.query;
+  if (typeof domain !== 'string') {
+    return res.status(400).json({ error: 'Invalid domain' });
+  }
+  domain = domain.toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '');
+  const host = domain.split('/')[0];
+  const parts = host.split('.');
+  if (parts.length < 2) {
+    return res.status(400).json({ error: 'Invalid domain' });
+  }
+  const name = parts.join('.');
+  try {
+    const result = await cassandraClient.execute(
+      'SELECT url, scan_date, desktop_accessibility_score, mobile_accessibility_score FROM domain_discovery.domain_page_metrics WHERE domain=? LIMIT 100',
+      [name],
+      { prepare: true }
+    );
+    const map = {};
+    for (const row of result.rows) {
+      const existing = map[row.url];
+      if (!existing || existing.scan_date < row.scan_date) {
+        map[row.url] = row;
+      }
+    }
+    const pages = Object.values(map).sort((a, b) => b.scan_date - a.scan_date);
+    res.json(pages);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Database error' });
+  }
+});
+
 
 app.post('/api/audit/accessibility', authMiddleware, async (req, res) => {
   const { url } = req.body;
