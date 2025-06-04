@@ -58,6 +58,7 @@ def detect(url: str) -> Dict[str, Any]:
     scripts = [s.get("src", "") for s in soup.find_all("script", src=True)]
     meta = {m.get("name", "").lower(): m.get("content", "") for m in soup.find_all("meta", attrs={"name": True, "content": True})}
     headers = {k.lower(): v for k, v in resp.headers.items()}
+    cookies = {c.name.lower(): c.value for c in resp.cookies}
 
     detected: Dict[str, Dict[str, Any]] = {}
 
@@ -73,6 +74,16 @@ def detect(url: str) -> Dict[str, Any]:
             if header_val:
                 attr = _prepare_pattern(pat)
                 m = attr["regex"].search(header_val)
+                if m:
+                    return _extract_version(attr, m)
+
+        for name, pat in tech.get("cookies", {}).items():
+            cookie_val = cookies.get(name.lower())
+            if cookie_val is not None:
+                if not pat:
+                    return ""
+                attr = _prepare_pattern(pat)
+                m = attr["regex"].search(cookie_val)
                 if m:
                     return _extract_version(attr, m)
 
