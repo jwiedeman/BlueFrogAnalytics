@@ -12,7 +12,7 @@ from playwright.async_api import async_playwright
 async def zoom_all_the_way_in(page, times: int = 15) -> None:
     """Fully zoom in on the map using keyboard shortcuts."""
     for _ in range(times):
-        await page.keyboard.press("=")
+        await page.keyboard.press("Shift+=")
         await page.wait_for_timeout(500)
 
 
@@ -79,6 +79,8 @@ async def scrape_spiral(query: str, steps: int, dsn: str | None, *, headless: bo
             if await checkbox.count() and (await checkbox.get_attribute("aria-checked")) != "true":
                 await checkbox.click()
                 await page.wait_for_timeout(1000)
+            # ensure the map has focus before issuing keyboard commands
+            await page.mouse.click(400, 300)
         except Exception:
             pass
 
