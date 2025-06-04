@@ -17,3 +17,10 @@ variants of the target until technology fingerprints are found.
 
 All existing tests from `BOT-Recon_[Py]` are discovered automatically, allowing
 the full reconnaissance suite to run alongside the Wappalyzer fingerprinting.
+
+## Additional Tests
+
+A second test `test_crosscheck_server.py` compares the server detection output from
+`BOT-Recon_[Py]`'s `test_server_fingerprinting.py` with Wappalyzer results. It
+reports any overlap between the two techniques to help validate fingerprinting
+accuracy.
