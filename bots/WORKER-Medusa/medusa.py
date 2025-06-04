@@ -7,7 +7,20 @@ columns outlined in db_schema.md.
 """
 
 import argparse
+import json
+import os
+import sys
 from typing import Callable, Dict, List
+
+# Allow importing the enrichment worker helpers
+ENRICH_PATH = os.path.join(os.path.dirname(__file__), "..", "WORKER-Enrich_processed_domains")
+if ENRICH_PATH not in sys.path:
+    sys.path.append(ENRICH_PATH)
+
+try:
+    from enrich_processed_domain import analyze_target
+except Exception:  # pragma: no cover - optional dependency
+    analyze_target = None
 
 # Placeholder scan functions. Real implementations should invoke the
 # dedicated workers or libraries that perform each scan.
@@ -44,6 +57,15 @@ def webpagetest_scan(domain: str) -> None:
     print(f"[WebPageTest] scanning {domain}")
 
 
+def enrich_scan(domain: str) -> None:
+    """Run the enrichment logic from WORKER-Enrich_processed_domains."""
+    if not analyze_target:
+        print("Enrichment dependencies not available")
+        return
+    result = analyze_target(domain)
+    print(json.dumps(result, indent=2))
+
+
 # Mapping of test group name to function
 TESTS: Dict[str, Callable[[str], None]] = {
     "ssl": ssl_scan,
@@ -54,6 +76,7 @@ TESTS: Dict[str, Callable[[str], None]] = {
     "carbon": carbon_scan,
     "analytics": analytics_scan,
     "webpagetest": webpagetest_scan,
+    "enrich": enrich_scan,
 }
 
 
