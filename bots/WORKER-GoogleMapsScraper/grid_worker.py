@@ -6,6 +6,9 @@ import logging
 from typing import Sequence, Set, Tuple
 
 from geopy.geocoders import Nominatim
+
+# Cache geocoding results to avoid repeated requests
+_geocode_cache: dict[str, object] = {}
 from playwright.async_api import async_playwright
 from db import init_db, save_business, get_dsn, close_db
 
@@ -144,10 +147,14 @@ async def scrape_city_grid(
 ):
     db_conn = init_db(get_dsn(dsn))
     seen: Set[Tuple[str, str]] = set()
-    geolocator = Nominatim(user_agent="bluefrog-grid")
-    location = geolocator.geocode(city)
+    geolocator = Nominatim(user_agent="bluefrog-grid", timeout=10)
+
+    location = _geocode_cache.get(city)
     if not location:
-        raise ValueError(f"Could not geocode city: {city}")
+        location = geolocator.geocode(city)
+        if not location:
+            raise ValueError(f"Could not geocode city: {city}")
+        _geocode_cache[city] = location
 
     lat_center = location.latitude
     lon_center = location.longitude
