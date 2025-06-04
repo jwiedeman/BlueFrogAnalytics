@@ -12,6 +12,7 @@ website tools rather than standalone workers.
 - `WORKER-Classify_target` – Go classifier powered by Ollama.
 - `WORKER-Enrich_processed_domains` – Python enrichment pipeline with GeoIP and Wappalyzer.
 - `WORKER-DedupeDomains` – Go utility that normalizes TLDs and removes duplicate records.
+- `WORKER-Medusa` – orchestrator that runs all scans or targeted groups.
 - `BACKEND-AnalyticsTagHealth` – scans domains for analytics tags used by the free tools.
 - `BOT-Hunter[Rust]` – asynchronous crawler written in Rust.
 - `BOT-Recon_[Py]` – modular reconnaissance harness.
