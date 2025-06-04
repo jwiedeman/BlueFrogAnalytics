@@ -74,7 +74,8 @@ async def monitor_map(query: str, dsn: str | None, *, headless: bool = False, in
 
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=headless)
-        page = await browser.new_page()
+        # Ignore certificate errors in development environments
+        page = await browser.new_page(ignore_https_errors=True)
         await page.goto("https://www.google.com/maps", timeout=60000)
         await page.fill("//input[@id='searchboxinput']", query)
         await page.keyboard.press("Enter")
