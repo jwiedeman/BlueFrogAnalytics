@@ -77,3 +77,6 @@ To avoid browser warnings when connecting to the API you can still run it behind
   the process whenever you change these values.
 - Set `CHROME_PATH` if you want to use a system Chrome instead of Puppeteer's
   bundled version.
+- When a scan or audit is run for a URL, the server checks if the domain exists
+  in the `domains_processed` table. If present, the relevant metrics are stored
+  back into that domain record automatically.
