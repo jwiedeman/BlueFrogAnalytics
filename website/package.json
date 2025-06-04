@@ -7,12 +7,10 @@
     "start": "astro dev",
     "build": "astro build && touch dist/.nojekyll",
     "preview": "astro preview",
-    "astro": "astro",
-    "postinstall": "PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS=1 playwright install chromium"
+    "astro": "astro"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.4.0",
-    "@playwright/test": "^1.50.1",
     "katex": "^0.16.21",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
