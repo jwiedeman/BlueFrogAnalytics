@@ -25,6 +25,7 @@ Available test groups include:
 - `carbon` – carbon footprint metrics
 - `analytics` – analytics tag health
 - `webpagetest` – WebPageTest results
+- `enrich` – metadata enrichment from `WORKER-Enrich_processed_domains`
 
 Run with `--all` to execute every scan. Results are saved to Cassandra using the
 columns outlined in `db_schema.md`.
