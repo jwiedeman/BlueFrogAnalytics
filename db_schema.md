@@ -1,39 +1,41 @@
 # Database Schema
 
-This document outlines the primary data stores used across the Blue Frog Analytics project. Bots and services update these tables regularly. Schema changes should be recorded here so all processes remain in sync.
+This document consolidates the main data stores used across Blue Frog Analytics. Each table lists the fields we **currently** save and optional fields we could store if we captured the full output of the underlying tool.
 
-## Cassandra: `domain_discovery` keyspace
+## Cassandra
 
-### `domains`
-Domain queue used by the Hunter crawler to track discovered sites.
+### `domain_discovery` keyspace
 
-- `domain` text PRIMARY KEY
-- `status` int *(0 new, 1 processed, 2 in progress, 3 unreachable)*
-- `created_at` timestamp
-- `last_attempted` timestamp
-- `variation_success_json` text
+| Table | Saved Columns | Optional Columns |
+| ----- | ------------- | ---------------- |
+| **domains** | `domain` (PK), `status`, `created_at`, `last_attempted`, `variation_success_json` | `first_certstream_seen`, `source`, `notes` |
+| **domain_variations** | `domain`, `variation`, `success`, `status_code`, `final_url`, `redirect_count`, `attempted_at` | `response_headers`, `ip_address`, `screenshot_path` |
+| **certstream_domains** | `domain` (PK) | `first_seen`, `cert_seen_at` |
+| **domains_processed** | `domain`, `tld`, enrichment fields (GeoIP, SSL, tech), classification flags, Lighthouse scores, suggestions, `user_managed`, `refresh_hours`, `last_enriched`, `raw_subdomains` | WebPageTest metrics, screenshot URLs, carbon estimates, DNS details, full analytics tag data |
+| **domain_page_metrics** | `domain`, `url`, `scan_date`, Lighthouse metrics per URL | network request breakdown, PWA category metrics |
+| **analytics_tag_health** | `domain`, `scan_date`, `working_variants`, `scanned_urls`, `found_analytics`, `page_results`, `variant_results`, `compliance_status` | DOM screenshots, network logs |
+| **carbon_audits** | `domain`, `url`, `scan_date`, `bytes`, `co2` | `first_byte_time`, full waterfall data |
+| **misc_tool_results** | `domain`, `url`, `scan_date`, `tool_name`, `data` | typed fields for additional tools |
+| **businesses** | `name`, `address`, `website`, `phone`, `reviews_average`, `query`, `latitude`, `longitude` | `rating_count`, `opening_hours`, `categories` |
+| **dns_records** | `domain`, `record_type`, `record_value`, `scan_date` | `ttl`, `record_class` |
 
-### `domain_variations`
-Stores the result of each HTTP variation attempted for a domain.
+### `profiles` keyspace
 
-- `domain` text
-- `variation` text
-- `success` boolean
-- `status_code` int
-- `final_url` text
-- `redirect_count` int
-- `attempted_at` timestamp
-- PRIMARY KEY (`domain`, `variation`, `attempted_at`)
+| Table | Saved Columns | Optional Columns |
+| ----- | ------------- | ---------------- |
+| **user_profiles** | `uid` (PK), `first_name`, `last_name`, `email`, `phone`, `payment_preference`, `domains`, `tests` | `timezone`, `avatar_url`, `settings` |
+| **billing_info** | `uid` (PK), `name`, `address`, `city`, `state`, `postal_code`, `country`, `plan` | `vat_id`, `payment_provider`, `last_payment_date` |
+| **user_domain_prefs** | (`domain`, `tld`, `uid`) PK, `refresh_hours` | `threshold_score_to_notify`, `last_notification` |
 
+## Deprecated Stores
 
-### `certstream_domains`
-Temporary table populated from certificate transparency logs before domains are parsed.
+- **PostgreSQL maps database** – replaced by the `businesses` table.
+- **SQLite qa_proxy.sqlite3** – QA proxy data slated for migration to Cassandra.
 
-- `domain` text PRIMARY KEY
+## Notes on Query Patterns
 
-### `domains_processed`
-Stores the canonical domain record with enrichment, classification and
-Lighthouse performance fields.
+Use wide rows partitioned by `domain` with scans ordered by `scan_date` for efficient writes and reads. JSON blobs are avoided when possible to keep metrics queryable.
+
 
 Core identifiers:
 - `domain` text
@@ -378,3 +380,4 @@ workers and API server. Planned adjustments include:
 
 ---
 Update this file whenever new tables or fields are introduced so all bots and services remain compatible.
+
