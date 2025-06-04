@@ -230,6 +230,53 @@ def detect(url: str) -> Dict[str, Any]:
                 matched.add(implied)
                 queue.append(implied)
 
+    # apply requires/excludes logic
+    matched_categories = set()
+    for t in matched:
+        for cat in technologies.get(t, {}).get("cats", []):
+            matched_categories.add(cat)
+
+    final_matched = set(matched)
+    for tech_name in list(matched):
+        tech = technologies.get(tech_name, {})
+
+        reqs = tech.get("requires", [])
+        if isinstance(reqs, str):
+            reqs = [reqs]
+        for r in reqs:
+            if r not in matched:
+                final_matched.discard(tech_name)
+                break
+
+        if tech_name in final_matched:
+            req_cats = tech.get("requiresCategory", [])
+            if isinstance(req_cats, int):
+                req_cats = [req_cats]
+            for rc in req_cats:
+                if rc not in matched_categories:
+                    final_matched.discard(tech_name)
+                    break
+
+        if tech_name in final_matched:
+            excl = tech.get("excludes", [])
+            if isinstance(excl, str):
+                excl = [excl]
+            for e in excl:
+                if e in matched:
+                    final_matched.discard(tech_name)
+                    break
+
+        if tech_name in final_matched:
+            excl_cats = tech.get("excludesCategory", [])
+            if isinstance(excl_cats, int):
+                excl_cats = [excl_cats]
+            for ec in excl_cats:
+                if ec in matched_categories:
+                    final_matched.discard(tech_name)
+                    break
+
+    matched = final_matched
+
     for tech_name in matched:
         tech = technologies.get(tech_name, {})
         entry = detected.get(tech_name, {})
