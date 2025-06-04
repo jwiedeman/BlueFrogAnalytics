@@ -6,13 +6,12 @@ BASE_DIR = os.path.join(CURRENT_DIR, '..')
 sys.path.insert(0, BASE_DIR)
 
 import wappalyzer_data
-from Wappalyzer import WebPage
 
 
 def run_test(target):
     """Use the helper to load Wappalyzer data and fingerprint the site."""
     groups, cats, techs = wappalyzer_data.load_full_wappalyzer_data()
-    wap = wappalyzer_data.get_wappalyzer()
+    detector = wappalyzer_data.get_detector()
 
     if not target.startswith("http://") and not target.startswith("https://"):
         variants = [
@@ -26,8 +25,7 @@ def run_test(target):
 
     for url in variants:
         try:
-            page = WebPage.new_from_url(url)
-            results = wap.analyze_with_versions_and_categories(page)
+            results = detector.analyze_with_versions_and_categories(url)
             if results:
                 header = (
                     f"URL used: {url}"\
