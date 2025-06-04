@@ -106,6 +106,13 @@ async def monitor_map(query: str, dsn: str | None, *, headless: bool = False, in
             except Exception:
                 logger.warning("No sidebar results detected")
             new_entries = await collect_current_listings(page, query, seen, conn)
+            if new_entries:
+                logger.info("Found %d new result%s (total %d)",
+                            len(new_entries),
+                            "s" if len(new_entries) != 1 else "",
+                            len(seen))
+            else:
+                logger.info("No new results found (total %d)", len(seen))
             for name, _ in new_entries:
                 await show_toast(page, f"Saved: {name}")
             await page.wait_for_timeout(int(interval * 1000))
