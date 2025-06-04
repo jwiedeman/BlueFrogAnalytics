@@ -5,6 +5,7 @@ import importlib.util
 import traceback
 import logging
 import inspect
+from wappalyzer_data import get_detector
 
 def setup_logging(verbose=False):
     log_level = logging.DEBUG if verbose else logging.INFO
@@ -102,21 +103,57 @@ def run_tests(selected_tests, target):
             logging.error(f"Test {test_file} FAILED: {error_details}")
     return results
 
+
+def run_fingerprint(target):
+    """Run the Wappalyzer matcher directly."""
+    if not target.startswith("http://") and not target.startswith("https://"):
+        variants = [
+            f"http://{target}",
+            f"https://{target}",
+            f"http://www.{target}",
+            f"https://www.{target}",
+        ]
+    else:
+        variants = [target]
+
+    detector = get_detector()
+    for url in variants:
+        try:
+            results = detector.analyze_with_versions_and_categories(url)
+            if results:
+                lines = [f"URL used: {url}"]
+                for name, data in results.items():
+                    cats = ", ".join(data.get("categories", [])) or "-"
+                    vers = ", ".join(data.get("versions", [])) or "-"
+                    lines.append(f"{name}: {vers} [{cats}]")
+                return "\n".join(lines)
+        except Exception:
+            continue
+    return "No technologies detected"
+
 def main():
     parser = argparse.ArgumentParser(description="CLI Test Runner")
     parser.add_argument("--tests", nargs="+", help="Specify one or more test names (without .py extension) to run")
     parser.add_argument("--all", action="store_true", help="Run all tests")
     parser.add_argument("--target", required=True, help="Testing target (e.g., domain or URL)")
     parser.add_argument("--verbose", action="store_true", help="Enable verbose logging")
+    parser.add_argument("--fingerprint", action="store_true", help="Run the fingerprinting engine before tests")
+    parser.add_argument("--fingerprint-only", action="store_true", help="Run only the fingerprinting engine and skip tests")
     args = parser.parse_args()
     
     setup_logging(verbose=args.verbose)
-    
-    # Default to running all tests if none are specified.
-    selected_tests = "all" if args.all or not args.tests else args.tests
-    logging.debug(f"Selected tests: {selected_tests}")
-    
-    results = run_tests(selected_tests, args.target)
+
+    results = []
+    if args.fingerprint or args.fingerprint_only:
+        logging.info("Running fingerprinting engine")
+        fp_output = run_fingerprint(args.target)
+        results.append(f"Fingerprinting:\n{fp_output}\n")
+
+    if not args.fingerprint_only:
+        # Default to running all tests if none are specified.
+        selected_tests = "all" if args.all or not args.tests else args.tests
+        logging.debug(f"Selected tests: {selected_tests}")
+        results.extend(run_tests(selected_tests, args.target))
     
     # Save results to a local text file.
     output_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results.txt")
