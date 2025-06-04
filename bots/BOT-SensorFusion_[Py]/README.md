@@ -105,3 +105,12 @@ combined output currently includes:
 Refer to `results.txt` in this directory for a complete example of the raw
 output that contains these columns.
 
+### Storage Considerations
+
+The bot currently saves results locally, but the long term plan is to feed
+key metrics into Cassandra. DNS enumeration can return multiple records per
+domain. Rather than storing a huge JSON blob, records will be written to the
+`dns_records` table using the structure described in `db_schema.md`. Each
+row contains the domain, record type, individual value and scan date so that
+queries remain efficient.
+

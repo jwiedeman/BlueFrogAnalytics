@@ -7,7 +7,7 @@ The table below summarizes where each bot or worker stores its results. Unless s
 | BOT-Hunter[Rust] | domain_discovery | domains | domain, status, created_at, last_attempted, variation_success_json | Discovered domains queue. |
 |  | domain_discovery | domain_variations | domain, variation, success, status_code, final_url, redirect_count, attempted_at | HTTP variation results. |
 | BOT-Recon_[Py] | (local file) | results.txt | n/a | Saves reconnaissance output locally. |
-| BOT-SensorFusion_[Py] | (local file) | results.txt | n/a | Combines recon with tech detection. |
+| BOT-SensorFusion_[Py] | (local file) | results.txt | url_used, detected_tech, http_variation, allowed_methods, directory_status, open_ports, security_headers, cookies, meta_tags, robots_info, sitemap_urls, external_resources, response_headers, waf_name, certificate_details, whois_fields, dns_records, subdomain_info | Combines recon tests with technology fingerprinting. |
 | BOT-ripwappalyzer[Js] | (local file) | scan_log.txt | n/a | Puppeteer‑based tech fingerprint log. |
 | BOT-wappalyzer[Py] | Postgres | domains | techdetect | Updates technology data in Postgres. |
 | ETL-Domains | domain_discovery | domains_processed | domain, tld, subdomains, raw_subdomains, [various enrichment fields] | Scripts migrating CertStream and enrichment data. |

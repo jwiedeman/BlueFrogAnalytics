@@ -204,6 +204,15 @@ Google Maps business listings collected by the `WORKER-GoogleMapsScraper` bot.
 - `longitude` float
 - PRIMARY KEY (`name`, `address`)
 
+### `dns_records` *(planned)*
+Proposed table for storing DNS enumeration output. Each record is stored separately to avoid overly large rows.
+
+- `domain` text
+- `record_type` text
+- `record_value` text
+- `scan_date` timestamp
+- PRIMARY KEY ((`domain`, `record_type`), `record_value`, `scan_date`)
+
 Bots interacting with these tables include:
 - `WORKER-CertStream` – ingesting CertStream feeds
 - `WORKER-AutoLighthouse` – running Lighthouse scoring
@@ -235,7 +244,7 @@ The table below summarizes where each bot or worker stores its results. Unless s
 | BOT-Hunter[Rust] | domain_discovery | domains | domain, status, created_at, last_attempted, variation_success_json | Discovered domains queue. |
 |  | domain_discovery | domain_variations | domain, variation, success, status_code, final_url, redirect_count, attempted_at | HTTP variation results. |
 | BOT-Recon_[Py] | (local file) | results.txt | n/a | Saves reconnaissance output locally. |
-| BOT-SensorFusion_[Py] | (local file) | results.txt | n/a | Combines recon with tech detection. |
+| BOT-SensorFusion_[Py] | (local file) | results.txt | url_used, detected_tech, http_variation, allowed_methods, directory_status, open_ports, security_headers, cookies, meta_tags, robots_info, sitemap_urls, external_resources, response_headers, waf_name, certificate_details, whois_fields, dns_records, subdomain_info | Combines recon tests with technology fingerprinting. |
 | BOT-ripwappalyzer[Js] | (local file) | scan_log.txt | n/a | Puppeteer‑based tech fingerprint log. |
 | BOT-wappalyzer[Py] | Postgres | domains | techdetect | Updates technology data in Postgres. |
 | ETL-Domains | domain_discovery | domains_processed | domain, tld, subdomains, raw_subdomains, [various enrichment fields] | Scripts migrating CertStream and enrichment data. |
@@ -326,6 +335,7 @@ Columns planned for future tools and scrapers:
 - Screenshot locations for image conversion utilities
 - Contrast heatmap metadata (image dimensions, timestamp)
 - Google Maps business scraping output stored in the `businesses` table within the `domain_discovery` keyspace
+- DNS enumeration output stored in the `dns_records` table (A, AAAA, MX, NS, TXT, DMARC, SPF)
 
 ## Current vs Planned Schema State
 
