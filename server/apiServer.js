@@ -618,14 +618,21 @@ async function saveTagHealthResult(domainInput, data) {
     { prepare: true }
   );
   if (!check.rowLength) return;
+  const toMap = obj => {
+    const map = {};
+    for (const [k, v] of Object.entries(obj || {})) {
+      map[k] = typeof v === 'string' ? v : JSON.stringify(v);
+    }
+    return map;
+  };
   const row = {
     domain,
     scan_date: new Date(),
     working_variants: data.working_variants || [],
     scanned_urls: data.scanned_urls || [],
-    found_analytics: data.found_analytics || {},
-    page_results: data.page_results || {},
-    variant_results: data.variant_results || {},
+    found_analytics: toMap(data.found_analytics),
+    page_results: toMap(data.page_results),
+    variant_results: toMap(data.variant_results),
     compliance_status: data.compliance_status || null
   };
   await cassandraClient.execute(
