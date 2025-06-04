@@ -849,27 +849,27 @@ app.get('/api/domain-pages', authMiddleware, async (req, res) => {
   if (typeof domain !== 'string') {
     return res.status(400).json({ error: 'Invalid domain' });
   }
-  domain = domain.toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '');
-  const host = domain.split('/')[0];
-  const parts = host.split('.');
-  if (parts.length < 2) {
+
+  const parts = parseDomainParts(domain);
+  if (!parts) {
     return res.status(400).json({ error: 'Invalid domain' });
   }
-  const name = parts.join('.');
   try {
     const result = await cassandraClient.execute(
-      'SELECT url, scan_date, desktop_accessibility_score, mobile_accessibility_score FROM domain_discovery.domain_page_metrics WHERE domain=? LIMIT 100',
-      [name],
+      'SELECT * FROM domain_discovery.domain_page_metrics WHERE domain=?',
+      [parts.domain],
       { prepare: true }
     );
-    const map = {};
+    const map = new Map();
     for (const row of result.rows) {
-      const existing = map[row.url];
-      if (!existing || existing.scan_date < row.scan_date) {
-        map[row.url] = row;
+      const current = map.get(row.url);
+      if (!current || row.scan_date > current.scan_date) {
+        map.set(row.url, row);
       }
     }
-    const pages = Object.values(map).sort((a, b) => b.scan_date - a.scan_date);
+    const pages = Array.from(map.values()).sort((a, b) =>
+      a.url.localeCompare(b.url)
+    );
     res.json(pages);
   } catch (err) {
     console.error(err);
