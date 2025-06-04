@@ -1,29 +1,14 @@
 import os
 import asyncio
 import re
-import sys
 from typing import Set, Tuple
 
 from db import init_db, save_business, get_dsn, close_db
-
 from playwright.async_api import async_playwright
 
 
-async def zoom_all_the_way_in(page, times: int = 15) -> None:
-    """Fully zoom in on the map using keyboard shortcuts."""
-    for _ in range(times):
-        await page.keyboard.press("Shift+=")
-        await page.wait_for_timeout(500)
-
-
-
-
-
-
-
-
 async def collect_current_listings(page, query: str, seen: Set[Tuple[str, str]], conn):
-    """Return newly discovered listings from the sidebar."""
+    """Collect visible listings from the results column."""
     new_entries: list[Tuple[str, str]] = []
     listings = await page.locator("//a[contains(@href, 'https://www.google.com/maps/place')]").all()
     for listing in listings:
@@ -41,13 +26,11 @@ async def collect_current_listings(page, query: str, seen: Set[Tuple[str, str]],
             continue
         seen.add(key)
         new_entries.append(key)
-
         lat = lon = None
         match = re.search(r"@(-?\d+\.\d+),(-?\d+\.\d+)", href)
         if match:
             lat = float(match.group(1))
             lon = float(match.group(2))
-
         save_business(
             conn,
             (
@@ -64,7 +47,22 @@ async def collect_current_listings(page, query: str, seen: Set[Tuple[str, str]],
     return new_entries
 
 
-async def scrape_spiral(query: str, steps: int, dsn: str | None, *, headless: bool = False):
+async def show_toast(page, message: str) -> None:
+    """Display a small toast message inside the browser page."""
+    script = """
+    (msg) => {
+      const t = document.createElement('div');
+      t.textContent = msg;
+      t.style.cssText = 'position:fixed;top:10px;right:10px;z-index:9999;'
+        + 'background:#333;color:#fff;padding:5px 10px;border-radius:4px;';
+      document.body.appendChild(t);
+      setTimeout(() => t.remove(), 3000);
+    }
+    """
+    await page.evaluate(script, message)
+
+
+async def monitor_map(query: str, dsn: str | None, *, headless: bool = False, interval: float = 2.0):
     conn = init_db(get_dsn(dsn))
     seen: Set[Tuple[str, str]] = set()
 
@@ -75,33 +73,19 @@ async def scrape_spiral(query: str, steps: int, dsn: str | None, *, headless: bo
         await page.fill("//input[@id='searchboxinput']", query)
         await page.keyboard.press("Enter")
         await page.wait_for_timeout(5000)
-
-        await zoom_all_the_way_in(page)
-
         try:
             checkbox = page.get_by_role("checkbox", name="Update results when map moves")
             if await checkbox.count() and (await checkbox.get_attribute("aria-checked")) != "true":
                 await checkbox.click()
                 await page.wait_for_timeout(1000)
-            # ensure the map has focus before issuing keyboard commands
-            await page.mouse.click(400, 300)
         except Exception:
             pass
-
-        await collect_current_listings(page, query, seen, conn)
-
-        arrow_keys = ["ArrowRight", "ArrowUp", "ArrowLeft", "ArrowDown"]
-        step_length = 1
-        direction = 0
-
-        for _ in range(steps):
-            for _ in range(2):
-                for _ in range(step_length):
-                    await page.keyboard.press(arrow_keys[direction])
-                    await page.wait_for_timeout(1500)
-                    await collect_current_listings(page, query, seen, conn)
-                direction = (direction + 1) % 4
-            step_length += 1
+        await page.mouse.click(400, 300)
+        while True:
+            new_entries = await collect_current_listings(page, query, seen, conn)
+            for name, _ in new_entries:
+                await show_toast(page, f"Saved: {name}")
+            await page.wait_for_timeout(int(interval * 1000))
 
         await browser.close()
     close_db(conn)
@@ -110,10 +94,12 @@ async def scrape_spiral(query: str, steps: int, dsn: str | None, *, headless: bo
 if __name__ == "__main__":
     import argparse
 
-    parser = argparse.ArgumentParser(description="Scrape Google Maps in a spiral")
+    parser = argparse.ArgumentParser(
+        description="Monitor Google Maps results while you move the map manually"
+    )
     parser.add_argument("query")
-    parser.add_argument("steps", type=int)
     parser.add_argument("dsn", nargs="?", help="Postgres DSN")
+    parser.add_argument("--interval", type=float, default=2.0, help="Seconds between checks")
     parser.add_argument("--headless", action="store_true", help="Run browser headless")
     parser.add_argument(
         "--store",
@@ -126,10 +112,10 @@ if __name__ == "__main__":
         os.environ["MAPS_STORAGE"] = args.store
 
     asyncio.run(
-        scrape_spiral(
+        monitor_map(
             args.query,
-            args.steps,
             get_dsn(args.dsn),
             headless=args.headless,
+            interval=args.interval,
         )
     )
