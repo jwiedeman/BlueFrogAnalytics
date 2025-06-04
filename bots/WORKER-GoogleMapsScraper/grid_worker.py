@@ -45,19 +45,46 @@ async def scrape_at_location(
         counted = current
 
     for listing in listings:
-        href = await listing.get_attribute("href")
-        text = await listing.inner_text()
-        lines = [l.strip() for l in text.splitlines() if l.strip()]
-        name = lines[0] if lines else ""
-        address = lines[1] if len(lines) > 1 else ""
-        key = (name, address)
-        lat_val = lon_val = None
-        if href:
-            match = re.search(r"@(-?\d+\.\d+),(-?\d+\.\d+)", href)
-            if match:
-                lat_val = float(match.group(1))
-                lon_val = float(match.group(2))
+        await listing.click()
+        await page.wait_for_timeout(3000)
 
+        name = await page.locator('h1.DUwDvf.lfPIob').inner_text() if await page.locator('h1.DUwDvf.lfPIob').count() else ""
+
+        address = ""
+        if await page.locator('//button[@data-item-id="address"]//div[contains(@class, "fontBodyMedium")]').count():
+            elements = await page.locator('//button[@data-item-id="address"]//div[contains(@class, "fontBodyMedium")]').all()
+            if elements:
+                address = await elements[0].inner_text()
+
+        website = ""
+        if await page.locator('//a[@data-item-id="authority"]//div[contains(@class, "fontBodyMedium")]').count():
+            elements = await page.locator('//a[@data-item-id="authority"]//div[contains(@class, "fontBodyMedium")]').all()
+            if elements:
+                website = await elements[0].inner_text()
+
+        phone = ""
+        if await page.locator('//button[contains(@data-item-id, "phone")]//div[contains(@class, "fontBodyMedium")]').count():
+            elements = await page.locator('//button[contains(@data-item-id, "phone")]//div[contains(@class, "fontBodyMedium")]').all()
+            if elements:
+                phone = await elements[0].inner_text()
+
+        reviews_average = None
+        if await page.locator('//div[@jsaction="pane.reviewChart.moreReviews"]//div[@role="img"]').count():
+            text = await page.locator('//div[@jsaction="pane.reviewChart.moreReviews"]//div[@role="img"]').get_attribute('aria-label')
+            if text:
+                try:
+                    reviews_average = float(text.split()[0].replace(',', '.'))
+                except ValueError:
+                    reviews_average = None
+
+        lat_val = lon_val = None
+        url = page.url
+        match = re.search(r"@(-?\d+\.\d+),(-?\d+\.\d+)", url)
+        if match:
+            lat_val = float(match.group(1))
+            lon_val = float(match.group(2))
+
+        key = (name, address)
         if key in seen:
             logger.info("Already saved: %s | %s", name, address)
             continue
@@ -69,17 +96,14 @@ async def scrape_at_location(
             (
                 name,
                 address,
-                "",
-                "",
-                None,
+                website,
+                phone,
+                reviews_average,
                 query,
                 lat_val,
                 lon_val,
             ),
         )
-
-        await listing.click()
-        await page.wait_for_timeout(3000)
 
         name = await page.locator('h1.DUwDvf.lfPIob').inner_text() if await page.locator('h1.DUwDvf.lfPIob').count() else name
 
