@@ -15,6 +15,7 @@ async def collect_current_listings(page, query: str, seen: Set[Tuple[str, str]],
     """Collect visible listings from the results column."""
     new_entries: list[Tuple[str, str]] = []
     listings = await page.locator("//a[contains(@href, 'https://www.google.com/maps/place')]").all()
+    logger.info("Scanning %d sidebar listings", len(listings))
     for listing in listings:
         href = await listing.get_attribute("href")
         if not href:
@@ -79,7 +80,15 @@ async def monitor_map(query: str, dsn: str | None, *, headless: bool = False, in
         await page.goto("https://www.google.com/maps", timeout=60000)
         await page.fill("//input[@id='searchboxinput']", query)
         await page.keyboard.press("Enter")
-        await page.wait_for_timeout(5000)
+        # wait for at least one sidebar result before continuing
+        try:
+            await page.wait_for_selector(
+                "//a[contains(@href, 'https://www.google.com/maps/place')]",
+                timeout=15000,
+            )
+        except Exception:
+            logger.warning("Timed out waiting for initial results")
+        await page.wait_for_timeout(1000)
         try:
             checkbox = page.get_by_role("checkbox", name="Update results when map moves")
             if await checkbox.count() and (await checkbox.get_attribute("aria-checked")) != "true":
@@ -89,6 +98,13 @@ async def monitor_map(query: str, dsn: str | None, *, headless: bool = False, in
             pass
         await page.mouse.click(400, 300)
         while True:
+            try:
+                await page.wait_for_selector(
+                    "//a[contains(@href, 'https://www.google.com/maps/place')]",
+                    timeout=10000,
+                )
+            except Exception:
+                logger.warning("No sidebar results detected")
             new_entries = await collect_current_listings(page, query, seen, conn)
             for name, _ in new_entries:
                 await show_toast(page, f"Saved: {name}")
