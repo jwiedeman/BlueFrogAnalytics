@@ -24,7 +24,8 @@ The Cassandra driver is optional and only needed when the storage mode is set to
 
 `grid_worker.py` automates searches across a grid of GPS coordinates around a
 city. It deduplicates results using business name and address and appends them
-to the configured database or CSV file.
+to the configured database or CSV file. Each time a unique business is stored a
+message prints to the console so you can monitor progress.
 
 ```bash
 python grid_worker.py "Portland, OR" 1 0.02 50 --query "coffee shops"
@@ -90,7 +91,8 @@ python spiral_worker.py "pizza restaurants in Seattle" 10 "dbname=maps user=post
 `monitor_worker.py` lets you pan the map yourself while the script records
 any new business listings that appear in the sidebar. Each unique listing is
 stored in the configured database and a brief toast notification is shown in the
-browser when it's saved.
+browser when it's saved. All workers also print the name of each newly saved
+business in the terminal for quick visibility.
 
 ```bash
 python monitor_worker.py "coffee shops near me"

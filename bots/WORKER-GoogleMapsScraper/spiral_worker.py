@@ -61,6 +61,7 @@ async def collect_current_listings(page, query: str, seen: Set[Tuple[str, str]],
                 lon,
             ),
         )
+        print(f"New business saved: {name} - {address}")
     return new_entries
 
 
@@ -83,10 +84,15 @@ async def scrape_spiral(query: str, steps: int, dsn: str | None, *, headless: bo
             if await checkbox.count() and (await checkbox.get_attribute("aria-checked")) != "true":
                 await checkbox.click()
                 await page.wait_for_timeout(1000)
-            # ensure the map has focus before issuing keyboard commands
-            await page.mouse.click(400, 300)
+            # ensure the map canvas has focus before issuing keyboard commands
+            canvas = page.locator("canvas").first
+            box = await canvas.bounding_box()
+            if box:
+                await page.mouse.click(box["x"] + box["width"] / 2, box["y"] + box["height"] / 2)
+            else:
+                await page.mouse.click(800, 300)
         except Exception:
-            pass
+            await page.mouse.click(800, 300)
 
         await collect_current_listings(page, query, seen, conn)
 

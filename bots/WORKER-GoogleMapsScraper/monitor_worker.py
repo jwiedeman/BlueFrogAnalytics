@@ -44,6 +44,7 @@ async def collect_current_listings(page, query: str, seen: Set[Tuple[str, str]],
                 lon,
             ),
         )
+        print(f"New business saved: {name} - {address}")
     return new_entries
 
 

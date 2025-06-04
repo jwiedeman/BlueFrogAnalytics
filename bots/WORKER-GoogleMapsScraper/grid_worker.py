@@ -95,6 +95,7 @@ async def scrape_at_location(
                 lon_val,
             ),
         )
+        print(f"New business saved: {name} - {address}")
 
 
 async def scrape_city_grid(
