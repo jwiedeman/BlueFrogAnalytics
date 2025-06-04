@@ -8,6 +8,17 @@ from wappalyzer_data import load_full_wappalyzer_data
 import dns.resolver
 from urllib.parse import urlparse
 
+_GROUPS = None
+_CATEGORIES = None
+_TECHNOLOGIES = None
+
+
+def _load_data() -> None:
+    """Load technology data once and cache it globally."""
+    global _GROUPS, _CATEGORIES, _TECHNOLOGIES
+    if _TECHNOLOGIES is None:
+        _GROUPS, _CATEGORIES, _TECHNOLOGIES = load_full_wappalyzer_data()
+
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
     "AppleWebKit/537.36 (KHTML, like Gecko) "
@@ -50,7 +61,8 @@ def _extract_version(attr: Dict[str, Any], match: re.Match) -> str:
 
 def detect(url: str) -> Dict[str, Any]:
     """Basic matcher using Wappalyzer patterns without the Wappalyzer library."""
-    groups, categories, technologies = load_full_wappalyzer_data()
+    _load_data()
+    groups, categories, technologies = _GROUPS, _CATEGORIES, _TECHNOLOGIES
 
     try:
         resp = requests.get(url, timeout=10, headers={"User-Agent": USER_AGENT})

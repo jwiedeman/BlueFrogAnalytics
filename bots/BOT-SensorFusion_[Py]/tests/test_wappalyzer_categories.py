@@ -2,18 +2,12 @@ import os
 import sys
 
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-WAPPALYZER_DIR = os.path.join(CURRENT_DIR, '..', '..', 'BOT-wappalyzer[Py]')
-LIB_PATH = os.path.join(WAPPALYZER_DIR)
-sys.path.insert(0, LIB_PATH)
-
-from Wappalyzer import WebPage
-
 BASE_DIR = os.path.join(CURRENT_DIR, '..')
 sys.path.insert(0, BASE_DIR)
 
 import wappalyzer_data
 
-wap = wappalyzer_data.get_wappalyzer()
+detector = wappalyzer_data.get_detector()
 groups, categories, _ = wappalyzer_data.load_full_wappalyzer_data()
 
 
@@ -31,8 +25,7 @@ def run_test(target):
 
     for url in variants:
         try:
-            webpage = WebPage.new_from_url(url)
-            results = wap.analyze_with_versions_and_categories(webpage)
+            results = detector.analyze_with_versions_and_categories(url)
             if results:
                 lines = [f"URL used: {url}"]
                 for name, data in results.items():

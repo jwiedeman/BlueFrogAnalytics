@@ -2,15 +2,7 @@ import os
 import importlib.util
 from typing import List
 
-# Add path to the bundled Wappalyzer library
-CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-WAPPALYZER_DIR = os.path.join(CURRENT_DIR, '..', '..', 'BOT-wappalyzer[Py]')
-LIB_PATH = os.path.join(WAPPALYZER_DIR)
-
-import sys
-sys.path.insert(0, LIB_PATH)
-
-from Wappalyzer import Wappalyzer, WebPage
+from wappalyzer_data import get_detector
 
 
 def _load_recon_server_module():
@@ -42,14 +34,13 @@ def run_test(target):
     else:
         variants = [target]
 
-    wappalyzer = Wappalyzer.latest()
+    detector = get_detector()
     wapp_servers = set()
     used_url = None
 
     for url in variants:
         try:
-            webpage = WebPage.new_from_url(url)
-            results = wappalyzer.analyze_with_versions_and_categories(webpage)
+            results = detector.analyze_with_versions_and_categories(url)
             if results:
                 used_url = url
                 for name, data in results.items():

@@ -1,34 +1,23 @@
 import os
 import json
-import sys
+from typing import Any, Dict
 
-# Paths to the technology database. We store a copy under `data/` but
-# fall back to the original `BOT-wappalyzer[Py]` project if needed.
+import wappalyzer_matcher
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# First look for local copies of the JSON data
+# Paths to the bundled technology database. The full JSON files live under
+# ``data/`` and must be present before running any detection.
 DATA_DIR = os.path.join(BASE_DIR, 'data')
 TECHNOLOGIES_PATH = os.path.join(DATA_DIR, 'technologies.json')
 CATEGORIES_PATH = os.path.join(DATA_DIR, 'categories.json')
 GROUPS_PATH = os.path.join(DATA_DIR, 'groups.json')
 
 if not os.path.exists(TECHNOLOGIES_PATH):
-    WAPPALYZER_DIR = os.path.join(BASE_DIR, '..', 'BOT-wappalyzer[Py]')
-    LIB_PATH = os.path.join(WAPPALYZER_DIR)
-    sys.path.insert(0, LIB_PATH)
-    TECHNOLOGIES_PATH = os.path.join(
-        WAPPALYZER_DIR,
-        'Wappalyzer',
-        'data',
-        'technologies.json',
+    raise FileNotFoundError(
+        'Missing technologies.json. Run scripts/compile_technologies.py to '
+        'generate the dataset.'
     )
-    CATEGORIES_PATH = os.path.join(WAPPALYZER_DIR, 'src', 'categories.json')
-    GROUPS_PATH = os.path.join(WAPPALYZER_DIR, 'src', 'groups.json')
-else:
-    # When using the local copy, the Wappalyzer library still needs to be
-    # available on the path so import it from BOT-wappalyzer[Py].
-    WAPPALYZER_DIR = os.path.join(BASE_DIR, '..', 'BOT-wappalyzer[Py]')
-    sys.path.insert(0, os.path.join(WAPPALYZER_DIR))
 
 
 def load_wappalyzer_data():
@@ -50,9 +39,15 @@ def load_full_wappalyzer_data():
     return groups, categories, technologies
 
 
-def get_wappalyzer():
-    """Return a Wappalyzer instance using the bundled technologies.json."""
-    from Wappalyzer import Wappalyzer
+class FastDetector:
+    """Simple wrapper providing a Wappalyzer-like interface."""
 
-    return Wappalyzer.latest(TECHNOLOGIES_PATH)
+    def analyze_with_versions_and_categories(self, url: str) -> Dict[str, Any]:
+        """Detect technologies on ``url`` using the custom matcher."""
+        return wappalyzer_matcher.detect(url)
+
+
+def get_detector() -> FastDetector:
+    """Return a detector instance using the bundled dataset."""
+    return FastDetector()
 

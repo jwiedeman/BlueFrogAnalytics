@@ -1,13 +1,4 @@
-import os
-import sys
-
-# Add path to the bundled Wappalyzer library
-CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-WAPPALYZER_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'BOT-wappalyzer[Py]')
-LIB_PATH = os.path.join(WAPPALYZER_DIR)
-sys.path.insert(0, LIB_PATH)
-
-from Wappalyzer import Wappalyzer, WebPage
+from wappalyzer_data import get_detector
 
 
 def run_test(target):
@@ -22,11 +13,10 @@ def run_test(target):
     else:
         variants = [target]
 
-    wappalyzer = Wappalyzer.latest()
+    detector = get_detector()
     for url in variants:
         try:
-            webpage = WebPage.new_from_url(url)
-            results = wappalyzer.analyze_with_versions_and_categories(webpage)
+            results = detector.analyze_with_versions_and_categories(url)
             if results:
                 return f"URL used: {url}\nDetected: {results}"
         except Exception:
