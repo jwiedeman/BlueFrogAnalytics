@@ -653,3 +653,14 @@ body.dark-mode .serp-url {
   min-width: 110px;
   text-align: center;
 }
+
+/* Domain list layout */
+.domain-list .domain-row:last-child {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+@media (min-width: 768px) {
+  .domain-name {
+    flex: 1 1 auto;
+  }
+}

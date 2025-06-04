@@ -11,7 +11,15 @@ const domainList = [];
       <h1 class="mb-0">Domains</h1>
       <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#domain-modal">Add Domain</button>
     </div>
-    <div id="domainList"></div>
+    <p class="text-muted small mb-4">
+      Frequency controls how often we crawl your domain. Deleting only removes the domain from your dashboard; we continue monitoring it for overall insights.
+    </p>
+    <div class="d-none d-md-flex fw-bold border-bottom pb-2 mb-3">
+      <div class="col">Domain</div>
+      <div class="col-auto">Frequency</div>
+      <div class="col-auto">Actions</div>
+    </div>
+    <div id="domainList" class="domain-list"></div>
   </section>
 
   <div class="modal fade" id="domain-modal" tabindex="-1" aria-hidden="true">
@@ -74,18 +82,18 @@ const domainList = [];
         }
         domains.forEach((dom, i) => {
           const item = document.createElement('div');
-          item.className = 'card mb-3';
+          item.className = 'row align-items-center pb-2 mb-3 border-bottom domain-row';
           item.innerHTML = `
-            <div class="card-body d-flex justify-content-between align-items-center">
-              <span>${dom.name}</span>
-              <div class="d-flex align-items-center">
-                <select class="form-select form-select-sm me-2 frequency-select" data-index="${i}">
-                  <option value="daily">Daily</option>
-                  <option value="weekly">Weekly</option>
-                  <option value="monthly">Monthly</option>
-                </select>
-                <button class="btn btn-sm btn-danger" data-action="delete" data-index="${i}">Delete</button>
-              </div>
+            <div class="col domain-name">${dom.name}</div>
+            <div class="col-auto">
+              <select class="form-select form-select-sm me-2 frequency-select" data-index="${i}">
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+              </select>
+            </div>
+            <div class="col-auto">
+              <button class="btn btn-sm btn-danger" data-action="delete" data-index="${i}">Delete</button>
             </div>`;
           item.querySelector('.frequency-select').value = dom.frequency || 'daily';
           listEl.appendChild(item);
