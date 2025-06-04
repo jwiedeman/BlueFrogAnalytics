@@ -85,6 +85,21 @@ Example with an explicit DSN and headless mode:
 python spiral_worker.py "pizza restaurants in Seattle" 10 "dbname=maps user=postgres" --headless
 ```
 
+## Manual monitor mode
+
+`monitor_worker.py` lets you pan the map yourself while the script records
+any new business listings that appear in the sidebar. Each unique listing is
+stored in the configured database and a brief toast notification is shown in the
+browser when it's saved.
+
+```bash
+python monitor_worker.py "coffee shops near me"
+```
+
+Use `--interval` to change how often the sidebar is scanned and `--headless` to
+run the browser without a visible window. The `--store` option selects the
+storage backend just like the other workers.
+
 ### Local Postgres setup
 
 `spiral_worker.py` and the other scripts expect a running Postgres instance.
