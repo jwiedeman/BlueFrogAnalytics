@@ -34,7 +34,7 @@ reports any overlap between the two techniques to help validate fingerprinting
 accuracy.
 
 The third test `test_wappalyzer_categories.py` lists detected technologies along
-with their versions and categories for quick reference.
+with their versions, categories and groups for quick reference.
 
 The new test `test_wappalyzer_dataset.py` demonstrates loading the raw
 categories and technologies using `wappalyzer_data` and runs detection through
@@ -43,6 +43,6 @@ the returned `Wappalyzer` engine.
 `test_simple_matcher.py` demonstrates the bundled matcher in
 `wappalyzer_matcher.py`. It now mirrors Wappalyzer's logic for URL,
 header, HTML, script, cookie and meta pattern checks and resolves implied
-technologies. Versions and categories are exposed for each detected
-technology.
+technologies. Versions, categories and high‑level groups are exposed for each
+detected technology.
 

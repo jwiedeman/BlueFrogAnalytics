@@ -4,7 +4,7 @@ from typing import Any, Dict, List
 import requests
 from bs4 import BeautifulSoup
 
-from wappalyzer_data import load_wappalyzer_data
+from wappalyzer_data import load_full_wappalyzer_data
 
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -46,7 +46,7 @@ def _extract_version(attr: Dict[str, Any], match: re.Match) -> str:
 
 def detect(url: str) -> Dict[str, Any]:
     """Basic matcher using Wappalyzer patterns without the Wappalyzer library."""
-    categories, technologies = load_wappalyzer_data()
+    groups, categories, technologies = load_full_wappalyzer_data()
 
     try:
         resp = requests.get(url, timeout=10, headers={"User-Agent": USER_AGENT})
@@ -142,10 +142,20 @@ def detect(url: str) -> Dict[str, Any]:
     for tech_name in matched:
         tech = technologies.get(tech_name, {})
         entry = detected.get(tech_name, {})
-        entry["categories"] = [
-            categories.get(str(c), {}).get("name", str(c))
-            for c in tech.get("cats", [])
-        ]
+        cat_names = []
+        grp_names = []
+        for c in tech.get("cats", []):
+            cat = categories.get(str(c), {})
+            cat_name = cat.get("name", str(c))
+            cat_names.append(cat_name)
+            for gid in cat.get("groups", []):
+                gname = groups.get(str(gid), {}).get("name")
+                if gname:
+                    grp_names.append(gname)
+        if cat_names:
+            entry["categories"] = cat_names
+        if grp_names:
+            entry["groups"] = sorted(set(grp_names))
         detected[tech_name] = entry
 
     return detected
