@@ -137,6 +137,16 @@ async function initCassandra() {
   `);
 
   await client.execute(`
+    CREATE TABLE IF NOT EXISTS profiles.user_domain_prefs (
+      domain text,
+      tld text,
+      uid text,
+      refresh_hours int,
+      PRIMARY KEY ((domain, tld), uid)
+    )
+  `);
+
+  await client.execute(`
     CREATE TABLE IF NOT EXISTS domain_discovery.domain_page_metrics (
       domain text,
       url text,
@@ -255,7 +265,10 @@ async function initCassandra() {
     desktop_accessibility_suggestions: 'text',
     mobile_accessibility_suggestions: 'text',
     desktop_seo_suggestions: 'text',
-    mobile_seo_suggestions: 'text'
+    mobile_seo_suggestions: 'text',
+    user_managed: 'boolean',
+    refresh_hours: 'int',
+    last_enriched: 'timestamp'
   });
 
   await ensureColumns(client, 'domain_discovery', 'domain_page_metrics', {
@@ -454,9 +467,8 @@ async function updateDomainRegistry(url, columns) {
   if (!check.rowLength) return;
   const keys = Object.keys(columns);
   if (!keys.length) return;
-  const setClause = keys.map(k => `${k}=?`).join(', ');
-  const values = keys.map(k => columns[k]);
-  values.push(domain, tld);
+  const setClause = [...keys.map(k => `${k}=?`), 'last_enriched=?'].join(', ');
+  const values = [...keys.map(k => columns[k]), new Date(), domain, tld];
   await cassandraClient.execute(
     `UPDATE domain_discovery.domains_processed SET ${setClause} WHERE domain=? AND tld=?`,
     values,
@@ -812,6 +824,77 @@ app.get('/api/profile', authMiddleware, async (req, res) => {
       }
     }
     res.json(profile);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Database error' });
+  }
+});
+
+app.post('/api/user-domain', authMiddleware, async (req, res) => {
+  const { domain, refreshHours } = req.body || {};
+  if (typeof domain !== 'string' || typeof refreshHours !== 'number') {
+    return res.status(400).json({ error: 'Invalid payload' });
+  }
+  const parts = parseDomainParts(domain);
+  if (!parts) {
+    return res.status(400).json({ error: 'Invalid domain' });
+  }
+  const { domain: name, tld } = parts;
+  try {
+    await cassandraClient.execute(
+      'INSERT INTO profiles.user_domain_prefs (domain, tld, uid, refresh_hours) VALUES (?, ?, ?, ?)',
+      [name, tld, req.uid, refreshHours],
+      { prepare: true }
+    );
+
+    await cassandraClient.execute(
+      'INSERT INTO domain_discovery.domains_processed (domain, tld) VALUES (?, ?) IF NOT EXISTS',
+      [name, tld],
+      { prepare: true }
+    );
+
+    const all = await cassandraClient.execute(
+      'SELECT refresh_hours FROM profiles.user_domain_prefs WHERE domain=? AND tld=?',
+      [name, tld],
+      { prepare: true }
+    );
+    let min = refreshHours;
+    all.rows.forEach(r => {
+      if (typeof r.refresh_hours === 'number' && r.refresh_hours < min) {
+        min = r.refresh_hours;
+      }
+    });
+
+    await cassandraClient.execute(
+      'UPDATE domain_discovery.domains_processed SET user_managed=true, refresh_hours=? WHERE domain=? AND tld=?',
+      [min, name, tld],
+      { prepare: true }
+    );
+
+    const prof = await cassandraClient.execute(
+      'SELECT domains FROM user_profiles WHERE uid=?',
+      [req.uid],
+      { prepare: true }
+    );
+    let domains = [];
+    if (prof.rowLength && prof.rows[0].domains) {
+      try {
+        domains = JSON.parse(prof.rows[0].domains);
+      } catch {
+        domains = [];
+      }
+    }
+    const full = `${name}.${tld}`;
+    if (!domains.includes(full)) {
+      domains.push(full);
+      await cassandraClient.execute(
+        'UPDATE user_profiles SET domains=? WHERE uid=?',
+        [JSON.stringify(domains), req.uid],
+        { prepare: true }
+      );
+    }
+
+    res.json({ success: true, refreshHours: min });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Database error' });
