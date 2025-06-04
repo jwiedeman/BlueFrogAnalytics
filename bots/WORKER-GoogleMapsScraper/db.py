@@ -4,7 +4,6 @@ from pathlib import Path
 
 import psycopg2
 import sqlite3
-from cassandra.cluster import Cluster
 
 DEFAULT_DSN = "dbname=maps user=postgres host=localhost password=postgres"
 DEFAULT_SQLITE = "maps.db"
@@ -12,7 +11,7 @@ DEFAULT_CSV = "businesses.csv"
 
 def get_storage(cli_store: str | None = None) -> str:
     """Return selected storage backend."""
-    return (cli_store or os.environ.get("MAPS_STORAGE", "postgres")).lower()
+    return (cli_store or os.environ.get("MAPS_STORAGE", "sqlite")).lower()
 
 def get_dsn(cli_dsn: str | None = None) -> str:
     """Return the Postgres DSN from CLI or environment."""
@@ -23,6 +22,13 @@ def init_db(dsn: str | None, *, storage: str | None = None):
     """Create the businesses table if needed and return a connection object or path."""
     storage = get_storage(storage)
     if storage == "cassandra":
+        try:
+            from cassandra.cluster import Cluster
+        except Exception as exc:  # ImportError or DependencyException
+            raise RuntimeError(
+                "Cassandra driver is required for cassandra storage"
+            ) from exc
+
         hosts = os.environ.get("CASSANDRA_CONTACT_POINTS", "localhost").split(",")
         keyspace = os.environ.get("CASSANDRA_KEYSPACE", "maps")
         cluster = Cluster(hosts)
