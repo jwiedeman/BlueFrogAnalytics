@@ -27,10 +27,16 @@ city. It deduplicates results using business name and address and appends them
 to the configured database or CSV file.
 
 ```bash
-python grid_worker.py "Portland, OR" "coffee shops" 1 0.02 50
+python grid_worker.py "Portland, OR" 1 0.02 50 --query "coffee shops"
 ```
 
-The parameters are: city name, search query, number of grid steps from the center, spacing in degrees between grid points, number of results per grid cell, and an optional database DSN. Use `--headless` to hide the browser and `--min-delay`/`--max-delay` to randomize pauses between grid locations.
+The parameters are: city name, number of grid steps from the center, spacing in degrees between grid points, number of results per grid cell, and an optional database DSN. Provide a search term with `--query`. Use `--headless` to hide the browser and `--min-delay`/`--max-delay` to randomize pauses between grid locations.
+
+To scrape multiple terms sequentially with a single worker use the `--terms` option:
+
+```bash
+python grid_worker.py "Portland, OR" 1 0.02 50 --terms "restaurants,bars,cafes"
+```
 
 ### Running multiple terms
 
@@ -52,6 +58,7 @@ The spacing value `0.0145` roughly equals one mile.  Increase `--steps` or the s
 
 Pass `--concurrency` to limit how many browser instances run at once. The orchestrator automatically tiles visible windows in a grid sized to this concurrency value.
 Use `--launch-stagger` to delay the start of each scraper window by a fixed number of seconds.
+The orchestrator cycles through the provided search terms so that each worker processes multiple terms in sequence, continuing even if another instance stops.
 
 ## Spiral pan mode
 

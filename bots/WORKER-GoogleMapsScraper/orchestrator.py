@@ -53,6 +53,23 @@ async def run_term_with_delay(term: str, args, slots: Queue, sem: Semaphore, wid
     await run_term(term, args, slots, sem, width, height)
 
 
+async def worker(term_queue: Queue, args, slots: Queue, sem: Semaphore, width: int, height: int, index: int):
+    delay = index * args.launch_stagger
+    if delay > 0:
+        await asyncio.sleep(delay)
+    while True:
+        try:
+            term = term_queue.get_nowait()
+        except asyncio.QueueEmpty:
+            return
+        try:
+            await run_term(term, args, slots, sem, width, height)
+        except Exception as e:
+            print(f"Error processing term '{term}': {e}")
+        finally:
+            term_queue.task_done()
+
+
 async def main(args):
     args.dsn = get_dsn(args.dsn)
     terms = [t.strip() for t in args.terms.split(',') if t.strip()]
@@ -65,17 +82,14 @@ async def main(args):
         col = i % cols
         slots.put_nowait((row, col))
     sem = Semaphore(concurrency)
+
+    term_queue: Queue = Queue()
+    for term in terms:
+        term_queue.put_nowait(term)
+
     tasks = [
-        run_term_with_delay(
-            term,
-            args,
-            slots,
-            sem,
-            width,
-            height,
-            i * args.launch_stagger,
-        )
-        for i, term in enumerate(terms)
+        worker(term_queue, args, slots, sem, width, height, i)
+        for i in range(concurrency)
     ]
     await asyncio.gather(*tasks)
 

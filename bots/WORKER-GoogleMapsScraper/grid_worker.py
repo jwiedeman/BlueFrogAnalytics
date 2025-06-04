@@ -149,11 +149,12 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Scrape a city grid from Google Maps")
     parser.add_argument("city")
-    parser.add_argument("query")
     parser.add_argument("steps", type=int)
     parser.add_argument("spacing_deg", type=float)
     parser.add_argument("per_grid_total", type=int)
     parser.add_argument("dsn", nargs="?", help="Postgres DSN")
+    parser.add_argument("--query", help="Single search term")
+    parser.add_argument("--terms", help="Comma separated list of search terms")
     parser.add_argument("--headless", action="store_true", help="Run browser headless")
     parser.add_argument("--min-delay", type=float, default=15.0, help="Minimum delay between grid steps in seconds")
     parser.add_argument("--max-delay", type=float, default=60.0, help="Maximum delay between grid steps in seconds")
@@ -163,16 +164,26 @@ if __name__ == "__main__":
     if args.store:
         os.environ["MAPS_STORAGE"] = args.store
 
-    asyncio.run(
-        scrape_city_grid(
-            args.city,
-            args.query,
-            args.steps,
-            args.spacing_deg,
-            args.per_grid_total,
-            args.dsn,
-            headless=args.headless,
-            min_delay=args.min_delay,
-            max_delay=args.max_delay,
-        )
-    )
+    queries = []
+    if args.terms:
+        queries.extend([t.strip() for t in args.terms.split(',') if t.strip()])
+    if args.query:
+        queries.insert(0, args.query)
+    if not queries:
+        parser.error("Provide a query or --terms")
+
+    async def main():
+        for term in queries:
+            await scrape_city_grid(
+                args.city,
+                term,
+                args.steps,
+                args.spacing_deg,
+                args.per_grid_total,
+                args.dsn,
+                headless=args.headless,
+                min_delay=args.min_delay,
+                max_delay=args.max_delay,
+            )
+
+    asyncio.run(main())
