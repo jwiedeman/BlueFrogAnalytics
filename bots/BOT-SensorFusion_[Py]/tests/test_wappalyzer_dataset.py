@@ -11,7 +11,7 @@ from Wappalyzer import WebPage
 
 def run_test(target):
     """Use the helper to load Wappalyzer data and fingerprint the site."""
-    cats, techs = wappalyzer_data.load_wappalyzer_data()
+    groups, cats, techs = wappalyzer_data.load_full_wappalyzer_data()
     wap = wappalyzer_data.get_wappalyzer()
 
     if not target.startswith("http://") and not target.startswith("https://"):
@@ -29,10 +29,18 @@ def run_test(target):
             page = WebPage.new_from_url(url)
             results = wap.analyze_with_versions_and_categories(page)
             if results:
-                header = f"URL used: {url}"\
+                header = (
+                    f"URL used: {url}"\
+                    + f"\nGroups loaded: {len(groups)}"\
                     + f"\nCategories loaded: {len(cats)}"\
                     + f"\nTechnologies loaded: {len(techs)}"
+                )
                 return header + "\nDetected: " + str(results)
         except Exception:
             continue
-    return f"Categories loaded: {len(cats)}\nTechnologies loaded: {len(techs)}\nNo technologies detected"
+    return (
+        f"Groups loaded: {len(groups)}"\
+        + f"\nCategories loaded: {len(cats)}"\
+        + f"\nTechnologies loaded: {len(techs)}"\
+        + "\nNo technologies detected"
+    )

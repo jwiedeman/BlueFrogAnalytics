@@ -20,7 +20,8 @@ module `wappalyzer_data.py` loads the `technologies.json` file. This ensures the
 same categories and matching rules used by Wappalyzer are available within the
 Sensor Fusion test suite. The helper now also exposes a `get_wappalyzer()`
 function which returns a `Wappalyzer` instance pre-configured with the bundled
-dataset.
+dataset. A new convenience `load_full_wappalyzer_data()` function returns the
+raw groups, categories and technologies dictionaries for custom analysis.
 
 All existing tests from `BOT-Recon_[Py]` are discovered automatically, allowing
 the full reconnaissance suite to run alongside the Wappalyzer fingerprinting.
