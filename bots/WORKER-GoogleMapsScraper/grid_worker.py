@@ -5,10 +5,8 @@ import re
 import logging
 from typing import Sequence, Set, Tuple
 
-from geopy.geocoders import Nominatim
-
 # Cache geocoding results to avoid repeated requests
-_geocode_cache: dict[str, object] = {}
+_geocode_cache: dict[str, tuple[float, float]] = {}
 from playwright.async_api import async_playwright
 from db import init_db, save_business, get_dsn, close_db
 
@@ -147,17 +145,29 @@ async def scrape_city_grid(
 ):
     db_conn = init_db(get_dsn(dsn))
     seen: Set[Tuple[str, str]] = set()
-    geolocator = Nominatim(user_agent="bluefrog-grid", timeout=10)
 
-    location = _geocode_cache.get(city)
-    if not location:
-        location = geolocator.geocode(city)
-        if not location:
-            raise ValueError(f"Could not geocode city: {city}")
-        _geocode_cache[city] = location
-
-    lat_center = location.latitude
-    lon_center = location.longitude
+    async def geocode_city(page):
+        cached = _geocode_cache.get(city)
+        if cached:
+            return cached
+        await page.goto("https://www.google.com/maps", timeout=60000)
+        await page.fill("//input[@id='searchboxinput']", city)
+        await page.keyboard.press("Enter")
+        try:
+            await page.wait_for_selector(
+                "//a[contains(@href, 'https://www.google.com/maps/place')]",
+                timeout=15000,
+            )
+        except Exception:
+            logger.warning("Timed out waiting for city results for %s", city)
+        await page.wait_for_timeout(1000)
+        match = re.search(r"@(-?\d+\.\d+),(-?\d+\.\d+)", page.url)
+        if not match:
+            raise ValueError(f"Could not find coordinates for city: {city}")
+        lat = float(match.group(1))
+        lon = float(match.group(2))
+        _geocode_cache[city] = (lat, lon)
+        return lat, lon
 
     async with async_playwright() as p:
         browser = await p.chromium.launch(
@@ -165,6 +175,8 @@ async def scrape_city_grid(
             args=list(launch_args or []),
         )
         page = await browser.new_page()
+
+        lat_center, lon_center = await geocode_city(page)
 
         coords = [
             (i, j)
@@ -213,9 +225,10 @@ if __name__ == "__main__":
 
     async def main():
         for term in queries:
+            search = f"{args.city} {term}".strip()
             await scrape_city_grid(
                 args.city,
-                term,
+                search,
                 args.steps,
                 args.spacing_deg,
                 args.per_grid_total,

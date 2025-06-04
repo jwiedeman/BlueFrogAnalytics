@@ -23,12 +23,16 @@ The Cassandra driver is optional and only needed when the storage mode is set to
 ## City grid scraping
 
 `grid_worker.py` automates searches across a grid of GPS coordinates around a
-city. It deduplicates results using business name and address and appends them
-to the configured database or CSV file.
+city. Coordinates are retrieved directly from Google Maps so no external
+geocoding service is required. The worker deduplicates results using business
+name and address and appends them to the configured database or CSV file.
 
 ```bash
 python grid_worker.py "Portland, OR" 1 0.02 50 --query "coffee shops"
 ```
+
+The city name is automatically prepended to the query so the example above
+searches for `"Portland, OR coffee shops"`.
 
 The parameters are: city name, number of grid steps from the center, spacing in degrees between grid points, number of results per grid cell, and an optional database DSN. Provide a search term with `--query`. Use `--headless` to hide the browser and `--min-delay`/`--max-delay` to randomize pauses between grid locations.
 
@@ -37,6 +41,8 @@ To scrape multiple terms sequentially with a single worker use the `--terms` opt
 ```bash
 python grid_worker.py "Portland, OR" 1 0.02 50 --terms "restaurants,bars,cafes"
 ```
+
+Each term is searched alongside the city, e.g. `"Portland, OR restaurants"`.
 
 ### Running multiple terms
 
