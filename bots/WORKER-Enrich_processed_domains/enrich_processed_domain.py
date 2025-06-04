@@ -454,6 +454,7 @@ def process_domain(session, update_stmt, domain, tld):
             json.dumps(analysis.get('emails', [])),
             int(analysis.get('sitemap_page_count', 0)),
             str(analysis.get('updated', '')),
+            datetime.utcnow().isoformat(),
             domain,
             tld
         )
@@ -520,21 +521,26 @@ def main():
                 server_version = ?,
                 emails = ?,
                 sitemap_page_count = ?,
-                updated = ?
+                updated = ?,
+                last_enriched = ?
             WHERE domain = ? AND tld = ?
         """
         update_stmt = session.prepare(update_query)
         
         pool = Pool(CONCURRENCY)
-        rows_query = "SELECT domain, tld FROM domains_processed"
-        if args.status_true_only:
-            rows_query += " WHERE status = true ALLOW FILTERING"
+        rows_query = (
+            "SELECT domain, tld, refresh_hours, last_enriched FROM domains_processed WHERE user_managed = true ALLOW FILTERING"
+        )
         rows = safe_execute(session, rows_query, ())
-        
+
+        now = datetime.utcnow()
         for row in rows:
-            pool.spawn(process_domain, session, update_stmt, row.domain, row.tld)
-            time.sleep(0.1)  # Rate limiting
-            
+            rh = row.refresh_hours or 168
+            last = row.last_enriched
+            if not last or (now - last).total_seconds() > rh * 3600:
+                pool.spawn(process_domain, session, update_stmt, row.domain, row.tld)
+                time.sleep(0.1)
+
         pool.join()
         
     finally:

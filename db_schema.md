@@ -115,6 +115,11 @@ Lighthouse metrics:
 - `desktop_seo_suggestions` text
 - `mobile_seo_suggestions` text
 
+User tracking:
+- `user_managed` boolean
+- `refresh_hours` int
+- `last_enriched` timestamp
+
 Subdomains:
 - `raw_subdomains` set<text>
 
@@ -245,6 +250,15 @@ Billing address and subscription data.
 - `postal_code` text
 - `country` text
 - `plan` text
+
+### `user_domain_prefs`
+Refresh frequency per user for each domain.
+
+- `domain` text
+- `tld` text
+- `uid` text
+- `refresh_hours` int
+- PRIMARY KEY ((`domain`, `tld`), `uid`)
 
 ## PostgreSQL: maps database (deprecated)
 Earlier versions wrote Google Maps business listings to a local Postgres table. The worker now persists these rows to the Cassandra `businesses` table instead. The original columns were:
