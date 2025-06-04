@@ -16,6 +16,10 @@
   --page-gap: 5vh;
 }
 
+html {
+  transition: background-color 1s, color 1s;
+}
+
 /* Custom navbar theme */
 .navbar-charcoal {
   --bs-navbar-color: #36454f;
@@ -36,6 +40,7 @@ body {
   /* Offset pages below the fixed header */
   padding-top: var(--header-height);
   padding-bottom: 0;
+  transition: background-color 1s, color 1s;
 }
 
 html.dark-mode {
@@ -43,6 +48,7 @@ html.dark-mode {
   --bs-body-color: #f5f5f5;
   background: var(--bs-body-bg);
   color: var(--bs-body-color);
+  transition: background-color 1s, color 1s;
 }
 
 body.dark-mode {
@@ -50,6 +56,7 @@ body.dark-mode {
   --bs-body-color: #f5f5f5;
   background: var(--bs-body-bg);
   color: var(--bs-body-color);
+  transition: background-color 1s, color 1s;
 }
 
 main#main-content {
