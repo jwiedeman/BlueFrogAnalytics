@@ -18,7 +18,9 @@ variants of the target until technology fingerprints are found.
 To expose Wappalyzer's technology database to the rest of the tests a helper
 module `wappalyzer_data.py` loads the `technologies.json` file. This ensures the
 same categories and matching rules used by Wappalyzer are available within the
-Sensor Fusion test suite.
+Sensor Fusion test suite. The helper now also exposes a `get_wappalyzer()`
+function which returns a `Wappalyzer` instance pre-configured with the bundled
+dataset.
 
 All existing tests from `BOT-Recon_[Py]` are discovered automatically, allowing
 the full reconnaissance suite to run alongside the Wappalyzer fingerprinting.
@@ -32,4 +34,8 @@ accuracy.
 
 The third test `test_wappalyzer_categories.py` lists detected technologies along
 with their versions and categories for quick reference.
+
+The new test `test_wappalyzer_dataset.py` demonstrates loading the raw
+categories and technologies using `wappalyzer_data` and runs detection through
+the returned `Wappalyzer` engine.
 
