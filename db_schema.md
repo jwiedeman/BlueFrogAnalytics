@@ -271,7 +271,6 @@ Proposed table for storing DNS enumeration output. Each record is stored separat
 - `WORKER-DedupeDomains` – deduplication helper
 - `WORKER-MiscToolResults` – generic results import
 - `WORKER-GoogleMapsScraper` – local business gathering
-- `WORKER-rightsem-final` – email validation
 - `BOT-Hunter[Rust]` – asynchronous crawler
 - `BOT-Recon_[Py]` – reconnaissance harness
 - `BOT-ripwappalyzer[Js]` – tech fingerprinting via Puppeteer
@@ -305,7 +304,6 @@ The table below summarizes where each bot or worker stores its results. Unless s
 | WORKER-MiscToolResults | domain_discovery | misc_tool_results | domain, url, tool_name, scan_date, data | Arbitrary tool output keyed by domain. |
 | WORKER-SpecDemo | domain_discovery | tracking_specs | category, tool, name, rule, example, description, updated_at | Seeds demo specification rows. |
 | WORKER-WhoisSuite | domain_discovery | domains_processed | domain, tld, registered, registrar, updated | Fetches newly registered domains and updates WHOIS info. |
-| WORKER-rightsem-final | (local file) | validated_emails.csv | Domain, Email, Format Valid, MX Record Found, MX Host, MX IP, Country, SMTP Valid, SMTP Reason | Saves validated email results to CSV. |
 
 
 

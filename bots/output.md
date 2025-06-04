@@ -23,5 +23,4 @@ The table below summarizes where each bot or worker stores its results. Unless s
 | WORKER-GoogleMapsScraper | maps or Postgres/SQLite/CSV | businesses | name, address, website, phone, reviews_average, query, latitude, longitude | Writes business listings. |
 | WORKER-MiscToolResults | domain_discovery | misc_tool_results | domain, url, tool_name, scan_date, data | Arbitrary tool output keyed by domain. |
 | WORKER-WhoisSuite | domain_discovery | domains_processed | domain, tld, registered, registrar, updated | Fetches newly registered domains and updates WHOIS info. |
-| WORKER-rightsem-final | (local file) | validated_emails.csv | Domain, Email, Format Valid, MX Record Found, MX Host, MX IP, Country, SMTP Valid, SMTP Reason | Saves validated email results to CSV. |
 
