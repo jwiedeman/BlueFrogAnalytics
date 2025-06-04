@@ -250,7 +250,7 @@ Bots interacting with these tables include:
 - `WORKER-AnalyticsTagHealth` – analytics tag checks
 - `WORKER-CarbonAuditor` – carbon footprint audits
 - `WORKER-Classify_target` – domain classifier via Ollama
-- `WORKER-Whois` – WHOIS updater
+- `WORKER-WhoisSuite` – new domain discovery and WHOIS updater
 - `WORKER-Enrich_processed_domains` – GeoIP and Wappalyzer enrichment
 - `WORKER-DomainStatus` – reachability checks
 - `WORKER-DedupeDomains` – deduplication helper
@@ -261,7 +261,6 @@ Bots interacting with these tables include:
 - `BOT-Recon_[Py]` – reconnaissance harness
 - `BOT-ripwappalyzer[Js]` – tech fingerprinting via Puppeteer
 - `BOT-wappalyzer[Py]` – Python Wappalyzer detection
-- `WORKER-WhoisNewestDomains` – new domain discovery
 - `ETL-Domains` – ingestion scripts
 
 
@@ -289,8 +288,7 @@ The table below summarizes where each bot or worker stores its results. Unless s
 | WORKER-Enrich_processed_domains | domain_discovery | domains_processed | as_name, as_number, city, continent, continent_code, country, country_code, isp, languages, lat, lon, org, phone, region, region_name, registered, registrar, ssl_issuer, tech_detect, time_zone, title, description, linkedin_url, has_about_page, has_services_page, has_cart_or_product, contains_gtm_or_ga, wordpress_version, server_type, server_version, emails, sitemap_page_count, updated | Adds GeoIP, SSL and tech data. |
 | WORKER-GoogleMapsScraper | maps or Postgres/SQLite/CSV | businesses | name, address, website, phone, reviews_average, query, latitude, longitude | Writes business listings. |
 | WORKER-MiscToolResults | domain_discovery | misc_tool_results | domain, url, tool_name, scan_date, data | Arbitrary tool output keyed by domain. |
-| WORKER-Whois | domain_discovery | domains_processed | registered, registrar, updated | Updates WHOIS dates. |
-| WORKER-WhoisNewestDomains | domain_discovery | domains_processed | domain, tld | Adds newly registered domains. |
+| WORKER-WhoisSuite | domain_discovery | domains_processed | domain, tld, registered, registrar, updated | Fetches newly registered domains and updates WHOIS info. |
 | WORKER-rightsem-final | (local file) | validated_emails.csv | Domain, Email, Format Valid, MX Record Found, MX Host, MX IP, Country, SMTP Valid, SMTP Reason | Saves validated email results to CSV. |
 
 
