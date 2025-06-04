@@ -65,8 +65,22 @@ def _extract_version(attr: Dict[str, Any], match: re.Match) -> str:
     return version
 
 
-def detect(url: str) -> Dict[str, Any]:
-    """Basic matcher using the bundled patterns without the external library."""
+from typing import Optional, Set
+
+
+def detect(url: str, min_confidence: int = 0, *, exclude_categories: Optional[Set[str]] = None) -> Dict[str, Any]:
+    """Basic matcher using the bundled patterns without the external library.
+
+    Parameters
+    ----------
+    url : str
+        Target URL to analyze.
+    min_confidence : int, optional
+        Minimum aggregate confidence required for a technology to be
+        returned.  Defaults to ``0`` to preserve legacy behaviour.
+    exclude_categories : set[str] | None, optional
+        Category names to filter out from the final results.
+    """
     _load_data()
     groups, categories, technologies = _GROUPS, _CATEGORIES, _TECHNOLOGIES
 
@@ -325,10 +339,13 @@ def detect(url: str) -> Dict[str, Any]:
     matched = final_matched
 
     for tech_name in matched:
+        conf_val = confidence_totals.get(tech_name, 0)
+        if conf_val < min_confidence:
+            continue
         tech = technologies.get(tech_name, {})
         entry = detected.get(tech_name, {})
-        if tech_name in confidence_totals:
-            entry["confidence"] = confidence_totals[tech_name]
+        if conf_val:
+            entry["confidence"] = conf_val
         cat_names = []
         grp_names = []
         for c in tech.get("cats", []):
@@ -339,6 +356,8 @@ def detect(url: str) -> Dict[str, Any]:
                 gname = groups.get(str(gid), {}).get("name")
                 if gname:
                     grp_names.append(gname)
+        if exclude_categories and set(cat_names) & exclude_categories:
+            continue
         if cat_names:
             entry["categories"] = cat_names
         if grp_names:
