@@ -5,7 +5,7 @@ import random
 
 from asyncio import Semaphore, Queue
 
-from grid_worker import scrape_city_grid
+from spiral_worker import scrape_spiral
 from db import get_dsn
 import os
 
@@ -31,16 +31,12 @@ async def run_term(city: str, term: str, args, slots: Queue, sem: Semaphore, wid
             f"--window-position={x},{y}",
         ]
         try:
-            await scrape_city_grid(
-                city,
-                term,
+            query = f"{term} in {city}"
+            await scrape_spiral(
+                query,
                 args.steps,
-                args.spacing,
-                args.total,
                 get_dsn(args.dsn),
                 headless=args.headless,
-                min_delay=args.min_delay,
-                max_delay=args.max_delay,
                 launch_args=launch_args,
             )
         finally:
@@ -100,19 +96,15 @@ async def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Run Google Maps grid scraping for multiple search terms"
+        description="Run Google Maps searches across multiple terms and cities"
     )
     parser.add_argument("city", help="City name to search around")
     parser.add_argument("--cities", help="Comma separated list of cities to search")
     parser.add_argument("--terms", required=True, help="Comma separated search terms")
-    parser.add_argument("--steps", type=int, default=1)
-    parser.add_argument("--spacing", type=float, default=0.02)
-    parser.add_argument("--total", type=int, default=50)
+    parser.add_argument("--steps", type=int, default=5)
     parser.add_argument("--dsn", help="Postgres DSN")
     parser.add_argument("--screen-width", type=int, default=1920)
     parser.add_argument("--screen-height", type=int, default=1080)
-    parser.add_argument("--min-delay", type=float, default=1.0)
-    parser.add_argument("--max-delay", type=float, default=3.0)
     parser.add_argument("--concurrency", type=int, default=4, help="Maximum simultaneous scrapers")
     parser.add_argument("--store", choices=["postgres", "cassandra", "sqlite", "csv"], help="Storage backend")
     parser.add_argument("--headless", action="store_true", help="Run browsers headless")

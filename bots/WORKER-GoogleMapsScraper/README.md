@@ -40,27 +40,26 @@ python grid_worker.py "Portland, OR" 1 0.02 50 --terms "restaurants,bars,cafes"
 
 ### Running multiple terms
 
-`orchestrator.py` launches several grid scrapers at once and tiles the windows
+`orchestrator.py` launches several spiral scrapers at once and tiles the windows
 to create a control room style view. Provide a comma separated list of search
 terms. Multiple cities can be scraped by supplying `--cities` with a comma
-separated list in addition to the primary positional city argument.
+separated list in addition to the primary positional city argument. The city
+name is automatically appended to each search query.
 
 ```bash
 python orchestrator.py "Portland, OR" \
   --cities "Seattle, WA,Boise, ID" \
   --terms "Restaurants,Bars,Hotels,Retail stores,Gas stations,Pharmacies,Automotive,Banks,Healthcare,Professional services,Education,Government offices,Entertainment,Construction,Real estate" \
-  --steps 1 \
-  --spacing 0.0145 \
-  --total 50 \
+  --steps 5 \
   --concurrency 4 \
   --launch-stagger 30
 ```
 
-The spacing value `0.0145` roughly equals one mile.  Increase `--steps` or the spacing to cover larger radii (for example `--steps 10 --spacing 0.0145` covers about ten miles).  Windows open in non‑headless mode so you can watch progress.
-
-Pass `--concurrency` to limit how many browser instances run at once. The orchestrator automatically tiles visible windows in a grid sized to this concurrency value.
-Use `--launch-stagger` to delay the start of each scraper window by a fixed number of seconds.
-The orchestrator cycles through the provided cities and search terms so that each worker processes each combination in sequence, continuing even if another instance stops.
+Windows open in non‑headless mode so you can watch progress. Pass `--concurrency`
+to limit how many browser instances run at once. Use `--launch-stagger` to delay
+the start of each scraper window. The orchestrator cycles through the provided
+cities and search terms so that each worker processes each combination in
+sequence, continuing even if another instance stops.
 
 ## Spiral pan mode
 

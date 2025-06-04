@@ -3,7 +3,7 @@ import asyncio
 import re
 import sys
 import logging
-from typing import Set, Tuple
+from typing import Set, Tuple, Sequence
 
 from db import init_db, save_business, get_dsn, close_db
 
@@ -70,12 +70,22 @@ async def collect_current_listings(page, query: str, seen: Set[Tuple[str, str]],
     return new_entries
 
 
-async def scrape_spiral(query: str, steps: int, dsn: str | None, *, headless: bool = False):
+async def scrape_spiral(
+    query: str,
+    steps: int,
+    dsn: str | None,
+    *,
+    headless: bool = False,
+    launch_args: Sequence[str] | None = None,
+):
     conn = init_db(get_dsn(dsn))
     seen: Set[Tuple[str, str]] = set()
 
     async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=headless)
+        browser = await p.chromium.launch(
+            headless=headless,
+            args=list(launch_args or []),
+        )
         page = await browser.new_page()
         await page.goto("https://www.google.com/maps", timeout=60000)
         await page.fill("//input[@id='searchboxinput']", query)
