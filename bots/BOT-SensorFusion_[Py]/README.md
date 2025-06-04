@@ -1,12 +1,12 @@
 # Sensor Fusion Bot (Python)
 
 This experimental tool combines capabilities from the existing Recon test runner
-and a lightweight technology fingerprinting engine inspired by Wappalyzer. It
-reuses the dynamic test loading system from `BOT-Recon_[Py]` and adds a new test
-which runs the custom detector against a target domain.
+and a lightweight technology fingerprinting engine. It reuses the dynamic test
+loading system from `BOT-Recon_[Py]` and adds a new test which runs the custom
+detector against a target domain.
 
 Run `main.py` with the same flags as the Recon bot. Additional options allow
-invoking the Wappalyzer fingerprinting engine directly:
+invoking the fingerprinting engine directly:
 
 ```bash
 python main.py --target example.com --all --verbose
@@ -19,42 +19,42 @@ python main.py --target example.com --fingerprint-only
 python main.py --target example.com --fingerprint --tests test_ssl test_whois
 ```
 
-The new test `test_wappalyzer_integration.py` attempts multiple HTTP/HTTPS
+The new test `test_detector_integration.py` attempts multiple HTTP/HTTPS
 variants of the target until technology fingerprints are found using the custom
 detector.
 
-To expose Wappalyzer's technology database to the rest of the tests a helper
-module `wappalyzer_data.py` loads the `technologies.json` file. A local copy of
+To expose the technology database to the rest of the tests a helper module
+`tech_data.py` loads the `technologies.json` file. A local copy of
 `technologies.json`, `categories.json` and `groups.json` is stored under the
 `data/` directory. The helper exposes `get_detector()` which returns a simple
-object wrapping the matcher. A convenience `load_full_wappalyzer_data()`
-function returns the raw groups, categories and technologies dictionaries for
-custom analysis.
+object wrapping the matcher. A convenience `load_full_tech_data()` function
+returns the raw groups, categories and technologies dictionaries for custom
+analysis.
 
 The repository includes the full technology set compiled from the original
-Wappalyzer project. Run `scripts/compile_technologies.py` to rebuild
-`data/technologies.json` from the JSON files in `../BOT-wappalyzer[Py]/src/technologies`.
+open-source data. Run `scripts/compile_tech_data.py` to rebuild
+`data/technologies.json` from the JSON files in the `src/technologies` directory.
 The precompiled file contains over 5,000 technology definitions.
 
 All existing tests from `BOT-Recon_[Py]` are discovered automatically, allowing
-the full reconnaissance suite to run alongside the Wappalyzer fingerprinting.
+the full reconnaissance suite to run alongside the fingerprinting engine.
 
 ## Additional Tests
 
 A second test `test_crosscheck_server.py` compares the server detection output from
-`BOT-Recon_[Py]`'s `test_server_fingerprinting.py` with Wappalyzer results. It
+`BOT-Recon_[Py]`'s `test_server_fingerprinting.py` with detector results. It
 reports any overlap between the two techniques to help validate fingerprinting
 accuracy.
 
-The third test `test_wappalyzer_categories.py` lists detected technologies along
+The third test `test_detector_categories.py` lists detected technologies along
 with their versions, categories and groups for quick reference.
 
-The new test `test_wappalyzer_dataset.py` demonstrates loading the raw
-categories and technologies using `wappalyzer_data` and runs detection through
+The new test `test_detector_dataset.py` demonstrates loading the raw
+categories and technologies using `tech_data` and runs detection through
 the custom engine.
 
 `test_simple_matcher.py` demonstrates the bundled matcher in
-`wappalyzer_matcher.py`. It now mirrors Wappalyzer's logic for URL,
+`tech_matcher.py`. It mirrors the original logic for URL,
 header, HTML, script, cookie and meta pattern checks and resolves implied
 technologies. The matcher also supports basic JS, DOM and DNS rules.
 Versions, categories and high‑level groups are exposed for each detected
@@ -69,10 +69,10 @@ combined output currently includes:
 
 - **URL used** – address that produced the result (most tests report this).
 - **Detected technologies** – name, version, categories and groups from the
-  Wappalyzer matcher.
+  detector.
 - **Groups loaded**, **Categories loaded** and **Technologies loaded** – counts
-  from `test_wappalyzer_dataset.py`.
-- **Wappalyzer servers**, **Server fingerprinting** and **Overlap** – server
+  from `test_detector_dataset.py`.
+- **Detector servers**, **Server fingerprinting** and **Overlap** – server
   comparison from `test_crosscheck_server.py`.
 - **HTTP variation**, **Initial URL**, **Redirect chain**, **Final URL** and
   **Final status code** from the basic response test.

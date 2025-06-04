@@ -1,8 +1,8 @@
-from wappalyzer_data import get_detector
+from tech_data import get_detector
 
 
 def run_test(target):
-    """Run Wappalyzer technology detection against the target domain."""
+    """Run technology detection against the target domain."""
     if not target.startswith("http://") and not target.startswith("https://"):
         variants = [
             f"http://{target}",

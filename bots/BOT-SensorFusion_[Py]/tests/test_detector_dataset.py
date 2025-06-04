@@ -5,13 +5,13 @@ CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.join(CURRENT_DIR, '..')
 sys.path.insert(0, BASE_DIR)
 
-import wappalyzer_data
+import tech_data
 
 
 def run_test(target):
-    """Use the helper to load Wappalyzer data and fingerprint the site."""
-    groups, cats, techs = wappalyzer_data.load_full_wappalyzer_data()
-    detector = wappalyzer_data.get_detector()
+    """Use the helper to load technology data and fingerprint the site."""
+    groups, cats, techs = tech_data.load_full_tech_data()
+    detector = tech_data.get_detector()
 
     if not target.startswith("http://") and not target.startswith("https://"):
         variants = [

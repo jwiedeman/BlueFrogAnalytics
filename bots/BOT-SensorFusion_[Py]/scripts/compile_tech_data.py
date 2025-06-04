@@ -2,10 +2,10 @@ import json
 import os
 from glob import glob, escape
 
-"""Compile technologies JSON files from Wappalyzer src/technologies."""
+"""Compile technologies JSON files from the source technologies directory."""
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-WAPPALYZER_DIR = os.path.join(BASE_DIR, '..', 'BOT-wappalyzer[Py]')
-TECH_SRC_DIR = os.path.join(WAPPALYZER_DIR, 'src', 'technologies')
+SOURCE_DIR = os.path.join(BASE_DIR, '..', 'BOT-wappalyzer[Py]')
+TECH_SRC_DIR = os.path.join(SOURCE_DIR, 'src', 'technologies')
 OUTPUT_FILE = os.path.join(BASE_DIR, 'data', 'technologies.json')
 
 

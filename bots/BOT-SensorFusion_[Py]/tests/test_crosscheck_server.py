@@ -2,7 +2,7 @@ import os
 import importlib.util
 from typing import List
 
-from wappalyzer_data import get_detector
+from tech_data import get_detector
 
 
 def _load_recon_server_module():
@@ -23,7 +23,7 @@ def _extract_sf_detections(result: str) -> List[str]:
 
 
 def run_test(target):
-    """Compare server detections between Wappalyzer and server_fingerprinting."""
+    """Compare server detections between our detector and server_fingerprinting."""
     if not target.startswith('http://') and not target.startswith('https://'):
         variants = [
             f"http://{target}",
@@ -59,7 +59,7 @@ def run_test(target):
 
     result_lines = [
         f"URL used: {used_url if used_url else target}",
-        f"Wappalyzer servers: {', '.join(sorted(wapp_servers)) if wapp_servers else 'None'}",
+        f"Detector servers: {', '.join(sorted(wapp_servers)) if wapp_servers else 'None'}",
         f"Server fingerprinting: {', '.join(sf_servers) if sf_servers else 'None'}",
         f"Overlap: {', '.join(common) if common else 'None'}",
     ]

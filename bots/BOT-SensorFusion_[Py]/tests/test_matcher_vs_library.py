@@ -5,8 +5,8 @@ CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.join(CURRENT_DIR, '..')
 sys.path.insert(0, BASE_DIR)
 
-import wappalyzer_data
-import wappalyzer_matcher
+import tech_data
+import tech_matcher
 
 
 def run_test(target):
@@ -23,7 +23,7 @@ def run_test(target):
 
     for url in variants:
         try:
-            results = wappalyzer_matcher.detect(url)
+            results = tech_matcher.detect(url)
             if results and not results.get("error"):
                 names = [k for k in results.keys()]
                 lines = [f"URL used: {url}", f"Detected: {', '.join(sorted(names))}"]

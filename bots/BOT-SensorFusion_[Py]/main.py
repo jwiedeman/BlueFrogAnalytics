@@ -5,7 +5,7 @@ import importlib.util
 import traceback
 import logging
 import inspect
-from wappalyzer_data import get_detector
+from tech_data import get_detector
 
 def setup_logging(verbose=False):
     log_level = logging.DEBUG if verbose else logging.INFO
@@ -105,7 +105,7 @@ def run_tests(selected_tests, target):
 
 
 def run_fingerprint(target):
-    """Run the Wappalyzer matcher directly."""
+    """Run the technology matcher directly."""
     if not target.startswith("http://") and not target.startswith("https://"):
         variants = [
             f"http://{target}",
