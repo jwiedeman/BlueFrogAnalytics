@@ -859,7 +859,7 @@ app.get('/api/domain-pages', authMiddleware, async (req, res) => {
   const name = parts.join('.');
   try {
     const result = await cassandraClient.execute(
-      'SELECT url, desktop_seo_score, mobile_seo_score, scan_date FROM domain_discovery.domain_page_metrics WHERE domain=?',
+      'SELECT url, desktop_seo_score, mobile_seo_score, desktop_performance_score, mobile_performance_score, scan_date FROM domain_discovery.domain_page_metrics WHERE domain=?',
       [name],
       { prepare: true }
     );
@@ -871,6 +871,8 @@ app.get('/api/domain-pages', authMiddleware, async (req, res) => {
           url: r.url,
           desktop_seo_score: r.desktop_seo_score,
           mobile_seo_score: r.mobile_seo_score,
+          desktop_performance_score: r.desktop_performance_score,
+          mobile_performance_score: r.mobile_performance_score,
           scan_date: r.scan_date
         });
       }
