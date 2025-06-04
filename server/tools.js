@@ -1,7 +1,7 @@
 import express from 'express';
 import { load } from 'cheerio';
 
-export function createToolsRouter(updateTest) {
+export function createToolsRouter(updateTest, updateDomainRegistry, saveToolResult, saveCarbonAudit) {
   const router = express.Router();
 
   async function collectSitemaps(url) {
@@ -95,6 +95,12 @@ export function createToolsRouter(updateTest) {
       if (updateTest && req.uid) {
         await updateTest(req.uid, 'carbon', result);
       }
+      if (saveCarbonAudit) {
+        await saveCarbonAudit(url, bytes, co2);
+      }
+      if (saveToolResult) {
+        await saveToolResult(url, 'carbon', result);
+      }
       res.json(result);
     } catch {
       res.status(500).json({ error: 'Fetch failed' });
@@ -144,7 +150,11 @@ export function createToolsRouter(updateTest) {
         } catch {}
       }
       results.sort((a, b) => b.bytes - a.bytes);
-      res.json({ images: results });
+      const out = { images: results };
+      if (saveToolResult) {
+        await saveToolResult(url, 'image_bloat', out);
+      }
+      res.json(out);
     } catch {
       res.status(500).json({ error: 'Failed to analyze images' });
     }
@@ -172,7 +182,11 @@ export function createToolsRouter(updateTest) {
         }
       }
       results.sort((a, b) => b.ms - a.ms);
-      res.json({ scripts: results });
+      const out = { scripts: results };
+      if (saveToolResult) {
+        await saveToolResult(url, 'tag_drag_race', out);
+      }
+      res.json(out);
     } catch {
       res.status(500).json({ error: 'Failed to analyze scripts' });
     }
@@ -189,11 +203,18 @@ export function createToolsRouter(updateTest) {
       const description = descMatch ? descMatch[1] : '';
       const score = (0.1 + 0.4 * Math.min(title.length, 60) / 60 +
         0.5 * Math.min(description.length, 160) / 160);
-      res.json({
+      const out = {
         title,
         description,
         predicted_ctr: Number(score.toFixed(3))
-      });
+      };
+      if (updateDomainRegistry) {
+        await updateDomainRegistry(url, { title, description });
+      }
+      if (saveToolResult) {
+        await saveToolResult(url, 'serp_preview', out);
+      }
+      res.json(out);
     } catch {
       res.status(500).json({ error: 'Failed to fetch page' });
     }
@@ -236,6 +257,9 @@ export function createToolsRouter(updateTest) {
       const result = { image: screenshot.toString('base64') };
       if (updateTest && req.uid) {
         await updateTest(req.uid, 'contrast_heatmap', { screenshot: true });
+      }
+      if (saveToolResult) {
+        await saveToolResult(url, 'contrast_heatmap', { screenshot: true });
       }
       res.json(result);
     } catch {

@@ -426,6 +426,102 @@ async function updateDomainRegistry(url, columns) {
   );
 }
 
+async function savePageMetrics(url, metrics) {
+  const parts = parseDomainParts(url);
+  if (!parts) return;
+  const { domain, tld } = parts;
+  const check = await cassandraClient.execute(
+    'SELECT domain FROM domain_discovery.domains_processed WHERE domain=? AND tld=?',
+    [domain, tld],
+    { prepare: true }
+  );
+  if (!check.rowLength) return;
+  const keys = Object.keys(metrics);
+  if (!keys.length) return;
+  const columns = ['domain', 'url', 'scan_date', ...keys];
+  const placeholders = columns.map(() => '?').join(', ');
+  const values = [domain, url, new Date(), ...keys.map(k => metrics[k])];
+  await cassandraClient.execute(
+    `INSERT INTO domain_discovery.domain_page_metrics (${columns.join(', ')}) VALUES (${placeholders})`,
+    values,
+    { prepare: true }
+  );
+}
+
+async function saveCarbonAudit(url, bytes, co2) {
+  const parts = parseDomainParts(url);
+  if (!parts) return;
+  const { domain, tld } = parts;
+  const check = await cassandraClient.execute(
+    'SELECT domain FROM domain_discovery.domains_processed WHERE domain=? AND tld=?',
+    [domain, tld],
+    { prepare: true }
+  );
+  if (!check.rowLength) return;
+  await cassandraClient.execute(
+    'INSERT INTO domain_discovery.carbon_audits (domain, url, scan_date, bytes, co2) VALUES (?, ?, ?, ?, ?)',
+    [domain, url, new Date(), bytes, co2],
+    { prepare: true }
+  );
+}
+
+async function saveToolResult(url, tool, data) {
+  const parts = parseDomainParts(url);
+  if (!parts) return;
+  const { domain, tld } = parts;
+  const check = await cassandraClient.execute(
+    'SELECT domain FROM domain_discovery.domains_processed WHERE domain=? AND tld=?',
+    [domain, tld],
+    { prepare: true }
+  );
+  if (!check.rowLength) return;
+  const map = {};
+  for (const [k, v] of Object.entries(data || {})) {
+    map[k] = typeof v === 'string' ? v : JSON.stringify(v);
+  }
+  await cassandraClient.execute(
+    'INSERT INTO domain_discovery.misc_tool_results (domain, url, tool_name, scan_date, data) VALUES (?, ?, ?, ?, ?)',
+    [domain, url, tool, new Date(), map],
+    { prepare: true }
+  );
+}
+
+async function saveTagHealthResult(domainInput, data) {
+  const parts = parseDomainParts(domainInput);
+  if (!parts) return;
+  const { domain, tld } = parts;
+  const check = await cassandraClient.execute(
+    'SELECT domain FROM domain_discovery.domains_processed WHERE domain=? AND tld=?',
+    [domain, tld],
+    { prepare: true }
+  );
+  if (!check.rowLength) return;
+  const row = {
+    domain,
+    scan_date: new Date(),
+    working_variants: data.working_variants || [],
+    scanned_urls: data.scanned_urls || [],
+    found_analytics: data.found_analytics || {},
+    page_results: data.page_results || {},
+    variant_results: data.variant_results || {},
+    compliance_status: data.compliance_status || null
+  };
+  await cassandraClient.execute(
+    'INSERT INTO domain_discovery.analytics_tag_health (domain, scan_date, working_variants, scanned_urls, found_analytics, page_results, variant_results, compliance_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+    [
+      row.domain,
+      row.scan_date,
+      row.working_variants,
+      row.scanned_urls,
+      row.found_analytics,
+      row.page_results,
+      row.variant_results,
+      row.compliance_status
+    ],
+    { prepare: true }
+  );
+}
+
 async function authMiddleware(req, res, next) {
   const header = req.headers.authorization || '';
   let token = header.startsWith('Bearer ') ? header.slice(7) : null;
@@ -458,8 +554,16 @@ async function optionalAuthMiddleware(req, res, next) {
   next();
 }
 
-app.use('/api/tag-health', optionalAuthMiddleware, createTagHealthRouter(updateTest, updateDomainRegistry));
-app.use('/api/tools', optionalAuthMiddleware, createToolsRouter(updateTest));
+app.use(
+  '/api/tag-health',
+  optionalAuthMiddleware,
+  createTagHealthRouter(updateTest, updateDomainRegistry, saveTagHealthResult)
+);
+app.use(
+  '/api/tools',
+  optionalAuthMiddleware,
+  createToolsRouter(updateTest, updateDomainRegistry, saveToolResult, saveCarbonAudit)
+);
 
 app.post('/api/profile', authMiddleware, async (req, res) => {
   const {
@@ -605,6 +709,7 @@ app.post('/api/performance', authMiddleware, async (req, res) => {
     metrics.lighthouse_fetch_time = new Date(desktop.fetchTime || mobile.fetchTime || Date.now());
     metrics.lighthouse_url = url;
     await updateDomainRegistry(url, metrics);
+    await savePageMetrics(url, metrics);
     res.json(result);
   } catch (err) {
     console.error(err);
@@ -663,6 +768,12 @@ app.post('/api/audit/accessibility', authMiddleware, async (req, res) => {
       lighthouse_fetch_time: new Date(result.lhr.fetchTime || Date.now()),
       lighthouse_url: url
     });
+    await savePageMetrics(url, {
+      mobile_accessibility_score: score,
+      lighthouse_version: result.lhr.lighthouseVersion,
+      lighthouse_fetch_time: new Date(result.lhr.fetchTime || Date.now()),
+      lighthouse_url: url
+    });
     res.json(result.lhr);
   } catch (err) {
     console.error(err);
@@ -711,6 +822,7 @@ app.post('/api/seo-audit', authMiddleware, async (req, res) => {
     lighthouse_url: url
   };
   await updateDomainRegistry(url, metrics);
+  await savePageMetrics(url, metrics);
   res.json(result);
   } catch (err) {
     console.error(err);
