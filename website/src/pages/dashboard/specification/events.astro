@@ -5,16 +5,44 @@ const title = 'Specification - Events';
 const description = 'Event reference details.';
 ---
 <DashboardLayout title={title} description={description}>
-  <section class="container py-5 text-center">
-    <h1>Events</h1>
-    <p>Event specifications will be provided here.</p>
+  <section class="container py-5">
+    <h1 class="text-center mb-4">Events</h1>
+    <div class="table-responsive">
+      <table class="table table-dark table-striped align-middle" id="events-table">
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Rule</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
   </section>
   <script type="module">
     document.addEventListener('DOMContentLoaded', () => {
+      const loadData = async () => {
+        try {
+          const resp = await fetch('/api/specs?category=event', { credentials: 'include' });
+          if (!resp.ok) return;
+          const rows = await resp.json();
+          const tbody = document.querySelector('#events-table tbody');
+          rows.forEach(r => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${r.tool}</td><td>${r.name}</td><td>${r.description || ''}</td><td>${r.rule || ''}</td><td>${r.example || ''}</td>`;
+            tbody.appendChild(tr);
+          });
+        } catch {}
+      };
       const init = () => {
         window.onAuthStateChanged(window.firebaseAuth, user => {
           if (!user) {
             window.location.href = '/login';
+          } else {
+            loadData();
           }
         });
       };
