@@ -21,7 +21,7 @@ def compute_layout(n: int, screen_w: int, screen_h: int) -> tuple[int, int, int,
     return cols, rows, width, height
 
 
-async def run_term(term: str, args, slots: Queue, sem: Semaphore, width: int, height: int):
+async def run_term(city: str, term: str, args, slots: Queue, sem: Semaphore, width: int, height: int):
     async with sem:
         row, col = await slots.get()
         x = col * width
@@ -32,7 +32,7 @@ async def run_term(term: str, args, slots: Queue, sem: Semaphore, width: int, he
         ]
         try:
             await scrape_city_grid(
-                args.city,
+                city,
                 term,
                 args.steps,
                 args.spacing,
@@ -47,10 +47,10 @@ async def run_term(term: str, args, slots: Queue, sem: Semaphore, width: int, he
             slots.put_nowait((row, col))
 
 
-async def run_term_with_delay(term: str, args, slots: Queue, sem: Semaphore, width: int, height: int, delay: float):
+async def run_term_with_delay(city: str, term: str, args, slots: Queue, sem: Semaphore, width: int, height: int, delay: float):
     if delay > 0:
         await asyncio.sleep(delay)
-    await run_term(term, args, slots, sem, width, height)
+    await run_term(city, term, args, slots, sem, width, height)
 
 
 async def worker(term_queue: Queue, args, slots: Queue, sem: Semaphore, width: int, height: int, index: int):
@@ -59,11 +59,11 @@ async def worker(term_queue: Queue, args, slots: Queue, sem: Semaphore, width: i
         await asyncio.sleep(delay)
     while True:
         try:
-            term = term_queue.get_nowait()
+            city, term = term_queue.get_nowait()
         except asyncio.QueueEmpty:
             return
         try:
-            await run_term(term, args, slots, sem, width, height)
+            await run_term(city, term, args, slots, sem, width, height)
         except Exception as e:
             print(f"Error processing term '{term}': {e}")
         finally:
@@ -73,8 +73,12 @@ async def worker(term_queue: Queue, args, slots: Queue, sem: Semaphore, width: i
 async def main(args):
     args.dsn = get_dsn(args.dsn)
     terms = [t.strip() for t in args.terms.split(',') if t.strip()]
-    random.shuffle(terms)
-    concurrency = min(args.concurrency, len(terms))
+    cities = [args.city]
+    if args.cities:
+        cities = [c.strip() for c in args.cities.split(',') if c.strip()]
+    pairs = [(city, term) for city in cities for term in terms]
+    random.shuffle(pairs)
+    concurrency = min(args.concurrency, len(pairs))
     cols, rows, width, height = compute_layout(concurrency, args.screen_width, args.screen_height)
     slots: Queue = Queue()
     for i in range(concurrency):
@@ -84,8 +88,8 @@ async def main(args):
     sem = Semaphore(concurrency)
 
     term_queue: Queue = Queue()
-    for term in terms:
-        term_queue.put_nowait(term)
+    for pair in pairs:
+        term_queue.put_nowait(pair)
 
     tasks = [
         worker(term_queue, args, slots, sem, width, height, i)
@@ -99,6 +103,7 @@ if __name__ == "__main__":
         description="Run Google Maps grid scraping for multiple search terms"
     )
     parser.add_argument("city", help="City name to search around")
+    parser.add_argument("--cities", help="Comma separated list of cities to search")
     parser.add_argument("--terms", required=True, help="Comma separated search terms")
     parser.add_argument("--steps", type=int, default=1)
     parser.add_argument("--spacing", type=float, default=0.02)
