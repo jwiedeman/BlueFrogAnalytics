@@ -11,3 +11,5 @@ Wappalyzer
 pycountry
 beautifulsoup4
 lxml
+ipwhois
+dnspython
