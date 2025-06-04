@@ -37,6 +37,19 @@ open-source Wappalyzer data. The raw detection files live locally under
 `scripts/compile_tech_data.py` to rebuild `data/technologies.json`. The
 precompiled file contains over 5,000 technology definitions.
 
+### Comparing with Wappalyzer
+
+Use `scripts/compare_with_wappalyzer.py` to see what the official
+Wappalyzer library detects that the bundled matcher does not. A Selenium
+WebDriver must be available in your `PATH` for this helper to work.
+
+```bash
+python scripts/compare_with_wappalyzer.py https://example.com
+```
+
+The script prints technologies missing from the custom detector so the
+dataset can be refined.
+
 All existing tests from `BOT-Recon_[Py]` are discovered automatically, allowing
 the full reconnaissance suite to run alongside the fingerprinting engine.
 
