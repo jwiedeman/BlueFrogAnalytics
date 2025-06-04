@@ -45,5 +45,6 @@ the returned `Wappalyzer` engine.
 header, HTML, script, cookie and meta pattern checks and resolves implied
 technologies. The matcher also supports basic JS, DOM and DNS rules.
 Versions, categories and high‑level groups are exposed for each detected
-technology.
+technology along with an aggregate confidence score calculated from the
+matched patterns.
 
