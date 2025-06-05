@@ -34,6 +34,12 @@ Available test groups include:
 Run with `--all` to execute every scan. Results are saved to Cassandra using the
 columns outlined in `db_schema.md`.
 
+The `tests/` directory houses the reconnaissance modules imported from
+`BOT-Recon_[Py]` along with the other modular tests from
+`BOT-SensorFusion_[Py]`. The experimental fingerprinting engine itself remains
+in the Sensor Fusion bot, but its companion tests are available here and may be
+run individually or with the `--all` flag.
+
 This worker serves as an orchestrator. Each individual scan is a thin wrapper
 around the existing bots in the `bots/` directory or third-party libraries. The
 initial version only prints which scans would run, providing clear integration
