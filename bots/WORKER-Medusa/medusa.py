@@ -8,60 +8,213 @@ columns outlined in db_schema.md.
 
 import argparse
 import json
-from typing import Callable, Dict, List
+import os
+import time
+from datetime import datetime
+from typing import Any, Callable, Dict, List, Tuple
+
+from cassandra.cluster import Cluster
+from cassandra.policies import DCAwareRoundRobinPolicy, RetryPolicy
+from cassandra import (
+    OperationTimedOut,
+    Unavailable,
+    WriteTimeout,
+    ReadTimeout,
+)
+from tldextract import extract
 
 # Use the bundled enrichment module so this worker is self contained
 try:
-    from enrichment import analyze_target
+    from enrichment import analyze_target, is_domain_up
 except Exception:  # pragma: no cover - optional dependency
     analyze_target = None
+    is_domain_up = None
+
+# Helper functions for Cassandra integration
+
+
+def _safe_execute(session, query: str, params: Tuple[Any, ...]):
+    delay = 5
+    while True:
+        try:
+            return session.execute(query, params)
+        except (
+            OperationTimedOut,
+            Unavailable,
+            WriteTimeout,
+            ReadTimeout,
+        ) as e:
+            print(f"Cassandra error ({type(e).__name__}): {e}. Retrying in {delay}s...")
+            time.sleep(delay)
+            delay = min(delay * 2, 60)
+
+
+def _cassandra_session() -> Tuple[Cluster, Any]:
+    url = os.environ.get(
+        "CASSANDRA_URL",
+        "192.168.1.201,192.168.1.202,192.168.1.203,192.168.1.204",
+    )
+    hosts = [h.strip() for h in url.split(",") if h.strip()]
+    keyspace = os.environ.get("CASSANDRA_KEYSPACE", "domain_discovery")
+    cluster = Cluster(
+        contact_points=hosts,
+        load_balancing_policy=DCAwareRoundRobinPolicy(local_dc="datacenter1"),
+        default_retry_policy=RetryPolicy(),
+        protocol_version=4,
+        connect_timeout=600,
+        idle_heartbeat_timeout=600,
+    )
+    session = cluster.connect(keyspace)
+    session.default_timeout = 600
+    return cluster, session
+
+
+def _update_enrichment(session, domain: str, data: Dict[str, Any]) -> None:
+    if not session:
+        return
+    ext = extract(domain)
+    dom = ext.domain.strip().strip(".")
+    tld = ext.suffix.strip().strip(".")
+
+    update_query = """
+        UPDATE domain_discovery.domains_processed SET
+            status = ?,
+            updated = ?,
+            as_name = ?,
+            as_number = ?,
+            city = ?,
+            continent = ?,
+            continent_code = ?,
+            country = ?,
+            country_code = ?,
+            isp = ?,
+            languages = ?,
+            lat = ?,
+            lon = ?,
+            org = ?,
+            phone = ?,
+            region = ?,
+            region_name = ?,
+            registered = ?,
+            registrar = ?,
+            ssl_issuer = ?,
+            tech_detect = ?,
+            time_zone = ?,
+            title = ?,
+            description = ?,
+            linkedin_url = ?,
+            has_about_page = ?,
+            has_services_page = ?,
+            has_cart_or_product = ?,
+            contains_gtm_or_ga = ?,
+            wordpress_version = ?,
+            server_type = ?,
+            server_version = ?,
+            emails = ?,
+            sitemap_page_count = ?,
+            last_enriched = ?
+        WHERE domain = ? AND tld = ?
+    """
+    update_stmt = session.prepare(update_query)
+    down_stmt = session.prepare(
+        "UPDATE domain_discovery.domains_processed SET status=?, updated=? WHERE domain=? AND tld=?"
+    )
+
+    now_str = datetime.utcnow().isoformat()
+    if is_domain_up and not is_domain_up(domain):
+        _safe_execute(session, down_stmt, (False, now_str, dom, tld))
+        return
+
+    params = (
+        True,
+        now_str,
+        str(data.get("asname", "")),
+        str(data.get("as", "")),
+        str(data.get("city", "")),
+        str(data.get("continent", "")),
+        str(data.get("continentCode", "")),
+        str(data.get("country", "")),
+        str(data.get("countryCode", "")),
+        str(data.get("isp", "")),
+        json.dumps(data.get("languages", {})),
+        float(data.get("lat", 0.0)),
+        float(data.get("lon", 0.0)),
+        str(data.get("org", "")),
+        json.dumps(data.get("phone", [])),
+        str(data.get("region", "")),
+        str(data.get("regionName", "")),
+        str(data.get("registered", "")),
+        str(data.get("registrar", "")),
+        str(data.get("ssl_issuer", "")),
+        json.dumps(data.get("tech_detect", {})),
+        str(data.get("timezone", "")),
+        str(data.get("title", "")),
+        str(data.get("description", "")),
+        str(data.get("linkedin_url", "")),
+        bool(data.get("has_about_page", False)),
+        bool(data.get("has_services_page", False)),
+        bool(data.get("has_cart_or_product", False)),
+        bool(data.get("contains_gtm_or_ga", False)),
+        str(data.get("wordpress_version", "")),
+        str(data.get("server_type", "")),
+        str(data.get("server_version", "")),
+        json.dumps(data.get("emails", [])),
+        int(data.get("sitemap_page_count", 0)),
+        now_str,
+        dom,
+        tld,
+    )
+
+    _safe_execute(session, update_stmt, params)
+
 
 # Placeholder scan functions. Real implementations should invoke the
 # dedicated workers or libraries that perform each scan.
 
-def ssl_scan(domain: str) -> None:
+def ssl_scan(domain: str, session: Any) -> None:
     print(f"[SSL] scanning {domain}")
 
 
-def whois_scan(domain: str) -> None:
+def whois_scan(domain: str, session: Any) -> None:
     print(f"[WHOIS] scanning {domain}")
 
 
-def dns_scan(domain: str) -> None:
+def dns_scan(domain: str, session: Any) -> None:
     print(f"[DNS] scanning {domain}")
 
 
-def tech_scan(domain: str) -> None:
+def tech_scan(domain: str, session: Any) -> None:
     print(f"[TECH] scanning {domain}")
 
 
-def lighthouse_scan(domain: str) -> None:
+def lighthouse_scan(domain: str, session: Any) -> None:
     print(f"[Lighthouse] scanning {domain}")
 
 
-def carbon_scan(domain: str) -> None:
+def carbon_scan(domain: str, session: Any) -> None:
     print(f"[Carbon] scanning {domain}")
 
 
-def analytics_scan(domain: str) -> None:
+def analytics_scan(domain: str, session: Any) -> None:
     print(f"[Analytics] scanning {domain}")
 
 
-def webpagetest_scan(domain: str) -> None:
+def webpagetest_scan(domain: str, session: Any) -> None:
     print(f"[WebPageTest] scanning {domain}")
 
 
-def enrich_scan(domain: str) -> None:
+def enrich_scan(domain: str, session: Any) -> None:
     """Run the enrichment logic from WORKER-Enrich_processed_domains."""
     if not analyze_target:
         print("Enrichment dependencies not available")
         return
     result = analyze_target(domain)
     print(json.dumps(result, indent=2))
+    _update_enrichment(session, domain, result)
 
 
 # Mapping of test group name to function
-TESTS: Dict[str, Callable[[str], None]] = {
+TESTS: Dict[str, Callable[[str, Any], None]] = {
     "ssl": ssl_scan,
     "whois": whois_scan,
     "dns": dns_scan,
@@ -74,13 +227,13 @@ TESTS: Dict[str, Callable[[str], None]] = {
 }
 
 
-def run_scans(domain: str, tests: List[str]) -> None:
+def run_scans(domain: str, tests: List[str], session: Any) -> None:
     for name in tests:
         func = TESTS.get(name)
         if not func:
             print(f"Unknown test: {name}")
             continue
-        func(domain)
+        func(domain, session)
 
 
 def parse_args() -> argparse.Namespace:
@@ -101,7 +254,11 @@ def main() -> None:
         print("No tests specified. Use --all or --tests.")
         return
 
-    run_scans(args.domain, tests)
+    cluster, session = _cassandra_session()
+    try:
+        run_scans(args.domain, tests, session)
+    finally:
+        cluster.shutdown()
 
 
 if __name__ == "__main__":
