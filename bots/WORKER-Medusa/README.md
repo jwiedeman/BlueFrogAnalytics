@@ -32,6 +32,7 @@ Available test groups include:
 - `analytics` – analytics tag health
 - `webpagetest` – WebPageTest results
 - `enrich` – metadata enrichment (built in)
+- `recon` – passive open ports and header checks
 
 Run with `--all` to execute every scan. Results are saved to Cassandra using the
 columns outlined in `db_schema.md`.
@@ -153,6 +154,7 @@ Additional enrichment fields (`ssl_org`, `x_powered_by`, `wordpress_asset_versio
 
 - Expanded enrichment columns: `favicon_url`, `robots_txt_exists`, `robots_txt_content`, `canonical_url`, `h1_count`, `h2_count`, `h3_count`, `schema_markup_detected`, `schema_types`, `security_headers_score`, `security_headers_detected`, `hsts_enabled`, `cookie_compliance`, `third_party_scripts`, `color_contrast_issues`, `aria_landmark_count`, `form_accessibility_issues`, `social_media_profiles`, `rss_feed_detected`, `newsletter_signup_detected`, `cdn_detected`, `http_version`, `compression_enabled`, `cache_control_headers`, `page_weight_bytes`, `main_language`, `content_keywords`.
 - Added initial recon columns: `open_ports`, `allowed_http_methods`, `waf_name`, `directory_scan`, `certificate_info`.
+- Integrated recon scan module to populate these fields automatically.
 
 ### Planned
 

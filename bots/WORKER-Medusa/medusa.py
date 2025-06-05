@@ -25,6 +25,13 @@ from cassandra import (
 import dns.resolver
 from tldextract import extract
 
+# Import the lightweight recon modules bundled under tests
+from tests.test_open_ports import run_test as open_ports_test
+from tests.test_http_methods import run_test as http_methods_test
+from tests.test_waf_detection import run_test as waf_detection_test
+from tests.test_directory_enumeration import run_test as dir_enum_test
+from tests.test_certificate_details import run_test as cert_details_test
+
 # Use the bundled enrichment module so this worker is self contained
 try:
     from enrichment import analyze_target, is_domain_up
@@ -339,6 +346,60 @@ def webpagetest_scan(domain: str, session: Any) -> None:
     print(f"[WebPageTest] scanning {domain}")
 
 
+def initial_recon_scan(domain: str, session: Any) -> None:
+    """Run the bundled passive recon tests and store results."""
+    print(f"[Recon] scanning {domain}")
+    data: Dict[str, Any] = {}
+
+    try:
+        output = open_ports_test(domain, verbose=False)
+        ports = []
+        for line in output.splitlines():
+            if "OPEN" in line:
+                try:
+                    parts = line.split()
+                    port = int(parts[1])
+                    ports.append(port)
+                except Exception:
+                    continue
+        if ports:
+            data["open_ports"] = ports
+    except Exception as exc:  # pragma: no cover - best effort
+        print(f"open ports error: {exc}")
+
+    try:
+        output = http_methods_test(domain, verbose=False)
+        if "Allowed Methods" in output:
+            methods_part = output.split(":", 1)[-1]
+            methods = [m.strip() for m in methods_part.split(" ") if m.strip()]
+            data["allowed_http_methods"] = methods
+    except Exception as exc:  # pragma: no cover - best effort
+        print(f"http methods error: {exc}")
+
+    try:
+        output = waf_detection_test(domain)
+        for line in output.splitlines():
+            if line.startswith("Detected WAF(s):"):
+                wafs = line.split(":", 1)[-1]
+                data["waf_name"] = wafs.strip()
+                break
+    except Exception as exc:  # pragma: no cover - best effort
+        print(f"waf detection error: {exc}")
+
+    try:
+        data["directory_scan"] = dir_enum_test(domain, verbose=False)
+    except Exception as exc:  # pragma: no cover - best effort
+        print(f"directory enumeration error: {exc}")
+
+    try:
+        data["certificate_info"] = cert_details_test(domain)
+    except Exception as exc:  # pragma: no cover - best effort
+        print(f"certificate details error: {exc}")
+
+    if data:
+        _update_enrichment(session, domain, data)
+
+
 def enrich_scan(domain: str, session: Any) -> None:
     """Run the enrichment logic from WORKER-Enrich_processed_domains."""
     if not analyze_target:
@@ -360,6 +421,7 @@ TESTS: Dict[str, Callable[[str, Any], None]] = {
     "analytics": analytics_scan,
     "webpagetest": webpagetest_scan,
     "enrich": enrich_scan,
+    "recon": initial_recon_scan,
 }
 
 
