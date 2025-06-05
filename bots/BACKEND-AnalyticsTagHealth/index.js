@@ -23,12 +23,19 @@ async function checkDomain(domain, tld) {
   if (/google-analytics\.com/i.test(html)) {
     found.google_analytics = true;
   }
+  const toMap = obj => {
+    const map = {};
+    for (const [k, v] of Object.entries(obj || {})) {
+      map[k] = JSON.stringify(v);
+    }
+    return map;
+  };
   const row = {
     domain,
     scan_date: new Date(),
     working_variants: [`http://${host}`],
     scanned_urls: [`http://${host}`],
-    found_analytics: found,
+    found_analytics: toMap(found),
     page_results: {},
     variant_results: {},
     compliance_status: Object.keys(found).length ? 'found' : 'missing'

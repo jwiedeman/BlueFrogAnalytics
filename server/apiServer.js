@@ -621,7 +621,7 @@ async function saveTagHealthResult(domainInput, data) {
   const toMap = obj => {
     const map = {};
     for (const [k, v] of Object.entries(obj || {})) {
-      map[k] = typeof v === 'string' ? v : JSON.stringify(v);
+      map[k] = JSON.stringify(v);
     }
     return map;
   };
