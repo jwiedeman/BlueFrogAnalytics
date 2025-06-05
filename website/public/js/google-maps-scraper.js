@@ -26,7 +26,7 @@ form?.addEventListener('submit', async (e) => {
       progressEl.id = 'gmaps-progress';
       progressEl.textContent = `0 / ${total} found`;
       output.appendChild(progressEl);
-      // Progress for the active scrape is only displayed in this page.
+
       clearInterval(progressTimer);
       progressTimer = setInterval(async () => {
         try {

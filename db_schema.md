@@ -213,6 +213,120 @@ The Medusa enrichment step also captures several homepage indicators that are no
 - `more_than_5_internal_links`
 - `ecommerce_platforms`
 
+#### Columns updated by `WORKER-Medusa`
+
+Medusa orchestrates all scans and populates columns across several tables.
+
+**domains_processed**
+
+- `status`
+- `updated`
+- `as_name`
+- `as_number`
+- `city`
+- `continent`
+- `continent_code`
+- `country`
+- `country_code`
+- `isp`
+- `languages`
+- `lat`
+- `lon`
+- `org`
+- `phone`
+- `region`
+- `region_name`
+- `registered`
+- `registrar`
+- `ssl_issuer`
+- `tech_detect`
+- `time_zone`
+- `title`
+- `description`
+- `linkedin_url`
+- `has_about_page`
+- `has_services_page`
+- `has_cart_or_product`
+- `contains_gtm_or_ga`
+- `wordpress_version`
+- `server_type`
+- `server_version`
+- `emails`
+- `sitemap_page_count`
+- `last_enriched`
+- `ssl_org`
+- `x_powered_by`
+- `wordpress_asset_version`
+- `wpjson_size_bytes`
+- `wpjson_contains_cart`
+- `more_than_5_internal_links`
+- `ecommerce_platforms`
+- `postal_code`
+- `desktop_performance_score`
+- `mobile_performance_score`
+- `desktop_accessibility_score`
+- `mobile_accessibility_score`
+- `desktop_best_practices_score`
+- `mobile_best_practices_score`
+- `desktop_seo_score`
+- `mobile_seo_score`
+- `desktop_first_contentful_paint`
+- `mobile_first_contentful_paint`
+- `desktop_largest_contentful_paint`
+- `mobile_largest_contentful_paint`
+- `desktop_interactive`
+- `mobile_interactive`
+- `desktop_speed_index`
+- `mobile_speed_index`
+- `desktop_total_blocking_time`
+- `mobile_total_blocking_time`
+- `desktop_cumulative_layout_shift`
+- `mobile_cumulative_layout_shift`
+- `desktop_timing_total`
+- `mobile_timing_total`
+- `desktop_performance_suggestions`
+- `mobile_performance_suggestions`
+- `desktop_accessibility_suggestions`
+- `mobile_accessibility_suggestions`
+- `desktop_seo_suggestions`
+- `mobile_seo_suggestions`
+- `lighthouse_version`
+- `lighthouse_fetch_time`
+- `lighthouse_url`
+
+**analytics_tag_health**
+
+- `domain`
+- `scan_date`
+- `working_variants`
+- `scanned_urls`
+- `found_analytics`
+- `page_results`
+- `variant_results`
+- `compliance_status`
+
+**carbon_audits**
+
+- `domain`
+- `url`
+- `scan_date`
+- `bytes`
+- `co2`
+
+**dns_records**
+
+- `domain`
+- `record_type`
+- `record_value`
+- `scan_date`
+
+**misc_tool_results**
+
+- `domain`
+- `url`
+- `scan_date`
+- `tool_name`
+- `data`
 ### `analytics_tag_health`
 Detailed analytics and tag compliance results.
 
@@ -321,7 +435,7 @@ The table below summarizes where each bot or worker stores its results. Unless s
 | BACKEND-MiscToolResults | domain_discovery | misc_tool_results | domain, url, tool_name, scan_date, data | Arbitrary tool output keyed by domain. |
 | WORKER-SpecDemo | domain_discovery | tracking_specs | category, tool, name, rule, example, description, updated_at | Seeds demo specification rows. |
 | WORKER-WhoisSuite | domain_discovery | domains_processed | domain, tld, registered, registrar, updated | Fetches newly registered domains and updates WHOIS info. |
-| WORKER-Medusa | domain_discovery | multiple tables | domains_processed (status, enrichment fields including wpjson_size_bytes, wpjson_contains_cart, x_powered_by, wordpress_asset_version, ecommerce_platforms, Lighthouse metrics), analytics_tag_health (working_variants, scanned_urls, found_analytics, page_results, variant_results, compliance_status), carbon_audits (domain, url, scan_date, bytes, co2), dns_records (domain, record_type, record_value, scan_date), misc_tool_results (domain, url, scan_date, tool_name, data) | Orchestrates all scans and writes to every table. |
+| WORKER-Medusa | domain_discovery | multiple tables | see section above | Orchestrates all scans and writes to every table. |
 
 
 
