@@ -4,7 +4,7 @@ import re
 import logging
 from typing import Set, Tuple
 
-from db import init_db, save_business, get_dsn, close_db
+from db import init_db, save_business, get_dsn, close_db, load_business_keys
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger(__name__)
@@ -30,7 +30,7 @@ async def collect_current_listings(page, query: str, seen: Set[Tuple[str, str]],
             continue
         name = lines[0]
         address = lines[1] if len(lines) > 1 else ""
-        key = (name, address)
+        key = (name.strip().lower(), address.strip().lower())
         if key in seen:
             logger.debug("Already saved: %s | %s", name, address)
             continue
@@ -75,7 +75,7 @@ async def show_toast(page, message: str) -> None:
 
 async def monitor_map(query: str, dsn: str | None, *, headless: bool = False, interval: float = 2.0):
     conn = init_db(get_dsn(dsn))
-    seen: Set[Tuple[str, str]] = set()
+    seen: Set[Tuple[str, str]] = load_business_keys(conn)
 
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=headless)

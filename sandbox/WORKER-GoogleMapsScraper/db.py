@@ -112,6 +112,32 @@ def init_db(dsn: str | None, *, storage: str | None = None):
         return conn
 
 
+def load_business_keys(conn, *, storage: str | None = None) -> set[tuple[str, str]]:
+    """Return a set of (name, address) tuples already stored."""
+    storage = get_storage(storage)
+    keys: set[tuple[str, str]] = set()
+    if storage == "cassandra":
+        rows = conn.execute("SELECT name, address FROM businesses")
+        for row in rows:
+            keys.add((row.name.strip().lower(), row.address.strip().lower()))
+    elif storage == "sqlite":
+        cur = conn.cursor()
+        cur.execute("SELECT name, address FROM businesses")
+        keys.update((n.strip().lower(), a.strip().lower()) for n, a in cur.fetchall())
+    elif storage == "csv":
+        path = Path(conn)
+        if path.exists():
+            with path.open() as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    keys.add((row["name"].strip().lower(), row["address"].strip().lower()))
+    else:
+        with conn.cursor() as cur:
+            cur.execute("SELECT name, address FROM businesses")
+            keys.update((n.strip().lower(), a.strip().lower()) for n, a in cur.fetchall())
+    return keys
+
+
 def save_business(conn, values: tuple, *, storage: str | None = None) -> None:
     """Insert or update a business row using the active backend."""
     storage = get_storage(storage)
