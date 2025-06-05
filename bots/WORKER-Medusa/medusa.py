@@ -22,6 +22,7 @@ from cassandra import (
     WriteTimeout,
     ReadTimeout,
 )
+import dns.resolver
 from tldextract import extract
 
 # Use the bundled enrichment module so this worker is self contained
@@ -182,6 +183,36 @@ def whois_scan(domain: str, session: Any) -> None:
 
 def dns_scan(domain: str, session: Any) -> None:
     print(f"[DNS] scanning {domain}")
+    if not session:
+        return
+
+    insert_stmt = session.prepare(
+        "INSERT INTO domain_discovery.dns_records (domain, record_type, record_value, scan_date) VALUES (?, ?, ?, ?)"
+    )
+
+    def save(rtype: str, value: str) -> None:
+        params = (domain, rtype, value, datetime.utcnow())
+        _safe_execute(session, insert_stmt, params)
+
+    record_types = ["A", "AAAA", "MX", "NS", "TXT"]
+    for rtype in record_types:
+        try:
+            answers = dns.resolver.resolve(domain, rtype, lifetime=10)
+            for rdata in answers:
+                text = rdata.to_text()
+                save(rtype, text)
+                if rtype == "TXT" and text.strip('"').lower().startswith("v=spf1"):
+                    save("SPF", text)
+        except Exception:
+            continue
+
+    dmarc_domain = f"_dmarc.{domain}"
+    try:
+        answers = dns.resolver.resolve(dmarc_domain, "TXT", lifetime=10)
+        for rdata in answers:
+            save("DMARC", rdata.to_text())
+    except Exception:
+        pass
 
 
 def tech_scan(domain: str, session: Any) -> None:
@@ -210,6 +241,14 @@ def lighthouse_scan(domain: str, session: Any) -> None:
 
 def carbon_scan(domain: str, session: Any) -> None:
     print(f"[Carbon] scanning {domain}")
+    script = os.path.join(os.path.dirname(__file__), "..", "BACKEND-CarbonAuditor", "index.js")
+    url = f"http://{domain}"
+    try:
+        subprocess.run(["node", script, url], check=True)
+    except FileNotFoundError:
+        print("Carbon audit script not found")
+    except subprocess.CalledProcessError as exc:
+        print(f"Carbon audit failed: {exc}")
 
 
 def analytics_scan(domain: str, session: Any) -> None:
