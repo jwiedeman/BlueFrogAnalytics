@@ -222,6 +222,11 @@ The Medusa enrichment step also captures several homepage indicators that are no
 - `waf_name`
 - `directory_scan`
 - `certificate_info`
+- `meta_tag_count`
+- `sitemap_robots_conflict`
+- `insecure_cookie_count`
+- `external_resource_count`
+- `passive_subdomain_count`
 
 #### Columns updated by `WORKER-Medusa`
 
