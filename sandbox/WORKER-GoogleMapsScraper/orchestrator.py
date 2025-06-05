@@ -50,15 +50,13 @@ async def worker(city_queue: Queue, terms: list[str], args, slots: Queue, sem: S
     if delay > 0:
         await asyncio.sleep(delay)
     while True:
-        try:
-            city = city_queue.get_nowait()
-        except asyncio.QueueEmpty:
-            return
+        city = await city_queue.get()
         try:
             await run_city(city, terms, args, slots, sem, width, height)
         except Exception as e:
             print(f"Error processing city '{city}': {e}")
         finally:
+            city_queue.put_nowait(city)
             city_queue.task_done()
 
 

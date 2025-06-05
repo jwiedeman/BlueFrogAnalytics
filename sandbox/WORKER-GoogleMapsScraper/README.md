@@ -63,9 +63,10 @@ python orchestrator.py "Portland, OR" \
 
 Windows open in non‑headless mode so you can watch progress. Pass `--concurrency`
 to limit how many browser instances run at once. Use `--launch-stagger` to delay
-the start of each scraper window. The orchestrator cycles through the provided
-cities and search terms so that each worker processes every term for a city
-before moving on to the next location.
+the start of each scraper window. The orchestrator now cycles continuously
+through the provided cities and search terms. Each worker processes every term
+for a city, adds that city back to the queue, and moves on. This creates a
+persistent harvesting loop rather than exiting after one pass.
 
 ## Manual monitor mode
 
