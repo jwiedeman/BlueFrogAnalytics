@@ -72,10 +72,15 @@ def main():
         if first_write:
             writer.writeheader()
         with sync_playwright() as p:
+            total_locations = len(LOCATIONS)
+            total_terms = len(TERMS)
             while True:
-                for location in LOCATIONS:
-                    for term in TERMS:
-                        print(f"Processing '{term}' in '{location}'...")
+                for loc_index, location in enumerate(LOCATIONS, 1):
+                    for term_index, term in enumerate(TERMS, 1):
+                        print(
+                            f"Processing '{term}' in '{location}' "
+                            f"[{loc_index}/{total_locations} location, {term_index}/{total_terms} term]"
+                        )
                         browser = p.chromium.launch(headless=False)
                         page = browser.new_page()
                         page.goto('https://www.google.com/maps')
@@ -91,13 +96,20 @@ def main():
                             writer.writerow(row)
                             count += 1
                             pct = min(100, (count / TOTAL) * 100)
-                            update_bar(page, f'{term} in {location} - {count}/{TOTAL}', pct)
+                            update_bar(
+                                page,
+                                f"{location} [{loc_index}/{total_locations}] {term} [{term_index}/{total_terms}] {count}/{TOTAL}",
+                                pct,
+                            )
                             if count >= TOTAL:
                                 break
                         f.flush()
                         page.wait_for_timeout(1000)
                         browser.close()
-                        print(f"Finished '{term}' in '{location}' with {count} results")
+                        print(
+                            f"Finished '{term}' in '{location}' "
+                            f"with {count} results [{loc_index}/{total_locations}, {term_index}/{total_terms}]"
+                        )
                 time.sleep(60)
 
 if __name__ == '__main__':
