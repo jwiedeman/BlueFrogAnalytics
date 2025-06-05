@@ -18,7 +18,7 @@ import ssl
 import warnings
 from collections import defaultdict
 from ipaddress import ip_address
-from typing import Dict, Any
+from typing import Dict, Any, List
 from urllib.parse import urljoin, urlparse, parse_qs
 
 import geoip2.database
@@ -72,6 +72,35 @@ def is_domain_up(domain: str) -> bool:
         if check_url(url):
             return True
     return False
+
+
+def security_header_info(headers: Dict[str, str]) -> Dict[str, Any]:
+    """Return security header score and detected headers."""
+    known = [
+        "Content-Security-Policy",
+        "X-Content-Type-Options",
+        "X-Frame-Options",
+        "Referrer-Policy",
+        "Strict-Transport-Security",
+    ]
+    detected: List[str] = [h for h in known if h in headers]
+    return {
+        "security_headers_score": len(detected),
+        "security_headers_detected": detected,
+        "hsts_enabled": "Strict-Transport-Security" in headers,
+    }
+
+
+def fetch_robots_txt(target: str) -> Dict[str, Any]:
+    """Return robots.txt presence and content."""
+    url = f"http://{target}/robots.txt"
+    try:
+        resp = requests.get(url, timeout=5)
+        if resp.status_code == 200:
+            return {"robots_txt_exists": True, "robots_txt_content": resp.text}
+    except Exception:
+        pass
+    return {"robots_txt_exists": False, "robots_txt_content": ""}
 
 
 def analyze_tech(target: str) -> Dict[str, Any]:
@@ -204,6 +233,19 @@ def analyze_homepage(target: str, is_wordpress: bool = False) -> Dict[str, Any]:
         html_text = resp.text
         soup = BeautifulSoup(html_text, "html.parser")
 
+        # HTTP level metrics
+        version_map = {10: "HTTP/1.0", 11: "HTTP/1.1", 20: "HTTP/2"}
+        info["http_version"] = version_map.get(getattr(resp.raw, "version", 11), "HTTP/1.1")
+        info["compression_enabled"] = resp.headers.get("Content-Encoding", "").lower() in ("gzip", "br")
+        info["cache_control_headers"] = resp.headers.get("Cache-Control", "")
+        info["page_weight_bytes"] = len(resp.content)
+
+        security = security_header_info(resp.headers)
+        info.update(security)
+
+        cdn_headers = " ".join(resp.headers.get(h, "") for h in ["Server", "Via", "X-CDN"])
+        info["cdn_detected"] = any(x in cdn_headers.lower() for x in ["cloudflare", "akamai", "fastly", "cdn"])
+
         title = soup.title.string.strip() if soup.title and soup.title.string else ""
         info["title"] = title
 
@@ -212,6 +254,14 @@ def analyze_homepage(target: str, is_wordpress: bool = False) -> Dict[str, Any]:
         if meta_desc and meta_desc.get("content"):
             description = meta_desc["content"].strip()
         info["description"] = description
+
+        # Language meta
+        lang_attr = soup.html.get("lang") if soup.html else ""
+        info["main_language"] = lang_attr or ""
+
+        keywords_meta = soup.find("meta", attrs={"name": "keywords"})
+        if keywords_meta and keywords_meta.get("content"):
+            info["content_keywords"] = keywords_meta["content"].strip()
 
         domain_base = target.split("//")[-1].split("/")[0]
         links = []
@@ -239,6 +289,11 @@ def analyze_homepage(target: str, is_wordpress: bool = False) -> Dict[str, Any]:
             has_datalayer,
             has_ga_cookie,
         ])
+        info["third_party_scripts"] = sum(
+            1
+            for src in script_srcs
+            if src and not src.startswith("/") and domain_base not in src
+        )
 
         emails = set(re.findall(r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}", html_text))
         for a in soup.find_all("a", href=True):
@@ -248,6 +303,60 @@ def analyze_homepage(target: str, is_wordpress: bool = False) -> Dict[str, Any]:
                 if addr:
                     emails.add(addr)
         info["emails"] = list(emails)
+
+        # favicon & canonical
+        fav = soup.find("link", rel=lambda x: x and "icon" in x.lower())
+        fav_href = fav["href"] if fav and fav.get("href") else "/favicon.ico"
+        if fav_href and not fav_href.lower().startswith("http"):
+            fav_href = urljoin(url, fav_href)
+        info["favicon_url"] = fav_href
+
+        canonical = soup.find("link", rel="canonical")
+        if canonical and canonical.get("href"):
+            info["canonical_url"] = canonical["href"].strip()
+
+        # Heading counts
+        info["h1_count"] = len(soup.find_all("h1"))
+        info["h2_count"] = len(soup.find_all("h2"))
+        info["h3_count"] = len(soup.find_all("h3"))
+
+        # Schema markup
+        schema_scripts = soup.find_all("script", type="application/ld+json")
+        types: List[str] = []
+        for sc in schema_scripts:
+            try:
+                data = json.loads(sc.string or "{}")
+                if isinstance(data, dict) and "@type" in data:
+                    if isinstance(data["@type"], list):
+                        types.extend(data["@type"])
+                    else:
+                        types.append(str(data["@type"]))
+            except Exception:
+                continue
+        info["schema_markup_detected"] = bool(schema_scripts)
+        if types:
+            info["schema_types"] = sorted(set(types))
+
+        # Social profiles
+        social_sites = ["facebook.com", "twitter.com", "instagram.com", "linkedin.com"]
+        social = []
+        for a in soup.find_all("a", href=True):
+            for site in social_sites:
+                if site in a["href"]:
+                    social.append(a["href"])
+                    break
+        if social:
+            info["social_media_profiles"] = sorted(set(social))
+
+        rss = soup.find("link", type="application/rss+xml")
+        info["rss_feed_detected"] = bool(rss)
+
+        newsletter = any(
+            ("newsletter" in form.get("id", "").lower() or "newsletter" in form.get("class", "").lower())
+            for form in soup.find_all("form")
+        )
+        info["newsletter_signup_detected"] = newsletter
+
 
         if is_wordpress:
             wp_version = ""
@@ -320,6 +429,11 @@ def analyze_homepage(target: str, is_wordpress: bool = False) -> Dict[str, Any]:
         info["has_cart_or_product"] = any(kw in html_lower for kw in cart_keywords)
         platforms = ["woocommerce", "shopify", "bigcommerce", "magento"]
         info["ecommerce_platforms"] = [p for p in platforms if p in html_lower]
+
+        # Accessibility placeholders
+        info["color_contrast_issues"] = 0
+        info["aria_landmark_count"] = len(soup.find_all(attrs={"role": True}))
+        info["form_accessibility_issues"] = 0
     except Exception as e:
         print(f"Homepage analysis error for {target}: {e}")
     return info
@@ -399,6 +513,12 @@ def analyze_target(target: str) -> Dict[str, Any]:
     homepage = analyze_homepage(target, is_wordpress)
     result.update(homepage)
     result["sitemap_page_count"] = count_sitemap_pages(target)
+    result.update(fetch_robots_txt(target))
+
+    if "main_language" not in result:
+        langs = result.get("languages", {})
+        if langs:
+            result["main_language"] = max(langs, key=langs.get)
 
     ecommerce_terms = ["woocommerce", "shopify", "bigcommerce", "magento"]
     detected = {p for p in ecommerce_terms if p in tech_str}
