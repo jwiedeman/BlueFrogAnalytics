@@ -43,12 +43,10 @@ tests remain in the Sensor Fusion bot. Medusa focuses on the common modules that
 write to Cassandra.
 
 This worker serves as an orchestrator. Each individual scan is a thin wrapper
-around the existing bots in the `bots/` directory or third-party libraries. The
-initial version only prints which scans would run, providing clear integration
-points for future code. The Lighthouse scan now uses the Node-based
-AutoLighthouse worker bundled within this directory so Medusa can run
-standalone without referencing a sibling worker. Metrics are written back to
-Cassandra.
+around the existing bots in the `bots/` directory or third-party libraries.
+Earlier versions only printed which scans would run. The worker now executes the
+Lighthouse, Carbon and DNS modules directly (using the bundled Node scripts and
+Python helpers) so results are stored in Cassandra without manual steps.
 
 The enrichment logic (GeoIP, SSL, homepage scraping and technology detection)
 is bundled directly within this worker along with a local copy of Wappalyzer's
