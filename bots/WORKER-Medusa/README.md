@@ -97,6 +97,7 @@ type information.
 - `emails`
 - `sitemap_page_count`
 - `last_enriched`
+Additional enrichment fields (`ssl_org`, `x_powered_by`, `wordpress_asset_version`, `wpjson_size_bytes`, `wpjson_contains_cart`, `more_than_5_internal_links`, `ecommerce_platforms`, `postal_code`) are printed to the console but not yet stored.
 - all Lighthouse metric columns such as `desktop_performance_score`,
   `mobile_performance_score`, `desktop_first_contentful_paint`,
   `mobile_first_contentful_paint`, `lighthouse_version`,
