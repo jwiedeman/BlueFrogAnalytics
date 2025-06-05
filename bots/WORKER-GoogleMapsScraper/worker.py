@@ -39,6 +39,8 @@ def fake_scrape(term, location):
         }
 
 SEARCH_TIMEOUT = int(os.environ.get("MAPS_SEARCH_TIMEOUT", "300"))
+# If no new results appear for this many seconds, skip to the next term
+STALL_TIMEOUT = int(os.environ.get("MAPS_STALL_TIMEOUT", "20"))
 
 
 def main():
@@ -51,44 +53,58 @@ def main():
         with sync_playwright() as p:
             total_locations = len(LOCATIONS)
             total_terms = len(TERMS)
+            pairs = [(loc, term) for loc in LOCATIONS for term in TERMS]
+            pair_count = len(pairs)
             loop = 0
+            pair_index = 0
             while LOOPS <= 0 or loop < LOOPS:
-                loop += 1
-                for loc_index, location in enumerate(LOCATIONS, 1):
-                    for term_index, term in enumerate(TERMS, 1):
-                        print(
-                            f"Processing '{term}' in '{location}' "
-                            f"[{loc_index}/{total_locations} location, {term_index}/{total_terms} term, loop {loop}/{LOOPS if LOOPS>0 else '?'}]"
-                        )
-                        browser = p.chromium.launch(headless=False)
-                        page = browser.new_page()
-                        page.goto('https://www.google.com/maps')
+                location, term = pairs[pair_index]
+                loc_index = pair_index // total_terms + 1
+                term_index = pair_index % total_terms + 1
+                print(
+                    f"Processing '{term}' in '{location}' "
+                    f"[{loc_index}/{total_locations} location, {term_index}/{total_terms} term, loop {loop}/{LOOPS if LOOPS>0 else '?'}]"
+                )
+                browser = p.chromium.launch(headless=False)
+                page = browser.new_page()
+                page.goto('https://www.google.com/maps')
 
-                        page.wait_for_load_state('networkidle')
-                        page.fill('input#searchboxinput', f'{term} {location}')
-                        page.keyboard.press('Enter')
-                        page.wait_for_load_state('networkidle')
+                page.wait_for_load_state('networkidle')
+                page.fill('input#searchboxinput', f'{term} {location}')
+                page.keyboard.press('Enter')
+                page.wait_for_load_state('networkidle')
 
-                        start = time.time()
-                        count = 0
-                        for row in fake_scrape(term, location):
-                            writer.writerow(row)
-                            count += 1
-                            pct = min(100, (count / TOTAL) * 100)
-                            print(
-                                f"{location} [{loc_index}/{total_locations}] {term} [{term_index}/{total_terms}] {count}/{TOTAL} (loop {loop}/{LOOPS if LOOPS>0 else '?'} )",
-                                flush=True,
-                            )
-                            if count >= TOTAL or time.time() - start > SEARCH_TIMEOUT:
-                                break
-                        f.flush()
-                        page.wait_for_timeout(1000)
-                        browser.close()
-                        print(
-                            f"Finished '{term}' in '{location}' "
-                            f"with {count} results [{loc_index}/{total_locations}, {term_index}/{total_terms}, loop {loop}/{LOOPS if LOOPS>0 else '?'}]"
-                        )
-                time.sleep(60)
+                start = time.time()
+                last_yield = start
+                count = 0
+                for row in fake_scrape(term, location):
+                    writer.writerow(row)
+                    last_yield = time.time()
+                    count += 1
+                    pct = min(100, (count / TOTAL) * 100)
+                    print(
+                        f"{location} [{loc_index}/{total_locations}] {term} [{term_index}/{total_terms}] {count}/{TOTAL} (loop {loop}/{LOOPS if LOOPS>0 else '?'} )",
+                        flush=True,
+                    )
+                    if count >= TOTAL or time.time() - start > SEARCH_TIMEOUT:
+                        break
+                    if time.time() - last_yield > STALL_TIMEOUT:
+                        print(f"No new results for {STALL_TIMEOUT}s, skipping to next term")
+                        break
+                f.flush()
+                page.wait_for_timeout(1000)
+                browser.close()
+                print(
+                    f"Finished '{term}' in '{location}' "
+                    f"with {count} results [{loc_index}/{total_locations}, {term_index}/{total_terms}, loop {loop}/{LOOPS if LOOPS>0 else '?'}]"
+                )
+                pair_index += 1
+                if pair_index >= pair_count:
+                    pair_index = 0
+                    loop += 1
+                    if LOOPS > 0 and loop >= LOOPS:
+                        break
+                    time.sleep(60)
 
 if __name__ == '__main__':
     main()
