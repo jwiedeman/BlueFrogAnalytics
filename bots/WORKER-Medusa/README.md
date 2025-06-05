@@ -35,10 +35,10 @@ Run with `--all` to execute every scan. Results are saved to Cassandra using the
 columns outlined in `db_schema.md`.
 
 The `tests/` directory houses the reconnaissance modules imported from
-`BOT-Recon_[Py]` along with the other modular tests from
-`BOT-SensorFusion_[Py]`. The experimental fingerprinting engine itself remains
-in the Sensor Fusion bot, but its companion tests are available here and may be
-run individually or with the `--all` flag.
+`BOT-Recon_[Py]` along with the additional modular tests from
+`BOT-SensorFusion_[Py]`. The experimental fingerprinting engine and its related
+tests remain in the Sensor Fusion bot. Medusa focuses on the common modules that
+write to Cassandra.
 
 This worker serves as an orchestrator. Each individual scan is a thin wrapper
 around the existing bots in the `bots/` directory or third-party libraries. The
@@ -48,3 +48,17 @@ points for future code.
 The enrichment logic (GeoIP, SSL, homepage scraping and technology detection)
 is bundled directly within this worker along with a local copy of Wappalyzer's
 database. No external network requests are made when fingerprinting a site.
+
+## Columns Updated
+
+Medusa writes results to several Cassandra tables. Key columns include:
+
+- **domains_processed** – status, enrichment details (AS name/number, location
+  fields, ISP/organization, languages, coordinates), SSL issuer, detected
+  technologies, server type/version, emails, sitemap page count, site
+  classification fields and timestamps.
+- **analytics_tag_health** – working variants, scanned URLs, found analytics,
+  page and variant results, and compliance status.
+- **carbon_audits** – per URL byte counts and estimated CO₂ emissions.
+- **dns_records** – enumerated DNS records (A, AAAA, MX, NS, TXT, etc.).
+- **misc_tool_results** – arbitrary results from other integrated tools.
