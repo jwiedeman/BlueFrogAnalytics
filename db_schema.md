@@ -132,6 +132,11 @@ User tracking:
 
 Subdomains:
 - `raw_subdomains` set<text>
+- `open_ports` text
+- `allowed_http_methods` text
+- `waf_name` text
+- `directory_scan` text
+- `certificate_info` text
 
 ### `domain_page_metrics`
 Planned table for storing per-URL Lighthouse metrics. Current workers
@@ -212,6 +217,11 @@ The Medusa enrichment step also captures several homepage indicators that are no
 - `wpjson_contains_cart`
 - `more_than_5_internal_links`
 - `ecommerce_platforms`
+- `open_ports`
+- `allowed_http_methods`
+- `waf_name`
+- `directory_scan`
+- `certificate_info`
 
 #### Columns updated by `WORKER-Medusa`
 
