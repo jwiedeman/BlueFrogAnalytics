@@ -38,31 +38,7 @@ def fake_scrape(term, location):
             'location': location
         }
 
-def inject_bar(page):
-    page.evaluate(
-        """() => {
-        if (!document.getElementById('gmaps-status')) {
-          const wrap = document.createElement('div');
-          wrap.id = 'gmaps-status';
-          wrap.style.cssText = 'position:fixed;top:0;left:0;width:100%;z-index:9999;background:#fff;font-family:sans-serif;font-size:12px;';
-          wrap.innerHTML = '<div id="gmaps-status-text" style="padding:4px 8px"></div><div style="height:3px;background:#e9ecef"><div id="gmaps-progress-bar" style="height:3px;background:#0d6efd;width:0%"></div></div>';
-          document.body.prepend(wrap);
-        }
-      }"""
-    )
-
-
-def update_bar(page, text, pct):
-    page.evaluate(
-        """(t, p) => {
-        const txt = document.getElementById('gmaps-status-text');
-        if (txt) txt.textContent = t;
-        const bar = document.getElementById('gmaps-progress-bar');
-        if (bar) bar.style.width = p + '%';
-      }""",
-        text,
-        pct,
-    )
+SEARCH_TIMEOUT = int(os.environ.get("MAPS_SEARCH_TIMEOUT", "300"))
 
 
 def main():
@@ -93,18 +69,17 @@ def main():
                         page.keyboard.press('Enter')
                         page.wait_for_load_state('networkidle')
 
-                        inject_bar(page)
+                        start = time.time()
                         count = 0
                         for row in fake_scrape(term, location):
                             writer.writerow(row)
                             count += 1
                             pct = min(100, (count / TOTAL) * 100)
-                            update_bar(
-                                page,
+                            print(
                                 f"{location} [{loc_index}/{total_locations}] {term} [{term_index}/{total_terms}] {count}/{TOTAL} (loop {loop}/{LOOPS if LOOPS>0 else '?'} )",
-                                pct,
+                                flush=True,
                             )
-                            if count >= TOTAL:
+                            if count >= TOTAL or time.time() - start > SEARCH_TIMEOUT:
                                 break
                         f.flush()
                         page.wait_for_timeout(1000)
@@ -117,3 +92,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
