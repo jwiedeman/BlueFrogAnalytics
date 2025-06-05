@@ -124,6 +124,18 @@ Lighthouse metrics:
 - `mobile_accessibility_suggestions` text
 - `desktop_seo_suggestions` text
 - `mobile_seo_suggestions` text
+- `status_code` int
+- `redirect_chain` list<text>
+- `page_load_time_ms` int
+- `broken_links_count` int
+- `internal_links_count` int
+- `external_links_count` int
+- `page_images_count` int
+- `missing_alt_text_images_count` int
+- `video_embeds_count` int
+- `iframe_embeds_count` int
+- `duplicate_meta_titles` boolean
+- `duplicate_meta_descriptions` boolean
 
 User tracking:
 - `user_managed` boolean

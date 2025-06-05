@@ -156,8 +156,9 @@ Additional enrichment fields (`ssl_org`, `x_powered_by`, `wordpress_asset_versio
 - Added initial recon columns: `open_ports`, `allowed_http_methods`, `waf_name`, `directory_scan`, `certificate_info`.
 - Integrated recon scan module to populate these fields automatically.
 - Added recon metrics: `meta_tag_count`, `sitemap_robots_conflict`, `insecure_cookie_count`, `external_resource_count`, `passive_subdomain_count`.
+- Added page metrics: `status_code`, `redirect_chain`, `page_load_time_ms`, `broken_links_count`, `internal_links_count`, `external_links_count`, `page_images_count`, `missing_alt_text_images_count`, `video_embeds_count`, `iframe_embeds_count`, `duplicate_meta_titles`, `duplicate_meta_descriptions`.
 
 ### Planned
 
-- Per-page metrics (`page_url`, `status_code`, `redirect_chain`, `page_load_time_ms`, `broken_links_count`, `internal_links_count`, `external_links_count`, `page_images_count`, `missing_alt_text_images_count`, `video_embeds_count`, `iframe_embeds_count`, `duplicate_meta_titles`, `duplicate_meta_descriptions`).
 - Integrate recon tests to populate the new columns above.
+- DNS and WHOIS modules remain placeholders.
