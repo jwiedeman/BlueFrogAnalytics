@@ -13,6 +13,10 @@ from db import init_db, save_business, get_dsn, close_db
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger(__name__)
 
+# ANSI escape codes for colored output
+GREEN_ON_BLACK = "\033[32;40m"
+RESET = "\033[0m"
+
 
 async def scrape_at_location(
     page,
@@ -86,11 +90,11 @@ async def scrape_at_location(
 
         key = (name, address)
         if key in seen:
-            logger.info("Already saved: %s | %s", name, address)
+            logger.debug("Already saved: %s | %s", name, address)
             continue
 
         seen.add(key)
-        logger.info("Saving new listing: %s | %s", name, address)
+        logger.info("%sSaving new listing: %s | %s%s", GREEN_ON_BLACK, name, address, RESET)
         save_business(
             conn,
             (
