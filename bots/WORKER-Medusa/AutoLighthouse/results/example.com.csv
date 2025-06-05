@@ -1,0 +1,2 @@
+url,performance,accessibility,best-practices,seo,pwa,firstContentfulPaint,performanceSuggestions,accessibilitySuggestions,seoSuggestions
+"https://example.com","1","0.91","0.92","0.91","0.33","0.8 s","Initial server response time was short (Root document took 140 ms); Avoid multiple page redirects; Preload key requests; Preconnect to required origins; Defer offscreen images","`<html>` element does not have a `[lang]` attribute","Document does not have a meta description"

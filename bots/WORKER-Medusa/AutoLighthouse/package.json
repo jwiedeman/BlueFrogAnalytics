@@ -1,0 +1,22 @@
+{
+  "name": "lighthouse-site-auditor",
+  "version": "0.1.0",
+  "description": "CLI tool to run Lighthouse audits on all pages of a site and export results",
+  "main": "index.js",
+  "bin": {
+    "lighthouse-site-auditor": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "cheerio": "^1.0.0-rc.12",
+    "commander": "^9.5.0",
+    "@json2csv/node": "^7.0.6",  
+    "lighthouse": "^10.0.0",
+    "chrome-launcher": "^1.1.2",
+    "p-limit": "^3.1.0",
+    "cassandra-driver": "^4.8.0"
+  }
+}

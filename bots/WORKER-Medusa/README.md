@@ -2,7 +2,9 @@
 
 Medusa combines the capabilities of the existing workers into a single command line
 utility. It can run a **full crawl** that covers all columns in `domains_processed`
-or execute a **subset** of scans such as only SSL or DNS checks.
+or execute a **subset** of scans such as only SSL or DNS checks. The Node-based
+AutoLighthouse worker has been copied into this folder so the Lighthouse tests run
+without relying on a sibling directory.
 
 The tool references `db_schema.md` to keep the output aligned with the Cassandra
 schema. Each scan writes to the appropriate table using the column groups defined
@@ -25,7 +27,7 @@ Available test groups include:
 - `whois` – WHOIS and registration data
 - `dns` – DNS enumeration
 - `tech` – technology fingerprinting
-- `lighthouse` – Lighthouse audits (via AutoLighthouse worker)
+- `lighthouse` – Lighthouse audits (bundled AutoLighthouse worker)
 - `carbon` – carbon footprint metrics
 - `analytics` – analytics tag health
 - `webpagetest` – WebPageTest results
@@ -43,8 +45,10 @@ write to Cassandra.
 This worker serves as an orchestrator. Each individual scan is a thin wrapper
 around the existing bots in the `bots/` directory or third-party libraries. The
 initial version only prints which scans would run, providing clear integration
-points for future code. The Lighthouse scan delegates to the Node-based
-AutoLighthouse worker which writes metrics back to Cassandra.
+points for future code. The Lighthouse scan now uses the Node-based
+AutoLighthouse worker bundled within this directory so Medusa can run
+standalone without referencing a sibling worker. Metrics are written back to
+Cassandra.
 
 The enrichment logic (GeoIP, SSL, homepage scraping and technology detection)
 is bundled directly within this worker along with a local copy of Wappalyzer's

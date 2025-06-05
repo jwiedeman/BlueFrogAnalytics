@@ -192,7 +192,7 @@ def lighthouse_scan(domain: str, session: Any) -> None:
     """Run Lighthouse audits using the AutoLighthouse worker."""
     print(f"[Lighthouse] scanning {domain}")
     script = os.path.join(
-        os.path.dirname(__file__), "..", "WORKER-AutoLighthouse", "index.js"
+        os.path.dirname(__file__), "AutoLighthouse", "index.js"
     )
     url = f"http://{domain}"
     env = os.environ.copy()
