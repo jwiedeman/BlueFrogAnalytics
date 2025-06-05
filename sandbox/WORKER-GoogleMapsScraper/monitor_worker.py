@@ -8,6 +8,10 @@ from db import init_db, save_business, get_dsn, close_db
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger(__name__)
+
+# ANSI escape codes for colored output
+GREEN_ON_BLACK = "\033[32;40m"
+RESET = "\033[0m"
 from playwright.async_api import async_playwright
 
 
@@ -15,7 +19,7 @@ async def collect_current_listings(page, query: str, seen: Set[Tuple[str, str]],
     """Collect visible listings from the results column."""
     new_entries: list[Tuple[str, str]] = []
     listings = await page.locator("//a[contains(@href, 'https://www.google.com/maps/place')]").all()
-    logger.info("Scanning %d sidebar listings", len(listings))
+    logger.debug("Scanning %d sidebar listings", len(listings))
     for listing in listings:
         href = await listing.get_attribute("href")
         if not href:
@@ -28,10 +32,10 @@ async def collect_current_listings(page, query: str, seen: Set[Tuple[str, str]],
         address = lines[1] if len(lines) > 1 else ""
         key = (name, address)
         if key in seen:
-            logger.info("Already saved: %s | %s", name, address)
+            logger.debug("Already saved: %s | %s", name, address)
             continue
         seen.add(key)
-        logger.info("Saving new listing: %s | %s", name, address)
+        logger.info("%sSaving new listing: %s | %s%s", GREEN_ON_BLACK, name, address, RESET)
         new_entries.append(key)
         lat = lon = None
         match = re.search(r"@(-?\d+\.\d+),(-?\d+\.\d+)", href)
@@ -107,12 +111,14 @@ async def monitor_map(query: str, dsn: str | None, *, headless: bool = False, in
                 logger.warning("No sidebar results detected")
             new_entries = await collect_current_listings(page, query, seen, conn)
             if new_entries:
-                logger.info("Found %d new result%s (total %d)",
-                            len(new_entries),
-                            "s" if len(new_entries) != 1 else "",
-                            len(seen))
+                logger.debug(
+                    "Found %d new result%s (total %d)",
+                    len(new_entries),
+                    "s" if len(new_entries) != 1 else "",
+                    len(seen),
+                )
             else:
-                logger.info("No new results found (total %d)", len(seen))
+                logger.debug("No new results found (total %d)", len(seen))
             for name, _ in new_entries:
                 await show_toast(page, f"Saved: {name}")
             await page.wait_for_timeout(int(interval * 1000))
