@@ -15,6 +15,10 @@ python medusa.py --domain example.com --all
 python medusa.py --domain example.com --tests ssl,dns
 ```
 
+Set `CASSANDRA_URL` and `CASSANDRA_KEYSPACE` to point at your cluster. By
+default the worker connects to `domain_discovery` at
+`192.168.1.201,192.168.1.202,192.168.1.203,192.168.1.204`.
+
 Available test groups include:
 
 - `ssl` – certificate details
