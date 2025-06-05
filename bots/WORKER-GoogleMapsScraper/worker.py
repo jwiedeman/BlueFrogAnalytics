@@ -18,6 +18,11 @@ FIELDNAMES = [
 ]
 
 def fake_scrape(term, location):
+    """Fake generator yielding place info.
+
+    Replace this stub with real scraping logic. It yields ``TOTAL`` results
+    for the given search term and location.
+    """
     for i in range(TOTAL):
         yield {
             'name': f'{term} biz {i} ({location})',
@@ -41,9 +46,15 @@ def main():
         while True:
             for location in LOCATIONS:
                 for term in TERMS:
+                    print(f"Processing '{term}' in '{location}'...")
+                    count = 0
                     for row in fake_scrape(term, location):
                         writer.writerow(row)
+                        count += 1
+                        if count >= TOTAL:
+                            break
                     f.flush()
+                    print(f"Finished '{term}' in '{location}' with {count} results")
             time.sleep(60)
 
 if __name__ == '__main__':
