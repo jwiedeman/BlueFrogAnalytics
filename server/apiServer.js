@@ -1167,6 +1167,35 @@ app.post('/api/google-maps-scraper', async (req, res) => {
   res.json({ file: outputPath });
 });
 
+// Check progress for Google Maps scraper
+app.get('/api/google-maps-scraper/progress', async (req, res) => {
+  const { file } = req.query;
+  if (typeof file !== 'string') {
+    return res.status(400).json({ error: 'Missing file' });
+  }
+  try {
+    const safePath = path.normalize(file);
+    if (!safePath.startsWith('output/')) {
+      return res.status(400).json({ error: 'Invalid file path' });
+    }
+    let count = 0;
+    let last = '';
+    if (fs.existsSync(safePath)) {
+      const data = await fs.promises.readFile(safePath, 'utf8');
+      const lines = data.trim().split(/\r?\n/);
+      if (lines.length > 1) {
+        count = lines.length - 1;
+        const lastLine = lines[lines.length - 1].split(',');
+        last = lastLine[0] || '';
+      }
+    }
+    res.json({ count, last });
+  } catch (err) {
+    console.error('progress error', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 const port = process.env.PORT || 6001;
 const certPath = process.env.SSL_CERT;
 const keyPath = process.env.SSL_KEY;
