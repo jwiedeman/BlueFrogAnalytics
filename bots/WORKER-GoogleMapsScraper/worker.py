@@ -3,6 +3,7 @@ import csv
 import random
 import sys
 import time
+from playwright.sync_api import sync_playwright
 
 # Usage: worker.py "term1;term2" total output_path
 
@@ -36,6 +37,33 @@ def fake_scrape(term, location):
             'location': location
         }
 
+def inject_bar(page):
+    page.evaluate(
+        """() => {
+        if (!document.getElementById('gmaps-status')) {
+          const wrap = document.createElement('div');
+          wrap.id = 'gmaps-status';
+          wrap.style.cssText = 'position:fixed;top:0;left:0;width:100%;z-index:9999;background:#fff;font-family:sans-serif;font-size:12px;';
+          wrap.innerHTML = '<div id="gmaps-status-text" style="padding:4px 8px"></div><div style="height:3px;background:#e9ecef"><div id="gmaps-progress-bar" style="height:3px;background:#0d6efd;width:0%"></div></div>';
+          document.body.prepend(wrap);
+        }
+      }"""
+    )
+
+
+def update_bar(page, text, pct):
+    page.evaluate(
+        """(t, p) => {
+        const txt = document.getElementById('gmaps-status-text');
+        if (txt) txt.textContent = t;
+        const bar = document.getElementById('gmaps-progress-bar');
+        if (bar) bar.style.width = p + '%';
+      }""",
+        text,
+        pct,
+    )
+
+
 def main():
     os.makedirs(os.path.dirname(OUT) or '.', exist_ok=True)
     first_write = not os.path.exists(OUT)
@@ -43,19 +71,31 @@ def main():
         writer = csv.DictWriter(f, fieldnames=FIELDNAMES)
         if first_write:
             writer.writeheader()
-        while True:
-            for location in LOCATIONS:
-                for term in TERMS:
-                    print(f"Processing '{term}' in '{location}'...")
-                    count = 0
-                    for row in fake_scrape(term, location):
-                        writer.writerow(row)
-                        count += 1
-                        if count >= TOTAL:
-                            break
-                    f.flush()
-                    print(f"Finished '{term}' in '{location}' with {count} results")
-            time.sleep(60)
+        with sync_playwright() as p:
+            while True:
+                for location in LOCATIONS:
+                    for term in TERMS:
+                        print(f"Processing '{term}' in '{location}'...")
+                        browser = p.chromium.launch(headless=False)
+                        page = browser.new_page()
+                        page.goto('https://www.google.com/maps')
+                        page.fill('input#searchboxinput', f'{term} {location}')
+                        page.keyboard.press('Enter')
+                        page.wait_for_timeout(5000)
+                        inject_bar(page)
+                        count = 0
+                        for row in fake_scrape(term, location):
+                            writer.writerow(row)
+                            count += 1
+                            pct = min(100, (count / TOTAL) * 100)
+                            update_bar(page, f'{term} in {location} - {count}/{TOTAL}', pct)
+                            if count >= TOTAL:
+                                break
+                        f.flush()
+                        page.wait_for_timeout(1000)
+                        browser.close()
+                        print(f"Finished '{term}' in '{location}' with {count} results")
+                time.sleep(60)
 
 if __name__ == '__main__':
     main()
