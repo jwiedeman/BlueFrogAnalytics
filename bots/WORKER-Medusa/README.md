@@ -25,7 +25,7 @@ Available test groups include:
 - `carbon` – carbon footprint metrics
 - `analytics` – analytics tag health
 - `webpagetest` – WebPageTest results
-- `enrich` – metadata enrichment from `WORKER-Enrich_processed_domains`
+- `enrich` – metadata enrichment (built in)
 
 Run with `--all` to execute every scan. Results are saved to Cassandra using the
 columns outlined in `db_schema.md`.
@@ -34,3 +34,7 @@ This worker serves as an orchestrator. Each individual scan is a thin wrapper
 around the existing bots in the `bots/` directory or third-party libraries. The
 initial version only prints which scans would run, providing clear integration
 points for future code.
+
+The enrichment logic (GeoIP, SSL, homepage scraping and technology detection)
+is bundled directly within this worker along with a local copy of Wappalyzer's
+database. No external network requests are made when fingerprinting a site.
