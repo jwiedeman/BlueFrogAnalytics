@@ -1156,6 +1156,7 @@ app.post('/api/google-maps-scraper', async (req, res) => {
   }
   const filename = `maps_${Date.now()}.csv`;
   const outputPath = `output/${filename}`;
+  const metaPath = outputPath.replace(/\.csv$/, '.json');
   const child = spawn('python', [
     'bots/WORKER-GoogleMapsScraper/worker.py',
     query,
@@ -1164,6 +1165,15 @@ app.post('/api/google-maps-scraper', async (req, res) => {
   ]);
   child.on('error', (err) => console.error('scraper error', err));
   child.stderr.on('data', (d) => console.error(d.toString()));
+  try {
+    await fs.promises.writeFile(metaPath, JSON.stringify({
+      query,
+      total,
+      locations: process.env.MAPS_LOCATIONS || 'US'
+    }));
+  } catch (err) {
+    console.error('meta write error', err);
+  }
   res.json({ file: outputPath });
 });
 
@@ -1178,18 +1188,59 @@ app.get('/api/google-maps-scraper/progress', async (req, res) => {
     if (!safePath.startsWith('output/')) {
       return res.status(400).json({ error: 'Invalid file path' });
     }
+    const metaPath = safePath.replace(/\.csv$/, '.json');
+    let meta = { query: '', total: 0, locations: '' };
+    if (fs.existsSync(metaPath)) {
+      try {
+        meta = JSON.parse(await fs.promises.readFile(metaPath, 'utf8'));
+      } catch {
+        /* noop */
+      }
+    }
+
     let count = 0;
     let last = '';
+    let currentQuery = '';
+    let currentLocation = '';
+    let termCount = 0;
     if (fs.existsSync(safePath)) {
       const data = await fs.promises.readFile(safePath, 'utf8');
       const lines = data.trim().split(/\r?\n/);
       if (lines.length > 1) {
+        const header = lines[0].split(',');
+        const qIndex = header.indexOf('query');
+        const lIndex = header.indexOf('location');
         count = lines.length - 1;
         const lastLine = lines[lines.length - 1].split(',');
         last = lastLine[0] || '';
+        currentQuery = qIndex >= 0 ? lastLine[qIndex] || '' : '';
+        currentLocation = lIndex >= 0 ? lastLine[lIndex] || '' : '';
+        if (qIndex >= 0 && lIndex >= 0) {
+          for (let i = 1; i < lines.length; i++) {
+            const parts = lines[i].split(',');
+            if (parts[qIndex] === currentQuery && parts[lIndex] === currentLocation) {
+              termCount++;
+            }
+          }
+        }
       }
     }
-    res.json({ count, last });
+
+    const terms = meta.query.split(';').map(t => t.trim()).filter(Boolean);
+    const locations = meta.locations.split(';').map(l => l.trim()).filter(Boolean);
+
+    res.json({
+      count,
+      last,
+      query: currentQuery,
+      location: currentLocation,
+      termCount,
+      queryIndex: currentQuery ? terms.indexOf(currentQuery) + 1 : 0,
+      totalQueries: terms.length,
+      locationIndex: currentLocation ? locations.indexOf(currentLocation) + 1 : 0,
+      totalLocations: locations.length,
+      total: meta.total
+    });
   } catch (err) {
     console.error('progress error', err);
     res.status(500).json({ error: 'Server error' });
