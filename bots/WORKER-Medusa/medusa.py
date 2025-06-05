@@ -8,17 +8,11 @@ columns outlined in db_schema.md.
 
 import argparse
 import json
-import os
-import sys
 from typing import Callable, Dict, List
 
-# Allow importing the enrichment worker helpers
-ENRICH_PATH = os.path.join(os.path.dirname(__file__), "..", "WORKER-Enrich_processed_domains")
-if ENRICH_PATH not in sys.path:
-    sys.path.append(ENRICH_PATH)
-
+# Use the bundled enrichment module so this worker is self contained
 try:
-    from enrich_processed_domain import analyze_target
+    from enrichment import analyze_target
 except Exception:  # pragma: no cover - optional dependency
     analyze_target = None
 
