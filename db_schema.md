@@ -203,7 +203,7 @@ The CLI `run` command outputs a smaller CSV/JSON format with these columns:
 `url`, `performance`, `accessibility`, `best-practices`, `seo`, `pwa`, `firstContentfulPaint`, `performanceSuggestions`, `accessibilitySuggestions`, `seoSuggestions`.
 
 #### Additional fields collected by `WORKER-Medusa`
-The Medusa enrichment step also captures several homepage indicators that are not yet stored in Cassandra:
+The Medusa enrichment step also captures several homepage indicators that are now stored in Cassandra:
 - `postal_code`
 - `ssl_org`
 - `x_powered_by`
