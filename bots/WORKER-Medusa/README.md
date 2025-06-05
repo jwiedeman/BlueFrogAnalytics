@@ -51,14 +51,66 @@ database. No external network requests are made when fingerprinting a site.
 
 ## Columns Updated
 
-Medusa writes results to several Cassandra tables. Key columns include:
+Medusa writes results to several Cassandra tables. The lists below map each
+scan group to the exact columns populated. See `db_schema.md` for the full
+type information.
 
-- **domains_processed** – status, enrichment details (AS name/number, location
-  fields, ISP/organization, languages, coordinates), SSL issuer, detected
-  technologies, server type/version, emails, sitemap page count, site
-  classification fields and timestamps.
-- **analytics_tag_health** – working variants, scanned URLs, found analytics,
-  page and variant results, and compliance status.
-- **carbon_audits** – per URL byte counts and estimated CO₂ emissions.
-- **dns_records** – enumerated DNS records (A, AAAA, MX, NS, TXT, etc.).
-- **misc_tool_results** – arbitrary results from other integrated tools.
+### `domains_processed`
+
+- `status`
+- `updated`
+- `as_name`
+- `as_number`
+- `city`
+- `continent`
+- `continent_code`
+- `country`
+- `country_code`
+- `isp`
+- `languages`
+- `lat`
+- `lon`
+- `org`
+- `phone`
+- `region`
+- `region_name`
+- `registered`
+- `registrar`
+- `ssl_issuer`
+- `tech_detect`
+- `time_zone`
+- `title`
+- `description`
+- `linkedin_url`
+- `has_about_page`
+- `has_services_page`
+- `has_cart_or_product`
+- `contains_gtm_or_ga`
+- `wordpress_version`
+- `server_type`
+- `server_version`
+- `emails`
+- `sitemap_page_count`
+- `last_enriched`
+- all Lighthouse metric columns such as `desktop_performance_score`,
+  `mobile_performance_score`, `desktop_first_contentful_paint`,
+  `mobile_first_contentful_paint`, `lighthouse_version`,
+  `lighthouse_fetch_time`, `desktop_performance_suggestions`,
+  `mobile_performance_suggestions`, etc.
+
+### `analytics_tag_health`
+
+- `domain`, `scan_date`, `working_variants`, `scanned_urls`, `found_analytics`,
+  `page_results`, `variant_results`, `compliance_status`
+
+### `carbon_audits`
+
+- `domain`, `url`, `scan_date`, `bytes`, `co2`
+
+### `dns_records`
+
+- `domain`, `record_type`, `record_value`, `scan_date`
+
+### `misc_tool_results`
+
+- `domain`, `url`, `scan_date`, `tool_name`, `data`

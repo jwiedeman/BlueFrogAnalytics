@@ -302,6 +302,7 @@ The table below summarizes where each bot or worker stores its results. Unless s
 | BACKEND-MiscToolResults | domain_discovery | misc_tool_results | domain, url, tool_name, scan_date, data | Arbitrary tool output keyed by domain. |
 | WORKER-SpecDemo | domain_discovery | tracking_specs | category, tool, name, rule, example, description, updated_at | Seeds demo specification rows. |
 | WORKER-WhoisSuite | domain_discovery | domains_processed | domain, tld, registered, registrar, updated | Fetches newly registered domains and updates WHOIS info. |
+| WORKER-Medusa | domain_discovery | multiple tables | domains_processed (status, enrichment fields, Lighthouse metrics), analytics_tag_health (working_variants, scanned_urls, found_analytics, page_results, variant_results, compliance_status), carbon_audits (domain, url, scan_date, bytes, co2), dns_records (domain, record_type, record_value, scan_date), misc_tool_results (domain, url, scan_date, tool_name, data) | Orchestrates all scans and writes to every table. |
 
 
 
