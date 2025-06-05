@@ -27,9 +27,9 @@ form?.addEventListener('submit', async (e) => {
       progressEl.id = 'gmaps-progress';
       progressEl.textContent = `0 / ${total} found`;
       output.appendChild(progressEl);
-      statusWrap.style.display = 'block';
-      statusText.textContent = '';
-      progressBar.style.width = '0%';
+      if (statusWrap) statusWrap.style.display = 'block';
+      if (statusText) statusText.textContent = '';
+      if (progressBar) progressBar.style.width = '0%';
       clearInterval(progressTimer);
       progressTimer = setInterval(async () => {
         try {
@@ -38,8 +38,8 @@ form?.addEventListener('submit', async (e) => {
           if (statusRes.ok) {
             progressEl.textContent = `${status.count} / ${total} found` + (status.last ? ` | Added: ${status.last}` : '');
             const pct = Math.min(100, (status.count / total) * 100);
-            progressBar.style.width = pct + '%';
-            statusText.textContent = `${status.location} [${status.locationIndex}/${status.totalLocations}] ` +
+            if (progressBar) progressBar.style.width = pct + '%';
+            if (statusText) statusText.textContent = `${status.location} [${status.locationIndex}/${status.totalLocations}] ` +
               `${status.query} [${status.queryIndex}/${status.totalQueries}] ` +
               `Currently ${status.termCount}/${status.total} within term`;
             if (status.count >= total) clearInterval(progressTimer);
