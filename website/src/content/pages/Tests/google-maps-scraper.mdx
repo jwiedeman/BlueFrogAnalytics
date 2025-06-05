@@ -5,6 +5,12 @@ template: splash
 ---
 
 <div id="gmaps-root" class="container my-4">
+  <div id="gmaps-status" class="sticky-top" style="top:56px; z-index:1020; display:none;">
+    <div id="gmaps-status-text" class="bg-dark text-light small px-2 py-1"></div>
+    <div class="progress">
+      <div id="gmaps-progress-bar" class="progress-bar" role="progressbar" style="width:0%"></div>
+    </div>
+  </div>
   <div class="row justify-content-center">
     <div class="col-lg-8">
       <div class="text-center mb-4">
@@ -31,3 +37,9 @@ template: splash
 </div>
 
 <script type="module" src="/js/google-maps-scraper.js" defer></script>
+
+<style>{`
+#gmaps-status .progress {
+  height: 3px;
+}
+`}</style>
