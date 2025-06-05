@@ -25,7 +25,7 @@ Available test groups include:
 - `whois` – WHOIS and registration data
 - `dns` – DNS enumeration
 - `tech` – technology fingerprinting
-- `lighthouse` – Lighthouse audits
+- `lighthouse` – Lighthouse audits (via AutoLighthouse worker)
 - `carbon` – carbon footprint metrics
 - `analytics` – analytics tag health
 - `webpagetest` – WebPageTest results
@@ -43,7 +43,8 @@ write to Cassandra.
 This worker serves as an orchestrator. Each individual scan is a thin wrapper
 around the existing bots in the `bots/` directory or third-party libraries. The
 initial version only prints which scans would run, providing clear integration
-points for future code.
+points for future code. The Lighthouse scan delegates to the Node-based
+AutoLighthouse worker which writes metrics back to Cassandra.
 
 The enrichment logic (GeoIP, SSL, homepage scraping and technology detection)
 is bundled directly within this worker along with a local copy of Wappalyzer's

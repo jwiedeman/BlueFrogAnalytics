@@ -9,6 +9,7 @@ columns outlined in db_schema.md.
 import argparse
 import json
 import os
+import subprocess
 import time
 from datetime import datetime
 from typing import Any, Callable, Dict, List, Tuple
@@ -188,7 +189,23 @@ def tech_scan(domain: str, session: Any) -> None:
 
 
 def lighthouse_scan(domain: str, session: Any) -> None:
+    """Run Lighthouse audits using the AutoLighthouse worker."""
     print(f"[Lighthouse] scanning {domain}")
+    script = os.path.join(
+        os.path.dirname(__file__), "..", "WORKER-AutoLighthouse", "index.js"
+    )
+    url = f"http://{domain}"
+    env = os.environ.copy()
+    try:
+        subprocess.run(
+            ["node", script, "run", "--url", url, "--cassandra"],
+            check=True,
+            env=env,
+        )
+    except FileNotFoundError:
+        print("AutoLighthouse script not found")
+    except subprocess.CalledProcessError as exc:
+        print(f"Lighthouse scan failed: {exc}")
 
 
 def carbon_scan(domain: str, session: Any) -> None:
