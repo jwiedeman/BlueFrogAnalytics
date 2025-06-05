@@ -93,6 +93,34 @@ type information.
 - `server_type`
 - `server_version`
 - `emails`
+- `favicon_url`
+- `robots_txt_exists`
+- `robots_txt_content`
+- `canonical_url`
+- `h1_count`
+- `h2_count`
+- `h3_count`
+- `schema_markup_detected`
+- `schema_types`
+- `security_headers_score`
+- `security_headers_detected`
+- `hsts_enabled`
+- `cookie_compliance`
+- `third_party_scripts`
+- `color_contrast_issues`
+- `aria_landmark_count`
+- `form_accessibility_issues`
+- `social_media_profiles`
+- `rss_feed_detected`
+- `newsletter_signup_detected`
+- `cdn_detected`
+- `http_version`
+- `compression_enabled`
+- `cache_control_headers`
+- `page_weight_bytes`
+- `main_language`
+- `content_keywords`
+- `ecommerce_platforms`
 - `sitemap_page_count`
 - `last_enriched`
 Additional enrichment fields (`ssl_org`, `x_powered_by`, `wordpress_asset_version`, `wpjson_size_bytes`, `wpjson_contains_cart`, `more_than_5_internal_links`, `ecommerce_platforms`, `postal_code`) are now written to Cassandra along with the standard columns.
@@ -118,3 +146,13 @@ Additional enrichment fields (`ssl_org`, `x_powered_by`, `wordpress_asset_versio
 ### `misc_tool_results`
 
 - `domain`, `url`, `scan_date`, `tool_name`, `data`
+
+## TODO / Complete
+
+### Completed
+
+- Expanded enrichment columns: `favicon_url`, `robots_txt_exists`, `robots_txt_content`, `canonical_url`, `h1_count`, `h2_count`, `h3_count`, `schema_markup_detected`, `schema_types`, `security_headers_score`, `security_headers_detected`, `hsts_enabled`, `cookie_compliance`, `third_party_scripts`, `color_contrast_issues`, `aria_landmark_count`, `form_accessibility_issues`, `social_media_profiles`, `rss_feed_detected`, `newsletter_signup_detected`, `cdn_detected`, `http_version`, `compression_enabled`, `cache_control_headers`, `page_weight_bytes`, `main_language`, `content_keywords`.
+
+### Planned
+
+- Per-page metrics (`page_url`, `status_code`, `redirect_chain`, `page_load_time_ms`, `broken_links_count`, `internal_links_count`, `external_links_count`, `page_images_count`, `missing_alt_text_images_count`, `video_embeds_count`, `iframe_embeds_count`, `duplicate_meta_titles`, `duplicate_meta_descriptions`).
