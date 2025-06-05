@@ -152,7 +152,9 @@ Additional enrichment fields (`ssl_org`, `x_powered_by`, `wordpress_asset_versio
 ### Completed
 
 - Expanded enrichment columns: `favicon_url`, `robots_txt_exists`, `robots_txt_content`, `canonical_url`, `h1_count`, `h2_count`, `h3_count`, `schema_markup_detected`, `schema_types`, `security_headers_score`, `security_headers_detected`, `hsts_enabled`, `cookie_compliance`, `third_party_scripts`, `color_contrast_issues`, `aria_landmark_count`, `form_accessibility_issues`, `social_media_profiles`, `rss_feed_detected`, `newsletter_signup_detected`, `cdn_detected`, `http_version`, `compression_enabled`, `cache_control_headers`, `page_weight_bytes`, `main_language`, `content_keywords`.
+- Added initial recon columns: `open_ports`, `allowed_http_methods`, `waf_name`, `directory_scan`, `certificate_info`.
 
 ### Planned
 
 - Per-page metrics (`page_url`, `status_code`, `redirect_chain`, `page_load_time_ms`, `broken_links_count`, `internal_links_count`, `external_links_count`, `page_images_count`, `missing_alt_text_images_count`, `video_embeds_count`, `iframe_embeds_count`, `duplicate_meta_titles`, `duplicate_meta_descriptions`).
+- Integrate recon tests to populate the new columns above.

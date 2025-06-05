@@ -149,6 +149,11 @@ def _update_enrichment(session, domain: str, data: Dict[str, Any]) -> None:
             content_keywords = ?,
             ecommerce_platforms = ?,
             sitemap_page_count = ?,
+            open_ports = ?,
+            allowed_http_methods = ?,
+            waf_name = ?,
+            directory_scan = ?,
+            certificate_info = ?,
             last_enriched = ?
         WHERE domain = ? AND tld = ?
     """
@@ -232,6 +237,11 @@ def _update_enrichment(session, domain: str, data: Dict[str, Any]) -> None:
         str(data.get("content_keywords", "")),
         json.dumps(data.get("ecommerce_platforms", [])),
         int(data.get("sitemap_page_count", 0)),
+        json.dumps(data.get("open_ports", [])),
+        json.dumps(data.get("allowed_http_methods", [])),
+        str(data.get("waf_name", "")),
+        str(data.get("directory_scan", "")),
+        str(data.get("certificate_info", "")),
         now_str,
         dom,
         tld,
