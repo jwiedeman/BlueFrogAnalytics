@@ -191,7 +191,11 @@ def analyze_content(target: str) -> Dict[str, Any]:
     return info
 
 
-def analyze_homepage(target: str) -> Dict[str, Any]:
+def analyze_homepage(target: str, is_wordpress: bool = False) -> Dict[str, Any]:
+    """Scrape the homepage and return metadata.
+
+    WordPress specific checks are skipped unless ``is_wordpress`` is ``True``.
+    """
     info: Dict[str, Any] = {}
     try:
         url = f"http://{target}"
@@ -245,33 +249,48 @@ def analyze_homepage(target: str) -> Dict[str, Any]:
                     emails.add(addr)
         info["emails"] = list(emails)
 
-        wp_version = ""
-        gen_meta = soup.find("meta", attrs={"name": "generator"})
-        if gen_meta and "wordpress" in gen_meta.get("content", "").lower():
-            match = re.search(r"WordPress\s*([\d.]+)", gen_meta["content"], re.IGNORECASE)
-            if match:
-                wp_version = match.group(1)
-        info["wordpress_version"] = wp_version
+        if is_wordpress:
+            wp_version = ""
+            gen_meta = soup.find("meta", attrs={"name": "generator"})
+            if gen_meta and "wordpress" in gen_meta.get("content", "").lower():
+                match = re.search(r"WordPress\s*([\d.]+)", gen_meta["content"], re.IGNORECASE)
+                if match:
+                    wp_version = match.group(1)
+            info["wordpress_version"] = wp_version
 
-        asset_versions = []
-        for tag in soup.find_all(["script", "link"]):
-            url_attr = tag.get("src") or tag.get("href") or ""
-            if "wp-content" in url_attr and "ver=" in url_attr:
-                parsed = urlparse(url_attr)
-                qs = parse_qs(parsed.query)
-                ver_list = qs.get("ver")
-                if ver_list:
-                    asset_versions.append(ver_list[0])
-        if asset_versions:
+            asset_versions = []
+            for tag in soup.find_all(["script", "link"]):
+                url_attr = tag.get("src") or tag.get("href") or ""
+                if "wp-content" in url_attr and "ver=" in url_attr:
+                    parsed = urlparse(url_attr)
+                    qs = parse_qs(parsed.query)
+                    ver_list = qs.get("ver")
+                    if ver_list:
+                        asset_versions.append(ver_list[0])
+            if asset_versions:
+                try:
+                    sorted_vers = sorted(
+                        asset_versions,
+                        key=lambda s: tuple(int(x) for x in re.findall(r"\d+", s)),
+                    )
+                    info["wordpress_asset_version"] = sorted_vers[-1]
+                except Exception:
+                    info["wordpress_asset_version"] = asset_versions[-1]
+
+            wp_json_url = url.rstrip("/") + "/wp-json/wp/v2/pages"
+            wpjson_size = 0
+            wpjson_contains_cart = False
             try:
-                sorted_vers = sorted(
-                    asset_versions, key=lambda s: tuple(int(x) for x in re.findall(r"\d+", s))
-                )
-                info["wordpress_asset_version"] = sorted_vers[-1]
+                wpresp = requests.get(wp_json_url, timeout=5)
+                if wpresp.status_code == 200:
+                    wpjson_size = len(wpresp.content)
+                    text_lower = wpresp.text.lower()
+                    if "woocommerce" in text_lower or "cart" in text_lower:
+                        wpjson_contains_cart = True
             except Exception:
-                info["wordpress_asset_version"] = asset_versions[-1]
-        else:
-            info["wordpress_asset_version"] = ""
+                pass
+            info["wpjson_size_bytes"] = wpjson_size
+            info["wpjson_contains_cart"] = wpjson_contains_cart
 
         server_info = resp.headers.get("Server", "")
         server_type = ""
@@ -286,21 +305,6 @@ def analyze_homepage(target: str) -> Dict[str, Any]:
         info["server_type"] = server_type
         info["server_version"] = server_version
         info["x_powered_by"] = resp.headers.get("X-Powered-By", "")
-
-        wp_json_url = url.rstrip("/") + "/wp-json/wp/v2/pages"
-        wpjson_size = 0
-        wpjson_contains_cart = False
-        try:
-            wpresp = requests.get(wp_json_url, timeout=5)
-            if wpresp.status_code == 200:
-                wpjson_size = len(wpresp.content)
-                text_lower = wpresp.text.lower()
-                if "woocommerce" in text_lower or "cart" in text_lower:
-                    wpjson_contains_cart = True
-        except Exception:
-            pass
-        info["wpjson_size_bytes"] = wpjson_size
-        info["wpjson_contains_cart"] = wpjson_contains_cart
 
         linkedin_url = ""
         for a in soup.find_all("a", href=True):
@@ -387,11 +391,20 @@ def analyze_target(target: str) -> Dict[str, Any]:
     result.update(analyze_ssl(target))
     result.update(analyze_content(target))
 
-    homepage = analyze_homepage(target)
+    tech_data = analyze_tech(target)
+    result["tech_detect"] = tech_data if tech_data else {"status": "failed"}
+    tech_str = json.dumps(tech_data).lower() if tech_data else ""
+    is_wordpress = "wordpress" in tech_str
+
+    homepage = analyze_homepage(target, is_wordpress)
     result.update(homepage)
     result["sitemap_page_count"] = count_sitemap_pages(target)
 
-    tech_data = analyze_tech(target)
-    result["tech_detect"] = tech_data if tech_data else {"status": "failed"}
+    ecommerce_terms = ["woocommerce", "shopify", "bigcommerce", "magento"]
+    detected = {p for p in ecommerce_terms if p in tech_str}
+    if "ecommerce_platforms" in result:
+        detected.update(result["ecommerce_platforms"])
+    if detected:
+        result["ecommerce_platforms"] = sorted(detected)
 
     return {k: v for k, v in result.items() if v not in [None, "", {}, []]}
