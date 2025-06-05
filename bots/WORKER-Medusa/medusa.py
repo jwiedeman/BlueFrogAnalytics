@@ -31,6 +31,11 @@ from tests.test_http_methods import run_test as http_methods_test
 from tests.test_waf_detection import run_test as waf_detection_test
 from tests.test_directory_enumeration import run_test as dir_enum_test
 from tests.test_certificate_details import run_test as cert_details_test
+from tests.test_meta_tags import run_test as meta_tags_test
+from tests.test_compare_sitemaps_robots import run_test as sitemaps_robots_test
+from tests.test_cookie_settings import run_test as cookie_settings_test
+from tests.test_external_resources import run_test as external_resources_test
+from tests.test_passive_subdomains import run_test as subdomains_test
 
 # Use the bundled enrichment module so this worker is self contained
 try:
@@ -156,6 +161,11 @@ def _update_enrichment(session, domain: str, data: Dict[str, Any]) -> None:
             content_keywords = ?,
             ecommerce_platforms = ?,
             sitemap_page_count = ?,
+            meta_tag_count = ?,
+            sitemap_robots_conflict = ?,
+            insecure_cookie_count = ?,
+            external_resource_count = ?,
+            passive_subdomain_count = ?,
             open_ports = ?,
             allowed_http_methods = ?,
             waf_name = ?,
@@ -244,6 +254,11 @@ def _update_enrichment(session, domain: str, data: Dict[str, Any]) -> None:
         str(data.get("content_keywords", "")),
         json.dumps(data.get("ecommerce_platforms", [])),
         int(data.get("sitemap_page_count", 0)),
+        int(data.get("meta_tag_count", 0)),
+        bool(data.get("sitemap_robots_conflict", False)),
+        int(data.get("insecure_cookie_count", 0)),
+        int(data.get("external_resource_count", 0)),
+        int(data.get("passive_subdomain_count", 0)),
         json.dumps(data.get("open_ports", [])),
         json.dumps(data.get("allowed_http_methods", [])),
         str(data.get("waf_name", "")),
@@ -395,6 +410,63 @@ def initial_recon_scan(domain: str, session: Any) -> None:
         data["certificate_info"] = cert_details_test(domain)
     except Exception as exc:  # pragma: no cover - best effort
         print(f"certificate details error: {exc}")
+
+    try:
+        output = meta_tags_test(f"https://{domain}", verbose=False)
+        for line in output.splitlines():
+            if line.lower().startswith("total meta tags found:"):
+                num = line.split(":", 1)[-1].strip()
+                data["meta_tag_count"] = int(num)
+                break
+    except Exception as exc:  # pragma: no cover - best effort
+        print(f"meta tags error: {exc}")
+
+    try:
+        output = sitemaps_robots_test(domain, verbose=False)
+        if "Discrepancies found" in output:
+            data["sitemap_robots_conflict"] = True
+        elif "No discrepancies" in output:
+            data["sitemap_robots_conflict"] = False
+    except Exception as exc:  # pragma: no cover - best effort
+        print(f"sitemap/robots error: {exc}")
+
+    try:
+        output = cookie_settings_test(domain, verbose=False)
+        sections = output.split("Cookie:")
+        insecure = 0
+        for section in sections[1:]:
+            if "- Secure: No" in section or "- HttpOnly: No" in section:
+                insecure += 1
+        if insecure:
+            data["insecure_cookie_count"] = insecure
+    except Exception as exc:  # pragma: no cover - best effort
+        print(f"cookie settings error: {exc}")
+
+    try:
+        output = external_resources_test(f"https://{domain}", verbose=False)
+        total = 0
+        for line in output.splitlines():
+            if "Total Found:" in line:
+                try:
+                    part = line.split("Total Found:", 1)[1]
+                    num = int(part.split(")", 1)[0].strip())
+                    total += num
+                except Exception:
+                    continue
+        if total:
+            data["external_resource_count"] = total
+    except Exception as exc:  # pragma: no cover - best effort
+        print(f"external resources error: {exc}")
+
+    try:
+        output = subdomains_test(domain, verbose=False)
+        for line in output.splitlines():
+            if line.startswith("Total Unique Subdomains Found:"):
+                num = line.split(":", 1)[-1].strip()
+                data["passive_subdomain_count"] = int(num)
+                break
+    except Exception as exc:  # pragma: no cover - best effort
+        print(f"subdomain gathering error: {exc}")
 
     if data:
         _update_enrichment(session, domain, data)

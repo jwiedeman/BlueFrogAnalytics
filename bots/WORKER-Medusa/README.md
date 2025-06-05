@@ -155,6 +155,7 @@ Additional enrichment fields (`ssl_org`, `x_powered_by`, `wordpress_asset_versio
 - Expanded enrichment columns: `favicon_url`, `robots_txt_exists`, `robots_txt_content`, `canonical_url`, `h1_count`, `h2_count`, `h3_count`, `schema_markup_detected`, `schema_types`, `security_headers_score`, `security_headers_detected`, `hsts_enabled`, `cookie_compliance`, `third_party_scripts`, `color_contrast_issues`, `aria_landmark_count`, `form_accessibility_issues`, `social_media_profiles`, `rss_feed_detected`, `newsletter_signup_detected`, `cdn_detected`, `http_version`, `compression_enabled`, `cache_control_headers`, `page_weight_bytes`, `main_language`, `content_keywords`.
 - Added initial recon columns: `open_ports`, `allowed_http_methods`, `waf_name`, `directory_scan`, `certificate_info`.
 - Integrated recon scan module to populate these fields automatically.
+- Added recon metrics: `meta_tag_count`, `sitemap_robots_conflict`, `insecure_cookie_count`, `external_resource_count`, `passive_subdomain_count`.
 
 ### Planned
 
