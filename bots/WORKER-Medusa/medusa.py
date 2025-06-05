@@ -36,6 +36,9 @@ from tests.test_compare_sitemaps_robots import run_test as sitemaps_robots_test
 from tests.test_cookie_settings import run_test as cookie_settings_test
 from tests.test_external_resources import run_test as external_resources_test
 from tests.test_passive_subdomains import run_test as subdomains_test
+from bs4 import BeautifulSoup
+import requests
+from urllib.parse import urljoin, urlparse
 
 # Use the bundled enrichment module so this worker is self contained
 try:
@@ -272,6 +275,23 @@ def _update_enrichment(session, domain: str, data: Dict[str, Any]) -> None:
     _safe_execute(session, update_stmt, params)
 
 
+def _update_page_metrics(session, url: str, data: Dict[str, Any]) -> None:
+    """Insert per-page metrics into domain_page_metrics."""
+    if not session:
+        return
+    parts = urlparse(url)
+    dom = parts.hostname or ""
+    ext = extract(dom)
+    domain = ext.domain.strip().strip(".")
+    tld = ext.suffix.strip().strip(".")
+    columns = ["domain", "url", "scan_date"] + list(data.keys())
+    placeholders = ", ".join(["?"] * len(columns))
+    query = f"INSERT INTO domain_discovery.domain_page_metrics ({', '.join(columns)}) VALUES ({placeholders})"
+    stmt = session.prepare(query)
+    values = [domain, url, datetime.utcnow()] + list(data.values())
+    _safe_execute(session, stmt, tuple(values))
+
+
 # Placeholder scan functions. Real implementations should invoke the
 # dedicated workers or libraries that perform each scan.
 
@@ -472,6 +492,70 @@ def initial_recon_scan(domain: str, session: Any) -> None:
         _update_enrichment(session, domain, data)
 
 
+def page_metrics_scan(domain: str, session: Any) -> None:
+    """Gather basic metrics for the site's homepage."""
+    print(f"[PageMetrics] scanning {domain}")
+    url = f"https://{domain}"
+    data: Dict[str, Any] = {}
+    try:
+        start = time.time()
+        response = requests.get(url, timeout=15, allow_redirects=True)
+        data["status_code"] = response.status_code
+        chain = [r.headers.get("Location", r.url) for r in response.history]
+        if chain:
+            chain.append(response.url)
+        data["redirect_chain"] = chain
+        data["page_load_time_ms"] = int((time.time() - start) * 1000)
+        html = response.text
+        soup = BeautifulSoup(html, "html.parser")
+
+        anchors = soup.find_all("a")
+        internal = external = broken = 0
+        for a in anchors[:50]:
+            href = a.get("href")
+            if not href:
+                continue
+            full = urljoin(url, href)
+            parsed = urlparse(full)
+            if parsed.netloc and parsed.netloc != domain:
+                external += 1
+            else:
+                internal += 1
+            try:
+                head = requests.head(full, timeout=5, allow_redirects=True)
+                if head.status_code >= 400:
+                    broken += 1
+            except Exception:
+                broken += 1
+        data["broken_links_count"] = broken
+        data["internal_links_count"] = internal
+        data["external_links_count"] = external
+
+        images = soup.find_all("img")
+        data["page_images_count"] = len(images)
+        data["missing_alt_text_images_count"] = sum(1 for img in images if not img.get("alt"))
+
+        iframes = soup.find_all("iframe")
+        videos = soup.find_all("video")
+        for iframe in iframes:
+            src = iframe.get("src", "")
+            if "youtube" in src or "vimeo" in src:
+                videos.append(iframe)
+        data["iframe_embeds_count"] = len(iframes)
+        data["video_embeds_count"] = len(videos)
+
+        titles = soup.find_all("title")
+        metas = soup.find_all("meta", attrs={"name": "description"})
+        data["duplicate_meta_titles"] = len(titles) > 1
+        data["duplicate_meta_descriptions"] = len(metas) > 1
+
+    except Exception as exc:
+        print(f"page metrics error: {exc}")
+
+    if data:
+        _update_page_metrics(session, url, data)
+
+
 def enrich_scan(domain: str, session: Any) -> None:
     """Run the enrichment logic from WORKER-Enrich_processed_domains."""
     if not analyze_target:
@@ -494,6 +578,7 @@ TESTS: Dict[str, Callable[[str, Any], None]] = {
     "webpagetest": webpagetest_scan,
     "enrich": enrich_scan,
     "recon": initial_recon_scan,
+    "page": page_metrics_scan,
 }
 
 
