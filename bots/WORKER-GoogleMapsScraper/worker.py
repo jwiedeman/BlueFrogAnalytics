@@ -79,9 +79,12 @@ def main():
                         browser = p.chromium.launch(headless=False)
                         page = browser.new_page()
                         page.goto('https://www.google.com/maps')
+
+                        page.wait_for_load_state('networkidle')
                         page.fill('input#searchboxinput', f'{term} {location}')
                         page.keyboard.press('Enter')
-                        page.wait_for_timeout(5000)
+                        page.wait_for_load_state('networkidle')
+
                         inject_bar(page)
                         count = 0
                         for row in fake_scrape(term, location):
