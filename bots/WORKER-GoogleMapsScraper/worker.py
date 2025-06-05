@@ -10,6 +10,7 @@ from playwright.sync_api import sync_playwright
 TERMS = [t.strip() for t in (sys.argv[1] if len(sys.argv) > 1 else '').split(';') if t.strip()]
 TOTAL = int(sys.argv[2]) if len(sys.argv) > 2 else 10
 OUT = sys.argv[3] if len(sys.argv) > 3 else 'output/maps.csv'
+LOOPS = int(os.environ.get('MAPS_LOOPS', '1'))
 
 LOCATIONS = [l.strip() for l in os.environ.get('MAPS_LOCATIONS', 'US').split(';') if l.strip()]
 
@@ -74,12 +75,14 @@ def main():
         with sync_playwright() as p:
             total_locations = len(LOCATIONS)
             total_terms = len(TERMS)
-            while True:
+            loop = 0
+            while LOOPS <= 0 or loop < LOOPS:
+                loop += 1
                 for loc_index, location in enumerate(LOCATIONS, 1):
                     for term_index, term in enumerate(TERMS, 1):
                         print(
                             f"Processing '{term}' in '{location}' "
-                            f"[{loc_index}/{total_locations} location, {term_index}/{total_terms} term]"
+                            f"[{loc_index}/{total_locations} location, {term_index}/{total_terms} term, loop {loop}/{LOOPS if LOOPS>0 else '?'}]"
                         )
                         browser = p.chromium.launch(headless=False)
                         page = browser.new_page()
@@ -98,7 +101,7 @@ def main():
                             pct = min(100, (count / TOTAL) * 100)
                             update_bar(
                                 page,
-                                f"{location} [{loc_index}/{total_locations}] {term} [{term_index}/{total_terms}] {count}/{TOTAL}",
+                                f"{location} [{loc_index}/{total_locations}] {term} [{term_index}/{total_terms}] {count}/{TOTAL} (loop {loop}/{LOOPS if LOOPS>0 else '?'} )",
                                 pct,
                             )
                             if count >= TOTAL:
@@ -108,7 +111,7 @@ def main():
                         browser.close()
                         print(
                             f"Finished '{term}' in '{location}' "
-                            f"with {count} results [{loc_index}/{total_locations}, {term_index}/{total_terms}]"
+                            f"with {count} results [{loc_index}/{total_locations}, {term_index}/{total_terms}, loop {loop}/{LOOPS if LOOPS>0 else '?'}]"
                         )
                 time.sleep(60)
 
