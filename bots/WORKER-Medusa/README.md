@@ -33,6 +33,10 @@ Available test groups include:
 - `webpagetest` – WebPageTest results
 - `enrich` – metadata enrichment (built in)
 - `recon` – passive open ports and header checks
+- `page` – crawl the site and record per-page metrics
+- `screenshot` – capture full page screenshots
+- `heatmap` – generate contrast heatmaps
+- `maps` – Google Maps business scraping
 
 Run with `--all` to execute every scan. Results are saved to Cassandra using the
 columns outlined in `db_schema.md`.
@@ -162,9 +166,10 @@ Additional enrichment fields (`ssl_org`, `x_powered_by`, `wordpress_asset_versio
 - Added full page screenshot capture and contrast heatmap generation.
 - Added Google Maps scraping storing results in the `businesses` table.
 
-### Planned
-
 - Crawl each discovered page after verifying the domain is reachable.
 - Store per-page metrics in `domain_page_metrics` so data can be queried by URL.
+
+### Planned
+
 - Tie domain level tests (SSL, WHOIS, DNS, performance) to the canonical
   domain returned by the initial up check.
