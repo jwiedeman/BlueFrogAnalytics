@@ -732,6 +732,8 @@ def run_scans(domain: str, tests: List[str], session: Any) -> None:
     if redirects:
         _update_page_metrics(session, url, {"redirect_chain": redirects})
 
+    canonical = urlparse(url).hostname or domain
+
     for name in tests:
         if name == "page":
             crawl_site(url, session)
@@ -740,7 +742,7 @@ def run_scans(domain: str, tests: List[str], session: Any) -> None:
         if not func:
             print(f"Unknown test: {name}")
             continue
-        func(domain, session)
+        func(canonical, session)
 
 
 def parse_args() -> argparse.Namespace:
