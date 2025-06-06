@@ -57,6 +57,11 @@ def main():
             pair_count = len(pairs)
             loop = 0
             pair_index = 0
+            browser = p.chromium.launch(headless=False)
+            page = browser.new_page()
+            page.goto('https://www.google.com/maps')
+            page.wait_for_load_state('networkidle')
+
             while LOOPS <= 0 or loop < LOOPS:
                 location, term = pairs[pair_index]
                 loc_index = pair_index // total_terms + 1
@@ -65,8 +70,7 @@ def main():
                     f"Processing '{term}' in '{location}' "
                     f"[{loc_index}/{total_locations} location, {term_index}/{total_terms} term, loop {loop}/{LOOPS if LOOPS>0 else '?'}]"
                 )
-                browser = p.chromium.launch(headless=False)
-                page = browser.new_page()
+
                 page.goto('https://www.google.com/maps')
 
                 page.wait_for_load_state('networkidle')
@@ -93,7 +97,6 @@ def main():
                         break
                 f.flush()
                 page.wait_for_timeout(1000)
-                browser.close()
                 print(
                     f"Finished '{term}' in '{location}' "
                     f"with {count} results [{loc_index}/{total_locations}, {term_index}/{total_terms}, loop {loop}/{LOOPS if LOOPS>0 else '?'}]"
@@ -105,6 +108,8 @@ def main():
                     if LOOPS > 0 and loop >= LOOPS:
                         break
                     time.sleep(60)
+
+            browser.close()
 
 if __name__ == '__main__':
     main()
