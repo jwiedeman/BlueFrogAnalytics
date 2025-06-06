@@ -17,6 +17,11 @@ TERMS = [t.strip() for t in (sys.argv[1] if len(sys.argv) > 1 else '').split(';'
 TOTAL = int(sys.argv[2]) if len(sys.argv) > 2 else 10
 OUT = sys.argv[3] if len(sys.argv) > 3 else 'output/maps.csv'
 LOOPS = int(os.environ.get('MAPS_LOOPS', '1'))
+# Random delay between queries to mimic human behaviour
+MIN_DELAY = float(os.environ.get('MAPS_MIN_DELAY', '5'))
+MAX_DELAY = float(os.environ.get('MAPS_MAX_DELAY', '15'))
+# Randomise the order of location/term pairs by default
+SHUFFLE = os.environ.get('MAPS_SHUFFLE', '1') != '0'
 
 LOCATIONS = [l.strip() for l in os.environ.get('MAPS_LOCATIONS', 'US').split(';') if l.strip()]
 
@@ -60,6 +65,8 @@ def main():
             total_locations = len(LOCATIONS)
             total_terms = len(TERMS)
             pairs = [(loc, term) for loc in LOCATIONS for term in TERMS]
+            if SHUFFLE:
+                random.shuffle(pairs)
             pair_count = len(pairs)
             loop = 0
             pair_index = 0
@@ -110,6 +117,7 @@ def main():
                         break
                 f.flush()
                 page.wait_for_timeout(1000)
+                time.sleep(random.uniform(MIN_DELAY, MAX_DELAY))
                 print(
                     f"Finished '{term}' in '{location}' "
                     f"with {count} results [{loc_index}/{total_locations}, {term_index}/{total_terms}, loop {loop}/{LOOPS if LOOPS>0 else '?'}]"
@@ -117,6 +125,8 @@ def main():
                 pair_index += 1
                 if pair_index >= pair_count:
                     pair_index = 0
+                    if SHUFFLE:
+                        random.shuffle(pairs)
                     loop += 1
                     if LOOPS > 0 and loop >= LOOPS:
                         break
