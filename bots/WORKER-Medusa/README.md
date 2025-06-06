@@ -162,3 +162,8 @@ Additional enrichment fields (`ssl_org`, `x_powered_by`, `wordpress_asset_versio
 
 - Integrate recon tests to populate the new columns above.
 - DNS and WHOIS modules remain placeholders.
+- Add WebPageTest integration to collect load time, speed index and TTFB metrics.
+- Capture full page screenshots for conversion utilities.
+- Generate contrast heatmaps from screenshots to highlight accessibility issues.
+- Scrape Google Maps results and store data in the `businesses` table.
+- Expand DNS enumeration to include DMARC and SPF records.
