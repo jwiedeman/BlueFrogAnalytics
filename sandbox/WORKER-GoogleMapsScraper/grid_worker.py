@@ -170,7 +170,10 @@ async def scrape_city_grid(
     min_delay: float = 15.0,
     max_delay: float = 60.0,
     launch_args: Sequence[str] | None = None,
+    page=None,
 ):
+    """Scrape a city's grid using an existing Playwright page if provided."""
+
     db_conn = init_db(get_dsn(dsn))
     seen: Set[Tuple[str, str]] = load_business_keys(db_conn)
 
@@ -197,14 +200,10 @@ async def scrape_city_grid(
         _geocode_cache[city] = (lat, lon)
         return lat, lon
 
-    async with async_playwright() as p:
-        browser = await p.chromium.launch(
-            headless=headless,
-            args=list(launch_args or []),
-        )
-        page = await browser.new_page()
+    manage_browser = page is None
 
-        lat_center, lon_center = await geocode_city(page)
+    async def run(pw_page):
+        lat_center, lon_center = await geocode_city(pw_page)
 
         coords = [
             (i, j)
@@ -215,11 +214,23 @@ async def scrape_city_grid(
         for i, j in coords:
             lat = lat_center + i * spacing
             lon = lon_center + j * spacing
-            await scrape_at_location(page, query, total, lat, lon, seen, db_conn)
+            await scrape_at_location(
+                pw_page, query, total, lat, lon, seen, db_conn
+            )
             delay = random.uniform(min_delay, max_delay)
-            await page.wait_for_timeout(int(delay * 1000))
+            await pw_page.wait_for_timeout(int(delay * 1000))
 
-        await browser.close()
+    if manage_browser:
+        async with async_playwright() as p:
+            browser = await p.chromium.launch(
+                headless=headless, args=list(launch_args or [])
+            )
+            page = await browser.new_page()
+            await run(page)
+            await browser.close()
+    else:
+        await run(page)
+
     close_db(db_conn)
 
 
@@ -252,18 +263,22 @@ if __name__ == "__main__":
         parser.error("Provide a query or --terms")
 
     async def main():
-        for term in queries:
-            search = f"{args.city} {term}".strip()
-            await scrape_city_grid(
-                args.city,
-                search,
-                args.steps,
-                args.spacing_deg,
-                args.per_grid_total,
-                args.dsn,
-                headless=args.headless,
-                min_delay=args.min_delay,
-                max_delay=args.max_delay,
-            )
+        async with async_playwright() as p:
+            browser = await p.chromium.launch(headless=args.headless)
+            page = await browser.new_page()
+            for term in queries:
+                search = f"{args.city} {term}".strip()
+                await scrape_city_grid(
+                    args.city,
+                    search,
+                    args.steps,
+                    args.spacing_deg,
+                    args.per_grid_total,
+                    args.dsn,
+                    min_delay=args.min_delay,
+                    max_delay=args.max_delay,
+                    page=page,
+                )
+            await browser.close()
 
     asyncio.run(main())

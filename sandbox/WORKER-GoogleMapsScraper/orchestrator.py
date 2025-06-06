@@ -4,6 +4,7 @@ import math
 from asyncio import Semaphore, Queue
 from db import get_dsn
 from grid_worker import scrape_city_grid
+from playwright.async_api import async_playwright
 import os
 
 
@@ -27,20 +28,25 @@ async def run_city(city: str, terms: list[str], args, slots: Queue, sem: Semapho
             f"--window-position={x},{y}",
         ]
         try:
-            for term in terms:
-                search = f"{city} {term}".strip()
-                await scrape_city_grid(
-                    city,
-                    search,
-                    args.steps,
-                    args.spacing_deg,
-                    args.per_grid_total,
-                    get_dsn(args.dsn),
-                    headless=args.headless,
-                    min_delay=args.min_delay,
-                    max_delay=args.max_delay,
-                    launch_args=launch_args,
+            async with async_playwright() as p:
+                browser = await p.chromium.launch(
+                    headless=args.headless, args=launch_args
                 )
+                page = await browser.new_page()
+                for term in terms:
+                    search = f"{city} {term}".strip()
+                    await scrape_city_grid(
+                        city,
+                        search,
+                        args.steps,
+                        args.spacing_deg,
+                        args.per_grid_total,
+                        get_dsn(args.dsn),
+                        min_delay=args.min_delay,
+                        max_delay=args.max_delay,
+                        page=page,
+                    )
+                await browser.close()
         finally:
             slots.put_nowait((row, col))
 
