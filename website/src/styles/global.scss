@@ -620,7 +620,15 @@ body.dark-mode .dashboard-side-nav .nav-link.active {
 
 .dashboard-footer {
   margin-top: 0;
+}
+body.dark-mode .dashboard-footer {
   background-color: #000;
+}
+
+body.dark-mode .table {
+  --bs-table-bg: #000;
+  --bs-table-color: #f5f5f5;
+  --bs-table-border-color: #444;
 }
 
 .doc-rating .bi-star,

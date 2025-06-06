@@ -22,7 +22,7 @@ const description = 'View performance metrics.';
         <div class="col-12 col-lg-6 mb-4">
           <h3>Mobile</h3>
           <div class="table-responsive">
-            <table class="table table-dark table-striped">
+            <table class="table table-striped">
               <tbody id="domain-body-mobile"></tbody>
             </table>
           </div>
@@ -30,7 +30,7 @@ const description = 'View performance metrics.';
         <div class="col-12 col-lg-6 mb-4">
           <h3>Desktop</h3>
           <div class="table-responsive">
-            <table class="table table-dark table-striped">
+            <table class="table table-striped">
               <tbody id="domain-body-desktop"></tbody>
             </table>
           </div>
@@ -38,7 +38,7 @@ const description = 'View performance metrics.';
       </div>
       <div id="pages-summary" class="table-responsive mb-5 d-none">
         <h2 class="h5 mb-3">Page Scores</h2>
-        <table class="table table-dark table-striped">
+        <table class="table table-striped">
           <thead>
             <tr>
               <th>URL</th>
@@ -87,8 +87,7 @@ const description = 'View performance metrics.';
         if (!metrics) return;
         el.innerHTML = '';
         const table = el.parentElement;
-        const isDark = document.documentElement.classList.contains('dark-mode');
-        table.className = `table table-striped${isDark ? ' table-dark' : ''}`;
+        table.className = 'table table-striped';
         const rows = [
           {
             label: 'Performance Score',
