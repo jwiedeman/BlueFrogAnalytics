@@ -20,8 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  const onDashboard = window.location.pathname.startsWith('/dashboard');
-  if (darkPref === 'true' && onDashboard) {
+  if (darkPref === 'true') {
     document.body.classList.add('dark-mode');
     document.documentElement.classList.add('dark-mode');
   }
@@ -161,12 +160,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const loginBtn = document.getElementById('login-btn');
     const profileMenu = document.getElementById('profile-menu');
     const dashNav = document.getElementById('dashboard-nav');
-    const onDashboard = window.location.pathname.startsWith('/dashboard');
-    const useDark = !!user && onDashboard;
     localStorage.setItem('bfaLoggedIn', user ? 'true' : 'false');
-    localStorage.setItem('bfaDarkMode', useDark ? 'true' : 'false');
-    document.body.classList.toggle('dark-mode', useDark);
-    document.documentElement.classList.toggle('dark-mode', useDark);
     if (loginBtn && profileMenu) {
       if (user) {
         loginBtn.classList.add('d-none');
