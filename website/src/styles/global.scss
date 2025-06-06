@@ -546,14 +546,15 @@ body.dark-mode #side-nav .bx--side-nav__link {
 /* Consistent spacing for dashboard navigation */
 .dashboard-side-nav {
   height: calc(100vh - var(--header-height));
+  background-color: #f8f9fa;
+  color: #212529;
 }
 .dashboard-side-nav .btn-toggle,
 .dashboard-side-nav .nav-link {
   padding: 0.25rem 0.5rem;
+  color: inherit;
 }
-
 .dashboard-side-nav .btn-toggle {
-  color: #f8f9fa;
   font-weight: 400;
 }
 .dashboard-side-nav .btn-toggle-nav {
@@ -608,6 +609,11 @@ body.dark-mode #mainNav,
 body.dark-mode .dashboard-side-nav,
 body.dark-mode .dropdown-menu {
   background-color: #000 !important;
+  color: #f8f9fa;
+}
+body.dark-mode .dashboard-side-nav .btn-toggle,
+body.dark-mode .dashboard-side-nav .nav-link {
+  color: #f8f9fa;
 }
 
 /* Keep active nav links blue on dashboard */
@@ -629,6 +635,23 @@ body.dark-mode .table {
   --bs-table-bg: #000;
   --bs-table-color: #f5f5f5;
   --bs-table-border-color: #444;
+}
+body.dark-mode .modal-content {
+  background-color: #000;
+  color: #f5f5f5;
+}
+body.dark-mode .domain-row,
+body.dark-mode .spec-item,
+body.dark-mode #a11y-results {
+  background-color: #000;
+  color: #f5f5f5;
+}
+.spec-item a {
+  color: inherit;
+  text-decoration: none;
+}
+.spec-item a:hover {
+  text-decoration: underline;
 }
 
 .doc-rating .bi-star,

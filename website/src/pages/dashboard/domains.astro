@@ -6,7 +6,7 @@ const description = 'Manage your monitored domains.';
 const domainList = [];
 ---
 <DashboardLayout title={title} description={description}>
-  <section class="container py-5 text-light">
+  <section class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h1 class="mb-0">Domains</h1>
       <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#domain-modal">Add Domain</button>
@@ -24,7 +24,7 @@ const domainList = [];
 
   <div class="modal fade" id="domain-modal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content bg-dark text-light">
+      <div class="modal-content">
         <form id="domain-form">
           <div class="modal-header border-0">
             <h5 class="modal-title">Add Domain</h5>
@@ -77,13 +77,12 @@ const domainList = [];
       const render = () => {
         listEl.innerHTML = '';
         if (!domains.length) {
-          listEl.innerHTML = '<p class="text-light">No domains added.</p>';
+          listEl.innerHTML = '<p>No domains added.</p>';
           return;
         }
         domains.forEach((dom, i) => {
           const item = document.createElement('li');
-          item.className =
-            'list-group-item bg-dark text-light domain-row';
+          item.className = 'list-group-item domain-row';
           item.innerHTML = `
             <div class="d-flex flex-column flex-md-row align-items-md-center gap-2">
               <span class="flex-grow-1 domain-name">${dom.name}</span>
