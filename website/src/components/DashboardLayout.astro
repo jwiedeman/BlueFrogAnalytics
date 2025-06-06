@@ -79,7 +79,7 @@ function inPath(item) {
             item.children ? (
               <li class="nav-item" key={`ocp-${i}`}>
                 <button
-                  class={`btn btn-toggle text-dark text-start w-100${inPath(item) ? '' : ' collapsed'}`}
+                  class={`btn btn-toggle text-start w-100${inPath(item) ? '' : ' collapsed'}`}
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target={`#ocdash-${i}`}
@@ -91,7 +91,7 @@ function inPath(item) {
                   <ul class="btn-toggle-nav list-unstyled">
                     {item.children.map((child, j) => (
                       <li class="nav-item" key={`occ-${i}-${j}`}>
-                        <a class={`nav-link text-dark${inPath(child) ? ' active' : ''}`} href={child.link}>
+                        <a class={`nav-link${inPath(child) ? ' active' : ''}`} href={child.link}>
                           {child.label}
                         </a>
                       </li>
@@ -102,7 +102,7 @@ function inPath(item) {
             ) : (
               <li class="nav-item" key={`ocp-${i}`}>
                 <a
-                  class={`nav-link text-dark${inPath(item) ? ' active' : ''}`}
+                  class={`nav-link${inPath(item) ? ' active' : ''}`}
                   href={item.link}
                 >
                   {item.label}
@@ -115,13 +115,13 @@ function inPath(item) {
     </div>
     <div class="dashboard-container container-fluid flex-grow-1">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-dark dashboard-side-nav d-flex flex-column">
+        <nav class="col-md-2 d-none d-md-block dashboard-side-nav d-flex flex-column">
           <ul class="nav flex-column pt-3">
             {mainNav.map((item, i) => (
               item.children ? (
                 <li class="nav-item" key={`p-${i}`}>
                   <button
-                    class={`btn btn-toggle text-light text-start w-100${inPath(item) ? '' : ' collapsed'}`}
+                  class={`btn btn-toggle text-start w-100${inPath(item) ? '' : ' collapsed'}`}
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target={`#dash-${i}`}
@@ -133,7 +133,7 @@ function inPath(item) {
                     <ul class="btn-toggle-nav list-unstyled">
                       {item.children.map((child, j) => (
                         <li class="nav-item" key={`c-${i}-${j}`}>
-                          <a class={`nav-link text-light${inPath(child) ? ' active' : ''}`} href={child.link}>
+                          <a class={`nav-link${inPath(child) ? ' active' : ''}`} href={child.link}>
                             {child.label}
                           </a>
                         </li>
@@ -143,7 +143,7 @@ function inPath(item) {
                 </li>
               ) : (
                 <li class="nav-item" key={`p-${i}`}>
-                  <a class={`nav-link text-light${inPath(item) ? ' active' : ''}`} href={item.link}>
+                  <a class={`nav-link${inPath(item) ? ' active' : ''}`} href={item.link}>
                     {item.label}
                   </a>
                 </li>
