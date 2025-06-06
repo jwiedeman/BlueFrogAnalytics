@@ -151,8 +151,8 @@ Subdomains:
 - `certificate_info` text
 
 ### `domain_page_metrics`
-Planned table for storing per-URL Lighthouse metrics. Current workers
-write these values directly to `domains_processed`.
+Table storing per-URL Lighthouse and page metrics gathered by
+`WORKER-Medusa` and related tools.
 
 - `domain` text
 - `url` text
@@ -188,6 +188,23 @@ write these values directly to `domains_processed`.
 - `mobile_accessibility_suggestions` text
 - `desktop_seo_suggestions` text
 - `mobile_seo_suggestions` text
+- `status_code` int
+- `redirect_chain` list<text>
+- `page_load_time_ms` int
+- `broken_links_count` int
+- `internal_links_count` int
+- `external_links_count` int
+- `page_images_count` int
+- `missing_alt_text_images_count` int
+- `video_embeds_count` int
+- `iframe_embeds_count` int
+- `duplicate_meta_titles` boolean
+- `duplicate_meta_descriptions` boolean
+- `wpt_load_time_ms` int
+- `wpt_speed_index` float
+- `wpt_ttfb_ms` int
+- `screenshot_path` text
+- `heatmap_path` text
 
 #### Columns updated by `WORKER-AutoLighthouse`
 
@@ -530,24 +547,15 @@ Read heavy queries should partition on `domain` with recent scans ordered by `sc
 JSON blobs are avoided where possible—structured columns make frequent metrics easier to query and update.
 
 ## To Add
-Columns planned for future tools and scrapers:
-
-- WebPageTest results per URL (load time, speed index, TTFB, etc.)
-- Screenshot locations for image conversion utilities
-- Contrast heatmap metadata (image dimensions, timestamp)
-- Google Maps business scraping output stored in the `businesses` table within the `domain_discovery` keyspace
-- DNS enumeration output stored in the `dns_records` table (A, AAAA, MX, NS, TXT, DMARC, SPF)
+Future enhancements may include additional PWA metrics and detailed network request data. Most of the previously planned tables are now populated by `WORKER-Medusa`.
 
 ## Current vs Planned Schema State
 
 The tables above reflect the **current** layout used by the running
-workers and API server. Planned adjustments include:
-
-- Moving Lighthouse metrics out of `domains_processed` and into
-  the dedicated `domain_page_metrics` table for per‑URL tracking.
-- Converting `user_profiles.domains` and `user_profiles.tests` from
-  JSON encoded text columns to native Cassandra collection types.
-- Adding the additional columns listed in the previous section.
+workers and API server. Lighthouse metrics are now stored in the
+`domain_page_metrics` table. Remaining work includes converting
+`user_profiles.domains` and `user_profiles.tests` from JSON encoded
+text columns to native Cassandra collection types.
 
 ---
 Update this file whenever new tables or fields are introduced so all bots and services remain compatible.
