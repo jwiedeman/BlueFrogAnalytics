@@ -5,6 +5,12 @@ import sys
 import time
 from playwright.sync_api import sync_playwright
 
+# Allow running in headless mode by setting MAPS_HEADLESS=1 (default) or 0
+HEADLESS = os.environ.get('MAPS_HEADLESS', '1') != '0'
+# Location for Playwright persistent user data. Reusing the profile helps keep
+# the same browser session between searches which reduces CAPTCHA triggers.
+PROFILE_DIR = os.environ.get('MAPS_PROFILE', 'maps_profile')
+
 # Usage: worker.py "term1;term2" total output_path
 
 TERMS = [t.strip() for t in (sys.argv[1] if len(sys.argv) > 1 else '').split(';') if t.strip()]
@@ -57,8 +63,14 @@ def main():
             pair_count = len(pairs)
             loop = 0
             pair_index = 0
-            browser = p.chromium.launch(headless=False)
-            page = browser.new_page()
+
+            # Launch a persistent context so the same Chrome window and tab are
+            # reused across searches. This minimizes the risk of CAPTCHAs by
+            # maintaining a single session.
+            context = p.chromium.launch_persistent_context(
+                PROFILE_DIR, headless=HEADLESS
+            )
+            page = context.new_page()
             page.goto('https://www.google.com/maps')
             page.wait_for_load_state('networkidle')
 
@@ -110,7 +122,7 @@ def main():
                         break
                     time.sleep(60)
 
-            browser.close()
+            context.close()
 
 if __name__ == '__main__':
     main()
