@@ -91,6 +91,7 @@ Categorisation and content flags:
 - `emails` list<text>
 - `ecommerce_platforms` list<text>
 - `sitemap_page_count` int
+- `canonical_url` text
 
 Lighthouse metrics:
 - `desktop_accessibility_score` int

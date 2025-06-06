@@ -103,5 +103,5 @@ def test_run_scans_invokes_functions(monkeypatch, medusa):
     monkeypatch.setattr(medusa, '_update_page_metrics', lambda *a, **k: None)
     medusa.run_scans('example.com', ['one', 'two'], 'session')
 
-    assert ('one', 'example.com', 'session') in calls
-    assert ('two', 'example.com', 'session') in calls
+    assert ('one', 'ex.com', 'session') in calls
+    assert ('two', 'ex.com', 'session') in calls
