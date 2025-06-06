@@ -93,7 +93,7 @@ if __name__ == "__main__":
     parser.add_argument("city", help="City name to search around")
     parser.add_argument("--cities", help="Comma separated list of additional cities")
     parser.add_argument("--terms", required=True, help="Comma separated search terms")
-    parser.add_argument("--steps", type=int, default=5)
+    parser.add_argument("--steps", type=int, default=0, help="Grid radius in steps (0 for single location)")
     parser.add_argument("--spacing-deg", type=float, default=0.02)
     parser.add_argument("--per-grid-total", type=int, default=50)
     parser.add_argument("--dsn", help="Postgres DSN")

@@ -28,18 +28,18 @@ geocoding service is required. The worker deduplicates results using business
 name and address and appends them to the configured database or CSV file.
 
 ```bash
-python grid_worker.py "Portland, OR" 1 0.02 50 --query "coffee shops"
+python grid_worker.py "Portland, OR" 0 0.02 50 --query "coffee shops"
 ```
 
 The city name is automatically prepended to the query so the example above
 searches for `"Portland, OR coffee shops"`.
 
-The parameters are: city name, number of grid steps from the center, spacing in degrees between grid points, number of results per grid cell, and an optional database DSN. Provide a search term with `--query`. Use `--headless` to hide the browser and `--min-delay`/`--max-delay` to randomize pauses between grid locations.
+The parameters are: city name, number of grid steps from the center (use `0` for a single location), spacing in degrees between grid points, number of results per grid cell, and an optional database DSN. Provide a search term with `--query`. Use `--headless` to hide the browser and `--min-delay`/`--max-delay` to randomize pauses between grid locations.
 
 To scrape multiple terms sequentially with a single worker use the `--terms` option:
 
 ```bash
-python grid_worker.py "Portland, OR" 1 0.02 50 --terms "restaurants,bars,cafes"
+python grid_worker.py "Portland, OR" 0 0.02 50 --terms "restaurants,bars,cafes"
 ```
 
 Each term is searched alongside the city, e.g. `"Portland, OR restaurants"`.
@@ -56,7 +56,7 @@ appended to each search query.
 python orchestrator.py "Portland, OR" \
   --cities "Seattle, WA,Boise, ID" \
   --terms "Restaurants,Bars,Hotels,Retail stores,Gas stations,Pharmacies,Automotive,Banks,Healthcare,Professional services,Education,Government offices,Entertainment,Construction,Real estate" \
-  --steps 5 \
+  --steps 0 \
   --concurrency 4 \
   --launch-stagger 30
 ```
