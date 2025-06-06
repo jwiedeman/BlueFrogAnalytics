@@ -44,11 +44,14 @@ const description = 'Search engine optimization insights.';
   <script type="module">
     document.addEventListener('DOMContentLoaded', () => {
       const init = () => {
+        if (window.showSpinner) window.showSpinner();
         window.onAuthStateChanged(window.firebaseAuth, user => {
           if (!user) {
             window.location.href = '/login';
+            return;
           }
         });
+        if (window.hideSpinner) window.hideSpinner();
       };
       if (window.firebaseAuth) {
         init();
@@ -143,9 +146,11 @@ const description = 'Search engine optimization insights.';
           domainSelect.appendChild(opt);
         });
         if (domains.length) loadDomainData(domains[0]);
+        if (window.hideSpinner) window.hideSpinner();
       };
 
       const init = () => {
+        if (window.showSpinner) window.showSpinner();
         window.onAuthStateChanged(window.firebaseAuth, user => {
           if (!user) {
             window.location.href = '/login';

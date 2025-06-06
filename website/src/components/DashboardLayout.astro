@@ -4,6 +4,7 @@ import CustomHeader from './CustomHeader.astro';
 import CustomFooter from './CustomFooter.astro';
 import FirebaseScripts from './FirebaseScripts.astro';
 import ApiConfig from './ApiConfig.astro';
+import LoadingSpinner from './LoadingSpinner.astro';
 
 const { title, description } = Astro.props;
 
@@ -47,6 +48,7 @@ function inPath(item) {
   </head>
   <body class="d-flex flex-column min-vh-100">
     <CustomHeader />
+    <LoadingSpinner />
     <div class="d-md-none p-2">
       <button
         class="btn btn-primary"
@@ -160,6 +162,7 @@ function inPath(item) {
     <CustomFooter />
     <FirebaseScripts />
     <ApiConfig />
+    <script src="/js/spinner.js" type="module"></script>
     <script src="/js/dashboard-nav-delay.js" type="module"></script>
   <script src="/js/offcanvas-nav.js" type="module"></script>
   </body>
