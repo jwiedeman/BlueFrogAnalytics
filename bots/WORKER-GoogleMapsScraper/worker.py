@@ -71,9 +71,10 @@ def main():
                     f"[{loc_index}/{total_locations} location, {term_index}/{total_terms} term, loop {loop}/{LOOPS if LOOPS>0 else '?'}]"
                 )
 
-                page.goto('https://www.google.com/maps')
-
-                page.wait_for_load_state('networkidle')
+                # Instead of reloading Maps each time, simply enter a new search
+                # into the existing page. This avoids closing and reopening the
+                # browser window for every term/location pair.
+                page.fill('input#searchboxinput', '')
                 page.fill('input#searchboxinput', f'{term} {location}')
                 page.keyboard.press('Enter')
                 page.wait_for_load_state('networkidle')
