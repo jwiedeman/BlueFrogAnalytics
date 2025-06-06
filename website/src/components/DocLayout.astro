@@ -5,6 +5,7 @@ import CustomHeader from './CustomHeader.astro';
 import CustomFooter from './CustomFooter.astro';
 import FirebaseScripts from './FirebaseScripts.astro';
 import ApiConfig from './ApiConfig.astro';
+import LoadingSpinner from './LoadingSpinner.astro';
 
 const { fluid = false, title, description } = Astro.props;
 const mainClass = fluid ? 'container-fluid' : 'container';
@@ -15,12 +16,14 @@ const mainClass = fluid ? 'container-fluid' : 'container';
   </head>
   <body class="d-flex flex-column min-vh-100">
     <CustomHeader />
+    <LoadingSpinner />
     <main id="main-content" class={`bx--content ${mainClass} flex-grow-1`}>
       <slot />
     </main>
     <CustomFooter />
     <FirebaseScripts />
     <ApiConfig />
+    <script src="/js/spinner.js" type="module"></script>
     <script src="/js/glossary-popover.js" defer></script>
     <script type="module" src="/js/mermaid-init.js"></script>
     <script is:inline>

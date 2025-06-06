@@ -4,6 +4,7 @@ import CustomHeader from './CustomHeader.astro';
 import CustomFooter from './CustomFooter.astro';
 import FirebaseScripts from './FirebaseScripts.astro';
 import ApiConfig from './ApiConfig.astro';
+import LoadingSpinner from './LoadingSpinner.astro';
 
 // Receive headings from page content
 const { headings, title, description } = Astro.props;
@@ -90,6 +91,7 @@ for (const [file, mod] of Object.entries(modules)) {
   </head>
   <body class="docs-layout d-flex flex-column min-vh-100">
     <CustomHeader isDocs={true} />
+    <LoadingSpinner />
     <div class="d-md-none p-2 text-end">
       <button
         class="btn btn-primary"
@@ -284,6 +286,7 @@ for (const [file, mod] of Object.entries(modules)) {
     <CustomFooter />
     <FirebaseScripts />
     <ApiConfig />
+    <script src="/js/spinner.js" type="module"></script>
     <script src="/js/offcanvas-nav.js" type="module"></script>
     <script src="/js/glossary-popover.js" defer></script>
     <!-- Docs search logic -->
