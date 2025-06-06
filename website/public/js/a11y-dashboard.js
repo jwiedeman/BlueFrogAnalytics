@@ -25,10 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
           ? `<p>Accessibility Score: <strong>${score}</strong></p>`
           : '<p>No accessibility score available.</p>';
 
-      const isDark = document.documentElement.classList.contains('dark-mode');
-      let html = `<table class="table table-striped${
-        isDark ? ' table-dark' : ''
-      }"><thead><tr><th>Page</th><th>Mobile</th><th>Desktop</th></tr></thead><tbody>`;
+      let html = '<table class="table table-striped"><thead><tr><th>Page</th><th>Mobile</th><th>Desktop</th></tr></thead><tbody>';
       pages.forEach(p => {
         html += `<tr><td>${p.url}</td><td>${
           p.mobile_accessibility_score ?? '--'

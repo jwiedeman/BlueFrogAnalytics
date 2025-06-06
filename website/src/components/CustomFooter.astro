@@ -2,11 +2,9 @@
 // Simplified footer using Bootstrap classes
 const year = new Date().getFullYear();
 const isDashboard = Astro.url.pathname.startsWith('/dashboard');
-const footerClasses = isDashboard
-  ? 'dashboard-footer text-light py-5'
-  : 'bg-light text-dark mt-5 py-5';
+const footerClasses = `${isDashboard ? 'dashboard-footer' : 'mt-5'} py-5`;
 ---
-<footer class={footerClasses}>
+<footer id="site-footer" class={footerClasses}>
   <div class="container">
     <div class="row row-cols-2 row-cols-md-5 gy-4 text-center text-md-start">
       <div class="col">

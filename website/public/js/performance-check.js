@@ -50,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
       const buildTable = lhr => {
-        const isDark = document.documentElement.classList.contains('dark-mode');
         const metrics = [
           {
             label: 'Performance Score',
@@ -95,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
             numeric: lhr.audits['cumulative-layout-shift'].numericValue
           }
         ];
-        let html = `<table class="table table-striped${isDark ? ' table-dark' : ''}"><tbody>`;
+        let html = '<table class="table table-striped"><tbody>';
         for (const m of metrics) {
           const cls = getRating(m.type, m.numeric, m.type === 'score');
           html += `<tr><th>${m.label}</th><td class="${cls}">${m.value}</td></tr>`;
