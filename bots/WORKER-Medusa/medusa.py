@@ -321,6 +321,115 @@ def _insert_business(session, data: Dict[str, Any]) -> None:
     _safe_execute(session, stmt, params)
 
 
+def check_site_variants(domain: str) -> Tuple[str | None, List[str]]:
+    """Return reachable URL and redirect chain for common variants."""
+    variants = [
+        f"https://{domain}",
+        f"http://{domain}",
+        f"https://www.{domain}",
+        f"http://www.{domain}",
+    ]
+    for url in variants:
+        try:
+            resp = requests.get(url, timeout=10, allow_redirects=True)
+            if resp.status_code < 400:
+                chain = [r.headers.get("Location", r.url) for r in resp.history]
+                if chain:
+                    chain.append(resp.url)
+                return resp.url, chain
+        except Exception:
+            continue
+    return None, []
+
+
+def scan_page_url(url: str, session: Any) -> None:
+    """Collect metrics for a single page URL."""
+    data: Dict[str, Any] = {}
+    try:
+        start = time.time()
+        response = requests.get(url, timeout=15, allow_redirects=True)
+        data["status_code"] = response.status_code
+        chain = [r.headers.get("Location", r.url) for r in response.history]
+        if chain:
+            chain.append(response.url)
+        data["redirect_chain"] = chain
+        data["page_load_time_ms"] = int((time.time() - start) * 1000)
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        anchors = soup.find_all("a")
+        internal = external = broken = 0
+        for a in anchors[:50]:
+            href = a.get("href")
+            if not href:
+                continue
+            full = urljoin(url, href)
+            parsed = urlparse(full)
+            if parsed.netloc and parsed.netloc != urlparse(url).netloc:
+                external += 1
+            else:
+                internal += 1
+            try:
+                head = requests.head(full, timeout=5, allow_redirects=True)
+                if head.status_code >= 400:
+                    broken += 1
+            except Exception:
+                broken += 1
+        data["broken_links_count"] = broken
+        data["internal_links_count"] = internal
+        data["external_links_count"] = external
+
+        images = soup.find_all("img")
+        data["page_images_count"] = len(images)
+        data["missing_alt_text_images_count"] = sum(1 for img in images if not img.get("alt"))
+
+        iframes = soup.find_all("iframe")
+        videos = soup.find_all("video")
+        for iframe in iframes:
+            src = iframe.get("src", "")
+            if "youtube" in src or "vimeo" in src:
+                videos.append(iframe)
+        data["iframe_embeds_count"] = len(iframes)
+        data["video_embeds_count"] = len(videos)
+
+        titles = soup.find_all("title")
+        metas = soup.find_all("meta", attrs={"name": "description"})
+        data["duplicate_meta_titles"] = len(titles) > 1
+        data["duplicate_meta_descriptions"] = len(metas) > 1
+    except Exception as exc:  # pragma: no cover - best effort
+        print(f"page metrics error: {exc}")
+
+    if data:
+        _update_page_metrics(session, url, data)
+
+
+def crawl_site(start_url: str, session: Any, max_pages: int = 20) -> None:
+    """Crawl the site starting at start_url and scan each page."""
+    visited = set()
+    queue = [start_url]
+    while queue and len(visited) < max_pages:
+        url = queue.pop(0)
+        if url in visited:
+            continue
+        visited.add(url)
+        scan_page_url(url, session)
+        try:
+            resp = requests.get(url, timeout=10)
+            soup = BeautifulSoup(resp.text, "html.parser")
+            for a in soup.find_all("a"):
+                href = a.get("href")
+                if not href:
+                    continue
+                full = urljoin(url, href)
+                if urlparse(full).netloc != urlparse(start_url).netloc:
+                    continue
+                full = full.split("#")[0]
+                if full not in visited and full not in queue:
+                    queue.append(full)
+        except Exception:
+            continue
+
+
+
 # Placeholder scan functions. Real implementations should invoke the
 # dedicated workers or libraries that perform each scan.
 
@@ -580,64 +689,7 @@ def page_metrics_scan(domain: str, session: Any) -> None:
     """Gather basic metrics for the site's homepage."""
     print(f"[PageMetrics] scanning {domain}")
     url = f"https://{domain}"
-    data: Dict[str, Any] = {}
-    try:
-        start = time.time()
-        response = requests.get(url, timeout=15, allow_redirects=True)
-        data["status_code"] = response.status_code
-        chain = [r.headers.get("Location", r.url) for r in response.history]
-        if chain:
-            chain.append(response.url)
-        data["redirect_chain"] = chain
-        data["page_load_time_ms"] = int((time.time() - start) * 1000)
-        html = response.text
-        soup = BeautifulSoup(html, "html.parser")
-
-        anchors = soup.find_all("a")
-        internal = external = broken = 0
-        for a in anchors[:50]:
-            href = a.get("href")
-            if not href:
-                continue
-            full = urljoin(url, href)
-            parsed = urlparse(full)
-            if parsed.netloc and parsed.netloc != domain:
-                external += 1
-            else:
-                internal += 1
-            try:
-                head = requests.head(full, timeout=5, allow_redirects=True)
-                if head.status_code >= 400:
-                    broken += 1
-            except Exception:
-                broken += 1
-        data["broken_links_count"] = broken
-        data["internal_links_count"] = internal
-        data["external_links_count"] = external
-
-        images = soup.find_all("img")
-        data["page_images_count"] = len(images)
-        data["missing_alt_text_images_count"] = sum(1 for img in images if not img.get("alt"))
-
-        iframes = soup.find_all("iframe")
-        videos = soup.find_all("video")
-        for iframe in iframes:
-            src = iframe.get("src", "")
-            if "youtube" in src or "vimeo" in src:
-                videos.append(iframe)
-        data["iframe_embeds_count"] = len(iframes)
-        data["video_embeds_count"] = len(videos)
-
-        titles = soup.find_all("title")
-        metas = soup.find_all("meta", attrs={"name": "description"})
-        data["duplicate_meta_titles"] = len(titles) > 1
-        data["duplicate_meta_descriptions"] = len(metas) > 1
-
-    except Exception as exc:
-        print(f"page metrics error: {exc}")
-
-    if data:
-        _update_page_metrics(session, url, data)
+    scan_page_url(url, session)
 
 
 def enrich_scan(domain: str, session: Any) -> None:
@@ -670,7 +722,20 @@ TESTS: Dict[str, Callable[[str, Any], None]] = {
 
 
 def run_scans(domain: str, tests: List[str], session: Any) -> None:
+    url, redirects = check_site_variants(domain)
+    if not url:
+        print("Domain not reachable")
+        _update_enrichment(session, domain, {"status": False})
+        return
+
+    _update_enrichment(session, domain, {"status": True, "canonical_url": url})
+    if redirects:
+        _update_page_metrics(session, url, {"redirect_chain": redirects})
+
     for name in tests:
+        if name == "page":
+            crawl_site(url, session)
+            continue
         func = TESTS.get(name)
         if not func:
             print(f"Unknown test: {name}")

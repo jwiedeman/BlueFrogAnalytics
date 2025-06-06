@@ -164,4 +164,7 @@ Additional enrichment fields (`ssl_org`, `x_powered_by`, `wordpress_asset_versio
 
 ### Planned
 
-None at the moment.
+- Crawl each discovered page after verifying the domain is reachable.
+- Store per-page metrics in `domain_page_metrics` so data can be queried by URL.
+- Tie domain level tests (SSL, WHOIS, DNS, performance) to the canonical
+  domain returned by the initial up check.
