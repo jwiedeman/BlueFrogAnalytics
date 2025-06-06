@@ -36,6 +36,12 @@ from tests.test_compare_sitemaps_robots import run_test as sitemaps_robots_test
 from tests.test_cookie_settings import run_test as cookie_settings_test
 from tests.test_external_resources import run_test as external_resources_test
 from tests.test_passive_subdomains import run_test as subdomains_test
+from tests.test_whois import run_test as whois_test
+from tests.test_dns_enumeration import run_test as dns_enum_test
+from tests.test_webpagetest import run_test as webpagetest_test
+from tests.test_full_page_screenshot import run_test as screenshot_test
+from tests.test_contrast_heatmap import run_test as heatmap_test
+from tests.test_google_maps import run_test as google_maps_test
 from bs4 import BeautifulSoup
 import requests
 from urllib.parse import urljoin, urlparse
@@ -292,6 +298,29 @@ def _update_page_metrics(session, url: str, data: Dict[str, Any]) -> None:
     _safe_execute(session, stmt, tuple(values))
 
 
+def _insert_business(session, data: Dict[str, Any]) -> None:
+    """Insert a business row into the businesses table."""
+    if not session:
+        return
+    query = (
+        "INSERT INTO domain_discovery.businesses "
+        "(name, address, website, phone, reviews_average, query, latitude, longitude) "
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+    )
+    stmt = session.prepare(query)
+    params = (
+        data.get("name"),
+        data.get("address"),
+        data.get("website"),
+        data.get("phone"),
+        float(data.get("reviews_average", 0)),
+        data.get("query"),
+        float(data.get("latitude", 0)),
+        float(data.get("longitude", 0)),
+    )
+    _safe_execute(session, stmt, params)
+
+
 # Placeholder scan functions. Real implementations should invoke the
 # dedicated workers or libraries that perform each scan.
 
@@ -301,6 +330,18 @@ def ssl_scan(domain: str, session: Any) -> None:
 
 def whois_scan(domain: str, session: Any) -> None:
     print(f"[WHOIS] scanning {domain}")
+    try:
+        output = whois_test(domain)
+        data: Dict[str, Any] = {}
+        for line in output.splitlines():
+            if "Registrar:" in line:
+                data["registrar"] = line.split(":", 1)[-1].strip()
+            if "Creation Date:" in line or "Registered On:" in line:
+                data["registered"] = line.split(":", 1)[-1].strip()
+        if data:
+            _update_enrichment(session, domain, data)
+    except Exception as exc:  # pragma: no cover - best effort
+        print(f"whois scan error: {exc}")
 
 
 def dns_scan(domain: str, session: Any) -> None:
@@ -379,6 +420,49 @@ def analytics_scan(domain: str, session: Any) -> None:
 
 def webpagetest_scan(domain: str, session: Any) -> None:
     print(f"[WebPageTest] scanning {domain}")
+    try:
+        output = webpagetest_test(f"https://{domain}", api_key=os.environ.get("WEBPAGETEST_API_KEY"), verbose=False)
+        metrics: Dict[str, Any] = {}
+        for line in output.splitlines():
+            if line.startswith("Load Time:"):
+                metrics["wpt_load_time_ms"] = int(line.split(":", 1)[1].strip().rstrip("ms"))
+            elif line.startswith("Speed Index:"):
+                metrics["wpt_speed_index"] = float(line.split(":", 1)[1].strip())
+            elif line.startswith("TTFB:"):
+                metrics["wpt_ttfb_ms"] = int(line.split(":", 1)[1].strip())
+        if metrics:
+            _update_page_metrics(session, f"https://{domain}", metrics)
+    except Exception as exc:  # pragma: no cover - best effort
+        print(f"webpagetest error: {exc}")
+
+
+def screenshot_scan(domain: str, session: Any) -> None:
+    print(f"[Screenshot] capturing {domain}")
+    try:
+        path = screenshot_test(domain)
+        _update_page_metrics(session, f"https://{domain}", {"screenshot_path": path})
+    except Exception as exc:  # pragma: no cover - best effort
+        print(f"screenshot error: {exc}")
+
+
+def heatmap_scan(domain: str, session: Any) -> None:
+    print(f"[Heatmap] generating for {domain}")
+    try:
+        shot = screenshot_test(domain)
+        path = heatmap_test(shot)
+        _update_page_metrics(session, f"https://{domain}", {"heatmap_path": path})
+    except Exception as exc:  # pragma: no cover - best effort
+        print(f"heatmap error: {exc}")
+
+
+def google_maps_scan(domain: str, session: Any) -> None:
+    print(f"[GoogleMaps] scanning {domain}")
+    try:
+        result = google_maps_test(domain)
+        info = json.loads(result)
+        _insert_business(session, info)
+    except Exception as exc:  # pragma: no cover - best effort
+        print(f"google maps error: {exc}")
 
 
 def initial_recon_scan(domain: str, session: Any) -> None:
@@ -576,6 +660,9 @@ TESTS: Dict[str, Callable[[str, Any], None]] = {
     "carbon": carbon_scan,
     "analytics": analytics_scan,
     "webpagetest": webpagetest_scan,
+    "screenshot": screenshot_scan,
+    "heatmap": heatmap_scan,
+    "maps": google_maps_scan,
     "enrich": enrich_scan,
     "recon": initial_recon_scan,
     "page": page_metrics_scan,

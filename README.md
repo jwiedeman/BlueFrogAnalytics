@@ -65,7 +65,7 @@ docker run -p 6001:6001 \
 
 ## Bots
 
-The `bots` directory contains several workers written in Go, Rust, Python and Node. See each subfolder's README for build instructions and usage. Items prefixed with `BACKEND-` are utility scripts used by the API or the website's free tools rather than autonomous workers. A consolidated worker named `WORKER-Medusa` bundles the modular tests from `BOT-Recon_[Py]` and `BOT-SensorFusion_[Py]` (minus the experimental fingerprinting engine).
+The `bots` directory contains several workers written in Go, Rust, Python and Node. See each subfolder's README for build instructions and usage. Items prefixed with `BACKEND-` are utility scripts used by the API or the website's free tools rather than autonomous workers. A consolidated worker named `WORKER-Medusa` orchestrates recon modules, DNS/WHOIS enumeration, WebPageTest metrics, screenshot and heatmap generation, and Google Maps scraping.
 
 ## Cassandra cluster
 

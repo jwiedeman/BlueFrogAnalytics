@@ -157,13 +157,11 @@ Additional enrichment fields (`ssl_org`, `x_powered_by`, `wordpress_asset_versio
 - Integrated recon scan module to populate these fields automatically.
 - Added recon metrics: `meta_tag_count`, `sitemap_robots_conflict`, `insecure_cookie_count`, `external_resource_count`, `passive_subdomain_count`.
 - Added page metrics: `status_code`, `redirect_chain`, `page_load_time_ms`, `broken_links_count`, `internal_links_count`, `external_links_count`, `page_images_count`, `missing_alt_text_images_count`, `video_embeds_count`, `iframe_embeds_count`, `duplicate_meta_titles`, `duplicate_meta_descriptions`.
+- Implemented DNS enumeration with DMARC and SPF support and integrated WHOIS lookups.
+- Added WebPageTest metrics collection (load time, speed index, TTFB).
+- Added full page screenshot capture and contrast heatmap generation.
+- Added Google Maps scraping storing results in the `businesses` table.
 
 ### Planned
 
-- Integrate recon tests to populate the new columns above.
-- DNS and WHOIS modules remain placeholders.
-- Add WebPageTest integration to collect load time, speed index and TTFB metrics.
-- Capture full page screenshots for conversion utilities.
-- Generate contrast heatmaps from screenshots to highlight accessibility issues.
-- Scrape Google Maps results and store data in the `businesses` table.
-- Expand DNS enumeration to include DMARC and SPF records.
+None at the moment.
