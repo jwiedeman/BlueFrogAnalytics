@@ -124,6 +124,15 @@ will connect successfully. You can also set a custom connection string via the
 python export_to_excel.py "dbname=maps user=postgres host=localhost password=postgres" results.xlsx
 ```
 
+### Importing existing SQLite databases
+
+`import_sqlite_to_cassandra.py` copies any `*.db` files in this folder into the
+Cassandra `maps.businesses` table. Run it once after collecting data locally:
+
+```bash
+python import_sqlite_to_cassandra.py
+```
+
 ## Docker Swarm
 
 This image can also run as a service in Docker Swarm after being built and pushed to your registry.
