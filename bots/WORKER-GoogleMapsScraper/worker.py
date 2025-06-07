@@ -3,13 +3,12 @@ import csv
 import random
 import sys
 import time
-from playwright.sync_api import sync_playwright
+from typing import Generator, Dict
 
-# Allow running in headless mode by setting MAPS_HEADLESS=1 (default) or 0
-HEADLESS = os.environ.get('MAPS_HEADLESS', '1') != '0'
-# Location for Playwright persistent user data. Reusing the profile helps keep
-# the same browser session between searches which reduces CAPTCHA triggers.
-PROFILE_DIR = os.environ.get('MAPS_PROFILE', 'maps_profile')
+import requests
+
+# Google Maps Places API key
+API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY')
 
 # Usage: worker.py "term1;term2" total output_path
 
@@ -30,24 +29,60 @@ FIELDNAMES = [
     'query', 'latitude', 'longitude', 'location'
 ]
 
-def fake_scrape(term, location):
-    """Fake generator yielding place info.
 
-    Replace this stub with real scraping logic. It yields ``TOTAL`` results
-    for the given search term and location.
-    """
-    for i in range(TOTAL):
-        yield {
-            'name': f'{term} biz {i} ({location})',
-            'address': f'{i} Example St, {location}',
-            'website': f'http://example{i}.com',
-            'phone': f'555-010{i:02d}',
-            'reviews_average': round(random.uniform(1.0, 5.0), 2),
-            'query': term,
-            'latitude': round(random.uniform(-90, 90), 6),
-            'longitude': round(random.uniform(-180, 180), 6),
-            'location': location
-        }
+def api_scrape(term: str, location: str) -> Generator[Dict[str, str], None, None]:
+    """Yield business info using the Google Places API."""
+    if not API_KEY:
+        raise RuntimeError('GOOGLE_MAPS_API_KEY not set')
+
+    base_url = 'https://maps.googleapis.com/maps/api/place/textsearch/json'
+    params = {'query': f'{term} {location}', 'key': API_KEY}
+    next_token = None
+    count = 0
+    while True:
+        if next_token:
+            params = {'pagetoken': next_token, 'key': API_KEY}
+            time.sleep(2)
+        resp = requests.get(base_url, params=params, timeout=10)
+        resp.raise_for_status()
+        data = resp.json()
+        for r in data.get('results', []):
+            details = {}
+            place_id = r.get('place_id')
+            if place_id:
+                det = requests.get(
+                    'https://maps.googleapis.com/maps/api/place/details/json',
+                    params={
+                        'place_id': place_id,
+                        'fields': 'formatted_phone_number,website',
+                        'key': API_KEY,
+                    },
+                    timeout=10,
+                )
+                if det.ok:
+                    info = det.json().get('result', {})
+                    details = {
+                        'phone': info.get('formatted_phone_number', ''),
+                        'website': info.get('website', ''),
+                    }
+
+            yield {
+                'name': r.get('name', ''),
+                'address': r.get('formatted_address', ''),
+                'website': details.get('website', ''),
+                'phone': details.get('phone', ''),
+                'reviews_average': r.get('rating'),
+                'query': term,
+                'latitude': r.get('geometry', {}).get('location', {}).get('lat'),
+                'longitude': r.get('geometry', {}).get('location', {}).get('lng'),
+                'location': location,
+            }
+            count += 1
+            if count >= TOTAL:
+                return
+        next_token = data.get('next_page_token')
+        if not next_token:
+            break
 
 SEARCH_TIMEOUT = int(os.environ.get("MAPS_SEARCH_TIMEOUT", "300"))
 # If no new results appear for this many seconds, skip to the next term
@@ -61,78 +96,50 @@ def main():
         writer = csv.DictWriter(f, fieldnames=FIELDNAMES)
         if first_write:
             writer.writeheader()
-        with sync_playwright() as p:
-            total_locations = len(LOCATIONS)
-            total_terms = len(TERMS)
-            pairs = [(loc, term) for loc in LOCATIONS for term in TERMS]
-            if SHUFFLE:
-                random.shuffle(pairs)
-            pair_count = len(pairs)
-            loop = 0
-            pair_index = 0
+        total_locations = len(LOCATIONS)
+        total_terms = len(TERMS)
+        pairs = [(loc, term) for loc in LOCATIONS for term in TERMS]
+        if SHUFFLE:
+            random.shuffle(pairs)
+        pair_count = len(pairs)
+        loop = 0
+        pair_index = 0
 
-            # Launch a persistent context so the same Chrome window and tab are
-            # reused across searches. This minimizes the risk of CAPTCHAs by
-            # maintaining a single session.
-            context = p.chromium.launch_persistent_context(
-                PROFILE_DIR, headless=HEADLESS
+        while LOOPS <= 0 or loop < LOOPS:
+            location, term = pairs[pair_index]
+            loc_index = pair_index // total_terms + 1
+            term_index = pair_index % total_terms + 1
+            print(
+                f"Processing '{term}' in '{location}' "
+                f"[{loc_index}/{total_locations} location, {term_index}/{total_terms} term, loop {loop}/{LOOPS if LOOPS>0 else '?'}]"
             )
-            page = context.new_page()
-            page.goto('https://www.google.com/maps')
-            page.wait_for_load_state('networkidle')
 
-            while LOOPS <= 0 or loop < LOOPS:
-                location, term = pairs[pair_index]
-                loc_index = pair_index // total_terms + 1
-                term_index = pair_index % total_terms + 1
+            start = time.time()
+            count = 0
+            for row in api_scrape(term, location):
+                writer.writerow(row)
+                count += 1
                 print(
-                    f"Processing '{term}' in '{location}' "
-                    f"[{loc_index}/{total_locations} location, {term_index}/{total_terms} term, loop {loop}/{LOOPS if LOOPS>0 else '?'}]"
+                    f"{location} [{loc_index}/{total_locations}] {term} [{term_index}/{total_terms}] {count}/{TOTAL} (loop {loop}/{LOOPS if LOOPS>0 else '?'} )",
+                    flush=True,
                 )
-
-                # Instead of reloading Maps each time, simply enter a new search
-                # into the existing page. This avoids closing and reopening the
-                # browser window for every term/location pair.
-                page.fill('input#searchboxinput', '')
-                page.fill('input#searchboxinput', f'{term} {location}')
-                page.keyboard.press('Enter')
-                page.wait_for_load_state('networkidle')
-
-                start = time.time()
-                last_yield = start
-                count = 0
-                for row in fake_scrape(term, location):
-                    writer.writerow(row)
-                    last_yield = time.time()
-                    count += 1
-                    pct = min(100, (count / TOTAL) * 100)
-                    print(
-                        f"{location} [{loc_index}/{total_locations}] {term} [{term_index}/{total_terms}] {count}/{TOTAL} (loop {loop}/{LOOPS if LOOPS>0 else '?'} )",
-                        flush=True,
-                    )
-                    if count >= TOTAL or time.time() - start > SEARCH_TIMEOUT:
-                        break
-                    if time.time() - last_yield > STALL_TIMEOUT:
-                        print(f"No new results for {STALL_TIMEOUT}s, skipping to next term")
-                        break
-                f.flush()
-                page.wait_for_timeout(1000)
-                time.sleep(random.uniform(MIN_DELAY, MAX_DELAY))
-                print(
-                    f"Finished '{term}' in '{location}' "
-                    f"with {count} results [{loc_index}/{total_locations}, {term_index}/{total_terms}, loop {loop}/{LOOPS if LOOPS>0 else '?'}]"
-                )
-                pair_index += 1
-                if pair_index >= pair_count:
-                    pair_index = 0
-                    if SHUFFLE:
-                        random.shuffle(pairs)
-                    loop += 1
-                    if LOOPS > 0 and loop >= LOOPS:
-                        break
-                    time.sleep(60)
-
-            context.close()
+                if count >= TOTAL or time.time() - start > SEARCH_TIMEOUT:
+                    break
+            f.flush()
+            time.sleep(random.uniform(MIN_DELAY, MAX_DELAY))
+            print(
+                f"Finished '{term}' in '{location}' "
+                f"with {count} results [{loc_index}/{total_locations}, {term_index}/{total_terms}, loop {loop}/{LOOPS if LOOPS>0 else '?'}]"
+            )
+            pair_index += 1
+            if pair_index >= pair_count:
+                pair_index = 0
+                if SHUFFLE:
+                    random.shuffle(pairs)
+                loop += 1
+                if LOOPS > 0 and loop >= LOOPS:
+                    break
+                time.sleep(60)
 
 if __name__ == '__main__':
     main()
