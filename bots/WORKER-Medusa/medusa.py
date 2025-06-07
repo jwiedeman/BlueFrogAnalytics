@@ -11,9 +11,12 @@ import csv
 import json
 import logging
 import os
+import random
 import subprocess
 import sys
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from dataclasses import dataclass, field, asdict
 from datetime import datetime
 from typing import Any, Callable, Dict, List, Tuple
 
@@ -61,6 +64,30 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+# Reuse a single HTTP session across scans
+SESSION = requests.Session()
+SESSION.headers.update({"User-Agent": "MedusaScanner/1.0"})
+
+
+@dataclass
+class PageMetrics:
+    status_code: int | None = None
+    redirect_chain: List[str] = field(default_factory=list)
+    page_load_time_ms: int | None = None
+    broken_links_count: int = 0
+    internal_links_count: int = 0
+    external_links_count: int = 0
+    page_images_count: int = 0
+    missing_alt_text_images_count: int = 0
+    iframe_embeds_count: int = 0
+    video_embeds_count: int = 0
+    duplicate_meta_titles: bool = False
+    duplicate_meta_descriptions: bool = False
+    emails: List[str] = field(default_factory=list)
+    phone_numbers: List[str] = field(default_factory=list)
+    sms_numbers: List[str] = field(default_factory=list)
+    addresses: List[str] = field(default_factory=list)
+
 # Development mode flag. When enabled results are written to a CSV file
 # instead of Cassandra for easier testing.
 DEV_MODE = False
@@ -86,7 +113,8 @@ except Exception:  # pragma: no cover - optional dependency
 
 def _safe_execute(session: Any, query: str, params: Tuple[Any, ...]):
     """Execute a Cassandra query with basic retry logic."""
-    delay = 5
+    delay = int(os.environ.get("MEDUSA_CASSANDRA_RETRY_DELAY", "5"))
+    max_delay = int(os.environ.get("MEDUSA_CASSANDRA_MAX_DELAY", "60"))
     while True:
         try:
             return session.execute(query, params)
@@ -102,8 +130,8 @@ def _safe_execute(session: Any, query: str, params: Tuple[Any, ...]):
                 e,
                 delay,
             )
-            time.sleep(delay)
-            delay = min(delay * 2, 60)
+            time.sleep(delay + random.uniform(0, delay))
+            delay = min(delay * 2, max_delay)
 
 
 def _write_csv(table: str, key: str, data: Dict[str, Any]) -> None:
@@ -432,14 +460,14 @@ def check_site_variants(domain: str) -> Tuple[str | None, List[str], str | None,
     for url in variants:
         try:
             start = time.time()
-            resp = requests.get(url, timeout=10, allow_redirects=True)
+            resp = SESSION.get(url, timeout=10, allow_redirects=True)
             load_ms = int((time.time() - start) * 1000)
             if resp.status_code < 400:
                 chain = [r.headers.get("Location", r.url) for r in resp.history]
                 if chain:
                     chain.append(resp.url)
                 return resp.url, chain, resp.text, resp.status_code, load_ms
-        except Exception:
+        except requests.RequestException:
             continue
     return None, [], None, 0, 0
 
@@ -458,21 +486,21 @@ def scan_page_url(
     performs parsing and link checks. This allows callers to reuse a previously
     retrieved page body.
     """
-    data: Dict[str, Any] = {}
+    metrics = PageMetrics()
     try:
         if html is None:
             start = time.time()
-            response = requests.get(url, timeout=15, allow_redirects=True)
+            response = SESSION.get(url, timeout=15, allow_redirects=True)
             status_code = response.status_code
             redirect_chain = [r.headers.get("Location", r.url) for r in response.history]
             if redirect_chain:
                 redirect_chain.append(response.url)
             load_time_ms = int((time.time() - start) * 1000)
             html = response.text
-        data["status_code"] = status_code
-        data["redirect_chain"] = redirect_chain or []
+        metrics.status_code = status_code
+        metrics.redirect_chain = redirect_chain or []
         if load_time_ms is not None:
-            data["page_load_time_ms"] = load_time_ms
+            metrics.page_load_time_ms = load_time_ms
         soup = BeautifulSoup(html or "", "html.parser")
 
         anchors = soup.find_all("a")
@@ -488,18 +516,18 @@ def scan_page_url(
             else:
                 internal += 1
             try:
-                head = requests.head(full, timeout=5, allow_redirects=True)
+                head = SESSION.head(full, timeout=5, allow_redirects=True)
                 if head.status_code >= 400:
                     broken += 1
-            except Exception:
+            except requests.RequestException:
                 broken += 1
-        data["broken_links_count"] = broken
-        data["internal_links_count"] = internal
-        data["external_links_count"] = external
+        metrics.broken_links_count = broken
+        metrics.internal_links_count = internal
+        metrics.external_links_count = external
 
         images = soup.find_all("img")
-        data["page_images_count"] = len(images)
-        data["missing_alt_text_images_count"] = sum(
+        metrics.page_images_count = len(images)
+        metrics.missing_alt_text_images_count = sum(
             1 for img in images if not img.get("alt")
         )
 
@@ -509,31 +537,34 @@ def scan_page_url(
             src = iframe.get("src", "")
             if "youtube" in src or "vimeo" in src:
                 videos.append(iframe)
-        data["iframe_embeds_count"] = len(iframes)
-        data["video_embeds_count"] = len(videos)
+        metrics.iframe_embeds_count = len(iframes)
+        metrics.video_embeds_count = len(videos)
 
         titles = soup.find_all("title")
         metas = soup.find_all("meta", attrs={"name": "description"})
-        data["duplicate_meta_titles"] = len(titles) > 1
-        data["duplicate_meta_descriptions"] = len(metas) > 1
+        metrics.duplicate_meta_titles = len(titles) > 1
+        metrics.duplicate_meta_descriptions = len(metas) > 1
 
         if extract_contact_details:
             contacts = extract_contact_details(html or "")
             if contacts["emails"]:
-                data["emails"] = contacts["emails"]
+                metrics.emails = contacts["emails"]
             if contacts["phone_numbers"]:
-                data["phone_numbers"] = contacts["phone_numbers"]
+                metrics.phone_numbers = contacts["phone_numbers"]
             if contacts["sms_numbers"]:
-                data["sms_numbers"] = contacts["sms_numbers"]
+                metrics.sms_numbers = contacts["sms_numbers"]
             if contacts["addresses"]:
-                data["addresses"] = contacts["addresses"]
+                metrics.addresses = contacts["addresses"]
+    except requests.RequestException as exc:  # pragma: no cover - best effort
+        logger.error("page fetch error: %s", exc)
     except Exception as exc:  # pragma: no cover - best effort
         logger.error("page metrics error: %s", exc)
 
-    if data:
-        _update_page_metrics(session, url, data)
+    metrics_dict = asdict(metrics)
+    if any(value for value in metrics_dict.values() if value):
+        _update_page_metrics(session, url, metrics_dict)
 
-    return data
+    return metrics_dict
 
 
 def crawl_site(start_url: str, session: Any, max_pages: int = 20) -> None:
@@ -555,7 +586,7 @@ def crawl_site(start_url: str, session: Any, max_pages: int = 20) -> None:
         sms.update(page_data.get("sms_numbers", []))
         addresses.update(page_data.get("addresses", []))
         try:
-            resp = requests.get(url, timeout=10)
+            resp = SESSION.get(url, timeout=10)
             soup = BeautifulSoup(resp.text, "html.parser")
             for a in soup.find_all("a"):
                 href = a.get("href")
@@ -567,7 +598,7 @@ def crawl_site(start_url: str, session: Any, max_pages: int = 20) -> None:
                 full = full.split("#")[0]
                 if full not in visited and full not in queue:
                     queue.append(full)
-        except Exception:
+        except requests.RequestException:
             continue
 
     agg: Dict[str, Any] = {}
@@ -705,7 +736,7 @@ def analytics_scan(domain: str, session: Any, html: str | None = None) -> None:
     url = f"http://{domain}"
     try:
         if html is None:
-            resp = requests.get(url, timeout=10)
+            resp = SESSION.get(url, timeout=10)
             html = resp.text
         found = {}
         if "googletagmanager.com" in html or "gtag/js" in html:
@@ -722,7 +753,7 @@ def analytics_scan(domain: str, session: Any, html: str | None = None) -> None:
             "compliance_status": "found" if found else "missing",
         }
         _insert_analytics(session, row)
-    except Exception as exc:  # pragma: no cover - best effort
+    except requests.RequestException as exc:  # pragma: no cover - best effort
         logger.error("analytics scan error: %s", exc)
 
 
@@ -979,22 +1010,30 @@ def run_scans(domain: str, tests: List[str], session: Any) -> None:
         "redirect_chain": redirects,
     }
 
-    for name in tests:
-        if name == "page":
-            crawl_site(url, session)
-            continue
-        func = TESTS.get(name)
-        if not func:
-            logger.warning("Unknown test: %s", name)
-            continue
-        if name == "analytics":
-            func(canonical, session, cache.get("html"))
-        elif name == "screenshot":
-            func(canonical, session, "/", cache)
-        elif name == "heatmap":
-            func(canonical, session, cache)
-        else:
-            func(canonical, session)
+    futures = []
+    with ThreadPoolExecutor(max_workers=len(tests)) as executor:
+        for name in tests:
+            if name == "page":
+                crawl_site(url, session)
+                continue
+            func = TESTS.get(name)
+            if not func:
+                logger.warning("Unknown test: %s", name)
+                continue
+            if name == "analytics":
+                futures.append(executor.submit(func, canonical, session, cache.get("html")))
+            elif name == "screenshot":
+                futures.append(executor.submit(func, canonical, session, "/", cache))
+            elif name == "heatmap":
+                futures.append(executor.submit(func, canonical, session, cache))
+            else:
+                futures.append(executor.submit(func, canonical, session))
+
+        for f in as_completed(futures):
+            try:
+                f.result()
+            except Exception as exc:  # pragma: no cover - best effort
+                logger.error("scan failed: %s", exc)
 
 
 def parse_args() -> argparse.Namespace:

@@ -38,17 +38,23 @@ def load_medusa(monkeypatch):
     stub("dns.resolver", resolve=lambda *a, **k: [])
     dns_mod = stub("dns")
     dns_mod.resolver = sys.modules["dns.resolver"]
-    stub(
-        "requests",
-        get=lambda *a, **k: types.SimpleNamespace(
-            history=[], url=a[0], status_code=200, text=""
-        ),
-        options=lambda *a, **k: types.SimpleNamespace(
-            status_code=200, headers={"Allow": "GET"}, url=a[0]
-        ),
-        head=lambda *a, **k: types.SimpleNamespace(status_code=200),
-        post=lambda *a, **k: types.SimpleNamespace(status_code=200),
+    req_stub = types.SimpleNamespace()
+    req_stub.get = lambda *a, **k: types.SimpleNamespace(
+        history=[], url=a[0], status_code=200, text=""
     )
+    req_stub.options = lambda *a, **k: types.SimpleNamespace(
+        status_code=200, headers={"Allow": "GET"}, url=a[0]
+    )
+    req_stub.head = lambda *a, **k: types.SimpleNamespace(status_code=200)
+    req_stub.post = lambda *a, **k: types.SimpleNamespace(status_code=200)
+    req_stub.Session = lambda: types.SimpleNamespace(
+        get=req_stub.get,
+        head=req_stub.head,
+        options=req_stub.options,
+        post=req_stub.post,
+        headers={},
+    )
+    stub("requests", **req_stub.__dict__)
     stub(
         "bs4",
         BeautifulSoup=lambda *a, **k: types.SimpleNamespace(
