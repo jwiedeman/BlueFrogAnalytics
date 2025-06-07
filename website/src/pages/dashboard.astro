@@ -8,6 +8,17 @@ const description = 'Your personal Blue Frog Analytics dashboard.';
   <section class="container py-5">
     <h1 class="text-center mb-4">Dashboard Overview</h1>
     <p id="user-email" class="text-center mb-5"></p>
+    <div class="row justify-content-center mb-4">
+      <div class="col-md-4">
+        <label for="overview-domain-select" class="form-label">Select Domain</label>
+        <select id="overview-domain-select" class="form-select"></select>
+      </div>
+    </div>
+    <div id="domain-overview" class="mb-5 d-none">
+      <table class="table table-striped w-auto">
+        <tbody id="overview-body"></tbody>
+      </table>
+    </div>
     <div class="table-responsive">
       <table class="table table-striped table-hover">
         <thead>
@@ -32,8 +43,48 @@ const description = 'Your personal Blue Frog Analytics dashboard.';
         window.API_BASE_URL || 'https://api.bluefroganalytics.com:6001';
       const emailEl = document.getElementById('user-email');
       const bodyEl = document.getElementById('domain-body');
+      const selectEl = document.getElementById('overview-domain-select');
+      const overviewEl = document.getElementById('domain-overview');
+      const overviewBody = document.getElementById('overview-body');
       let domains = [];
       const dataMap = {};
+
+      const badge = score => {
+        if (typeof score !== 'number') return 'bg-secondary';
+        if (score >= 90) return 'bg-success';
+        if (score >= 50) return 'bg-warning';
+        return 'bg-danger';
+      };
+
+      const renderOverview = data => {
+        overviewBody.innerHTML = '';
+        if (!data) {
+          overviewEl.classList.add('d-none');
+          return;
+        }
+        const { info = {}, tag_health = {} } = data;
+        const rows = [
+          { label: 'Desktop SEO', value: info.desktop_seo_score, score: true },
+          { label: 'Mobile SEO', value: info.mobile_seo_score, score: true },
+          { label: 'Desktop Performance', value: info.desktop_performance_score, score: true },
+          { label: 'Mobile Performance', value: info.mobile_performance_score, score: true },
+          {
+            label: 'Working Variants',
+            value: Array.isArray(tag_health.working_variants) ? tag_health.working_variants.length : '--'
+          },
+          { label: 'Compliance', value: tag_health.compliance_status || '--' }
+        ];
+        for (const r of rows) {
+          const tr = document.createElement('tr');
+          if (r.score) {
+            tr.innerHTML = `<th>${r.label}</th><td><span class="badge ${badge(r.value)}">${r.value ?? '--'}</span></td>`;
+          } else {
+            tr.innerHTML = `<th>${r.label}</th><td>${r.value}</td>`;
+          }
+          overviewBody.appendChild(tr);
+        }
+        overviewEl.classList.remove('d-none');
+      };
 
       const render = () => {
         bodyEl.innerHTML = '';
@@ -47,12 +98,6 @@ const description = 'Your personal Blue Frog Analytics dashboard.';
           const seo = info.desktop_seo_score || info.mobile_seo_score;
           const perf = info.desktop_performance_score || info.mobile_performance_score;
           const analytics = info.contains_gtm_or_ga ? 'Yes' : info.contains_gtm_or_ga === false ? 'No' : '--';
-          const badge = score => {
-            if (typeof score !== 'number') return 'bg-secondary';
-            if (score >= 90) return 'bg-success';
-            if (score >= 50) return 'bg-warning';
-            return 'bg-danger';
-          };
           const row = document.createElement('tr');
           row.innerHTML = `
             <td>${name}</td>
@@ -79,7 +124,12 @@ const description = 'Your personal Blue Frog Analytics dashboard.';
             if (res.ok) {
               const profile = await res.json();
               domains = Array.isArray(profile.domains) ? profile.domains : [];
+              selectEl.innerHTML = '';
               for (const d of domains) {
+                const opt = document.createElement('option');
+                opt.value = d;
+                opt.textContent = d;
+                selectEl.appendChild(opt);
                 try {
                   const r = await fetch(
                     `${API_BASE}/api/domain-info?domain=${encodeURIComponent(d)}`,
@@ -91,14 +141,34 @@ const description = 'Your personal Blue Frog Analytics dashboard.';
                 } catch {}
               }
               render();
+              if (domains.length) {
+                selectEl.value = domains[0];
+                loadOverview(user, domains[0]);
+              }
             } else {
               render();
             }
           } catch (err) {
             render();
           }
+          selectEl.addEventListener('change', () => {
+            loadOverview(user, selectEl.value);
+          });
           if (window.hideSpinner) window.hideSpinner();
         });
+      };
+
+      const loadOverview = async (user, name) => {
+        const token = await user.getIdToken();
+        try {
+          const res = await fetch(
+            `${API_BASE}/api/domain-overview?domain=${encodeURIComponent(name)}`,
+            { headers: { Authorization: `Bearer ${token}` } }
+          );
+          if (res.ok) {
+            renderOverview(await res.json());
+          }
+        } catch {}
       };
 
       if (window.firebaseAuth) {

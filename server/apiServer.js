@@ -1112,6 +1112,37 @@ app.get('/api/domain-pages', authMiddleware, async (req, res) => {
   }
 });
 
+app.get('/api/domain-overview', authMiddleware, async (req, res) => {
+  let { domain } = req.query;
+  if (typeof domain !== 'string') {
+    return res.status(400).json({ error: 'Invalid domain' });
+  }
+  domain = domain.toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '');
+  const host = domain.split('/')[0];
+  const parts = host.split('.');
+  if (parts.length < 2) {
+    return res.status(400).json({ error: 'Invalid domain' });
+  }
+  const tld = parts.pop();
+  const name = parts.join('.');
+  try {
+    const info = await cassandraClient.execute(
+      'SELECT * FROM domain_discovery.domains_processed WHERE domain=? AND tld=?',
+      [name, tld],
+      { prepare: true }
+    );
+    const health = await cassandraClient.execute(
+      'SELECT * FROM domain_discovery.analytics_tag_health WHERE domain=? ORDER BY scan_date DESC LIMIT 1',
+      [name],
+      { prepare: true }
+    );
+    res.json({ info: info.rows[0] || {}, tag_health: health.rows[0] || {} });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Database error' });
+  }
+});
+
 
 app.post('/api/audit/accessibility', authMiddleware, async (req, res) => {
   const { url } = req.body;
