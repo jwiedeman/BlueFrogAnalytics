@@ -24,6 +24,10 @@ website tools rather than standalone workers.
 
 Refer to each subdirectory's README for build and usage instructions.
 
+For convenience a helper script `build_all_docker.sh` is available in the
+repository root. Running it will build Docker images for every worker and bot
+automatically.
+
 ## Docker Swarm
 
 This image can also run as a service in Docker Swarm after being built and pushed to your registry.
