@@ -417,8 +417,12 @@ def _insert_analytics(session, data: Dict[str, Any]) -> None:
     _safe_execute(session, stmt, params)
 
 
-def check_site_variants(domain: str) -> Tuple[str | None, List[str]]:
-    """Return reachable URL and redirect chain for common variants."""
+def check_site_variants(domain: str) -> Tuple[str | None, List[str], str | None, int, int]:
+    """Return reachable URL plus redirect chain and HTML.
+
+    The function fetches the homepage once and returns the response body along
+    with the status code and load time so other scans can reuse the data.
+    """
     variants = [
         f"https://{domain}",
         f"http://{domain}",
@@ -427,30 +431,49 @@ def check_site_variants(domain: str) -> Tuple[str | None, List[str]]:
     ]
     for url in variants:
         try:
+            start = time.time()
             resp = requests.get(url, timeout=10, allow_redirects=True)
+            load_ms = int((time.time() - start) * 1000)
             if resp.status_code < 400:
                 chain = [r.headers.get("Location", r.url) for r in resp.history]
                 if chain:
                     chain.append(resp.url)
-                return resp.url, chain
+                return resp.url, chain, resp.text, resp.status_code, load_ms
         except Exception:
             continue
-    return None, []
+    return None, [], None, 0, 0
 
 
-def scan_page_url(url: str, session: Any) -> Dict[str, Any]:
-    """Collect metrics for a single page URL and return the data."""
+def scan_page_url(
+    url: str,
+    session: Any,
+    html: str | None = None,
+    status_code: int | None = None,
+    load_time_ms: int | None = None,
+    redirect_chain: List[str] | None = None,
+) -> Dict[str, Any]:
+    """Collect metrics for a single page URL and return the data.
+
+    If ``html`` is provided, the function skips fetching the page and only
+    performs parsing and link checks. This allows callers to reuse a previously
+    retrieved page body.
+    """
     data: Dict[str, Any] = {}
     try:
-        start = time.time()
-        response = requests.get(url, timeout=15, allow_redirects=True)
-        data["status_code"] = response.status_code
-        chain = [r.headers.get("Location", r.url) for r in response.history]
-        if chain:
-            chain.append(response.url)
-        data["redirect_chain"] = chain
-        data["page_load_time_ms"] = int((time.time() - start) * 1000)
-        soup = BeautifulSoup(response.text, "html.parser")
+        if html is None:
+            start = time.time()
+            response = requests.get(url, timeout=15, allow_redirects=True)
+            status_code = response.status_code
+            redirect_chain = [r.headers.get("Location", r.url) for r in response.history]
+            if redirect_chain:
+                redirect_chain.append(response.url)
+            load_time_ms = int((time.time() - start) * 1000)
+            html = response.text
+        data["status_code"] = status_code
+        data["redirect_chain"] = redirect_chain or []
+        if load_time_ms is not None:
+            data["page_load_time_ms"] = load_time_ms
+        soup = BeautifulSoup(html or "", "html.parser")
 
         anchors = soup.find_all("a")
         internal = external = broken = 0
@@ -495,7 +518,7 @@ def scan_page_url(url: str, session: Any) -> Dict[str, Any]:
         data["duplicate_meta_descriptions"] = len(metas) > 1
 
         if extract_contact_details:
-            contacts = extract_contact_details(response.text)
+            contacts = extract_contact_details(html or "")
             if contacts["emails"]:
                 data["emails"] = contacts["emails"]
             if contacts["phone_numbers"]:
@@ -673,13 +696,17 @@ def carbon_scan(domain: str, session: Any) -> None:
         logger.error("Carbon audit failed: %s", exc)
 
 
-def analytics_scan(domain: str, session: Any) -> None:
-    """Check for common analytics tags on the homepage."""
+def analytics_scan(domain: str, session: Any, html: str | None = None) -> None:
+    """Check for common analytics tags on the homepage.
+
+    When ``html`` is provided the function avoids fetching the page again.
+    """
     logger.info("[Analytics] scanning %s", domain)
     url = f"http://{domain}"
     try:
-        resp = requests.get(url, timeout=10)
-        html = resp.text
+        if html is None:
+            resp = requests.get(url, timeout=10)
+            html = resp.text
         found = {}
         if "googletagmanager.com" in html or "gtag/js" in html:
             found["google_tag_manager"] = True
@@ -723,22 +750,36 @@ def webpagetest_scan(domain: str, session: Any) -> None:
         logger.error("webpagetest error: %s", exc)
 
 
-def screenshot_scan(domain: str, session: Any, page: str = "/") -> None:
+def screenshot_scan(
+    domain: str,
+    session: Any,
+    page: str = "/",
+    cache: Dict[str, Any] | None = None,
+) -> str | None:
     """Capture a screenshot of the landing page or provided path."""
     target = f"{domain}{page}".rstrip("/") if page.startswith("/") else page
     logger.info("[Screenshot] capturing %s", target)
     try:
         path = screenshot_test(target)
         _update_page_metrics(session, f"https://{target}", {"screenshot_path": path})
+        if cache is not None:
+            cache["screenshot"] = path
+        return path
     except Exception as exc:  # pragma: no cover - best effort
         logger.error("screenshot error: %s", exc)
+    return None
 
 
-def heatmap_scan(domain: str, session: Any) -> None:
+def heatmap_scan(domain: str, session: Any, cache: Dict[str, Any] | None = None) -> None:
     """Generate a contrast heatmap for the homepage."""
     logger.info("[Heatmap] generating for %s", domain)
     try:
-        shot = screenshot_test(domain)
+        if cache and cache.get("screenshot"):
+            shot = cache["screenshot"]
+        else:
+            shot = screenshot_test(domain)
+            if cache is not None:
+                cache["screenshot"] = shot
         path = heatmap_test(shot)
         _update_page_metrics(session, f"https://{domain}", {"heatmap_path": path})
     except Exception as exc:  # pragma: no cover - best effort
@@ -867,11 +908,25 @@ def initial_recon_scan(domain: str, session: Any) -> None:
         _update_enrichment(session, domain, data)
 
 
-def page_metrics_scan(domain: str, session: Any) -> None:
+def page_metrics_scan(
+    domain: str,
+    session: Any,
+    html: str | None = None,
+    status_code: int | None = None,
+    load_time_ms: int | None = None,
+    redirect_chain: List[str] | None = None,
+) -> None:
     """Gather basic metrics for the site's homepage."""
     logger.info("[PageMetrics] scanning %s", domain)
     url = f"https://{domain}"
-    scan_page_url(url, session)
+    scan_page_url(
+        url,
+        session,
+        html=html,
+        status_code=status_code,
+        load_time_ms=load_time_ms,
+        redirect_chain=redirect_chain,
+    )
 
 
 def enrich_scan(domain: str, session: Any) -> None:
@@ -905,7 +960,7 @@ TESTS: Dict[str, Callable[[str, Any], None]] = {
 
 def run_scans(domain: str, tests: List[str], session: Any) -> None:
     """Execute the selected scan functions for a domain."""
-    url, redirects = check_site_variants(domain)
+    url, redirects, html, status_code, load_ms = check_site_variants(domain)
     if not url:
         logger.error("Domain not reachable")
         _update_enrichment(session, domain, {"status": False})
@@ -917,6 +972,13 @@ def run_scans(domain: str, tests: List[str], session: Any) -> None:
 
     canonical = urlparse(url).hostname or domain
 
+    cache = {
+        "html": html,
+        "status_code": status_code,
+        "load_time_ms": load_ms,
+        "redirect_chain": redirects,
+    }
+
     for name in tests:
         if name == "page":
             crawl_site(url, session)
@@ -925,7 +987,14 @@ def run_scans(domain: str, tests: List[str], session: Any) -> None:
         if not func:
             logger.warning("Unknown test: %s", name)
             continue
-        func(canonical, session)
+        if name == "analytics":
+            func(canonical, session, cache.get("html"))
+        elif name == "screenshot":
+            func(canonical, session, "/", cache)
+        elif name == "heatmap":
+            func(canonical, session, cache)
+        else:
+            func(canonical, session)
 
 
 def parse_args() -> argparse.Namespace:

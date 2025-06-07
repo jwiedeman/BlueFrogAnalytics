@@ -89,9 +89,12 @@ def load_medusa(monkeypatch):
     return medusa
 
 
-@pytest.fixture
-def medusa(monkeypatch):
-    return load_medusa(monkeypatch)
+@pytest.fixture(scope="module")
+def medusa():
+    mp = pytest.MonkeyPatch()
+    mod = load_medusa(mp)
+    yield mod
+    mp.undo()
 
 
 def test_parse_args_with_tests(monkeypatch, medusa):
@@ -130,7 +133,11 @@ def test_run_scans_invokes_functions(monkeypatch, medusa):
 
     fake_tests = {"one": make("one"), "two": make("two")}
     monkeypatch.setattr(medusa, "TESTS", fake_tests, raising=False)
-    monkeypatch.setattr(medusa, "check_site_variants", lambda d: ("https://ex.com", []))
+    monkeypatch.setattr(
+        medusa,
+        "check_site_variants",
+        lambda d: ("https://ex.com", [], "", 200, 100),
+    )
     monkeypatch.setattr(medusa, "_update_enrichment", lambda *a, **k: None)
     monkeypatch.setattr(medusa, "_update_page_metrics", lambda *a, **k: None)
     medusa.run_scans("example.com", ["one", "two"], "session")
