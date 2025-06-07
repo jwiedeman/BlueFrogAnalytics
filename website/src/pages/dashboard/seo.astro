@@ -32,7 +32,7 @@ const description = 'Search engine optimization insights.';
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
-                <tr><th>Page</th><th>SEO Score</th></tr>
+                <tr><th>Page</th><th>SEO Score</th><th>Suggestions</th></tr>
               </thead>
               <tbody id="seo-pages-body"></tbody>
             </table>
@@ -80,25 +80,30 @@ const description = 'Search engine optimization insights.';
       const renderDomain = name => {
         const info = domainData[name] || {};
         const seo = info.desktop_seo_score || info.mobile_seo_score;
-        domainInfo.innerHTML =
+        const badgeHtml =
           typeof seo === 'number'
             ? `<span class="badge ${badge(seo)}">${seo}</span>`
             : '<span class="badge bg-secondary">--</span>';
+        const fixes =
+          info.desktop_seo_suggestions || info.mobile_seo_suggestions || '';
+        domainInfo.innerHTML = badgeHtml + (fixes ? `<p class="small mb-0">${fixes}</p>` : '');
       };
 
       const renderPages = pages => {
         pagesBody.innerHTML = '';
-        if (!pages.length) {
-          pagesBody.innerHTML =
-            '<tr><td colspan="2" class="text-center">No pages found.</td></tr>';
-          return;
-        }
+          if (!pages.length) {
+            pagesBody.innerHTML =
+              '<tr><td colspan="3" class="text-center">No pages found.</td></tr>';
+            return;
+          }
         pages.forEach(p => {
           const score = p.desktop_seo_score || p.mobile_seo_score;
+          const fixes = p.desktop_seo_suggestions || p.mobile_seo_suggestions;
           const tr = document.createElement('tr');
           tr.innerHTML = `
             <th>${p.url}</th>
-            <td><span class="badge ${badge(score)}">${score ?? '--'}</span></td>`;
+            <td><span class="badge ${badge(score)}">${score ?? '--'}</span></td>
+            <td>${fixes || ''}</td>`;
           pagesBody.appendChild(tr);
         });
       };
