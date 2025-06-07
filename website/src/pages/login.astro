@@ -1,7 +1,7 @@
 ---
 import DocLayout from '../components/DocLayout.astro';
 import FirebaseScripts from '../components/FirebaseScripts.astro';
-import loginImage from '../assets/login.jpg';
+import loginImageLarge from '../assets/login.jpg';
 
 const title = 'Client Login';
 const description = 'Sign in to access the Blue Frog Analytics dashboard.';
@@ -49,10 +49,13 @@ const description = 'Sign in to access the Blue Frog Analytics dashboard.';
           </div>
         </form>
       </div>
-      <div
-        class="col-md-6 d-none d-md-block"
-        style={`background:url('${loginImage.src}') center/cover no-repeat;`}
-      ></div>
+      <div class="col-md-6 d-none d-md-block p-0">
+        <picture>
+          <source srcset="/login-960.webp" type="image/webp" media="(max-width: 1200px)" />
+          <source srcset="/login-480.webp" type="image/webp" media="(max-width: 768px)" />
+          <img src={loginImageLarge.src} alt="Login" class="img-fluid w-100 h-100" loading="lazy" style="object-fit: cover;" />
+        </picture>
+      </div>
     </div>
   </section>
 
