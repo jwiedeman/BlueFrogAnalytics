@@ -101,3 +101,11 @@ pm2 save        # persist the process list
 This sequence ensures that PM2 restarts the API using the latest code and
 dependencies. Adjust the process name or ecosystem file path if your setup
 differs.
+
+To monitor the process after launch, view the logs in real time:
+
+```bash
+pm2 logs api
+```
+
+Press Ctrl+C to exit the log stream without stopping the API.
