@@ -56,11 +56,17 @@ logger = logging.getLogger(__name__)
 
 # Use the bundled enrichment module so this worker is self contained
 try:
-    from enrichment import analyze_target, is_domain_up, extract_contact_details
+    from enrichment import (
+        analyze_target,
+        is_domain_up,
+        extract_contact_details,
+        analyze_tech,
+    )
 except Exception:  # pragma: no cover - optional dependency
     analyze_target = None
     is_domain_up = None
     extract_contact_details = None
+    analyze_tech = None
 
 # Helper functions for Cassandra integration
 
@@ -352,6 +358,30 @@ def _insert_business(session, data: Dict[str, Any]) -> None:
     _safe_execute(session, stmt, params)
 
 
+def _insert_analytics(session, data: Dict[str, Any]) -> None:
+    """Insert analytics tag scan results."""
+    if not session:
+        return
+    query = (
+        "INSERT INTO domain_discovery.analytics_tag_health "
+        "(domain, scan_date, working_variants, scanned_urls, "
+        "found_analytics, page_results, variant_results, compliance_status) "
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+    )
+    stmt = session.prepare(query)
+    params = (
+        data.get("domain"),
+        datetime.utcnow(),
+        data.get("working_variants", []),
+        data.get("scanned_urls", []),
+        {k: json.dumps(v) for k, v in data.get("found_analytics", {}).items()},
+        {k: json.dumps(v) for k, v in data.get("page_results", {}).items()},
+        {k: json.dumps(v) for k, v in data.get("variant_results", {}).items()},
+        data.get("compliance_status"),
+    )
+    _safe_execute(session, stmt, params)
+
+
 def check_site_variants(domain: str) -> Tuple[str | None, List[str]]:
     """Return reachable URL and redirect chain for common variants."""
     variants = [
@@ -499,6 +529,11 @@ def crawl_site(start_url: str, session: Any, max_pages: int = 20) -> None:
 def ssl_scan(domain: str, session: Any) -> None:
     """Run SSL certificate checks."""
     logger.info("[SSL] scanning %s", domain)
+    try:
+        info = cert_details_test(domain)
+        _update_enrichment(session, domain, {"certificate_info": info})
+    except Exception as exc:  # pragma: no cover - best effort
+        logger.error("ssl scan error: %s", exc)
 
 
 def whois_scan(domain: str, session: Any) -> None:
@@ -554,8 +589,17 @@ def dns_scan(domain: str, session: Any) -> None:
 
 
 def tech_scan(domain: str, session: Any) -> None:
-    """Placeholder for technology fingerprinting."""
+    """Detect site technology and update enrichment."""
     logger.info("[TECH] scanning %s", domain)
+    if not analyze_tech:
+        logger.error("analyze_tech dependency not available")
+        return
+    try:
+        tech = analyze_tech(domain)
+        if tech:
+            _update_enrichment(session, domain, {"tech_detect": tech})
+    except Exception as exc:  # pragma: no cover - best effort
+        logger.error("tech scan error: %s", exc)
 
 
 def lighthouse_scan(domain: str, session: Any) -> None:
@@ -592,8 +636,29 @@ def carbon_scan(domain: str, session: Any) -> None:
 
 
 def analytics_scan(domain: str, session: Any) -> None:
-    """Placeholder analytics tag scan."""
+    """Check for common analytics tags on the homepage."""
     logger.info("[Analytics] scanning %s", domain)
+    url = f"http://{domain}"
+    try:
+        resp = requests.get(url, timeout=10)
+        html = resp.text
+        found = {}
+        if "googletagmanager.com" in html or "gtag/js" in html:
+            found["google_tag_manager"] = True
+        if "google-analytics.com" in html:
+            found["google_analytics"] = True
+        row = {
+            "domain": domain,
+            "working_variants": [url],
+            "scanned_urls": [url],
+            "found_analytics": found,
+            "page_results": {},
+            "variant_results": {},
+            "compliance_status": "found" if found else "missing",
+        }
+        _insert_analytics(session, row)
+    except Exception as exc:  # pragma: no cover - best effort
+        logger.error("analytics scan error: %s", exc)
 
 
 def webpagetest_scan(domain: str, session: Any) -> None:
