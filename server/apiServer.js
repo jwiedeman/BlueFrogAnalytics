@@ -1149,6 +1149,48 @@ app.get('/api/domain-overview', authMiddleware, async (req, res) => {
   }
 });
 
+app.get('/api/leads', authMiddleware, async (req, res) => {
+  const { type = 'maps', q = '', page = '1', size = '20' } = req.query;
+  const pageNum = parseInt(page, 10) || 1;
+  const pageSize = Math.min(parseInt(size, 10) || 20, 100);
+  const offset = (pageNum - 1) * pageSize;
+  try {
+    if (type === 'domains') {
+      const result = await cassandraClient.execute(
+        'SELECT domain, tld FROM domain_discovery.domains_processed'
+      );
+      let rows = result.rows.map(r => ({ domain: `${r.domain}.${r.tld}` }));
+      if (q) {
+        const search = q.toLowerCase();
+        rows = rows.filter(r => r.domain.toLowerCase().includes(search));
+      }
+      const total = rows.length;
+      rows = rows.slice(offset, offset + pageSize);
+      res.json({ total, page: pageNum, pageSize, results: rows });
+    } else {
+      const result = await cassandraClient.execute(
+        'SELECT name, address, website, phone FROM domain_discovery.businesses'
+      );
+      let rows = result.rows;
+      if (q) {
+        const search = q.toLowerCase();
+        rows = rows.filter(
+          r =>
+            (r.name && r.name.toLowerCase().includes(search)) ||
+            (r.website && r.website.toLowerCase().includes(search)) ||
+            (r.address && r.address.toLowerCase().includes(search))
+        );
+      }
+      const total = rows.length;
+      rows = rows.slice(offset, offset + pageSize);
+      res.json({ total, page: pageNum, pageSize, results: rows });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Database error' });
+  }
+});
+
 
 app.post('/api/audit/accessibility', authMiddleware, async (req, res) => {
   const { url } = req.body;
