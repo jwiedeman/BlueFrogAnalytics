@@ -11,6 +11,8 @@ import certifi
 import gzip
 import io
 import json
+import logging
+import os
 import random
 import re
 import socket
@@ -31,6 +33,12 @@ from tldextract import extract
 from Wappalyzer import Wappalyzer, WebPage
 
 warnings.filterwarnings("ignore", category=UserWarning, module="Wappalyzer")
+
+logging.basicConfig(
+    level=os.environ.get("MEDUSA_LOG_LEVEL", "INFO").upper(),
+    format="%(asctime)s %(levelname)s %(message)s",
+)
+logger = logging.getLogger(__name__)
 
 GEOIP_CITY_DB = "GeoLite2-City.mmdb"
 GEOIP_ASN_DB = "GeoLite2-ASN.mmdb"
@@ -163,7 +171,7 @@ def analyze_tech(target: str) -> Dict[str, Any]:
             return {"technologies": list(tech)}
         return {"technologies": str(tech)}
     except Exception as e:  # pragma: no cover - best effort
-        print(f"Tech detection error: {e}")
+        logger.error("Tech detection error: %s", e)
         return {}
 
 
@@ -177,7 +185,7 @@ def get_asn_info(ip: str) -> Dict[str, Any]:
             info["isp"] = asn.autonomous_system_organization or ""
             info["org"] = asn.autonomous_system_organization or ""
     except Exception as e:
-        print(f"ASN Error: {e}")
+        logger.error("ASN Error: %s", e)
     return info
 
 
@@ -219,7 +227,7 @@ def get_geoip_info(ip: str) -> Dict[str, Any]:
             info["lon"] = city.location.longitude or 0.0
             info["timezone"] = city.location.time_zone or ""
     except Exception as e:
-        print(f"GeoIP Error: {e}")
+        logger.error("GeoIP Error: %s", e)
     return info
 
 
@@ -237,7 +245,7 @@ def analyze_ssl(target: str) -> Dict[str, Any]:
     except ssl.SSLError:
         pass
     except Exception as e:
-        print(f"SSL Error: {e}")
+        logger.error("SSL Error: %s", e)
     return info
 
 
@@ -250,7 +258,7 @@ def analyze_content(target: str) -> Dict[str, Any]:
             langs = detect_langs(content)
             info["languages"] = {lang.lang: lang.prob for lang in langs}
         except Exception as e:
-            print(f"Language detection error: {e}")
+            logger.error("Language detection error: %s", e)
             info["languages"] = {}
         info.update(extract_contact_details(response.text))
         patterns = {
@@ -261,7 +269,7 @@ def analyze_content(target: str) -> Dict[str, Any]:
             if matches:
                 info[key] = list(set(matches))
     except Exception as e:
-        print(f"Content Error: {e}")
+        logger.error("Content Error: %s", e)
     return info
 
 
@@ -481,7 +489,7 @@ def analyze_homepage(target: str, is_wordpress: bool = False) -> Dict[str, Any]:
         info["aria_landmark_count"] = len(soup.find_all(attrs={"role": True}))
         info["form_accessibility_issues"] = 0
     except Exception as e:
-        print(f"Homepage analysis error for {target}: {e}")
+        logger.error("Homepage analysis error for %s: %s", target, e)
     return info
 
 
@@ -543,7 +551,7 @@ def analyze_target(target: str) -> Dict[str, Any]:
     result: Dict[str, Any] = {"query": target}
     ip = resolve_target(target)
     if not ip:
-        print(f"Warning: Could not resolve IP for {target}")
+        logger.warning("Could not resolve IP for %s", target)
         return result
 
     result.update(get_geoip_info(ip))

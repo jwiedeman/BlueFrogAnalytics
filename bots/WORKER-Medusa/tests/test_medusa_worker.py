@@ -37,28 +37,28 @@ def load_medusa(monkeypatch):
 
     # stub run_test modules used by medusa
     test_modules = [
-        'test_open_ports',
-        'test_http_methods',
-        'test_waf_detection',
-        'test_directory_enumeration',
-        'test_certificate_details',
-        'test_meta_tags',
-        'test_compare_sitemaps_robots',
-        'test_cookie_settings',
-        'test_external_resources',
-        'test_passive_subdomains',
-        'test_whois',
-        'test_dns_enumeration',
-        'test_webpagetest',
-        'test_full_page_screenshot',
-        'test_contrast_heatmap',
-        'test_google_maps',
+        'open_ports',
+        'http_methods',
+        'waf_detection',
+        'directory_enumeration',
+        'certificate_details',
+        'meta_tags',
+        'compare_sitemaps_robots',
+        'cookie_settings',
+        'external_resources',
+        'passive_subdomains',
+        'whois',
+        'dns_enumeration',
+        'webpagetest',
+        'full_page_screenshot',
+        'contrast_heatmap',
+        'google_maps',
     ]
 
-    # ensure the parent tests package exists so imports succeed
-    stub('tests')
+    # ensure the scans package exists so imports succeed
+    stub('scans')
     for name in test_modules:
-        stub(f'tests.{name}', run_test=lambda *a, **k: 'stub')
+        stub(f'scans.{name}', run_test=lambda *a, **k: 'stub')
 
     # load module from file
     path = Path(__file__).resolve().parent.parent / 'medusa.py'

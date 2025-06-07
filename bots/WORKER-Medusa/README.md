@@ -17,9 +17,16 @@ python medusa.py --domain example.com --all
 python medusa.py --domain example.com --tests ssl,dns
 ```
 
-Set `CASSANDRA_URL` and `CASSANDRA_KEYSPACE` to point at your cluster. By
-default the worker connects to `domain_discovery` at
-`192.168.1.201,192.168.1.202,192.168.1.203,192.168.1.204`.
+Set the following environment variables to connect to Cassandra:
+
+- `MEDUSA_CASSANDRA_HOSTS` – comma separated list of nodes
+- `MEDUSA_CASSANDRA_PORT` – port number (defaults to `9042`)
+- `MEDUSA_CASSANDRA_KEYSPACE` – keyspace name (defaults to `domain_discovery`)
+- `MEDUSA_CASSANDRA_DC` – data center name (defaults to `datacenter1`)
+
+The worker falls back to `CASSANDRA_URL` and `CASSANDRA_KEYSPACE` for backward
+compatibility and uses `192.168.1.201,192.168.1.202,192.168.1.203,192.168.1.204`
+when no variables are provided.
 
 Available test groups include:
 
@@ -41,7 +48,7 @@ Available test groups include:
 Run with `--all` to execute every scan. Results are saved to Cassandra using the
 columns outlined in `db_schema.md`.
 
-The `tests/` directory houses the reconnaissance modules imported from
+The `scans/` directory houses the reconnaissance modules imported from
 `BOT-Recon_[Py]` along with the additional modular tests from
 `BOT-SensorFusion_[Py]`. The experimental fingerprinting engine and its related
 tests remain in the Sensor Fusion bot. Medusa focuses on the common modules that
