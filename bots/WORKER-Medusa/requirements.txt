@@ -1,0 +1,15 @@
+certifi
+cassandra-driver
+dnspython
+tldextract
+requests
+beautifulsoup4
+Wappalyzer
+geoip2
+langdetect
+cryptography
+numpy
+Pillow
+playwright
+pytest
+
