@@ -83,3 +83,21 @@ To avoid browser warnings when connecting to the API you can still run it behind
 - When a scan or audit is run for a URL, the server checks if the domain exists
   in the `domains_processed` table. If present, the relevant metrics are stored
   back into that domain record automatically.
+
+## PM2 deployment
+
+If you manage the API with [PM2](https://pm2.keymetrics.io/) you can tear down
+the existing process, pull updates from GitHub and relaunch with:
+
+```bash
+pm2 stop api    # or `pm2 stop <id>`
+pm2 delete api  # remove the old process
+git pull
+npm install --production
+pm2 start apiServer.js --name api
+pm2 save        # persist the process list
+```
+
+This sequence ensures that PM2 restarts the API using the latest code and
+dependencies. Adjust the process name or ecosystem file path if your setup
+differs.
