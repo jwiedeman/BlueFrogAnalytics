@@ -545,11 +545,13 @@ def webpagetest_scan(domain: str, session: Any) -> None:
         print(f"webpagetest error: {exc}")
 
 
-def screenshot_scan(domain: str, session: Any) -> None:
-    print(f"[Screenshot] capturing {domain}")
+def screenshot_scan(domain: str, session: Any, page: str = "/") -> None:
+    """Capture a screenshot of the landing page or provided path."""
+    target = f"{domain}{page}".rstrip("/") if page.startswith("/") else page
+    print(f"[Screenshot] capturing {target}")
     try:
-        path = screenshot_test(domain)
-        _update_page_metrics(session, f"https://{domain}", {"screenshot_path": path})
+        path = screenshot_test(target)
+        _update_page_metrics(session, f"https://{target}", {"screenshot_path": path})
     except Exception as exc:  # pragma: no cover - best effort
         print(f"screenshot error: {exc}")
 
