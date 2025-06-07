@@ -15,7 +15,7 @@ in that document.
 Create a Python 3.11 (or earlier) virtual environment and install the required packages. The Cassandra driver used by Medusa does not support Python 3.12+:
 
 ```bash
-python3 -m venv venv
+python3.11 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 python -m playwright install

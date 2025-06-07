@@ -8,6 +8,12 @@ import pytest
 def load_medusa(monkeypatch):
     """Load medusa module with external deps stubbed."""
 
+    # Ensure the module loads regardless of the host Python version. The
+    # Cassandra driver currently supports up to Python 3.11, so the worker
+    # exits early on 3.12+. Patch ``sys.version_info`` so the import succeeds
+    # under newer interpreters used during testing.
+    monkeypatch.setattr(sys, "version_info", (3, 11, 0), raising=False)
+
     def stub(name, **attrs):
         mod = types.ModuleType(name)
         for k, v in attrs.items():
