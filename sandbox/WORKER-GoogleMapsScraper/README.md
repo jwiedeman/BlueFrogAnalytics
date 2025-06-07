@@ -20,6 +20,15 @@ using the `MAPS_STORAGE` environment variable or the `--store` option. When usin
 set the connection string with the `POSTGRES_DSN` environment variable. The Cassandra
 driver is required when the storage mode is set to `cassandra`.
 
+When using Cassandra you can configure connection parameters with the following
+environment variables:
+
+- `CASSANDRA_CONTACT_POINTS` – comma separated list of hosts
+- `CASSANDRA_PORT` – port number (default `9042`)
+- `CASSANDRA_KEYSPACE` – keyspace name (default `maps`)
+- `CASSANDRA_LOCAL_DATA_CENTER` – data center name (default `datacenter1`)
+
+
 ## City grid scraping
 
 `grid_worker.py` automates searches across a grid of GPS coordinates around a
