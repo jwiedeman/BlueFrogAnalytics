@@ -11,7 +11,7 @@ DEFAULT_CSV = "businesses.csv"
 
 def get_storage(cli_store: str | None = None) -> str:
     """Return selected storage backend."""
-    return (cli_store or os.environ.get("MAPS_STORAGE", "sqlite")).lower()
+    return (cli_store or os.environ.get("MAPS_STORAGE", "cassandra")).lower()
 
 def get_dsn(cli_dsn: str | None = None) -> str:
     """Return the Postgres DSN from CLI or environment."""
@@ -29,14 +29,34 @@ def init_db(dsn: str | None, *, storage: str | None = None):
                 "Cassandra driver is required for cassandra storage"
             ) from exc
 
-        hosts = os.environ.get("CASSANDRA_CONTACT_POINTS", "localhost").split(",")
+        from cassandra.policies import DCAwareRoundRobinPolicy, RetryPolicy
+
+        hosts_str = os.environ.get(
+            "CASSANDRA_CONTACT_POINTS",
+            os.environ.get(
+                "CASSANDRA_URL",
+                "192.168.1.201,192.168.1.202,192.168.1.203,192.168.1.204",
+            ),
+        )
+        hosts = [h.strip() for h in hosts_str.split(",") if h.strip()]
+        port = int(os.environ.get("CASSANDRA_PORT", "9042"))
         keyspace = os.environ.get("CASSANDRA_KEYSPACE", "maps")
-        cluster = Cluster(hosts)
+        local_dc = os.environ.get("CASSANDRA_LOCAL_DATA_CENTER", os.environ.get("CASSANDRA_DC", "datacenter1"))
+        cluster = Cluster(
+            contact_points=hosts,
+            port=port,
+            load_balancing_policy=DCAwareRoundRobinPolicy(local_dc=local_dc),
+            default_retry_policy=RetryPolicy(),
+            protocol_version=4,
+            connect_timeout=600,
+            idle_heartbeat_timeout=600,
+        )
         session = cluster.connect()
         session.execute(
             f"CREATE KEYSPACE IF NOT EXISTS {keyspace} WITH replication = {{'class': 'SimpleStrategy', 'replication_factor': 1}}"
         )
         session.set_keyspace(keyspace)
+        session.default_timeout = 600
         session.execute(
             """
             CREATE TABLE IF NOT EXISTS businesses (
