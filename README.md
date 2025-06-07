@@ -17,6 +17,35 @@ Blue Frog Analytics is a collection of tools for large scale domain intelligence
 - A Cassandra cluster (see `database-control/DB[Cfg]`)
 - Firebase project credentials
 
+## Quick start
+
+1. Install server dependencies and create an environment file:
+
+   ```bash
+   npm install
+   ```
+
+   Create `server/.env` and populate it with your Firebase service account path
+   and Cassandra connection details.
+
+2. Start the API server from the repository root:
+
+   ```bash
+   npm start
+   ```
+
+3. Launch the documentation site in a separate shell:
+
+   ```bash
+   cd website
+   npm install
+   cp .env.example .env
+   npm run dev
+   ```
+
+   Add your Firebase project configuration to `website/.env` before running the
+   dev server.
+
 ## Documentation site
 
 The documentation site lives in the `website` directory.
@@ -74,6 +103,15 @@ For a resilient Cassandra setup review `database-control/DB[Cfg]`. Dockerfiles a
 ## Sandbox
 
 The `sandbox` folder houses various experimental projects and is not intended for production use.
+
+## Running tests
+
+Unit tests for the Medusa worker live under `bots/WORKER-Medusa/tests`. Run them
+from the repository root with:
+
+```bash
+pytest -q
+```
 
 ## Continuous deployment
 
