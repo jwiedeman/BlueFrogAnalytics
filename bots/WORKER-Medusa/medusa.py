@@ -48,10 +48,11 @@ from urllib.parse import urljoin, urlparse
 
 # Use the bundled enrichment module so this worker is self contained
 try:
-    from enrichment import analyze_target, is_domain_up
+    from enrichment import analyze_target, is_domain_up, extract_contact_details
 except Exception:  # pragma: no cover - optional dependency
     analyze_target = None
     is_domain_up = None
+    extract_contact_details = None
 
 # Helper functions for Cassandra integration
 
@@ -141,6 +142,9 @@ def _update_enrichment(session, domain: str, data: Dict[str, Any]) -> None:
             wpjson_size_bytes = ?,
             wpjson_contains_cart = ?,
             emails = ?,
+            phone_numbers = ?,
+            sms_numbers = ?,
+            addresses = ?,
             favicon_url = ?,
             robots_txt_exists = ?,
             robots_txt_content = ?,
@@ -234,6 +238,9 @@ def _update_enrichment(session, domain: str, data: Dict[str, Any]) -> None:
         int(data.get("wpjson_size_bytes", 0)),
         bool(data.get("wpjson_contains_cart", False)),
         json.dumps(data.get("emails", [])),
+        json.dumps(data.get("phone_numbers", [])),
+        json.dumps(data.get("sms_numbers", [])),
+        json.dumps(data.get("addresses", [])),
         str(data.get("favicon_url", "")),
         bool(data.get("robots_txt_exists", False)),
         str(data.get("robots_txt_content", "")),
@@ -342,8 +349,8 @@ def check_site_variants(domain: str) -> Tuple[str | None, List[str]]:
     return None, []
 
 
-def scan_page_url(url: str, session: Any) -> None:
-    """Collect metrics for a single page URL."""
+def scan_page_url(url: str, session: Any) -> Dict[str, Any]:
+    """Collect metrics for a single page URL and return the data."""
     data: Dict[str, Any] = {}
     try:
         start = time.time()
@@ -395,23 +402,43 @@ def scan_page_url(url: str, session: Any) -> None:
         metas = soup.find_all("meta", attrs={"name": "description"})
         data["duplicate_meta_titles"] = len(titles) > 1
         data["duplicate_meta_descriptions"] = len(metas) > 1
+
+        if extract_contact_details:
+            contacts = extract_contact_details(response.text)
+            if contacts["emails"]:
+                data["emails"] = contacts["emails"]
+            if contacts["phone_numbers"]:
+                data["phone_numbers"] = contacts["phone_numbers"]
+            if contacts["sms_numbers"]:
+                data["sms_numbers"] = contacts["sms_numbers"]
+            if contacts["addresses"]:
+                data["addresses"] = contacts["addresses"]
     except Exception as exc:  # pragma: no cover - best effort
         print(f"page metrics error: {exc}")
 
     if data:
         _update_page_metrics(session, url, data)
 
+    return data
 
 def crawl_site(start_url: str, session: Any, max_pages: int = 20) -> None:
     """Crawl the site starting at start_url and scan each page."""
     visited = set()
     queue = [start_url]
+    phones: set[str] = set()
+    emails: set[str] = set()
+    sms: set[str] = set()
+    addresses: set[str] = set()
     while queue and len(visited) < max_pages:
         url = queue.pop(0)
         if url in visited:
             continue
         visited.add(url)
-        scan_page_url(url, session)
+        page_data = scan_page_url(url, session)
+        phones.update(page_data.get("phone_numbers", []))
+        emails.update(page_data.get("emails", []))
+        sms.update(page_data.get("sms_numbers", []))
+        addresses.update(page_data.get("addresses", []))
         try:
             resp = requests.get(url, timeout=10)
             soup = BeautifulSoup(resp.text, "html.parser")
@@ -427,6 +454,18 @@ def crawl_site(start_url: str, session: Any, max_pages: int = 20) -> None:
                     queue.append(full)
         except Exception:
             continue
+
+    agg: Dict[str, Any] = {}
+    if phones:
+        agg["phone_numbers"] = sorted(phones)
+    if emails:
+        agg["emails"] = sorted(emails)
+    if sms:
+        agg["sms_numbers"] = sorted(sms)
+    if addresses:
+        agg["addresses"] = sorted(addresses)
+    if agg:
+        _update_enrichment(session, urlparse(start_url).hostname or start_url, agg)
 
 
 

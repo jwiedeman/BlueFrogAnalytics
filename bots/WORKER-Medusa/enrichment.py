@@ -48,6 +48,51 @@ def random_user_agent() -> str:
     return random.choice(USER_AGENTS)
 
 
+def extract_contact_details(html_text: str) -> Dict[str, List[str]]:
+    """Extract phone numbers, emails, SMS links and street addresses."""
+    soup = BeautifulSoup(html_text, "html.parser")
+    text = soup.get_text(" ")
+
+    phones = set(re.findall(r"\b(?:\+?\d{1,3}[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}\b", text))
+    emails = set(re.findall(r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}", html_text))
+    sms_numbers = set()
+    addresses = set()
+
+    for a in soup.find_all("a", href=True):
+        href = a["href"].lower()
+        if href.startswith("tel:"):
+            num = href.split(":", 1)[1].split("?")[0]
+            if num:
+                phones.add(num)
+        if href.startswith("sms:") or href.startswith("smsto:"):
+            num = href.split(":", 1)[1].split("?")[0]
+            if num:
+                sms_numbers.add(num)
+        if href.startswith("mailto:"):
+            addr = href.split(":", 1)[1].split("?")[0]
+            if addr:
+                emails.add(addr)
+
+    for tag in soup.find_all("address"):
+        txt = tag.get_text(" ", strip=True)
+        if txt:
+            addresses.add(txt)
+
+    addr_regex = re.compile(
+        r"\b\d{1,5}\s+[\w\s.'-]{2,40}\s(?:st|street|rd|road|ave|avenue|blvd|boulevard|ln|lane|dr|drive|ct|court|cir|circle)\b[^\n<]{0,50}",
+        re.IGNORECASE,
+    )
+    for match in addr_regex.findall(text):
+        addresses.add(match.strip())
+
+    return {
+        "phone_numbers": sorted(phones),
+        "emails": sorted(emails),
+        "sms_numbers": sorted(sms_numbers),
+        "addresses": sorted(addresses),
+    }
+
+
 def check_url(url: str) -> bool:
     try:
         resp = requests.head(
@@ -207,8 +252,8 @@ def analyze_content(target: str) -> Dict[str, Any]:
         except Exception as e:
             print(f"Language detection error: {e}")
             info["languages"] = {}
+        info.update(extract_contact_details(response.text))
         patterns = {
-            "phone": r"\b(?:\+?\d{1,3}[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}\b",
             "zipcode": r"\b\d{5}(?:-\d{4})?\b",
         }
         for key, pattern in patterns.items():
@@ -295,14 +340,15 @@ def analyze_homepage(target: str, is_wordpress: bool = False) -> Dict[str, Any]:
             if src and not src.startswith("/") and domain_base not in src
         )
 
-        emails = set(re.findall(r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}", html_text))
-        for a in soup.find_all("a", href=True):
-            href = a["href"]
-            if href.lower().startswith("mailto:"):
-                addr = href.split(":", 1)[1].split("?")[0].strip()
-                if addr:
-                    emails.add(addr)
-        info["emails"] = list(emails)
+        contacts = extract_contact_details(html_text)
+        if contacts["emails"]:
+            info["emails"] = contacts["emails"]
+        if contacts["phone_numbers"]:
+            info["phone_numbers"] = contacts["phone_numbers"]
+        if contacts["sms_numbers"]:
+            info["sms_numbers"] = contacts["sms_numbers"]
+        if contacts["addresses"]:
+            info["addresses"] = contacts["addresses"]
 
         # favicon & canonical
         fav = soup.find("link", rel=lambda x: x and "icon" in x.lower())

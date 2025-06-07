@@ -62,6 +62,9 @@ Geo and network data:
 - `lon` float
 - `languages` list<text>
 - `phone` text
+- `phone_numbers` list<text>
+- `sms_numbers` list<text>
+- `addresses` list<text>
 - `time_zone` text
 
 SSL and technology:
@@ -137,6 +140,10 @@ Lighthouse metrics:
 - `iframe_embeds_count` int
 - `duplicate_meta_titles` boolean
 - `duplicate_meta_descriptions` boolean
+- `emails` list<text>
+- `phone_numbers` list<text>
+- `sms_numbers` list<text>
+- `addresses` list<text>
 
 User tracking:
 - `user_managed` boolean
@@ -201,6 +208,10 @@ Table storing per-URL Lighthouse and page metrics gathered by
 - `iframe_embeds_count` int
 - `duplicate_meta_titles` boolean
 - `duplicate_meta_descriptions` boolean
+- `emails` list<text>
+- `phone_numbers` list<text>
+- `sms_numbers` list<text>
+- `addresses` list<text>
 - `wpt_load_time_ms` int
 - `wpt_speed_index` float
 - `wpt_ttfb_ms` int
@@ -257,6 +268,9 @@ The Medusa enrichment step also captures several homepage indicators that are no
 - `insecure_cookie_count`
 - `external_resource_count`
 - `passive_subdomain_count`
+- `phone_numbers`
+- `sms_numbers`
+- `addresses`
 
 #### Columns updated by `WORKER-Medusa`
 
@@ -279,6 +293,9 @@ Medusa orchestrates all scans and populates columns across several tables.
 - `lon`
 - `org`
 - `phone`
+- `phone_numbers`
+- `sms_numbers`
+- `addresses`
 - `region`
 - `region_name`
 - `registered`

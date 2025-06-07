@@ -80,6 +80,9 @@ type information.
 - `lon`
 - `org`
 - `phone`
+- `phone_numbers`
+- `sms_numbers`
+- `addresses`
 - `region`
 - `region_name`
 - `registered`
@@ -128,7 +131,7 @@ type information.
 - `ecommerce_platforms`
 - `sitemap_page_count`
 - `last_enriched`
-Additional enrichment fields (`ssl_org`, `x_powered_by`, `wordpress_asset_version`, `wpjson_size_bytes`, `wpjson_contains_cart`, `more_than_5_internal_links`, `ecommerce_platforms`, `postal_code`) are now written to Cassandra along with the standard columns.
+Additional enrichment fields (`ssl_org`, `x_powered_by`, `wordpress_asset_version`, `wpjson_size_bytes`, `wpjson_contains_cart`, `more_than_5_internal_links`, `ecommerce_platforms`, `postal_code`, `phone_numbers`, `sms_numbers`, `addresses`) are now written to Cassandra along with the standard columns.
 - all Lighthouse metric columns such as `desktop_performance_score`,
   `mobile_performance_score`, `desktop_first_contentful_paint`,
   `mobile_first_contentful_paint`, `lighthouse_version`,
