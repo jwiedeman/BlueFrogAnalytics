@@ -12,7 +12,7 @@ in that document.
 
 ## Installation
 
-Create a Python virtual environment and install the required packages:
+Create a Python 3.11 (or earlier) virtual environment and install the required packages. The Cassandra driver used by Medusa does not support Python 3.12+:
 
 ```bash
 python3 -m venv venv

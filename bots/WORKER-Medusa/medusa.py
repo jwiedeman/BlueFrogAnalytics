@@ -12,9 +12,15 @@ import json
 import logging
 import os
 import subprocess
+import sys
 import time
 from datetime import datetime
 from typing import Any, Callable, Dict, List, Tuple
+
+if sys.version_info >= (3, 12):
+    sys.exit(
+        "Medusa currently requires Python 3.11 or earlier due to cassandra-driver compatibility."
+    )
 
 from cassandra.cluster import Cluster
 from cassandra.policies import DCAwareRoundRobinPolicy, RetryPolicy
