@@ -72,6 +72,7 @@ const domainList = [];
       const freqInput = document.getElementById('frequency-select');
       const consentEl = document.getElementById('consent-check');
       const modalEl = document.getElementById('domain-modal');
+      const freqMap = { daily: 24, weekly: 168, monthly: 720 };
       let profile = null;
       let domains = [];
       const render = () => {
@@ -147,6 +148,18 @@ const domainList = [];
             const freq = freqInput.value;
             if (!name || !consentEl.checked) return;
             domains.push({ name, frequency: freq });
+            const token = await user.getIdToken();
+            await fetch(`${API_BASE}/api/user-domain`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`
+              },
+              body: JSON.stringify({
+                domain: name,
+                refreshHours: freqMap[freq] || 24
+              })
+            });
             await save(user);
             inputEl.value = '';
             consentEl.checked = false;
@@ -157,7 +170,16 @@ const domainList = [];
           listEl.addEventListener('click', async e => {
             const idx = e.target.dataset.index;
             if (e.target.dataset.action === 'delete' && idx !== undefined) {
-              domains.splice(parseInt(idx, 10), 1);
+              const removed = domains.splice(parseInt(idx, 10), 1)[0];
+              const token = await user.getIdToken();
+              await fetch(`${API_BASE}/api/user-domain`, {
+                method: 'DELETE',
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify({ domain: removed.name })
+              });
               await save(user);
               render();
             }
@@ -168,6 +190,18 @@ const domainList = [];
               const idx = e.target.dataset.index;
               if (idx !== undefined) {
                 domains[parseInt(idx, 10)].frequency = e.target.value;
+                const token = await user.getIdToken();
+                await fetch(`${API_BASE}/api/user-domain`, {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
+                  },
+                  body: JSON.stringify({
+                    domain: domains[parseInt(idx, 10)].name,
+                    refreshHours: freqMap[e.target.value] || 24
+                  })
+                });
                 await save(user);
               }
             }

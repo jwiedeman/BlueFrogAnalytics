@@ -1060,6 +1060,52 @@ app.post('/api/user-domain', authMiddleware, async (req, res) => {
   }
 });
 
+app.delete('/api/user-domain', authMiddleware, async (req, res) => {
+  let { domain } = req.body || {};
+  if (typeof domain !== 'string') {
+    return res.status(400).json({ error: 'Invalid payload' });
+  }
+  const parts = parseDomainParts(domain);
+  if (!parts) {
+    return res.status(400).json({ error: 'Invalid domain' });
+  }
+  const { domain: name, tld } = parts;
+  try {
+    await cassandraClient.execute(
+      'DELETE FROM profiles.user_domain_prefs WHERE domain=? AND tld=? AND uid=?',
+      [name, tld, req.uid],
+      { prepare: true }
+    );
+
+    const prof = await cassandraClient.execute(
+      'SELECT domains FROM user_profiles WHERE uid=?',
+      [req.uid],
+      { prepare: true }
+    );
+    let domains = [];
+    if (prof.rowLength && prof.rows[0].domains) {
+      try {
+        domains = JSON.parse(prof.rows[0].domains);
+      } catch {}
+    }
+    const full = `${name}.${tld}`;
+    const idx = domains.indexOf(full);
+    if (idx !== -1) {
+      domains.splice(idx, 1);
+      await cassandraClient.execute(
+        'UPDATE user_profiles SET domains=? WHERE uid=?',
+        [JSON.stringify(domains), req.uid],
+        { prepare: true }
+      );
+    }
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Database error' });
+  }
+});
+
 app.get('/api/domain-info', authMiddleware, async (req, res) => {
   let { domain } = req.query;
   if (typeof domain !== 'string') {

@@ -13,6 +13,8 @@ This directory houses the Express-based API for Blue Frog Analytics. The server 
 - `GET /api/domain-info` – fetch metrics for a domain from Cassandra
 - `GET /api/domain-pages` – latest page metrics for a domain including
   performance, SEO and accessibility scores
+- `POST /api/user-domain` – add or update a domain in the user watchlist
+- `DELETE /api/user-domain` – remove a domain from the watchlist
 - `GET /api/leads` – return maps or domain leads with `type`, `q`, `page` and
   `size` query parameters
 - `POST /api/tools/*` – various utility endpoints (image conversion, carbon calc, etc.)
