@@ -568,7 +568,7 @@ body.dark-mode #side-nav .bx--side-nav__link {
 .dashboard-side-nav a.active {
   color: var(--sl-color-primary);
   text-decoration: underline;
-  background-color: #000;
+  background-color: #e9ecef;
   font-weight: 600;
 }
 /* Adjust dropdown toggle appearance and behavior */
@@ -626,6 +626,7 @@ body.dark-mode .navbar-dark {
 }
 body.dark-mode .dashboard-side-nav .nav-link.active {
   color: var(--sl-color-primary) !important;
+  background-color: #000;
 }
 
 .dashboard-footer {
