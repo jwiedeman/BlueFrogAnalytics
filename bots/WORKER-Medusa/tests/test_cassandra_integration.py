@@ -6,9 +6,12 @@ import pytest
 from .test_medusa_worker import load_medusa
 
 
-@pytest.fixture
-def medusa(monkeypatch):
-    return load_medusa(monkeypatch)
+@pytest.fixture(scope="module")
+def medusa():
+    mp = pytest.MonkeyPatch()
+    mod = load_medusa(mp)
+    yield mod
+    mp.undo()
 
 
 def test_cassandra_session_env(monkeypatch, medusa):
