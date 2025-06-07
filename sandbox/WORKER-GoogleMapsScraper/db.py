@@ -33,10 +33,12 @@ def init_db(dsn: str | None, *, storage: str | None = None):
 
         hosts_str = os.environ.get(
             "CASSANDRA_CONTACT_POINTS",
+
             os.environ.get(
                 "CASSANDRA_URL",
                 "192.168.1.201,192.168.1.202,192.168.1.203,192.168.1.204",
             ),
+
         )
         hosts = [h.strip() for h in hosts_str.split(",") if h.strip()]
         port = int(os.environ.get("CASSANDRA_PORT", "9042"))

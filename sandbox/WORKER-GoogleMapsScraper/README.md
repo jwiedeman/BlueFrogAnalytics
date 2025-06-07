@@ -28,6 +28,7 @@ environment variables:
 - `CASSANDRA_KEYSPACE` – keyspace name (default `maps`)
 - `CASSANDRA_LOCAL_DATA_CENTER` – data center name (default `datacenter1`)
 
+
 ## City grid scraping
 
 `grid_worker.py` automates searches across a grid of GPS coordinates around a
