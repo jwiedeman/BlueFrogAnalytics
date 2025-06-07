@@ -20,7 +20,10 @@ const description = 'View and purchase collected leads.';
         <input id="lead-search" type="text" class="form-control" placeholder="Search" />
       </div>
       <div class="col-auto">
-        <button id="download-csv" class="btn btn-primary" disabled>Download CSV</button>
+        <button id="lead-search-btn" class="btn btn-secondary">Search</button>
+      </div>
+      <div class="col-auto">
+        <button id="download-csv" class="btn btn-primary d-none" disabled>Download CSV</button>
       </div>
       <div class="col-auto">
         <span id="selected-count" class="small text-muted"></span>
@@ -45,6 +48,7 @@ const description = 'View and purchase collected leads.';
       const headEl = document.getElementById('lead-head');
       const bodyEl = document.getElementById('lead-body');
       const searchEl = document.getElementById('lead-search');
+      const searchBtn = document.getElementById('lead-search-btn');
       const prevBtn = document.getElementById('prev-page');
       const nextBtn = document.getElementById('next-page');
       const pageInfo = document.getElementById('page-info');
@@ -88,6 +92,7 @@ const description = 'View and purchase collected leads.';
         headEl.innerHTML = '';
         bodyEl.innerHTML = '';
         const rows = data.results;
+        downloadBtn.classList.toggle('d-none', rows.length === 0);
         const buildKey = r =>
           type === 'domains'
             ? r.domain
@@ -95,21 +100,29 @@ const description = 'View and purchase collected leads.';
         if (type === 'domains') {
           headEl.innerHTML =
             '<tr><th><input type="checkbox" id="lead-select-all" /></th><th>Domain</th></tr>';
-          rows.forEach(r => {
-            const key = buildKey(r);
-            const tr = document.createElement('tr');
-            tr.innerHTML = `\n              <td><input type="checkbox" class="form-check-input lead-cb" data-key="${key}"/></td>\n              <td>${r.domain}</td>\n            `;
-            bodyEl.appendChild(tr);
-          });
+          if (!rows.length) {
+            bodyEl.innerHTML = '<tr><td colspan="2" class="text-center">No leads found.</td></tr>';
+          } else {
+            rows.forEach(r => {
+              const key = buildKey(r);
+              const tr = document.createElement('tr');
+              tr.innerHTML = `\n              <td><input type="checkbox" class="form-check-input lead-cb" data-key="${key}"/></td>\n              <td>${r.domain}</td>\n            `;
+              bodyEl.appendChild(tr);
+            });
+          }
         } else {
           headEl.innerHTML =
             '<tr><th><input type="checkbox" id="lead-select-all" /></th><th>Business</th><th>Address</th><th>Phone</th><th>Website</th></tr>';
-          rows.forEach(r => {
-            const key = buildKey(r);
-            const tr = document.createElement('tr');
-            tr.innerHTML = `\n              <td><input type="checkbox" class="form-check-input lead-cb" data-key="${key}"/></td>\n              <td>${r.name || ''}</td><td>${r.address || ''}</td><td>${r.phone || ''}</td><td>${r.website || ''}</td>\n            `;
-            bodyEl.appendChild(tr);
-          });
+          if (!rows.length) {
+            bodyEl.innerHTML = '<tr><td colspan="5" class="text-center">No leads found.</td></tr>';
+          } else {
+            rows.forEach(r => {
+              const key = buildKey(r);
+              const tr = document.createElement('tr');
+              tr.innerHTML = `\n              <td><input type="checkbox" class="form-check-input lead-cb" data-key="${key}"/></td>\n              <td>${r.name || ''}</td><td>${r.address || ''}</td><td>${r.phone || ''}</td><td>${r.website || ''}</td>\n            `;
+              bodyEl.appendChild(tr);
+            });
+          }
         }
         bodyEl.querySelectorAll('.lead-cb').forEach(cb => {
           const key = cb.dataset.key;
@@ -143,6 +156,7 @@ const description = 'View and purchase collected leads.';
       };
 
       const load = async user => {
+        if (window.showSpinner) window.showSpinner();
         const token = await user.getIdToken();
         const url = new URL('/api/leads', API_BASE);
         url.searchParams.set('type', type);
@@ -157,9 +171,11 @@ const description = 'View and purchase collected leads.';
             render(await res.json());
           }
         } catch {}
+        if (window.hideSpinner) window.hideSpinner();
       };
 
       const init = () => {
+        if (window.showSpinner) window.showSpinner();
         window.onAuthStateChanged(window.firebaseAuth, user => {
           if (!user) {
             window.location.href = '/login';
@@ -170,6 +186,18 @@ const description = 'View and purchase collected leads.';
             page = 1;
             load(user);
           });
+          searchEl.addEventListener('keyup', e => {
+            if (e.key === 'Enter') {
+              page = 1;
+              load(user);
+            }
+          });
+          if (searchBtn) {
+            searchBtn.addEventListener('click', () => {
+              page = 1;
+              load(user);
+            });
+          }
           prevBtn.addEventListener('click', () => {
             if (page > 1) {
               page--;
@@ -190,6 +218,7 @@ const description = 'View and purchase collected leads.';
             });
           });
           downloadBtn.addEventListener('click', downloadCsv);
+          if (window.hideSpinner) window.hideSpinner();
         });
       };
       if (window.firebaseAuth) {
