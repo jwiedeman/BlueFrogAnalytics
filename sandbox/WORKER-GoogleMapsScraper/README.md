@@ -7,9 +7,13 @@ coordinates where it was collected.
 
 ## Usage
 
-Install Python 3.11+ and the dependencies:
+Install Python 3.11+ and the dependencies. It's recommended to use a virtual
+environment so the Cassandra driver is installed for the correct interpreter.
+The driver currently supports up to Python 3.12.
 
 ```bash
+python3.12 -m venv venv  # or python3.11
+source venv/bin/activate
 pip install -r requirements.txt
 ```
 
