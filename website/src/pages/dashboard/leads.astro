@@ -15,9 +15,15 @@ const description = 'View and purchase collected leads.';
         <button class="nav-link" data-type="domains">Domains</button>
       </li>
     </ul>
-    <div class="row mb-3">
+    <div class="row mb-3 g-2 align-items-end">
       <div class="col-md-6">
         <input id="lead-search" type="text" class="form-control" placeholder="Search" />
+      </div>
+      <div class="col-auto">
+        <button id="download-csv" class="btn btn-primary" disabled>Download CSV</button>
+      </div>
+      <div class="col-auto">
+        <span id="selected-count" class="small text-muted"></span>
       </div>
     </div>
     <div class="table-responsive">
@@ -45,30 +51,95 @@ const description = 'View and purchase collected leads.';
       const tabs = document.querySelectorAll('#lead-tabs .nav-link');
       let type = 'maps';
       let page = 1;
+      const selected = new Map();
+      const downloadBtn = document.getElementById('download-csv');
+      const countEl = document.getElementById('selected-count');
+
+      const updateCount = () => {
+        const count = selected.size;
+        countEl.textContent = count ? `${count} selected` : '';
+        downloadBtn.disabled = count === 0;
+      };
+
+      const downloadCsv = () => {
+        const lines = [];
+        if (type === 'domains') {
+          lines.push('Domain');
+          selected.forEach(cols => {
+            lines.push(cols[0]);
+          });
+        } else {
+          lines.push('Business,Address,Phone,Website');
+          selected.forEach(cols => {
+            const escaped = cols.map(c => `"${c.replace(/"/g, '""')}"`);
+            lines.push(escaped.join(','));
+          });
+        }
+        const blob = new Blob([lines.join('\n')], { type: 'text/csv' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'leads.csv';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      };
 
       const render = data => {
         headEl.innerHTML = '';
         bodyEl.innerHTML = '';
+        const rows = data.results;
+        const buildKey = r =>
+          type === 'domains'
+            ? r.domain
+            : `${r.name || ''}|${r.address || ''}|${r.phone || ''}`;
         if (type === 'domains') {
-          headEl.innerHTML = '<tr><th>Domain</th></tr>';
-          data.results.forEach(r => {
+          headEl.innerHTML =
+            '<tr><th><input type="checkbox" id="lead-select-all" /></th><th>Domain</th></tr>';
+          rows.forEach(r => {
+            const key = buildKey(r);
             const tr = document.createElement('tr');
-            tr.innerHTML = `<td>${r.domain}</td>`;
+            tr.innerHTML = `\n              <td><input type="checkbox" class="form-check-input lead-cb" data-key="${key}"/></td>\n              <td>${r.domain}</td>\n            `;
             bodyEl.appendChild(tr);
           });
         } else {
           headEl.innerHTML =
-            '<tr><th>Business</th><th>Address</th><th>Phone</th><th>Website</th></tr>';
-          data.results.forEach(r => {
+            '<tr><th><input type="checkbox" id="lead-select-all" /></th><th>Business</th><th>Address</th><th>Phone</th><th>Website</th></tr>';
+          rows.forEach(r => {
+            const key = buildKey(r);
             const tr = document.createElement('tr');
-            tr.innerHTML = `<td>${r.name || ''}</td><td>${r.address || ''}</td><td>${r.phone || ''}</td><td>${r.website || ''}</td>`;
+            tr.innerHTML = `\n              <td><input type="checkbox" class="form-check-input lead-cb" data-key="${key}"/></td>\n              <td>${r.name || ''}</td><td>${r.address || ''}</td><td>${r.phone || ''}</td><td>${r.website || ''}</td>\n            `;
             bodyEl.appendChild(tr);
+          });
+        }
+        bodyEl.querySelectorAll('.lead-cb').forEach(cb => {
+          const key = cb.dataset.key;
+          if (selected.has(key)) cb.checked = true;
+          cb.addEventListener('change', () => {
+            if (cb.checked) {
+              const row = cb.closest('tr');
+              const cols = Array.from(row.querySelectorAll('td')).slice(1).map(td => td.textContent.trim());
+              selected.set(key, cols);
+            } else {
+              selected.delete(key);
+            }
+            updateCount();
+          });
+        });
+        const selectAll = document.getElementById('lead-select-all');
+        if (selectAll) {
+          selectAll.checked = Array.from(bodyEl.querySelectorAll('.lead-cb')).every(cb => cb.checked);
+          selectAll.addEventListener('change', () => {
+            bodyEl.querySelectorAll('.lead-cb').forEach(cb => {
+              cb.checked = selectAll.checked;
+              cb.dispatchEvent(new Event('change'));
+            });
           });
         }
         const totalPages = Math.max(1, Math.ceil(data.total / data.pageSize));
         pageInfo.textContent = `Page ${data.page} of ${totalPages}`;
         prevBtn.disabled = data.page <= 1;
         nextBtn.disabled = data.page >= totalPages;
+        updateCount();
       };
 
       const load = async user => {
@@ -118,6 +189,7 @@ const description = 'View and purchase collected leads.';
               load(user);
             });
           });
+          downloadBtn.addEventListener('click', downloadCsv);
         });
       };
       if (window.firebaseAuth) {
