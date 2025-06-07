@@ -7,6 +7,7 @@ columns outlined in db_schema.md.
 """
 
 import argparse
+import csv
 import json
 import logging
 import os
@@ -54,6 +55,12 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+# Development mode flag. When enabled results are written to a CSV file
+# instead of Cassandra for easier testing.
+DEV_MODE = False
+# Path to the CSV file used when DEV_MODE is active
+CSV_PATH = os.path.join(os.path.dirname(__file__), "dev_results.csv")
+
 # Use the bundled enrichment module so this worker is self contained
 try:
     from enrichment import (
@@ -93,8 +100,22 @@ def _safe_execute(session: Any, query: str, params: Tuple[Any, ...]):
             delay = min(delay * 2, 60)
 
 
-def _cassandra_session() -> Tuple[Cluster, Any]:
+def _write_csv(table: str, key: str, data: Dict[str, Any]) -> None:
+    """Append a row to the dev CSV file."""
+    headers = ["timestamp", "table", "key", "data"]
+    row = [datetime.utcnow().isoformat(), table, key, json.dumps(data)]
+    exists = os.path.exists(CSV_PATH)
+    with open(CSV_PATH, "a", newline="") as fh:
+        writer = csv.writer(fh)
+        if not exists:
+            writer.writerow(headers)
+        writer.writerow(row)
+
+
+def _cassandra_session() -> Tuple[Cluster | None, Any | None]:
     """Return a Cassandra Cluster and Session configured via environment."""
+    if DEV_MODE:
+        return None, None
     hosts_str = os.environ.get(
         "MEDUSA_CASSANDRA_HOSTS",
         os.environ.get(
@@ -125,6 +146,8 @@ def _cassandra_session() -> Tuple[Cluster, Any]:
 
 def _update_enrichment(session, domain: str, data: Dict[str, Any]) -> None:
     if not session:
+        if DEV_MODE:
+            _write_csv("domains_processed", domain, data)
         return
     ext = extract(domain)
     dom = ext.domain.strip().strip(".")
@@ -321,6 +344,8 @@ def _update_enrichment(session, domain: str, data: Dict[str, Any]) -> None:
 def _update_page_metrics(session, url: str, data: Dict[str, Any]) -> None:
     """Insert per-page metrics into domain_page_metrics."""
     if not session:
+        if DEV_MODE:
+            _write_csv("domain_page_metrics", url, data)
         return
     parts = urlparse(url)
     dom = parts.hostname or ""
@@ -338,6 +363,8 @@ def _update_page_metrics(session, url: str, data: Dict[str, Any]) -> None:
 def _insert_business(session, data: Dict[str, Any]) -> None:
     """Insert a business row into the businesses table."""
     if not session:
+        if DEV_MODE:
+            _write_csv("businesses", data.get("website", ""), data)
         return
     query = (
         "INSERT INTO domain_discovery.businesses "
@@ -361,6 +388,8 @@ def _insert_business(session, data: Dict[str, Any]) -> None:
 def _insert_analytics(session, data: Dict[str, Any]) -> None:
     """Insert analytics tag scan results."""
     if not session:
+        if DEV_MODE:
+            _write_csv("analytics_tag_health", data.get("domain", ""), data)
         return
     query = (
         "INSERT INTO domain_discovery.analytics_tag_health "
@@ -441,7 +470,9 @@ def scan_page_url(url: str, session: Any) -> Dict[str, Any]:
 
         images = soup.find_all("img")
         data["page_images_count"] = len(images)
-        data["missing_alt_text_images_count"] = sum(1 for img in images if not img.get("alt"))
+        data["missing_alt_text_images_count"] = sum(
+            1 for img in images if not img.get("alt")
+        )
 
         iframes = soup.find_all("iframe")
         videos = soup.find_all("video")
@@ -474,6 +505,7 @@ def scan_page_url(url: str, session: Any) -> Dict[str, Any]:
         _update_page_metrics(session, url, data)
 
     return data
+
 
 def crawl_site(start_url: str, session: Any, max_pages: int = 20) -> None:
     """Crawl the site starting at start_url and scan each page."""
@@ -522,9 +554,9 @@ def crawl_site(start_url: str, session: Any, max_pages: int = 20) -> None:
         _update_enrichment(session, urlparse(start_url).hostname or start_url, agg)
 
 
-
 # Placeholder scan functions. Real implementations should invoke the
 # dedicated workers or libraries that perform each scan.
+
 
 def ssl_scan(domain: str, session: Any) -> None:
     """Run SSL certificate checks."""
@@ -605,9 +637,7 @@ def tech_scan(domain: str, session: Any) -> None:
 def lighthouse_scan(domain: str, session: Any) -> None:
     """Run Lighthouse audits using the AutoLighthouse worker."""
     logger.info("[Lighthouse] scanning %s", domain)
-    script = os.path.join(
-        os.path.dirname(__file__), "AutoLighthouse", "index.js"
-    )
+    script = os.path.join(os.path.dirname(__file__), "AutoLighthouse", "index.js")
     url = f"http://{domain}"
     env = os.environ.copy()
     try:
@@ -625,7 +655,9 @@ def lighthouse_scan(domain: str, session: Any) -> None:
 def carbon_scan(domain: str, session: Any) -> None:
     """Run carbon footprint audit via the Node script."""
     logger.info("[Carbon] scanning %s", domain)
-    script = os.path.join(os.path.dirname(__file__), "..", "BACKEND-CarbonAuditor", "index.js")
+    script = os.path.join(
+        os.path.dirname(__file__), "..", "BACKEND-CarbonAuditor", "index.js"
+    )
     url = f"http://{domain}"
     try:
         subprocess.run(["node", script, url], check=True)
@@ -664,11 +696,17 @@ def analytics_scan(domain: str, session: Any) -> None:
 def webpagetest_scan(domain: str, session: Any) -> None:
     logger.info("[WebPageTest] scanning %s", domain)
     try:
-        output = webpagetest_test(f"https://{domain}", api_key=os.environ.get("WEBPAGETEST_API_KEY"), verbose=False)
+        output = webpagetest_test(
+            f"https://{domain}",
+            api_key=os.environ.get("WEBPAGETEST_API_KEY"),
+            verbose=False,
+        )
         metrics: Dict[str, Any] = {}
         for line in output.splitlines():
             if line.startswith("Load Time:"):
-                metrics["wpt_load_time_ms"] = int(line.split(":", 1)[1].strip().rstrip("ms"))
+                metrics["wpt_load_time_ms"] = int(
+                    line.split(":", 1)[1].strip().rstrip("ms")
+                )
             elif line.startswith("Speed Index:"):
                 metrics["wpt_speed_index"] = float(line.split(":", 1)[1].strip())
             elif line.startswith("TTFB:"):
@@ -890,12 +928,19 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--domain", required=True, help="Target domain")
     parser.add_argument("--tests", help="Comma separated list of tests to run")
     parser.add_argument("--all", action="store_true", help="Run all available tests")
+    parser.add_argument(
+        "--dev",
+        action="store_true",
+        help="Write results to CSV instead of Cassandra",
+    )
     return parser.parse_args()
 
 
 def main() -> None:
     """Entry point for the Medusa worker."""
     args = parse_args()
+    global DEV_MODE
+    DEV_MODE = args.dev
     if args.all:
         tests = list(TESTS.keys())
     elif args.tests:
@@ -908,7 +953,8 @@ def main() -> None:
     try:
         run_scans(args.domain, tests, session)
     finally:
-        cluster.shutdown()
+        if cluster:
+            cluster.shutdown()
 
 
 if __name__ == "__main__":

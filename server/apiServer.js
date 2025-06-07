@@ -1087,7 +1087,9 @@ app.get('/api/domain-pages', authMiddleware, async (req, res) => {
   const name = parts.join('.');
   try {
     const result = await cassandraClient.execute(
-      'SELECT url, desktop_seo_score, mobile_seo_score, desktop_seo_suggestions, mobile_seo_suggestions, desktop_performance_score, mobile_performance_score, scan_date FROM domain_discovery.domain_page_metrics WHERE domain=?',
+
+      'SELECT url, desktop_seo_score, mobile_seo_score, desktop_performance_score, mobile_performance_score, desktop_accessibility_score, mobile_accessibility_score, scan_date FROM domain_discovery.domain_page_metrics WHERE domain=?',
+
       [name],
       { prepare: true }
     );
@@ -1103,11 +1105,44 @@ app.get('/api/domain-pages', authMiddleware, async (req, res) => {
           mobile_seo_suggestions: r.mobile_seo_suggestions,
           desktop_performance_score: r.desktop_performance_score,
           mobile_performance_score: r.mobile_performance_score,
+          desktop_accessibility_score: r.desktop_accessibility_score,
+          mobile_accessibility_score: r.mobile_accessibility_score,
           scan_date: r.scan_date
         });
       }
     });
     res.json(Array.from(map.values()));
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Database error' });
+  }
+});
+
+app.get('/api/domain-overview', authMiddleware, async (req, res) => {
+  let { domain } = req.query;
+  if (typeof domain !== 'string') {
+    return res.status(400).json({ error: 'Invalid domain' });
+  }
+  domain = domain.toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '');
+  const host = domain.split('/')[0];
+  const parts = host.split('.');
+  if (parts.length < 2) {
+    return res.status(400).json({ error: 'Invalid domain' });
+  }
+  const tld = parts.pop();
+  const name = parts.join('.');
+  try {
+    const info = await cassandraClient.execute(
+      'SELECT * FROM domain_discovery.domains_processed WHERE domain=? AND tld=?',
+      [name, tld],
+      { prepare: true }
+    );
+    const health = await cassandraClient.execute(
+      'SELECT * FROM domain_discovery.analytics_tag_health WHERE domain=? ORDER BY scan_date DESC LIMIT 1',
+      [name],
+      { prepare: true }
+    );
+    res.json({ info: info.rows[0] || {}, tag_health: health.rows[0] || {} });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Database error' });
