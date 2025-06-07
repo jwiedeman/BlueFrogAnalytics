@@ -174,6 +174,16 @@ async function initCassandra() {
   `);
 
   await client.execute(`
+    CREATE TABLE IF NOT EXISTS domain_discovery.dns_records (
+      domain text,
+      record_type text,
+      record_value text,
+      scan_date timestamp,
+      PRIMARY KEY ((domain, record_type), record_value, scan_date)
+    )
+  `);
+
+  await client.execute(`
     CREATE TABLE IF NOT EXISTS domain_discovery.misc_tool_results (
       domain text,
       url text,
@@ -245,6 +255,7 @@ async function initCassandra() {
     has_about_page: 'boolean',
     has_services_page: 'boolean',
     has_cart_or_product: 'boolean',
+    more_than_5_internal_links: 'boolean',
     contains_gtm_or_ga: 'boolean',
     wordpress_version: 'text',
     server_type: 'text',
@@ -252,6 +263,9 @@ async function initCassandra() {
     wpjson_size_bytes: 'int',
     wpjson_contains_cart: 'boolean',
     emails: 'list<text>',
+    phone_numbers: 'list<text>',
+    sms_numbers: 'list<text>',
+    addresses: 'list<text>',
     favicon_url: 'text',
     robots_txt_exists: 'boolean',
     robots_txt_content: 'text',
