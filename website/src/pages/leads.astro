@@ -1,0 +1,7 @@
+---
+import DocLayout from '../components/DocLayout.astro';
+import LeadsContent, { frontmatter as leadsFm } from '../content/pages/leads.mdx';
+---
+<DocLayout title={leadsFm.title} description={leadsFm.description}>
+  <LeadsContent />
+</DocLayout>
