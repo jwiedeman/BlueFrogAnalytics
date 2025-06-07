@@ -10,6 +10,17 @@ The tool references `db_schema.md` to keep the output aligned with the Cassandra
 schema. Each scan writes to the appropriate table using the column groups defined
 in that document.
 
+## Installation
+
+Create a Python virtual environment and install the required packages:
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python -m playwright install
+```
+
 ## Usage
 
 ```bash
