@@ -25,6 +25,7 @@ npm run build
 ```
 
 Documentation content lives in `src/content/docs` and static assets live in `public`.
+The site includes a simple service worker and `manifest.json` so it can be installed as a Progressive Web App.
 
 ## Docker
 
