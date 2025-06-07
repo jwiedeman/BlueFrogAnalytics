@@ -8,6 +8,7 @@ columns outlined in db_schema.md.
 
 import argparse
 import json
+import logging
 import os
 import subprocess
 import time
@@ -25,26 +26,33 @@ from cassandra import (
 import dns.resolver
 from tldextract import extract
 
-# Import the lightweight recon modules bundled under tests
-from tests.test_open_ports import run_test as open_ports_test
-from tests.test_http_methods import run_test as http_methods_test
-from tests.test_waf_detection import run_test as waf_detection_test
-from tests.test_directory_enumeration import run_test as dir_enum_test
-from tests.test_certificate_details import run_test as cert_details_test
-from tests.test_meta_tags import run_test as meta_tags_test
-from tests.test_compare_sitemaps_robots import run_test as sitemaps_robots_test
-from tests.test_cookie_settings import run_test as cookie_settings_test
-from tests.test_external_resources import run_test as external_resources_test
-from tests.test_passive_subdomains import run_test as subdomains_test
-from tests.test_whois import run_test as whois_test
-from tests.test_dns_enumeration import run_test as dns_enum_test
-from tests.test_webpagetest import run_test as webpagetest_test
-from tests.test_full_page_screenshot import run_test as screenshot_test
-from tests.test_contrast_heatmap import run_test as heatmap_test
-from tests.test_google_maps import run_test as google_maps_test
+# Import the lightweight recon modules bundled under scans
+from scans.open_ports import run_test as open_ports_test
+from scans.http_methods import run_test as http_methods_test
+from scans.waf_detection import run_test as waf_detection_test
+from scans.directory_enumeration import run_test as dir_enum_test
+from scans.certificate_details import run_test as cert_details_test
+from scans.meta_tags import run_test as meta_tags_test
+from scans.compare_sitemaps_robots import run_test as sitemaps_robots_test
+from scans.cookie_settings import run_test as cookie_settings_test
+from scans.external_resources import run_test as external_resources_test
+from scans.passive_subdomains import run_test as subdomains_test
+from scans.whois import run_test as whois_test
+from scans.dns_enumeration import run_test as dns_enum_test
+from scans.webpagetest import run_test as webpagetest_test
+from scans.full_page_screenshot import run_test as screenshot_test
+from scans.contrast_heatmap import run_test as heatmap_test
+from scans.google_maps import run_test as google_maps_test
 from bs4 import BeautifulSoup
 import requests
 from urllib.parse import urljoin, urlparse
+
+# Configure logging
+logging.basicConfig(
+    level=os.environ.get("MEDUSA_LOG_LEVEL", "INFO").upper(),
+    format="%(asctime)s %(levelname)s %(message)s",
+)
+logger = logging.getLogger(__name__)
 
 # Use the bundled enrichment module so this worker is self contained
 try:
@@ -57,7 +65,8 @@ except Exception:  # pragma: no cover - optional dependency
 # Helper functions for Cassandra integration
 
 
-def _safe_execute(session, query: str, params: Tuple[Any, ...]):
+def _safe_execute(session: Any, query: str, params: Tuple[Any, ...]):
+    """Execute a Cassandra query with basic retry logic."""
     delay = 5
     while True:
         try:
@@ -68,21 +77,36 @@ def _safe_execute(session, query: str, params: Tuple[Any, ...]):
             WriteTimeout,
             ReadTimeout,
         ) as e:
-            print(f"Cassandra error ({type(e).__name__}): {e}. Retrying in {delay}s...")
+            logger.warning(
+                "Cassandra error (%s): %s. Retrying in %ss...",
+                type(e).__name__,
+                e,
+                delay,
+            )
             time.sleep(delay)
             delay = min(delay * 2, 60)
 
 
 def _cassandra_session() -> Tuple[Cluster, Any]:
-    url = os.environ.get(
-        "CASSANDRA_URL",
-        "192.168.1.201,192.168.1.202,192.168.1.203,192.168.1.204",
+    """Return a Cassandra Cluster and Session configured via environment."""
+    hosts_str = os.environ.get(
+        "MEDUSA_CASSANDRA_HOSTS",
+        os.environ.get(
+            "CASSANDRA_URL",
+            "192.168.1.201,192.168.1.202,192.168.1.203,192.168.1.204",
+        ),
     )
-    hosts = [h.strip() for h in url.split(",") if h.strip()]
-    keyspace = os.environ.get("CASSANDRA_KEYSPACE", "domain_discovery")
+    hosts = [h.strip() for h in hosts_str.split(",") if h.strip()]
+    port = int(os.environ.get("MEDUSA_CASSANDRA_PORT", "9042"))
+    keyspace = os.environ.get(
+        "MEDUSA_CASSANDRA_KEYSPACE",
+        os.environ.get("CASSANDRA_KEYSPACE", "domain_discovery"),
+    )
+    local_dc = os.environ.get("MEDUSA_CASSANDRA_DC", "datacenter1")
     cluster = Cluster(
         contact_points=hosts,
-        load_balancing_policy=DCAwareRoundRobinPolicy(local_dc="datacenter1"),
+        port=port,
+        load_balancing_policy=DCAwareRoundRobinPolicy(local_dc=local_dc),
         default_retry_policy=RetryPolicy(),
         protocol_version=4,
         connect_timeout=600,
@@ -414,7 +438,7 @@ def scan_page_url(url: str, session: Any) -> Dict[str, Any]:
             if contacts["addresses"]:
                 data["addresses"] = contacts["addresses"]
     except Exception as exc:  # pragma: no cover - best effort
-        print(f"page metrics error: {exc}")
+        logger.error("page metrics error: %s", exc)
 
     if data:
         _update_page_metrics(session, url, data)
@@ -473,11 +497,13 @@ def crawl_site(start_url: str, session: Any, max_pages: int = 20) -> None:
 # dedicated workers or libraries that perform each scan.
 
 def ssl_scan(domain: str, session: Any) -> None:
-    print(f"[SSL] scanning {domain}")
+    """Run SSL certificate checks."""
+    logger.info("[SSL] scanning %s", domain)
 
 
 def whois_scan(domain: str, session: Any) -> None:
-    print(f"[WHOIS] scanning {domain}")
+    """Perform WHOIS lookup and store basic info."""
+    logger.info("[WHOIS] scanning %s", domain)
     try:
         output = whois_test(domain)
         data: Dict[str, Any] = {}
@@ -489,11 +515,12 @@ def whois_scan(domain: str, session: Any) -> None:
         if data:
             _update_enrichment(session, domain, data)
     except Exception as exc:  # pragma: no cover - best effort
-        print(f"whois scan error: {exc}")
+        logger.error("whois scan error: %s", exc)
 
 
 def dns_scan(domain: str, session: Any) -> None:
-    print(f"[DNS] scanning {domain}")
+    """Gather common DNS records for the domain."""
+    logger.info("[DNS] scanning %s", domain)
     if not session:
         return
 
@@ -527,12 +554,13 @@ def dns_scan(domain: str, session: Any) -> None:
 
 
 def tech_scan(domain: str, session: Any) -> None:
-    print(f"[TECH] scanning {domain}")
+    """Placeholder for technology fingerprinting."""
+    logger.info("[TECH] scanning %s", domain)
 
 
 def lighthouse_scan(domain: str, session: Any) -> None:
     """Run Lighthouse audits using the AutoLighthouse worker."""
-    print(f"[Lighthouse] scanning {domain}")
+    logger.info("[Lighthouse] scanning %s", domain)
     script = os.path.join(
         os.path.dirname(__file__), "AutoLighthouse", "index.js"
     )
@@ -545,29 +573,31 @@ def lighthouse_scan(domain: str, session: Any) -> None:
             env=env,
         )
     except FileNotFoundError:
-        print("AutoLighthouse script not found")
+        logger.error("AutoLighthouse script not found")
     except subprocess.CalledProcessError as exc:
-        print(f"Lighthouse scan failed: {exc}")
+        logger.error("Lighthouse scan failed: %s", exc)
 
 
 def carbon_scan(domain: str, session: Any) -> None:
-    print(f"[Carbon] scanning {domain}")
+    """Run carbon footprint audit via the Node script."""
+    logger.info("[Carbon] scanning %s", domain)
     script = os.path.join(os.path.dirname(__file__), "..", "BACKEND-CarbonAuditor", "index.js")
     url = f"http://{domain}"
     try:
         subprocess.run(["node", script, url], check=True)
     except FileNotFoundError:
-        print("Carbon audit script not found")
+        logger.error("Carbon audit script not found")
     except subprocess.CalledProcessError as exc:
-        print(f"Carbon audit failed: {exc}")
+        logger.error("Carbon audit failed: %s", exc)
 
 
 def analytics_scan(domain: str, session: Any) -> None:
-    print(f"[Analytics] scanning {domain}")
+    """Placeholder analytics tag scan."""
+    logger.info("[Analytics] scanning %s", domain)
 
 
 def webpagetest_scan(domain: str, session: Any) -> None:
-    print(f"[WebPageTest] scanning {domain}")
+    logger.info("[WebPageTest] scanning %s", domain)
     try:
         output = webpagetest_test(f"https://{domain}", api_key=os.environ.get("WEBPAGETEST_API_KEY"), verbose=False)
         metrics: Dict[str, Any] = {}
@@ -581,43 +611,45 @@ def webpagetest_scan(domain: str, session: Any) -> None:
         if metrics:
             _update_page_metrics(session, f"https://{domain}", metrics)
     except Exception as exc:  # pragma: no cover - best effort
-        print(f"webpagetest error: {exc}")
+        logger.error("webpagetest error: %s", exc)
 
 
 def screenshot_scan(domain: str, session: Any, page: str = "/") -> None:
     """Capture a screenshot of the landing page or provided path."""
     target = f"{domain}{page}".rstrip("/") if page.startswith("/") else page
-    print(f"[Screenshot] capturing {target}")
+    logger.info("[Screenshot] capturing %s", target)
     try:
         path = screenshot_test(target)
         _update_page_metrics(session, f"https://{target}", {"screenshot_path": path})
     except Exception as exc:  # pragma: no cover - best effort
-        print(f"screenshot error: {exc}")
+        logger.error("screenshot error: %s", exc)
 
 
 def heatmap_scan(domain: str, session: Any) -> None:
-    print(f"[Heatmap] generating for {domain}")
+    """Generate a contrast heatmap for the homepage."""
+    logger.info("[Heatmap] generating for %s", domain)
     try:
         shot = screenshot_test(domain)
         path = heatmap_test(shot)
         _update_page_metrics(session, f"https://{domain}", {"heatmap_path": path})
     except Exception as exc:  # pragma: no cover - best effort
-        print(f"heatmap error: {exc}")
+        logger.error("heatmap error: %s", exc)
 
 
 def google_maps_scan(domain: str, session: Any) -> None:
-    print(f"[GoogleMaps] scanning {domain}")
+    """Scrape Google Maps business info."""
+    logger.info("[GoogleMaps] scanning %s", domain)
     try:
         result = google_maps_test(domain)
         info = json.loads(result)
         _insert_business(session, info)
     except Exception as exc:  # pragma: no cover - best effort
-        print(f"google maps error: {exc}")
+        logger.error("google maps error: %s", exc)
 
 
 def initial_recon_scan(domain: str, session: Any) -> None:
     """Run the bundled passive recon tests and store results."""
-    print(f"[Recon] scanning {domain}")
+    logger.info("[Recon] scanning %s", domain)
     data: Dict[str, Any] = {}
 
     try:
@@ -634,7 +666,7 @@ def initial_recon_scan(domain: str, session: Any) -> None:
         if ports:
             data["open_ports"] = ports
     except Exception as exc:  # pragma: no cover - best effort
-        print(f"open ports error: {exc}")
+        logger.error("open ports error: %s", exc)
 
     try:
         output = http_methods_test(domain, verbose=False)
@@ -643,7 +675,7 @@ def initial_recon_scan(domain: str, session: Any) -> None:
             methods = [m.strip() for m in methods_part.split(" ") if m.strip()]
             data["allowed_http_methods"] = methods
     except Exception as exc:  # pragma: no cover - best effort
-        print(f"http methods error: {exc}")
+        logger.error("http methods error: %s", exc)
 
     try:
         output = waf_detection_test(domain)
@@ -653,17 +685,17 @@ def initial_recon_scan(domain: str, session: Any) -> None:
                 data["waf_name"] = wafs.strip()
                 break
     except Exception as exc:  # pragma: no cover - best effort
-        print(f"waf detection error: {exc}")
+        logger.error("waf detection error: %s", exc)
 
     try:
         data["directory_scan"] = dir_enum_test(domain, verbose=False)
     except Exception as exc:  # pragma: no cover - best effort
-        print(f"directory enumeration error: {exc}")
+        logger.error("directory enumeration error: %s", exc)
 
     try:
         data["certificate_info"] = cert_details_test(domain)
     except Exception as exc:  # pragma: no cover - best effort
-        print(f"certificate details error: {exc}")
+        logger.error("certificate details error: %s", exc)
 
     try:
         output = meta_tags_test(f"https://{domain}", verbose=False)
@@ -673,7 +705,7 @@ def initial_recon_scan(domain: str, session: Any) -> None:
                 data["meta_tag_count"] = int(num)
                 break
     except Exception as exc:  # pragma: no cover - best effort
-        print(f"meta tags error: {exc}")
+        logger.error("meta tags error: %s", exc)
 
     try:
         output = sitemaps_robots_test(domain, verbose=False)
@@ -682,7 +714,7 @@ def initial_recon_scan(domain: str, session: Any) -> None:
         elif "No discrepancies" in output:
             data["sitemap_robots_conflict"] = False
     except Exception as exc:  # pragma: no cover - best effort
-        print(f"sitemap/robots error: {exc}")
+        logger.error("sitemap/robots error: %s", exc)
 
     try:
         output = cookie_settings_test(domain, verbose=False)
@@ -694,7 +726,7 @@ def initial_recon_scan(domain: str, session: Any) -> None:
         if insecure:
             data["insecure_cookie_count"] = insecure
     except Exception as exc:  # pragma: no cover - best effort
-        print(f"cookie settings error: {exc}")
+        logger.error("cookie settings error: %s", exc)
 
     try:
         output = external_resources_test(f"https://{domain}", verbose=False)
@@ -710,7 +742,7 @@ def initial_recon_scan(domain: str, session: Any) -> None:
         if total:
             data["external_resource_count"] = total
     except Exception as exc:  # pragma: no cover - best effort
-        print(f"external resources error: {exc}")
+        logger.error("external resources error: %s", exc)
 
     try:
         output = subdomains_test(domain, verbose=False)
@@ -720,7 +752,7 @@ def initial_recon_scan(domain: str, session: Any) -> None:
                 data["passive_subdomain_count"] = int(num)
                 break
     except Exception as exc:  # pragma: no cover - best effort
-        print(f"subdomain gathering error: {exc}")
+        logger.error("subdomain gathering error: %s", exc)
 
     if data:
         _update_enrichment(session, domain, data)
@@ -728,7 +760,7 @@ def initial_recon_scan(domain: str, session: Any) -> None:
 
 def page_metrics_scan(domain: str, session: Any) -> None:
     """Gather basic metrics for the site's homepage."""
-    print(f"[PageMetrics] scanning {domain}")
+    logger.info("[PageMetrics] scanning %s", domain)
     url = f"https://{domain}"
     scan_page_url(url, session)
 
@@ -736,10 +768,10 @@ def page_metrics_scan(domain: str, session: Any) -> None:
 def enrich_scan(domain: str, session: Any) -> None:
     """Run the enrichment logic from WORKER-Enrich_processed_domains."""
     if not analyze_target:
-        print("Enrichment dependencies not available")
+        logger.error("Enrichment dependencies not available")
         return
     result = analyze_target(domain)
-    print(json.dumps(result, indent=2))
+    logger.info(json.dumps(result, indent=2))
     _update_enrichment(session, domain, result)
 
 
@@ -763,9 +795,10 @@ TESTS: Dict[str, Callable[[str, Any], None]] = {
 
 
 def run_scans(domain: str, tests: List[str], session: Any) -> None:
+    """Execute the selected scan functions for a domain."""
     url, redirects = check_site_variants(domain)
     if not url:
-        print("Domain not reachable")
+        logger.error("Domain not reachable")
         _update_enrichment(session, domain, {"status": False})
         return
 
@@ -781,12 +814,13 @@ def run_scans(domain: str, tests: List[str], session: Any) -> None:
             continue
         func = TESTS.get(name)
         if not func:
-            print(f"Unknown test: {name}")
+            logger.warning("Unknown test: %s", name)
             continue
         func(canonical, session)
 
 
 def parse_args() -> argparse.Namespace:
+    """Parse command line arguments."""
     parser = argparse.ArgumentParser(description="Medusa scanning engine")
     parser.add_argument("--domain", required=True, help="Target domain")
     parser.add_argument("--tests", help="Comma separated list of tests to run")
@@ -795,13 +829,14 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> None:
+    """Entry point for the Medusa worker."""
     args = parse_args()
     if args.all:
         tests = list(TESTS.keys())
     elif args.tests:
         tests = [t.strip() for t in args.tests.split(",") if t.strip()]
     else:
-        print("No tests specified. Use --all or --tests.")
+        logger.error("No tests specified. Use --all or --tests.")
         return
 
     cluster, session = _cassandra_session()
