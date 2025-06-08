@@ -29,6 +29,17 @@ const description = 'View and purchase collected leads.';
         <span id="selected-count" class="small text-muted"></span>
       </div>
     </div>
+    <ul class="nav nav-pills mb-3 d-none" id="filter-tabs">
+      <li class="nav-item">
+        <button class="nav-link active" data-filter="all">All</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" data-filter="phone">Has Phone</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" data-filter="website">Has Website</button>
+      </li>
+    </ul>
     <div class="table-responsive">
       <table class="table table-striped">
         <thead id="lead-head"></thead>
@@ -45,6 +56,7 @@ const description = 'View and purchase collected leads.';
     document.addEventListener('DOMContentLoaded', () => {
       const API_BASE =
         window.API_BASE_URL || 'https://api.bluefroganalytics.com:6001';
+      const PAGE_SIZE = 1000;
       const headEl = document.getElementById('lead-head');
       const bodyEl = document.getElementById('lead-body');
       const searchEl = document.getElementById('lead-search');
@@ -53,8 +65,13 @@ const description = 'View and purchase collected leads.';
       const nextBtn = document.getElementById('next-page');
       const pageInfo = document.getElementById('page-info');
       const tabs = document.querySelectorAll('#lead-tabs .nav-link');
+      const filterTabs = document.querySelectorAll('#filter-tabs .nav-link');
+      const filterWrapper = document.getElementById('filter-tabs');
       let type = 'maps';
       let page = 1;
+      let filter = 'all';
+      let serverTotal = 0;
+      let allRows = [];
       const selected = new Map();
       const downloadBtn = document.getElementById('download-csv');
       const countEl = document.getElementById('selected-count');
@@ -148,11 +165,30 @@ const description = 'View and purchase collected leads.';
             });
           });
         }
-        const totalPages = Math.max(1, Math.ceil(data.total / data.pageSize));
-        pageInfo.textContent = `Page ${data.page} of ${totalPages}`;
-        prevBtn.disabled = data.page <= 1;
-        nextBtn.disabled = data.page >= totalPages;
+        const totalPages = Math.max(1, Math.ceil(serverTotal / PAGE_SIZE));
+        pageInfo.textContent = `Page ${page} of ${totalPages}`;
+        prevBtn.disabled = page <= 1;
+        nextBtn.disabled = page >= totalPages;
         updateCount();
+      };
+
+      const filterAndRender = () => {
+        let rows = allRows;
+        const search = searchEl.value.trim().toLowerCase();
+        if (search) {
+          rows = rows.filter(r => {
+            const values = type === 'domains'
+              ? [r.domain]
+              : [r.name || '', r.address || '', r.phone || '', r.website || ''];
+            return values.some(v => v.toLowerCase().includes(search));
+          });
+        }
+        if (filter === 'phone') {
+          rows = rows.filter(r => r.phone);
+        } else if (filter === 'website') {
+          rows = rows.filter(r => r.website);
+        }
+        render({ total: serverTotal, page, pageSize: PAGE_SIZE, results: rows });
       };
 
       const load = async user => {
@@ -161,14 +197,16 @@ const description = 'View and purchase collected leads.';
         const url = new URL('/api/leads', API_BASE);
         url.searchParams.set('type', type);
         url.searchParams.set('page', page);
-        const q = searchEl.value.trim();
-        if (q) url.searchParams.set('q', q);
+        url.searchParams.set('size', PAGE_SIZE);
         try {
           const res = await fetch(url.toString(), {
             headers: { Authorization: `Bearer ${token}` }
           });
           if (res.ok) {
-            render(await res.json());
+            const data = await res.json();
+            serverTotal = data.total;
+            allRows = data.results;
+            filterAndRender();
           }
         } catch {}
         if (window.hideSpinner) window.hideSpinner();
@@ -182,22 +220,11 @@ const description = 'View and purchase collected leads.';
             return;
           }
           load(user);
-          searchEl.addEventListener('input', () => {
-            page = 1;
-            load(user);
-          });
+          searchEl.addEventListener('input', filterAndRender);
           searchEl.addEventListener('keyup', e => {
-            if (e.key === 'Enter') {
-              page = 1;
-              load(user);
-            }
+            if (e.key === 'Enter') filterAndRender();
           });
-          if (searchBtn) {
-            searchBtn.addEventListener('click', () => {
-              page = 1;
-              load(user);
-            });
-          }
+          if (searchBtn) searchBtn.addEventListener('click', filterAndRender);
           prevBtn.addEventListener('click', () => {
             if (page > 1) {
               page--;
@@ -214,7 +241,19 @@ const description = 'View and purchase collected leads.';
               tab.classList.add('active');
               type = tab.dataset.type;
               page = 1;
+              filter = 'all';
+              filterTabs.forEach(t => t.classList.remove('active'));
+              filterTabs[0].classList.add('active');
+              filterWrapper.classList.toggle('d-none', type === 'domains');
               load(user);
+            });
+          });
+          filterTabs.forEach(ft => {
+            ft.addEventListener('click', () => {
+              filterTabs.forEach(f => f.classList.remove('active'));
+              ft.classList.add('active');
+              filter = ft.dataset.filter;
+              filterAndRender();
             });
           });
           downloadBtn.addEventListener('click', downloadCsv);
