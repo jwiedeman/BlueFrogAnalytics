@@ -17,7 +17,7 @@
 }
 
 html {
-  transition: background-color 1s, color 1s;
+  /* Immediate theme changes without fade */
 }
 
 /* Custom navbar theme */
@@ -29,12 +29,11 @@ html {
   --bs-navbar-brand-hover-color: var(--sl-color-primary);
 }
 
-/* Smooth transitions for navigation elements */
+/* Navigation element styling */
 .navbar,
 .dropdown-menu,
 footer,
 .dashboard-side-nav {
-  transition: background-color 1s, color 1s;
 }
 
 /* Global page body styles */
@@ -48,7 +47,6 @@ body {
   /* Offset pages below the fixed header */
   padding-top: var(--header-height);
   padding-bottom: 0;
-  transition: background-color 1s, color 1s;
 }
 
 html.dark-mode {
@@ -56,7 +54,6 @@ html.dark-mode {
   --bs-body-color: #f5f5f5;
   background: var(--bs-body-bg);
   color: var(--bs-body-color);
-  transition: background-color 1s, color 1s;
 }
 
 body.dark-mode {
@@ -64,7 +61,6 @@ body.dark-mode {
   --bs-body-color: #f5f5f5;
   background: var(--bs-body-bg);
   color: var(--bs-body-color);
-  transition: background-color 1s, color 1s;
 }
 
 main#main-content {
