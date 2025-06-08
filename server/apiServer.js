@@ -1210,9 +1210,9 @@ app.get('/api/domain-overview', authMiddleware, async (req, res) => {
 });
 
 app.get('/api/leads', authMiddleware, async (req, res) => {
-  const { type = 'maps', q = '', page = '1', size = '20' } = req.query;
+  const { type = 'maps', q = '', page = '1', size = '1000' } = req.query;
   const pageNum = parseInt(page, 10) || 1;
-  const pageSize = Math.min(parseInt(size, 10) || 20, 100);
+  const pageSize = Math.min(parseInt(size, 10) || 1000, 1000);
   const offset = (pageNum - 1) * pageSize;
   try {
     if (type === 'domains') {
