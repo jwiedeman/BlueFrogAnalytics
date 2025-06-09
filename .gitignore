@@ -31,6 +31,9 @@ package-lock.json
 
 # Ignore common dependency and build folders
 lib/
+# Allow frontend lib utilities
+!frontend/src/lib/
+!frontend/src/lib/**
 jre/
 output/
 node_modules/
