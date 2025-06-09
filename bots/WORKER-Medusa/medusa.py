@@ -146,6 +146,26 @@ def _write_csv(table: str, key: str, data: Dict[str, Any]) -> None:
         writer.writerow(row)
 
 
+def _ensure_list(value: Any) -> List[str]:
+    """Return a list representation for Cassandra list columns."""
+    if value is None:
+        return []
+    if isinstance(value, list):
+        return value
+    if isinstance(value, set):
+        return list(value)
+    if isinstance(value, dict):
+        return [f"{k}:{v}" for k, v in value.items()]
+    if isinstance(value, tuple):
+        return list(value)
+    if isinstance(value, str):
+        return [value]
+    try:
+        return list(value)
+    except TypeError:
+        return [str(value)]
+
+
 def _cassandra_session() -> Tuple[Cluster | None, Any | None]:
     """Return a Cassandra Cluster and Session configured via environment."""
     if DEV_MODE:
@@ -296,7 +316,7 @@ def _update_enrichment(session, domain: str, data: Dict[str, Any]) -> None:
         str(data.get("countryCode", "")),
         str(data.get("postal_code", "")),
         str(data.get("isp", "")),
-        json.dumps(data.get("languages", {})),
+        _ensure_list(data.get("languages")),
         float(data.get("lat", 0.0)),
         float(data.get("lon", 0.0)),
         str(data.get("org", "")),
@@ -308,7 +328,7 @@ def _update_enrichment(session, domain: str, data: Dict[str, Any]) -> None:
         str(data.get("ssl_issuer", "")),
         str(data.get("ssl_org", "")),
         str(data.get("x_powered_by", "")),
-        json.dumps(data.get("tech_detect", {})),
+        _ensure_list(data.get("tech_detect")),
         str(data.get("wordpress_asset_version", "")),
         str(data.get("timezone", "")),
         str(data.get("title", "")),
@@ -324,10 +344,10 @@ def _update_enrichment(session, domain: str, data: Dict[str, Any]) -> None:
         str(data.get("server_version", "")),
         int(data.get("wpjson_size_bytes", 0)),
         bool(data.get("wpjson_contains_cart", False)),
-        json.dumps(data.get("emails", [])),
-        json.dumps(data.get("phone_numbers", [])),
-        json.dumps(data.get("sms_numbers", [])),
-        json.dumps(data.get("addresses", [])),
+        _ensure_list(data.get("emails")),
+        _ensure_list(data.get("phone_numbers")),
+        _ensure_list(data.get("sms_numbers")),
+        _ensure_list(data.get("addresses")),
         str(data.get("favicon_url", "")),
         bool(data.get("robots_txt_exists", False)),
         str(data.get("robots_txt_content", "")),
@@ -336,16 +356,16 @@ def _update_enrichment(session, domain: str, data: Dict[str, Any]) -> None:
         int(data.get("h2_count", 0)),
         int(data.get("h3_count", 0)),
         bool(data.get("schema_markup_detected", False)),
-        json.dumps(data.get("schema_types", [])),
+        _ensure_list(data.get("schema_types")),
         int(data.get("security_headers_score", 0)),
-        json.dumps(data.get("security_headers_detected", [])),
+        _ensure_list(data.get("security_headers_detected")),
         bool(data.get("hsts_enabled", False)),
         bool(data.get("cookie_compliance", False)),
         int(data.get("third_party_scripts", 0)),
         int(data.get("color_contrast_issues", 0)),
         int(data.get("aria_landmark_count", 0)),
         int(data.get("form_accessibility_issues", 0)),
-        json.dumps(data.get("social_media_profiles", [])),
+        _ensure_list(data.get("social_media_profiles")),
         bool(data.get("rss_feed_detected", False)),
         bool(data.get("newsletter_signup_detected", False)),
         bool(data.get("cdn_detected", False)),
@@ -355,7 +375,7 @@ def _update_enrichment(session, domain: str, data: Dict[str, Any]) -> None:
         int(data.get("page_weight_bytes", 0)),
         str(data.get("main_language", "")),
         str(data.get("content_keywords", "")),
-        json.dumps(data.get("ecommerce_platforms", [])),
+        _ensure_list(data.get("ecommerce_platforms")),
         int(data.get("sitemap_page_count", 0)),
         int(data.get("meta_tag_count", 0)),
         bool(data.get("sitemap_robots_conflict", False)),
