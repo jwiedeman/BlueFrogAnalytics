@@ -1,18 +1,19 @@
 ---
 import '../styles/global.css';
-import SimpleNav from '../components/layout/SimpleNav.astro';
-const { content } = Astro.props;
+import Header from '../components/layout/Header.astro';
+
+const { title = 'Blue Frog Analytics' } = Astro.props;
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<title>{content.title}</title>
-	</head>
+                <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+                <title>{title}</title>
+        </head>
         <body>
-                <SimpleNav />
+                <Header />
                 <slot />
         </body>
 </html>

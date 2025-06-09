@@ -1,36 +1,17 @@
 ---
-import "../styles/global.css";
-// Component Imports
-import Button from "../components/Button.astro";
 layout: '../layouts/main.astro'
-import { Navbar4 } from "../components/layout/Navbar4";
+title: "Home"
+import Button from "../components/Button.astro";
 import { Hero3 } from "../components/sections/Hero3";
 import { Stats8 } from "../components/sections/Stats8";
 import { Logos10 } from "../components/sections/Logos10";
 import { Compare5 } from "../components/sections/Compare5";
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
-	</head>
-
-        <body>
-                <Navbar4 client:load />
-                <Hero3 />
-                <Stats8 />
-                <Logos10 client:load />
-                <Compare5 />
-                <div class="grid place-items-center h-screen content-center">
-                        <Button>Tailwind Button in Astro!</Button>
-                        <a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
-                </div>
-        </body>
-</html>
+<Hero3 />
+<Stats8 />
+<Logos10 client:load />
+<Compare5 />
+<div class="grid place-items-center h-screen content-center">
+  <Button>Tailwind Button in Astro!</Button>
+  <a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
+</div>
