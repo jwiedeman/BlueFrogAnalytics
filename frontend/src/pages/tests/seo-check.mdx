@@ -1,0 +1,39 @@
+---
+layout: '../../layouts/main.astro'
+title: 'SEO Check'
+description: 'Audit SEO best practices using Lighthouse.'
+---
+
+<section class="py-8">
+  <div class="max-w-2xl mx-auto space-y-6">
+    <div class="text-center">
+      <h1 class="text-3xl font-bold">SEO Check</h1>
+      <p>Analyze your page with Lighthouse SEO diagnostics.</p>
+    </div>
+    <form id="seo-form" class="space-y-4">
+      <div>
+        <label for="seo-url" class="block font-medium">Enter URL</label>
+        <input type="url" id="seo-url" name="url" placeholder="https://example.com" class="w-full border rounded p-2" />
+      </div>
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Run Test</button>
+    </form>
+    <pre id="seo-results" class="bg-gray-100 p-3 rounded overflow-x-auto"></pre>
+  </div>
+</section>
+
+<script type="module" src="/js/seo-check.js" defer></script>
+
+## Implementation Notes
+
+**Data Points Needed**
+
+- Lighthouse SEO audit scores
+- Weights for each audit
+
+**Formula**
+
+$$
+\\text{SEO Score} = \\sum_i w_i a_i
+$$
+
+where $a_i$ is 1 if an audit passes, otherwise 0.
