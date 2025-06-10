@@ -1,0 +1,9 @@
+---
+import Main from './main.astro';
+const { title = 'Docs', description = '' } = Astro.props;
+---
+<Main title={title}>
+  <article class="prose lg:prose-xl dark:prose-invert mx-auto px-4 py-8">
+    <slot />
+  </article>
+</Main>
