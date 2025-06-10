@@ -286,8 +286,12 @@ def _update_enrichment(session, domain: str, data: Dict[str, Any]) -> None:
         return
 
     def norm(value: Any) -> Any:
-        """Convert lists or dicts to JSON strings for safer insertion."""
-        if isinstance(value, (list, dict)):
+        """Normalize complex values for Cassandra insertion."""
+        # Cassandra list fields should receive sequences directly. Only
+        # dictionaries need to be serialized to JSON. Previously lists were
+        # converted to JSON which caused type errors when binding to list
+        # columns.
+        if isinstance(value, dict):
             return json.dumps(value)
         return value
 

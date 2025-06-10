@@ -81,3 +81,28 @@ def test_update_enrichment_dev(tmp_path, monkeypatch, medusa):
     text = csv_path.read_text()
     assert "domains_processed" in text
     assert "example.com" in text
+
+
+def test_update_enrichment_list_values(monkeypatch, medusa):
+    """Ensure list columns are bound as sequences, not JSON strings."""
+    class FakeSession:
+        def prepare(self, query):
+            return "stmt"
+
+    executed = {}
+
+    def fake_safe_execute(session, stmt, params):
+        executed["params"] = params
+
+    monkeypatch.setattr(medusa, "_safe_execute", fake_safe_execute)
+    monkeypatch.setattr(
+        medusa, "extract", lambda d: types.SimpleNamespace(domain="ex", suffix="com")
+    )
+
+    data = {"emails": ["a@example.com", "b@example.com"], "phone_numbers": ["123"]}
+    medusa._update_enrichment(FakeSession(), "example.com", data)
+
+    assert any(
+        isinstance(p, list) and p == ["a@example.com", "b@example.com"]
+        for p in executed["params"]
+    )
