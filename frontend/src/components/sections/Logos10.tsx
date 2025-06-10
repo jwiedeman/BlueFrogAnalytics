@@ -13,56 +13,56 @@ const Logos10 = () => {
     {
       id: "logo-1",
       description: "Logo 1",
-      image: "https://bluefroganalytics.com/images/block/logos/astro-wordmark.svg",
+      image: "https://shadcnblocks.com/images/block/logos/astro-wordmark.svg",
       className: "h-7 w-auto",
     },
     {
       id: "logo-2",
       description: "Logo 2",
       image:
-        "https://bluefroganalytics.com/images/block/logos/company/fictional-company-logo-1.svg",
+        "https://shadcnblocks.com/images/block/logos/company/fictional-company-logo-1.svg",
       className: "h-7 w-auto",
     },
     {
       id: "logo-3",
       description: "Logo 3",
       image:
-        "https://bluefroganalytics.com/images/block/logos/company/fictional-company-logo-2.svg",
+        "https://shadcnblocks.com/images/block/logos/company/fictional-company-logo-2.svg",
       className: "h-7 w-auto",
     },
     {
       id: "logo-4",
       description: "Logo 4",
       image:
-        "https://bluefroganalytics.com/images/block/logos/company/fictional-company-logo-3.svg",
+        "https://shadcnblocks.com/images/block/logos/company/fictional-company-logo-3.svg",
       className: "h-7 w-auto",
     },
     {
       id: "logo-5",
       description: "Logo 5",
       image:
-        "https://bluefroganalytics.com/images/block/logos/company/fictional-company-logo-4.svg",
+        "https://shadcnblocks.com/images/block/logos/company/fictional-company-logo-4.svg",
       className: "h-7 w-auto",
     },
     {
       id: "logo-6",
       description: "Logo 6",
       image:
-        "https://bluefroganalytics.com/images/block/logos/company/fictional-company-logo-5.svg",
+        "https://shadcnblocks.com/images/block/logos/company/fictional-company-logo-5.svg",
       className: "h-5 w-auto",
     },
     {
       id: "logo-7",
       description: "Logo 7",
       image:
-        "https://bluefroganalytics.com/images/block/logos/company/fictional-company-logo-6.svg",
+        "https://shadcnblocks.com/images/block/logos/company/fictional-company-logo-6.svg",
       className: "h-7 w-auto",
     },
     {
       id: "logo-8",
       description: "Logo 8",
       image:
-        "https://bluefroganalytics.com/images/block/logos/company/fictional-company-logo-7.svg",
+        "https://shadcnblocks.com/images/block/logos/company/fictional-company-logo-7.svg",
       className: "h-7 w-auto",
     },
   ];

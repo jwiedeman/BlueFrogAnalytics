@@ -18,7 +18,7 @@ const Compare5 = () => {
           <div className="relative h-full">
             <div className="relative aspect-4/5 min-h-[400px] overflow-hidden rounded-2xl bg-accent sm:aspect-[0.9] sm:min-h-[480px] sm:rounded-3xl md:min-h-[520px]">
               <img
-                src="https://bluefroganalytics.com/images/block/photos/simone-hutsch-9jsQcDsxyqA-unsplash.jpg"
+                src="https://shadcnblocks.com/images/block/photos/simone-hutsch-9jsQcDsxyqA-unsplash.jpg"
                 alt="Build for me"
                 className="h-full w-full object-cover"
               />
@@ -42,7 +42,7 @@ const Compare5 = () => {
           <div className="relative h-full">
             <div className="relative aspect-4/5 min-h-[400px] overflow-hidden rounded-2xl sm:aspect-[0.9] sm:min-h-[480px] sm:rounded-3xl md:min-h-[520px]">
               <img
-                src="https://bluefroganalytics.com/images/block/photos/simone-hutsch-uR__S5GX8Io-unsplash.jpg"
+                src="https://shadcnblocks.com/images/block/photos/simone-hutsch-uR__S5GX8Io-unsplash.jpg"
                 alt="Do it yourself"
                 className="h-full w-full object-cover"
               />

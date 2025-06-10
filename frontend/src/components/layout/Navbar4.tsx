@@ -227,21 +227,21 @@ const productCategories = [
         title: "Task Management",
         description: "Organize and track work efficiently.",
         href: "#",
-        image: "https://bluefroganalytics.com/images/block/block-1.svg",
+        image: "https://shadcnblocks.com/images/block/block-1.svg",
       },
       {
         id: "product-2",
         title: "Team Calendar",
         description: "Coordinate schedules and deadlines.",
         href: "#",
-        image: "https://bluefroganalytics.com/images/block/block-2.svg",
+        image: "https://shadcnblocks.com/images/block/block-2.svg",
       },
       {
         id: "product-3",
         title: "Workflows",
         description: "Automate your business processes.",
         href: "#",
-        image: "https://bluefroganalytics.com/images/block/block-3.svg",
+        image: "https://shadcnblocks.com/images/block/block-3.svg",
       },
     ],
   },
@@ -253,14 +253,14 @@ const productCategories = [
         title: "Portfolio Management",
         description: "Track and optimize project portfolios at scale.",
         href: "#",
-        image: "https://bluefroganalytics.com/images/block/block-4.svg",
+        image: "https://shadcnblocks.com/images/block/block-4.svg",
       },
       {
         id: "product-5",
         title: "Resource Planning",
         description: "Optimize team workload and capacity.",
         href: "#",
-        image: "https://bluefroganalytics.com/images/block/block-5.svg",
+        image: "https://shadcnblocks.com/images/block/block-5.svg",
       },
     ],
   },
@@ -554,7 +554,7 @@ const SolutionsMenu = () => (
         </div>
         <div className="relative aspect-2/1 overflow-clip rounded-t pl-6 lg:max-w-[22rem] lg:pl-0">
           <img
-            src="https://bluefroganalytics.com/images/block/placeholder-1.svg"
+            src="https://shadcnblocks.com/images/block/placeholder-1.svg"
             alt="placeholder"
             className="aspect-2/1 h-full w-full translate-y-px object-cover object-center"
           />
@@ -625,7 +625,7 @@ const ProductsMenu = () => (
         <div className="relative z-10 flex w-full flex-col space-y-12 text-left lg:space-y-0">
           <div className="relative flex aspect-2/1 max-h-[11rem] w-full flex-1 justify-center">
             <img
-              src="https://bluefroganalytics.com/images/block/placeholder-2.svg"
+              src="https://shadcnblocks.com/images/block/placeholder-2.svg"
               alt="placeholder"
               className="h-full w-full object-cover object-center"
             />
@@ -689,7 +689,7 @@ const GlobalGuidanceMenu = () => (
           <div className="relative z-10 flex w-full flex-col-reverse text-left lg:flex-col">
             <div className="relative flex aspect-4/3 max-h-[18rem] w-full flex-1 justify-center">
               <img
-                src="https://bluefroganalytics.com/images/block/placeholder-3.svg"
+                src="https://shadcnblocks.com/images/block/placeholder-3.svg"
                 alt="placeholder"
                 className="h-full w-full object-cover object-center"
               />
@@ -801,7 +801,7 @@ const CustomersMenu = () => (
             <div className="relative grid w-1/2 border-x border-border sm:w-full">
               <div className="relative flex items-center justify-center border-b p-4">
                 <img
-                  src="https://bluefroganalytics.com/images/block/logos/astro-wordmark.svg"
+                  src="https://shadcnblocks.com/images/block/logos/astro-wordmark.svg"
                   alt="placeholder"
                   className="h-4 w-full"
                 />
@@ -820,7 +820,7 @@ const CustomersMenu = () => (
               </div>
               <div className="relative flex items-center justify-center border-b p-4">
                 <img
-                  src="https://bluefroganalytics.com/images/block/logos/vercel-wordmark.svg"
+                  src="https://shadcnblocks.com/images/block/logos/vercel-wordmark.svg"
                   alt="placeholder"
                   className="h-4 w-full"
                 />
@@ -833,7 +833,7 @@ const CustomersMenu = () => (
               </div>
               <div className="relative flex items-center justify-center border-b p-4">
                 <img
-                  src="https://bluefroganalytics.com/images/block/logos/BlueFrogAnalytics-ui-wordmark.svg"
+                  src="https://shadcnblocks.com/images/block/logos/shadcn-ui-wordmark.svg"
                   alt="placeholder"
                   className="h-4 w-full"
                 />
@@ -846,7 +846,7 @@ const CustomersMenu = () => (
               </div>
               <div className="relative flex items-center justify-center p-4">
                 <img
-                  src="https://bluefroganalytics.com/images/block/logos/supabase-wordmark.svg"
+                  src="https://shadcnblocks.com/images/block/logos/supabase-wordmark.svg"
                   alt="placeholder"
                   className="h-4 w-full"
                 />
@@ -881,7 +881,7 @@ const CustomersMenu = () => (
             <div className="size-1 rounded-full bg-primary-foreground"></div>
           </div>
           <img
-            src="https://bluefroganalytics.com/images/block/logos/astro-wordmark.svg"
+            src="https://shadcnblocks.com/images/block/logos/astro-wordmark.svg"
             alt="placeholder"
             className="w-1/2 object-contain object-center opacity-100 invert transition-all duration-100 group-hover:scale-[1.1]"
           />
@@ -897,7 +897,7 @@ const CustomersMenu = () => (
         <div className="mb-5 flex justify-between border-y border-border pl-6 md:mt-12 md:mb-0">
           <div className="relative aspect-square w-16 border-x border-border p-4">
             <img
-              src="https://bluefroganalytics.com/images/block/block-1.svg"
+              src="https://shadcnblocks.com/images/block/block-1.svg"
               alt="placeholder"
               className="h-auto w-full object-contain"
             />
@@ -957,7 +957,7 @@ const PartnersMenu = () => (
           </div>
           <div className="absolute inset-0 top-[32%] bg-accent invert md:top-0">
             <img
-              src="https://bluefroganalytics.com/images/block/placeholder-1.svg"
+              src="https://shadcnblocks.com/images/block/placeholder-1.svg"
               alt="placeholder"
               className="object-fit h-full w-full object-top-right opacity-100 md:h-2/3 md:object-top"
             />
@@ -982,7 +982,7 @@ const PartnersMenu = () => (
           </div>
           <div className="absolute inset-0 top-[32%] md:top-0">
             <img
-              src="https://bluefroganalytics.com/images/block/placeholder-2.svg"
+              src="https://shadcnblocks.com/images/block/placeholder-2.svg"
               alt="placeholder"
               className="object-fit h-full w-full object-top-right md:h-2/3 md:object-top"
             />
@@ -1047,7 +1047,7 @@ const ResourcesMenu = () => (
           </div>
           <div className="absolute inset-0">
             <img
-              src="https://bluefroganalytics.com/images/block/placeholder-4.svg"
+              src="https://shadcnblocks.com/images/block/placeholder-4.svg"
               alt="placeholder"
               className="h-full w-full object-cover object-center invert"
             />
@@ -1133,11 +1133,11 @@ const Navbar4 = () => {
         <NavigationMenu className="min-w-full">
           <div className="flex w-full justify-between gap-2 py-4">
             <a
-              href="https://www.bluefroganalytics.com"
+              href="https://www.shadcnblocks.com"
               className="flex items-center gap-2"
             >
               <img
-                src="https://bluefroganalytics.com/images/block/logos/bluefroganalyticscom-icon.svg"
+                src="https://shadcnblocks.com/images/block/logos/shadcnblockscom-icon.svg"
                 className="max-h-8"
                 alt="BlueFrogAnalytics UI Navbar"
               />

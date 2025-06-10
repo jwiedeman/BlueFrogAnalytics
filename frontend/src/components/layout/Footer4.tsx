@@ -48,8 +48,8 @@ interface Footer4Props {
 }
 const Footer4 = ({
   logo = {
-    url: "https://www.bluefroganalytics.com",
-    src: "https://bluefroganalytics.com/images/block/logos/bluefroganalyticscom-icon.svg",
+    url: "https://www.shadcnblocks.com",
+    src: "https://shadcnblocks.com/images/block/logos/shadcnblockscom-icon.svg",
     alt: "logo",
     title: "BlueFrogAnalytics",
   },

@@ -19,7 +19,7 @@ const Stats8 = ({
   description = "Ensuring stability and scalability for all users",
   link = {
     text: "Read the full impact report",
-    url: "https://www.bluefroganalytics.com",
+    url: "https://www.shadcnblocks.com",
   },
   stats = [
     {
