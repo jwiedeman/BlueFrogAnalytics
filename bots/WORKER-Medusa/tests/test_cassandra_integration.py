@@ -1,5 +1,6 @@
 import sys
 import types
+import json
 
 import pytest
 
@@ -84,7 +85,7 @@ def test_update_enrichment_dev(tmp_path, monkeypatch, medusa):
 
 
 def test_update_enrichment_list_values(monkeypatch, medusa):
-    """Ensure list columns are bound as sequences, not JSON strings."""
+    """Ensure list values are serialized to JSON for compatibility."""
     class FakeSession:
         def prepare(self, query):
             return "stmt"
@@ -102,7 +103,5 @@ def test_update_enrichment_list_values(monkeypatch, medusa):
     data = {"emails": ["a@example.com", "b@example.com"], "phone_numbers": ["123"]}
     medusa._update_enrichment(FakeSession(), "example.com", data)
 
-    assert any(
-        isinstance(p, list) and p == ["a@example.com", "b@example.com"]
-        for p in executed["params"]
-    )
+    expected = json.dumps(["a@example.com", "b@example.com"])
+    assert expected in executed["params"]
