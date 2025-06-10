@@ -6,7 +6,8 @@ export async function getStaticPaths() {
   const modules = import.meta.glob('./**/*.mdx');
   return Object.keys(modules).map((path) => {
     const slug = path.slice(2, -4); // remove './' and '.mdx'
-    return { params: { slug: slug.split('/') } };
+    // Return a string for the [...slug] param instead of an array
+    return { params: { slug } };
   });
 }
 

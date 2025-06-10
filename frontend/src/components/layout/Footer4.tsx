@@ -1,4 +1,5 @@
-import { FaDiscord, FaTwitter } from "react-icons/fa"
+// Import icons using explicit file path to avoid ESM directory resolution issues
+import { FaDiscord, FaTwitter } from "react-icons/fa/index.js"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
