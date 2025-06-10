@@ -1,5 +1,5 @@
 ---
-import { getCollection, getEntryBySlug } from 'astro:content';
+import { getCollection } from 'astro:content';
 import BlogPostLayout from '../../components/BlogPostLayout.astro';
 import BlogPostCard from '../../components/BlogPostCard.astro';
 import { applyGitDates } from '../../utils/git-dates.js';
@@ -13,12 +13,11 @@ function slugify(str) {
 
 export async function getStaticPaths() {
   const posts = (await getCollection('blog')).filter(p => p.data.published);
-  return posts.map(p => ({ params: { slug: p.slug } }));
+  return posts.map(p => ({ params: { slug: p.slug }, props: { post: p } }));
 }
 
-const { slug } = Astro.params;
-const post = await getEntryBySlug('blog', slug);
-if (!post || !post.data.published) throw new Error('Post not found');
+const { post } = Astro.props;
+const slug = post.slug;
 applyGitDates(post);
 
 const pageTitle = post.data.title;
