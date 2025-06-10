@@ -1,0 +1,24 @@
+---
+import DocLayout from '../../layouts/doc.astro';
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const modules = import.meta.glob('./**/*.mdx');
+  return Object.keys(modules).map((path) => {
+    const slug = path.slice(2, -4); // remove './' and '.mdx'
+    return { params: { slug: slug.split('/') } };
+  });
+}
+
+const modules = import.meta.glob('./**/*.mdx');
+const slugParam = Astro.params.slug;
+const slug = Array.isArray(slugParam) ? slugParam.join('/') : slugParam;
+const importPage = modules[`./${slug}.mdx`];
+if (!importPage) {
+  throw new Error(`Doc not found: ${slug}`);
+}
+const { frontmatter, default: Content } = await importPage();
+---
+<DocLayout title={frontmatter.title ?? 'Documentation'} description={frontmatter.description ?? ''}>
+  <Content />
+</DocLayout>
