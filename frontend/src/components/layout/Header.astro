@@ -2,19 +2,21 @@
 const mainNav = [
   { label: 'Dashboard', link: '/dashboard', isDash: true },
   { label: 'Home', link: '/' },
-  { label: 'Pricing', link: '/pricing' },
-  { label: 'Leads', link: '/leads' },
+  { label: 'About', link: '/about' },
+  { label: 'Services', link: '/services' },
+  { label: 'Membership', link: '/membership' },
+  { label: 'Discord', link: '/discord' },
+  { label: 'Contact', link: '/contact' },
   { label: 'Free Tools', link: '/testing' },
   { label: 'Blog', link: '/blog' },
-  { label: 'Contact', link: '/contact' },
-  { label: 'Docs & Guides', link: '/introduction/how-blue-frog-analytics-works' },
+  { label: 'Docs & Guides', link: '/docs' },
 ];
 
 const currentPath = Astro.url.pathname === '/' ? '/' : Astro.url.pathname.replace(/\/$/, '').toLowerCase();
 
 function isActive(item) {
   const link = item.link === '/' ? '/' : item.link.replace(/\/$/, '').toLowerCase();
-  if (item.label === 'Docs & Guides') return currentPath.startsWith('/introduction');
+  if (item.label === 'Docs & Guides') return currentPath.startsWith('/docs');
   if (item.label === 'Free Tools') return currentPath.startsWith('/testing');
   if (item.label === 'Blog') return currentPath.startsWith('/blog');
   if (link === '/') return currentPath === '/';
