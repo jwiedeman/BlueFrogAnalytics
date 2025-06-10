@@ -33,11 +33,11 @@ const Hero3 = ({
   buttons = {
     primary: {
       text: "Sign Up",
-      url: "https://www.bluefroganalytics.com",
+      url: "https://www.shadcnblocks.com",
     },
     secondary: {
       text: "Get Started",
-      url: "https://www.bluefroganalytics.com",
+      url: "https://www.shadcnblocks.com",
     },
   },
   reviews = {
@@ -45,23 +45,23 @@ const Hero3 = ({
     rating: 5.0,
     avatars: [
       {
-        src: "https://www.bluefroganalytics.com/images/block/avatar-1.webp",
+        src: "https://www.shadcnblocks.com/images/block/avatar-1.webp",
         alt: "Avatar 1",
       },
       {
-        src: "https://www.bluefroganalytics.com/images/block/avatar-2.webp",
+        src: "https://www.shadcnblocks.com/images/block/avatar-2.webp",
         alt: "Avatar 2",
       },
       {
-        src: "https://www.bluefroganalytics.com/images/block/avatar-3.webp",
+        src: "https://www.shadcnblocks.com/images/block/avatar-3.webp",
         alt: "Avatar 3",
       },
       {
-        src: "https://www.bluefroganalytics.com/images/block/avatar-4.webp",
+        src: "https://www.shadcnblocks.com/images/block/avatar-4.webp",
         alt: "Avatar 4",
       },
       {
-        src: "https://www.bluefroganalytics.com/images/block/avatar-5.webp",
+        src: "https://www.shadcnblocks.com/images/block/avatar-5.webp",
         alt: "Avatar 5",
       },
     ],
@@ -120,7 +120,7 @@ const Hero3 = ({
         </div>
         <div className="flex">
           <img
-            src="https://www.bluefroganalytics.com/images/block/placeholder-1.svg"
+            src="https://www.shadcnblocks.com/images/block/placeholder-1.svg"
             alt="placeholder hero"
             className="max-h-[600px] w-full rounded-md object-cover lg:max-h-[800px]"
           />
