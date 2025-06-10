@@ -1,6 +1,7 @@
 ---
 import Main from '../../layouts/main.astro';
-const posts = await Astro.glob('../../content/blog/*.mdx');
+const postImports = import.meta.glob('../../content/blog/*.mdx', { eager: true });
+const posts = Object.values(postImports);
 posts.sort((a, b) => (b.frontmatter.pubDate?.valueOf() ?? 0) - (a.frontmatter.pubDate?.valueOf() ?? 0));
 ---
 <Main title="Blog">
