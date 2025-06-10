@@ -1,0 +1,17 @@
+---
+import Main from '../../layouts/main.astro';
+import { getEntryBySlug } from 'astro:content';
+const { slug } = Astro.params;
+const post = await getEntryBySlug('blog', slug);
+if (!post) throw new Error('Post not found');
+const { Content } = await post.render();
+---
+<Main title={post.data.title}>
+  <article class="prose lg:prose-xl dark:prose-invert mx-auto py-8">
+    <h1 class="mb-4">{post.data.title}</h1>
+    {post.data.pubDate && (
+      <p class="text-sm text-gray-500">{new Date(post.data.pubDate).toLocaleDateString()}</p>
+    )}
+    <Content />
+  </article>
+</Main>
