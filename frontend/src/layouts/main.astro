@@ -1,6 +1,9 @@
 ---
 import '../styles/global.css';
+
 import { Navbar4 } from '../components/layout/Navbar4';
+import { Footer4 } from '../components/layout/Footer4';
+
 
 const { title = 'Blue Frog Analytics' } = Astro.props;
 ---
@@ -15,5 +18,6 @@ const { title = 'Blue Frog Analytics' } = Astro.props;
         <body>
                 <Navbar4 client:load />
                 <slot />
+                <Footer4 />
         </body>
 </html>
