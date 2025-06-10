@@ -286,7 +286,7 @@ def _update_enrichment(session, domain: str, data: Dict[str, Any]) -> None:
         return
 
     params = (
-        str(data.get("status", True)),
+        bool(data.get("status", True)),
         now_str,
         str(data.get("asname", "")),
         str(data.get("as", "")),
