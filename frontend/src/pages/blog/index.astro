@@ -1,7 +1,25 @@
 ---
-layout: '../../layouts/main.astro'
-title: "Blog"
+import Main from '../../layouts/main.astro';
+const posts = await Astro.glob('../../content/blog/*.mdx');
+posts.sort((a, b) => (b.frontmatter.pubDate?.valueOf() ?? 0) - (a.frontmatter.pubDate?.valueOf() ?? 0));
 ---
-<div class="p-4">
-  TODO: Add Blog content.
-</div>
+<Main title="Blog">
+  <section class="max-w-3xl mx-auto py-8">
+    <h1 class="text-3xl font-bold mb-6">Blog</h1>
+    <ul class="space-y-6">
+      {posts.map(post => (
+        <li>
+          <a href={post.url} class="text-xl text-blue-600 hover:underline font-semibold">
+            {post.frontmatter.title}
+          </a>
+          {post.frontmatter.description && (
+            <p class="text-gray-600">{post.frontmatter.description}</p>
+          )}
+          {post.frontmatter.pubDate && (
+            <p class="text-sm text-gray-500 mt-1">{new Date(post.frontmatter.pubDate).toLocaleDateString()}</p>
+          )}
+        </li>
+      ))}
+    </ul>
+  </section>
+</Main>
