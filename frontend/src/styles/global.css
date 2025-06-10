@@ -49,7 +49,7 @@
   --sidebar-border: hsl(220 13% 91%);
   --sidebar-ring: hsl(217.2 91.2% 59.8%);
 
-  /* Shadcnblocks.com */
+  /* BlueFrogAnalytics */
   --muted-2: hsl(0 0% 90%);
   --muted-2-foreground: hsl(240 3.8% 46.1%);
 
@@ -99,7 +99,7 @@
   --sidebar-border: hsl(240 3.7% 15.9%);
   --sidebar-ring: hsl(217.2 91.2% 59.8%);
 
-  /* Shadcnblocks.com */
+  /* BlueFrogAnalytics */
   --muted-2: hsl(0, 0%, 18%);
   --muted-2-foreground: hsl(240, 2%, 75%);
 
@@ -135,7 +135,7 @@
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
 
-  /* Shadcnblocks.com */
+  /* BlueFrogAnalytics */
   --color-muted-2: var(--muted-2);
   --color-muted-2-foreground: var(--muted-2-foreground);
   --color-transparent: transparent;
