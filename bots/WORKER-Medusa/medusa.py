@@ -285,6 +285,12 @@ def _update_enrichment(session, domain: str, data: Dict[str, Any]) -> None:
         _safe_execute(session, down_stmt, (False, now_str, dom, tld))
         return
 
+    def norm(value: Any) -> Any:
+        """Convert lists or dicts to JSON strings for safer insertion."""
+        if isinstance(value, (list, dict)):
+            return json.dumps(value)
+        return value
+
     params = (
         bool(data.get("status", True)),
         now_str,
@@ -297,7 +303,7 @@ def _update_enrichment(session, domain: str, data: Dict[str, Any]) -> None:
         str(data.get("countryCode", "")),
         str(data.get("postal_code", "")),
         str(data.get("isp", "")),
-        data.get("languages", []),
+        norm(data.get("languages", [])),
         float(data.get("lat", 0.0)),
         float(data.get("lon", 0.0)),
         str(data.get("org", "")),
@@ -309,7 +315,7 @@ def _update_enrichment(session, domain: str, data: Dict[str, Any]) -> None:
         str(data.get("ssl_issuer", "")),
         str(data.get("ssl_org", "")),
         str(data.get("x_powered_by", "")),
-        data.get("tech_detect", []),
+        norm(data.get("tech_detect", [])),
         str(data.get("wordpress_asset_version", "")),
         str(data.get("timezone", "")),
         str(data.get("title", "")),
@@ -325,10 +331,10 @@ def _update_enrichment(session, domain: str, data: Dict[str, Any]) -> None:
         str(data.get("server_version", "")),
         int(data.get("wpjson_size_bytes", 0)),
         bool(data.get("wpjson_contains_cart", False)),
-        data.get("emails", []),
-        data.get("phone_numbers", []),
-        data.get("sms_numbers", []),
-        data.get("addresses", []),
+        norm(data.get("emails", [])),
+        norm(data.get("phone_numbers", [])),
+        norm(data.get("sms_numbers", [])),
+        norm(data.get("addresses", [])),
         str(data.get("favicon_url", "")),
         bool(data.get("robots_txt_exists", False)),
         str(data.get("robots_txt_content", "")),
@@ -337,16 +343,16 @@ def _update_enrichment(session, domain: str, data: Dict[str, Any]) -> None:
         int(data.get("h2_count", 0)),
         int(data.get("h3_count", 0)),
         bool(data.get("schema_markup_detected", False)),
-        data.get("schema_types", []),
+        norm(data.get("schema_types", [])),
         int(data.get("security_headers_score", 0)),
-        data.get("security_headers_detected", []),
+        norm(data.get("security_headers_detected", [])),
         bool(data.get("hsts_enabled", False)),
         bool(data.get("cookie_compliance", False)),
         int(data.get("third_party_scripts", 0)),
         int(data.get("color_contrast_issues", 0)),
         int(data.get("aria_landmark_count", 0)),
         int(data.get("form_accessibility_issues", 0)),
-        data.get("social_media_profiles", []),
+        norm(data.get("social_media_profiles", [])),
         bool(data.get("rss_feed_detected", False)),
         bool(data.get("newsletter_signup_detected", False)),
         bool(data.get("cdn_detected", False)),
@@ -356,7 +362,7 @@ def _update_enrichment(session, domain: str, data: Dict[str, Any]) -> None:
         int(data.get("page_weight_bytes", 0)),
         str(data.get("main_language", "")),
         str(data.get("content_keywords", "")),
-        data.get("ecommerce_platforms", []),
+        norm(data.get("ecommerce_platforms", [])),
         int(data.get("sitemap_page_count", 0)),
         int(data.get("meta_tag_count", 0)),
         bool(data.get("sitemap_robots_conflict", False)),
