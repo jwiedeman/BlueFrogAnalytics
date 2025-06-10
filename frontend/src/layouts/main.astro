@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Header from '../components/layout/Header.astro';
+import { Footer4 } from '../components/layout/Footer4';
 
 const { title = 'Blue Frog Analytics' } = Astro.props;
 ---
@@ -15,5 +16,6 @@ const { title = 'Blue Frog Analytics' } = Astro.props;
         <body>
                 <Header />
                 <slot />
+                <Footer4 />
         </body>
 </html>

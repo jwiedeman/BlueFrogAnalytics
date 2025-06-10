@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/main.astro";
-import Button from "../components/Button.astro";
 import { Hero3 } from "../components/sections/Hero3";
 import { Stats8 } from "../components/sections/Stats8";
 import { Logos10 } from "../components/sections/Logos10";
@@ -11,8 +10,4 @@ import { Compare5 } from "../components/sections/Compare5";
   <Stats8 />
   <Logos10 client:load />
   <Compare5 />
-  <div class="grid place-items-center h-screen content-center">
-    <Button>Tailwind Button in Astro!</Button>
-    <a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
-  </div>
 </Layout>
