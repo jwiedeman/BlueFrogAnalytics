@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import Header from '../components/layout/Header.astro';
+import { Navbar4 } from '../components/layout/Navbar4';
 
 const { title = 'Blue Frog Analytics' } = Astro.props;
 ---
@@ -13,7 +13,7 @@ const { title = 'Blue Frog Analytics' } = Astro.props;
                 <title>{title}</title>
         </head>
         <body>
-                <Header />
+                <Navbar4 client:load />
                 <slot />
         </body>
 </html>
