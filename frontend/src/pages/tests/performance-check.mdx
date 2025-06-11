@@ -1,0 +1,39 @@
+---
+layout: '../../layouts/main.astro'
+title: 'Performance Check'
+description: 'Measure site performance using Lighthouse.'
+---
+
+<section class="py-8">
+  <div class="max-w-2xl mx-auto space-y-6">
+    <div class="text-center">
+      <h1 class="text-3xl font-bold">Performance Check</h1>
+      <p>Evaluate site speed using key performance metrics.</p>
+    </div>
+    <form id="perf-form" class="space-y-4">
+      <div>
+        <label for="perf-url" class="block font-medium">Enter URL</label>
+        <input type="url" id="perf-url" name="url" placeholder="https://example.com" class="w-full border rounded p-2" />
+      </div>
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Run Test</button>
+    </form>
+    <div id="perf-results" class="bg-gray-100 p-3 rounded overflow-x-auto"></div>
+  </div>
+</section>
+
+<script type="module" src="/js/performance-check.js" defer></script>
+
+## Implementation Notes
+
+**Data Points Needed**
+
+- Metrics: FCP, LCP, Speed Index, TTI, TBT, CLS
+- Weighting for each metric
+
+**Formula**
+
+$$
+\text{Score} = \sum_i w_i s_i
+$$
+
+where $w_i$ are metric weights and $s_i$ the normalized scores.
