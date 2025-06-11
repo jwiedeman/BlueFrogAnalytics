@@ -31,26 +31,18 @@ the schema.
 You can also override the values using command line flags such as
 `--hosts`, `--dc` and `--keyspace`.
 
-`create_blue_frog_keyspace.py` sets up a fresh keyspace with flexible
-`map<text, text>` columns. Run it once before pointing Medusa at the new
-keyspace:
+`create_blue_frog_keyspace.py` sets up a fresh keyspace by replicating the
+`domain_discovery` tables but converting any collection types to `TEXT`. Run it
+once before pointing Medusa at the new keyspace:
 
 ```bash
 export CASSANDRA_HOSTS=127.0.0.1
 python create_blue_frog_keyspace.py
 ```
 
-`migrate_domains_to_blue_frog.py` copies data from the existing
-`domain_discovery.domains_processed` table into the new `blue_frog.domains`
-table:
-
-```bash
-python migrate_domains_to_blue_frog.py
-```
-
 `migrate_domain_discovery_to_blue_frog.py` performs a full migration of the
-remaining `domain_discovery` tables to their counterparts in the `blue_frog`
-keyspace so that historical metrics remain accessible:
+existing tables, JSON encoding lists and maps so the data loads into the updated
+schema:
 
 ```bash
 python migrate_domain_discovery_to_blue_frog.py

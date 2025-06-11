@@ -109,11 +109,11 @@ The `bots` directory contains several workers written in Go, Rust, Python and No
 
 For a resilient Cassandra setup review `database-control/DB[Cfg]`. Dockerfiles and configuration templates are provided for seed and non-seed nodes.
 The helper `database-control/create_blue_frog_keyspace.py` bootstraps a fresh
-`blue_frog` keyspace with flexible tables if you want a clean environment.
-`database-control/migrate_domains_to_blue_frog.py` copies existing rows from
-`domain_discovery.domains_processed` into the new schema if you want to keep
-historic data. A companion script `database-control/migrate_domain_discovery_to_blue_frog.py`
-moves the rest of the tables so Medusa can operate entirely on the new keyspace.
+`blue_frog` keyspace by copying the layout from `domain_discovery` but converts
+collection columns to plain `TEXT`.
+`database-control/migrate_domain_discovery_to_blue_frog.py` then copies rows
+from every `domain_discovery` table into the new keyspace, JSON encoding any
+lists or maps so Medusa can continue writing without schema conflicts.
 
 ## Sandbox
 
