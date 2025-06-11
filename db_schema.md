@@ -31,6 +31,9 @@ Workers can insert any keys without changing the table definition.
 | **tool_results** | Arbitrary tool output keyed by domain, URL and tool name |
 | **businesses** | Google Maps listings with extra details in `data` |
 
+Existing rows from `domain_discovery.domains_processed` can be migrated using
+`database-control/migrate_domains_to_blue_frog.py`.
+
 ### `profiles` keyspace
 
 | Table | Saved Columns | Optional Columns |
