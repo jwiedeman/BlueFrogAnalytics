@@ -110,6 +110,9 @@ The `bots` directory contains several workers written in Go, Rust, Python and No
 For a resilient Cassandra setup review `database-control/DB[Cfg]`. Dockerfiles and configuration templates are provided for seed and non-seed nodes.
 The helper `database-control/create_blue_frog_keyspace.py` bootstraps a fresh
 `blue_frog` keyspace with flexible tables if you want a clean environment.
+`database-control/migrate_domains_to_blue_frog.py` copies existing rows from
+`domain_discovery.domains_processed` into the new schema if you want to keep
+historic data.
 
 ## Sandbox
 

@@ -39,3 +39,11 @@ keyspace:
 export CASSANDRA_HOSTS=127.0.0.1
 python create_blue_frog_keyspace.py
 ```
+
+`migrate_domains_to_blue_frog.py` copies data from the existing
+`domain_discovery.domains_processed` table into the new `blue_frog.domains`
+table:
+
+```bash
+python migrate_domains_to_blue_frog.py
+```
