@@ -82,11 +82,15 @@ def main() -> None:
                     print(
                         f"Recreating {tbl}.{col} as text since altering types is disabled"
                     )
+                    tmp = f"{col}_tmp"
                     session.execute(
-                        f"ALTER TABLE {args.keyspace}.{tbl} DROP {col}"
+                        f"ALTER TABLE {args.keyspace}.{tbl} RENAME {col} TO {tmp}"
                     )
                     session.execute(
                         f"ALTER TABLE {args.keyspace}.{tbl} ADD {col} text"
+                    )
+                    session.execute(
+                        f"ALTER TABLE {args.keyspace}.{tbl} DROP {tmp}"
                     )
                 else:
                     raise
