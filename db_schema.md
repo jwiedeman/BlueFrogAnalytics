@@ -39,7 +39,9 @@ API and workers can query fields without running into collection type issues.
 
 All column names match those in `domain_discovery`. Any `list`, `set` or `map`
 columns have been replaced with `TEXT` containing JSON so legacy clients can
-query the data without collection type issues.
+query the data without collection type issues. Primary keys and clustering
+columns mirror the original tables so row ordering and query patterns remain
+compatible.
 
 ### `profiles` keyspace
 
@@ -117,6 +119,32 @@ Categorisation and content flags:
 - `ecommerce_platforms` text (JSON array)
 - `sitemap_page_count` int
 - `canonical_url` text
+- `favicon_url` text
+- `robots_txt_exists` boolean
+- `robots_txt_content` text
+- `h1_count` int
+- `h2_count` int
+- `h3_count` int
+- `schema_markup_detected` boolean
+- `schema_types` text (JSON array)
+- `security_headers_score` int
+- `security_headers_detected` text (JSON array)
+- `hsts_enabled` boolean
+- `cookie_compliance` boolean
+- `third_party_scripts` int
+- `color_contrast_issues` int
+- `aria_landmark_count` int
+- `form_accessibility_issues` int
+- `social_media_profiles` text (JSON array)
+- `rss_feed_detected` boolean
+- `newsletter_signup_detected` boolean
+- `cdn_detected` boolean
+- `http_version` text
+- `compression_enabled` boolean
+- `cache_control_headers` text
+- `page_weight_bytes` int
+- `main_language` text
+- `content_keywords` text
 
 Lighthouse metrics:
 - `desktop_accessibility_score` int
