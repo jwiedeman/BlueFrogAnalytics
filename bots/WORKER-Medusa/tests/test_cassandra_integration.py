@@ -85,7 +85,7 @@ def test_update_enrichment_dev(tmp_path, monkeypatch, medusa):
 
 
 def test_update_enrichment_list_values(monkeypatch, medusa):
-    """Ensure list values are passed through as lists."""
+    """Ensure contact lists are serialized to JSON strings."""
     class FakeSession:
         def prepare(self, query):
             return "stmt"
@@ -103,11 +103,11 @@ def test_update_enrichment_list_values(monkeypatch, medusa):
     data = {"emails": ["a@example.com", "b@example.com"], "phone_numbers": ["123"]}
     medusa._update_enrichment(FakeSession(), "example.com", data)
 
-    # ensure the list is passed through unchanged
-    assert ["a@example.com", "b@example.com"] in executed["params"]
+    # ensure the list is serialized
+    assert json.dumps(["a@example.com", "b@example.com"]) in executed["params"]
 
     # single string values should be converted to lists
     data = {"emails": "solo@example.com"}
     medusa._update_enrichment(FakeSession(), "example.com", data)
 
-    assert ["solo@example.com"] in executed["params"]
+    assert "solo@example.com" in executed["params"]

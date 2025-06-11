@@ -62,9 +62,9 @@ Geo and network data:
 - `lon` float
 - `languages` list<text>
 - `phone` text
-- `phone_numbers` list<text>
-- `sms_numbers` list<text>
-- `addresses` list<text>
+- `phone_numbers` text
+- `sms_numbers` text
+- `addresses` text
 - `time_zone` text
 
 SSL and technology:
@@ -91,7 +91,7 @@ Categorisation and content flags:
 - `server_version` text
 - `wpjson_size_bytes` int
 - `wpjson_contains_cart` boolean
-- `emails` list<text>
+- `emails` text
 - `ecommerce_platforms` list<text>
 - `sitemap_page_count` int
 - `canonical_url` text
@@ -140,10 +140,10 @@ Lighthouse metrics:
 - `iframe_embeds_count` int
 - `duplicate_meta_titles` boolean
 - `duplicate_meta_descriptions` boolean
-- `emails` list<text>
-- `phone_numbers` list<text>
-- `sms_numbers` list<text>
-- `addresses` list<text>
+- `emails` text
+- `phone_numbers` text
+- `sms_numbers` text
+- `addresses` text
 
 User tracking:
 - `user_managed` boolean
@@ -208,10 +208,10 @@ Table storing per-URL Lighthouse and page metrics gathered by
 - `iframe_embeds_count` int
 - `duplicate_meta_titles` boolean
 - `duplicate_meta_descriptions` boolean
-- `emails` list<text>
-- `phone_numbers` list<text>
-- `sms_numbers` list<text>
-- `addresses` list<text>
+- `emails` text
+- `phone_numbers` text
+- `sms_numbers` text
+- `addresses` text
 - `wpt_load_time_ms` int
 - `wpt_speed_index` float
 - `wpt_ttfb_ms` int

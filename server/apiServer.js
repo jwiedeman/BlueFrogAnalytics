@@ -70,10 +70,22 @@ async function columnExists(client, keyspace, table, column) {
   return result.rowLength > 0;
 }
 
+async function getColumnType(client, keyspace, table, column) {
+  const res = await client.execute(
+    'SELECT type FROM system_schema.columns WHERE keyspace_name=? AND table_name=? AND column_name=?',
+    [keyspace, table, column],
+    { prepare: true }
+  );
+  return res.rowLength ? res.rows[0].type : null;
+}
+
 async function ensureColumns(client, keyspace, table, defs) {
   for (const [name, type] of Object.entries(defs)) {
-    if (!(await columnExists(client, keyspace, table, name))) {
+    const current = await getColumnType(client, keyspace, table, name);
+    if (!current) {
       await client.execute(`ALTER TABLE ${keyspace}.${table} ADD ${name} ${type}`);
+    } else if ((current.startsWith('list<') || current.startsWith('set<')) && type === 'text') {
+      await client.execute(`ALTER TABLE ${keyspace}.${table} ALTER ${name} TYPE text`);
     }
   }
 }
@@ -262,10 +274,10 @@ async function initCassandra() {
     server_version: 'text',
     wpjson_size_bytes: 'int',
     wpjson_contains_cart: 'boolean',
-    emails: 'list<text>',
-    phone_numbers: 'list<text>',
-    sms_numbers: 'list<text>',
-    addresses: 'list<text>',
+    emails: 'text',
+    phone_numbers: 'text',
+    sms_numbers: 'text',
+    addresses: 'text',
     favicon_url: 'text',
     robots_txt_exists: 'boolean',
     robots_txt_content: 'text',
