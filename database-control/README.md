@@ -30,3 +30,12 @@ the schema.
 
 You can also override the values using command line flags such as
 `--hosts`, `--dc` and `--keyspace`.
+
+`create_blue_frog_keyspace.py` sets up a fresh keyspace with flexible
+`map<text, text>` columns. Run it once before pointing Medusa at the new
+keyspace:
+
+```bash
+export CASSANDRA_HOSTS=127.0.0.1
+python create_blue_frog_keyspace.py
+```
