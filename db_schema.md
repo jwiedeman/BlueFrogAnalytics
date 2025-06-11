@@ -21,18 +21,25 @@ This document consolidates the main data stores used across Blue Frog Analytics.
 
 ### `blue_frog` keyspace
 
-A simplified schema where most columns are stored in a `map<text, text>` field.
-Workers can insert any keys without changing the table definition.
+This keyspace mirrors the tables in `domain_discovery` but **all collection
+types are stored as plain `TEXT`**. Lists, sets and maps are JSON encoded so the
+API and workers can query fields without running into collection type issues.
 
 | Table | Purpose |
 | ----- | ------- |
-| **domains** | Per-domain attributes stored in the `data` map |
-| **page_metrics** | Metrics for each scanned page (`data` map) |
-| **tool_results** | Arbitrary tool output keyed by domain, URL and tool name |
-| **businesses** | Google Maps listings with extra details in `data` |
+| **certstream_domains** | Domains discovered via CertStream |
+| **domains_processed** | Main domain enrichment table |
+| **domain_page_metrics** | Per-page Lighthouse and crawl metrics |
+| **analytics_tag_health** | Tag compliance results |
+| **carbon_audits** | Estimated carbon footprint per URL |
+| **dns_records** | Individual DNS records |
+| **misc_tool_results** | Flexible results from additional tools |
+| **businesses** | Google Maps listings |
+| **tracking_specs** | Analytics tracking specification reference |
 
-Existing rows from `domain_discovery.domains_processed` can be migrated using
-`database-control/migrate_domains_to_blue_frog.py`.
+Use `database-control/create_blue_frog_keyspace.py` to create the schema and
+`database-control/migrate_domain_discovery_to_blue_frog.py` to populate it with
+existing data.
 
 ### `profiles` keyspace
 

@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""Create the `blue_frog` Cassandra keyspace and base tables.
+"""Create the `blue_frog` Cassandra keyspace with explicit columns.
 
-The schema uses flexible `map<text, text>` columns so workers can store
-arbitrary fields without strict column definitions.
+The script copies table layouts from the legacy ``domain_discovery`` keyspace
+but converts any ``list``/``set``/``map`` types to plain ``TEXT``. This avoids
+collection type issues while preserving all existing columns so Medusa can
+continue inserting data without schema changes.
 """
 import os
 from cassandra.cluster import Cluster
@@ -10,9 +12,6 @@ from cassandra.cluster import Cluster
 
 def main() -> None:
     hosts = os.environ.get("CASSANDRA_HOSTS", "127.0.0.1").split(",")
-    dc = os.environ.get(
-        "CASSANDRA_DC", os.environ.get("CASSANDRA_LOCAL_DATA_CENTER", "datacenter1")
-    )
     cluster = Cluster(hosts, protocol_version=4)
     session = cluster.connect()
 
@@ -21,44 +20,41 @@ def main() -> None:
     )
     session.set_keyspace("blue_frog")
 
-    session.execute(
-        """CREATE TABLE IF NOT EXISTS domains (
-        domain text,
-        tld text,
-        data map<text, text>,
-        PRIMARY KEY (domain, tld)
-    )"""
-    )
+    meta = cluster.metadata
 
-    session.execute(
-        """CREATE TABLE IF NOT EXISTS page_metrics (
-        domain text,
-        url text,
-        scan_date timestamp,
-        data map<text, text>,
-        PRIMARY KEY ((domain, url), scan_date)
-    )"""
-    )
+    def cql_type(col):
+        ctype = col.cql_type
+        if ctype.startswith("frozen<"):
+            ctype = ctype[7:-1]
+        if "<" in ctype:
+            return "text"
+        return ctype
 
-    session.execute(
-        """CREATE TABLE IF NOT EXISTS tool_results (
-        domain text,
-        url text,
-        tool_name text,
-        scan_date timestamp,
-        data map<text, text>,
-        PRIMARY KEY ((domain, url, tool_name), scan_date)
-    )"""
-    )
+    tables = [
+        "certstream_domains",
+        "domains_processed",
+        "domain_page_metrics",
+        "analytics_tag_health",
+        "carbon_audits",
+        "dns_records",
+        "misc_tool_results",
+        "businesses",
+        "tracking_specs",
+    ]
 
-    session.execute(
-        """CREATE TABLE IF NOT EXISTS businesses (
-        name text,
-        address text,
-        data map<text, text>,
-        PRIMARY KEY (name, address)
-    )"""
-    )
+    for name in tables:
+        src = meta.keyspaces["domain_discovery"].tables.get(name)
+        if not src:
+            continue
+        cols = [f"{c.name} {cql_type(c)}" for c in src.columns.values()]
+        pk_parts = [c.name for c in src.partition_key]
+        ck_parts = [c.name for c in src.clustering_key]
+        if ck_parts:
+            pk = f"({', '.join(pk_parts)}), {', '.join(ck_parts)}"
+        else:
+            pk = ", ".join(pk_parts)
+        cql = f"CREATE TABLE IF NOT EXISTS {name} ({', '.join(cols)}, PRIMARY KEY ({pk}))"
+        session.execute(cql)
 
     cluster.shutdown()
 
