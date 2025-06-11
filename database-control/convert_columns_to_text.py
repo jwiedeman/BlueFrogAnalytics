@@ -29,6 +29,7 @@ except Exception:  # pragma: no cover - gevent is optional
     pass
 
 from cassandra.cluster import Cluster
+from cassandra import InvalidRequest
 
 
 def main() -> None:
@@ -70,10 +71,25 @@ def main() -> None:
         if pattern.match(current):
             tbl = row.table_name
             col = row.column_name
-            print(f"Altering {tbl}.{col} ({row.type}) -> text")
-            session.execute(
-                f"ALTER TABLE {args.keyspace}.{tbl} ALTER {col} TYPE text"
-            )
+            print(f"Converting {tbl}.{col} ({row.type}) -> text")
+            try:
+                session.execute(
+                    f"ALTER TABLE {args.keyspace}.{tbl} ALTER {col} TYPE text"
+                )
+            except InvalidRequest as exc:
+                msg = str(exc)
+                if "no longer supported" in msg:
+                    print(
+                        f"Recreating {tbl}.{col} as text since altering types is disabled"
+                    )
+                    session.execute(
+                        f"ALTER TABLE {args.keyspace}.{tbl} DROP {col}"
+                    )
+                    session.execute(
+                        f"ALTER TABLE {args.keyspace}.{tbl} ADD {col} text"
+                    )
+                else:
+                    raise
 
     cluster.shutdown()
 
