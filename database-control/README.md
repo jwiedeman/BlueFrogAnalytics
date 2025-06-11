@@ -17,5 +17,9 @@ export CASSANDRA_KEYSPACE=domain_discovery
 python convert_columns_to_text.py
 ```
 
+If the driver fails with a `DependencyException` about the event loop when using
+Python 3.12 or newer, install `gevent` and re-run the script. The script will
+automatically patch gevent if available.
+
 You can also override the values using command line flags such as
 `--hosts`, `--dc` and `--keyspace`.
