@@ -25,21 +25,21 @@ This keyspace mirrors the tables in `domain_discovery` but **all collection
 types are stored as plain `TEXT`**. Lists, sets and maps are JSON encoded so the
 API and workers can query fields without running into collection type issues.
 
-| Table | Purpose |
-| ----- | ------- |
-| **certstream_domains** | Domains discovered via CertStream |
-| **domains_processed** | Main domain enrichment table |
-| **domain_page_metrics** | Per-page Lighthouse and crawl metrics |
-| **analytics_tag_health** | Tag compliance results |
-| **carbon_audits** | Estimated carbon footprint per URL |
-| **dns_records** | Individual DNS records |
-| **misc_tool_results** | Flexible results from additional tools |
-| **businesses** | Google Maps listings |
-| **tracking_specs** | Analytics tracking specification reference |
+| Table | Primary key columns |
+| ----- | ------------------- |
+| **certstream_domains** | `domain` |
+| **domains_processed** | (`domain`, `tld`) |
+| **domain_page_metrics** | (`domain`, `url`, `scan_date`) |
+| **analytics_tag_health** | (`domain`, `scan_date`) |
+| **carbon_audits** | (`domain`, `url`, `scan_date`) |
+| **dns_records** | (`domain`, `record_type`, `record_value`, `scan_date`) |
+| **misc_tool_results** | (`domain`, `url`, `scan_date`) |
+| **businesses** | (`name`, `address`) |
+| **tracking_specs** | ((`category`, `tool`), `name`) |
 
-Use `database-control/create_blue_frog_keyspace.py` to create the schema and
-`database-control/migrate_domain_discovery_to_blue_frog.py` to populate it with
-existing data.
+All column names match those in `domain_discovery`. Any `list`, `set` or `map`
+columns have been replaced with `TEXT` containing JSON so legacy clients can
+query the data without collection type issues.
 
 ### `profiles` keyspace
 
