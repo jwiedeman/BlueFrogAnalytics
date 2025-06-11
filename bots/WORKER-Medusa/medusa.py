@@ -286,8 +286,8 @@ def _update_enrichment(session, domain: str, data: Dict[str, Any]) -> None:
         return
 
     def norm(value: Any) -> Any:
-        """Convert lists and dictionaries to JSON for wider compatibility."""
-        if isinstance(value, (list, dict)):
+        """Serialize dictionaries but keep lists intact for Cassandra."""
+        if isinstance(value, dict):
             return json.dumps(value)
         return value
 
