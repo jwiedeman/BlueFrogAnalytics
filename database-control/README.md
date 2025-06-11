@@ -21,5 +21,10 @@ If the driver fails with a `DependencyException` about the event loop when using
 Python 3.12 or newer, install `gevent` and re-run the script. The script will
 automatically patch gevent if available.
 
+Newer Cassandra versions (4.0+) no longer allow altering existing column types.
+If you see a message about the server disallowing the change, you'll need to
+recreate the affected table or keyspace with the updated schema instead of
+running this conversion.
+
 You can also override the values using command line flags such as
 `--hosts`, `--dc` and `--keyspace`.
