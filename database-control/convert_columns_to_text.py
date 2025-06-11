@@ -16,6 +16,18 @@ Command line flags are still supported for overriding these values.
 import argparse
 import os
 import re
+
+try:
+    # Cassandra's driver requires a connection class. Without the C extensions
+    # (libev) it falls back to asyncore which was removed in Python 3.12.
+    # Patching gevent ensures a supported event loop is available even when
+    # the driver was installed without its bundled libev reactor.
+    from gevent import monkey
+
+    monkey.patch_all()  # noqa: E402
+except Exception:  # pragma: no cover - gevent is optional
+    pass
+
 from cassandra.cluster import Cluster
 
 
