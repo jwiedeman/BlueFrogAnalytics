@@ -201,6 +201,19 @@ def _update_enrichment(session, domain: str, data: Dict[str, Any]) -> None:
     dom = ext.domain.strip().strip(".")
     tld = ext.suffix.strip().strip(".")
 
+    # Normalize list columns to avoid type errors when a single string is
+    # provided. Cassandra expects list<text> for these fields.
+    list_fields = ["emails", "phone_numbers", "sms_numbers", "addresses"]
+    for field in list_fields:
+        if field in data:
+            value = data[field]
+            if value is None or value == "":
+                data[field] = []
+            elif isinstance(value, set):
+                data[field] = list(value)
+            elif not isinstance(value, list):
+                data[field] = [value]
+
     update_query = """
         UPDATE domain_discovery.domains_processed SET
             status = ?,

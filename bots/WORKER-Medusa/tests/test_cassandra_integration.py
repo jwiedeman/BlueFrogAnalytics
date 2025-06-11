@@ -103,4 +103,11 @@ def test_update_enrichment_list_values(monkeypatch, medusa):
     data = {"emails": ["a@example.com", "b@example.com"], "phone_numbers": ["123"]}
     medusa._update_enrichment(FakeSession(), "example.com", data)
 
+    # ensure the list is passed through unchanged
     assert ["a@example.com", "b@example.com"] in executed["params"]
+
+    # single string values should be converted to lists
+    data = {"emails": "solo@example.com"}
+    medusa._update_enrichment(FakeSession(), "example.com", data)
+
+    assert ["solo@example.com"] in executed["params"]
