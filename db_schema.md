@@ -60,24 +60,24 @@ Geo and network data:
 - `continent_code` text
 - `lat` float
 - `lon` float
-- `languages` list<text>
+- `languages` text (JSON array)
 - `phone` text
-- `phone_numbers` list<text>
-- `sms_numbers` list<text>
-- `addresses` list<text>
+- `phone_numbers` text (JSON array)
+- `sms_numbers` text (JSON array)
+- `addresses` text (JSON array)
 - `time_zone` text
 
 SSL and technology:
 - `ssl_issuer` text
 - `ssl_org` text
 - `x_powered_by` text
-- `tech_detect` list<text>
+- `tech_detect` text (JSON array)
 - `wordpress_asset_version` text
 
 Categorisation and content flags:
 - `site_type` text
 - `site_category` text
-- `site_type_tags` list<text>
+- `site_type_tags` text (JSON array)
 - `title` text
 - `description` text
 - `linkedin_url` text
@@ -91,8 +91,8 @@ Categorisation and content flags:
 - `server_version` text
 - `wpjson_size_bytes` int
 - `wpjson_contains_cart` boolean
-- `emails` list<text>
-- `ecommerce_platforms` list<text>
+- `emails` text (JSON array)
+- `ecommerce_platforms` text (JSON array)
 - `sitemap_page_count` int
 - `canonical_url` text
 
@@ -129,7 +129,7 @@ Lighthouse metrics:
 - `desktop_seo_suggestions` text
 - `mobile_seo_suggestions` text
 - `status_code` int
-- `redirect_chain` list<text>
+- `redirect_chain` text (JSON array)
 - `page_load_time_ms` int
 - `broken_links_count` int
 - `internal_links_count` int
@@ -140,10 +140,10 @@ Lighthouse metrics:
 - `iframe_embeds_count` int
 - `duplicate_meta_titles` boolean
 - `duplicate_meta_descriptions` boolean
-- `emails` list<text>
-- `phone_numbers` list<text>
-- `sms_numbers` list<text>
-- `addresses` list<text>
+- `emails` text (JSON array)
+- `phone_numbers` text (JSON array)
+- `sms_numbers` text (JSON array)
+- `addresses` text (JSON array)
 
 User tracking:
 - `user_managed` boolean
@@ -197,7 +197,7 @@ Table storing per-URL Lighthouse and page metrics gathered by
 - `desktop_seo_suggestions` text
 - `mobile_seo_suggestions` text
 - `status_code` int
-- `redirect_chain` list<text>
+- `redirect_chain` text (JSON array)
 - `page_load_time_ms` int
 - `broken_links_count` int
 - `internal_links_count` int
@@ -208,10 +208,10 @@ Table storing per-URL Lighthouse and page metrics gathered by
 - `iframe_embeds_count` int
 - `duplicate_meta_titles` boolean
 - `duplicate_meta_descriptions` boolean
-- `emails` list<text>
-- `phone_numbers` list<text>
-- `sms_numbers` list<text>
-- `addresses` list<text>
+- `emails` text (JSON array)
+- `phone_numbers` text (JSON array)
+- `sms_numbers` text (JSON array)
+- `addresses` text (JSON array)
 - `wpt_load_time_ms` int
 - `wpt_speed_index` float
 - `wpt_ttfb_ms` int
@@ -394,8 +394,8 @@ Detailed analytics and tag compliance results.
 
 - `domain` text
 - `scan_date` timestamp
-- `working_variants` list<text>
-- `scanned_urls` list<text>
+- `working_variants` text (JSON array)
+- `scanned_urls` text (JSON array)
 - `found_analytics` map<text, text>
 - `page_results` map<text, text>
 - `variant_results` map<text, text>

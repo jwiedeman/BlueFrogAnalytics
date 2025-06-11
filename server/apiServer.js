@@ -70,10 +70,26 @@ async function columnExists(client, keyspace, table, column) {
   return result.rowLength > 0;
 }
 
+async function columnType(client, keyspace, table, column) {
+  const result = await client.execute(
+    'SELECT type FROM system_schema.columns WHERE keyspace_name=? AND table_name=? AND column_name=?',
+    [keyspace, table, column],
+    { prepare: true }
+  );
+  return result.rowLength > 0 ? result.rows[0].type : null;
+}
+
 async function ensureColumns(client, keyspace, table, defs) {
   for (const [name, type] of Object.entries(defs)) {
-    if (!(await columnExists(client, keyspace, table, name))) {
-      await client.execute(`ALTER TABLE ${keyspace}.${table} ADD ${name} ${type}`);
+    const desired = type.toLowerCase() === 'list<text>' ? 'text' : type;
+    const exists = await columnExists(client, keyspace, table, name);
+    if (!exists) {
+      await client.execute(`ALTER TABLE ${keyspace}.${table} ADD ${name} ${desired}`);
+    } else {
+      const current = await columnType(client, keyspace, table, name);
+      if (current && current.toLowerCase() !== desired.toLowerCase()) {
+        await client.execute(`ALTER TABLE ${keyspace}.${table} ALTER ${name} TYPE ${desired}`);
+      }
     }
   }
 }
