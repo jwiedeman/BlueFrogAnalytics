@@ -33,6 +33,8 @@ Workers can insert any keys without changing the table definition.
 
 Existing rows from `domain_discovery.domains_processed` can be migrated using
 `database-control/migrate_domains_to_blue_frog.py`.
+The helper `database-control/migrate_domain_discovery_to_blue_frog.py` migrates
+the remaining tables so all historic data is preserved under `blue_frog`.
 
 ### `profiles` keyspace
 

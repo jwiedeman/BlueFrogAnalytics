@@ -47,3 +47,11 @@ table:
 ```bash
 python migrate_domains_to_blue_frog.py
 ```
+
+`migrate_domain_discovery_to_blue_frog.py` performs a full migration of the
+remaining `domain_discovery` tables to their counterparts in the `blue_frog`
+keyspace so that historical metrics remain accessible:
+
+```bash
+python migrate_domain_discovery_to_blue_frog.py
+```
