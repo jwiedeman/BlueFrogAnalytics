@@ -19,6 +19,18 @@ This document consolidates the main data stores used across Blue Frog Analytics.
 | **businesses** | `name`, `address`, `website`, `phone`, `reviews_average`, `query`, `latitude`, `longitude` | `rating_count`, `opening_hours`, `categories` |
 | **dns_records** | `domain`, `record_type`, `record_value`, `scan_date` | `ttl`, `record_class` |
 
+### `blue_frog` keyspace
+
+A simplified schema where most columns are stored in a `map<text, text>` field.
+Workers can insert any keys without changing the table definition.
+
+| Table | Purpose |
+| ----- | ------- |
+| **domains** | Per-domain attributes stored in the `data` map |
+| **page_metrics** | Metrics for each scanned page (`data` map) |
+| **tool_results** | Arbitrary tool output keyed by domain, URL and tool name |
+| **businesses** | Google Maps listings with extra details in `data` |
+
 ### `profiles` keyspace
 
 | Table | Saved Columns | Optional Columns |
