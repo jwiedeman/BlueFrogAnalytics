@@ -1,15 +1,20 @@
-"""Utility to convert Cassandra collection columns to TEXT.
+"""Utility to convert Cassandra collection columns to plain ``TEXT``.
 
-This script scans a keyspace for columns typed as list<text>, set<text>
-or map<text, text> and alters them to simple TEXT columns. Use it once to
-normalize older schemas used by the Medusa workers.
+The script scans a keyspace for any ``list<text>``, ``set<text>`` or
+``map<text, text>`` columns and alters them to simple ``TEXT`` columns. This
+normalises older schemas used by the Medusa workers.
 
-Example:
-  python convert_columns_to_text.py --host 127.0.0.1 --dc datacenter1 \
-      --keyspace domain_discovery
+Example usage with environment variables::
+
+    export CASSANDRA_HOSTS=192.168.1.201,192.168.1.202,192.168.1.203
+    export CASSANDRA_KEYSPACE=domain_discovery
+    python convert_columns_to_text.py
+
+Command line flags are still supported for overriding these values.
 """
 
 import argparse
+import os
 import re
 from cassandra.cluster import Cluster
 
@@ -18,12 +23,28 @@ def main() -> None:
     parser = argparse.ArgumentParser(
         description="Convert collection columns to TEXT for compatibility"
     )
-    parser.add_argument("--host", default="127.0.0.1", help="Cassandra contact point")
-    parser.add_argument("--dc", default="datacenter1", help="Local data center")
-    parser.add_argument("--keyspace", default="domain_discovery", help="Target keyspace")
+    hosts_env = os.environ.get("CASSANDRA_HOSTS") or os.environ.get("CASSANDRA_CONTACT_POINTS", "127.0.0.1")
+    dc_env = os.environ.get("CASSANDRA_DC", os.environ.get("CASSANDRA_LOCAL_DATA_CENTER", "datacenter1"))
+    keyspace_env = os.environ.get("CASSANDRA_KEYSPACE", "domain_discovery")
+
+    parser.add_argument(
+        "--hosts",
+        default=hosts_env,
+        help="Comma separated Cassandra contact points (env CASSANDRA_HOSTS)",
+    )
+    parser.add_argument(
+        "--dc",
+        default=dc_env,
+        help="Local data center (env CASSANDRA_DC or CASSANDRA_LOCAL_DATA_CENTER)",
+    )
+    parser.add_argument(
+        "--keyspace",
+        default=keyspace_env,
+        help="Target keyspace (env CASSANDRA_KEYSPACE)",
+    )
     args = parser.parse_args()
 
-    cluster = Cluster([args.host], protocol_version=4)
+    cluster = Cluster(args.hosts.split(","), protocol_version=4)
     session = cluster.connect()
 
     rows = session.execute(
