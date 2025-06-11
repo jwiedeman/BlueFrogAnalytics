@@ -201,18 +201,18 @@ def _update_enrichment(session, domain: str, data: Dict[str, Any]) -> None:
     dom = ext.domain.strip().strip(".")
     tld = ext.suffix.strip().strip(".")
 
-    # Normalize list columns to avoid type errors when a single string is
-    # provided. Cassandra expects list<text> for these fields.
+    # Convert list fields to JSON strings for text columns
     list_fields = ["emails", "phone_numbers", "sms_numbers", "addresses"]
     for field in list_fields:
         if field in data:
             value = data[field]
             if value is None or value == "":
-                data[field] = []
+                value = []
             elif isinstance(value, set):
-                data[field] = list(value)
+                value = list(value)
             elif not isinstance(value, list):
-                data[field] = [value]
+                value = [value]
+            data[field] = json.dumps(value)
 
     update_query = """
         UPDATE domain_discovery.domains_processed SET
@@ -312,8 +312,8 @@ def _update_enrichment(session, domain: str, data: Dict[str, Any]) -> None:
         return
 
     def norm(value: Any) -> Any:
-        """Serialize dictionaries but keep lists intact for Cassandra."""
-        if isinstance(value, dict):
+        """Serialize dictionaries and lists for text columns."""
+        if isinstance(value, (dict, list)):
             return json.dumps(value)
         return value
 
@@ -423,7 +423,11 @@ def _update_page_metrics(session, url: str, data: Dict[str, Any]) -> None:
     placeholders = ", ".join(["?"] * len(columns))
     query = f"INSERT INTO domain_discovery.domain_page_metrics ({', '.join(columns)}) VALUES ({placeholders})"
     stmt = session.prepare(query)
-    values = [domain, url, datetime.utcnow()] + list(data.values())
+    def norm(value: Any) -> Any:
+        if isinstance(value, (dict, list)):
+            return json.dumps(value)
+        return value
+    values = [domain, url, datetime.utcnow()] + [norm(v) for v in data.values()]
     _safe_execute(session, stmt, tuple(values))
 
 
@@ -468,8 +472,8 @@ def _insert_analytics(session, data: Dict[str, Any]) -> None:
     params = (
         data.get("domain"),
         datetime.utcnow(),
-        data.get("working_variants", []),
-        data.get("scanned_urls", []),
+        json.dumps(data.get("working_variants", [])),
+        json.dumps(data.get("scanned_urls", [])),
         {k: json.dumps(v) for k, v in data.get("found_analytics", {}).items()},
         {k: json.dumps(v) for k, v in data.get("page_results", {}).items()},
         {k: json.dumps(v) for k, v in data.get("variant_results", {}).items()},
