@@ -21,5 +21,11 @@ If the driver fails with a `DependencyException` about the event loop when using
 Python 3.12 or newer, install `gevent` and re-run the script. The script will
 automatically patch gevent if available.
 
+Newer Cassandra versions (4.0+) no longer allow altering existing column types.
+The helper will now automatically drop any `list<text>`, `set<text>` or `map<text, text>`
+columns and recreate them as `TEXT` if the server rejects the alteration.
+This permanently removes any data stored in those columns, so only run it on
+tables where that is acceptable.
+
 You can also override the values using command line flags such as
 `--hosts`, `--dc` and `--keyspace`.
