@@ -115,6 +115,7 @@ def _safe_execute(session: Any, query: str, params: Tuple[Any, ...]):
     """Execute a Cassandra query with basic retry logic."""
     delay = int(os.environ.get("MEDUSA_CASSANDRA_RETRY_DELAY", "5"))
     max_delay = int(os.environ.get("MEDUSA_CASSANDRA_MAX_DELAY", "60"))
+    retried_for_lists = False
     while True:
         try:
             return session.execute(query, params)
@@ -132,6 +133,18 @@ def _safe_execute(session: Any, query: str, params: Tuple[Any, ...]):
             )
             time.sleep(delay + random.uniform(0, delay))
             delay = min(delay * 2, max_delay)
+        except AttributeError as e:
+            # Older schema versions stored collection columns as text. If we
+            # attempt to bind a list value to such a column the driver raises
+            # an AttributeError when encoding the parameter. Fallback to JSON
+            # encoding the list values and retry once for compatibility.
+            if not retried_for_lists and "encode" in str(e):
+                params = tuple(
+                    json.dumps(p) if isinstance(p, list) else p for p in params
+                )
+                retried_for_lists = True
+                continue
+            raise
 
 
 def _write_csv(table: str, key: str, data: Dict[str, Any]) -> None:
