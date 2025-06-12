@@ -1,0 +1,66 @@
+---
+layout: "../../layouts/main.astro"
+title: Site Carbon Calculator
+description: Estimate CO2 emissions per pageview.
+---
+
+<div id="carbon-root" class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="text-center mb-4">
+        <h1>Site Carbon Calculator</h1>
+        <p>Calculate the carbon footprint of a pageview.</p>
+      </div>
+      <form id="carbon-form" class="row gy-2 gx-3 align-items-end mb-3">
+        <div class="col-md-8">
+          <label for="carbon-url" class="form-label">Enter URL</label>
+          <input type="url" id="carbon-url" name="url" placeholder="https://example.com" class="form-control" />
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mt-3">Run Test</button>
+        </div>
+      </form>
+      <div id="carbon-results"></div>
+      <svg id="carbon-chart" width="600" height="300" class="w-100" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7" defer></script>
+<script type="module" src="/js/site-carbon-calculator.js" defer></script>
+
+## Implementation Notes
+
+**Data Points Needed**
+
+- Page size in bytes
+- Energy per byte transferred
+- Data center carbon intensity (gCO2/kWh)
+
+**Formula**
+
+We assume each byte transferred is responsible for roughly **0.5 µg** of CO₂.
+With that factor the total emissions are simply:
+
+$$
+\text{CO2 (g)} = \text{bytes} \times 0.0000005
+$$
+
+The results show the calculated grams of CO₂ and an everyday comparison –
+equivalent miles driven (using ~404 g/mile) or minutes a 60&nbsp;W bulb could run
+(~27 g/hour).
+
+### Session Calculation
+
+For a single URL test we measure the carbon per page. Session totals simply
+multiply that value by the number of pages and add estimated device usage.
+
+$$
+\text{Session CO2} = \text{Pages} \times \text{CO2 per Page}
+$$
+
+Device emissions use a global average of **417 g/kWh**.
+
+$$
+\text{Device CO2} = \text{Power (W)} \times \text{Hours} \times 0.417
+$$
