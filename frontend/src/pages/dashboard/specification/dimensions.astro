@@ -1,0 +1,56 @@
+---
+layout: '../../../layouts/main.astro'
+title: 'Specification - Dimensions'
+---
+
+<section class="py-8">
+  <div class="max-w-3xl mx-auto space-y-4">
+    <h1 class="text-3xl font-bold text-center">Dimensions</h1>
+    <div class="overflow-x-auto">
+      <table class="min-w-full text-sm text-left border" id="dims-table">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="p-2">Tool</th>
+            <th class="p-2">Name</th>
+            <th class="p-2">Description</th>
+            <th class="p-2">Rule</th>
+            <th class="p-2">Example</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    const loadData = async () => {
+      try {
+        const resp = await fetch('/api/specs?category=dimension', { credentials: 'include' });
+        if (!resp.ok) return;
+        const rows = await resp.json();
+        const tbody = document.querySelector('#dims-table tbody');
+        rows.forEach(r => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td>${r.tool}</td><td>${r.name}</td><td>${r.description || ''}</td><td>${r.rule || ''}</td><td>${r.example || ''}</td>`;
+          tbody.appendChild(tr);
+        });
+      } catch {}
+    };
+    const init = () => {
+      window.onAuthStateChanged(window.firebaseAuth, user => {
+        if (!user) {
+          window.location.href = '/login';
+        } else {
+          loadData();
+        }
+      });
+    };
+    if (window.firebaseAuth) {
+      init();
+    } else {
+      document.addEventListener('firebase-init', init, { once: true });
+    }
+  });
+</script>

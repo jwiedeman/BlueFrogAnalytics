@@ -1,0 +1,42 @@
+---
+layout: "../../layouts/main.astro"
+title: robots.txt Test & Downloader
+description: Validate and download a site's robots.txt file.
+---
+
+<div id="robots-root" class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="text-center mb-4">
+        <h1>robots.txt Test &amp; Downloader</h1>
+        <p>Check the robots.txt file and download a copy.</p>
+      </div>
+      <form id="robots-form" class="row gy-2 gx-3 align-items-end mb-3">
+        <div class="col-md-8">
+          <label for="robots-url" class="form-label">Enter URL</label>
+          <input type="url" id="robots-url" name="url" placeholder="https://example.com" class="form-control" />
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mt-3">Run Test</button>
+        </div>
+      </form>
+      <div id="robots-results"></div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="/js/robots-txt-downloader.js" defer></script>
+
+## Implementation Notes
+
+**Data Points Needed**
+
+- URL of robots.txt
+- HTTP status code
+- File size
+
+**Formula**
+
+$$
+\text{Valid} = \begin{cases}1 & \text{status}=200 \\ 0 & \text{otherwise}\end{cases}
+$$

@@ -1,0 +1,50 @@
+---
+layout: "../../layouts/main.astro"
+title: Sitemap.xml Test & Downloader
+description: Inspect a site's sitemap and download a copy.
+---
+
+<div id="sitemap-root" class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="text-center mb-4">
+        <h1>Sitemap.xml Test &amp; Downloader</h1>
+        <p>Fetch and validate a site's sitemap.xml file.</p>
+      </div>
+      <form id="sitemap-form" class="row gy-2 gx-3 align-items-end mb-3">
+        <div class="col-md-7">
+          <label for="sitemap-url" class="form-label">Enter URL</label>
+          <input type="url" id="sitemap-url" name="url" placeholder="https://example.com" class="form-control" />
+        </div>
+        <div class="col-md-3">
+          <label for="sitemap-mode" class="form-label">Download</label>
+          <select id="sitemap-mode" class="form-select">
+            <option value="combined">Unified</option>
+            <option value="original">Original</option>
+          </select>
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mt-3">Run Test</button>
+        </div>
+      </form>
+      <div id="sitemap-results" class="mt-3"></div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="/js/sitemap-xml-downloader.js" defer></script>
+
+## Implementation Notes
+
+**Data Points Needed**
+
+- URL of sitemap.xml
+- HTTP status code
+- File size
+- Support for nested sitemap indexes
+
+**Formula**
+
+$$
+\text{Valid} = \begin{cases}1 & \text{status}=200 \\ 0 & \text{otherwise}\end{cases}
+$$

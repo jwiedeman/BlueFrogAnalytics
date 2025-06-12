@@ -1,0 +1,28 @@
+---
+layout: "../../layouts/main.astro"
+title: Accessibility Check
+description: Evaluate accessibility with Lighthouse.
+---
+
+<div id="a11y-root" class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="text-center mb-4">
+        <h1>Accessibility Check</h1>
+        <p>Run Lighthouse accessibility audits on your page.</p>
+      </div>
+      <form id="a11y-form" class="row gy-2 gx-3 align-items-end mb-3">
+        <div class="col-md-8">
+          <label for="a11y-url" class="form-label">Enter URL</label>
+          <input type="url" id="a11y-url" name="url" placeholder="https://example.com" class="form-control" />
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mt-3">Run Test</button>
+        </div>
+      </form>
+      <div id="a11y-results"></div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="/js/accessibility-check.js" defer></script>
