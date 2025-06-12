@@ -7,6 +7,36 @@ description: 'Share your thoughts and help us improve.'
 <section class="py-8">
   <div class="max-w-3xl mx-auto space-y-6">
     <h1 class="text-3xl font-bold text-center">We Value Your Feedback</h1>
-    <p>Let us know how we can improve Blue Frog Analytics. Your input helps shape future features and documentation.</p>
+    <p class="text-center">
+      Your insights help us continually improve. Please share any suggestions, ideas, or issues you've encountered.
+    </p>
+
+    <form method="post" enctype="multipart/form-data" class="space-y-4">
+      <div>
+        <label for="name" class="block mb-1">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="Optional" class="w-full border rounded px-3 py-2" />
+      </div>
+
+      <div>
+        <label for="email" class="block mb-1">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Optional" class="w-full border rounded px-3 py-2" />
+      </div>
+
+      <div>
+        <label for="feedback" class="block mb-1">Feedback / Bug Report</label>
+        <textarea id="feedback" name="feedback" rows="5" required placeholder="Describe your feedback or issue..." class="w-full border rounded px-3 py-2"></textarea>
+      </div>
+
+      <div>
+        <label for="screenshot" class="block mb-1">Attach Screenshot (optional but encouraged)</label>
+        <input type="file" id="screenshot" name="screenshot" accept="image/*" class="w-full border rounded px-3 py-2" />
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="px-4 py-2 bg-primary text-white rounded">Submit Feedback</button>
+      </div>
+    </form>
+
+    <p class="text-center mt-4">Thank you for taking the time to help us make Blue Frog Analytics better!</p>
   </div>
 </section>
