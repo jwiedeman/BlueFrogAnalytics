@@ -2,9 +2,44 @@
 layout: '../../layouts/main.astro'
 title: 'Dashboard'
 ---
+
 <section class="py-8">
-  <div class="container mx-auto px-4">
-    <h1 class="text-3xl font-bold mb-4">Dashboard</h1>
-    <p>This section will provide personalized reports and tools.</p>
+  <div class="container mx-auto px-4 space-y-6">
+    <h1 class="text-3xl font-bold text-center">Dashboard</h1>
+    <p class="text-center">Personalized reports and tools will appear here.</p>
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="/dashboard/domains" class="block border rounded p-4 hover:bg-gray-50">
+        <h2 class="text-xl font-semibold">Domains</h2>
+        <p>Manage monitored domains.</p>
+      </a>
+      <a href="/dashboard/performance" class="block border rounded p-4 hover:bg-gray-50">
+        <h2 class="text-xl font-semibold">Performance</h2>
+        <p>View Lighthouse scores.</p>
+      </a>
+      <a href="/dashboard/seo" class="block border rounded p-4 hover:bg-gray-50">
+        <h2 class="text-xl font-semibold">SEO</h2>
+        <p>Analyze on-page SEO signals.</p>
+      </a>
+      <a href="/dashboard/accessibility" class="block border rounded p-4 hover:bg-gray-50">
+        <h2 class="text-xl font-semibold">Accessibility</h2>
+        <p>Check ADA compliance.</p>
+      </a>
+      <a href="/dashboard/qa" class="block border rounded p-4 hover:bg-gray-50">
+        <h2 class="text-xl font-semibold">QA</h2>
+        <p>Automated quality assurance tools.</p>
+      </a>
+      <a href="/dashboard/settings" class="block border rounded p-4 hover:bg-gray-50">
+        <h2 class="text-xl font-semibold">Settings</h2>
+        <p>Manage account preferences.</p>
+      </a>
+      <a href="/dashboard/profile" class="block border rounded p-4 hover:bg-gray-50">
+        <h2 class="text-xl font-semibold">Profile</h2>
+        <p>Update personal details.</p>
+      </a>
+      <a href="/dashboard/billing" class="block border rounded p-4 hover:bg-gray-50">
+        <h2 class="text-xl font-semibold">Billing</h2>
+        <p>Manage invoices and payment methods.</p>
+      </a>
+    </div>
   </div>
 </section>
