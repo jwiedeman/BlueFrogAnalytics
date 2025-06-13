@@ -1,0 +1,167 @@
+# Site Page Structure
+
+## Root Pages
+- about-us.astro
+- about.mdx
+- accessibility-statement.astro
+- birthday.mdx
+- booking.astro
+- careers.astro
+- case-studies.astro
+- changelog.astro
+- chatbot.astro
+- compare-services.astro
+- contact.mdx
+- cookie-policy.astro
+- discord.mdx
+- educator.mdx
+- events.astro
+- faq.mdx
+- gallery.astro
+- help-center.astro
+- index.astro
+- integrations.astro
+- landing-pages.astro
+- leads.mdx
+- login.astro
+- markdown-page.md
+- medical-professionals.mdx
+- membership.mdx
+- military-veterans.mdx
+- new-business.mdx
+- newsletter-archive.astro
+- newsletter-signup.astro
+- partners.astro
+- payment-options.mdx
+- press.astro
+- pricing.mdx
+- privacy-choices.mdx
+- privacy-policy.mdx
+- refund-policy.mdx
+- request-a-quote.astro
+- robots.txt.ts
+- site-feedback.mdx
+- support-portal.astro
+- team.astro
+- terms-of-sale.mdx
+- terms-of-service.mdx
+- terms.astro
+- testimonials.astro
+- testing.mdx
+- trust-badges.astro
+- webinars.astro
+- whitepapers.astro
+
+## Blog
+- blog/index.astro
+- blog/[slug].astro
+- blog/authors/[author].astro
+- blog/tags/[tag].astro
+
+### Blog Posts
+- blog/posts/10-common-analytics-tagging-mistakes-and-their-quick-fixes.mdx
+- blog/posts/10-proven-ways-to-increase-website-conversions-in-2025.mdx
+- blog/posts/5-reasons-why-your-analytics-data-might-be-wrong-and-how-to-check.mdx
+- blog/posts/accessibility-compliance-checklist-is-your-site-really-accessible.mdx
+- blog/posts/ada-compliance-for-websites-the-smb-quickstart-guide.mdx
+- blog/posts/advanced-event-tracking-with-ga4-step-by-step-implementation.mdx
+- blog/posts/automating-your-lead-generation-tools-and-tactics-for-smbs.mdx
+- blog/posts/ccpa-compliance-essentials-does-your-website-pass-the-test.mdx
+- blog/posts/cdn-basics-how-smbs-can-use-a-cdn-to-improve-load-speeds.mdx
+- blog/posts/cloudflare-for-beginners-the-smb-guide-to-setup-and-optimization.mdx
+- blog/posts/common-security-vulnerabilities-and-how-to-patch-them-quickly.mdx
+- blog/posts/core-web-vitals-understanding-google-s-vital-signals.mdx
+- blog/posts/diagnosing-web-performance-issues-a-step-by-step-tutorial.mdx
+- blog/posts/easy-email-capture-strategies-that-actually-work.mdx
+- blog/posts/ensuring-gdpr-cppa-compliance-in-your-analytics-setup.mdx
+- blog/posts/essential-guide-to-web-security-headers-you-must-implement.mdx
+- blog/posts/gdpr-compliance-audit-for-smbs-simple-steps-to-stay-safe.mdx
+- blog/posts/getting-started-with-google-analytics-4-ga4-everything-you-need.mdx
+- blog/posts/how-caching-dramatically-improves-your-site-speed.mdx
+- blog/posts/how-to-create-and-submit-an-seo-friendly-sitemap.mdx
+- blog/posts/how-to-debug-any-analytics-tracking-issue-a-comprehensive-guide.mdx
+- blog/posts/how-to-generate-leads-from-your-website-without-ads.mdx
+- blog/posts/how-to-improve-time-to-interactive-tti-for-better-ux.mdx
+- blog/posts/how-to-qualify-leads-quickly-with-smart-forms.mdx
+- blog/posts/how-to-recover-quickly-from-a-google-penalty.mdx
+- blog/posts/how-to-spot-bot-traffic-in-google-analytics.mdx
+- blog/posts/how-to-validate-google-tag-manager-setup-in-under-10-minutes.mdx
+- blog/posts/idea-act-101-a-quick-guide-to-digital-compliance-for-government-sites.mdx
+- blog/posts/image-optimization-for-performance-10-easy-wins.mdx
+- blog/posts/keyword-research-secrets-finding-low-competition-high-intent-keywords.mdx
+- blog/posts/mobile-seo-how-to-optimize-for-google-s-mobile-first-index.mdx
+- blog/posts/optimizing-your-contact-page-to-convert-more-visitors-into-leads.mdx
+- blog/posts/seo-audit-checklist-how-to-diy-your-first-audit.mdx
+- blog/posts/simple-ways-to-minimize-javascript-for-faster-load-times.mdx
+- blog/posts/the-anatomy-of-a-high-converting-smb-landing-page.mdx
+- blog/posts/the-basics-of-ssl-tls-why-your-site-must-be-https.mdx
+- blog/posts/the-definitive-guide-to-improving-first-contentful-paint-fcp.mdx
+- blog/posts/the-definitive-guide-to-technical-seo-for-beginners.mdx
+- blog/posts/the-smb-guide-to-server-side-tagging-worth-it-or-not.mdx
+- blog/posts/the-ultimate-website-security-checklist-for-smbs.mdx
+- blog/posts/top-10-seo-mistakes-smbs-make-and-how-to-fix-them.mdx
+- blog/posts/ultimate-beginner-s-guide-to-on-page-seo-in-2025.mdx
+- blog/posts/understanding-google-s-e-e-a-t-guidelines-and-how-to-score-well.mdx
+- blog/posts/understanding-website-uptime-why-downtime-kills-your-seo-and-ux.mdx
+- blog/posts/universal-analytics-is-dead-here-s-how-to-seamlessly-transition-to-ga4.mdx
+- blog/posts/using-website-audits-as-lead-magnets-a-practical-guide.mdx
+- blog/posts/using-your-analytics-data-to-predict-customer-behavior.mdx
+- blog/posts/why-every-smb-should-be-using-heatmaps-and-how-to-start-today.mdx
+- blog/posts/why-your-wordpress-website-is-slow-and-how-to-speed-it-up-instantly.mdx
+\n## Docs
+- ad-platforms/ (17 pages)
+- analytics-platforms/ (10 pages)
+- bluefroganalytics/ (14 pages)
+- compliance/ (57 pages)
+- introduction/ (3 pages)
+- learning/ (114 pages)
+- website-platforms/ (93 pages)
+\n## Dashboard
+- dashboard/accessibility.astro
+- dashboard/billing.astro
+- dashboard/domains.astro
+- dashboard/index.astro
+- dashboard/leads.astro
+- dashboard/performance.astro
+- dashboard/profile.astro
+- dashboard/qa.astro
+- dashboard/security.astro
+- dashboard/seo.astro
+- dashboard/settings.astro
+- dashboard/specification
+- dashboard/ssl.astro
+- dashboard/tools.astro
+- dashboard/specification/components.astro
+- dashboard/specification/dimensions.astro
+- dashboard/specification/events.astro
+- dashboard/specification/index.astro
+- dashboard/specification/products.astro
+\n## Tests
+- tests/accessibility-check.mdx
+- tests/analytics-tag-health-checker.mdx
+- tests/contrast-heat-map.mdx
+- tests/image-bloat-buster.mdx
+- tests/image-next-gen-converter.mdx
+- tests/performance-check.mdx
+- tests/roas-calculator.mdx
+- tests/robots-txt-downloader.mdx
+- tests/security-headers-black-box.mdx
+- tests/seo-check.mdx
+- tests/serp-preview.mdx
+- tests/site-carbon-calculator.mdx
+- tests/sitemap-xml-downloader.mdx
+- tests/tag-drag-race.mdx
+\n## Services
+- services/index.astro
+- services/service-a.astro
+- services/service-b.astro
+- services/service-c.astro
+- services/service-d.astro
+\n## Industry Pages
+- industry-pages/index.astro
+\n## Service Areas
+- service-areas/index.astro
+\n## Resources
+- resources/index.astro
+\n## Geo Landing Pages
+- geo-landing-pages/index.astro
