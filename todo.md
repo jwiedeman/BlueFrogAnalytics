@@ -4,7 +4,6 @@ The following pages still contain placeholder text and need real content.
 
 ## Pages in `frontend/src/pages`
 
-- frontend/src/pages/about-us.astro
 - frontend/src/pages/accessibility-statement.astro
 - frontend/src/pages/booking.astro
 - frontend/src/pages/careers.astro
@@ -161,6 +160,10 @@ These MDX files have `title: coming soon` and `description: coming soon`.
 - frontend/src/pages/docs/learning/seo/xml-rss-feeds.mdx
 - frontend/src/pages/docs/learning/seo/youtube-seo-video-markup.mdx
 - frontend/src/pages/docs/learning/seo/zero-search-results-page.mdx
+
+## Completed migrations
+
+- frontend/src/pages/about-us.astro
 
 ## Other placeholder notes
 

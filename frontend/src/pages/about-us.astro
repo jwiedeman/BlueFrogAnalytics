@@ -1,8 +1,7 @@
 ---
 import Layout from '../layouts/main.astro';
+import AboutContent, { frontmatter as aboutFm } from './about.mdx';
 ---
-<Layout title="About Us">
-  <div class="p-4">
-    TODO: Add About Us content.
-  </div>
+<Layout title={aboutFm.title} description={aboutFm.description}>
+  <AboutContent />
 </Layout>
