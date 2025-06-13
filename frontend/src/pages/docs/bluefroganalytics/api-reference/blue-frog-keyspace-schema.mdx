@@ -1,0 +1,251 @@
+---
+title: Blue Frog Keyspace Schema
+description: Detailed table layout for the `blue_frog` keyspace used by Blue Frog Analytics.
+---
+
+# Blue Frog Keyspace Schema
+
+The `blue_frog` keyspace mirrors the `domain_discovery` layout but stores every collection type as plain `TEXT` containing JSON. This allows older clients to query data without Cassandra collection type issues. Primary keys match the original tables.
+
+## Tables
+
+### certstream_domains
+- `domain` text PRIMARY KEY
+
+### domains_processed
+- `domain` text
+- `tld` text
+- `registered` timestamp
+- `registrar` text
+- `updated` timestamp
+- `status` text
+- `as_name` text
+- `as_number` int
+- `isp` text
+- `org` text
+- `city` text
+- `region` text
+- `region_name` text
+- `country` text
+- `country_code` text
+- `continent` text
+- `continent_code` text
+- `lat` float
+- `lon` float
+- `languages` text
+- `phone` text
+- `time_zone` text
+- `ssl_issuer` text
+- `ssl_org` text
+- `x_powered_by` text
+- `tech_detect` text
+- `wordpress_asset_version` text
+- `site_type` text
+- `site_category` text
+- `site_type_tags` text
+- `title` text
+- `description` text
+- `linkedin_url` text
+- `has_about_page` boolean
+- `has_services_page` boolean
+- `has_cart_or_product` boolean
+- `more_than_5_internal_links` boolean
+- `contains_gtm_or_ga` boolean
+- `wordpress_version` text
+- `server_type` text
+- `server_version` text
+- `wpjson_size_bytes` int
+- `wpjson_contains_cart` boolean
+- `emails` text
+- `phone_numbers` text
+- `sms_numbers` text
+- `addresses` text
+- `favicon_url` text
+- `robots_txt_exists` boolean
+- `robots_txt_content` text
+- `canonical_url` text
+- `h1_count` int
+- `h2_count` int
+- `h3_count` int
+- `schema_markup_detected` boolean
+- `schema_types` text
+- `security_headers_score` int
+- `security_headers_detected` text
+- `hsts_enabled` boolean
+- `cookie_compliance` boolean
+- `third_party_scripts` int
+- `color_contrast_issues` int
+- `aria_landmark_count` int
+- `form_accessibility_issues` int
+- `social_media_profiles` text
+- `rss_feed_detected` boolean
+- `newsletter_signup_detected` boolean
+- `cdn_detected` boolean
+- `http_version` text
+- `compression_enabled` boolean
+- `cache_control_headers` text
+- `page_weight_bytes` int
+- `main_language` text
+- `content_keywords` text
+- `ecommerce_platforms` text
+- `sitemap_page_count` int
+- `postal_code` text
+- `meta_tag_count` int
+- `sitemap_robots_conflict` boolean
+- `insecure_cookie_count` int
+- `external_resource_count` int
+- `passive_subdomain_count` int
+- `open_ports` text
+- `allowed_http_methods` text
+- `waf_name` text
+- `directory_scan` text
+- `certificate_info` text
+- `desktop_accessibility_score` int
+- `mobile_accessibility_score` int
+- `desktop_best_practices_score` int
+- `mobile_best_practices_score` int
+- `desktop_performance_score` int
+- `mobile_performance_score` int
+- `desktop_seo_score` int
+- `mobile_seo_score` int
+- `desktop_first_contentful_paint` float
+- `mobile_first_contentful_paint` float
+- `desktop_largest_contentful_paint` float
+- `mobile_largest_contentful_paint` float
+- `desktop_interactive` float
+- `mobile_interactive` float
+- `desktop_speed_index` float
+- `mobile_speed_index` float
+- `desktop_total_blocking_time` float
+- `mobile_total_blocking_time` float
+- `desktop_cumulative_layout_shift` float
+- `mobile_cumulative_layout_shift` float
+- `desktop_timing_total` float
+- `mobile_timing_total` float
+- `lighthouse_version` text
+- `lighthouse_fetch_time` timestamp
+- `lighthouse_url` text
+- `raw_subdomains` text
+- `desktop_performance_suggestions` text
+- `mobile_performance_suggestions` text
+- `desktop_accessibility_suggestions` text
+- `mobile_accessibility_suggestions` text
+- `desktop_seo_suggestions` text
+- `mobile_seo_suggestions` text
+- `user_managed` boolean
+- `refresh_hours` int
+- `last_enriched` timestamp
+- PRIMARY KEY (`domain`, `tld`)
+
+### domain_page_metrics
+- `domain` text
+- `url` text
+- `scan_date` timestamp
+- `desktop_accessibility_score` int
+- `mobile_accessibility_score` int
+- `desktop_best_practices_score` int
+- `mobile_best_practices_score` int
+- `desktop_performance_score` int
+- `mobile_performance_score` int
+- `desktop_seo_score` int
+- `mobile_seo_score` int
+- `desktop_first_contentful_paint` float
+- `mobile_first_contentful_paint` float
+- `desktop_largest_contentful_paint` float
+- `mobile_largest_contentful_paint` float
+- `desktop_interactive` float
+- `mobile_interactive` float
+- `desktop_speed_index` float
+- `mobile_speed_index` float
+- `desktop_total_blocking_time` float
+- `mobile_total_blocking_time` float
+- `desktop_cumulative_layout_shift` float
+- `mobile_cumulative_layout_shift` float
+- `desktop_timing_total` float
+- `mobile_timing_total` float
+- `lighthouse_version` text
+- `lighthouse_fetch_time` timestamp
+- `lighthouse_url` text
+- `desktop_performance_suggestions` text
+- `mobile_performance_suggestions` text
+- `desktop_accessibility_suggestions` text
+- `mobile_accessibility_suggestions` text
+- `desktop_seo_suggestions` text
+- `mobile_seo_suggestions` text
+- `status_code` int
+- `redirect_chain` text
+- `page_load_time_ms` int
+- `broken_links_count` int
+- `internal_links_count` int
+- `external_links_count` int
+- `page_images_count` int
+- `missing_alt_text_images_count` int
+- `video_embeds_count` int
+- `iframe_embeds_count` int
+- `duplicate_meta_titles` boolean
+- `duplicate_meta_descriptions` boolean
+- `emails` text
+- `phone_numbers` text
+- `sms_numbers` text
+- `addresses` text
+- `wpt_load_time_ms` int
+- `wpt_speed_index` float
+- `wpt_ttfb_ms` int
+- `screenshot_path` text
+- `heatmap_path` text
+- PRIMARY KEY (`domain`, `url`, `scan_date`)
+
+### analytics_tag_health
+- `domain` text
+- `scan_date` timestamp
+- `working_variants` text
+- `scanned_urls` text
+- `found_analytics` text
+- `page_results` text
+- `variant_results` text
+- `compliance_status` text
+- PRIMARY KEY (`domain`, `scan_date`)
+
+### carbon_audits
+- `domain` text
+- `url` text
+- `scan_date` timestamp
+- `bytes` int
+- `co2` float
+- PRIMARY KEY (`domain`, `url`, `scan_date`)
+
+### dns_records
+- `domain` text
+- `record_type` text
+- `record_value` text
+- `scan_date` timestamp
+- PRIMARY KEY ((`domain`, `record_type`), `record_value`, `scan_date`)
+
+### misc_tool_results
+- `domain` text
+- `url` text
+- `tool_name` text
+- `scan_date` timestamp
+- `data` text
+- PRIMARY KEY (`domain`, `url`, `tool_name`, `scan_date`)
+
+### businesses
+- `name` text
+- `address` text
+- `website` text
+- `phone` text
+- `reviews_average` float
+- `query` text
+- `latitude` float
+- `longitude` float
+- PRIMARY KEY (`name`, `address`)
+
+### tracking_specs
+- `category` text
+- `tool` text
+- `name` text
+- `rule` text
+- `example` text
+- `description` text
+- `updated_at` timestamp
+- PRIMARY KEY ((`category`, `tool`), `name`)
