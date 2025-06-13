@@ -164,6 +164,5 @@ These MDX files have `title: coming soon` and `description: coming soon`.
 
 ## Other placeholder notes
 
-- `frontend/src/pages/dashboard/performance.astro` mentions "API integration is coming soon."
 - `frontend/src/pages/docs/ad-platforms/meta-ads.mdx` includes a link labeled "coming soon".
 
