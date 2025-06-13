@@ -1,9 +1,24 @@
 ---
 import Main from '../../../layouts/main.astro';
 import { authors } from '../../../data/authors.js';
+
+export async function getStaticPaths() {
+  function slugify(str) {
+    return String(str)
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  }
+  const postImports = import.meta.glob('../../../content/blog/*.mdx', { eager: true });
+  const posts = Object.values(postImports);
+  const authorSlugs = new Set(posts.map(p => slugify(p.frontmatter.author || '')));
+  return Array.from(authorSlugs).map(author => ({ params: { author } }));
+}
+
 function slugify(str) {
   return String(str).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 }
+
 const { author } = Astro.params;
 const postImports = import.meta.glob('../../../content/blog/*.mdx', { eager: true });
 let posts = Object.values(postImports);
