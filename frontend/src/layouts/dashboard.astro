@@ -1,7 +1,5 @@
 ---
-import '../styles/global.css';
-import SimpleNav from '../components/layout/SimpleNav.astro';
-import { Footer4 } from '../components/layout/Footer4';
+import Main from './main.astro';
 const { title = 'Dashboard' } = Astro.props;
 const mainNav = [
   { label: 'Dashboard Home', link: '/dashboard' },
@@ -19,16 +17,8 @@ const mainNav = [
   { label: 'Settings', link: '/dashboard/settings' },
 ];
 ---
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{title}</title>
-  </head>
-  <body class="min-h-screen flex flex-col">
-    <SimpleNav />
-    <div class="flex flex-1">
+<Main {title}>
+  <div class="flex min-h-screen">
       <aside class="hidden md:block w-64 border-r p-4 bg-gray-50">
         <nav>
           <ul class="space-y-2 text-sm">
@@ -46,6 +36,4 @@ const mainNav = [
         <slot />
       </main>
     </div>
-    <Footer4 />
-  </body>
-</html>
+</Main>
