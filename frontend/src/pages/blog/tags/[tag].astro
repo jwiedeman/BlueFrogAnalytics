@@ -1,5 +1,15 @@
 ---
 import Main from '../../../layouts/main.astro';
+
+export async function getStaticPaths() {
+  const postImports = import.meta.glob('../../../content/blog/*.mdx', {
+    eager: true,
+  });
+  const posts = Object.values(postImports);
+  const tagSet = new Set(posts.flatMap((p) => p.frontmatter.tags || []));
+  return Array.from(tagSet).map((tag) => ({ params: { tag } }));
+}
+
 const { tag } = Astro.params;
 const postImports = import.meta.glob('../../../content/blog/*.mdx', { eager: true });
 let posts = Object.values(postImports);
