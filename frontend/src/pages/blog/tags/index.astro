@@ -1,0 +1,28 @@
+---
+import Main from '../../../layouts/main.astro';
+const postImports = import.meta.glob('../../../content/blog/*.mdx', { eager: true });
+const posts = Object.values(postImports);
+const tagMap = new Map();
+for (const post of posts) {
+  (post.frontmatter.tags || []).forEach(t => {
+    tagMap.set(t, (tagMap.get(t) || 0) + 1);
+  });
+}
+const title = 'Blog Tags';
+const description = 'Browse posts by tag.';
+---
+<Main title={title}>
+  <section class="max-w-3xl mx-auto py-8 space-y-4">
+    <h1 class="text-3xl font-bold">{title}</h1>
+    <p class="text-gray-600">{description}</p>
+    <ul class="space-y-2">
+      {Array.from(tagMap.entries()).map(([tag, count]) => (
+        <li key={tag}>
+          <a href={`/blog/tags/${tag}`} class="text-blue-600 hover:underline">
+            {tag} ({count})
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Main>

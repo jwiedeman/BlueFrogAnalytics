@@ -1,0 +1,44 @@
+---
+import Main from '../../../layouts/main.astro';
+import { authors } from '../../../data/authors.js';
+function slugify(str) {
+  return String(str).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+const { author } = Astro.params;
+const postImports = import.meta.glob('../../../content/blog/*.mdx', { eager: true });
+let posts = Object.values(postImports);
+posts = posts.filter(p => slugify(p.frontmatter.author || '') === author);
+posts.sort((a, b) => (b.frontmatter.pubDate?.valueOf() ?? 0) - (a.frontmatter.pubDate?.valueOf() ?? 0));
+const info = authors[author] || { name: posts[0]?.frontmatter.author || author.replace(/-/g, ' ') };
+const title = `Posts by ${info.name}`;
+const description = `Articles written by ${info.name}.`;
+const tags = Array.from(new Set(posts.flatMap(p => p.frontmatter.tags || [])));
+---
+<Main title={title}>
+  <section class="max-w-3xl mx-auto py-8 space-y-4">
+    <h1 class="text-3xl font-bold">{info.name}</h1>
+    {info.bio && <p>{info.bio}</p>}
+    {tags.length ? (
+      <div class="space-x-2">
+        {tags.map(t => (
+          <a href={`/blog/tags/${t}`} class="inline-block bg-gray-200 px-2 py-1 rounded text-sm" key={t}>{t}</a>
+        ))}
+      </div>
+    ) : null}
+    <ul class="space-y-6 mt-4">
+      {posts.map(post => (
+        <li>
+          <a href={post.url} class="text-xl text-blue-600 hover:underline font-semibold">
+            {post.frontmatter.title}
+          </a>
+          {post.frontmatter.description && (
+            <p class="text-gray-600">{post.frontmatter.description}</p>
+          )}
+          {post.frontmatter.pubDate && (
+            <p class="text-sm text-gray-500 mt-1">{new Date(post.frontmatter.pubDate).toLocaleDateString()}</p>
+          )}
+        </li>
+      ))}
+    </ul>
+  </section>
+</Main>
