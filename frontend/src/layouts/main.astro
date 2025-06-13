@@ -9,15 +9,19 @@ const { title = 'Blue Frog Analytics' } = Astro.props;
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-                <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-                <title>{title}</title>
-        </head>
-        <body>
-                <SimpleNav />
-                <slot />
-                <Footer4 />
-        </body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header>
+      <SimpleNav />
+    </header>
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer4 />
+  </body>
 </html>
