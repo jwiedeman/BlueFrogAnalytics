@@ -1,0 +1,96 @@
+---
+import Main from './main.astro';
+const { title = 'Docs', description = '', headings = [] } = Astro.props;
+
+// gather docs files to build sidebar tree
+const modules = import.meta.glob('../pages/docs/**/*.mdx', { eager: true });
+function buildTree() {
+  const tree = [];
+  for (const [path, mod] of Object.entries(modules)) {
+    const slug = path.replace('../pages/docs/', '').replace(/\.mdx$/, '');
+    if (slug === 'index') continue;
+    const segments = slug.split('/');
+    let current = tree;
+    for (let i = 0; i < segments.length; i++) {
+      const seg = segments[i];
+      let node = current.find(n => n.name === seg);
+      if (!node) {
+        node = { name: seg, label: seg.replace(/-/g, ' '), path: null, children: [] };
+        current.push(node);
+      }
+      if (i === segments.length - 1) {
+        node.path = '/docs/' + slug + '/';
+        node.label = mod.frontmatter?.title || node.label;
+      }
+      current = node.children;
+    }
+  }
+  return tree;
+}
+const docTree = buildTree();
+function sortTree(nodes) {
+  nodes.sort((a,b) => a.label.localeCompare(b.label));
+  nodes.forEach(n => n.children && sortTree(n.children));
+}
+sortTree(docTree);
+const current = Astro.url.pathname.replace(/\/$/, '').toLowerCase();
+function findPath(nodes, parents = []) {
+  for (const node of nodes) {
+    const nodePath = node.path?.replace(/\/$/, '').toLowerCase();
+    if (nodePath === current) return [...parents, node];
+    if (node.children?.length) {
+      const res = findPath(node.children, [...parents, node]);
+      if (res) return res;
+    }
+  }
+  return null;
+}
+const breadcrumb = findPath(docTree) || [];
+---
+<Main title={title}>
+  <div class="flex">
+    <aside class="hidden lg:block w-64 overflow-y-auto border-r p-4 text-sm">
+      <nav>
+        <ul>
+          {(() => {
+            function render(nodes) {
+              return nodes.map(n => (
+                n.children.length ? (
+                  <li>
+                    <details class={breadcrumb.some(b => b.name === n.name) ? 'open' : ''}>
+                      <summary class="cursor-pointer py-1 font-semibold capitalize">{n.label}</summary>
+                      <ul class="ml-4 space-y-1">
+                        {render(n.children)}
+                      </ul>
+                    </details>
+                  </li>
+                ) : (
+                  <li>
+                    <a class={`block py-1 hover:underline ${current === n.path.replace(/\/$/, '').toLowerCase() ? 'font-bold' : ''}`} href={n.path}>{n.label}</a>
+                  </li>
+                )
+              ));
+            }
+            return render(docTree);
+          })()}
+        </ul>
+      </nav>
+    </aside>
+    <main class="flex-grow px-4 py-8">
+      <article class="prose lg:prose-xl dark:prose-invert mx-auto">
+        <slot />
+      </article>
+    </main>
+    <aside class="hidden xl:block w-48 overflow-y-auto border-l p-4 text-sm">
+      <nav>
+        <ul>
+          {headings.map(h => (
+            <li class={`ml-${(h.depth - 1) * 4}`.replace('ml-0', '')}>
+              <a href={`#${h.slug}`} class="hover:underline">{h.text}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </aside>
+  </div>
+</Main>

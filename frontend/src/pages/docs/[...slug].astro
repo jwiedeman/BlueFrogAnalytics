@@ -1,5 +1,5 @@
 ---
-import DocLayout from '../../layouts/doc.astro';
+import DocsLayout from '../../layouts/docs.astro';
 export const prerender = true;
 
 export async function getStaticPaths() {
@@ -18,8 +18,9 @@ const importPage = modules[`./${slug}.mdx`];
 if (!importPage) {
   throw new Error(`Doc not found: ${slug}`);
 }
-const { frontmatter, default: Content } = await importPage();
+const { frontmatter, default: Content, getHeadings } = await importPage();
+const headings = getHeadings ? getHeadings() : [];
 ---
-<DocLayout title={frontmatter.title ?? 'Documentation'} description={frontmatter.description ?? ''}>
+<DocsLayout title={frontmatter.title ?? 'Documentation'} description={frontmatter.description ?? ''} headings={headings}>
   <Content />
-</DocLayout>
+</DocsLayout>
