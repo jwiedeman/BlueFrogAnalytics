@@ -1,0 +1,45 @@
+---
+layout: '../layouts/main.astro'
+title: 'Contact Us'
+description: 'Get in touch with the Blue Frog Analytics team.'
+---
+
+<section class="py-8 text-center">
+  <h1 class="text-3xl font-bold">We'd Love to Hear from You</h1>
+  <p class="text-gray-600">Drop us a line or use the form below.</p>
+</section>
+
+<section class="py-8">
+  <p class="text-center mb-4">Fill out the form and we'll reach out shortly.</p>
+  <div class="max-w-md mx-auto">
+    <form class="space-y-4">
+      <div>
+        <label for="contact-name" class="block mb-1">Name</label>
+        <input id="contact-name" type="text" required class="w-full border rounded px-3 py-2" />
+      </div>
+      <div>
+        <label for="contact-email" class="block mb-1">Email</label>
+        <input id="contact-email" type="email" required class="w-full border rounded px-3 py-2" />
+      </div>
+      <div>
+        <label for="contact-message" class="block mb-1">Message</label>
+        <textarea id="contact-message" rows="5" required class="w-full border rounded px-3 py-2"></textarea>
+      </div>
+      <button type="submit" class="px-4 py-2 bg-primary text-white rounded">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<section class="py-8">
+  <div class="flex flex-col md:flex-row justify-center gap-8 text-center">
+    <div>
+      <p class="font-semibold">hello@bluefroganalytics.com</p>
+    </div>
+    <div>
+      <p class="font-semibold">Live chat 9am&ndash;5pm ET</p>
+    </div>
+    <div>
+      <p class="font-semibold">Vancouver, WA</p>
+    </div>
+  </div>
+</section>
