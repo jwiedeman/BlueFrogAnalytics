@@ -205,8 +205,8 @@ User tracking:
 - `refresh_hours` int
 - `last_enriched` timestamp
 
-Subdomains:
-- `raw_subdomains` set<text>
+- Subdomains:
+- `raw_subdomains` `set<text>`
 - `open_ports` text
 - `allowed_http_methods` text
 - `waf_name` text
@@ -451,9 +451,9 @@ Detailed analytics and tag compliance results.
 - `scan_date` timestamp
 - `working_variants` text (JSON array)
 - `scanned_urls` text (JSON array)
-- `found_analytics` map<text, text>
-- `page_results` map<text, text>
-- `variant_results` map<text, text>
+- `found_analytics` `map<text, text>`
+- `page_results` `map<text, text>`
+- `variant_results` `map<text, text>`
 - `compliance_status` text
 
 ### `carbon_audits`
@@ -472,7 +472,7 @@ Flexible storage for results of additional tools (image conversion, heatmaps, et
 - `url` text
 - `scan_date` timestamp
 - `tool_name` text
-- `data` map<text, text>
+- `data` `map<text, text>`
 ### `businesses`
 Google Maps business listings collected by the `WORKER-GoogleMapsScraper` bot.
 
