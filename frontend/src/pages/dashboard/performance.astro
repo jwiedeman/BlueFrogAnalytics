@@ -4,9 +4,188 @@ title: 'Performance'
 ---
 
 <section class="py-8">
-  <div class="max-w-3xl mx-auto space-y-6">
+  <div class="max-w-4xl mx-auto space-y-6">
     <h1 class="text-3xl font-bold text-center">Performance</h1>
-    <p class="text-center">Run Lighthouse performance audits for your pages.</p>
-    <p>API integration is coming soon. Saved scores will appear here.</p>
+    <div class="mb-4 flex justify-center">
+      <div class="w-full md:w-1/3">
+        <label for="perf-domain-select" class="block mb-1">Select Domain</label>
+        <select id="perf-domain-select" class="w-full border rounded px-3 py-2"></select>
+      </div>
+    </div>
+    <div id="domain-summary" class="space-y-4 hidden">
+      <h2 class="text-xl font-semibold">Latest Domain Results</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <h3 class="font-semibold">Mobile</h3>
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+              <tbody id="domain-body-mobile"></tbody>
+            </table>
+          </div>
+          <p id="mobile-suggestions" class="text-sm mt-2"></p>
+        </div>
+        <div>
+          <h3 class="font-semibold">Desktop</h3>
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+              <tbody id="domain-body-desktop"></tbody>
+            </table>
+          </div>
+          <p id="desktop-suggestions" class="text-sm mt-2"></p>
+        </div>
+      </div>
+    </div>
+    <div id="pages-summary" class="hidden">
+      <h2 class="text-xl font-semibold mb-2">Page Scores</h2>
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead>
+            <tr>
+              <th>URL</th>
+              <th>Mobile</th>
+              <th>Desktop</th>
+            </tr>
+          </thead>
+          <tbody id="pages-body"></tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </section>
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    const API_BASE = window.API_BASE_URL || 'https://api.bluefroganalytics.com:6001';
+    const domainSelect = document.getElementById('perf-domain-select');
+    const domainEl = document.getElementById('domain-summary');
+    const domainBodyMobile = document.getElementById('domain-body-mobile');
+    const domainBodyDesktop = document.getElementById('domain-body-desktop');
+    const mobileSug = document.getElementById('mobile-suggestions');
+    const desktopSug = document.getElementById('desktop-suggestions');
+    const pagesEl = document.getElementById('pages-summary');
+    const pagesBody = document.getElementById('pages-body');
+
+    const thresholds = {
+      score: { good: 90, ok: 50 },
+      fcp: { good: 1800, ok: 3000 },
+      speed: { good: 3400, ok: 5800 },
+      lcp: { good: 2500, ok: 4000 },
+      tti: { good: 3800, ok: 7300 },
+      tbt: { good: 200, ok: 600 },
+      cls: { good: 0.1, ok: 0.25 }
+    };
+
+    const getRating = (type, value, higherIsBetter = false) => {
+      const { good, ok } = thresholds[type];
+      if (higherIsBetter) {
+        if (value >= good) return 'text-green-600';
+        if (value >= ok) return 'text-yellow-600';
+        return 'text-red-600';
+      }
+      if (value <= good) return 'text-green-600';
+      if (value <= ok) return 'text-yellow-600';
+      return 'text-red-600';
+    };
+
+    const buildSavedRows = (metrics, prefix, el) => {
+      if (!metrics) return;
+      el.innerHTML = '';
+      const rows = [
+        { label: 'Performance Score', value: metrics[`${prefix}_performance_score`], type: 'score' },
+        { label: 'First Contentful Paint', value: metrics[`${prefix}_first_contentful_paint`], type: 'fcp' },
+        { label: 'Speed Index', value: metrics[`${prefix}_speed_index`], type: 'speed' },
+        { label: 'Largest Contentful Paint', value: metrics[`${prefix}_largest_contentful_paint`], type: 'lcp' },
+        { label: 'Time To Interactive', value: metrics[`${prefix}_interactive`], type: 'tti' },
+        { label: 'Total Blocking Time', value: metrics[`${prefix}_total_blocking_time`], type: 'tbt' },
+        { label: 'Cumulative Layout Shift', value: metrics[`${prefix}_cumulative_layout_shift`], type: 'cls' }
+      ];
+      const format = v => (typeof v === 'number' ? `${(v / 1000).toFixed(1)} s` : '--');
+      for (const m of rows) {
+        const val = m.type === 'score' && typeof m.value === 'number' ? m.value : format(m.value);
+        const num = m.type === 'score' ? m.value : m.value;
+        const cls = getRating(m.type, num, m.type === 'score');
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<th class="pr-4">${m.label}</th><td class="${cls}">${val}</td>`;
+        el.appendChild(tr);
+      }
+    };
+
+    const renderDomain = data => {
+      buildSavedRows(data, 'mobile', domainBodyMobile);
+      buildSavedRows(data, 'desktop', domainBodyDesktop);
+      mobileSug.textContent = data.mobile_performance_suggestions ? `Top Fixes: ${data.mobile_performance_suggestions}` : '';
+      desktopSug.textContent = data.desktop_performance_suggestions ? `Top Fixes: ${data.desktop_performance_suggestions}` : '';
+      domainEl.classList.remove('hidden');
+    };
+
+    const renderPages = list => {
+      pagesBody.innerHTML = '';
+      const badge = score => {
+        if (typeof score !== 'number') return 'bg-gray-400';
+        if (score >= 90) return 'bg-green-500';
+        if (score >= 50) return 'bg-yellow-500';
+        return 'bg-red-500';
+      };
+      for (const p of list) {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${p.url}</td>
+          <td><span class="px-2 py-1 rounded text-white ${badge(p.mobile_performance_score)}">${p.mobile_performance_score ?? '--'}</span></td>
+          <td><span class="px-2 py-1 rounded text-white ${badge(p.desktop_performance_score)}">${p.desktop_performance_score ?? '--'}</span></td>`;
+        pagesBody.appendChild(row);
+      }
+      if (list.length) pagesEl.classList.remove('hidden');
+    };
+
+    const loadDomain = async (user, name) => {
+      const token = await user.getIdToken();
+      try {
+        const di = await fetch(`${API_BASE}/api/domain-info?domain=${encodeURIComponent(name)}`, { headers: { Authorization: `Bearer ${token}` } });
+        if (di.ok) renderDomain(await di.json());
+      } catch {}
+      try {
+        const dp = await fetch(`${API_BASE}/api/domain-pages?domain=${encodeURIComponent(name)}`, { headers: { Authorization: `Bearer ${token}` } });
+        if (dp.ok) renderPages(await dp.json());
+      } catch {}
+    };
+
+    const loadProfile = async user => {
+      const token = await user.getIdToken();
+      try {
+        const r = await fetch(`${API_BASE}/api/profile`, { headers: { Authorization: `Bearer ${token}` } });
+        if (r.ok) {
+          const profile = await r.json();
+          const list = Array.isArray(profile.domains) ? profile.domains : [];
+          domainSelect.innerHTML = '';
+          list.forEach(d => {
+            const opt = document.createElement('option');
+            opt.value = d;
+            opt.textContent = d;
+            domainSelect.appendChild(opt);
+          });
+          if (list.length) loadDomain(user, list[0]);
+        }
+      } catch {}
+    };
+
+    const init = () => {
+      if (window.showSpinner) window.showSpinner();
+      window.onAuthStateChanged(window.firebaseAuth, async user => {
+        if (!user) {
+          window.location.href = '/login';
+          return;
+        }
+        await loadProfile(user);
+        domainSelect.addEventListener('change', () => {
+          loadDomain(user, domainSelect.value);
+        });
+        if (window.hideSpinner) window.hideSpinner();
+      });
+    };
+    if (window.firebaseAuth) {
+      init();
+    } else {
+      document.addEventListener('firebase-init', init, { once: true });
+    }
+  });
+</script>
