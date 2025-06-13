@@ -3,7 +3,6 @@ export const prerender = true;
 const getRobotsTxt = (sitemapURL: URL) => `
 User-agent: *
 Allow: /
-Disallow: /carbon-components/
 
 Sitemap: ${sitemapURL.href}
 `;
