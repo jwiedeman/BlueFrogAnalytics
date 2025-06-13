@@ -1,0 +1,51 @@
+---
+import '../styles/global.css';
+import SimpleNav from '../components/layout/SimpleNav.astro';
+import { Footer4 } from '../components/layout/Footer4';
+const { title = 'Dashboard' } = Astro.props;
+const mainNav = [
+  { label: 'Dashboard Home', link: '/dashboard' },
+  { label: 'Domains', link: '/dashboard/domains' },
+  { label: 'Performance', link: '/dashboard/performance' },
+  { label: 'SEO', link: '/dashboard/seo' },
+  { label: 'Accessibility', link: '/dashboard/accessibility' },
+  { label: 'QA', link: '/dashboard/qa' },
+  { label: 'Leads', link: '/dashboard/leads' },
+  { label: 'Tools', link: '/dashboard/tools' },
+  { label: 'Security', link: '/dashboard/security' },
+  { label: 'SSL', link: '/dashboard/ssl' },
+  { label: 'Profile', link: '/dashboard/profile' },
+  { label: 'Billing', link: '/dashboard/billing' },
+  { label: 'Settings', link: '/dashboard/settings' },
+];
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <SimpleNav />
+    <div class="flex flex-1">
+      <aside class="hidden md:block w-64 border-r p-4 bg-gray-50">
+        <nav>
+          <ul class="space-y-2 text-sm">
+            {mainNav.map(item => (
+              <li key={item.link}>
+                <a href={item.link} class="block hover:underline">
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </aside>
+      <main class="flex-1 p-4">
+        <slot />
+      </main>
+    </div>
+    <Footer4 />
+  </body>
+</html>
