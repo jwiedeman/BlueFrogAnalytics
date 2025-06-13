@@ -76,11 +76,11 @@ const breadcrumb = findPath(docTree) || [];
         </ul>
       </nav>
     </aside>
-    <main class="flex-grow px-4 py-8">
+    <section class="flex-grow px-4 py-8" id="doc-main">
       <article class="prose lg:prose-xl dark:prose-invert mx-auto">
         <slot />
       </article>
-    </main>
+    </section>
     <aside class="hidden xl:block w-48 overflow-y-auto border-l p-4 text-sm">
       <nav>
         <ul>
