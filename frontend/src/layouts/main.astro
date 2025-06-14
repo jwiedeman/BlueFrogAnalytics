@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 
-import SimpleNav from '../components/layout/SimpleNav.astro';
+import { Navbar3 } from '../components/layout/Navbar3';
 import { Footer4 } from '../components/layout/Footer4';
 
 
@@ -17,7 +17,7 @@ const { title = 'Blue Frog Analytics' } = Astro.props;
   </head>
   <body>
     <header>
-      <SimpleNav />
+      <Navbar3 client:load />
     </header>
     <main id="main-content">
       <slot />
