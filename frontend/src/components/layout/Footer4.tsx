@@ -40,11 +40,11 @@ const sections = [
   {
     title: "Promotions",
     links: [
-      { name: "Birthday – 50% OFF", href: "/birthday" },
-      { name: "Educator – 50% OFF", href: "/educator" },
-      { name: "Medical Professionals – 50% OFF", href: "/medical-professionals" },
-      { name: "Military/Veterans – 75% OFF", href: "/military-veterans" },
-      { name: "New Business – 50% OFF", href: "/new-business" },
+      { name: "Birthday", href: "/birthday" },
+      { name: "Educator", href: "/educator" },
+      { name: "Medical Professionals", href: "/medical-professionals" },
+      { name: "Military/Veterans", href: "/military-veterans" },
+      { name: "New Business", href: "/new-business" },
     ],
   },
 ]
