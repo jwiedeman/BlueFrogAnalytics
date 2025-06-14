@@ -1,6 +1,8 @@
 ---
-layout: '../layouts/main.astro'
+import Layout from '../layouts/main.astro';
 import AccessContent, { frontmatter as accessFm } from './accessibility-statement.mdx';
 export const { title } = accessFm;
 ---
+<Layout title={title}>
 <AccessContent />
+</Layout>

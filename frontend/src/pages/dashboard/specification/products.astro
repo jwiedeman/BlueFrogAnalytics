@@ -1,7 +1,8 @@
 ---
-layout: '../../../layouts/dashboard.astro'
-title: 'Specification - Products'
+import Layout from '../../../layouts/dashboard.astro';
+export const title = 'Specification - Products'
 ---
+<Layout title={title}>
 
 <section class="py-8">
   <div class="max-w-3xl mx-auto text-center space-y-4">
@@ -9,3 +10,4 @@ title: 'Specification - Products'
     <p>Product specifications will be provided here.</p>
   </div>
 </section>
+</Layout>

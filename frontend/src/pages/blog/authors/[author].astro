@@ -1,5 +1,5 @@
 ---
-layout: '../../../layouts/main.astro'
+import Layout from '../../../layouts/main.astro';
 import { authors } from '../../../data/authors.js';
 
 export async function getStaticPaths() {
@@ -29,6 +29,7 @@ const title = `Posts by ${authorInfo.name}`;
 export { title };
 const tags = Array.from(new Set(posts.flatMap(p => p.frontmatter.tags || [])));
 ---
+<Layout title={title}>
 <section class="max-w-3xl mx-auto py-8 space-y-4">
     <h1 class="text-3xl font-bold">{authorInfo.name}</h1>
     {authorInfo.bio && <p>{authorInfo.bio}</p>}
@@ -55,3 +56,4 @@ const tags = Array.from(new Set(posts.flatMap(p => p.frontmatter.tags || [])));
       ))}
     </ul>
   </section>
+</Layout>
