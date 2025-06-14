@@ -1,13 +1,12 @@
 ---
-import Layout from "../layouts/main.astro";
+layout: '../layouts/main.astro'
+title: 'Home'
 import { Hero3 } from "../components/sections/Hero3";
 import { Stats8 } from "../components/sections/Stats8";
 import { Logos10 } from "../components/sections/Logos10";
 import { Compare5 } from "../components/sections/Compare5";
 ---
-<Layout title="Home">
-  <Hero3 />
-  <Stats8 />
-  <Logos10 client:load />
-  <Compare5 />
-</Layout>
+<Hero3 />
+<Stats8 />
+<Logos10 client:load />
+<Compare5 />

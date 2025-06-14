@@ -1,5 +1,5 @@
 ---
-import Main from '../../../layouts/main.astro';
+layout: '../../../layouts/main.astro'
 import { authors } from '../../../data/authors.js';
 
 export async function getStaticPaths() {
@@ -25,12 +25,10 @@ let posts = Object.values(postImports);
 posts = posts.filter(p => slugify(p.frontmatter.author || '') === author);
 posts.sort((a, b) => (b.frontmatter.pubDate?.valueOf() ?? 0) - (a.frontmatter.pubDate?.valueOf() ?? 0));
 const info = authors[author] || { name: posts[0]?.frontmatter.author || author.replace(/-/g, ' ') };
-const title = `Posts by ${info.name}`;
-const description = `Articles written by ${info.name}.`;
+export const title = `Posts by ${info.name}`;
 const tags = Array.from(new Set(posts.flatMap(p => p.frontmatter.tags || [])));
 ---
-<Main title={title}>
-  <section class="max-w-3xl mx-auto py-8 space-y-4">
+<section class="max-w-3xl mx-auto py-8 space-y-4">
     <h1 class="text-3xl font-bold">{info.name}</h1>
     {info.bio && <p>{info.bio}</p>}
     {tags.length ? (
@@ -56,4 +54,3 @@ const tags = Array.from(new Set(posts.flatMap(p => p.frontmatter.tags || [])));
       ))}
     </ul>
   </section>
-</Main>

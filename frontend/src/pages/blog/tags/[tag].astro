@@ -1,5 +1,5 @@
 ---
-import Main from '../../../layouts/main.astro';
+layout: '../../../layouts/main.astro'
 
 export async function getStaticPaths() {
   const postImports = import.meta.glob('../../../content/blog/*.mdx', {
@@ -15,11 +15,10 @@ const postImports = import.meta.glob('../../../content/blog/*.mdx', { eager: tru
 let posts = Object.values(postImports);
 posts = posts.filter(p => (p.frontmatter.tags || []).includes(tag));
 posts.sort((a, b) => (b.frontmatter.pubDate?.valueOf() ?? 0) - (a.frontmatter.pubDate?.valueOf() ?? 0));
-const title = `Posts tagged ${tag}`;
+export const title = `Posts tagged ${tag}`;
 const description = `Articles related to ${tag}.`;
 ---
-<Main title={title}>
-  <section class="max-w-3xl mx-auto py-8 space-y-4">
+<section class="max-w-3xl mx-auto py-8 space-y-4">
     <h1 class="text-3xl font-bold">{title}</h1>
     <p class="text-gray-600">{description}</p>
     <ul class="space-y-6">
@@ -38,4 +37,3 @@ const description = `Articles related to ${tag}.`;
       ))}
     </ul>
   </section>
-</Main>
