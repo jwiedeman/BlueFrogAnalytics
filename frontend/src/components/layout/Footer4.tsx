@@ -37,6 +37,16 @@ const sections = [
       { name: "Advertise", href: "/partners" },
     ],
   },
+  {
+    title: "Promotions",
+    links: [
+      { name: "Birthday – 50% OFF", href: "/birthday" },
+      { name: "Educator – 50% OFF", href: "/educator" },
+      { name: "Medical Professionals – 50% OFF", href: "/medical-professionals" },
+      { name: "Military/Veterans – 75% OFF", href: "/military-veterans" },
+      { name: "New Business – 50% OFF", href: "/new-business" },
+    ],
+  },
 ]
 
 interface Footer4Props {
@@ -60,7 +70,7 @@ const Footer4 = ({
       <div className="container">
         <footer>
           <div className="grid grid-cols-2 gap-8 lg:grid-cols-6">
-            <div className="col-span-2 flex h-full items-center justify-between md:items-start lg:col-span-3 lg:flex-col">
+            <div className="col-span-2 flex h-full items-center justify-between md:items-start lg:col-span-2 lg:flex-col">
               <div className="flex items-center gap-2 lg:justify-start">
                 <a href={logo.url}>
                   <img src={logo.src} alt={logo.alt} title={logo.title} className="h-8" />
