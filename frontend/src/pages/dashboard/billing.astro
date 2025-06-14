@@ -1,7 +1,8 @@
 ---
-layout: '../../layouts/dashboard.astro'
-title: 'Billing'
+import Layout from '../../layouts/dashboard.astro';
+export const title = 'Billing'
 ---
+<Layout title={title}>
 
 <section class="py-8">
   <div class="max-w-3xl mx-auto space-y-6">
@@ -10,3 +11,4 @@ title: 'Billing'
     <p>Integration with our payment provider is in progress.</p>
   </div>
 </section>
+</Layout>

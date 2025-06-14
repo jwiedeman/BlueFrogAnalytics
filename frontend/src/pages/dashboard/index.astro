@@ -1,7 +1,8 @@
 ---
-layout: '../../layouts/dashboard.astro'
-title: 'Dashboard'
+import Layout from '../../layouts/dashboard.astro';
+export const title = 'Dashboard'
 ---
+<Layout title={title}>
 
 <section class="py-8">
   <div class="container mx-auto px-4 space-y-6">
@@ -43,3 +44,4 @@ title: 'Dashboard'
     </div>
   </div>
 </section>
+</Layout>

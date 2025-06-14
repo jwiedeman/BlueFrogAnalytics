@@ -1,7 +1,8 @@
 ---
-layout: '../layouts/main.astro'
-title: 'Client Login'
+import Layout from '../layouts/main.astro';
+export const title = 'Client Login'
 ---
+<Layout title={title}>
 
 <div class="container mx-auto py-8">
     <h1 class="text-2xl font-bold mb-4">Client Login</h1>
@@ -17,3 +18,4 @@ title: 'Client Login'
       <button type="submit" class="px-4 py-2 bg-primary text-white rounded">Log In</button>
     </form>
   </div>
+</Layout>

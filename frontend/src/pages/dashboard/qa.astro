@@ -1,7 +1,8 @@
 ---
-layout: '../../layouts/dashboard.astro'
-title: 'QA'
+import Layout from '../../layouts/dashboard.astro';
+export const title = 'QA'
 ---
+<Layout title={title}>
 
 <section class="py-8">
   <div class="max-w-3xl mx-auto space-y-6 text-center">
@@ -9,3 +10,4 @@ title: 'QA'
     <p>Quality assurance features will appear here shortly.</p>
   </div>
 </section>
+</Layout>

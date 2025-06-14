@@ -1,7 +1,8 @@
 ---
-layout: '../../layouts/dashboard.astro'
-title: 'Tools'
+import Layout from '../../layouts/dashboard.astro';
+export const title = 'Tools'
 ---
+<Layout title={title}>
 
 <section class="py-8">
   <div class="max-w-3xl mx-auto space-y-6">
@@ -10,3 +11,4 @@ title: 'Tools'
     <p>Additional functionality will be migrated from the old site.</p>
   </div>
 </section>
+</Layout>
