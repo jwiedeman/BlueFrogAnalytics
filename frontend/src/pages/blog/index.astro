@@ -10,7 +10,7 @@ const posts = await getCollection('blog')
 posts.sort((a, b) => (b.data.pubDate?.valueOf() ?? 0) - (a.data.pubDate?.valueOf() ?? 0))
 ---
 <Layout title={title}>
-  <Blog30 />
-  <Blog3 />
-  <Blog22 />
+  <Blog30 posts={posts} />
+  <Blog3 posts={posts} />
+  <Blog22 posts={posts} />
 </Layout>
