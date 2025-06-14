@@ -1,24 +1,13 @@
 ---
-import BaseHead from './BaseHead.astro';
-import CustomHeader from './CustomHeader.astro';
-import CustomFooter from './CustomFooter.astro';
-import FirebaseScripts from './FirebaseScripts.astro';
-import ApiConfig from './ApiConfig.astro';
+import MainLayout from './MainLayout.astro';
 
 const { title, description } = Astro.props;
 ---
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
-  </head>
-  <body class="d-flex flex-column min-vh-100">
-    <CustomHeader />
-    <main id="main-content" class="container pt-0 flex-grow-1">
-      <slot />
-    </main>
-    <CustomFooter />
-    <FirebaseScripts />
-    <ApiConfig />
+<MainLayout {title} {description}>
+  <main id="blog-main" class="container pt-0 flex-grow-1">
+    <slot />
+  </main>
+  <slot slot="scripts">
     <script src="/js/glossary-popover.js" defer></script>
     <script is:inline>
       function scrollToHash() {
@@ -33,5 +22,5 @@ const { title, description } = Astro.props;
       scrollToHash();
       window.addEventListener('hashchange', scrollToHash);
     </script>
-  </body>
-</html>
+  </slot>
+</MainLayout>

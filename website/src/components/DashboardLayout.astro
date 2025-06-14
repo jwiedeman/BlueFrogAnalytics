@@ -1,14 +1,8 @@
 ---
-import BaseHead from './BaseHead.astro';
-import CustomHeader from './CustomHeader.astro';
-import CustomFooter from './CustomFooter.astro';
-import FirebaseScripts from './FirebaseScripts.astro';
-import ApiConfig from './ApiConfig.astro';
-import LoadingSpinner from './LoadingSpinner.astro';
+import MainLayout from './MainLayout.astro';
 
 const { title, description } = Astro.props;
 
-// Navigation for authenticated users inside the dashboard
 const mainNav = [
   { label: 'Dashboard Home', link: '/dashboard' },
   { label: 'Domains', link: '/dashboard/domains' },
@@ -31,10 +25,7 @@ const mainNav = [
     ],
   },
 ];
-const currentPath =
-  Astro.url.pathname === '/'
-    ? '/'
-    : Astro.url.pathname.replace(/\/$/, '').toLowerCase();
+const currentPath = Astro.url.pathname === '/' ? '/' : Astro.url.pathname.replace(/\/$/, '').toLowerCase();
 function inPath(item) {
   const link = item.link === '/' ? '/' : item.link.replace(/\/$/, '').toLowerCase();
   if (link === '/dashboard') {
@@ -43,57 +34,80 @@ function inPath(item) {
   return currentPath === link || currentPath.startsWith(link + '/');
 }
 ---
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
-  </head>
-  <body class="d-flex flex-column min-vh-100">
-    <CustomHeader />
-    <LoadingSpinner />
-    <div class="d-md-none p-2">
-      <button
-        class="btn btn-primary"
-        type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#dashOffcanvas"
-        aria-controls="dashOffcanvas"
-      >
-        Menu
-      </button>
-    </div>
-    <div
-      class="offcanvas offcanvas-start"
-      tabindex="-1"
-      id="dashOffcanvas"
-      aria-labelledby="dashOffcanvasLabel"
+<MainLayout {title} {description} fluid>
+  <div class="d-md-none p-2">
+    <button
+      class="btn btn-primary"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#dashOffcanvas"
+      aria-controls="dashOffcanvas"
     >
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="dashOffcanvasLabel">Dashboard Menu</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="offcanvas"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="dashboard-side-nav offcanvas-body p-0">
+      Menu
+    </button>
+  </div>
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="dashOffcanvas" aria-labelledby="dashOffcanvasLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="dashOffcanvasLabel">Dashboard Menu</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="dashboard-side-nav offcanvas-body p-0">
+      <ul class="nav flex-column pt-3">
+        {mainNav.map((item, i) => (
+          item.children ? (
+            <li class="nav-item" key={`ocp-${i}`}>
+              <button
+                class={`btn btn-toggle text-start w-100${inPath(item) ? '' : ' collapsed'}`}
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target={`#ocdash-${i}`}
+                aria-expanded={inPath(item) ? 'true' : 'false'}
+              >
+                {item.label}
+              </button>
+              <div class={`collapse${inPath(item) ? ' show' : ''}`} id={`ocdash-${i}`}>
+                <ul class="btn-toggle-nav list-unstyled">
+                  {item.children.map((child, j) => (
+                    <li class="nav-item" key={`occ-${i}-${j}`}>
+                      <a class={`nav-link${inPath(child) ? ' active' : ''}`} href={child.link}>
+                        {child.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+          ) : (
+            <li class="nav-item" key={`ocp-${i}`}>
+              <a class={`nav-link${inPath(item) ? ' active' : ''}`} href={item.link}>
+                {item.label}
+              </a>
+            </li>
+          )
+        ))}
+      </ul>
+    </div>
+  </div>
+  <div class="dashboard-container container-fluid flex-grow-1">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block dashboard-side-nav d-flex flex-column">
         <ul class="nav flex-column pt-3">
           {mainNav.map((item, i) => (
             item.children ? (
-              <li class="nav-item" key={`ocp-${i}`}>
+              <li class="nav-item" key={`p-${i}`}>
                 <button
                   class={`btn btn-toggle text-start w-100${inPath(item) ? '' : ' collapsed'}`}
                   type="button"
                   data-bs-toggle="collapse"
-                  data-bs-target={`#ocdash-${i}`}
+                  data-bs-target={`#dash-${i}`}
                   aria-expanded={inPath(item) ? 'true' : 'false'}
                 >
                   {item.label}
                 </button>
-                <div class={`collapse${inPath(item) ? ' show' : ''}`} id={`ocdash-${i}`}>
+                <div class={`collapse${inPath(item) ? ' show' : ''}`} id={`dash-${i}`}>
                   <ul class="btn-toggle-nav list-unstyled">
                     {item.children.map((child, j) => (
-                      <li class="nav-item" key={`occ-${i}-${j}`}>
+                      <li class="nav-item" key={`c-${i}-${j}`}>
                         <a class={`nav-link${inPath(child) ? ' active' : ''}`} href={child.link}>
                           {child.label}
                         </a>
@@ -103,68 +117,24 @@ function inPath(item) {
                 </div>
               </li>
             ) : (
-              <li class="nav-item" key={`ocp-${i}`}>
-                <a
-                  class={`nav-link${inPath(item) ? ' active' : ''}`}
-                  href={item.link}
-                >
+              <li class="nav-item" key={`p-${i}`}>
+                <a class={`nav-link${inPath(item) ? ' active' : ''}`} href={item.link}>
                   {item.label}
                 </a>
               </li>
             )
           ))}
         </ul>
-      </div>
+        <div class="mt-auto mb-3"></div>
+      </nav>
+      <main id="main-content" class="col-md-10 py-0 flex-grow-1">
+        <slot />
+      </main>
     </div>
-    <div class="dashboard-container container-fluid flex-grow-1">
-      <div class="row">
-        <nav class="col-md-2 d-none d-md-block dashboard-side-nav d-flex flex-column">
-          <ul class="nav flex-column pt-3">
-            {mainNav.map((item, i) => (
-              item.children ? (
-                <li class="nav-item" key={`p-${i}`}>
-                  <button
-                  class={`btn btn-toggle text-start w-100${inPath(item) ? '' : ' collapsed'}`}
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target={`#dash-${i}`}
-                    aria-expanded={inPath(item) ? 'true' : 'false'}
-                  >
-                    {item.label}
-                  </button>
-                  <div class={`collapse${inPath(item) ? ' show' : ''}`} id={`dash-${i}`}>
-                    <ul class="btn-toggle-nav list-unstyled">
-                      {item.children.map((child, j) => (
-                        <li class="nav-item" key={`c-${i}-${j}`}>
-                          <a class={`nav-link${inPath(child) ? ' active' : ''}`} href={child.link}>
-                            {child.label}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </li>
-              ) : (
-                <li class="nav-item" key={`p-${i}`}>
-                  <a class={`nav-link${inPath(item) ? ' active' : ''}`} href={item.link}>
-                    {item.label}
-                  </a>
-                </li>
-              )
-            ))}
-          </ul>
-          <div class="mt-auto mb-3"></div>
-        </nav>
-        <main id="main-content" class="col-md-10 py-0 flex-grow-1">
-          <slot />
-        </main>
-      </div>
-    </div>
-    <CustomFooter />
-    <FirebaseScripts />
-    <ApiConfig />
+  </div>
+  <slot slot="scripts">
     <script src="/js/spinner.js" type="module"></script>
     <script src="/js/dashboard-nav-delay.js" type="module"></script>
-  <script src="/js/offcanvas-nav.js" type="module"></script>
-  </body>
-</html>
+    <script src="/js/offcanvas-nav.js" type="module"></script>
+  </slot>
+</MainLayout>

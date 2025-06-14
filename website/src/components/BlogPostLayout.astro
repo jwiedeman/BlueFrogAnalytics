@@ -1,16 +1,9 @@
 ---
-import BaseHead from './BaseHead.astro';
-import CustomHeader from './CustomHeader.astro';
-import CustomFooter from './CustomFooter.astro';
+import MainLayout from './MainLayout.astro';
 
 const { title, description, headings = [] } = Astro.props;
 ---
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
-  </head>
-  <body class="d-flex flex-column min-vh-100">
-    <CustomHeader />
+<MainLayout title={title} description={description} fluid>
     <div class="blog-post-container container-fluid flex-grow-1">
       <main id="main-content" class="blog-main">
         <slot />
@@ -29,7 +22,7 @@ const { title, description, headings = [] } = Astro.props;
         </aside>
       ) : null}
     </div>
-    <CustomFooter />
+    <slot slot="scripts">
     <script src="/js/glossary-popover.js" defer></script>
     <script is:inline>
       function scrollToHash() {
@@ -65,6 +58,6 @@ const { title, description, headings = [] } = Astro.props;
           window.addEventListener('scroll', highlight);
           highlight();
         }
-      </script>
-  </body>
-</html>
+    </script>
+    </slot>
+</MainLayout>
