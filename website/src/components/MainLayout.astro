@@ -1,0 +1,27 @@
+---
+import BaseHead from './BaseHead.astro';
+import CustomHeader from './CustomHeader.astro';
+import CustomFooter from './CustomFooter.astro';
+import FirebaseScripts from './FirebaseScripts.astro';
+import ApiConfig from './ApiConfig.astro';
+import LoadingSpinner from './LoadingSpinner.astro';
+
+const { title, description, fluid = false } = Astro.props;
+const mainClass = fluid ? 'container-fluid' : 'container';
+---
+<html lang="en">
+  <head>
+    <BaseHead {title} {description} />
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <CustomHeader />
+    <LoadingSpinner />
+    <main id="main-content" class={`${mainClass} flex-grow-1`}>
+      <slot />
+    </main>
+    <CustomFooter />
+    <FirebaseScripts />
+    <ApiConfig />
+    <slot name="scripts" />
+  </body>
+</html>

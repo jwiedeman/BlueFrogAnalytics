@@ -1,10 +1,5 @@
 ---
-import BaseHead from './BaseHead.astro';
-import CustomHeader from './CustomHeader.astro';
-import CustomFooter from './CustomFooter.astro';
-import FirebaseScripts from './FirebaseScripts.astro';
-import ApiConfig from './ApiConfig.astro';
-import LoadingSpinner from './LoadingSpinner.astro';
+import MainLayout from './MainLayout.astro';
 
 // Receive headings from page content
 const { headings, title, description } = Astro.props;
@@ -85,13 +80,8 @@ for (const [file, mod] of Object.entries(modules)) {
 }
 
 ---
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
-  </head>
-  <body class="docs-layout d-flex flex-column min-vh-100">
-    <CustomHeader isDocs={true} />
-    <LoadingSpinner />
+<MainLayout title={title} description={description} fluid>
+  <div class="docs-layout">
     <div class="d-md-none p-2 text-end">
       <button
         class="btn btn-primary"
@@ -507,5 +497,5 @@ for (const [file, mod] of Object.entries(modules)) {
       }
 
     </script>
-  </body>
-</html>
+  </slot>
+</MainLayout>

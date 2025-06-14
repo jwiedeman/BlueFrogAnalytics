@@ -1,28 +1,11 @@
 ---
-// Layout for documentation pages using Carbon and Astro content collections
-import BaseHead from './BaseHead.astro';
-import CustomHeader from './CustomHeader.astro';
-import CustomFooter from './CustomFooter.astro';
-import FirebaseScripts from './FirebaseScripts.astro';
-import ApiConfig from './ApiConfig.astro';
-import LoadingSpinner from './LoadingSpinner.astro';
+import MainLayout from './MainLayout.astro';
 
 const { fluid = false, title, description } = Astro.props;
-const mainClass = fluid ? 'container-fluid' : 'container';
 ---
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
-  </head>
-  <body class="d-flex flex-column min-vh-100">
-    <CustomHeader />
-    <LoadingSpinner />
-    <main id="main-content" class={`${mainClass} flex-grow-1`}>
-      <slot />
-    </main>
-    <CustomFooter />
-    <FirebaseScripts />
-    <ApiConfig />
+<MainLayout {title} {description} {fluid}>
+  <slot />
+  <slot slot="scripts">
     <script src="/js/spinner.js" type="module"></script>
     <script src="/js/glossary-popover.js" defer></script>
     <script type="module" src="/js/mermaid-init.js"></script>
@@ -39,5 +22,5 @@ const mainClass = fluid ? 'container-fluid' : 'container';
       scrollToHash();
       window.addEventListener('hashchange', scrollToHash);
     </script>
-  </body>
-</html>
+  </slot>
+</MainLayout>
