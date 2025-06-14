@@ -1,7 +1,6 @@
 ---
-import Layout from '../layouts/main.astro';
+layout: '../layouts/main.astro'
 import AboutContent, { frontmatter as aboutFm } from './about.mdx';
+export const { title } = aboutFm;
 ---
-<Layout title={aboutFm.title} description={aboutFm.description}>
-  <AboutContent />
-</Layout>
+<AboutContent />
