@@ -1,25 +1,16 @@
 ---
-import MainLayout from '../../layouts/main.astro';
-import { getCollection } from 'astro:content';
-export const title = 'Blog';
-const posts = await getCollection('blog');
-posts.sort((a,b) => (b.data.pubDate?.valueOf() ?? 0) - (a.data.pubDate?.valueOf() ?? 0));
+import Layout from '../../layouts/main.astro'
+import { getCollection } from 'astro:content'
+import { Blog30 } from '../../components/sections/Blog30'
+import { Blog3 } from '../../components/sections/Blog3'
+import { Blog22 } from '../../components/sections/Blog22'
+
+export const title = 'Blog'
+const posts = await getCollection('blog')
+posts.sort((a, b) => (b.data.pubDate?.valueOf() ?? 0) - (a.data.pubDate?.valueOf() ?? 0))
 ---
-<MainLayout title={title}>
-  <section class="max-w-3xl mx-auto py-8 space-y-6">
-    <h1 class="text-3xl font-bold">{title}</h1>
-    <ul class="space-y-6">
-      {posts.map(post => (
-        <li>
-          <a href={`/blog/${post.slug}`} class="text-xl text-blue-600 hover:underline font-semibold">
-            {post.data.title}
-          </a>
-          {post.data.description && <p class="text-gray-600">{post.data.description}</p>}
-          {post.data.pubDate && (
-            <p class="text-sm text-gray-500 mt-1">{new Date(post.data.pubDate).toLocaleDateString()}</p>
-          )}
-        </li>
-      ))}
-    </ul>
-  </section>
-</MainLayout>
+<Layout title={title}>
+  <Blog30 />
+  <Blog3 />
+  <Blog22 />
+</Layout>
