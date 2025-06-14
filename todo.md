@@ -163,7 +163,7 @@ These MDX files have `title: coming soon` and `description: coming soon`.
 
 ## Completed migrations
 
-- frontend/src/pages/about-us.astro
+- frontend/src/pages/about.mdx
 
 ## Other placeholder notes
 
