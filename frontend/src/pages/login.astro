@@ -1,21 +1,8 @@
 ---
-import Layout from '../layouts/main.astro';
+import Layout from '../layouts/main.astro'
+import { Login6 } from "../components/sections/Login6"
 export const title = 'Client Login'
 ---
 <Layout title={title}>
-
-<div class="container mx-auto py-8">
-    <h1 class="text-2xl font-bold mb-4">Client Login</h1>
-    <form class="space-y-4 max-w-md">
-      <div>
-        <label class="block mb-1" for="email">Email *</label>
-        <input type="email" id="email" class="w-full border rounded px-3 py-2" required />
-      </div>
-      <div>
-        <label class="block mb-1" for="password">Password *</label>
-        <input type="password" id="password" class="w-full border rounded px-3 py-2" required />
-      </div>
-      <button type="submit" class="px-4 py-2 bg-primary text-white rounded">Log In</button>
-    </form>
-  </div>
+<Login6 />
 </Layout>
