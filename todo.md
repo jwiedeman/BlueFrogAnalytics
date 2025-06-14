@@ -4,7 +4,7 @@ The following pages still contain placeholder text and need real content.
 
 ## Pages in `frontend/src/pages`
 
-- frontend/src/pages/accessibility-statement.astro
+- frontend/src/pages/accessibility-statement.mdx
 - frontend/src/pages/booking.astro
 - frontend/src/pages/careers.astro
 - frontend/src/pages/case-studies.astro

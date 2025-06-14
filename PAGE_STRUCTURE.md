@@ -2,7 +2,7 @@
 
 ## Root Pages
 - about.mdx
-- accessibility-statement.astro
+- accessibility-statement.mdx
 - birthday.mdx
 - booking.astro
 - careers.astro
