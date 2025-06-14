@@ -543,3 +543,8 @@
     @apply bg-background font-sans text-foreground antialiased;
   }
 }
+
+/* Brand color for BlueFrog text */
+.bluefrog-brand {
+  color: #4169E1;
+}

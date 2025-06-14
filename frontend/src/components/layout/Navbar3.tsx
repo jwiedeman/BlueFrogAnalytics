@@ -171,7 +171,7 @@ const Navbar3 = () => {
                       alt="Shadcn UI Navbar"
                     />
                     <span className="text-lg font-semibold tracking-tighter">
-                      BlueFrogAnalytics
+                      <span className="bluefrog-brand">BlueFrog</span>Analytics
                     </span>
                   </a>
                   <a

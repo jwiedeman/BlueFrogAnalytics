@@ -1142,7 +1142,7 @@ const Navbar4 = () => {
                 alt="BlueFrogAnalytics UI Navbar"
               />
               <span className="text-lg font-semibold tracking-tighter">
-                BlueFrogAnalytics
+                <span className="bluefrog-brand">BlueFrog</span>Analytics
               </span>
             </a>
             <div className="flex items-center gap-2 xl:gap-8">
