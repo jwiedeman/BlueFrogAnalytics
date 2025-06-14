@@ -9,6 +9,7 @@ const alertVariants = cva(
     variants: {
       variant: {
         default: "bg-background text-foreground",
+
         destructive: "border-destructive/50 text-destructive dark:border-destructive"
       }
     },
@@ -39,6 +40,7 @@ const AlertDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttrib
     <div ref={ref} className={cn("text-sm [&_p]:leading-relaxed", className)} {...props} />
   )
 )
+
 AlertDescription.displayName = "AlertDescription"
 
 export { Alert, AlertTitle, AlertDescription }
