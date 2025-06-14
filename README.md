@@ -4,8 +4,7 @@ Blue Frog Analytics is a collection of tools for large scale domain intelligence
 
 ## Repository layout
 
-- `website/` – Documentation site and client dashboard built with [Astro](https://astro.build) and Bootstrap.
-- `frontend/` – New site built with Astro, Tailwind CSS and BlueFrogAnalytics UI. This will replace the Bootstrap website over time.
+- `frontend/` – Astro 5 site built with Tailwind CSS and BlueFrogAnalytics UI. Replaces the older Bootstrap-based `website/` directory.
 - `server/` – Express API providing profile management, Lighthouse audits and Firebase authentication.
 - `bots/` – Independent workers and bots for data gathering. Each folder includes its own README.
 - `database-control/` – Docker files and configuration for running a multi node Cassandra cluster.
@@ -35,19 +34,7 @@ Blue Frog Analytics is a collection of tools for large scale domain intelligence
    npm start
    ```
 
-3. Launch the documentation site in a separate shell:
-
-   ```bash
-   cd website
-   npm install
-   cp .env.example .env
-   npm run dev
-   ```
-
-   Add your Firebase project configuration to `website/.env` before running the
-   dev server.
-
-4. Start the new Tailwind-based frontend (work in progress):
+3. Launch the frontend site in a separate shell:
 
    ```bash
    cd frontend
@@ -57,12 +44,11 @@ Blue Frog Analytics is a collection of tools for large scale domain intelligence
 
 ## Documentation site
 
-The documentation site lives in the `website` directory.
+The documentation site lives in the `frontend` directory.
 
 ```bash
-cd website
+cd frontend
 npm install
-cp .env.example .env
 npm run dev
 ```
 
