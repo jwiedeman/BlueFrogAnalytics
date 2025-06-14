@@ -118,6 +118,10 @@ const documentationLinks = [
     title: "Contact",
     href: "/contact",
   },
+  {
+    title: "Terms",
+    href: "/terms",
+  },
 ];
 
 const resources = [

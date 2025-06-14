@@ -1,7 +1,7 @@
 ---
-layout: '../layouts/main.astro'
-title: "Terms & Conditions"
+import Layout from '../layouts/main.astro';
+import TermsContent, { frontmatter as termsFm } from './terms-of-service.mdx';
 ---
-<div class="p-4">
-  TODO: Add Terms & Conditions content.
-</div>
+<Layout title={termsFm.title} description={termsFm.description}>
+  <TermsContent />
+</Layout>
