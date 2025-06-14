@@ -1,7 +1,6 @@
 ---
 import MainLayout from '../../layouts/main.astro';
 import { getEntryBySlug, getCollection } from 'astro:content';
-import { Blogpost5 } from '../../components/sections/Blogpost5';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -11,7 +10,11 @@ export async function getStaticPaths() {
 const { slug } = Astro.params;
 const post = await getEntryBySlug('blog', slug);
 if (!post) throw new Error('Post not found');
+const { Content } = await post.render();
 ---
 <MainLayout title={post.data.title}>
-  <Blogpost5 client:load />
+  <article class="prose mx-auto py-8">
+    <h1 class="mb-4 text-3xl font-bold">{post.data.title}</h1>
+    <Content />
+  </article>
 </MainLayout>
