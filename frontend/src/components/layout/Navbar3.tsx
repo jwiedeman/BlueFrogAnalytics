@@ -126,17 +126,17 @@ const documentationLinks = [
 
 const resources = [
   {
-    title: "Blog",
-    description: "Vivamus ut risus accumsan, tempus sapien eget.",
-    href: "/blog",
-  },
-  {
-    title: "Guides",
+    title: "Documentation",
     description: "In sapien tellus, sodales in pharetra a, mattis ac turpis.",
     href: "/docs",
   },
   {
-    title: "News",
+    title: "Free Testing Tools",
+    description: "Vivamus ut risus accumsan, tempus sapien eget.",
+    href: "/testing",
+  },
+  {
+    title: "News & Blog",
     description: "Maecenas eget orci ac nulla tempor tincidunt.",
     href: "/newsletter-archive",
   },
@@ -410,14 +410,14 @@ const Navbar3 = () => {
                     </div>
                     <div className="w-1/3 max-w-[404px]">
                       <div className="mb-6 text-xs tracking-widest text-muted-foreground uppercase">
-                        Customers
+                        Case Studies
                       </div>
                       <NavigationMenuLink
-                        href="/testimonials"
+                        href="/case-studies"
                         className="mb-6 flex flex-row overflow-clip rounded-lg border border-input bg-background p-0 hover:bg-transparent"
                       >
                         <div className="flex-1 p-5 xl:p-8">
-                          <div className="mb-2 text-base">Customers</div>
+                          <div className="mb-2 text-base">Case Studies</div>
                           <div className="text-sm font-normal text-muted-foreground">
                             Integer a ipsum quis nisi posuere lobortis at id
                             tellus.
@@ -712,9 +712,9 @@ const Navbar3 = () => {
               </div>
               <div className="px-8 pt-8 pb-16">
                 <div className="mb-7 text-xs tracking-widest text-muted-foreground uppercase">
-                  Customers
+                  Case Studies
                 </div>
-                <a href="/testimonials" className="block space-y-6">
+                <a href="/case-studies" className="block space-y-6">
                   <div className="overflow-clip rounded-lg">
                     <img
                       src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
@@ -723,7 +723,7 @@ const Navbar3 = () => {
                     />
                   </div>
                   <div>
-                    <div className="mb-1.5 text-base">Customers</div>
+                    <div className="mb-1.5 text-base">Case Studies</div>
                     <div className="text-sm font-normal text-muted-foreground">
                       Meet the product teams changing how they process payments.
                     </div>
