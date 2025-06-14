@@ -254,7 +254,7 @@ const Navbar3 = () => {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Use cases</NavigationMenuTrigger>
+                <NavigationMenuTrigger>Documentation</NavigationMenuTrigger>
                 <NavigationMenuContent className="min-w-[calc(100vw-4rem)] p-8 lg:p-12 2xl:min-w-[calc(1400px-4rem)]">
                   <div className="flex justify-between gap-8 lg:gap-x-[52px]">
                     <div className="w-1/2 max-w-[510px]">
@@ -311,7 +311,7 @@ const Navbar3 = () => {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Developers</NavigationMenuTrigger>
+                <NavigationMenuTrigger>Use cases</NavigationMenuTrigger>
                 <NavigationMenuContent className="min-w-[calc(100vw-4rem)] p-8 lg:p-12 2xl:min-w-[calc(1400px-4rem)]">
                   <div className="flex justify-between gap-8 lg:gap-x-12">
                     <div className="w-1/3 max-w-[404px]">
@@ -500,7 +500,7 @@ const Navbar3 = () => {
                   className="flex w-full items-center border-b border-border px-8 py-7 text-left"
                   onClick={() => setSubmenu("usecases")}
                 >
-                  <span className="flex-1">Use cases</span>
+                  <span className="flex-1">Documentation</span>
                   <span className="shrink-0">
                     <ChevronRight className="size-4" />
                   </span>
@@ -510,7 +510,7 @@ const Navbar3 = () => {
                   className="flex w-full items-center border-b border-border px-8 py-7 text-left"
                   onClick={() => setSubmenu("developers")}
                 >
-                  <span className="flex-1">Developers</span>
+                  <span className="flex-1">Use cases</span>
                   <span className="shrink-0">
                     <ChevronRight className="size-4" />
                   </span>
