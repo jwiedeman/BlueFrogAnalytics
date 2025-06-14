@@ -1,5 +1,6 @@
 ---
 import MainLayout from '../../layouts/main.astro';
+import { Blogpost5 } from '../../components/sections/Blogpost5';
 import { getEntryBySlug, getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -13,8 +14,13 @@ if (!post) throw new Error('Post not found');
 const { Content } = await post.render();
 ---
 <MainLayout title={post.data.title}>
-  <article class="prose mx-auto py-8">
-    <h1 class="mb-4 text-3xl font-bold">{post.data.title}</h1>
+  <Blogpost5
+    title={post.data.title}
+    author={post.data.author}
+    date={post.data.pubDate}
+    description={post.data.description}
+    client:load
+  >
     <Content />
-  </article>
+  </Blogpost5>
 </MainLayout>
