@@ -26,6 +26,7 @@ const sections = [
       { name: "Careers", href: "/careers" },
       { name: "Contact", href: "/contact" },
       { name: "Privacy", href: "/privacy-policy" },
+      { name: "Accessibility", href: "/accessibility-statement" },
     ],
   },
   {
@@ -112,6 +113,9 @@ const Footer4 = ({
               </li>
               <li className="underline hover:text-primary">
                 <a href="/privacy-policy"> Privacy Policy</a>
+              </li>
+              <li className="underline hover:text-primary">
+                <a href="/accessibility-statement"> Accessibility</a>
               </li>
             </ul>
             <p>© 2024 BlueFrogAnalytics. All rights reserved.</p>
