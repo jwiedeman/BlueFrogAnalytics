@@ -118,7 +118,10 @@ const Footer4 = ({
                 <a href="/accessibility-statement"> Accessibility</a>
               </li>
             </ul>
-            <p>© 2024 BlueFrogAnalytics. All rights reserved.</p>
+            <p>
+              © 2024 <span className="bluefrog-brand">BlueFrog</span>Analytics.
+              All rights reserved.
+            </p>
           </div>
         </footer>
       </div>
