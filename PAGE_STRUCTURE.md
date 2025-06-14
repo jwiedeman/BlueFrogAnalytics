@@ -1,7 +1,6 @@
 # Site Page Structure
 
 ## Root Pages
-- about-us.astro
 - about.mdx
 - accessibility-statement.astro
 - birthday.mdx
