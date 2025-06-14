@@ -1,7 +1,6 @@
 ---
 layout: '../layouts/main.astro'
-title: "Accessibility Statement"
+import AccessContent, { frontmatter as accessFm } from './accessibility-statement.mdx';
+export const { title } = accessFm;
 ---
-<div class="p-4">
-  TODO: Add Accessibility Statement content.
-</div>
+<AccessContent />
