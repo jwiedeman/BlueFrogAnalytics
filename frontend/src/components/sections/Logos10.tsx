@@ -99,6 +99,7 @@ const Logos10 = () => {
                     <img
                       src={logo.image}
                       alt={logo.description}
+                      loading="lazy"
                       className={logo.className}
                     />
                   </div>

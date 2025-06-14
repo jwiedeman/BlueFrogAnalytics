@@ -122,6 +122,8 @@ const Hero3 = ({
           <img
             src="https://www.shadcnblocks.com/images/block/placeholder-1.svg"
             alt="placeholder hero"
+            loading="eager"
+            fetchpriority="high"
             className="max-h-[600px] w-full rounded-md object-cover lg:max-h-[800px]"
           />
         </div>

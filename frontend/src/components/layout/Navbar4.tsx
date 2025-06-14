@@ -555,7 +555,7 @@ const SolutionsMenu = () => (
         <div className="relative aspect-2/1 overflow-clip rounded-t pl-6 lg:max-w-[22rem] lg:pl-0">
           <img
             src="https://shadcnblocks.com/images/block/placeholder-1.svg"
-            alt="placeholder"
+            alt="placeholder" loading="lazy"
             className="aspect-2/1 h-full w-full translate-y-px object-cover object-center"
           />
         </div>
@@ -626,7 +626,7 @@ const ProductsMenu = () => (
           <div className="relative flex aspect-2/1 max-h-[11rem] w-full flex-1 justify-center">
             <img
               src="https://shadcnblocks.com/images/block/placeholder-2.svg"
-              alt="placeholder"
+              alt="placeholder" loading="lazy"
               className="h-full w-full object-cover object-center"
             />
           </div>
@@ -658,7 +658,7 @@ const ProductsMenu = () => (
                 className="group flex flex-row items-center space-x-6 border-b border-border py-5 text-left sm:py-7 lg:space-x-4 lg:border-0 lg:py-2"
               >
                 <div className="relative flex aspect-square w-6 shrink-0 items-center justify-center overflow-clip rounded md:size-9 md:p-2">
-                  <img src={product.image} alt={product.title} />
+                  <img src={product.image} alt={product.title} loading="lazy" />
                 </div>
                 <div className="flex-1">
                   <div className="text-sm font-medium text-foreground/85 group-hover:text-foreground">
@@ -690,7 +690,7 @@ const GlobalGuidanceMenu = () => (
             <div className="relative flex aspect-4/3 max-h-[18rem] w-full flex-1 justify-center">
               <img
                 src="https://shadcnblocks.com/images/block/placeholder-3.svg"
-                alt="placeholder"
+                alt="placeholder" loading="lazy"
                 className="h-full w-full object-cover object-center"
               />
             </div>
@@ -802,7 +802,7 @@ const CustomersMenu = () => (
               <div className="relative flex items-center justify-center border-b p-4">
                 <img
                   src="https://shadcnblocks.com/images/block/logos/astro-wordmark.svg"
-                  alt="placeholder"
+                  alt="placeholder" loading="lazy"
                   className="h-4 w-full"
                 />
                 <div className="absolute top-0 left-0 flex translate-x-[-50%] translate-y-[-50%] items-center justify-center bg-accent p-2">
@@ -821,7 +821,7 @@ const CustomersMenu = () => (
               <div className="relative flex items-center justify-center border-b p-4">
                 <img
                   src="https://shadcnblocks.com/images/block/logos/vercel-wordmark.svg"
-                  alt="placeholder"
+                  alt="placeholder" loading="lazy"
                   className="h-4 w-full"
                 />
                 <div className="absolute bottom-0 left-0 flex translate-x-[-50%] translate-y-[50%] items-center justify-center bg-accent p-2">
@@ -834,7 +834,7 @@ const CustomersMenu = () => (
               <div className="relative flex items-center justify-center border-b p-4">
                 <img
                   src="https://shadcnblocks.com/images/block/logos/shadcn-ui-wordmark.svg"
-                  alt="placeholder"
+                  alt="placeholder" loading="lazy"
                   className="h-4 w-full"
                 />
                 <div className="absolute bottom-0 left-0 flex translate-x-[-50%] translate-y-[50%] items-center justify-center bg-accent p-2">
@@ -847,7 +847,7 @@ const CustomersMenu = () => (
               <div className="relative flex items-center justify-center p-4">
                 <img
                   src="https://shadcnblocks.com/images/block/logos/supabase-wordmark.svg"
-                  alt="placeholder"
+                  alt="placeholder" loading="lazy"
                   className="h-4 w-full"
                 />
                 <div className="absolute bottom-0 left-0 flex translate-x-[-50%] translate-y-[50%] items-center justify-center bg-accent p-2">
@@ -882,7 +882,7 @@ const CustomersMenu = () => (
           </div>
           <img
             src="https://shadcnblocks.com/images/block/logos/astro-wordmark.svg"
-            alt="placeholder"
+            alt="placeholder" loading="lazy"
             className="w-1/2 object-contain object-center opacity-100 invert transition-all duration-100 group-hover:scale-[1.1]"
           />
         </div>
@@ -898,7 +898,7 @@ const CustomersMenu = () => (
           <div className="relative aspect-square w-16 border-x border-border p-4">
             <img
               src="https://shadcnblocks.com/images/block/block-1.svg"
-              alt="placeholder"
+              alt="placeholder" loading="lazy"
               className="h-auto w-full object-contain"
             />
             <div className="absolute top-0 left-0 flex translate-x-[-50%] translate-y-[-50%] items-center justify-center bg-accent p-2">
@@ -958,7 +958,7 @@ const PartnersMenu = () => (
           <div className="absolute inset-0 top-[32%] bg-accent invert md:top-0">
             <img
               src="https://shadcnblocks.com/images/block/placeholder-1.svg"
-              alt="placeholder"
+              alt="placeholder" loading="lazy"
               className="object-fit h-full w-full object-top-right opacity-100 md:h-2/3 md:object-top"
             />
           </div>
@@ -983,7 +983,7 @@ const PartnersMenu = () => (
           <div className="absolute inset-0 top-[32%] md:top-0">
             <img
               src="https://shadcnblocks.com/images/block/placeholder-2.svg"
-              alt="placeholder"
+              alt="placeholder" loading="lazy"
               className="object-fit h-full w-full object-top-right md:h-2/3 md:object-top"
             />
           </div>
@@ -1048,7 +1048,7 @@ const ResourcesMenu = () => (
           <div className="absolute inset-0">
             <img
               src="https://shadcnblocks.com/images/block/placeholder-4.svg"
-              alt="placeholder"
+              alt="placeholder" loading="lazy"
               className="h-full w-full object-cover object-center invert"
             />
           </div>
@@ -1139,7 +1139,7 @@ const Navbar4 = () => {
               <img
                 src="https://shadcnblocks.com/images/block/logos/shadcnblockscom-icon.svg"
                 className="max-h-8"
-                alt="BlueFrogAnalytics UI Navbar"
+                alt="BlueFrogAnalytics UI Navbar" loading="lazy"
               />
               <span className="text-lg font-semibold tracking-tighter">
                 <span className="bluefrog-brand">BlueFrog</span>Analytics

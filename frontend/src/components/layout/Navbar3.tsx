@@ -169,6 +169,7 @@ const Navbar3 = () => {
                       src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcnblockscom-icon.svg"
                       className="max-h-8"
                       alt="Shadcn UI Navbar"
+                      loading="lazy"
                     />
                     <span className="text-lg font-semibold tracking-tighter">
                       <span className="bluefrog-brand">BlueFrog</span>Analytics
@@ -182,6 +183,7 @@ const Navbar3 = () => {
                       src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcnblockscom-icon.svg"
                       className="max-h-8"
                       alt="Shadcn UI Navbar"
+                      loading="lazy"
                     />
                   </a>
                 </>
@@ -207,7 +209,7 @@ const Navbar3 = () => {
                         <div>
                           <img
                             src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
-                            alt="Placeholder image"
+                            alt="Placeholder image" loading="lazy"
                             className="h-[190px] w-[398px] object-cover object-center"
                           />
                         </div>
@@ -285,7 +287,7 @@ const Navbar3 = () => {
                         <div className="w-2/5 max-w-[310px] shrink-0 overflow-clip rounded-tl-lg rounded-bl-lg">
                           <img
                             src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
-                            alt="Placeholder image"
+                            alt="Placeholder image" loading="lazy"
                             className="h-full w-full object-cover object-center"
                           />
                         </div>
@@ -349,7 +351,7 @@ const Navbar3 = () => {
                         <div className="h-[154px] max-w-[264px] shrink-0">
                           <img
                             src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
-                            alt="Placeholder image"
+                            alt="Placeholder image" loading="lazy"
                             className="h-full w-full object-cover object-center"
                           />
                         </div>
@@ -370,7 +372,7 @@ const Navbar3 = () => {
                         <div className="h-[154px] max-w-[264px] shrink-0">
                           <img
                             src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
-                            alt="Placeholder image"
+                            alt="Placeholder image" loading="lazy"
                             className="h-full w-full object-cover object-center"
                           />
                         </div>
@@ -424,7 +426,7 @@ const Navbar3 = () => {
                         <div className="w-1/3 max-w-[130px] shrink-0">
                           <img
                             src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
-                            alt="Placeholder image"
+                            alt="Placeholder image" loading="lazy"
                             className="h-full w-full object-cover object-center"
                           />
                         </div>
@@ -549,7 +551,7 @@ const Navbar3 = () => {
                 <div className="w-full overflow-clip rounded-lg">
                   <img
                     src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
-                    alt="Placeholder image"
+                    alt="Placeholder image" loading="lazy"
                     className="aspect-2/1 h-full w-full object-cover object-center"
                   />
                 </div>
@@ -612,7 +614,7 @@ const Navbar3 = () => {
                   <div className="overflow-clip rounded-lg">
                     <img
                       src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
-                      alt="Placeholder image"
+                      alt="Placeholder image" loading="lazy"
                       className="aspect-2/1 h-full w-full object-cover object-center"
                     />
                   </div>
@@ -636,7 +638,7 @@ const Navbar3 = () => {
                 <div className="w-full overflow-clip rounded-lg">
                   <img
                     src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
-                    alt="Placeholder image"
+                    alt="Placeholder image" loading="lazy"
                     className="aspect-2/1 h-full w-full object-cover object-center"
                   />
                 </div>
@@ -655,7 +657,7 @@ const Navbar3 = () => {
                 <div className="w-full overflow-clip rounded-lg">
                   <img
                     src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
-                    alt="Placeholder image"
+                    alt="Placeholder image" loading="lazy"
                     className="aspect-2/1 h-full w-full object-cover object-center"
                   />
                 </div>
@@ -716,7 +718,7 @@ const Navbar3 = () => {
                   <div className="overflow-clip rounded-lg">
                     <img
                       src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
-                      alt="Placeholder image"
+                      alt="Placeholder image" loading="lazy"
                       className="aspect-2/1 h-full w-full object-cover object-center"
                     />
                   </div>
