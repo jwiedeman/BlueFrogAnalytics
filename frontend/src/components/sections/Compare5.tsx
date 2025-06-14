@@ -20,6 +20,7 @@ const Compare5 = () => {
               <img
                 src="https://shadcnblocks.com/images/block/photos/simone-hutsch-9jsQcDsxyqA-unsplash.jpg"
                 alt="Build for me"
+                loading="lazy"
                 className="h-full w-full object-cover"
               />
               <div className="absolute inset-x-0 bottom-0 h-[40%] bg-linear-to-t from-black via-black/50 to-transparent backdrop-blur-[2px] sm:h-[45%] md:h-[50%]" />
@@ -44,6 +45,7 @@ const Compare5 = () => {
               <img
                 src="https://shadcnblocks.com/images/block/photos/simone-hutsch-uR__S5GX8Io-unsplash.jpg"
                 alt="Do it yourself"
+                loading="lazy"
                 className="h-full w-full object-cover"
               />
               <div className="absolute inset-x-0 bottom-0 h-[40%] bg-linear-to-t from-black via-black/50 to-transparent backdrop-blur-[2px] sm:h-[45%] md:h-[50%]" />
