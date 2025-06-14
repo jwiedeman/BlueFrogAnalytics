@@ -19,7 +19,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -147,6 +147,11 @@ const Navbar3 = () => {
   const [submenu, setSubmenu] = useState<
     "platform" | "usecases" | "developers" | "resources" | null
   >(null);
+  const [showDebug, setShowDebug] = useState(false);
+
+  useEffect(() => {
+    setShowDebug(window.location.search.includes('debug=true'));
+  }, []);
   return (
     <section className="inset-x-0 top-0 z-20 bg-background">
       <div className="container">
@@ -437,6 +442,13 @@ const Navbar3 = () => {
                   </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
+              {showDebug && (
+                <NavigationMenuItem>
+                  <NavigationMenuLink href="/debug-links" className="p-2">
+                    Debug Links
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              )}
             </NavigationMenuList>
               <div className="hidden items-center gap-2 lg:flex">
               <Button asChild variant="ghost">
@@ -511,6 +523,14 @@ const Navbar3 = () => {
                     <ChevronRight className="size-4" />
                   </span>
                 </button>
+                {showDebug && (
+                  <a
+                    href="/debug-links"
+                    className="flex w-full items-center border-b border-border px-8 py-7"
+                  >
+                    Debug Links
+                  </a>
+                )}
               </div>
                 <div className="mx-[2rem] mt-auto flex flex-col gap-4 py-12">
                 <Button asChild variant="outline" className="relative" size="lg">
