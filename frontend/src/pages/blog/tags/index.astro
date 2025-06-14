@@ -1,6 +1,6 @@
 ---
 layout: '../../../layouts/main.astro'
-title: 'Blog Tags'
+export const title = 'Blog Tags';
 const postImports = import.meta.glob('../../../content/blog/*.mdx', { eager: true });
 const posts = Object.values(postImports);
 const tagMap = new Map();
