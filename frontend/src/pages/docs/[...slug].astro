@@ -1,25 +1,24 @@
 ---
 import DocsLayout from '../../layouts/docs.astro';
+import { getCollection, getEntryBySlug } from 'astro:content';
+
 export const prerender = true;
 
 export async function getStaticPaths() {
-  const modules = import.meta.glob('./**/*.mdx');
-  return Object.keys(modules).map((path) => {
-    const slug = path.slice(2, -4); // remove './' and '.mdx'
-    // Return a string for the [...slug] param instead of an array
-    return { params: { slug } };
-  });
+  const docs = await getCollection('docs');
+  return docs
+    .filter((d) => d.slug !== 'index')
+    .map((d) => ({ params: { slug: d.slug } }));
 }
 
-const modules = import.meta.glob('./**/*.mdx');
 const slugParam = Astro.params.slug;
 const slug = Array.isArray(slugParam) ? slugParam.join('/') : slugParam;
-const importPage = modules[`./${slug}.mdx`];
-if (!importPage) {
+const entry = await getEntryBySlug('docs', slug.toLowerCase());
+if (!entry) {
   throw new Error(`Doc not found: ${slug}`);
 }
-const { frontmatter, default: Content, getHeadings } = await importPage();
-const headings = getHeadings ? getHeadings() : [];
+const { Content, headings } = await entry.render();
+const frontmatter = entry.data;
 ---
 <DocsLayout title={frontmatter.title ?? 'Documentation'} description={frontmatter.description ?? ''} headings={headings}>
   <Content />

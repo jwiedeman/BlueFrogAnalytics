@@ -3,11 +3,11 @@ import Main from './main.astro';
 const { title = 'Docs', description = '', headings = [] } = Astro.props;
 
 // gather docs files to build sidebar tree
-const modules = import.meta.glob('../pages/docs/**/*.mdx', { eager: true });
+const modules = import.meta.glob('../content/docs/**/*.mdx', { eager: true });
 function buildTree() {
   const tree = [];
   for (const [path, mod] of Object.entries(modules)) {
-    const slug = path.replace('../pages/docs/', '').replace(/\.mdx$/, '');
+    const slug = path.replace('../content/docs/', '').replace(/\.mdx$/, '');
     if (slug === 'index') continue;
     const segments = slug.split('/');
     let current = tree;
