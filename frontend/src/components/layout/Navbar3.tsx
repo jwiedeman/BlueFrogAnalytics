@@ -438,9 +438,9 @@ const Navbar3 = () => {
                 </NavigationMenuContent>
               </NavigationMenuItem>
             </NavigationMenuList>
-            <div className="hidden items-center gap-2 lg:flex">
-              <Button variant="ghost" href="/login">
-                Login
+              <div className="hidden items-center gap-2 lg:flex">
+              <Button asChild variant="ghost">
+                <a href="/login">Login</a>
               </Button>
               <Button variant="outline" href="/contact">
                 Start now
@@ -512,9 +512,9 @@ const Navbar3 = () => {
                   </span>
                 </button>
               </div>
-              <div className="mx-[2rem] mt-auto flex flex-col gap-4 py-12">
-                <Button variant="outline" className="relative" size="lg" href="/login">
-                  Login
+                <div className="mx-[2rem] mt-auto flex flex-col gap-4 py-12">
+                <Button asChild variant="outline" className="relative" size="lg">
+                  <a href="/login">Login</a>
                 </Button>
                 <Button className="relative" size="lg" href="/contact">
                   Start now
