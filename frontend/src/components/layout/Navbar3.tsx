@@ -22,6 +22,11 @@ import {
   HeartPulse,
   Leaf,
   Lock,
+  Globe,
+  Beer,
+  Wrench,
+  Utensils,
+  Truck,
   Menu,
   X,
 } from "lucide-react";
@@ -80,49 +85,47 @@ const solutions = [
 
 const useCases = [
   {
-    title: "Banking",
-    href: "/new-business",
-    icon: Building2,
+    title: "SEO",
+    href: "/services#seo",
+    icon: Search,
   },
   {
-    title: "Healthcare",
-    href: "/medical-professionals",
-    icon: HeartPulse,
+    title: "Performance",
+    href: "/services#performance",
+    icon: Gauge,
   },
   {
-    title: "Technology",
-    href: "/services/service-a",
-    icon: Cpu,
+    title: "Marketing",
+    href: "/services#marketing",
+    icon: Megaphone,
   },
   {
-    title: "Education",
-    href: "/educator",
-    icon: GraduationCap,
+    title: "Web Presence",
+    href: "/services#web-presence",
+    icon: Globe,
+  },
+];
+
+const industries = [
+  {
+    title: "Bar",
+    href: "/industry/bar",
+    icon: Beer,
   },
   {
-    title: "Agriculture",
-    href: "/industry-pages",
-    icon: Leaf,
+    title: "Services",
+    href: "/industry/services",
+    icon: Wrench,
   },
   {
-    title: "BaaS",
-    href: "/services/service-b",
-    icon: Building,
+    title: "Restaurant",
+    href: "/industry/restaurant",
+    icon: Utensils,
   },
   {
-    title: "Entertainment",
-    href: "/services/service-c",
-    icon: Film,
-  },
-  {
-    title: "SaaS",
-    href: "/services/service-d",
-    icon: BarChart,
-  },
-  {
-    title: "Crypto",
-    href: "/services/service-d",
-    icon: Bitcoin,
+    title: "Food Truck",
+    href: "/industry/food-truck",
+    icon: Truck,
   },
 ];
 
@@ -166,7 +169,7 @@ const resources = [
 const Navbar3 = () => {
   const [open, setOpen] = useState(false);
   const [submenu, setSubmenu] = useState<
-    "platform" | "usecases" | "documentation" | "resources" | null
+    "platform" | "usecases" | "industries" | "documentation" | "resources" | null
   >(null);
   const [showDebug, setShowDebug] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
@@ -366,7 +369,7 @@ const Navbar3 = () => {
                       <div className="mb-6 text-xs tracking-widest text-muted-foreground uppercase">
                         Use cases
                       </div>
-                      <div className="grid grid-cols-2 gap-6">
+                      <div className="grid grid-cols-1 gap-6">
                         {useCases.map((useCase, index) => (
                           <NavigationMenuLink
                             key={index}
@@ -407,6 +410,57 @@ const Navbar3 = () => {
                             <div className="text-sm font-normal text-muted-foreground">
                               Etiam ornare venenatis neque, sit amet suscipit
                               diam pulvinar a.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </NavigationMenuLink>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>Industries</NavigationMenuTrigger>
+                <NavigationMenuContent className="min-w-[calc(100vw-4rem)] p-8 lg:p-12 2xl:min-w-[calc(1400px-4rem)]">
+                  <div className="flex justify-between gap-8 lg:gap-x-[52px]">
+                    <div className="w-1/2 max-w-[510px]">
+                      <div className="mb-6 text-xs tracking-widest text-muted-foreground uppercase">
+                        Industries
+                      </div>
+                      <div className="grid grid-cols-1 gap-6">
+                        {industries.map((industry, index) => (
+                          <NavigationMenuLink
+                            key={index}
+                            href={industry.href}
+                            className="group flex flex-row items-center gap-5"
+                          >
+                            <div className="group-hover:opacity-60">
+                              <industry.icon className="size-4 text-black" strokeWidth={1} />
+                            </div>
+                            <div className="text-base">{industry.title}</div>
+                          </NavigationMenuLink>
+                        ))}
+                      </div>
+                    </div>
+                    <NavigationMenuLink
+                      href="/services"
+                      className="group max-w-[604px] flex-1 p-0 hover:bg-transparent"
+                    >
+                      <div className="flex h-full rounded-lg border border-input bg-background p-0 hover:bg-transparent">
+                        <div className="w-2/5 max-w-[310px] shrink-0 overflow-clip rounded-tl-lg rounded-bl-lg">
+                          <img
+                            src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
+                            alt="Placeholder image" loading="lazy"
+                            className="h-full w-full object-cover object-center"
+                          />
+                        </div>
+                        <div className="flex flex-col p-5 xl:p-8">
+                          <div className="mb-8 text-xs tracking-widest text-muted-foreground uppercase">
+                            Full-service consulting
+                          </div>
+                          <div className="mt-auto">
+                            <div className="mb-4 text-xl">Elevate your entire operation</div>
+                            <div className="text-sm font-normal text-muted-foreground">
+                              We review every aspect of your business to help you grow.
                             </div>
                           </div>
                         </div>
@@ -585,12 +639,22 @@ const Navbar3 = () => {
                   <ChevronRight className="size-4" />
                 </span>
               </button>
-              <button
-                type="button"
-                className="flex w-full items-center border-b border-border px-8 py-7 text-left"
+                <button
+                  type="button"
+                  className="flex w-full items-center border-b border-border px-8 py-7 text-left"
                   onClick={() => setSubmenu("usecases")}
                 >
                   <span className="flex-1">Use cases</span>
+                  <span className="shrink-0">
+                    <ChevronRight className="size-4" />
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  className="flex w-full items-center border-b border-border px-8 py-7 text-left"
+                  onClick={() => setSubmenu("industries")}
+                >
+                  <span className="flex-1">Industries</span>
                   <span className="shrink-0">
                     <ChevronRight className="size-4" />
                   </span>
@@ -754,6 +818,48 @@ const Navbar3 = () => {
                     <div className="text-sm font-normal text-muted-foreground">
                       Etiam ornare venenatis neque, sit amet suscipit diam
                       pulvinar a.
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          )}
+          {/* Mobile Menu > Industries */}
+          {open && submenu === "industries" && (
+            <div className="fixed inset-0 top-[72px] flex h-[calc(100vh-72px)] w-full flex-col overflow-scroll bg-background lg:hidden">
+              <div className="px-8 py-3.5 text-xs tracking-widest text-muted-foreground uppercase">
+                Industries
+              </div>
+              <div>
+                {industries.map((industry, index) => (
+                  <a
+                    key={index}
+                    href={industry.href}
+                    className="group flex w-full items-start gap-x-4 border-t border-border px-8 py-7 text-left hover:bg-accent"
+                  >
+                    <div className="shrink-0">
+                      <industry.icon className="size-6" />
+                    </div>
+                    <div className="text-base">{industry.title}</div>
+                  </a>
+                ))}
+              </div>
+              <div className="bg-secondary/30 px-8 pt-8 pb-16">
+                <div className="mb-7 text-xs tracking-widest text-muted-foreground uppercase">
+                  Full-service consulting
+                </div>
+                <a href="/services" className="block space-y-6">
+                  <div className="overflow-clip rounded-lg">
+                    <img
+                      src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
+                      alt="Placeholder image" loading="lazy"
+                      className="aspect-2/1 h-full w-full object-cover object-center"
+                    />
+                  </div>
+                  <div>
+                    <div className="mb-1.5 text-base">Elevate your entire operation</div>
+                    <div className="text-sm font-normal text-muted-foreground">
+                      We review every aspect of your business to help you grow.
                     </div>
                   </div>
                 </a>
