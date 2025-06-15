@@ -107,8 +107,10 @@ const breadcrumb = findPath(docTree) || [];
       </nav>
     </aside>
   </div>
+
   <script define:vars={{ headings }} is:inline>
     const ids = headings.map((h) => h.slug);
+
     const toc = document.getElementById('toc');
     const links = ids.map((id) => toc.querySelector(`a[href="#${id}"]`));
 
