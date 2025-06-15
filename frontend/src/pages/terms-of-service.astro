@@ -1,0 +1,11 @@
+---
+import MainLayout from '../layouts/main.astro';
+import TermsContent from '../content/legal/terms-of-service.mdx';
+import { Content3 } from '../components/sections/Content3';
+export const title = 'Terms of Service';
+---
+<MainLayout title={title}>
+  <Content3 client:load>
+    <TermsContent />
+  </Content3>
+</MainLayout>

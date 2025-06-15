@@ -25,7 +25,7 @@ const sections = [
       { name: "Blog", href: "/blog" },
       { name: "Careers", href: "/careers" },
       { name: "Contact", href: "/contact" },
-      { name: "Privacy", href: "/privacy-policy" },
+      { name: "Privacy Policy", href: "/privacy-policy" },
       { name: "Accessibility Statement", href: "/accessibility-statement" },
     ],
   },
@@ -119,7 +119,7 @@ const Footer4 = ({
           <div className="flex flex-col justify-between gap-4 text-sm font-medium text-muted-foreground md:flex-row md:items-center">
             <ul className="flex gap-4">
               <li className="underline hover:text-primary">
-                <a href="/terms"> Terms and Conditions</a>
+                <a href="/terms-of-service">Terms of Service</a>
               </li>
               <li className="underline hover:text-primary">
                 <a href="/privacy-policy"> Privacy Policy</a>
