@@ -7,11 +7,10 @@ import { Separator } from "@/components/ui/separator"
 
 const sections = [
   {
-    title: "Product",
+    title: "Platform",
     links: [
       { name: "Overview", href: "/services" },
       { name: "Pricing", href: "/pricing" },
-      { name: "Marketplace", href: "/integrations" },
       { name: "Features", href: "/services" },
       { name: "Integrations", href: "/integrations" },
       { name: "Docs", href: "/docs" },
