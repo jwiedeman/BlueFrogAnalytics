@@ -166,7 +166,7 @@ const resources = [
 const Navbar3 = () => {
   const [open, setOpen] = useState(false);
   const [submenu, setSubmenu] = useState<
-    "platform" | "usecases" | "developers" | "resources" | null
+    "platform" | "usecases" | "documentation" | "resources" | null
   >(null);
   const [showDebug, setShowDebug] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
@@ -290,63 +290,6 @@ const Navbar3 = () => {
               <NavigationMenuItem>
                 <NavigationMenuTrigger>Documentation</NavigationMenuTrigger>
                 <NavigationMenuContent className="min-w-[calc(100vw-4rem)] p-8 lg:p-12 2xl:min-w-[calc(1400px-4rem)]">
-                  <div className="flex justify-between gap-8 lg:gap-x-[52px]">
-                    <div className="w-1/2 max-w-[510px]">
-                      <div className="mb-6 text-xs tracking-widest text-muted-foreground uppercase">
-                        Use cases
-                      </div>
-                      <div className="grid grid-cols-2 gap-6">
-                        {useCases.map((useCase, index) => (
-                          <NavigationMenuLink
-                            key={index}
-                            href={useCase.href}
-                            className="group flex flex-row items-center gap-5"
-                          >
-                            <div className="group-hover:opacity-60">
-                              <useCase.icon
-                                className="size-4 text-black"
-                                strokeWidth={1}
-                              />
-                            </div>
-                            <div className="text-base">{useCase.title}</div>
-                          </NavigationMenuLink>
-                        ))}
-                      </div>
-                    </div>
-                    <NavigationMenuLink
-                      href="/services"
-                      className="group max-w-[604px] flex-1 p-0 hover:bg-transparent"
-                    >
-                      <div className="flex h-full rounded-lg border border-input bg-background p-0 hover:bg-transparent">
-                        <div className="w-2/5 max-w-[310px] shrink-0 overflow-clip rounded-tl-lg rounded-bl-lg">
-                          <img
-                            src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
-                            alt="Placeholder image" loading="lazy"
-                            className="h-full w-full object-cover object-center"
-                          />
-                        </div>
-                        <div className="flex flex-col p-5 xl:p-8">
-                          <div className="mb-8 text-xs tracking-widest text-muted-foreground uppercase">
-                            For user persona
-                          </div>
-                          <div className="mt-auto">
-                            <div className="mb-4 text-xl">
-                              Call to action for user persona
-                            </div>
-                            <div className="text-sm font-normal text-muted-foreground">
-                              Etiam ornare venenatis neque, sit amet suscipit
-                              diam pulvinar a.
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </NavigationMenuLink>
-                  </div>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Use cases</NavigationMenuTrigger>
-                <NavigationMenuContent className="min-w-[calc(100vw-4rem)] p-8 lg:p-12 2xl:min-w-[calc(1400px-4rem)]">
                   <div className="flex justify-between gap-8 lg:gap-x-12">
                     <div className="w-1/3 max-w-[404px]">
                       <div className="mb-4 text-xs tracking-widest text-muted-foreground uppercase">
@@ -412,6 +355,63 @@ const Navbar3 = () => {
                         </div>
                       </NavigationMenuLink>
                     </div>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>Use cases</NavigationMenuTrigger>
+                <NavigationMenuContent className="min-w-[calc(100vw-4rem)] p-8 lg:p-12 2xl:min-w-[calc(1400px-4rem)]">
+                  <div className="flex justify-between gap-8 lg:gap-x-[52px]">
+                    <div className="w-1/2 max-w-[510px]">
+                      <div className="mb-6 text-xs tracking-widest text-muted-foreground uppercase">
+                        Use cases
+                      </div>
+                      <div className="grid grid-cols-2 gap-6">
+                        {useCases.map((useCase, index) => (
+                          <NavigationMenuLink
+                            key={index}
+                            href={useCase.href}
+                            className="group flex flex-row items-center gap-5"
+                          >
+                            <div className="group-hover:opacity-60">
+                              <useCase.icon
+                                className="size-4 text-black"
+                                strokeWidth={1}
+                              />
+                            </div>
+                            <div className="text-base">{useCase.title}</div>
+                          </NavigationMenuLink>
+                        ))}
+                      </div>
+                    </div>
+                    <NavigationMenuLink
+                      href="/services"
+                      className="group max-w-[604px] flex-1 p-0 hover:bg-transparent"
+                    >
+                      <div className="flex h-full rounded-lg border border-input bg-background p-0 hover:bg-transparent">
+                        <div className="w-2/5 max-w-[310px] shrink-0 overflow-clip rounded-tl-lg rounded-bl-lg">
+                          <img
+                            src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
+                            alt="Placeholder image" loading="lazy"
+                            className="h-full w-full object-cover object-center"
+                          />
+                        </div>
+                        <div className="flex flex-col p-5 xl:p-8">
+                          <div className="mb-8 text-xs tracking-widest text-muted-foreground uppercase">
+                            For user persona
+                          </div>
+                          <div className="mt-auto">
+                            <div className="mb-4 text-xl">
+                              Call to action for user persona
+                            </div>
+                            <div className="text-sm font-normal text-muted-foreground">
+                              Etiam ornare venenatis neque, sit amet suscipit
+                              diam pulvinar a.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </NavigationMenuLink>
                   </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
@@ -578,17 +578,17 @@ const Navbar3 = () => {
                 <button
                   type="button"
                   className="flex w-full items-center border-b border-border px-8 py-7 text-left"
-                  onClick={() => setSubmenu("usecases")}
+                  onClick={() => setSubmenu("documentation")}
                 >
                   <span className="flex-1">Documentation</span>
-                  <span className="shrink-0">
-                    <ChevronRight className="size-4" />
-                  </span>
-                </button>
-                <button
-                  type="button"
-                  className="flex w-full items-center border-b border-border px-8 py-7 text-left"
-                  onClick={() => setSubmenu("developers")}
+                <span className="shrink-0">
+                  <ChevronRight className="size-4" />
+                </span>
+              </button>
+              <button
+                type="button"
+                className="flex w-full items-center border-b border-border px-8 py-7 text-left"
+                  onClick={() => setSubmenu("usecases")}
                 >
                   <span className="flex-1">Use cases</span>
                   <span className="shrink-0">
@@ -760,8 +760,8 @@ const Navbar3 = () => {
               </div>
             </div>
           )}
-          {/* Mobile Menu > Developers */}
-          {open && submenu === "developers" && (
+          {/* Mobile Menu > Documentation */}
+          {open && submenu === "documentation" && (
             <div className="fixed inset-0 top-[72px] flex h-[calc(100vh-72px)] w-full flex-col overflow-scroll border-t border-border bg-background lg:hidden">
               <a href="/docs" className="block space-y-6 px-8 py-8">
                 <div className="w-full overflow-clip rounded-lg">
