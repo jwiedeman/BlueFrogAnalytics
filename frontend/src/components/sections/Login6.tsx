@@ -7,6 +7,21 @@ import { useState } from "react"
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth"
 import { initFirebase, getFirebaseAuth } from "@/lib/firebase"
 
+function getErrorMessage(error: any) {
+  const code = error?.code || "";
+  switch (code) {
+    case "auth/user-not-found":
+      return "No account found with this email. Try signing in with Google.";
+    case "auth/wrong-password":
+      return "Incorrect password.";
+    case "auth/account-exists-with-different-credential":
+    case "auth/email-already-in-use":
+      return "Account exists with a different sign-in method. Try email and password.";
+    default:
+      return error?.message || "Authentication error";
+  }
+}
+
 const Login6 = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,7 +34,7 @@ const Login6 = () => {
       await signInWithEmailAndPassword(auth, email, password);
       window.location.href = "/dashboard";
     } catch (err: any) {
-      setError(err.message);
+      setError(getErrorMessage(err));
     }
   };
 
@@ -29,7 +44,7 @@ const Login6 = () => {
       await signInWithPopup(auth, new GoogleAuthProvider());
       window.location.href = "/dashboard";
     } catch (err: any) {
-      setError(err.message);
+      setError(getErrorMessage(err));
     }
   };
 
