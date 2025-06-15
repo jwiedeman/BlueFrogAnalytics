@@ -541,9 +541,11 @@ const Navbar3 = () => {
               )}
             </NavigationMenuList>
               <div className="hidden items-center gap-2 lg:flex relative">
-              <Button asChild variant="ghost">
-                <a href="/login">Login</a>
-              </Button>
+              {!loggedIn && (
+                <Button asChild variant="ghost">
+                  <a href="/login">Login</a>
+                </Button>
+              )}
               {!loggedIn && (
                 <Button variant="outline" href="/contact">
                   Start now
