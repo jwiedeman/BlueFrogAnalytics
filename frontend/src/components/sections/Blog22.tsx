@@ -8,8 +8,8 @@ interface Blog22Props {
   posts: CollectionEntry<"blog">[]
 }
 
-const placeholderMain = "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-8-wide.svg"
-const placeholderList = "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-8-wide.svg"
+const placeholderMain = "https://source.unsplash.com/random/1200x800?sig=20"
+const placeholderList = "https://source.unsplash.com/random/600x400?sig=21"
 
 const Blog22 = ({ posts }: Blog22Props) => {
   if (!posts.length) return null
@@ -32,7 +32,11 @@ const Blog22 = ({ posts }: Blog22Props) => {
 
         <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12">
           <div className="mb-4">
-            <img className="w-full rounded-lg object-cover" src={placeholderMain} alt={first.data.title} />
+            <img
+              className="w-full rounded-lg object-cover"
+              src={first.data.image ?? placeholderMain}
+              alt={first.data.title}
+            />
             <div className="mt-4">
               <h1 className="text-2xl font-bold text-foreground md:text-3xl lg:text-4xl">{first.data.title}</h1>
             </div>
@@ -53,7 +57,11 @@ const Blog22 = ({ posts }: Blog22Props) => {
             {rest.slice(0,4).map((post, index) => (
               <div key={post.slug} className="flex items-start gap-4 border-b pb-6 last:border-b-0">
                 <div className="w-1/4 shrink-0 md:w-1/5">
-                  <img className="rounded-md" src={placeholderList} alt={post.data.title} />
+                  <img
+                    className="rounded-md"
+                    src={post.data.image ?? placeholderList}
+                    alt={post.data.title}
+                  />
                 </div>
                 <div className="w-3/4 md:w-4/5">
                   <p className="text-sm leading-relaxed md:text-base">{post.data.title}</p>

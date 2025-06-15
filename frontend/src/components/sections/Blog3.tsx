@@ -19,8 +19,8 @@ interface Blog3Props {
 }
 
 const placeholders = [
-  "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
-  "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg",
+  "https://source.unsplash.com/random/1200x800?sig=10",
+  "https://source.unsplash.com/random/1200x800?sig=11",
 ]
 
 const Blog3 = ({ posts }: Blog3Props) => {
@@ -37,7 +37,11 @@ const Blog3 = ({ posts }: Blog3Props) => {
         <a href={`/blog/${first.slug}`} className="group relative mb-8 block md:mb-14 md:overflow-clip md:rounded-xl lg:mb-16">
           <div className="mb-4 aspect-4/3 overflow-clip rounded-xl md:mb-0 md:aspect-8/5 lg:rounded-2xl">
             <div className="h-full w-full transition duration-300 group-hover:scale-105">
-              <img src={placeholders[0]} alt="placeholder" className="relative h-full w-full object-cover object-center" />
+              <img
+                src={first.data.image ?? placeholders[0]}
+                alt={first.data.title}
+                className="relative h-full w-full object-cover object-center"
+              />
             </div>
           </div>
           <div className="flex flex-col gap-6 md:absolute md:inset-x-0 md:bottom-0 md:bg-linear-to-t md:from-primary/80 md:to-transparent md:p-8 md:pt-24 md:text-primary-foreground">
@@ -96,7 +100,11 @@ const Blog3 = ({ posts }: Blog3Props) => {
               <a key={post.slug} href={`/blog/${post.slug}`} className="group flex flex-col">
                 <div className="mb-4 flex overflow-clip rounded-xl md:mb-5">
                   <div className="h-full w-full transition duration-300 group-hover:scale-105">
-                    <img src={placeholders[1]} alt={post.data.title} className="aspect-3/2 h-full w-full object-cover object-center" />
+                    <img
+                      src={post.data.image ?? placeholders[1]}
+                      alt={post.data.title}
+                      className="aspect-3/2 h-full w-full object-cover object-center"
+                    />
                   </div>
                 </div>
                 <div className="mb-4"><Badge>Post</Badge></div>

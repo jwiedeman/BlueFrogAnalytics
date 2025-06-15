@@ -12,9 +12,9 @@ interface Blog30Props {
 }
 
 const placeholders = [
-  "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/nubelson-fernandes-tAJYoec13xk-unsplash.jpg",
-  "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/jason-goodman-ZJlfUi5rTDU-unsplash.jpg",
-  "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/studio-republic-fotKKqWNMQ4-unsplash.jpg",
+  "https://source.unsplash.com/random/1200x800?sig=1",
+  "https://source.unsplash.com/random/1200x800?sig=2",
+  "https://source.unsplash.com/random/1200x800?sig=3",
 ];
 
 const Blog30 = ({ posts }: Blog30Props) => {
@@ -27,13 +27,14 @@ const Blog30 = ({ posts }: Blog30Props) => {
 
         <div className="flex flex-col">
           {posts.slice(0, placeholders.length).map((post, index) => (
-            <div
+            <a
               key={post.slug}
+              href={`/blog/${post.slug}`}
               className="flex flex-col items-center gap-16 md:flex-row"
             >
               <div className="flex h-80 w-full items-center justify-center overflow-hidden rounded-3xl bg-muted md:w-140">
                 <img
-                  src={placeholders[index % placeholders.length]}
+                  src={post.data.image ?? placeholders[index % placeholders.length]}
                   className="h-full w-full object-cover"
                   alt={post.data.title}
                 />
@@ -58,23 +59,17 @@ const Blog30 = ({ posts }: Blog30Props) => {
                       <p className="text-lg leading-relaxed font-normal tracking-tight text-muted-foreground md:text-xl">
                         {post.data.description}
                       </p>
-                      <Button
-                        variant="ghost"
-                        className="inline-flex items-center justify-center gap-4 px-0 text-primary transition-all ease-in-out hover:gap-6 hover:text-accent-foreground"
+                      <span
+                        className="inline-flex items-center justify-center gap-4 px-0 text-primary transition-all ease-in-out group-hover:gap-6"
                       >
-                        <a
-                          href={`/blog/${post.slug}`}
-                          className="text-lg font-semibold tracking-tight"
-                        >
-                          Read
-                        </a>
+                        Read
                         <ArrowRightIcon />
-                      </Button>
+                      </span>
                     </div>
                   </div>
                 </CardContent>
               </Card>
-            </div>
+            </a>
           ))}
         </div>
       </div>
