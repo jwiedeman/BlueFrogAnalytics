@@ -26,7 +26,7 @@ const sections = [
       { name: "Careers", href: "/careers" },
       { name: "Contact", href: "/contact" },
       { name: "Privacy", href: "/privacy-policy" },
-      { name: "Accessibility", href: "/accessibility-statement" },
+      { name: "Accessibility Statement", href: "/accessibility-statement" },
     ],
   },
   {
@@ -125,7 +125,7 @@ const Footer4 = ({
                 <a href="/privacy-policy"> Privacy Policy</a>
               </li>
               <li className="underline hover:text-primary">
-                <a href="/accessibility-statement"> Accessibility</a>
+                <a href="/accessibility-statement"> Accessibility Statement</a>
               </li>
             </ul>
             <p>
