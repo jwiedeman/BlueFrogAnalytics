@@ -547,3 +547,44 @@
 .bluefrog-brand {
   color: #1F75FE;
 }
+
+/* Docs sidebar styling */
+.docs-sidebar {
+  background-color: var(--color-sidebar);
+  color: var(--color-sidebar-foreground);
+}
+.docs-sidebar a {
+  display: block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+.docs-sidebar a:hover {
+  background-color: var(--color-sidebar-accent);
+  color: var(--color-sidebar-accent-foreground);
+}
+.docs-sidebar a.active {
+  background-color: var(--color-sidebar-primary);
+  color: var(--color-sidebar-primary-foreground);
+  font-weight: 500;
+}
+.docs-sidebar summary {
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  list-style: none;
+}
+.docs-sidebar details summary::marker,
+.docs-sidebar summary::-webkit-details-marker {
+  display: none;
+}
+.docs-sidebar summary::before {
+  content: "\25B6";
+  display: inline-block;
+  margin-right: 0.25rem;
+  transition: transform 0.2s ease-in-out;
+}
+.docs-sidebar details[open] > summary::before {
+  transform: rotate(90deg);
+}
