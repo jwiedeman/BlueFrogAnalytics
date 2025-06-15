@@ -6,11 +6,10 @@ const Compare5 = () => {
       <div className="container">
         <div className="text-center">
           <h2 className="text-3xl font-medium sm:text-4xl md:text-5xl lg:text-6xl">
-            Old vs New
+            Your Success, Two Paths
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-lg text-muted-foreground sm:mt-6 sm:text-xl">
-            Compare the difference between the orignal and the new way of doing
-            things.
+            Choose the approach that fits your vision and resources.
           </p>
         </div>
         <div className="relative mt-8 grid gap-6 sm:mt-10 md:mt-12 lg:grid-cols-2 lg:gap-10 xl:gap-14">
@@ -26,15 +25,12 @@ const Compare5 = () => {
               <div className="absolute inset-x-0 bottom-0 h-[40%] bg-linear-to-t from-black via-black/50 to-transparent backdrop-blur-[2px] sm:h-[45%] md:h-[50%]" />
               <div className="absolute bottom-0 w-full space-y-4 p-4 sm:p-6 lg:p-8 xl:p-10">
                 <h3 className="text-xl font-semibold text-white sm:text-2xl lg:text-3xl">
-                  Option 1
+                  Effortless Excellence – "Build For Me"
                 </h3>
                 <p className="mt-2 text-sm text-white/80 sm:text-base">
-                  Let our expert team handle everything for you. We'll manage
-                  the entire development process from start to finish,
-                  delivering a polished solution tailored to your exact
-                  specifications.
+                  Let our expert team craft a polished, tailor-made solution. Experience elite-level service without lifting a finger.
                 </p>
-                <Button variant="outline">Get Started</Button>
+                <Button variant="outline">Start Your Journey</Button>
               </div>
             </div>
           </div>
@@ -51,15 +47,12 @@ const Compare5 = () => {
               <div className="absolute inset-x-0 bottom-0 h-[40%] bg-linear-to-t from-black via-black/50 to-transparent backdrop-blur-[2px] sm:h-[45%] md:h-[50%]" />
               <div className="absolute bottom-0 w-full space-y-4 p-4 sm:p-6 lg:p-8 xl:p-10">
                 <h3 className="text-xl font-semibold text-white sm:text-2xl lg:text-3xl">
-                  Option 2
+                  Empowered Control – "Do It Yourself"
                 </h3>
                 <p className="mt-2 text-sm text-white/80 sm:text-base">
-                  Take control of your project with our comprehensive
-                  self-service platform. Access powerful tools and resources to
-                  build your solution at your own pace with expert guidance when
-                  needed.
+                  Harness our powerful platform. Build confidently at your own pace, with our experts standing by whenever you need.
                 </p>
-                <Button variant="outline">Get Started</Button>
+                <Button variant="outline">Take the Wheel</Button>
               </div>
             </div>
           </div>

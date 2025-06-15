@@ -15,32 +15,28 @@ interface Stats8Props {
 }
 
 const Stats8 = ({
-  heading = "Platform performance insights",
-  description = "Ensuring stability and scalability for all users",
+  heading = "The Intelligence Revolution Begins Here",
+  description =
+    "Join the visionary businesses already gaining profound insights into their online performance.",
   link = {
-    text: "Read the full impact report",
+    text: "Unlock Your Potential",
     url: "https://www.shadcnblocks.com",
   },
   stats = [
     {
       id: "stat-1",
       value: "250%+",
-      label: "average growth in user engagement",
+      label: "Increase in User Engagement",
     },
     {
       id: "stat-2",
       value: "$2.5m",
-      label: "annual savings per enterprise partner",
+      label: "Annual Enterprise Savings",
     },
     {
       id: "stat-3",
-      value: "200+",
-      label: "integrations with top industry platforms",
-    },
-    {
-      id: "stat-4",
       value: "99.9%",
-      label: "customer satisfaction over the last year",
+      label: "Customer Satisfaction Rate",
     },
   ],
 }: Stats8Props) => {

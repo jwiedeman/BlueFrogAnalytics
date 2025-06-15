@@ -71,14 +71,12 @@ const Logos10 = () => {
     <section className="py-32">
       <div className="container">
         <h1 className="my-6 max-w-4xl text-4xl font-medium tracking-tighter text-foreground md:text-6xl">
-          Discover how our tools have unlocked new{" "}
-          <span className="text-muted-foreground/40">levels of creativity{" "}</span>
-          and efficiency
+          Trusted By Industry Leaders
         </h1>
 
         <div className="flex w-fit items-center justify-center gap-4 rounded-full bg-muted px-4 py-2 tracking-tight transition-all ease-in-out hover:gap-6">
           <span className="inline-block size-3 rounded-full bg-foreground" />
-          <p className="text-foreground">Checkout Our Users</p>
+          <p className="text-foreground">Your competitors are evolving. Are you?</p>
         </div>
 
         <div className="relative mx-auto flex items-center justify-center pt-8">
