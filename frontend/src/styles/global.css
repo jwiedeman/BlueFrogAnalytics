@@ -562,6 +562,7 @@
 }
 .docs-sidebar a.active {
   font-weight: 500;
+  color: var(--color-primary);
 }
 .docs-sidebar summary {
   cursor: pointer;
@@ -574,4 +575,15 @@
 .docs-sidebar details summary::marker,
 .docs-sidebar summary::-webkit-details-marker {
   display: none;
+}
+
+/* Highlight open folder label */
+.docs-sidebar details[open] > summary {
+  color: var(--color-primary);
+}
+
+/* Docs heading sidebar */
+#toc a.active {
+  color: var(--color-primary);
+  font-weight: 500;
 }
