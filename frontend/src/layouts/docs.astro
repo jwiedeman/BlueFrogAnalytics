@@ -119,8 +119,8 @@ const breadcrumb = findPath(docTree) || [];
           if (idx === -1) return;
           const link = links[idx];
           if (entry.isIntersecting) {
-            links.forEach((l) => l.classList.remove('border-primary', 'text-primary', 'font-semibold', 'active'));
-            link.classList.add('border-primary', 'text-primary', 'font-semibold', 'active');
+            links.forEach((l) => l.classList.remove('font-semibold', 'active'));
+            link.classList.add('font-semibold', 'active');
             link.scrollIntoView({ block: 'nearest' });
           }
         });
