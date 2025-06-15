@@ -111,25 +111,33 @@ const breadcrumb = findPath(docTree) || [];
     const ids = [${headings.map((h) => `'${h.slug}'`).join(',')}];
     const toc = document.getElementById('toc');
     const links = ids.map((id) => toc.querySelector(`a[href="#${id}"]`));
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const id = entry.target.id;
-          const idx = ids.indexOf(id);
-          if (idx === -1) return;
-          const link = links[idx];
-          if (entry.isIntersecting) {
-            links.forEach((l) => l.classList.remove('font-semibold', 'active'));
-            link.classList.add('font-semibold', 'active');
-            link.scrollIntoView({ block: 'nearest' });
-          }
-        });
-      },
-      { rootMargin: '-40% 0px -50% 0px', threshold: 0 }
-    );
-    ids.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
+
+    const sections = ids.map((id) => document.getElementById(id)).filter(Boolean);
+
+    function updateActive() {
+      let activeIdx = 0;
+      for (let i = 0; i < sections.length; i++) {
+        const top = sections[i].getBoundingClientRect().top;
+        if (top - 80 <= 0) {
+          activeIdx = i;
+        } else {
+          break;
+        }
+      }
+      links.forEach((link, idx) => {
+        if (!link) return;
+        if (idx === activeIdx) {
+          link.classList.add('font-semibold', 'active');
+          link.scrollIntoView({ block: 'nearest' });
+        } else {
+          link.classList.remove('font-semibold', 'active');
+        }
+      });
+    }
+
+    document.addEventListener('scroll', updateActive, { passive: true });
+    window.addEventListener('resize', updateActive);
+    updateActive();
+
   </script>
 </Main>
