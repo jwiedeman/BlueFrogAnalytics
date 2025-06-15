@@ -143,4 +143,11 @@ const breadcrumb = findPath(docTree) || [];
     if (sections.length > 0) setActive(0);
 
   </script>
+
+  <script is:inline>
+    const activeLink = document.querySelector('.docs-sidebar a.active');
+    if (activeLink) {
+      activeLink.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+  </script>
 </Main>
