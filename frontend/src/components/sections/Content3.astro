@@ -1,0 +1,71 @@
+---
+import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
+---
+<section class="py-32">
+  <div class="container">
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator>/</BreadcrumbSeparator>
+        <BreadcrumbItem>
+          <BreadcrumbPage>Terms of Service</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+    <h1 class="mt-10 text-balance text-4xl font-bold md:text-5xl lg:text-6xl">
+      Terms of Service
+    </h1>
+    <p class="mt-5 max-w-2xl text-balance text-xl font-medium">
+      Review the terms that govern your use of Blue Frog Analytics.
+    </p>
+    <div class="relative mt-16 grid gap-10 lg:mt-28 lg:grid-cols-5">
+      <aside class="top-10 flex h-fit w-full max-w-56 flex-col gap-5 lg:sticky">
+        <div>
+          <h2 class="font-semibold">Sections</h2>
+          <ul id="toc" class="mt-2 flex flex-col gap-2 text-sm text-muted-foreground">
+            <li><a href="#heading1" class="border-border block border-l py-1 pl-2.5 transition-colors duration-200">Eligibility &amp; Accounts</a></li>
+            <li><a href="#heading2" class="border-border block border-l py-1 pl-2.5 transition-colors duration-200">Use of Services</a></li>
+            <li><a href="#heading3" class="border-border block border-l py-1 pl-2.5 transition-colors duration-200">Data Tracking</a></li>
+            <li><a href="#heading4" class="border-border block border-l py-1 pl-2.5 transition-colors duration-200">Third-Party Services</a></li>
+            <li><a href="#heading5" class="border-border block border-l py-1 pl-2.5 transition-colors duration-200">Intellectual Property</a></li>
+            <li><a href="#heading6" class="border-border block border-l py-1 pl-2.5 transition-colors duration-200">Disclaimers</a></li>
+            <li><a href="#heading7" class="border-border block border-l py-1 pl-2.5 transition-colors duration-200">Modifications</a></li>
+            <li><a href="#heading8" class="border-border block border-l py-1 pl-2.5 transition-colors duration-200">Governing Law</a></li>
+          </ul>
+        </div>
+      </aside>
+      <div class="gap-6 lg:col-span-3">
+        <div class="prose dark:prose-invert prose-h3:mt-14 prose-h3:scroll-mt-14 prose-h3:text-lg">
+          <article>
+            <slot />
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  const ids = ['heading1','heading2','heading3','heading4','heading5','heading6','heading7','heading8'];
+  const toc = document.getElementById('toc');
+  const links = ids.map(id => toc.querySelector(`a[href="#${id}"]`));
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const id = entry.target.id;
+      const idx = ids.indexOf(id);
+      if (idx === -1) return;
+      const link = links[idx];
+      if (entry.isIntersecting) {
+        link.classList.add('border-primary','text-primary','font-medium');
+      } else {
+        link.classList.remove('border-primary','text-primary','font-medium');
+      }
+    });
+  }, {threshold: 1});
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+</script>
