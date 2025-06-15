@@ -148,9 +148,30 @@ const Navbar3 = () => {
     "platform" | "usecases" | "developers" | "resources" | null
   >(null);
   const [showDebug, setShowDebug] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
+  const [mobileProfileOpen, setMobileProfileOpen] = useState(false);
 
   useEffect(() => {
     setShowDebug(window.location.search.includes('debug=true'));
+    const updateLogin = () => {
+      setLoggedIn(localStorage.getItem('bfaLoggedIn') === 'true');
+    };
+    updateLogin();
+    window.addEventListener('storage', updateLogin);
+    const w = window as any;
+    if (w.onAuthStateChanged && w.firebaseAuth) {
+      const unsub = w.onAuthStateChanged(w.firebaseAuth, () => {
+        updateLogin();
+      });
+      return () => {
+        window.removeEventListener('storage', updateLogin);
+        if (typeof unsub === 'function') unsub();
+      };
+    }
+    return () => {
+      window.removeEventListener('storage', updateLogin);
+    };
   }, []);
   return (
     <section className="inset-x-0 top-0 z-20 bg-background">
@@ -452,14 +473,59 @@ const Navbar3 = () => {
                 </NavigationMenuItem>
               )}
             </NavigationMenuList>
-              <div className="hidden items-center gap-2 lg:flex">
+              <div className="hidden items-center gap-2 lg:flex relative">
               <Button asChild variant="ghost">
                 <a href="/login">Login</a>
               </Button>
-              <Button variant="outline" href="/contact">
-                Start now
-                <ChevronRight className="size-4" />
-              </Button>
+              {!loggedIn && (
+                <Button variant="outline" href="/contact">
+                  Start now
+                  <ChevronRight className="size-4" />
+                </Button>
+              )}
+              {loggedIn && (
+                <div className="relative" onBlur={() => setProfileOpen(false)}>
+                  <Button
+                    variant="outline"
+                    onClick={() => setProfileOpen(!profileOpen)}
+                  >
+                    Profile
+                    <ChevronRight className="size-4" />
+                  </Button>
+                  {profileOpen && (
+                    <ul className="absolute right-0 mt-2 w-40 rounded border bg-background shadow">
+                      <li>
+                        <a href="/dashboard/billing" className="block px-4 py-2 hover:bg-muted">
+                          Billing
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/dashboard/settings" className="block px-4 py-2 hover:bg-muted">
+                          Settings
+                        </a>
+                      </li>
+                      <li className="border-t my-1" />
+                      <li>
+                        <a
+                          href="#"
+                          onClick={async e => {
+                            e.preventDefault();
+                            const w = window as any;
+                            if (w.authSignOut) {
+                              w.loggingOut = true;
+                              await w.authSignOut();
+                            }
+                            window.location.href = '/';
+                          }}
+                          className="block px-4 py-2 hover:bg-muted"
+                        >
+                          Logout
+                        </a>
+                      </li>
+                    </ul>
+                  )}
+                </div>
+              )}
             </div>
             <div className="flex items-center gap-4 lg:hidden">
               <Button
@@ -534,13 +600,61 @@ const Navbar3 = () => {
                   </a>
                 )}
               </div>
-                <div className="mx-[2rem] mt-auto flex flex-col gap-4 py-12">
-                <Button asChild variant="outline" className="relative" size="lg">
-                  <a href="/login">Login</a>
-                </Button>
-                <Button className="relative" size="lg" href="/contact">
-                  Start now
-                </Button>
+              <div className="mx-[2rem] mt-auto flex flex-col gap-4 py-12">
+                {!loggedIn && (
+                  <>
+                    <Button asChild variant="outline" className="relative" size="lg">
+                      <a href="/login">Login</a>
+                    </Button>
+                    <Button className="relative" size="lg" href="/contact">
+                      Start now
+                    </Button>
+                  </>
+                )}
+                {loggedIn && (
+                  <div className="relative" onBlur={() => setMobileProfileOpen(false)}>
+                    <Button
+                      className="relative"
+                      size="lg"
+                      onClick={() => setMobileProfileOpen(!mobileProfileOpen)}
+                    >
+                      Profile
+                      <ChevronRight className="ml-2 size-4" />
+                    </Button>
+                    {mobileProfileOpen && (
+                      <ul className="absolute right-0 mt-2 w-40 rounded border bg-background shadow">
+                        <li>
+                          <a href="/dashboard/billing" className="block px-4 py-2 hover:bg-muted">
+                            Billing
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/dashboard/settings" className="block px-4 py-2 hover:bg-muted">
+                            Settings
+                          </a>
+                        </li>
+                        <li className="border-t my-1" />
+                        <li>
+                          <a
+                            href="#"
+                            onClick={async e => {
+                              e.preventDefault();
+                              const w = window as any;
+                              if (w.authSignOut) {
+                                w.loggingOut = true;
+                                await w.authSignOut();
+                              }
+                              window.location.href = '/';
+                            }}
+                            className="block px-4 py-2 hover:bg-muted"
+                          >
+                            Logout
+                          </a>
+                        </li>
+                      </ul>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           )}
