@@ -33,6 +33,7 @@ interface BreadcrumbItem {
 }
 
 interface Service {
+  id: string;
   category: string;
   title: string;
   summary: string;
@@ -93,71 +94,69 @@ const CATEGORIES: Array<Category> = [
 ];
 
 const PRIMARY_SERVICE: Service = {
+  id: "launch",
   category: "Launch",
   title: "Business Launch Kit",
   summary:
     "Launch your business online with our starter package including a brochure website and SEO basics.",
-  link: "#",
+  link: "#launch",
   cta: "Get Started",
   thumbnail: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
 };
 
 const SERVICES: Array<Service> = [
   {
-    category: "Addon",
-    title: "Monthly Analytics Report",
-    summary: "Detailed website performance delivered to your inbox",
-    link: "#",
-    cta: "Add to plan",
+    id: "seo",
+    category: "addon",
+    title: "SEO Optimization",
+    summary: "Improve search visibility with on-page and technical fixes",
+    link: "#seo",
+    cta: "Learn more",
     thumbnail: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
   },
   {
-    category: "Addon",
-    title: "Quarterly Strategy Call",
-    summary: "Review goals with our experts every quarter",
-    link: "#",
-    cta: "Add to plan",
+    id: "performance",
+    category: "monitoring",
+    title: "Performance Tuning",
+    summary: "Boost site speed and Core Web Vitals scores",
+    link: "#performance",
+    cta: "Learn more",
     thumbnail: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
   },
   {
-    category: "Addon",
-    title: "Social Media Posting",
-    summary: "We publish updates to your social channels",
-    link: "#",
-    cta: "Add to plan",
+    id: "marketing",
+    category: "addon",
+    title: "Marketing Automation",
+    summary: "Engage customers with targeted campaigns",
+    link: "#marketing",
+    cta: "Learn more",
     thumbnail: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
   },
   {
-    category: "Addon",
-    title: "Google Business Profile Management",
-    summary: "Keep your profile current and respond to reviews",
-    link: "#",
-    cta: "Add to plan",
+    id: "consulting",
+    category: "addon",
+    title: "Analytics Consulting",
+    summary: "Work directly with our experts to plan strategy",
+    link: "#consulting",
+    cta: "Learn more",
     thumbnail: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
   },
   {
-    category: "Addon",
-    title: "Extra Content Edits",
-    summary: "Five additional edits each month",
-    link: "#",
-    cta: "Add to plan",
+    id: "compliance",
+    category: "monitoring",
+    title: "Compliance Monitoring",
+    summary: "Stay ahead of privacy and regulatory changes",
+    link: "#compliance",
+    cta: "Learn more",
     thumbnail: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
   },
   {
-    category: "Addon",
-    title: "Advanced SEO Audit",
-    summary: "Comprehensive audit and action plan",
-    link: "#",
-    cta: "Add to plan",
-    thumbnail: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
-  },
-  {
-    category: "Monitoring",
-    title: "Leads & Monitoring Plan",
-    summary:
-      "Get full access to local leads and keep your site healthy with our continuous monitoring tools.",
-    link: "#",
-    cta: "Subscribe",
+    id: "accessibility",
+    category: "addon",
+    title: "Accessibility Audits",
+    summary: "Identify and remediate usability barriers",
+    link: "#accessibility",
+    cta: "Learn more",
     thumbnail: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
   },
 ];
@@ -376,6 +375,7 @@ const EmailForm = () => {
 };
 
 const ServicesCard = ({
+  id,
   category,
   title,
   thumbnail,
@@ -384,7 +384,7 @@ const ServicesCard = ({
   cta,
 }: Service) => {
   return (
-    <a href={link} className="block h-full w-full">
+    <a href={link} id={id} className="block h-full w-full">
       <Card className="size-full border py-0">
         <CardContent className="p-0">
           <div className="text-muted-foreground border-b p-2.5 text-sm font-medium leading-[1.2]">
