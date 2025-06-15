@@ -4,6 +4,15 @@ const { title = 'Docs', description = '', headings = [] } = Astro.props;
 
 // gather docs files to build sidebar tree
 const modules = import.meta.glob('../content/docs/**/*.mdx', { eager: true });
+const labelMap = {
+  'introduction': 'High Level Flow',
+  'website-platforms': 'Web Platforms',
+  'analytics-platforms': 'Analytics Platforms',
+  'ad-platforms': 'Ad Platforms',
+  'bluefroganalytics': 'Blue Frog Analytics',
+  'compliance': 'Compliance',
+  'learning': 'Learning'
+};
 function buildTree() {
   const tree = [];
   for (const [path, mod] of Object.entries(modules)) {
@@ -15,7 +24,8 @@ function buildTree() {
       const seg = segments[i];
       let node = current.find(n => n.name === seg);
       if (!node) {
-        node = { name: seg, label: seg.replace(/-/g, ' '), path: null, children: [] };
+        const label = labelMap[seg] || seg.replace(/-/g, ' ');
+        node = { name: seg, label, path: null, children: [] };
         current.push(node);
       }
       if (i === segments.length - 1) {
