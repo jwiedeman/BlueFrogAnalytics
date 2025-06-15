@@ -1,6 +1,5 @@
 import { Check } from "lucide-react";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -23,30 +22,16 @@ const Contact1 = () => {
         <div className="w-full pb-10 md:space-y-10 md:pb-0">
           <div className="space-y-4 md:max-w-[40rem]">
             <h1 className="text-4xl font-medium lg:text-5xl">
-              Book free demo now
+              Jump into the Pond! 🐸
             </h1>
             <div className="text-muted-foreground md:text-base lg:text-lg lg:leading-7">
-              In non libero bibendum odio pellentesque ullamcorper. Aenean
-              condimentum, dolor commodo pulvinar bibendum.
+              Curious about making your analytics leap ahead? Fill in the details below, and our friendly frogs will get back to you in a splash!
             </div>
           </div>
           <div className="hidden md:block">
             <div className="space-y-16 pb-20 lg:pb-0">
               <div className="space-y-6">
-                <div className="mt-16 flex overflow-hidden">
-                  <Avatar className="size-11">
-                    <AvatarImage src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-1.webp" />
-                    <AvatarFallback>SB</AvatarFallback>
-                  </Avatar>
-                  <Avatar className="-ml-4 size-11">
-                    <AvatarImage src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-3.webp" />
-                    <AvatarFallback>RA</AvatarFallback>
-                  </Avatar>
-                  <Avatar className="-ml-4 size-11">
-                    <AvatarImage src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-2.webp" />
-                    <AvatarFallback>JS</AvatarFallback>
-                  </Avatar>
-                </div>
+                <div className="mt-16 flex overflow-hidden"></div>
                 <div className="space-y-4">
                   <p className="text-sm font-semibold">What you can expect:</p>
                   <div className="flex items-center space-x-2.5">
@@ -69,18 +54,7 @@ const Contact1 = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex items-center space-x-12">
-                <img
-                  src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/astro-wordmark.svg"
-                  alt="placeholder"
-                  className="h-6"
-                />
-                <img
-                  src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcn-ui-wordmark.svg"
-                  alt="placeholder"
-                  className="h-6"
-                />
-              </div>
+              <div></div>
             </div>
           </div>
         </div>
@@ -90,29 +64,29 @@ const Contact1 = () => {
               <div className="w-full space-y-6 rounded-xl border border-border bg-background px-6 py-10 shadow-sm">
                 <div>
                   <div className="mb-2.5 text-sm font-medium">
-                    <label htmlFor="fullName">Full name</label>
+                    <label htmlFor="fullName">Full Name</label>
                   </div>
                   <Input
                     id="fullName"
                     name="fullName"
-                    placeholder="Joe Average"
+                    placeholder="Joe Average, Frog Enthusiast"
                   />
                 </div>
                 <div>
                   <div className="mb-2.5 text-sm font-medium">
-                    <label htmlFor="company">Company</label>
+                    <label htmlFor="company">Company Name</label>
                   </div>
-                  <Input id="company" name="company" placeholder="Acme Corp" />
+                  <Input id="company" name="company" placeholder="Acme Corp or Pond Inc." />
                 </div>
                 <div>
                   <div className="mb-2.5 text-sm font-medium">
-                    <label htmlFor="phone">Phone number</label>
+                    <label htmlFor="phone">Phone Number</label>
                   </div>
-                  <Input id="phone" name="phone" placeholder="12 3456 7890" />
+                  <Input id="phone" name="phone" placeholder="+1 234 567 8901" />
                 </div>
                 <div>
                   <div className="mb-2.5 text-sm font-medium">
-                    <label htmlFor="email">Email (busienss)</label>
+                    <label htmlFor="email">Business Email</label>
                   </div>
                   <Input
                     id="email"
@@ -126,7 +100,7 @@ const Contact1 = () => {
                   </div>
                   <Select>
                     <SelectTrigger id="country" name="country">
-                      <SelectValue placeholder="Select country" />
+                      <SelectValue placeholder="Where's your lily pad?" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="aus">Australia</SelectItem>
@@ -135,11 +109,11 @@ const Contact1 = () => {
                 </div>
                 <div>
                   <div className="mb-2.5 text-sm font-medium">
-                    <label htmlFor="companySize">Company size</label>
+                    <label htmlFor="companySize">Company Size</label>
                   </div>
                   <Select>
                     <SelectTrigger id="companySize" name="companySize">
-                      <SelectValue placeholder="Select" />
+                      <SelectValue placeholder="Tadpole or Bullfrog?" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="1-10">1-10</SelectItem>
@@ -152,8 +126,7 @@ const Contact1 = () => {
                 <div>
                   <div className="mb-2.5 text-sm font-medium">
                     <label htmlFor="id">
-                      How did you hear about us?{" "}
-                      <span className="text-muted-foreground">(Optional)</span>
+                      How did you hear about us? <span className="text-muted-foreground">(Who told you the pond was cool?)</span>
                     </label>
                   </div>
                   <Select>
@@ -166,14 +139,10 @@ const Contact1 = () => {
                   </Select>
                 </div>
                 <div className="flex w-full flex-col justify-end space-y-3 pt-2">
-                  <Button type="submit">Book demo</Button>
+                  <Button type="submit">Reach Out</Button>
                   <div className="text-xs text-muted-foreground">
-                    For more information about how we handle your personal
-                    information, please visit our{" "}
-                    <a href="#" className="underline">
-                      privacy policy
-                    </a>
-                    .
+                    Rest assured, we keep your data safely in our pond. For more about how we handle your info, see our{' '}
+                    <a href="#" className="underline">Privacy Policy</a>.
                   </div>
                 </div>
               </div>
