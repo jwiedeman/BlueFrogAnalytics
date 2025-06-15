@@ -57,7 +57,7 @@ const breadcrumb = findPath(docTree) || [];
               return nodes.map(n => (
                 n.children.length ? (
                   <li>
-                    <details class={breadcrumb.some(b => b.name === n.name) ? 'open' : ''}>
+                    <details open={breadcrumb.some(b => b.name === n.name)}>
                       <summary>{n.label}</summary>
                       <ul class="ml-4 space-y-1">
                         {render(n.children)}
@@ -88,7 +88,7 @@ const breadcrumb = findPath(docTree) || [];
             <li class={`ml-${(h.depth - 1) * 4}`.replace('ml-0', '')}>
               <a
                 href={`#${h.slug}`}
-                class="border-border block border-l py-1 pl-2.5 text-muted-foreground transition-colors duration-200 hover:text-primary"
+                class="border-border block py-1 pl-2.5 text-muted-foreground transition-colors duration-200 hover:text-primary"
                 >{h.text}</a
               >
             </li>
