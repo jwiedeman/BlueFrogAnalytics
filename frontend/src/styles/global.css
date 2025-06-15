@@ -561,8 +561,8 @@
   text-decoration: underline;
 }
 .docs-sidebar a.active {
-  font-weight: 500;
-  color: var(--color-primary);
+  font-weight: 600;
+  color: #1F75FE;
 }
 .docs-sidebar summary {
   cursor: pointer;
@@ -579,11 +579,11 @@
 
 /* Highlight open folder label */
 .docs-sidebar details[open] > summary {
-  color: var(--color-primary);
+  color: #1F75FE;
 }
 
 /* Docs heading sidebar */
 #toc a.active {
-  color: var(--color-primary);
+  color: #1F75FE;
   font-weight: 600;
 }
