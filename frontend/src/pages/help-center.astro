@@ -1,9 +1,17 @@
 ---
 import Layout from '../layouts/main.astro';
-export const title = "Help Center"
+import { Faq12 } from '../components/sections/Faq12';
+import { Cta10 } from '../components/sections/Cta10';
+export const title = "Help Center";
 ---
 <Layout title={title}>
-<div class="p-4">
-  TODO: Add Help Center content.
-</div>
+  <Faq12 client:load />
+  <Cta10
+    heading="Need more help?"
+    description="Join our community Discord server for real-time assistance."
+    buttons={{
+      primary: { text: 'Join Discord', url: '/discord' },
+      secondary: { text: 'Contact Us', url: '/contact' },
+    }}
+  />
 </Layout>

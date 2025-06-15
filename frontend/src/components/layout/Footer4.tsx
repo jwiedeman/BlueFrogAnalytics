@@ -7,11 +7,10 @@ import { Separator } from "@/components/ui/separator"
 
 const sections = [
   {
-    title: "Product",
+    title: "Platform",
     links: [
       { name: "Overview", href: "/services" },
       { name: "Pricing", href: "/pricing" },
-      { name: "Marketplace", href: "/integrations" },
       { name: "Features", href: "/services" },
       { name: "Integrations", href: "/integrations" },
       { name: "Docs", href: "/docs" },
@@ -21,20 +20,14 @@ const sections = [
     title: "Company",
     links: [
       { name: "About", href: "/about" },
-      { name: "Team", href: "/team" },
       { name: "Blog", href: "/blog" },
-      { name: "Careers", href: "/careers" },
       { name: "Contact", href: "/contact" },
-      { name: "Privacy", href: "/privacy-policy" },
-      { name: "Accessibility", href: "/accessibility-statement" },
     ],
   },
   {
     title: "Resources",
     links: [
       { name: "Help", href: "/help-center" },
-      { name: "Sales", href: "/request-a-quote" },
-      { name: "Advertise", href: "/partners" },
     ],
   },
   {
@@ -119,13 +112,13 @@ const Footer4 = ({
           <div className="flex flex-col justify-between gap-4 text-sm font-medium text-muted-foreground md:flex-row md:items-center">
             <ul className="flex gap-4">
               <li className="underline hover:text-primary">
-                <a href="/terms"> Terms and Conditions</a>
+                <a href="/terms-of-service">Terms of Service</a>
               </li>
               <li className="underline hover:text-primary">
                 <a href="/privacy-policy"> Privacy Policy</a>
               </li>
               <li className="underline hover:text-primary">
-                <a href="/accessibility-statement"> Accessibility</a>
+                <a href="/accessibility-statement"> Accessibility Statement</a>
               </li>
             </ul>
             <p>

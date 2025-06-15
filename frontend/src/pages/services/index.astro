@@ -1,12 +1,8 @@
 ---
 import Layout from '../../layouts/main.astro';
-export const title = 'Services'
+import { Services1 } from '../../components/sections/Services1';
+export const title = 'Services';
 ---
 <Layout title={title}>
-<section class="py-8">
-  <div class="max-w-3xl mx-auto space-y-6 text-center">
-    <h1 class="text-3xl font-bold">Our Services</h1>
-    <p>Explore auditing and advisory options tailored for your business.</p>
-  </div>
-</section>
+  <Services1 client:load />
 </Layout>

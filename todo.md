@@ -31,7 +31,6 @@ The following pages still contain placeholder text and need real content.
 - frontend/src/pages/services/service-c.astro
 - frontend/src/pages/services/service-d.astro
 - frontend/src/pages/support-portal.astro
-- frontend/src/pages/team.astro
 - frontend/src/pages/terms.astro
 - frontend/src/pages/testimonials.astro
 - frontend/src/pages/trust-badges.astro

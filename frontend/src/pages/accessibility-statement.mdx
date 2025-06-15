@@ -4,10 +4,12 @@ title: 'Accessibility Statement'
 description: 'Our commitment to making Blue Frog Analytics accessible to everyone.'
 ---
 
-<section class="py-8">
-  <div class="max-w-3xl mx-auto space-y-6">
-    <h1 class="text-3xl font-bold text-center">Accessibility Statement</h1>
-    <p class="text-center">Blue Frog Analytics strives to ensure our services are usable by all people.</p>
-    <p>We aim to comply with the Web Content Accessibility Guidelines (WCAG) and continuously improve the user experience for everyone. If you encounter any accessibility barriers on our site, please <a href="/contact">let us know</a>.</p>
-  </div>
-</section>
+import { PageWithSidebar } from '../components/sections/PageWithSidebar'
+import { accessibilitySections } from '../lib/accessibilitySections'
+
+<PageWithSidebar
+  title="Accessibility Statement for Blue Frog Analytics"
+  description="Our commitment to digital accessibility for everyone."
+  sections={accessibilitySections}
+  client:load
+/>
