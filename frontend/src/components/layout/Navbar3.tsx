@@ -103,24 +103,20 @@ const useCases = [
 
 const documentationLinks = [
   {
-    title: "Docs",
-    href: "/docs",
+    title: "High Level Flow",
+    href: "/docs/introduction/how-blue-frog-analytics-works/",
   },
   {
-    title: "Blog",
-    href: "/blog",
+    title: "Web Platforms",
+    href: "/docs/website-platforms/cms/wordpress/",
   },
   {
-    title: "About",
-    href: "/about",
+    title: "Analytics Platforms",
+    href: "/docs/analytics-platforms/google-analytics/",
   },
   {
-    title: "Contact",
-    href: "/contact",
-  },
-  {
-    title: "Terms of Service",
-    href: "/terms-of-service",
+    title: "Ad Platforms",
+    href: "/docs/ad-platforms/google-ads/",
   },
 ];
 
