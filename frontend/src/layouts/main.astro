@@ -3,6 +3,7 @@ import '../styles/global.css';
 
 import { Navbar3 } from '../components/layout/Navbar3';
 import { Footer4 } from '../components/layout/Footer4';
+import FirebaseInit from '../components/FirebaseInit';
 
 
 const { title = 'Blue Frog Analytics' } = Astro.props;
@@ -40,5 +41,6 @@ const { title = 'Blue Frog Analytics' } = Astro.props;
       <slot />
     </main>
     <Footer4 />
+    <FirebaseInit client:load />
   </body>
 </html>
