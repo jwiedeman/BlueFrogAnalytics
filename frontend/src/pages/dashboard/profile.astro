@@ -8,7 +8,96 @@ export const title = 'Profile'
   <div class="max-w-3xl mx-auto space-y-6">
     <h1 class="text-3xl font-bold text-center">Profile</h1>
     <p class="text-center">View and edit your account information.</p>
-    <p>We will connect this section to Firebase authentication soon.</p>
+    <form id="profile-form" class="space-y-4">
+      <div>
+        <label for="first-name" class="block mb-1">First Name</label>
+        <input id="first-name" type="text" class="w-full border rounded px-3 py-2" />
+      </div>
+      <div>
+        <label for="last-name" class="block mb-1">Last Name</label>
+        <input id="last-name" type="text" class="w-full border rounded px-3 py-2" />
+      </div>
+      <div>
+        <label for="phone" class="block mb-1">Phone</label>
+        <input id="phone" type="tel" class="w-full border rounded px-3 py-2" />
+      </div>
+      <div>
+        <label for="payment-pref" class="block mb-1">Payment Preference</label>
+        <input id="payment-pref" type="text" class="w-full border rounded px-3 py-2" />
+      </div>
+      <button type="submit" class="px-4 py-2 bg-primary text-white rounded">Save Profile</button>
+      <p id="profile-message" class="text-center text-sm"></p>
+    </form>
   </div>
 </section>
 </Layout>
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    const API_BASE = window.API_BASE_URL || 'https://api.bluefroganalytics.com:6001';
+    const form = document.getElementById('profile-form');
+    const msg = document.getElementById('profile-message');
+    const first = document.getElementById('first-name');
+    const last = document.getElementById('last-name');
+    const phone = document.getElementById('phone');
+    const pay = document.getElementById('payment-pref');
+    let profile = { domains: [], tests: {} };
+
+    const loadProfile = async user => {
+      const token = await user.getIdToken();
+      try {
+        const r = await fetch(`${API_BASE}/api/profile`, { headers: { Authorization: `Bearer ${token}` } });
+        if (r.ok) {
+          profile = await r.json();
+          first.value = profile.first_name || '';
+          last.value = profile.last_name || '';
+          phone.value = profile.phone || '';
+          pay.value = profile.payment_preference || '';
+        }
+      } catch {}
+    };
+
+    const submitProfile = async user => {
+      const token = await user.getIdToken();
+      const body = {
+        firstName: first.value,
+        lastName: last.value,
+        email: user.email,
+        phone: phone.value,
+        paymentPreference: pay.value,
+        domains: profile.domains || [],
+        tests: profile.tests || {}
+      };
+      try {
+        const r = await fetch(`${API_BASE}/api/profile`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+          body: JSON.stringify(body)
+        });
+        msg.textContent = r.ok ? 'Profile saved.' : 'Error saving profile.';
+      } catch {
+        msg.textContent = 'Network error.';
+      }
+    };
+
+    const init = () => {
+      window.onAuthStateChanged(window.firebaseAuth, async user => {
+        if (!user) {
+          window.location.href = '/login';
+          return;
+        }
+        await loadProfile(user);
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          submitProfile(user);
+        });
+      });
+    };
+
+    if (window.firebaseAuth) {
+      init();
+    } else {
+      document.addEventListener('firebase-init', init, { once: true });
+    }
+  });
+</script>
