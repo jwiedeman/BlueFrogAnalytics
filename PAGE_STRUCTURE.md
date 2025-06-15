@@ -41,7 +41,6 @@
 - robots.txt.ts
 - site-feedback.mdx
 - support-portal.astro
-- team.astro
 - terms-of-sale.mdx
 - terms-of-service.mdx
 - terms.astro
