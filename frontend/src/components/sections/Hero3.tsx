@@ -68,7 +68,7 @@ const Hero3 = ({
   },
 }: Hero3Props) => {
   return (
-    <section>
+    <section className="pt-[3vh]">
       <div className="container grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
         <div className="mx-auto flex flex-col items-center text-center md:ml-auto lg:max-w-3xl lg:items-start lg:text-left">
           <h1 className="my-6 text-4xl font-bold text-pretty lg:text-6xl xl:text-7xl">
