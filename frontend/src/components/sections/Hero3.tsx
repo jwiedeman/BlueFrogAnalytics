@@ -27,16 +27,16 @@ interface Hero3Props {
 }
 
 const Hero3 = ({
-  heading = "Blocks built with BlueFrogAnalytics & Tailwind",
+  heading = "Unleash Your Website's Hidden Power",
   description =
-    "Finely crafted components built with React, Tailwind and BlueFrogAnalytics UI. Developers can copy and paste these blocks directly into their project.",
+    "Imagine knowing precisely what's working\u2014and what's holding you back. At BlueFrogAnalytics, we illuminate your path with continuous intelligence, meticulous scanning, comprehensive auditing, laser-focused lead generation, and dynamic website solutions.",
   buttons = {
     primary: {
-      text: "Sign Up",
+      text: "Unlock Your Potential",
       url: "https://www.shadcnblocks.com",
     },
     secondary: {
-      text: "Get Started",
+      text: "Experience the Transformation",
       url: "https://www.shadcnblocks.com",
     },
   },
