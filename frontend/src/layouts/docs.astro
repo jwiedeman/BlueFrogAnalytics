@@ -114,19 +114,10 @@ const breadcrumb = findPath(docTree) || [];
 
     const sections = ids.map((id) => document.getElementById(id)).filter(Boolean);
 
-    function updateActive() {
-      let activeIdx = 0;
-      for (let i = 0; i < sections.length; i++) {
-        const top = sections[i].getBoundingClientRect().top;
-        if (top - 80 <= 0) {
-          activeIdx = i;
-        } else {
-          break;
-        }
-      }
-      links.forEach((link, idx) => {
+    function setActive(idx) {
+      links.forEach((link, i) => {
         if (!link) return;
-        if (idx === activeIdx) {
+        if (i === idx) {
           link.classList.add('font-semibold', 'active');
           link.scrollIntoView({ block: 'nearest' });
         } else {
@@ -135,9 +126,18 @@ const breadcrumb = findPath(docTree) || [];
       });
     }
 
-    document.addEventListener('scroll', updateActive, { passive: true });
-    window.addEventListener('resize', updateActive);
-    updateActive();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const idx = sections.indexOf(entry.target);
+          if (idx !== -1) setActive(idx);
+        });
+      },
+      { rootMargin: '-50% 0px -50% 0px', threshold: 0 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
 
   </script>
 </Main>
