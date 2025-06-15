@@ -8,7 +8,7 @@ export const title = 'Domains'
   <div class="max-w-3xl mx-auto space-y-6">
     <h1 class="text-3xl font-bold text-center">Domains</h1>
     <p class="text-center">Add your websites below to start monitoring.</p>
-    <form class="space-y-4">
+    <form id="add-domain-form" class="space-y-4">
       <div>
         <label for="domain-name" class="block mb-1">Domain</label>
         <input id="domain-name" type="text" class="w-full border rounded px-3 py-2" placeholder="example.com" />
@@ -16,21 +16,111 @@ export const title = 'Domains'
       <div>
         <label for="frequency" class="block mb-1">Refresh Frequency</label>
         <select id="frequency" class="w-full border rounded px-3 py-2">
-          <option value="daily">Daily</option>
-          <option value="weekly">Weekly</option>
-          <option value="monthly">Monthly</option>
+          <option value="24">Daily</option>
+          <option value="168">Weekly</option>
+          <option value="720">Monthly</option>
         </select>
       </div>
       <button type="submit" class="px-4 py-2 bg-primary text-white rounded">Add Domain</button>
     </form>
     <div class="pt-6">
       <h2 class="text-xl font-semibold mb-2">Your Domains</h2>
-      <ul class="list-disc pl-6 space-y-1">
-        <li>example.com</li>
-        <li>example2.com</li>
-        <li>example3.com</li>
-      </ul>
+      <ul id="domain-list" class="list-disc pl-6 space-y-1"></ul>
     </div>
   </div>
 </section>
 </Layout>
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    const API_BASE = window.API_BASE_URL || 'https://api.bluefroganalytics.com:6001';
+    const form = document.getElementById('add-domain-form');
+    const listEl = document.getElementById('domain-list');
+    const domainInput = document.getElementById('domain-name');
+    const freqInput = document.getElementById('frequency');
+    let domains = [];
+
+    const renderDomains = () => {
+      listEl.innerHTML = '';
+      domains.forEach(d => {
+        const li = document.createElement('li');
+        const btn = document.createElement('button');
+        btn.textContent = 'Remove';
+        btn.className = 'ml-2 text-sm text-red-600';
+        btn.addEventListener('click', () => removeDomain(d));
+        li.textContent = d;
+        li.appendChild(btn);
+        listEl.appendChild(li);
+      });
+    };
+
+    const loadProfile = async user => {
+      const token = await user.getIdToken();
+      try {
+        const r = await fetch(`${API_BASE}/api/profile`, { headers: { Authorization: `Bearer ${token}` } });
+        if (r.ok) {
+          const prof = await r.json();
+          domains = Array.isArray(prof.domains) ? prof.domains : [];
+          renderDomains();
+        }
+      } catch {}
+    };
+
+    const addDomain = async user => {
+      const token = await user.getIdToken();
+      const body = {
+        domain: domainInput.value,
+        refreshHours: parseInt(freqInput.value, 10)
+      };
+      try {
+        const r = await fetch(`${API_BASE}/api/user-domain`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+          body: JSON.stringify(body)
+        });
+        if (r.ok) {
+          domains.push(domainInput.value.toLowerCase());
+          renderDomains();
+          form.reset();
+        }
+      } catch {}
+    };
+
+    const removeDomain = async name => {
+      const user = window.firebaseAuth.currentUser;
+      if (!user) return;
+      const token = await user.getIdToken();
+      try {
+        const r = await fetch(`${API_BASE}/api/user-domain`, {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+          body: JSON.stringify({ domain: name })
+        });
+        if (r.ok) {
+          domains = domains.filter(d => d !== name);
+          renderDomains();
+        }
+      } catch {}
+    };
+
+    const init = () => {
+      window.onAuthStateChanged(window.firebaseAuth, async user => {
+        if (!user) {
+          window.location.href = '/login';
+          return;
+        }
+        await loadProfile(user);
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          addDomain(user);
+        });
+      });
+    };
+
+    if (window.firebaseAuth) {
+      init();
+    } else {
+      document.addEventListener('firebase-init', init, { once: true });
+    }
+  });
+</script>
