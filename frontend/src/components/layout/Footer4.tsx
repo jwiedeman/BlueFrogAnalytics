@@ -25,7 +25,7 @@ const sections = [
       { name: "Blog", href: "/blog" },
       { name: "Careers", href: "/careers" },
       { name: "Contact", href: "/contact" },
-      { name: "Privacy", href: "/privacy-policy" },
+      { name: "Privacy Policy", href: "/privacy-policy" },
       { name: "Accessibility", href: "/accessibility-statement" },
     ],
   },
