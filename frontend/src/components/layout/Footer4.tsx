@@ -21,20 +21,14 @@ const sections = [
     title: "Company",
     links: [
       { name: "About", href: "/about" },
-      { name: "Team", href: "/team" },
       { name: "Blog", href: "/blog" },
-      { name: "Careers", href: "/careers" },
       { name: "Contact", href: "/contact" },
-      { name: "Privacy Policy", href: "/privacy-policy" },
-      { name: "Accessibility Statement", href: "/accessibility-statement" },
     ],
   },
   {
     title: "Resources",
     links: [
       { name: "Help", href: "/help-center" },
-      { name: "Sales", href: "/request-a-quote" },
-      { name: "Advertise", href: "/partners" },
     ],
   },
   {
