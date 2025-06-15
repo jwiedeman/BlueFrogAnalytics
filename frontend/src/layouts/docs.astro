@@ -83,14 +83,40 @@ const breadcrumb = findPath(docTree) || [];
     </section>
     <aside class="hidden xl:block w-48 overflow-y-auto p-4 text-sm">
       <nav>
-        <ul>
+        <ul id="toc">
           {headings.map(h => (
             <li class={`ml-${(h.depth - 1) * 4}`.replace('ml-0', '')}>
-              <a href={`#${h.slug}`} class="hover:underline">{h.text}</a>
+              <a
+                href={`#${h.slug}`}
+                class="border-border block border-l py-1 pl-2.5 text-muted-foreground transition-colors duration-200 hover:text-primary"
+                >{h.text}</a
+              >
             </li>
           ))}
         </ul>
       </nav>
     </aside>
   </div>
+  <script is:inline>
+    const ids = [${headings.map((h) => `'${h.slug}'`).join(',')}];
+    const toc = document.getElementById('toc');
+    const links = ids.map((id) => toc.querySelector(`a[href="#${id}"]`));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const id = entry.target.id;
+        const idx = ids.indexOf(id);
+        if (idx === -1) return;
+        const link = links[idx];
+        if (entry.isIntersecting) {
+          link.classList.add('border-primary', 'text-primary', 'font-medium', 'active');
+        } else {
+          link.classList.remove('border-primary', 'text-primary', 'font-medium', 'active');
+        }
+      });
+    }, { threshold: 1 });
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+  </script>
 </Main>
