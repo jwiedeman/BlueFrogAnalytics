@@ -49,16 +49,16 @@ const breadcrumb = findPath(docTree) || [];
 ---
 <Main title={title}>
   <div class="flex">
-    <aside class="hidden lg:block w-64 overflow-y-auto border-r p-4 text-sm">
+    <aside class="docs-sidebar hidden lg:block w-64 overflow-y-auto border-r p-4 text-sm">
       <nav>
-        <ul>
+        <ul class="space-y-1">
           {(() => {
             function render(nodes) {
               return nodes.map(n => (
                 n.children.length ? (
                   <li>
                     <details class={breadcrumb.some(b => b.name === n.name) ? 'open' : ''}>
-                      <summary class="cursor-pointer py-1 font-semibold capitalize">{n.label}</summary>
+                      <summary>{n.label}</summary>
                       <ul class="ml-4 space-y-1">
                         {render(n.children)}
                       </ul>
@@ -66,7 +66,7 @@ const breadcrumb = findPath(docTree) || [];
                   </li>
                 ) : (
                   <li>
-                    <a class={`block py-1 hover:underline ${current === n.path.replace(/\/$/, '').toLowerCase() ? 'font-bold' : ''}`} href={n.path}>{n.label}</a>
+                    <a class={current === n.path.replace(/\/$/, '').toLowerCase() ? 'active' : ''} href={n.path}>{n.label}</a>
                   </li>
                 )
               ));
