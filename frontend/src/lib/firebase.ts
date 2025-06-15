@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAnalytics, type Analytics } from 'firebase/analytics';
-import { getAuth, onAuthStateChanged, type Auth } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, signOut, type Auth } from 'firebase/auth';
 
 let auth: Auth | null = null;
 let analytics: Analytics | null = null;
@@ -39,4 +39,13 @@ export function getFirebaseAuth() {
 
 export function getFirebaseAnalytics() {
   return analytics;
+}
+
+export async function logout() {
+  const a = getFirebaseAuth() || initFirebase();
+  try {
+    await signOut(a);
+  } finally {
+    localStorage.setItem('bfaLoggedIn', 'false');
+  }
 }

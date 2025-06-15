@@ -23,6 +23,7 @@ import { useState, useEffect } from "react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { logout } from "@/lib/firebase";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -487,6 +488,11 @@ const Navbar3 = () => {
                   {profileOpen && (
                     <ul className="absolute right-0 mt-2 w-40 rounded border bg-background shadow">
                       <li>
+                        <a href="/dashboard/profile" className="block px-4 py-2 hover:bg-muted">
+                          Profile
+                        </a>
+                      </li>
+                      <li>
                         <a href="/dashboard/billing" className="block px-4 py-2 hover:bg-muted">
                           Billing
                         </a>
@@ -502,11 +508,7 @@ const Navbar3 = () => {
                           href="#"
                           onClick={async e => {
                             e.preventDefault();
-                            const w = window as any;
-                            if (w.authSignOut) {
-                              w.loggingOut = true;
-                              await w.authSignOut();
-                            }
+                            await logout();
                             window.location.href = '/';
                           }}
                           className="block px-4 py-2 hover:bg-muted"
@@ -616,6 +618,11 @@ const Navbar3 = () => {
                     {mobileProfileOpen && (
                       <ul className="absolute right-0 mt-2 w-40 rounded border bg-background shadow">
                         <li>
+                          <a href="/dashboard/profile" className="block px-4 py-2 hover:bg-muted">
+                            Profile
+                          </a>
+                        </li>
+                        <li>
                           <a href="/dashboard/billing" className="block px-4 py-2 hover:bg-muted">
                             Billing
                           </a>
@@ -631,11 +638,7 @@ const Navbar3 = () => {
                             href="#"
                             onClick={async e => {
                               e.preventDefault();
-                              const w = window as any;
-                              if (w.authSignOut) {
-                                w.loggingOut = true;
-                                await w.authSignOut();
-                              }
+                              await logout();
                               window.location.href = '/';
                             }}
                             className="block px-4 py-2 hover:bg-muted"
