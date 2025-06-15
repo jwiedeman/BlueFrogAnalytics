@@ -119,8 +119,8 @@ const documentationLinks = [
     href: "/contact",
   },
   {
-    title: "Terms",
-    href: "/terms",
+    title: "Terms of Service",
+    href: "/terms-of-service",
   },
 ];
 
