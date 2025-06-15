@@ -154,24 +154,16 @@ const Navbar3 = () => {
 
   useEffect(() => {
     setShowDebug(window.location.search.includes('debug=true'));
-    const updateLogin = () => {
-      setLoggedIn(localStorage.getItem('bfaLoggedIn') === 'true');
-    };
-    updateLogin();
-    window.addEventListener('storage', updateLogin);
     const w = window as any;
+    const update = (user?: any) => setLoggedIn(!!user);
+    let unsub: any;
     if (w.onAuthStateChanged && w.firebaseAuth) {
-      const unsub = w.onAuthStateChanged(w.firebaseAuth, () => {
-        updateLogin();
-      });
-      return () => {
-        window.removeEventListener('storage', updateLogin);
-        if (typeof unsub === 'function') unsub();
-      };
+      update(w.firebaseAuth.currentUser);
+      unsub = w.onAuthStateChanged(w.firebaseAuth, update);
+    } else {
+      update(localStorage.getItem('bfaLoggedIn') === 'true');
     }
-    return () => {
-      window.removeEventListener('storage', updateLogin);
-    };
+    return () => { if (typeof unsub === 'function') unsub(); };
   }, []);
   return (
     <section className="inset-x-0 top-0 z-20 bg-background">

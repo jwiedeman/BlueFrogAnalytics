@@ -3,8 +3,36 @@ import { FcGoogle } from "react-icons/fc/index.js"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { useState } from "react"
+import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth"
+import { initFirebase, getFirebaseAuth } from "@/lib/firebase"
 
 const Login6 = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const auth = getFirebaseAuth() || initFirebase();
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      window.location.href = "/dashboard";
+    } catch (err: any) {
+      setError(err.message);
+    }
+  };
+
+  const handleGoogle = async () => {
+    const auth = getFirebaseAuth() || initFirebase();
+    try {
+      await signInWithPopup(auth, new GoogleAuthProvider());
+      window.location.href = "/dashboard";
+    } catch (err: any) {
+      setError(err.message);
+    }
+  };
+
   return (
     <section className="relative py-32">
       <div className="container">
@@ -24,23 +52,32 @@ const Login6 = () => {
               <h1 className="text-2xl font-bold">Login</h1>
             </div>
             <div>
-              <div className="grid gap-4">
-                <Input type="email" placeholder="Enter your email" required />
+              <form className="grid gap-4" onSubmit={handleSubmit}>
+                <Input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  required
+                />
                 <Input
                   type="password"
                   placeholder="Enter your password"
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
                   required
                 />
-
+                {error && (
+                  <p className="text-sm text-red-600" role="alert">{error}</p>
+                )}
                 <Button type="submit" className="mt-4 w-full">
                   Sign in
                 </Button>
-
-                <Button variant="outline" className="w-full">
-                  <FcGoogle className="mr-2 size-5" />
-                  Sign up with Google
-                </Button>
-              </div>
+              </form>
+              <Button variant="outline" className="w-full mt-4" onClick={handleGoogle}>
+                <FcGoogle className="mr-2 size-5" />
+                Sign up with Google
+              </Button>
               <div className="mx-auto mt-8 flex justify-center gap-1 text-sm text-muted-foreground">
                 <p>Don&apos;t have an account?</p>
                 <a
