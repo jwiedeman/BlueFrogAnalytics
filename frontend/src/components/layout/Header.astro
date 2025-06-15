@@ -63,22 +63,37 @@ function isActive(item) {
     toggleBtn.addEventListener('click', () => navContent.classList.toggle('hidden'));
   }
 
-  const saved = localStorage.getItem('bfaLoggedIn');
-  const loggedIn = saved === 'true';
   const loginBtn = document.getElementById('login-btn');
   const profileMenu = document.getElementById('profile-menu');
   const dashNav = document.getElementById('dashboard-nav');
-  if (loginBtn && profileMenu) {
-    if (loggedIn) {
-      loginBtn.classList.add('hidden');
-      profileMenu.classList.remove('hidden');
-    } else {
-      loginBtn.classList.remove('hidden');
-      profileMenu.classList.add('hidden');
+
+  const updateMenu = (logged) => {
+    if (loginBtn && profileMenu) {
+      if (logged) {
+        loginBtn.classList.add('hidden');
+        profileMenu.classList.remove('hidden');
+      } else {
+        loginBtn.classList.remove('hidden');
+        profileMenu.classList.add('hidden');
+      }
     }
-  }
-  if (dashNav) {
-    dashNav.classList.toggle('hidden', !loggedIn);
+    if (dashNav) {
+      dashNav.classList.toggle('hidden', !logged);
+    }
+  };
+
+  const saved = localStorage.getItem('bfaLoggedIn');
+  updateMenu(saved === 'true');
+
+  const w = window;
+  if (w.onAuthStateChanged && w.firebaseAuth) {
+    w.onAuthStateChanged(w.firebaseAuth, (u) => updateMenu(!!u));
+  } else {
+    document.addEventListener('firebase-init', () => {
+      if (w.onAuthStateChanged && w.firebaseAuth) {
+        w.onAuthStateChanged(w.firebaseAuth, (u) => updateMenu(!!u));
+      }
+    }, { once: true });
   }
 
   const profileToggle = document.getElementById('profile-toggle');
