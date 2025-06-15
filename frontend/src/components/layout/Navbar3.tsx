@@ -138,7 +138,7 @@ const resources = [
   {
     title: "News & Blog",
     description: "Maecenas eget orci ac nulla tempor tincidunt.",
-    href: "/newsletter-archive",
+    href: "/blog",
   },
 ];
 
