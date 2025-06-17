@@ -2,7 +2,8 @@
 
 import { AlignLeft, CheckCircle2, Lightbulb } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
+// Import icons using explicit file path to avoid ESM directory resolution issues
+import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa/index.js";
 
 import { cn } from "@/lib/utils";
 
