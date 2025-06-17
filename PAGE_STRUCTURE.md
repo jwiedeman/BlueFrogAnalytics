@@ -150,10 +150,13 @@
 - tests/tag-drag-race.mdx
 \n## Services
 - services/index.astro
-- services/service-a.astro
-- services/service-b.astro
-- services/service-c.astro
-- services/service-d.astro
+- services/launch.astro
+- services/seo.astro
+- services/performance.astro
+- services/marketing.astro
+- services/consulting.astro
+- services/compliance.astro
+- services/accessibility.astro
 \n## Industry Pages
 - industry-pages/index.astro
 \n## Service Areas

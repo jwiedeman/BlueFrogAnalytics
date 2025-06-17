@@ -48,37 +48,37 @@ const solutions = [
   {
     title: "SEO",
     description: "Optimize search visibility and rankings",
-    href: "/services#seo",
+    href: "/services/seo",
     icon: Search,
   },
   {
     title: "Performance",
     description: "Improve speed and Core Web Vitals",
-    href: "/services#performance",
+    href: "/services/performance",
     icon: Gauge,
   },
   {
     title: "Marketing",
     description: "Engage visitors with targeted campaigns",
-    href: "/services#marketing",
+    href: "/services/marketing",
     icon: Megaphone,
   },
   {
     title: "Consulting",
     description: "Get expert guidance on analytics strategy",
-    href: "/services#consulting",
+    href: "/services/consulting",
     icon: Book,
   },
   {
     title: "Compliance",
     description: "Stay ahead of privacy regulations",
-    href: "/services#compliance",
+    href: "/services/compliance",
     icon: ShieldCheck,
   },
   {
     title: "Accessibility",
     description: "Ensure an inclusive experience",
-    href: "/services#accessibility",
+    href: "/services/accessibility",
     icon: Accessibility,
   },
 ];
@@ -86,17 +86,17 @@ const solutions = [
 const useCases = [
   {
     title: "SEO",
-    href: "/services#seo",
+    href: "/services/seo",
     icon: Search,
   },
   {
     title: "Performance",
-    href: "/services#performance",
+    href: "/services/performance",
     icon: Gauge,
   },
   {
     title: "Marketing",
-    href: "/services#marketing",
+    href: "/services/marketing",
     icon: Megaphone,
   },
   {
