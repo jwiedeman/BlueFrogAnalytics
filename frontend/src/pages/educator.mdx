@@ -4,25 +4,21 @@ title: 'Educator Discounts'
 description: 'Discounts available for educators.'
 ---
 
-<section class="py-8">
-  <div class="max-w-3xl mx-auto space-y-6">
-    <h1 class="text-3xl font-bold text-center">Educators Shape the Future</h1>
-    <p class="text-center">We believe true mastery is shown through teaching. Thank you for guiding minds and inspiring change.</p>
-    <p>As educators, you ignite curiosity, foster critical thinking, and empower generations to create and innovate. At Blue Frog Analytics, we understand that teaching isn't just a profession—it's a calling that shapes the future.</p>
-    <p>Our platform mirrors your commitment to clarity, understanding, and knowledge sharing. We're passionate about supporting those who dedicate themselves to educating others and strive to provide you with exceptional resources to enhance your teaching toolkit.</p>
-    <h2 class="text-2xl font-semibold">Empowering Educators, Supporting Growth</h2>
-    <p>Gain access to powerful analytical tools and a supportive network, enhancing your ability to demonstrate concepts, simplify complexities, and inspire your students.</p>
-    <div class="bg-gray-100 p-6 text-center rounded">
-      <h3 class="text-xl font-semibold">Special Educator Offer</h3>
-      <ul class="list-disc text-left pl-6 space-y-1">
-        <li><strong>50% OFF</strong> your first year</li>
-        <li>Full suite of intuitive analytics and SEO resources</li>
-        <li>Dedicated entry to a collaborative professional community via Discord</li>
-        <li>In-depth, accessible documentation designed to empower your teaching</li>
-        <li>Continued support and professional development resources</li>
-      </ul>
-    </div>
-    <p class="text-center mt-4">Your dedication shapes the leaders of tomorrow. Let us help shape your journey today.</p>
-    <p class="text-center text-lg">Thank you for teaching, from all of us at Blue Frog Analytics!</p>
-  </div>
-</section>
+import { About1 } from '../components/sections/About1'
+
+<About1
+  heading="Educators Shape the Future"
+  description="We believe true mastery is shown through teaching. Thank you for guiding minds and inspiring change."
+  mission="As educators, you ignite curiosity, foster critical thinking, and empower generations to create and innovate. At Blue Frog Analytics, we understand that teaching isn't just a profession—it's a calling that shapes the future."
+  subheading="Empowering Educators, Supporting Growth"
+  subDescription="Gain access to powerful analytical tools and a supportive network, enhancing your ability to demonstrate concepts, simplify complexities, and inspire your students."
+  bullets={[
+    '50% OFF your first year',
+    'Full suite of intuitive analytics and SEO resources',
+    'Dedicated entry to a collaborative professional community via Discord',
+    'In-depth, accessible documentation designed to empower your teaching',
+    'Continued support and professional development resources',
+  ]}
+  closingHeading="Your dedication shapes the leaders of tomorrow. Let us help shape your journey today."
+  closingText="Thank you for teaching, from all of us at Blue Frog Analytics!"
+/>
