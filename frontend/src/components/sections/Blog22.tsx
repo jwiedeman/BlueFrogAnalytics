@@ -3,13 +3,12 @@ import type { CollectionEntry } from "astro:content"
 
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
+import { randomUnsplash } from "@/lib/utils"
 
 interface Blog22Props {
   posts: CollectionEntry<"blog">[]
 }
 
-const placeholderMain = "https://source.unsplash.com/random/1200x800?sig=20"
-const placeholderList = "https://source.unsplash.com/random/600x400?sig=21"
 
 const Blog22 = ({ posts }: Blog22Props) => {
   if (!posts.length) return null
@@ -34,7 +33,7 @@ const Blog22 = ({ posts }: Blog22Props) => {
           <div className="mb-4">
             <img
               className="w-full rounded-lg object-cover"
-              src={first.data.image ?? placeholderMain}
+              src={first.data.image ?? randomUnsplash()}
               alt={first.data.title}
             />
             <div className="mt-4">
@@ -59,7 +58,7 @@ const Blog22 = ({ posts }: Blog22Props) => {
                 <div className="w-1/4 shrink-0 md:w-1/5">
                   <img
                     className="rounded-md"
-                    src={post.data.image ?? placeholderList}
+                    src={post.data.image ?? randomUnsplash(600, 400)}
                     alt={post.data.title}
                   />
                 </div>

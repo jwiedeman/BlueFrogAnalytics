@@ -13,15 +13,12 @@ import {
 } from "@/components/ui/pagination"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { randomUnsplash } from "@/lib/utils"
 
 interface Blog3Props {
   posts: CollectionEntry<"blog">[]
 }
 
-const placeholders = [
-  "https://source.unsplash.com/random/1200x800?sig=10",
-  "https://source.unsplash.com/random/1200x800?sig=11",
-]
 
 const Blog3 = ({ posts }: Blog3Props) => {
   if (!posts.length) return null
@@ -38,7 +35,7 @@ const Blog3 = ({ posts }: Blog3Props) => {
           <div className="mb-4 aspect-4/3 overflow-clip rounded-xl md:mb-0 md:aspect-8/5 lg:rounded-2xl">
             <div className="h-full w-full transition duration-300 group-hover:scale-105">
               <img
-                src={first.data.image ?? placeholders[0]}
+                src={first.data.image ?? randomUnsplash()}
                 alt={first.data.title}
                 className="relative h-full w-full object-cover object-center"
               />
@@ -101,7 +98,7 @@ const Blog3 = ({ posts }: Blog3Props) => {
                 <div className="mb-4 flex overflow-clip rounded-xl md:mb-5">
                   <div className="h-full w-full transition duration-300 group-hover:scale-105">
                     <img
-                      src={post.data.image ?? placeholders[1]}
+                      src={post.data.image ?? randomUnsplash(600, 400)}
                       alt={post.data.title}
                       className="aspect-3/2 h-full w-full object-cover object-center"
                     />

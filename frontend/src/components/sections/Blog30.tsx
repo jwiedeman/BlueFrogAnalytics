@@ -2,7 +2,7 @@ import { ArrowRightIcon } from "lucide-react"
 import React from "react"
 import type { CollectionEntry } from "astro:content"
 
-import { cn } from "@/lib/utils"
+import { cn, randomUnsplash } from "@/lib/utils"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -11,11 +11,6 @@ interface Blog30Props {
   posts: CollectionEntry<"blog">[]
 }
 
-const placeholders = [
-  "https://source.unsplash.com/random/1200x800?sig=1",
-  "https://source.unsplash.com/random/1200x800?sig=2",
-  "https://source.unsplash.com/random/1200x800?sig=3",
-];
 
 const Blog30 = ({ posts }: Blog30Props) => {
   return (
@@ -26,7 +21,7 @@ const Blog30 = ({ posts }: Blog30Props) => {
         </h1>
 
         <div className="flex flex-col">
-          {posts.slice(0, placeholders.length).map((post, index) => (
+          {posts.slice(0, 3).map((post, index) => (
             <a
               key={post.slug}
               href={`/blog/${post.slug}`}
@@ -34,7 +29,7 @@ const Blog30 = ({ posts }: Blog30Props) => {
             >
               <div className="flex h-80 w-full items-center justify-center overflow-hidden rounded-3xl bg-muted md:w-140">
                 <img
-                  src={post.data.image ?? placeholders[index % placeholders.length]}
+                  src={post.data.image ?? randomUnsplash()}
                   className="h-full w-full object-cover"
                   alt={post.data.title}
                 />
