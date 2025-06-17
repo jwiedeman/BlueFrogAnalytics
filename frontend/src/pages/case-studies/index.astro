@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/main.astro';
+import { Casestudies2 } from '../../components/sections/Casestudies2';
+export const title = "Case Studies";
+---
+<Layout title={title}>
+  <Casestudies2 />
+  <div class="container py-16">
+    <h2 class="mb-6 text-3xl font-semibold text-center">Featured Case Studies</h2>
+    <ul class="mx-auto flex max-w-prose flex-col gap-4 text-center">
+      <li>
+        <a class="text-primary hover:underline" href="/case-studies/streamlined-workflows">
+          Streamlined Workflows
+        </a>
+      </li>
+      <li>
+        <a class="text-primary hover:underline" href="/case-studies/accelerated-growth">
+          Accelerated Growth
+        </a>
+      </li>
+    </ul>
+  </div>
+</Layout>

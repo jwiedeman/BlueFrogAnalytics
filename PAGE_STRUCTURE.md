@@ -6,7 +6,9 @@
 - birthday.mdx
 - booking.astro
 - careers.astro
-- case-studies.astro
+- case-studies/index.astro
+- case-studies/accelerated-growth.astro
+- case-studies/streamlined-workflows.astro
 - changelog.astro
 - chatbot.astro
 - compare-services.astro
