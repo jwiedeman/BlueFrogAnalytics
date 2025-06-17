@@ -4,25 +4,21 @@ title: 'Military & Veterans'
 description: 'Special offers for military members and veterans.'
 ---
 
-<section class="py-8">
-  <div class="max-w-3xl mx-auto space-y-6">
-    <h1 class="text-3xl font-bold text-center">You Served. We Understand.</h1>
-    <p class="text-center">At Blue Frog Analytics, we're not just saying thank you—we're building something real together.</p>
-    <p>We deeply recognize the determination, courage, and relentless drive it takes to transition from serving your country to conquering the business world. As veterans ourselves, our team has walked in your boots—from deployments and drill fields to oil rigs, warehouses, hospitals, and offices. We intimately understand the grit, perseverance, and quiet strength that comes from serving in uniform.</p>
-    <p>Facing entrenched giants in the business landscape can feel daunting, even overwhelming. We know the battle of the solo founder, the isolation, and the drive that pushes you to build something meaningful. That’s why we created Blue Frog Analytics—to be the partner we wished we had when we started.</p>
-    <h2 class="text-2xl font-semibold">A Real Partnership, Built on Shared Experience</h2>
-    <p>We offer you more than tools—we offer genuine camaraderie, world-class support, and a thriving professional network ready to back you every step of the way.</p>
-    <div class="bg-gray-100 p-6 text-center rounded">
-      <h3 class="text-xl font-semibold">Your Exclusive Veteran Offer</h3>
-      <ul class="list-disc text-left pl-6 space-y-1">
-        <li><strong>75% OFF</strong> your first year</li>
-        <li>Full access to our extensive suite of analytics tools</li>
-        <li>Unrestricted entry to our professional network and client portal</li>
-        <li>Comprehensive, clear documentation to ensure your success</li>
-        <li>A supportive Discord community—fellow veterans and entrepreneurs ready to share, support, and empower</li>
-      </ul>
-    </div>
-    <p class="text-center mt-4">Together, let’s build a legacy you're proud to stand behind.</p>
-    <p class="text-center text-lg">You served bravely. Now, let us serve you.</p>
-  </div>
-</section>
+import { About1 } from '../components/sections/About1'
+
+<About1
+  heading="You Served. We Understand."
+  description="At Blue Frog Analytics, we're not just saying thank you—we're building something real together."
+  mission="We deeply recognize the determination, courage, and relentless drive it takes to transition from serving your country to conquering the business world. As veterans ourselves, our team has walked in your boots—from deployments and drill fields to oil rigs, warehouses, hospitals, and offices. We intimately understand the grit, perseverance, and quiet strength that comes from serving in uniform."
+  subheading="A Real Partnership, Built on Shared Experience"
+  subDescription="We offer you more than tools—we offer genuine camaraderie, world-class support, and a thriving professional network ready to back you every step of the way."
+  bullets={[
+    '75% OFF your first year',
+    'Full access to our extensive suite of analytics tools',
+    'Unrestricted entry to our professional network and client portal',
+    'Comprehensive, clear documentation to ensure your success',
+    'A supportive Discord community—fellow veterans and entrepreneurs ready to share, support, and empower',
+  ]}
+  closingHeading="Together, let’s build a legacy you're proud to stand behind."
+  closingText="You served bravely. Now, let us serve you."
+/>
