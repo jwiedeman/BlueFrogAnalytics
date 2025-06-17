@@ -1,9 +1,12 @@
 ---
 import Layout from '../../layouts/main.astro';
-export const title = 'Service B'
+import { Feature22 } from '../../components/sections/Feature22';
+export const title = 'Service B - Analytics Consulting';
 ---
 <Layout title={title}>
-<div class="p-4">
-  TODO: Add Service B content.
-</div>
+  <section class="container py-8">
+    <h1 class="mb-4 text-4xl font-semibold">Analytics Consulting</h1>
+    <p class="mb-6 text-muted-foreground">Gain insights and strategy from our data experts.</p>
+  </section>
+  <Feature22 />
 </Layout>
