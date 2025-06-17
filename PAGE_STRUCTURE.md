@@ -161,6 +161,10 @@
 - services/accessibility.astro
 \n## Industry Pages
 - industry-pages/index.astro
+- industry/bar.mdx
+- industry/services.mdx
+- industry/restaurant.mdx
+- industry/food-truck.mdx
 \n## Service Areas
 - service-areas/index.astro
 \n## Resources
