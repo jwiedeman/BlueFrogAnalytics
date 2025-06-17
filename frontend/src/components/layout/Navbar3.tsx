@@ -30,7 +30,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -175,6 +175,8 @@ const Navbar3 = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const [mobileProfileOpen, setMobileProfileOpen] = useState(false);
+  const profileRef = useRef<HTMLDivElement>(null);
+  const mobileProfileRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setShowDebug(window.location.search.includes('debug=true'));
@@ -188,6 +190,22 @@ const Navbar3 = () => {
       update(localStorage.getItem('bfaLoggedIn') === 'true');
     }
     return () => { if (typeof unsub === 'function') unsub(); };
+  }, []);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (profileRef.current && !profileRef.current.contains(e.target as Node)) {
+        setProfileOpen(false);
+      }
+      if (
+        mobileProfileRef.current &&
+        !mobileProfileRef.current.contains(e.target as Node)
+      ) {
+        setMobileProfileOpen(false);
+      }
+    };
+    document.addEventListener('click', handler);
+    return () => document.removeEventListener('click', handler);
   }, []);
   return (
     <section className="inset-x-0 top-0 z-20 bg-background">
@@ -547,13 +565,15 @@ const Navbar3 = () => {
                 </Button>
               )}
               {!loggedIn && (
-                <Button variant="outline" href="/contact">
-                  Start now
-                  <ChevronRight className="size-4" />
+                <Button asChild variant="outline">
+                  <a href="/contact">
+                    Start now
+                    <ChevronRight className="size-4" />
+                  </a>
                 </Button>
               )}
               {loggedIn && (
-                <div className="relative" onBlur={() => setProfileOpen(false)}>
+                <div className="relative" ref={profileRef}>
                   <Button
                     variant="outline"
                     onClick={() => setProfileOpen(!profileOpen)}
@@ -686,13 +706,13 @@ const Navbar3 = () => {
                     <Button asChild variant="outline" className="relative" size="lg">
                       <a href="/login">Login</a>
                     </Button>
-                    <Button className="relative" size="lg" href="/contact">
-                      Start now
+                    <Button asChild className="relative" size="lg">
+                      <a href="/contact">Start now</a>
                     </Button>
                   </>
                 )}
                 {loggedIn && (
-                  <div className="relative" onBlur={() => setMobileProfileOpen(false)}>
+                  <div className="relative" ref={mobileProfileRef}>
                     <Button
                       className="relative"
                       size="lg"
