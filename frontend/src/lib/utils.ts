@@ -13,8 +13,7 @@ export function cn(...inputs: ClassValue[]) {
  */
 export function randomUnsplash(width = 1200, height = 800): string {
   const sig = Math.floor(Math.random() * 10000)
-  // Use query params for width and height because the path-based format can
-  // fail if Unsplash changes routing. The `sig` parameter busts cache so each
-  // request returns a different image.
-  return `https://source.unsplash.com/random?w=${width}&h=${height}&sig=${sig}`
+  // Use path parameters for width and height. The `sig` query parameter
+  // busts the cache so each request returns a different image.
+  return `https://source.unsplash.com/random/${width}x${height}?sig=${sig}`
 }
