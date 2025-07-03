@@ -553,24 +553,16 @@
   color: var(--color-sidebar-foreground);
 }
 .docs-sidebar a {
-  display: block;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
+  @apply border-border block border-l py-1 text-sm text-muted-foreground transition-colors duration-200;
 }
 .docs-sidebar a:hover {
-  text-decoration: underline;
+  @apply text-primary;
 }
 .docs-sidebar a.active {
-  font-weight: 600;
-  color: #1F75FE;
+  @apply border-primary text-primary font-medium;
 }
 .docs-sidebar summary {
-  cursor: pointer;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-  font-weight: 600;
-  text-transform: capitalize;
-  list-style: none;
+  @apply cursor-pointer py-1 font-semibold text-muted-foreground list-none;
 }
 .docs-sidebar details summary::marker,
 .docs-sidebar summary::-webkit-details-marker {
@@ -579,7 +571,7 @@
 
 /* Highlight open folder label */
 .docs-sidebar details[open] > summary {
-  color: #1F75FE;
+  @apply text-primary;
 }
 
 /* Docs heading sidebar */

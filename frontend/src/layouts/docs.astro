@@ -63,20 +63,24 @@ const breadcrumb = findPath(docTree) || [];
       <nav>
         <ul class="space-y-1">
           {(() => {
-            function render(nodes) {
+            function render(nodes, depth = 0) {
               return nodes.map(n => (
                 n.children.length ? (
                   <li>
-                    <details open={breadcrumb.some(b => b.name === n.name)}>
-                      <summary>{n.label}</summary>
+                    <details open={breadcrumb.some(b => b.name === n.name)} class="mb-1">
+                      <summary class="cursor-pointer text-muted-foreground font-semibold">{n.label}</summary>
                       <ul class="ml-4 space-y-1">
-                        {render(n.children)}
+                        {render(n.children, depth + 1)}
                       </ul>
                     </details>
                   </li>
                 ) : (
                   <li>
-                    <a class={current === n.path.replace(/\/$/, '').toLowerCase() ? 'active' : ''} href={n.path}>{n.label}</a>
+                    <a
+                      href={n.path}
+                      style={`padding-left: ${10 + depth * 8}px`}
+                      class={`border-border block border-l py-1 text-sm transition-colors duration-200 ${current === n.path.replace(/\/$/, '').toLowerCase() ? 'border-primary text-primary font-medium' : 'text-muted-foreground hover:text-primary'}`}
+                    >{n.label}</a>
                   </li>
                 )
               ));
