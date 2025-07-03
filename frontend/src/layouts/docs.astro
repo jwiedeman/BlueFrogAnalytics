@@ -94,15 +94,18 @@ const breadcrumb = findPath(docTree) || [];
     <aside class="sticky top-20 hidden xl:block w-48 max-h-[calc(100vh-5rem)] overflow-y-auto p-4 text-sm">
       <nav>
         <ul id="toc">
-          {headings.map(h => (
-            <li class={`ml-${(h.depth - 1) * 4}`.replace('ml-0', '')}>
-              <a
-                href={`#${h.slug}`}
-                class="border-border block py-1 pl-2.5 text-muted-foreground transition-colors duration-200 hover:text-primary"
-                >{h.text}</a
-              >
-            </li>
-          ))}
+          {(() => {
+            const minDepth = Math.min(...headings.map(h => h.depth));
+            return headings.map(h => (
+              <li class={`ml-${(h.depth - minDepth) * 4}`.replace('ml-0', '')}>
+                <a
+                  href={`#${h.slug}`}
+                  class="border-border block py-1 pl-2.5 text-muted-foreground transition-colors duration-200 hover:text-primary"
+                  >{h.text}</a
+                >
+              </li>
+            ));
+          })()}
         </ul>
       </nav>
     </aside>
