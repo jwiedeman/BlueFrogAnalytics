@@ -564,6 +564,9 @@
 .docs-sidebar summary {
   @apply cursor-pointer py-1 font-semibold text-muted-foreground list-none;
 }
+.docs-sidebar summary svg {
+  @apply ml-1 inline-block h-3 w-3 transition-transform text-muted-foreground;
+}
 .docs-sidebar details summary::marker,
 .docs-sidebar summary::-webkit-details-marker {
   display: none;
@@ -572,6 +575,9 @@
 /* Highlight open folder label */
 .docs-sidebar details[open] > summary {
   @apply text-primary;
+}
+.docs-sidebar details[open] > summary svg {
+  @apply rotate-90;
 }
 
 /* Docs heading sidebar */
