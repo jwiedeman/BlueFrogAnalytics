@@ -154,7 +154,7 @@ const Blogpost5 = ({ title, date, description, children }: BlogpostProps) => {
           {headings.length > 0 && (
             <nav className="sticky top-10 hidden h-fit lg:block">
               <p className="text-muted-foreground text-sm">ON THIS PAGE</p>
-              <ul className="text-muted-foreground mt-1.5 text-xs">
+              <ul id="toc" className="text-muted-foreground mt-1.5 text-xs">
                 {headings.map((h) => (
                   <li key={h.id}>
                     <a

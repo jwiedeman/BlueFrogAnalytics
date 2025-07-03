@@ -1,5 +1,6 @@
 ---
 import Main from './main.astro';
+import { ChevronRight } from 'lucide-react';
 const { title = 'Docs', description = '', headings = [] } = Astro.props;
 
 // gather docs files to build sidebar tree
@@ -56,6 +57,19 @@ function findPath(nodes, parents = []) {
   return null;
 }
 const breadcrumb = findPath(docTree) || [];
+const headingTree = (() => {
+  if (headings.length === 0) return [];
+  const minDepth = Math.min(...headings.map(h => h.depth));
+  const root = [];
+  const stack = [{ depth: minDepth - 1, children: root }];
+  for (const h of headings) {
+    const item = { ...h, children: [] };
+    while (stack.length && h.depth <= stack[stack.length - 1].depth) stack.pop();
+    stack[stack.length - 1].children.push(item);
+    stack.push(item);
+  }
+  return root;
+})();
 ---
 <Main title={title}>
   <div class="flex">
@@ -68,7 +82,9 @@ const breadcrumb = findPath(docTree) || [];
                 n.children.length ? (
                   <li>
                     <details open={breadcrumb.some(b => b.name === n.name)} class="mb-1">
-                      <summary class="cursor-pointer text-muted-foreground font-semibold">{n.label}</summary>
+                      <summary class="cursor-pointer text-muted-foreground font-semibold flex items-center">
+                        <ChevronRight class="chevron-icon mr-1 size-3" />{n.label}
+                      </summary>
                       <ul class="ml-4 space-y-1">
                         {render(n.children, depth + 1)}
                       </ul>
@@ -95,20 +111,27 @@ const breadcrumb = findPath(docTree) || [];
         <slot />
       </article>
     </section>
-    <aside class="sticky top-20 hidden xl:block w-48 max-h-[calc(100vh-5rem)] overflow-y-auto p-4 text-sm">
+    <aside class="sticky top-20 hidden xl:block h-fit w-48 max-h-[calc(100vh-5rem)] overflow-y-auto p-4 text-sm">
       <nav>
-        <ul id="toc">
+        <p class="text-muted-foreground text-sm">ON THIS PAGE</p>
+        <ul id="toc" class="text-muted-foreground mt-1.5 text-xs">
           {(() => {
-            const minDepth = Math.min(...headings.map(h => h.depth));
-            return headings.map(h => (
-              <li class={`ml-${(h.depth - minDepth) * 4}`.replace('ml-0', '')}>
-                <a
-                  href={`#${h.slug}`}
-                  class="border-border block py-1 pl-2.5 text-muted-foreground transition-colors duration-200 hover:text-primary"
-                  >{h.text}</a
-                >
-              </li>
-            ));
+            function render(nodes) {
+              return nodes.map(n => (
+                <li>
+                  <a
+                    href={`#${n.slug}`}
+                    class="border-border block border-l py-1 pl-2.5 text-muted-foreground transition-colors duration-200 hover:text-primary"
+                  >{n.text}</a>
+                  {n.children.length ? (
+                    <ul class="ml-4">
+                      {render(n.children)}
+                    </ul>
+                  ) : null}
+                </li>
+              ));
+            }
+            return render(headingTree);
           })()}
         </ul>
       </nav>
