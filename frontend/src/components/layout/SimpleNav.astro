@@ -4,9 +4,9 @@
   <ul class="flex flex-wrap gap-4 text-sm">
     <li><a href="/">Home</a></li>
     <li><a href="/docs">Docs</a></li>
-    <li class="relative group">
+    <li class="relative">
       <span>Services</span>
-      <ul class="hidden group-hover:block absolute bg-white shadow p-2 space-y-1">
+      <ul class="hidden absolute bg-white shadow p-2 space-y-1">
         <li><a href="/services">Overview</a></li>
         <li><a href="/services/launch">Business Launch Kit</a></li>
         <li><a href="/services/seo">SEO Optimization</a></li>
@@ -17,9 +17,9 @@
         <li><a href="/services/accessibility">Accessibility Audits</a></li>
       </ul>
     </li>
-    <li class="relative group">
+    <li class="relative">
       <span>Resources</span>
-      <ul class="hidden group-hover:block absolute bg-white shadow p-2 space-y-1">
+      <ul class="hidden absolute bg-white shadow p-2 space-y-1">
         <li><a href="/blog">Blog</a></li>
         <li><a href="/resources">Resources</a></li>
         <li><a href="/whitepapers">Whitepapers</a></li>
@@ -32,9 +32,9 @@
         <li><a href="/geo-landing-pages">Geo Landing Pages</a></li>
       </ul>
     </li>
-    <li class="relative group">
+    <li class="relative">
       <span>Company</span>
-      <ul class="hidden group-hover:block absolute bg-white shadow p-2 space-y-1">
+      <ul class="hidden absolute bg-white shadow p-2 space-y-1">
         <li><a href="/about">About Us</a></li>
         <li><a href="/press">Press</a></li>
         <li><a href="/changelog">Changelog</a></li>
@@ -44,9 +44,9 @@
         <li><a href="/trust-badges">Trust Badges</a></li>
       </ul>
     </li>
-    <li class="relative group">
+    <li class="relative">
       <span>Support</span>
-      <ul class="hidden group-hover:block absolute bg-white shadow p-2 space-y-1">
+      <ul class="hidden absolute bg-white shadow p-2 space-y-1">
         <li><a href="/contact">Contact</a></li>
         <li><a href="/request-a-quote">Request a Quote</a></li>
         <li><a href="/booking">Booking</a></li>
@@ -56,9 +56,9 @@
         <li><a href="/chatbot">Chatbot</a></li>
       </ul>
     </li>
-    <li class="relative group">
+    <li class="relative">
       <span>Customers</span>
-      <ul class="hidden group-hover:block absolute bg-white shadow p-2 space-y-1">
+      <ul class="hidden absolute bg-white shadow p-2 space-y-1">
         <li><a href="/testimonials">Testimonials</a></li>
         <li><a href="/case-studies">Case Studies</a></li>
         <li><a href="/gallery">Gallery</a></li>
@@ -66,9 +66,9 @@
         <li><a href="/compare-services">Compare Services</a></li>
       </ul>
     </li>
-    <li class="relative group">
+    <li class="relative">
       <span>Partners</span>
-      <ul class="hidden group-hover:block absolute bg-white shadow p-2 space-y-1">
+      <ul class="hidden absolute bg-white shadow p-2 space-y-1">
         <li><a href="/integrations">Integrations</a></li>
         <li><a href="/partners">Partners</a></li>
       </ul>
@@ -77,3 +77,25 @@
     <li><a href="/login">Login</a></li>
   </ul>
 </nav>
+
+<script>
+(() => {
+  const items = document.querySelectorAll('nav li.relative');
+  items.forEach((item) => {
+    const dropdown = item.querySelector('ul');
+    if (!dropdown) return;
+    let timer;
+    const show = () => {
+      clearTimeout(timer);
+      dropdown.classList.remove('hidden');
+    };
+    const hide = () => {
+      timer = setTimeout(() => dropdown.classList.add('hidden'), 1500);
+    };
+    item.addEventListener('mouseenter', show);
+    item.addEventListener('mouseleave', hide);
+    dropdown.addEventListener('mouseenter', show);
+    dropdown.addEventListener('mouseleave', hide);
+  });
+})();
+</script>
