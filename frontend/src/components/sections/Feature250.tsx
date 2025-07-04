@@ -37,11 +37,11 @@ function AnimatedBeamIllustration() {
       className="relative flex w-full items-center justify-center overflow-hidden p-10"
       ref={containerRef}
     >
-      <div className="flex w-full flex-col items-center justify-between gap-10 lg:flex-row">
-        <div className="relative z-10 flex h-100 w-full items-center justify-center rounded-3xl lg:w-0">
+        <div className="flex w-full flex-col items-center justify-between gap-10 lg:flex-row">
+        <div className="relative z-10 flex h-[25rem] w-full items-center justify-center rounded-3xl lg:w-0">
           <div
             ref={div1Ref}
-            className="absolute top-40 left-0 z-10 flex size-18 -translate-y-1/2 items-center justify-center rounded-full bg-background p-1 lg:top-1/2 lg:left-0"
+            className="absolute top-40 left-0 z-10 flex size-[4.5rem] -translate-y-1/2 items-center justify-center rounded-full bg-background p-1 lg:top-1/2 lg:left-0"
           >
             <div className="flex size-10 items-center justify-center rounded-lg border border-border bg-background p-[5px]">
               <div className="flex size-full items-center justify-center rounded-md border border-border bg-muted">
@@ -51,7 +51,7 @@ function AnimatedBeamIllustration() {
           </div>
           <div
             ref={div2Ref}
-            className="absolute top-40 right-0 z-10 flex size-18 -translate-y-1/2 items-center justify-center rounded-full bg-background p-1 lg:top-20 lg:left-20"
+            className="absolute top-40 right-0 z-10 flex size-[4.5rem] -translate-y-1/2 items-center justify-center rounded-full bg-background p-1 lg:top-20 lg:left-20"
           >
             <div className="flex size-10 items-center justify-center rounded-lg border border-border bg-background p-[5px]">
               <div className="flex size-full items-center justify-center rounded-md border border-border bg-muted">
@@ -61,7 +61,7 @@ function AnimatedBeamIllustration() {
           </div>
           <div
             ref={div3Ref}
-            className="absolute bottom-0 left-6 z-10 flex size-18 -translate-y-1/2 items-center justify-center rounded-full bg-background p-1 lg:bottom-2 lg:left-20"
+            className="absolute bottom-0 left-6 z-10 flex size-[4.5rem] -translate-y-1/2 items-center justify-center rounded-full bg-background p-1 lg:bottom-2 lg:left-20"
           >
             <div className="flex size-10 items-center justify-center rounded-lg border border-border bg-background p-[5px]">
               <div className="flex size-full items-center justify-center rounded-md border border-border bg-muted">
@@ -71,7 +71,7 @@ function AnimatedBeamIllustration() {
           </div>
           <div
             ref={div4Ref}
-            className="absolute right-6 bottom-0 z-10 flex size-18 -translate-y-1/2 items-center justify-center rounded-full bg-background p-1 lg:top-0 lg:left-50"
+            className="absolute right-6 bottom-0 z-10 flex size-[4.5rem] -translate-y-1/2 items-center justify-center rounded-full bg-background p-1 lg:top-0 lg:left-[12.5rem]"
           >
             <div className="flex size-10 items-center justify-center rounded-lg border border-border bg-background p-[5px]">
               <div className="flex size-full items-center justify-center rounded-md border border-border bg-muted">
@@ -81,7 +81,7 @@ function AnimatedBeamIllustration() {
           </div>
           <div
             ref={div5Ref}
-            className="absolute top-20 z-10 flex size-18 -translate-y-1/2 items-center justify-center rounded-full bg-background p-1 lg:top-100 lg:left-50"
+            className="absolute top-20 z-10 flex size-[4.5rem] -translate-y-1/2 items-center justify-center rounded-full bg-background p-1 lg:top-[25rem] lg:left-[12.5rem]"
           >
             <div className="flex size-10 items-center justify-center rounded-lg border border-border bg-background p-[5px]">
               <div className="flex size-full items-center justify-center rounded-md border border-border bg-muted">
@@ -92,7 +92,7 @@ function AnimatedBeamIllustration() {
         </div>
         <div
           ref={div6Ref}
-          className="z-10 flex size-32 items-center justify-center rounded-3xl border bg-muted lg:size-42"
+          className="z-10 flex size-32 items-center justify-center rounded-3xl border bg-muted lg:w-[10.5rem] lg:h-[10.5rem]"
         >
           <img
             src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/block-1.svg"
@@ -102,7 +102,7 @@ function AnimatedBeamIllustration() {
         </div>
         <div
           ref={div7Ref}
-          className="z-10 mt-40 flex size-15 items-center justify-center rounded-xl border bg-muted lg:mt-0"
+          className="z-10 mt-40 flex size-[3.75rem] items-center justify-center rounded-xl border bg-muted lg:mt-0"
         >
           <Icons.zap />
         </div>
