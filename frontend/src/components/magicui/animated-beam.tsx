@@ -57,7 +57,17 @@ export const AnimatedBeam = ({
 
     updatePath();
     window.addEventListener("resize", updatePath);
-    return () => window.removeEventListener("resize", updatePath);
+    window.addEventListener("scroll", updatePath, true);
+
+    const observer = new ResizeObserver(updatePath);
+    if (fromRef.current) observer.observe(fromRef.current);
+    if (toRef.current) observer.observe(toRef.current);
+
+    return () => {
+      window.removeEventListener("resize", updatePath);
+      window.removeEventListener("scroll", updatePath, true);
+      observer.disconnect();
+    };
   }, [
     containerRef,
     fromRef,
