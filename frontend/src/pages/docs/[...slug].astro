@@ -7,7 +7,11 @@ export const prerender = true;
 export async function getStaticPaths() {
   const docs = await getCollection('docs');
   return docs
-    .filter((d) => d.slug !== 'index')
+    .filter((d) => {
+      if (d.slug === 'index') return false;
+      if (import.meta.env.PROD && d.data?.published === false) return false;
+      return true;
+    })
     .map((d) => ({ params: { slug: d.slug } }));
 }
 

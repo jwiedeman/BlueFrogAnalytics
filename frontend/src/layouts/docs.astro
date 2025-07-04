@@ -17,6 +17,7 @@ const labelMap = {
 function buildTree() {
   const tree = [];
   for (const [path, mod] of Object.entries(modules)) {
+    if (import.meta.env.PROD && mod.frontmatter?.published === false) continue;
     const slug = path.replace('../content/docs/', '').replace(/\.mdx$/, '');
     if (slug === 'index') continue;
     const segments = slug.split('/');
