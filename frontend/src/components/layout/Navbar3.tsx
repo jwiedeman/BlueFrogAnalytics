@@ -676,6 +676,7 @@ const Navbar3 = () => {
                       </ul>
                     )}
                   </div>
+                    </>
                 )}
               </div>
             </div>
