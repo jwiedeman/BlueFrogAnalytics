@@ -495,6 +495,11 @@ const Navbar3 = () => {
                 </Button>
               )}
               {loggedIn && (
+                <Button asChild variant="ghost">
+                  <a href="/dashboard">Dashboard</a>
+                </Button>
+              )}
+              {loggedIn && (
                 <div className="relative" ref={profileRef}>
                   <Button
                     variant="outline"
@@ -624,13 +629,17 @@ const Navbar3 = () => {
                   </>
                 )}
                 {loggedIn && (
-                  <div className="relative" ref={mobileProfileRef}>
-                    <Button
-                      className="relative"
-                      size="lg"
-                      onClick={() => setMobileProfileOpen(!mobileProfileOpen)}
-                    >
-                      Profile
+                  <>
+                    <Button asChild variant="outline" className="relative" size="lg">
+                      <a href="/dashboard">Dashboard</a>
+                    </Button>
+                    <div className="relative" ref={mobileProfileRef}>
+                      <Button
+                        className="relative"
+                        size="lg"
+                        onClick={() => setMobileProfileOpen(!mobileProfileOpen)}
+                      >
+                        Profile
                       <ChevronRight className="ml-2 size-4" />
                     </Button>
                     {mobileProfileOpen && (
