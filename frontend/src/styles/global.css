@@ -559,7 +559,8 @@
   @apply text-primary;
 }
 .docs-sidebar a.active {
-  @apply border-primary text-primary font-medium;
+  @apply border-primary font-medium;
+  color: #1F75FE;
 }
 .docs-sidebar summary {
   @apply cursor-pointer py-1 font-semibold text-muted-foreground list-none;
