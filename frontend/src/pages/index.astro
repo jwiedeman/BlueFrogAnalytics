@@ -2,13 +2,9 @@
 import Layout from '../layouts/main.astro';
 export const title = 'Home';
 import { Hero53 } from "../components/sections/Hero53";
-import { Stats8 } from "../components/sections/Stats8";
-import { Logos10 } from "../components/sections/Logos10";
-import { Compare5 } from "../components/sections/Compare5";
+import { Feature250 } from "../components/sections/Feature250";
 ---
 <Layout title={title}>
   <Hero53 />
-  <Stats8 />
-  <Logos10 client:load />
-  <Compare5 />
+  <Feature250 client:load />
 </Layout>
