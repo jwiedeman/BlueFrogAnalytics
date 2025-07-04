@@ -96,7 +96,7 @@ const headingTree = (() => {
                     <a
                       href={n.path}
                       style={`padding-left: ${10 + depth * 8}px`}
-                      class={`border-border block border-l py-1 text-sm transition-colors duration-200 ${current === n.path.replace(/\/$/, '').toLowerCase() ? 'border-primary text-primary font-medium' : 'text-muted-foreground hover:text-primary'}`}
+                      class={`border-border block border-l py-1 text-sm transition-colors duration-200 ${current === n.path.replace(/\/$/, '').toLowerCase() ? 'active border-primary font-medium' : 'text-muted-foreground hover:text-primary'}`}
                     >{n.label}</a>
                   </li>
                 )
