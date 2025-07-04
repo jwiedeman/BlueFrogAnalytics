@@ -70,9 +70,13 @@ function isActive(item) {
   const updateMenu = (logged) => {
     if (loginBtn && profileMenu) {
       if (logged) {
-        loginBtn.classList.add('hidden');
+        loginBtn.textContent = 'Dashboard';
+        loginBtn.setAttribute('href', '/dashboard');
+        loginBtn.classList.remove('hidden');
         profileMenu.classList.remove('hidden');
       } else {
+        loginBtn.textContent = 'Client Login';
+        loginBtn.setAttribute('href', '/login');
         loginBtn.classList.remove('hidden');
         profileMenu.classList.add('hidden');
       }
