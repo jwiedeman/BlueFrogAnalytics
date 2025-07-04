@@ -2,6 +2,7 @@
 
 import { Cpu } from "lucide-react";
 import React, { useRef } from "react";
+
 import { AnimatedBeam } from "@/components/magicui/animated-beam";
 
 const Feature250 = () => {
@@ -9,10 +10,10 @@ const Feature250 = () => {
     <section className="py-32">
       <div className="container">
         <p className="mx-auto mb-4 max-w-sm text-center text-muted-foreground md:text-xl">
-          Unlock Your Website's True Potential
+          Bridging Developers, Building the Future
         </p>
         <h1 className="mx-auto -mb-12 max-w-3xl text-center text-4xl font-medium tracking-tighter md:text-6xl lg:mb-5 lg:text-7xl">
-          Your Optimal Business Awaits
+          Connecting Developers Worldide
         </h1>
         <AnimatedBeamIllustration />
       </div>
@@ -23,63 +24,192 @@ const Feature250 = () => {
 export { Feature250 };
 
 function AnimatedBeamIllustration() {
-  const containerRef = useRef(null);
-  const featureRefs = Array.from({ length: 6 }, () => useRef(null));
-  const optimalBizRef = useRef(null);
-
-  const features = [
-    "Website Building",
-    "SEO Optimization",
-    "Advanced Analytics",
-    "Comprehensive Auditing",
-    "Regulatory Compliance",
-    "Lead Generation",
-  ];
-
+  const containerRef = useRef<HTMLDivElement>(null);
+  const div1Ref = useRef<HTMLDivElement>(null);
+  const div2Ref = useRef<HTMLDivElement>(null);
+  const div3Ref = useRef<HTMLDivElement>(null);
+  const div4Ref = useRef<HTMLDivElement>(null);
+  const div5Ref = useRef<HTMLDivElement>(null);
+  const div6Ref = useRef<HTMLDivElement>(null);
+  const div7Ref = useRef<HTMLDivElement>(null);
   return (
     <div
       className="relative flex w-full items-center justify-center overflow-hidden p-10"
       ref={containerRef}
     >
-      <div className="flex w-full flex-col lg:flex-row items-center justify-between gap-10">
-        <div className="relative flex flex-col gap-8 lg:gap-12">
-          {features.map((feature, index) => (
-            <div
-              key={feature}
-              ref={featureRefs[index]}
-              className="flex items-center gap-4"
-            >
-              <div className="flex size-10 items-center justify-center rounded-lg border border-border bg-muted">
+      <div className="flex w-full flex-col items-center justify-between gap-10 lg:flex-row">
+        <div className="relative z-10 flex h-100 w-full items-center justify-center rounded-3xl lg:w-0">
+          <div
+            ref={div1Ref}
+            className="absolute top-40 left-0 z-10 flex size-18 -translate-y-1/2 items-center justify-center rounded-full bg-background p-1 lg:top-1/2 lg:left-0"
+          >
+            <div className="flex size-10 items-center justify-center rounded-lg border border-border bg-background p-[5px]">
+              <div className="flex size-full items-center justify-center rounded-md border border-border bg-muted">
                 <Cpu size={16} />
               </div>
-              <p className="text-lg font-medium text-muted-foreground">
-                {feature}
-              </p>
             </div>
-          ))}
+          </div>
+          <div
+            ref={div2Ref}
+            className="absolute top-40 right-0 z-10 flex size-18 -translate-y-1/2 items-center justify-center rounded-full bg-background p-1 lg:top-20 lg:left-20"
+          >
+            <div className="flex size-10 items-center justify-center rounded-lg border border-border bg-background p-[5px]">
+              <div className="flex size-full items-center justify-center rounded-md border border-border bg-muted">
+                <Cpu size={16} />
+              </div>
+            </div>
+          </div>
+          <div
+            ref={div3Ref}
+            className="absolute bottom-0 left-6 z-10 flex size-18 -translate-y-1/2 items-center justify-center rounded-full bg-background p-1 lg:bottom-2 lg:left-20"
+          >
+            <div className="flex size-10 items-center justify-center rounded-lg border border-border bg-background p-[5px]">
+              <div className="flex size-full items-center justify-center rounded-md border border-border bg-muted">
+                <Cpu size={16} />
+              </div>
+            </div>
+          </div>
+          <div
+            ref={div4Ref}
+            className="absolute right-6 bottom-0 z-10 flex size-18 -translate-y-1/2 items-center justify-center rounded-full bg-background p-1 lg:top-0 lg:left-50"
+          >
+            <div className="flex size-10 items-center justify-center rounded-lg border border-border bg-background p-[5px]">
+              <div className="flex size-full items-center justify-center rounded-md border border-border bg-muted">
+                <Cpu size={16} />
+              </div>
+            </div>
+          </div>
+          <div
+            ref={div5Ref}
+            className="absolute top-20 z-10 flex size-18 -translate-y-1/2 items-center justify-center rounded-full bg-background p-1 lg:top-100 lg:left-50"
+          >
+            <div className="flex size-10 items-center justify-center rounded-lg border border-border bg-background p-[5px]">
+              <div className="flex size-full items-center justify-center rounded-md border border-border bg-muted">
+                <Cpu size={16} />
+              </div>
+            </div>
+          </div>
         </div>
-
         <div
-          ref={optimalBizRef}
-          className="z-10 flex size-40 items-center justify-center rounded-3xl border bg-muted lg:size-52"
+          ref={div6Ref}
+          className="z-10 flex size-32 items-center justify-center rounded-3xl border bg-muted lg:size-42"
         >
           <img
             src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/block-1.svg"
-            className="size-20 lg:size-24"
-            alt="Optimal Business"
+            className="size-14 lg:size-18"
+            alt=""
           />
+        </div>
+        <div
+          ref={div7Ref}
+          className="z-10 mt-40 flex size-15 items-center justify-center rounded-xl border bg-muted lg:mt-0"
+        >
+          <Icons.zap />
         </div>
       </div>
 
-      {featureRefs.map((fromRef, index) => (
+      <div className="block lg:hidden">
         <AnimatedBeam
-          key={index}
+          duration={3}
+          endYOffset={-60}
+          direction="vertical"
+          endXOffset={-10}
+          curvature={10}
+          containerRef={containerRef}
+          fromRef={div1Ref}
+          toRef={div6Ref}
+        />
+        <AnimatedBeam
+          duration={3}
+          endYOffset={-60}
+          endXOffset={10}
+          curvature={10}
+          containerRef={containerRef}
+          fromRef={div2Ref}
+          toRef={div6Ref}
+          direction="vertical"
+        />
+        <AnimatedBeam
           duration={3}
           containerRef={containerRef}
-          fromRef={fromRef}
-          toRef={optimalBizRef}
+          fromRef={div3Ref}
+          toRef={div6Ref}
+          direction="vertical"
         />
-      ))}
+        <AnimatedBeam
+          duration={3}
+          containerRef={containerRef}
+          fromRef={div4Ref}
+          toRef={div6Ref}
+          direction="vertical"
+        />
+
+        <AnimatedBeam
+          duration={3}
+          containerRef={containerRef}
+          fromRef={div5Ref}
+          toRef={div7Ref}
+          direction="vertical"
+        />
+        <AnimatedBeam
+          duration={3}
+          containerRef={containerRef}
+          fromRef={div6Ref}
+          toRef={div7Ref}
+          direction="vertical"
+        />
+      </div>
+
+      <div className="hidden lg:block">
+        <AnimatedBeam
+          duration={3}
+          containerRef={containerRef}
+          fromRef={div1Ref}
+          toRef={div6Ref}
+        />
+        <AnimatedBeam
+          endYOffset={-30}
+          endXOffset={60}
+          duration={3}
+          curvature={-140}
+          containerRef={containerRef}
+          fromRef={div2Ref}
+          toRef={div6Ref}
+        />
+        <AnimatedBeam
+          duration={3}
+          endYOffset={30}
+          curvature={140}
+          containerRef={containerRef}
+          fromRef={div3Ref}
+          toRef={div6Ref}
+        />
+        <AnimatedBeam
+          duration={3}
+          endYOffset={-30}
+          endXOffset={-60}
+          curvature={-180}
+          containerRef={containerRef}
+          fromRef={div4Ref}
+          toRef={div6Ref}
+        />
+
+        <AnimatedBeam
+          duration={3}
+          endXOffset={-60}
+          endYOffset={30}
+          curvature={180}
+          containerRef={containerRef}
+          fromRef={div5Ref}
+          toRef={div6Ref}
+        />
+        <AnimatedBeam
+          duration={3}
+          containerRef={containerRef}
+          fromRef={div6Ref}
+          toRef={div7Ref}
+        />
+      </div>
     </div>
   );
 }
@@ -100,3 +230,4 @@ const Icons = {
     </svg>
   ),
 };
+
