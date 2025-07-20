@@ -2,14 +2,14 @@
 const mainNav = [
   { label: 'Dashboard', link: '/dashboard', isDash: true },
   { label: 'Home', link: '/' },
-  { label: 'About', link: '/about' },
+  { label: 'Free Testing', link: '/testing' },
+  { label: 'Docs & Guides', link: '/docs' },
   { label: 'Services', link: '/services' },
+  { label: 'About', link: '/about' },
   { label: 'Membership', link: '/membership' },
   { label: 'Discord', link: '/discord' },
   { label: 'Contact', link: '/contact' },
-  { label: 'Free Tools', link: '/testing' },
   { label: 'Blog', link: '/blog' },
-  { label: 'Docs & Guides', link: '/docs' },
 ];
 
 const currentPath = Astro.url.pathname === '/' ? '/' : Astro.url.pathname.replace(/\/$/, '').toLowerCase();
@@ -17,7 +17,7 @@ const currentPath = Astro.url.pathname === '/' ? '/' : Astro.url.pathname.replac
 function isActive(item) {
   const link = item.link === '/' ? '/' : item.link.replace(/\/$/, '').toLowerCase();
   if (item.label === 'Docs & Guides') return currentPath.startsWith('/docs');
-  if (item.label === 'Free Tools') return currentPath.startsWith('/testing');
+  if (item.label === 'Free Testing') return currentPath.startsWith('/testing');
   if (item.label === 'Blog') return currentPath.startsWith('/blog');
   if (link === '/') return currentPath === '/';
   return currentPath === link || currentPath.startsWith(link + '/');

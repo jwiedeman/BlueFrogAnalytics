@@ -1,73 +1,77 @@
 ---
-layout: '../layouts/main.astro'
-title: 'Testing & Tools'
-description: 'Free utilities for checking SEO, performance, and more.'
+title: Free Analytics Audit Tools
+description: Validate your tracking setup and see exactly what's costing you money - completely free.
+template: splash
+hero:
+  tagline: |
+    Discover What's Bleeding Your Revenue
+    
+    Use these free tools to uncover tracking failures, compliance risks, and performance issues in under 2 minutes.
+  image:
+    file: ../../assets/houston.webp
+  actions:
+    - text: Start Free Audit
+      link: /tests/analytics-doctor
+      icon: right-arrow
+      variant: primary
+    - text: Book Paid Deep-Dive
+      link: /services/
+      icon: external
+      variant: minimal
 ---
 
-<section class="py-8">
-  <div class="max-w-3xl mx-auto space-y-6">
-    <h1 class="text-3xl font-bold text-center">Testing & Tools</h1>
-    <p>Use our free utilities to check SEO, performance, accessibility, and other aspects of your site.</p>
-  </div>
-</section>
+import { Card, CardGrid } from '@astrojs/starlight/components';
 
-<section class="py-8 bg-gray-50">
-  <div class="max-w-5xl mx-auto grid gap-6 md:grid-cols-2">
-    <a href="/tests/performance-check" class="block border rounded p-4 hover:bg-white">
-      <h2 class="text-xl font-semibold">Performance Check</h2>
-      <p>Run a Lighthouse performance audit.</p>
-    </a>
-    <a href="/tests/seo-check" class="block border rounded p-4 hover:bg-white">
-      <h2 class="text-xl font-semibold">SEO Check</h2>
-      <p>Analyze search engine optimization signals.</p>
-    </a>
-    <a href="/tests/analytics-tag-health-checker" class="block border rounded p-4 hover:bg-white">
-      <h2 class="text-xl font-semibold">Analytics Tag Health Checker</h2>
-      <p>Scan a domain for analytics implementations.</p>
-    </a>
-    <a href="/tests/roas-calculator" class="block border rounded p-4 hover:bg-white">
-      <h2 class="text-xl font-semibold">ROAS &amp; Reality Check Calculator</h2>
-      <p>Simulate advertising performance across scenarios.</p>
-    </a>
-    <a href="/tests/accessibility-check" class="block border rounded p-4 hover:bg-white">
-      <h2 class="text-xl font-semibold">Accessibility Check</h2>
-      <p>Evaluate accessibility with Lighthouse audits.</p>
-    </a>
-    <a href="/tests/tag-drag-race" class="block border rounded p-4 hover:bg-white">
-      <h2 class="text-xl font-semibold">Third-Party Tag Drag Race</h2>
-      <p>Rank external scripts by their performance and privacy impact.</p>
-    </a>
-    <a href="/tests/serp-preview" class="block border rounded p-4 hover:bg-white">
-      <h2 class="text-xl font-semibold">SERP Preview &amp; CTR Predictor</h2>
-      <p>Live-render search listings and estimate CTR.</p>
-    </a>
-    <a href="/tests/contrast-heat-map" class="block border rounded p-4 hover:bg-white">
-      <h2 class="text-xl font-semibold">Accessibility Contrast Heat-Map</h2>
-      <p>Visualize contrast failures and screen reader output.</p>
-    </a>
-    <a href="/tests/sitemap-xml-downloader" class="block border rounded p-4 hover:bg-white">
-      <h2 class="text-xl font-semibold">Sitemap.xml Test &amp; Downloader</h2>
-      <p>Fetch and validate sitemap files.</p>
-    </a>
-    <a href="/tests/robots-txt-downloader" class="block border rounded p-4 hover:bg-white">
-      <h2 class="text-xl font-semibold">robots.txt Test &amp; Downloader</h2>
-      <p>Check robots.txt directives and download them.</p>
-    </a>
-    <a href="/tests/image-bloat-buster" class="block border rounded p-4 hover:bg-white">
-      <h2 class="text-xl font-semibold">Image Bloat Buster</h2>
-      <p>Find and compress oversized images.</p>
-    </a>
-    <a href="/tests/image-next-gen-converter" class="block border rounded p-4 hover:bg-white">
-      <h2 class="text-xl font-semibold">Next-Gen Image Converter</h2>
-      <p>Convert images to WebP for free.</p>
-    </a>
-    <a href="/tests/security-headers-black-box" class="block border rounded p-4 hover:bg-white">
-      <h2 class="text-xl font-semibold">Security Headers Black-Box</h2>
-      <p>Generate server snippets for strong headers.</p>
-    </a>
-    <a href="/tests/site-carbon-calculator" class="block border rounded p-4 hover:bg-white">
-      <h2 class="text-xl font-semibold">Site Carbon Calculator</h2>
-      <p>Estimate the CO₂ footprint of a pageview.</p>
-    </a>
-  </div>
-</section>
+# Free Analytics Testing Suite
+
+**REALITY CHECK:** Most businesses are losing 20-40% of their conversion data to tracking failures. These tools will show you exactly what's broken (and what it's costing you).
+
+## Instant Analytics Validation
+
+<CardGrid>
+  <Card title="🩺 Analytics Doctor" icon="stethoscope">
+    **Comprehensive health check** for your tracking setup. Identifies silent killers like cross-domain issues, iOS 14.5 attribution loss, and compliance violations.
+    
+    [Run Analytics Doctor →](/tests/analytics-doctor)
+  </Card>
+  
+  <Card title="🔍 Revenue Leak Detector" icon="search">
+    **Uncover hidden revenue losses** from broken conversion tracking, missing UTM parameters, and attribution gaps.
+    
+    [Detect Revenue Leaks →](/tests/example-test)
+  </Card>
+  
+  <Card title="⚡ Performance Killer Finder" icon="zap">
+    **Speed audit** that identifies exactly what's slowing down your site and killing conversions.
+    
+    *Coming Soon - Join waitlist*
+  </Card>
+  
+  <Card title="🛡️ Compliance Risk Scanner" icon="shield-alert">
+    **GDPR, CPRA, and accessibility audit** to prevent costly fines before they happen.
+    
+    *Coming Soon - Join waitlist*
+  </Card>
+</CardGrid>
+
+---
+
+## What These Tools Will Reveal
+
+**Warning:** You might not like what you discover, but it's better to know than to keep bleeding money.
+
+- **Tracking Failures** - See which conversions aren't being captured
+- **Attribution Gaps** - Discover how much revenue you can't track back to campaigns  
+- **Compliance Risks** - Identify violations that could trigger massive fines
+- **Performance Issues** - Find speed problems that are killing your conversion rates
+- **Competitive Gaps** - See how your setup compares to industry leaders
+
+---
+
+## Free vs. Paid: Choose Your Level of Protection
+
+**FREE TOOLS:** Perfect for quick validation and identifying obvious issues.
+
+**PAID AUDITS:** For businesses serious about stopping revenue hemorrhaging and building bulletproof systems. [See our services →](/services/)
+
+**The difference?** Free tools show you surface-level issues. Paid audits reveal the deep systematic problems that could be costing you hundreds of thousands in lost revenue.
