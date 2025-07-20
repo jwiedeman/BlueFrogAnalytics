@@ -50,87 +50,149 @@ const shouldRenderSearch =
 </header>
 
 <style>
-  /* Ensure Header is Properly Aligned in Starlight Layout */
+  /* Premium header styling with glassmorphism effect */
   .header {
     width: 100%;
     position: sticky;
     top: 0;
     z-index: 50;
+    backdrop-filter: blur(12px);
+    background: rgba(var(--sl-color-bg-nav), 0.8);
+    border-bottom: 1px solid rgba(var(--sl-color-hairline), 0.3);
+    transition: all 0.3s ease;
+  }
 
+  .header:hover {
+    background: rgba(var(--sl-color-bg-nav), 0.95);
   }
 
   .header-content {
     display: grid;
-    grid-template-columns: auto 1fr auto; /* Logo | Nav (flexible) | Right icons */
+    grid-template-columns: auto 1fr auto;
     align-items: center;
     max-width: var(--sl-content-width);
     margin: 0 auto;
     height: var(--sl-header-height);
-    
+    padding: 0 1.5rem;
+    transition: all 0.3s ease;
   }
 
-  /* Logo Position */
+  /* Enhanced logo positioning */
   .title-wrapper {
     display: flex;
     align-items: center;
+    font-weight: 700;
+    letter-spacing: -0.02em;
   }
 
-  /* Fix Nav Misalignment */
+  /* Premium navigation styling */
   .main-nav {
     display: flex;
     justify-content: center;
+    padding: 0 2rem;
   }
 
   .main-nav ul {
     display: flex;
-    gap: 1.5rem;
+    gap: 0.5rem;
     list-style: none;
     padding: 0;
     margin: 0;
+    align-items: center;
   }
 
   .main-nav a {
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 0.95rem;
     color: var(--sl-color-text);
-    transition: color 0.2s ease-in-out;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    position: relative;
+    background: transparent;
+    border: 1px solid transparent;
   }
 
   .main-nav a:hover {
-    background: var(--sl-color-gray-3);
-    color: var(--sl-color-primary);
+    background: rgba(var(--sl-color-accent), 0.1);
+    color: var(--sl-color-accent);
+    border-color: rgba(var(--sl-color-accent), 0.2);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(var(--sl-color-accent), 0.15);
   }
 
-  /* Keep right-side controls aligned */
+  .main-nav a:active {
+    transform: translateY(0);
+  }
+
+  /* Modern right-side controls */
   .right-group {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.75rem;
   }
 
-  /* Keep Header Within the Starlight Grid */
+  .right-group > * {
+    transition: all 0.3s ease;
+  }
+
+  .right-group > *:hover {
+    transform: scale(1.05);
+  }
+
+  /* Enhanced responsive design */
   @media (min-width: 50rem) {
     :global(:root[data-has-sidebar]) .header {
       position: relative;
     }
   }
 
-  /* Ensure It Doesn't Expand on Doc Pages */
   :global(:root[data-has-sidebar]) .header-content {
     max-width: calc(100% - var(--sl-sidebar-width));
   }
 
-  /* Prevent Jumping by Enforcing Consistent Sizing */
-  .header-content > * {
-    min-width: 150px; /* Ensures each section retains space */
-  }
-
-  /* Mobile Adjustments */
+  /* Premium mobile experience */
   @media (max-width: 768px) {
+    .header-content {
+      padding: 0 1rem;
+    }
+    
     .main-nav {
       display: none;
     }
+    
+    .title-wrapper {
+      font-size: 1.1rem;
+    }
+    
+    .right-group {
+      gap: 0.5rem;
+    }
+  }
+
+  /* Add subtle animation on scroll */
+  @media (prefers-reduced-motion: no-preference) {
+    .header-content > * {
+      animation: slideInFromTop 0.6s ease-out;
+    }
+  }
+
+  @keyframes slideInFromTop {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Focus states for accessibility */
+  .main-nav a:focus {
+    outline: 2px solid var(--sl-color-accent);
+    outline-offset: 2px;
+    background: rgba(var(--sl-color-accent), 0.1);
   }
 </style>
