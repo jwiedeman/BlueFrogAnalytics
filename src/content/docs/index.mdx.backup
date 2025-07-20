@@ -1,0 +1,133 @@
+---
+title: Stop Bleeding Revenue from Broken Analytics
+description: Every day your tracking fails, you lose money. Blue Frog Analytics eliminates the guesswork with precision auditing that major brands trust.
+template: splash
+hero:
+  tagline: |
+    Your competitors aren't losing $100K/month to broken tracking.
+    Why are you?
+    
+    Stop playing analytics Russian roulette. Get precision auditing that Fortune 500 companies use to protect their revenue streams.
+  image:
+    file: ../../assets/houston.webp
+  actions:
+    - text: Run Free Audit Now
+      link: /testing
+      icon: right-arrow
+      variant: primary
+    - text: See What You're Missing
+      link: /services/
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid, LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+## The $2.3 Million Problem Nobody Talks About
+
+**Every month**, businesses hemorrhage revenue from analytics failures they don't even know exist. While you're focused on growth, silent tracking errors are:
+
+- **Corrupting your attribution models** (goodbye ROI accuracy)
+- **Breaking your conversion funnels** (your best customers become ghosts)
+- **Violating compliance requirements** (hello hefty fines)
+- **Sabotaging your competitive edge** (while competitors pull ahead)
+
+### What Industry Leaders Know (That You Don't)
+
+The smartest companies don't trust their tracking to chance. They use **systematic validation** to ensure every pixel fires, every conversion tracks, and every compliance requirement is bulletproof.
+
+---
+
+## The Blue Frog Analytics Advantage
+
+<CardGrid stagger>
+  <Card title=" Scan Your Website" icon="search">
+    Enter your domain, and Blue Frog Analytics performs a deep audit, identifying tracking, SEO, and performance issues.
+  </Card>
+  <Card title=" Get Actionable Reports" icon="chart-line">
+    Receive **detailed breakdowns** of your site’s analytics gaps, SEO weaknesses, and compliance risks.
+  </Card>
+  <Card title=" Implement Fixes" icon="tools">
+    Follow **step-by-step optimization guides** tailored to your site’s unique needs.
+  </Card>
+  <Card title=" Monitor & Improve" icon="repeat">
+    Run **scheduled scans** and track improvements over time to ensure ongoing performance and compliance.
+  </Card>
+</CardGrid>
+
+---
+
+##  Why Choose Blue Frog Analytics?
+
+<CardGrid>
+  <Card title=" Data Accuracy & Validation" icon="check-circle">
+    Ensure tracking pixels, tags, and events fire correctly—no more lost data.
+  </Card>
+  <Card title=" Performance Optimization" icon="speedometer">
+    Identify bottlenecks and boost site speed with AI-driven suggestions.
+  </Card>
+  <Card title=" SEO & Compliance Insights" icon="shield-check">
+    Uncover metadata issues, accessibility problems, and compliance gaps.
+  </Card>
+  <Card title="📢 Custom Reporting & Integrations" icon="layers">
+    Export reports, track historical data, and integrate insights into your workflow.
+  </Card>
+</CardGrid>
+
+---
+
+## **Mission Steps to Optimize Your Website**
+
+<Steps>
+1. **Enter Your Domain**  
+   Get started by inputting your website URL into **Blue Frog Analytics**.
+
+2. **Run a Full Website Audit**  
+   Our system will scan for **tracking issues, SEO gaps, and performance bottlenecks**.
+
+3. **Receive Actionable Reports**  
+   Instantly get a **detailed breakdown** of errors and optimization opportunities.
+
+4. **Fix & Monitor Performance**  
+   Implement fixes, then **re-scan periodically** to maintain peak site health.
+</Steps>
+
+---
+
+##  **Use Blue Frog Analytics for Your Needs**
+
+<Tabs>
+  <TabItem label="Developers" icon="code">
+    - Ensure all tracking scripts fire correctly  
+    - Debug **Google Analytics & Meta Pixel**  
+    - Optimize **Core Web Vitals & Page Speed**
+  </TabItem>
+  
+  <TabItem label="Marketers" icon="chart-line">
+    - Validate conversions & **attribution tracking**  
+    - Ensure **SEO best practices**  
+    - Detect lost **UTM parameters** in paid ads
+  </TabItem>
+  
+  <TabItem label="Compliance Teams" icon="shield-check">
+    - Audit **GDPR, CPRA, & accessibility (WCAG)**  
+    - Verify **cookie consent tracking**  
+    - Identify **data privacy risks** before they escalate
+  </TabItem>
+</Tabs>
+
+---
+
+## Ignite Your Mission
+
+<LinkButton href="/introduction/how-blue-frog-analytics-works" variant="primary" icon="right-arrow">
+  Begin Your Launch
+</LinkButton>
+
+<LinkButton href="/introduction/how-blue-frog-analytics-works" variant="secondary" icon="open-book">
+  Review Flight Plan
+</LinkButton>
+
+<LinkButton href="/introduction/how-blue-frog-analytics-works" variant="minimal" icon="external">
+  View Documentation
+</LinkButton>
