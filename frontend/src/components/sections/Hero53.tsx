@@ -9,8 +9,7 @@ const Hero53 = () => {
       <div className="container px-4 sm:px-6 md:px-8">
         <div className="absolute inset-0 -z-10 h-full w-full bg-[radial-gradient(var(--muted-foreground)_1px,transparent_1px)] [background-size:14px_14px] opacity-35"></div>
         <h1 className="text-5xl font-bold tracking-tight md:text-6xl lg:text-7xl xl:text-8xl">
-          Your Website Already Knows What's Broken—Blue Frog Shows You How to
-          Fix It.
+          Your SMB's Secret Key to Growth
         </h1>
         <div className="mt-10 flex flex-col-reverse gap-8 md:mt-12 md:flex-row md:items-center md:gap-10 lg:mt-14">
           <div className="flex flex-col gap-6">
@@ -44,8 +43,8 @@ const Hero53 = () => {
             </div>
           </div>
           <p className="max-w-lg text-xl leading-relaxed text-muted-foreground">
-            Automated audits, instant insights, and actionable growth playbooks.
-            Identify and fix critical website issues within hours.
+            Targeted leads, unified dashboards and hands-on website expertise.
+            Browse our free docs or request a full audit—no CTO required.
           </p>
         </div>
       </div>
