@@ -46,40 +46,28 @@ import {
 
 const solutions = [
   {
-    title: "SEO",
-    description: "Optimize search visibility and rankings",
-    href: "/services/seo",
-    icon: Search,
-  },
-  {
-    title: "Performance",
-    description: "Improve speed and Core Web Vitals",
-    href: "/services/performance",
-    icon: Gauge,
-  },
-  {
-    title: "Marketing",
-    description: "Engage visitors with targeted campaigns",
-    href: "/services/marketing",
-    icon: Megaphone,
-  },
-  {
-    title: "Consulting",
-    description: "Get expert guidance on analytics strategy",
-    href: "/services/consulting",
+    title: "Bernays Playbook",
+    description: "Proven persuasion tactics for modern brands",
+    href: "/bernays-playbook",
     icon: Book,
   },
   {
-    title: "Compliance",
-    description: "Stay ahead of privacy regulations",
-    href: "/services/compliance",
-    icon: ShieldCheck,
+    title: "PR Consulting",
+    description: "Strategy sessions to shape public opinion",
+    href: "/services/consulting",
+    icon: Megaphone,
   },
   {
-    title: "Accessibility",
-    description: "Ensure an inclusive experience",
-    href: "/services/accessibility",
-    icon: Accessibility,
+    title: "Campaign Services",
+    description: "Full-service influence campaigns",
+    href: "/services/marketing",
+    icon: Gauge,
+  },
+  {
+    title: "Influence Dashboard",
+    description: "Track sentiment and outreach in one place",
+    href: "/dashboard",
+    icon: BarChart,
   },
 ];
 
@@ -128,6 +116,11 @@ const documentationLinks = [
 ];
 
 const resources = [
+  {
+    title: "Bernays Playbook",
+    description: "Download our guide to modern persuasion",
+    href: "/bernays-playbook",
+  },
   {
     title: "Documentation",
     description: "In sapien tellus, sodales in pharetra a, mattis ac turpis.",

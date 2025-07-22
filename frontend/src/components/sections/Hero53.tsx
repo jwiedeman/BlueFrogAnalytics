@@ -9,12 +9,14 @@ const Hero53 = () => {
       <div className="container px-4 sm:px-6 md:px-8">
         <div className="absolute inset-0 -z-10 h-full w-full bg-[radial-gradient(var(--muted-foreground)_1px,transparent_1px)] [background-size:14px_14px] opacity-35"></div>
         <h1 className="text-5xl font-bold tracking-tight md:text-6xl lg:text-7xl xl:text-8xl">
-          Your SMB's Secret Key to Growth
+          Master Public Relations the Bernays Way
         </h1>
         <div className="mt-10 flex flex-col-reverse gap-8 md:mt-12 md:flex-row md:items-center md:gap-10 lg:mt-14">
           <div className="flex flex-col gap-6">
-            <Button className="px-6 py-5 bg-blue-600 hover:bg-blue-700 text-white sm:w-fit">
-              Start Free Scan <Globe className="size-4 ml-2" />
+            <Button asChild className="px-6 py-5 bg-blue-600 hover:bg-blue-700 text-white sm:w-fit">
+              <a href="/bernays-playbook">
+                Get the Bernays Playbook <Globe className="size-4 ml-2" />
+              </a>
             </Button>
             <div className="flex items-center gap-3">
               <span className="inline-flex items-center -space-x-1.5">
@@ -43,8 +45,8 @@ const Hero53 = () => {
             </div>
           </div>
           <p className="max-w-lg text-xl leading-relaxed text-muted-foreground">
-            Targeted leads, unified dashboards and hands-on website expertise.
-            Browse our free docs or request a full audit—no CTO required.
+            Discover how strategic influence can transform your brand. Grab the
+            playbook and start shaping public opinion today.
           </p>
         </div>
       </div>

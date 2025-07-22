@@ -3,8 +3,17 @@ import Layout from '../layouts/main.astro';
 export const title = 'Home';
 import { Hero53 } from "../components/sections/Hero53";
 import { HomeFeatures } from "../components/sections/HomeFeatures";
+import { Cta10 } from "../components/sections/Cta10";
 ---
 <Layout title={title}>
   <Hero53 />
   <HomeFeatures />
+  <Cta10
+    heading="Ready to Influence?"
+    description="Schedule a consultation and put Bernays' principles into action."
+    buttons={{
+      primary: { text: 'Book Now', url: '/booking' },
+      secondary: { text: 'Learn More', url: '/services/consulting' },
+    }}
+  />
 </Layout>
