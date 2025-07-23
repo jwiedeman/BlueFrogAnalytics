@@ -105,19 +105,23 @@ const industries = [
 
 const documentationLinks = [
   {
-    title: "High Level Flow",
-    href: "/docs/introduction/how-blue-frog-analytics-works/",
+    title: "Getting Started",
+    description: "Steps to set up Blue Frog Analytics",
+    href: "/docs/bluefroganalytics/getting-started/installation/",
   },
   {
     title: "Web Platforms",
+    description: "Info on every website builder out there",
     href: "/docs/website-platforms/cms/wordpress/",
   },
   {
     title: "Analytics Platforms",
+    description: "History, integrations, instructions and more",
     href: "/docs/analytics-platforms/google-analytics/",
   },
   {
     title: "Ad Platforms",
+    description: "History, integrations, instructions and more",
     href: "/docs/ad-platforms/google-ads/",
   },
 ];
@@ -257,10 +261,15 @@ const Navbar3 = () => {
                       <NavigationMenuLink
                         key={index}
                         href={link.href}
-                        className="group flex items-center gap-2 rounded-md p-4 hover:bg-accent"
+                        className="group flex items-start gap-2 rounded-md p-4 hover:bg-accent"
                       >
-                        <ArrowUpRight className="size-4" />
-                        <span className="text-base font-medium">{link.title}</span>
+                        <ArrowUpRight className="mt-1 size-4" />
+                        <div className="flex flex-col">
+                          <div className="text-base font-medium">{link.title}</div>
+                          {link.description && (
+                            <div className="text-sm text-muted-foreground">{link.description}</div>
+                          )}
+                        </div>
                       </NavigationMenuLink>
                     ))}
                   </div>
@@ -630,12 +639,17 @@ const Navbar3 = () => {
                   <NavigationMenuLink
                     key={index}
                     href={link.href}
-                    className="group flex flex-row items-center gap-2.5 rounded-md px-2.5 py-[18px] hover:bg-accent"
+                    className="group flex gap-2.5 rounded-md px-2.5 py-[18px] hover:bg-accent"
                   >
                     <div className="flex size-5 items-center justify-center rounded">
                       <ArrowUpRight className="size-3" />
                     </div>
-                    <div className="text-sm">{link.title}</div>
+                    <div>
+                      <div className="text-sm">{link.title}</div>
+                      {link.description && (
+                        <div className="text-xs text-muted-foreground">{link.description}</div>
+                      )}
+                    </div>
                   </NavigationMenuLink>
                 ))}
               </div>

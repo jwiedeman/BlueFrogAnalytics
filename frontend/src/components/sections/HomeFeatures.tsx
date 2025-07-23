@@ -23,7 +23,7 @@ const features = [
     icon: BookOpen,
     title: "Free Documentation",
     description: "Guides and best practices for marketing and analytics.",
-    href: "/docs",
+    href: "/docs/bluefroganalytics/getting-started/installation/",
   },
   {
     icon: Briefcase,
