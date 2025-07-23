@@ -13,7 +13,7 @@ const sections = [
       { name: "Pricing", href: "/pricing" },
       { name: "Features", href: "/services" },
       { name: "Integrations", href: "/integrations" },
-      { name: "Docs", href: "/docs" },
+      { name: "Docs", href: "/docs/bluefroganalytics/getting-started/installation/" },
     ],
   },
   {
