@@ -6,7 +6,7 @@ const { title = 'Docs', description = '', headings = [] } = Astro.props;
 // gather docs files to build sidebar tree
 const modules = import.meta.glob('../content/docs/**/*.mdx', { eager: true });
 const labelMap = {
-  'introduction': 'High Level Flow',
+  'introduction': 'Getting Started',
   'website-platforms': 'Web Platforms',
   'analytics-platforms': 'Analytics Platforms',
   'ad-platforms': 'Ad Platforms',
