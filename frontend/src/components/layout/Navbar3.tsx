@@ -46,40 +46,28 @@ import {
 
 const solutions = [
   {
-    title: "SEO",
-    description: "Optimize search visibility and rankings",
-    href: "/services/seo",
-    icon: Search,
-  },
-  {
-    title: "Performance",
-    description: "Improve speed and Core Web Vitals",
-    href: "/services/performance",
-    icon: Gauge,
-  },
-  {
-    title: "Marketing",
-    description: "Engage visitors with targeted campaigns",
-    href: "/services/marketing",
-    icon: Megaphone,
-  },
-  {
-    title: "Consulting",
-    description: "Get expert guidance on analytics strategy",
+    title: "Influence Playbook",
+    description: "Proven persuasion tactics for modern brands",
     href: "/services/consulting",
     icon: Book,
   },
   {
-    title: "Compliance",
-    description: "Stay ahead of privacy regulations",
-    href: "/services/compliance",
-    icon: ShieldCheck,
+    title: "PR Consulting",
+    description: "Strategy sessions to shape public opinion",
+    href: "/services/consulting",
+    icon: Megaphone,
   },
   {
-    title: "Accessibility",
-    description: "Ensure an inclusive experience",
-    href: "/services/accessibility",
-    icon: Accessibility,
+    title: "Campaign Services",
+    description: "Full-service influence campaigns",
+    href: "/services/marketing",
+    icon: Gauge,
+  },
+  {
+    title: "Influence Dashboard",
+    description: "Track sentiment and outreach in one place",
+    href: "/dashboard",
+    icon: BarChart,
   },
 ];
 
@@ -129,6 +117,11 @@ const documentationLinks = [
 
 const resources = [
   {
+    title: "Influence Playbook",
+    description: "Download our guide to modern persuasion",
+    href: "/services/consulting",
+  },
+  {
     title: "Documentation",
     description: "In sapien tellus, sodales in pharetra a, mattis ac turpis.",
     href: "/docs",
@@ -148,7 +141,7 @@ const resources = [
 const Navbar3 = () => {
   const [open, setOpen] = useState(false);
   const [submenu, setSubmenu] = useState<
-    "platform" | "industries" | "documentation" | "resources" | null
+    "offerings" | "industries" | "documentation" | "resources" | null
   >(null);
   const [showDebug, setShowDebug] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
@@ -232,129 +225,37 @@ const Navbar3 = () => {
 
             <NavigationMenuList className="hidden lg:flex">
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Platform</NavigationMenuTrigger>
+                <NavigationMenuTrigger>Offerings</NavigationMenuTrigger>
                 <NavigationMenuContent className="min-w-[calc(100vw-4rem)] p-8 lg:p-12 2xl:min-w-[calc(1400px-4rem)]">
-                  <div className="flex items-start justify-between gap-8 lg:gap-x-12">
-                    <NavigationMenuLink
-                      href="/services"
-                      className="group w-1/3 max-w-[398px] p-0 hover:bg-transparent"
-                    >
-                      <div className="overflow-clip rounded-lg border border-input bg-background">
-                        <div>
-                          <img
-                            src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
-                            alt="Placeholder image" loading="lazy"
-                            className="h-[190px] w-[398px] object-cover object-center"
-                          />
-                        </div>
-                        <div className="p-5 xl:p-8">
-                          <div className="mb-2 text-base">
-                            Platform Overview
-                          </div>
-                          <div className="text-sm font-normal text-muted-foreground">
-                            Pellentesque nec odio id elit dapibus rutrum.
-                          </div>
-                        </div>
-                      </div>
-                    </NavigationMenuLink>
-                    <div className="max-w-[760px] flex-1">
-                      <div className="mb-6 text-xs tracking-widest text-muted-foreground uppercase">
-                        Solutions
-                      </div>
-                      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8">
-                        {solutions.map((solution, index) => (
-                          <NavigationMenuLink
-                            key={index}
-                            href={solution.href}
-                            className="group block p-4"
-                          >
-                            <div className="mb-5 group-hover:opacity-60">
-                              <solution.icon
-                                className="size-5 text-black"
-                                strokeWidth={1.5}
-                              />
-                            </div>
-                            <div className="mb-1 text-base">
-                              {solution.title}
-                            </div>
-                            <div className="text-sm font-normal text-muted-foreground">
-                              {solution.description}
-                            </div>
-                          </NavigationMenuLink>
-                        ))}
-                      </div>
-                    </div>
+                  <div className="grid gap-6 lg:grid-cols-2">
+                    {solutions.map((solution, index) => (
+                      <NavigationMenuLink
+                        key={index}
+                        href={solution.href}
+                        className="group flex flex-col gap-2 p-4"
+                      >
+                        <solution.icon className="size-5 text-primary" strokeWidth={1.5} />
+                        <div className="text-base font-medium">{solution.title}</div>
+                        <div className="text-sm text-muted-foreground">{solution.description}</div>
+                      </NavigationMenuLink>
+                    ))}
                   </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuTrigger>Documentation</NavigationMenuTrigger>
                 <NavigationMenuContent className="min-w-[calc(100vw-4rem)] p-8 lg:p-12 2xl:min-w-[calc(1400px-4rem)]">
-                  <div className="flex justify-between gap-8 lg:gap-x-12">
-                    <div className="w-1/3 max-w-[404px]">
-                      <div className="mb-4 text-xs tracking-widest text-muted-foreground uppercase">
-                        Documentation
-                      </div>
-                      <div className="mb-6 text-sm font-normal text-muted-foreground">
-                        Call to action for developers
-                      </div>
-                      <div className="-ml-2.5 space-y-2.5">
-                        {documentationLinks.map((documentationLink, index) => (
-                          <NavigationMenuLink
-                            key={index}
-                            href={documentationLink.href}
-                            className="group flex flex-row items-center gap-2.5 rounded-md p-2.5 focus:text-accent-foreground"
-                          >
-                            <ArrowUpRight className="size-4" />
-                            <div className="text-base">
-                              {documentationLink.title}
-                            </div>
-                          </NavigationMenuLink>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="max-w-[716px] flex-1 space-y-6">
+                  <div className="grid gap-4 lg:grid-cols-2">
+                    {documentationLinks.map((link, index) => (
                       <NavigationMenuLink
-                        href="/docs"
-                        className="flex flex-row items-center overflow-clip rounded-lg border border-input bg-background p-0 hover:bg-transparent"
+                        key={index}
+                        href={link.href}
+                        className="group flex items-center gap-2 rounded-md p-4 hover:bg-accent"
                       >
-                        <div className="flex-1 p-5 xl:p-8">
-                          <div className="mb-2 text-base">Showcase link</div>
-                          <div className="text-sm font-normal text-muted-foreground">
-                            Fusce neque dolor, sollicitudin sed sodales non,
-                            condimentum vel metus.
-                          </div>
-                        </div>
-                        <div className="h-[154px] max-w-[264px] shrink-0">
-                          <img
-                            src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
-                            alt="Placeholder image" loading="lazy"
-                            className="h-full w-full object-cover object-center"
-                          />
-                        </div>
+                        <ArrowUpRight className="size-4" />
+                        <span className="text-base font-medium">{link.title}</span>
                       </NavigationMenuLink>
-                      <NavigationMenuLink
-                        href="/blog"
-                        className="flex flex-row items-center overflow-clip rounded-lg border border-input bg-background p-0 hover:bg-transparent"
-                      >
-                        <div className="flex-1 p-5 xl:p-8">
-                          <div className="mb-2 text-base">
-                            Another showcase link
-                          </div>
-                          <div className="text-sm font-normal text-muted-foreground">
-                            Duis metus mauris, efficitur imperdiet magna vitae,
-                            accumsan mattis lacus.
-                          </div>
-                        </div>
-                        <div className="h-[154px] max-w-[264px] shrink-0">
-                          <img
-                            src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
-                            alt="Placeholder image" loading="lazy"
-                            className="h-full w-full object-cover object-center"
-                          />
-                        </div>
-                      </NavigationMenuLink>
-                    </div>
+                    ))}
                   </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
@@ -383,27 +284,11 @@ const Navbar3 = () => {
                     </div>
                     <NavigationMenuLink
                       href="/services"
-                      className="group max-w-[604px] flex-1 p-0 hover:bg-transparent"
+                      className="flex flex-col gap-2 rounded-lg border border-input bg-background p-5 hover:bg-accent xl:p-8"
                     >
-                      <div className="flex h-full rounded-lg border border-input bg-background p-0 hover:bg-transparent">
-                        <div className="w-2/5 max-w-[310px] shrink-0 overflow-clip rounded-tl-lg rounded-bl-lg">
-                          <img
-                            src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
-                            alt="Placeholder image" loading="lazy"
-                            className="h-full w-full object-cover object-center"
-                          />
-                        </div>
-                        <div className="flex flex-col p-5 xl:p-8">
-                          <div className="mb-8 text-xs tracking-widest text-muted-foreground uppercase">
-                            Full-service consulting
-                          </div>
-                          <div className="mt-auto">
-                            <div className="mb-4 text-xl">Elevate your entire operation</div>
-                            <div className="text-sm font-normal text-muted-foreground">
-                              We review every aspect of your business to help you grow.
-                            </div>
-                          </div>
-                        </div>
+                      <div className="text-base font-medium">Full-service consulting</div>
+                      <div className="text-sm text-muted-foreground">
+                        Comprehensive reviews to boost growth.
                       </div>
                     </NavigationMenuLink>
                   </div>
@@ -442,31 +327,10 @@ const Navbar3 = () => {
                       </div>
                       <NavigationMenuLink
                         href="/case-studies"
-                        className="mb-6 flex flex-row overflow-clip rounded-lg border border-input bg-background p-0 hover:bg-transparent"
+                        className="flex flex-col gap-2 rounded-lg border border-input bg-background p-5 hover:bg-accent xl:p-8"
                       >
-                        <div className="flex-1 p-5 xl:p-8">
-                          <div className="mb-2 text-base">Case Studies</div>
-                          <div className="text-sm font-normal text-muted-foreground">
-                            Integer a ipsum quis nisi posuere lobortis at id
-                            tellus.
-                          </div>
-                        </div>
-                        <div className="w-1/3 max-w-[130px] shrink-0">
-                          <img
-                            src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
-                            alt="Placeholder image" loading="lazy"
-                            className="h-full w-full object-cover object-center"
-                          />
-                        </div>
-                      </NavigationMenuLink>
-                      <NavigationMenuLink
-                        href="/case-studies"
-                        className="flex flex-row items-center gap-3 rounded-lg bg-secondary/30 p-3 hover:bg-secondary/80 focus:bg-secondary/80"
-                      >
-                        <Badge variant="secondary">NEW</Badge>
-                        <span className="text-sm text-ellipsis text-secondary-foreground">
-                          Proin volutpat at felis in vehicula
-                        </span>
+                        <div className="text-base font-medium">Case Studies</div>
+                        <div className="text-sm text-muted-foreground">Real-world success stories</div>
                       </NavigationMenuLink>
                     </div>
                   </div>
@@ -571,9 +435,9 @@ const Navbar3 = () => {
                 <button
                   type="button"
                   className="flex w-full items-center border-b border-border px-8 py-7 text-left"
-                  onClick={() => setSubmenu("platform")}
+                  onClick={() => setSubmenu("offerings")}
                 >
-                  <span className="flex-1">Platform</span>
+                  <span className="flex-1">Offerings</span>
                   <span className="shrink-0">
                     <ChevronRight className="size-4" />
                   </span>
@@ -681,27 +545,10 @@ const Navbar3 = () => {
               </div>
             </div>
           )}
-          {/* Mobile Menu > Platform */}
-          {open && submenu === "platform" && (
+          {/* Mobile Menu > Offerings */}
+          {open && submenu === "offerings" && (
             <div className="fixed inset-0 top-[72px] flex h-[calc(100vh-72px)] w-full flex-col overflow-scroll border-t border-border bg-background lg:hidden">
-              <a href="/services" className="block space-y-6 px-8 py-8">
-                <div className="w-full overflow-clip rounded-lg">
-                  <img
-                    src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
-                    alt="Placeholder image" loading="lazy"
-                    className="aspect-2/1 h-full w-full object-cover object-center"
-                  />
-                </div>
-                <div>
-                  <div className="mb-2 text-base">Platform Overview</div>
-                  <div className="text-sm font-normal text-muted-foreground">
-                    Pellentesque nec odio id elit dapibus rutrum.
-                  </div>
-                </div>
-              </a>
-              <div className="px-8 py-3.5 text-xs tracking-widest text-muted-foreground uppercase">
-                Solutions
-              </div>
+              <div className="py-4" />
               <div className="border-t border-border pb-16">
                 {solutions.map((solution, index) => (
                   <a
@@ -768,55 +615,20 @@ const Navbar3 = () => {
           {/* Mobile Menu > Documentation */}
           {open && submenu === "documentation" && (
             <div className="fixed inset-0 top-[72px] flex h-[calc(100vh-72px)] w-full flex-col overflow-scroll border-t border-border bg-background lg:hidden">
-              <a href="/docs" className="block space-y-6 px-8 py-8">
-                <div className="w-full overflow-clip rounded-lg">
-                  <img
-                    src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
-                    alt="Placeholder image" loading="lazy"
-                    className="aspect-2/1 h-full w-full object-cover object-center"
-                  />
-                </div>
-                <div>
-                  <div className="mb-2 text-base">Start with our API</div>
-                  <div className="text-sm font-normal text-muted-foreground">
-                    Head to our developer documentation for all the help you
-                    need to embed our payments API.
-                  </div>
-                </div>
-              </a>
-              <a
-                href="/blog"
-                className="block space-y-6 border-t border-border px-8 py-8"
-              >
-                <div className="w-full overflow-clip rounded-lg">
-                  <img
-                    src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
-                    alt="Placeholder image" loading="lazy"
-                    className="aspect-2/1 h-full w-full object-cover object-center"
-                  />
-                </div>
-                <div>
-                  <div className="mb-2 text-base">Quick Start</div>
-                  <div className="text-sm font-normal text-muted-foreground">
-                    Check out our quick-start guides, where you'll find
-                    tips and tricks for everything payments.
-                  </div>
-                </div>
-              </a>
               <div className="px-8 py-3.5 text-xs tracking-widest text-muted-foreground uppercase">
                 Documentation
               </div>
               <div className="-mx-2.5 space-y-2.5 px-8 pb-16">
-                {documentationLinks.map((documentationLink, index) => (
+                {documentationLinks.map((link, index) => (
                   <NavigationMenuLink
                     key={index}
-                    href={documentationLink.href}
-                    className="group py-[18px]focus:text-accent-foreground flex flex-row items-center gap-2.5 rounded-md px-2.5"
+                    href={link.href}
+                    className="group flex flex-row items-center gap-2.5 rounded-md px-2.5 py-[18px] hover:bg-accent"
                   >
                     <div className="flex size-5 items-center justify-center rounded">
                       <ArrowUpRight className="size-3" />
                     </div>
-                    <div className="text-sm">{documentationLink.title}</div>
+                    <div className="text-sm">{link.title}</div>
                   </NavigationMenuLink>
                 ))}
               </div>
@@ -848,20 +660,9 @@ const Navbar3 = () => {
                 <div className="mb-7 text-xs tracking-widest text-muted-foreground uppercase">
                   Case Studies
                 </div>
-                <a href="/case-studies" className="block space-y-6">
-                  <div className="overflow-clip rounded-lg">
-                    <img
-                      src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
-                      alt="Placeholder image" loading="lazy"
-                      className="aspect-2/1 h-full w-full object-cover object-center"
-                    />
-                  </div>
-                  <div>
-                    <div className="mb-1.5 text-base">Case Studies</div>
-                    <div className="text-sm font-normal text-muted-foreground">
-                      Meet the product teams changing how they process payments.
-                    </div>
-                  </div>
+                <a href="/case-studies" className="block space-y-2">
+                  <div className="text-base font-medium">Case Studies</div>
+                  <div className="text-sm text-muted-foreground">Real-world success stories</div>
                 </a>
               </div>
             </div>
