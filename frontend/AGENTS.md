@@ -16,5 +16,6 @@ This document summarizes the new frontend located in `frontend/`. The site is bu
 - Client Login & Dashboard under `/dashboard` with various sub-pages
 - Extensive documentation under `/docs`
 - Blog (`/blog`) with posts sourced from `src/content/blog`
+See `SITE_PAGES_OVERVIEW.md` at the project root for a complete list of site pages. Keep that document in sync whenever files in `src/pages` change.
 
 The Express API lives in `server/` and bots in `bots/` remain unchanged from the original site.
