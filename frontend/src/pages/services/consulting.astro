@@ -1,12 +1,76 @@
 ---
 import Layout from '../../layouts/main.astro';
+import { Hero3 } from '../../components/sections/Hero3';
 import { Feature22 } from '../../components/sections/Feature22';
-export const title = 'Analytics Consulting';
+export const title = 'Consulting & Audits';
 ---
 <Layout title={title}>
-  <section class="container py-8">
-    <h1 class="mb-4 text-4xl font-semibold">Analytics Consulting</h1>
-    <p class="mb-6 text-muted-foreground">Work directly with our experts to plan strategy.</p>
+  <Hero3
+    heading="Expert Insights to Elevate Your Business."
+    description="Optimize performance, compliance, and strategy with precision audits."
+    buttons={{ primary: { text: 'Schedule Your Audit', url: '/contact' } }}
+  />
+
+  <section class="container py-12">
+    <h2 class="mb-6 text-3xl font-semibold">Comprehensive Audit Offerings</h2>
+    <ul class="list-disc space-y-1 pl-6">
+      <li>Business Practices &amp; Finances</li>
+      <li>Strategic Alignment</li>
+      <li>Analytics &amp; SEO</li>
+      <li>Performance Optimization</li>
+      <li>Accessibility &amp; Compliance</li>
+    </ul>
   </section>
+
+  <section class="container pb-12">
+    <h2 class="mb-4 text-2xl font-semibold">What We Examine</h2>
+    <div class="grid gap-6 md:grid-cols-2">
+      <div>
+        <h3 class="mb-2 font-medium">Business Practices &amp; Finances</h3>
+        <ul class="mb-4 list-disc space-y-1 pl-6 text-muted-foreground">
+          <li>Streamline operations and ensure financial compliance.</li>
+          <li>Highlight growth opportunities and efficiency wins.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="mb-2 font-medium">Strategic Alignment</h3>
+        <ul class="mb-4 list-disc space-y-1 pl-6 text-muted-foreground">
+          <li>Align digital strategy with core business goals.</li>
+          <li>Identify competitive gaps and opportunities.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="mb-2 font-medium">Analytics &amp; SEO</h3>
+        <ul class="mb-4 list-disc space-y-1 pl-6 text-muted-foreground">
+          <li>Correct tracking issues for reliable data.</li>
+          <li>Boost search visibility with targeted fixes.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="mb-2 font-medium">Performance Optimization</h3>
+        <ul class="mb-4 list-disc space-y-1 pl-6 text-muted-foreground">
+          <li>Improve speed and user experience across devices.</li>
+          <li>Reduce bounce rates and increase engagement.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="mb-2 font-medium">Accessibility &amp; Compliance</h3>
+        <ul class="mb-4 list-disc space-y-1 pl-6 text-muted-foreground">
+          <li>Ensure ADA, GDPR, and CCPA adherence.</li>
+          <li>Safeguard your reputation and customer trust.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="container pb-12 text-center">
+    <a
+      href="/contact"
+      class="inline-block rounded-md bg-primary px-8 py-3 font-semibold text-primary-foreground hover:bg-primary/90"
+    >
+      Schedule Your Audit
+    </a>
+  </section>
+
   <Feature22 />
 </Layout>
