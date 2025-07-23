@@ -65,9 +65,9 @@ const solutions = [
     icon: Gauge,
   },
   {
-    title: "Free Documentation",
+    title: "Documentation",
     description: "Guides covering marketing and analytics",
-    href: "/docs",
+    href: "/docs/bluefroganalytics/getting-started/installation/",
     icon: Book,
   },
   {
@@ -131,7 +131,7 @@ const resources = [
   {
     title: "Documentation",
     description: "In sapien tellus, sodales in pharetra a, mattis ac turpis.",
-    href: "/docs",
+    href: "/docs/bluefroganalytics/getting-started/installation/",
   },
   {
     title: "Free Testing Tools",
