@@ -46,9 +46,9 @@ import {
 
 const solutions = [
   {
-    title: "Bernays Playbook",
+    title: "Influence Playbook",
     description: "Proven persuasion tactics for modern brands",
-    href: "/bernays-playbook",
+    href: "/services/consulting",
     icon: Book,
   },
   {
@@ -117,9 +117,9 @@ const documentationLinks = [
 
 const resources = [
   {
-    title: "Bernays Playbook",
+    title: "Influence Playbook",
     description: "Download our guide to modern persuasion",
-    href: "/bernays-playbook",
+    href: "/services/consulting",
   },
   {
     title: "Documentation",

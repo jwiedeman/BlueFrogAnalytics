@@ -3,9 +3,9 @@ import { BookOpen, Briefcase, LayoutDashboard, Megaphone } from "lucide-react";
 const features = [
   {
     icon: BookOpen,
-    title: "Bernays Playbook",
+    title: "Influence Playbook",
     description: "Step-by-step persuasion guide for your team.",
-    href: "/bernays-playbook",
+    href: "/services/consulting",
   },
   {
     icon: Briefcase,
@@ -32,7 +32,7 @@ const HomeFeatures = () => {
     <section className="py-20">
       <div className="container">
         <h2 className="mb-10 text-center text-3xl font-semibold md:text-4xl">
-          Bernays-Inspired Offerings
+          Influence-Focused Offerings
         </h2>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {features.map(({ icon: Icon, title, description, href }) => (
