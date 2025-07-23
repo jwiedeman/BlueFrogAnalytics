@@ -1,58 +1,41 @@
 ---
+layout: '../layouts/main.astro'
 title: Free Analytics Audit Tools
 description: Validate your tracking setup and see exactly what's costing you money - completely free.
-template: splash
-hero:
-  tagline: |
-    Discover What's Bleeding Your Revenue
-    
-    Use these free tools to uncover tracking failures, compliance risks, and performance issues in under 2 minutes.
-  image:
-    file: ../../assets/houston.webp
-  actions:
-    - text: Start Free Audit
-      link: /tests/analytics-doctor
-      icon: right-arrow
-      variant: primary
-    - text: Book Paid Deep-Dive
-      link: /services/
-      icon: external
-      variant: minimal
+
+import { Hero3 } from '../components/sections/Hero3';
+
+const modules = import.meta.glob('./tests/*.mdx', { eager: true });
+const tests = Object.entries(modules).map(([path, mod]) => ({
+  slug: path.replace('./tests/', '/tests/').replace(/\.mdx$/, ''),
+  title: mod.frontmatter.title,
+  description: mod.frontmatter.description
+})).sort((a, b) => a.title.localeCompare(b.title));
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+<Hero3
+  heading="Discover What's Bleeding Your Revenue"
+  description="Use these free tools to uncover tracking failures, compliance risks, and performance issues in under 2 minutes."
+  buttons={{
+    primary: { text: 'Start Free Audit', url: '/tests/analytics-doctor' },
+    secondary: { text: 'Book Paid Deep-Dive', url: '/services/' }
+  }}
+/>
 
-# Free Analytics Testing Suite
+## Free Analytics Testing Suite
 
-**REALITY CHECK:** Most businesses are losing 20-40% of their conversion data to tracking failures. These tools will show you exactly what's broken (and what it's costing you).
+**REALITY CHECK:** Most businesses are losing 20-40% of their conversion data to tracking failures. These tools will show you exactly what's broken (and what it's costing you).  
 
-## Instant Analytics Validation
-
-<CardGrid>
-  <Card title="🩺 Analytics Doctor" icon="stethoscope">
-    **Comprehensive health check** for your tracking setup. Identifies silent killers like cross-domain issues, iOS 14.5 attribution loss, and compliance violations.
-    
-    [Run Analytics Doctor →](/tests/analytics-doctor)
-  </Card>
-  
-  <Card title="🔍 Revenue Leak Detector" icon="search">
-    **Uncover hidden revenue losses** from broken conversion tracking, missing UTM parameters, and attribution gaps.
-    
-    [Detect Revenue Leaks →](/tests/example-test)
-  </Card>
-  
-  <Card title="⚡ Performance Killer Finder" icon="zap">
-    **Speed audit** that identifies exactly what's slowing down your site and killing conversions.
-    
-    *Coming Soon - Join waitlist*
-  </Card>
-  
-  <Card title="🛡️ Compliance Risk Scanner" icon="shield-alert">
-    **GDPR, CPRA, and accessibility audit** to prevent costly fines before they happen.
-    
-    *Coming Soon - Join waitlist*
-  </Card>
-</CardGrid>
+<div class="container py-8">
+  <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    {tests.map(t => (
+      <a href={t.slug} class="block border rounded-lg p-5 hover:bg-accent/40 transition-colors">
+        <h3 class="text-lg font-semibold mb-1">{t.title}</h3>
+        <p class="text-sm text-muted-foreground">{t.description}</p>
+      </a>
+    ))}
+  </div>
+</div>
 
 ---
 
