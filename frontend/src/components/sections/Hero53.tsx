@@ -9,13 +9,13 @@ const Hero53 = () => {
       <div className="container px-4 sm:px-6 md:px-8">
         <div className="absolute inset-0 -z-10 h-full w-full bg-[radial-gradient(var(--muted-foreground)_1px,transparent_1px)] [background-size:14px_14px] opacity-35"></div>
         <h1 className="text-5xl font-bold tracking-tight md:text-6xl lg:text-7xl xl:text-8xl">
-          Master Public Relations with Strategic Influence
+          Master Public Relations with Strategic Marketing
         </h1>
         <div className="mt-10 flex flex-col-reverse gap-8 md:mt-12 md:flex-row md:items-center md:gap-10 lg:mt-14">
           <div className="flex flex-col gap-6">
             <Button asChild className="px-6 py-5 bg-blue-600 hover:bg-blue-700 text-white sm:w-fit">
               <a href="/services/consulting">
-                Get the Influence Playbook <Globe className="size-4 ml-2" />
+                Get the Marketing Playbook <Globe className="size-4 ml-2" />
               </a>
             </Button>
             <div className="flex items-center gap-3">
@@ -45,8 +45,8 @@ const Hero53 = () => {
             </div>
           </div>
           <p className="max-w-lg text-xl leading-relaxed text-muted-foreground">
-            Discover how strategic influence can transform your brand. Grab the
-            playbook and start shaping public opinion today.
+            Discover how strategic marketing can transform your brand. Grab the
+            playbook and start shaping public perception today.
           </p>
         </div>
       </div>

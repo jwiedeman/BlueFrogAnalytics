@@ -27,6 +27,7 @@ import {
   Wrench,
   Utensils,
   Truck,
+  Briefcase,
   Menu,
   X,
 } from "lucide-react";
@@ -46,28 +47,34 @@ import {
 
 const solutions = [
   {
-    title: "Influence Playbook",
-    description: "Proven persuasion tactics for modern brands",
-    href: "/services/consulting",
-    icon: Book,
-  },
-  {
-    title: "PR Consulting",
-    description: "Strategy sessions to shape public opinion",
-    href: "/services/consulting",
+    title: "Lead Services",
+    description: "Targeted outreach to drive new customers",
+    href: "/services/marketing",
     icon: Megaphone,
   },
   {
-    title: "Campaign Services",
-    description: "Full-service influence campaigns",
-    href: "/services/marketing",
+    title: "Domain Dashboard",
+    description: "Monitor domain metrics and performance",
+    href: "/dashboard",
+    icon: BarChart,
+  },
+  {
+    title: "Website Services",
+    description: "Design, hosting and SEO for your site",
+    href: "/services/launch",
     icon: Gauge,
   },
   {
-    title: "Influence Dashboard",
-    description: "Track sentiment and outreach in one place",
-    href: "/dashboard",
-    icon: BarChart,
+    title: "Free Documentation",
+    description: "Guides covering marketing and analytics",
+    href: "/docs",
+    icon: Book,
+  },
+  {
+    title: "Consulting & Audits",
+    description: "Expert reviews to refine your operations",
+    href: "/services/consulting",
+    icon: Briefcase,
   },
 ];
 
@@ -117,8 +124,8 @@ const documentationLinks = [
 
 const resources = [
   {
-    title: "Influence Playbook",
-    description: "Download our guide to modern persuasion",
+    title: "Marketing Playbook",
+    description: "Download our guide to proven outreach tactics",
     href: "/services/consulting",
   },
   {
