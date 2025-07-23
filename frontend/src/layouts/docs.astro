@@ -84,7 +84,8 @@ const headingTree = (() => {
                   <li>
                     <details open={breadcrumb.some(b => b.name === n.name)} class="mb-1">
                       <summary class="cursor-pointer text-muted-foreground font-semibold flex items-center">
-                        <ChevronRight class="chevron-icon mr-1 size-3" />{n.label}
+                        <ChevronRight class="chevron-icon mr-1 size-3" />
+                        <a href={n.path} class="flex-1 hover:text-primary">{n.label}</a>
                       </summary>
                       <ul class="ml-4 space-y-1">
                         {render(n.children, depth + 1)}
