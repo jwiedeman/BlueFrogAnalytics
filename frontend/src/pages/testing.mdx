@@ -2,16 +2,15 @@
 layout: '../layouts/main.astro'
 title: Free Analytics Audit Tools
 description: Validate your tracking setup and see exactly what's costing you money - completely free.
-
+---
 import { Hero3 } from '../components/sections/Hero3';
 
-const modules = import.meta.glob('./tests/*.mdx', { eager: true });
-const tests = Object.entries(modules).map(([path, mod]) => ({
+export const modules = import.meta.glob('./tests/*.mdx', { eager: true });
+export const tests = Object.entries(modules).map(([path, mod]) => ({
   slug: path.replace('./tests/', '/tests/').replace(/\.mdx$/, ''),
   title: mod.frontmatter.title,
   description: mod.frontmatter.description
 })).sort((a, b) => a.title.localeCompare(b.title));
----
 
 <Hero3
   heading="Discover What's Bleeding Your Revenue"
