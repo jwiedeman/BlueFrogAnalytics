@@ -60,6 +60,10 @@ npm run build
 
 Static documentation content resides in `src/content/docs`.
 
+The full list of site pages is maintained in `SITE_PAGES_OVERVIEW.md`
+(duplicated as `PAGE_STRUCTURE.md`). Keep this file updated whenever new pages
+are added under `frontend/src/pages`.
+
 ## API server
 
 The API server under `server/apiServer.js` exposes endpoints for profile management and website audits. It requires a Firebase service account and Cassandra connection details. If `FIREBASE_SERVICE_ACCOUNT` is not set, the server falls back to `server/serviceAccount.json`.

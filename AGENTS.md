@@ -26,6 +26,11 @@ This guide explains how to set up an **Astro** project with **Tailwind CSS** and
 
 By the end, you'll have a reference for building an Astro project that leverages Tailwind's utilities, shadcn's component library, and pre-designed blocks from shadcn Blocks Pro to quickly assemble robust UIs.
 
+For a catalog of every page in the site check `PAGE_STRUCTURE.md` (also
+mirrored as `SITE_PAGES_OVERVIEW.md`) in the repository root. Update this
+listing whenever pages are added or removed from `frontend/src/pages` so it stays
+accurate.
+
 1\. Project Setup: Astro with Tailwind CSS and React
 ----------------------------------------------------
 
