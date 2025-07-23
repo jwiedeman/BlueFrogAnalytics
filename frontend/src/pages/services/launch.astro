@@ -5,6 +5,7 @@ import { LaunchFeatures } from '../../components/sections/LaunchFeatures';
 import { Logos10 } from '../../components/sections/Logos10';
 import { TestimonialCards } from '../../components/sections/TestimonialCards';
 import { Cta10 } from '../../components/sections/Cta10';
+import { LaunchPricing } from '../../components/sections/LaunchPricing';
 export const title = 'Business Launch Kit';
 ---
 <Layout title={title}>
@@ -25,18 +26,7 @@ export const title = 'Business Launch Kit';
       ],
     }}
   />
-  <section class="container py-16">
-    <h2 class="mb-4 text-3xl font-semibold">Business Launch Kit</h2>
-    <p class="mb-4">We handle the technical work so you can focus on success.</p>
-    <ul class="mb-6 list-disc space-y-1 pl-6">
-      <li>Modern and optimized brochure website</li>
-      <li>SEO & Analytics included</li>
-      <li>NAP and menu monitoring for accuracy</li>
-      <li>Reliable monthly refinements</li>
-    </ul>
-    <p class="mb-2 font-medium">$100/month – Full website package with unlimited updates, free domain and lead dashboard access.</p>
-    <p class="mb-6 font-medium">$25/month – Budget option that keeps hosting and analytics running. Dashboard access not included and updates are limited.</p>
-  </section>
+  <LaunchPricing />
   <LaunchFeatures />
   <Logos10 />
   <TestimonialCards />
